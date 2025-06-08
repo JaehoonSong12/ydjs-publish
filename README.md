@@ -1,6 +1,6 @@
 **Project Title**
 
-A lightweight, styled LaTeX template for creating a small nonfiction bilingual math explainer book (Korean-English) in a compact 4.25" × 6.87" format. Includes structured front matter, clean main content layout, image support, and polished back matter for publication readiness. (4.25" × 6.87"). Includes front matter, main content chapters, back matter, and support for images and custom headers/footers.
+A lightweight, styled LaTeX template for creating a small nonfiction bilingual math explainer book (Korean-English) in a compact 8.50" × 11.00" format. Includes structured front matter, clean main content layout, image support, and polished back matter for publication readiness. (8.50" × 11.00"). Includes front matter, main content chapters, back matter, and support for images and custom headers/footers.
 
 
 ---
