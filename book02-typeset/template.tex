@@ -12,6 +12,13 @@
 \usepackage{parskip}    % no indent, spaced paragraphs
 \usepackage{hyperref}   % clickable links in PDF
 \usepackage{lipsum}     % (optional) dummy text for examples
+\usepackage{makeidx}
+\makeindex
+
+
+
+
+
 
 % Header/footer style
 \pagestyle{fancy}
@@ -49,6 +56,9 @@ in any form without prior permission.
 \mainmatter
 
 \chapter{Title Here1}
+This is an example sentence with an index entry.\index{example}
+
+
 \lipsum[1]  % replace with actual content
 
 \begin{figure}[htbp]
@@ -69,9 +79,21 @@ This chapter continues the travel narrative or nonfiction content. You can inclu
   \caption{Another illustrative image.}
 \end{figure}
 
+\lipsum[1]  % replace with actual content
+
 % (Additional chapters as needed...)
 % \chapter{Chapter Three: ...}
 % ...
+
+
+
+\chapter{Title Here3}
+This is an example sentence with an index entry.\index{example}
+
+\chapter{Title Here4}
+We talk about apples and bananas here.\index{fruit!apple}\index{fruit!banana}
+
+
 
 %== Back Matter ==%
 \backmatter
@@ -79,20 +101,40 @@ This chapter continues the travel narrative or nonfiction content. You can inclu
 \chapter*{About the Author}
 Short author bio here. (e.g., background and inspiration; include website/contact if desired.)
 
+\lipsum[1]  % replace with actual content
+
 \chapter*{Acknowledgements}
 Brief acknowledgements or credits.
+
+\lipsum[1]  % replace with actual content
 
 \chapter*{Appendix}
 Any extra tables, resources, or citations can go here.
 
-\chapter*{Index}
-% (Create an index if desired; otherwise omit.)
+\lipsum[1]  % replace with actual content
 
-\chapter*{Also by Author Name}
-\begin{itemize}
-  \item Other Book Title One
-  \item Other Book Title Two
-  \item Other Book Title Three
-\end{itemize}
+
+
+
+
+% \chapter*{Index}
+% \begin{description}
+%   \item[Author Name] 1, 2, 3
+%   \item[Book Title] 1
+%   \item[Destination, scenic] 5
+%   \item[Image, illustrative] 7
+%   \item[Travel narrative] 10
+% \end{description}
+% % (This is a simple example. For a real index, consider using the 'makeidx' package and \printindex.)
+
+% \chapter*{Also by Author Name}
+% \begin{itemize}
+%   \item Other Book Title One
+%   \item Other Book Title Two
+%   \item Other Book Title Three
+% \end{itemize}
+
+
+\printindex
 
 \end{document}
