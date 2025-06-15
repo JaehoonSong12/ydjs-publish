@@ -1,0 +1,908 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% `preamble.tex` (core.tex) is a file commonly used in LaTeX projects to define 
+% custom configurations and packages for the document. It typically includes 
+% settings that control the overall appearance and behavior of the document, 
+% such as font size, margins, and the inclusion of external packages for 
+% enhanced functionality.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Suppress overfull and underfull box warnings
+\hbadness=10000
+\vbadness=10000
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% @requires
+% 1. VSCode extension: LaTeX Workshop by James Yu
+% 2. Command Palette (`View` > `Command Palette`) `Preferences: Open Keyboard Shortcuts (JSON)`
+% 
+% [
+%   {
+%     "key": "ctrl+b",
+%     "command": "editor.action.insertSnippet",
+%     "when": "editorLangId == 'latex'",
+%     "args": {
+%       "snippet": "\\textbf{${TM_SELECTED_TEXT}}"
+%     }
+%   },
+%   {
+%     "key": "ctrl+i",
+%     "command": "editor.action.insertSnippet",
+%     "when": "editorLangId == 'latex'",
+%     "args": {
+%       "snippet": "\\textit{${TM_SELECTED_TEXT}}"
+%     }
+%   }
+% ]
+% 
+% 
+% 3. Command Palette (`Ctrl` + `Shift` + `P`) `Preferences: Open User Settings (JSON)`, global settings
+% 
+% "latex-workshop.latex.synctex": 1
+% 
+% @usage
+% 1. import configuration: 
+%     ```
+%     \input{preamble.tex}
+%     ```
+% 2. bold: `Ctrl` + `B`
+% 3. italic: `Ctrl` + `I`
+% 4. PDF Backtracking LaTeX Code: `Ctrl` + `Click`
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% system - comments
+\usepackage{comment}                                % \begin{comment}...\end{comment}
+
+% layout - margins
+\usepackage{geometry}
+\geometry{left=36pt, right=36pt, top=72pt, bottom=72pt}     % 1 in = 72 pt
+
+% font - colors
+\usepackage{xcolor}
+\definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}          % {\color{redcolor}...}
+\definecolor{greencolor}{rgb}{0.0, 1.0, 0.0}        % {\color{greencolor}...}
+\definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}         % {\color{bluecolor}...}
+\definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}       % {\color{yellowcolor}...}
+\definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}         % {\color{cyancolor}...}
+\definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}      % {\color{magentacolor}...}
+\definecolor{blackcolor}{rgb}{0, 0, 0}              % {\color{blackcolor}...}
+\definecolor{darkgreen}{RGB}{0,128,0}
+
+% font - size
+                                                    % \tiny This is tiny text. \normalsize
+                                                    % \scriptsize This is scriptsize text. \normalsize
+                                                    % \footnotesize This is footnotesize text. \normalsize
+                                                    % \small This is small text. \normalsize
+                                                    % \normalsize This is normalsize text. \normalsize
+                                                    % \large This is large text. \normalsize
+                                                    % \Large This is Large text. \normalsize
+                                                    % \LARGE This is LARGE text. \normalsize
+                                                    % \huge This is huge text. \normalsize
+                                                    % \Huge This is Huge text. \normalsize
+
+% paragraph - indentation
+\setlength{\parindent}{0pt}                         % default: 18pt
+
+
+
+
+
+% resource - hyperlinks
+
+
+% resource - hyperlinks
+\usepackage{hyperref}                               % \href{URL}{URL}.
+
+% \href{
+%     https://www.kaggle.com/datasets/kyanyoga/sample-sales-data
+% }{Sample Sales Data}
+
+
+
+
+
+
+
+% This command inserts an image into the document with a customizable size, file path, and caption.
+%
+% Parameters:
+%   #1: Size of the image relative to the text width. The value should be a number (e.g., 0.5 for half the width).
+%   #2: File path of the image, relative to the current directory (e.g., images/filename.png).
+%   #3: Caption text to be displayed below the image.
+%
+% Usage:
+%   The \insertimage command automatically formats the image and places it within the document, ensuring proper
+%   positioning and captioning.
+%
+% Example:
+%   \insertimage{0.8}{images/graph.png}{This is an example caption.}
+%
+% The figure will be centered, and the image size will be 80% of the text width.
+\usepackage{graphicx}
+\newcommand{\insertimage}[3]{                           % \ref{fig:images/filename}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=#1\textwidth]{#2}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
+    \ \newline
+}
+
+% resource - videos
+\usepackage{media9}                                 % \insertvideo{width}{height}{video path}{caption}{autoplay (true/false)}{loop (true/false)}
+\newcommand{\insertvideo}[6]{                           % \ref{fig:video path}
+    \begin{figure}[h!]
+        \centering
+        \includemedia[
+            width=#1\textwidth,        % Video width (relative to text width)
+            height=#2\textwidth,       % Video height (relative to text width)
+            activate=onclick,          % Activate the video on click
+            addresource=#3,            % Video file path (e.g., video.mp4)
+            flashvars={
+                src=#3 % Video source
+                &autoPlay=#5 % Autoplay true/false
+                &loop=#6     % Loop true/false
+            }
+        ]{}{VPlayer.swf}
+        \caption{#4}                   % Caption for the video
+        \label{fig:#3}                 % Label using the video path for easy referencing
+    \end{figure}
+}
+
+
+
+% paragraph - code
+\usepackage{listings, lmodern}                               % \begin{lstlisting}\end{lstlisting}
+\lstset{
+  language=Python,
+  commentstyle=\color{darkgreen},
+  keywordstyle=\color{blue},
+  stringstyle=\color{darkgreen},
+  basicstyle=\ttfamily,
+  breaklines=true,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  literate=*{0}{{{\color{blue}0}}}1
+            {1}{{{\color{blue}1}}}1
+            {2}{{{\color{blue}2}}}1
+            {3}{{{\color{blue}3}}}1
+            {4}{{{\color{blue}4}}}1
+            {5}{{{\color{blue}5}}}1
+            {6}{{{\color{blue}6}}}1
+            {7}{{{\color{blue}7}}}1
+            {8}{{{\color{blue}8}}}1
+            {9}{{{\color{blue}9}}}1
+}
+
+
+
+% Tabular Data (Tables)
+\usepackage{array}
+\usepackage{lipsum}
+\usepackage{longtable}
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% \generatedOn{<locale>}: Prints the exact date and time with regional formatting
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+% This command prints the current date and time in a readable way, formatted based on
+% the locale passed as an argument (e.g., "en-US", "ko-KR", "ja-JP").
+%
+% The format includes:
+% - Time in 12-hour format with AM/PM (in the specified region's style)
+% - Day of the week
+% - Month (full name)
+% - Day of the month
+% - Year
+% - Timezone abbreviation (depending on system locale)
+%
+% USAGE:
+% \generatedOn{<locale>} where <locale> is one of the following:
+%   - "en" for English format (12-hour with AM/PM)
+%   - "ko" for Korean format (24-hour, day of the week, etc.)
+%   - "ja" for Japanese format (similar to Korean style)
+%
+% EXAMPLE USAGE:
+% \generatedOn{en} will output: "11:59 PM EST, Wednesday, January 29, 2025"
+% \generatedOn{ko} will output: "2025년 1월 29일 수요일 23:59"
+% \generatedOn{ja} will output: "2025年1月29日水曜日 23:59"
+% ------------------------------------------------------------------------------
+\usepackage{datetime2}
+% ------------------------------------------------------------------------------
+% Command: \generatedOn
+% ------------------------------------------------------------------------------
+% \generatedOn: Prints the date and time of document compilation.
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+% This command prints the exact date and time when the LaTeX document was 
+% compiled. It uses the `datetime2` package to fetch the timestamp in the ISO 
+% 8601 format (YYYY-MM-DD HH:MM:SS).
+%
+% USAGE:
+% To use this command in your document, simply invoke `\generatedOn` where you 
+% want the compilation timestamp to appear.
+%
+% EXAMPLE:
+% The document was generated on: \generatedOn
+% ------------------------------------------------------------------------------
+
+\newcommand{\generatedOn}{\DTMnow}  % Automatically generates the current date and time
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% CUSTOM DOCUMENT %%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%5%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% title pages
+\usepackage{outline} 
+\usepackage{pmgraph} 
+\usepackage[normalem]{ulem}
+\usepackage{verbatim}
+\usepackage{pgffor}
+\usepackage{xstring}
+\usepackage{xparse} % for advanced argument parsing
+% Signature Fields for Agreement
+\usepackage{textcomp} % for \TextField
+\usepackage{ifthen}   % for conditional checks
+\newcounter{nameCounter}
+
+% ------------------------------------------------------------------------------
+% \signField[<Printed Name>][<Width Factor>]: Generates a signature field
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+% This command creates a structured signature field with labeled sections for:
+% - Signature
+% - Printed Name (customizable label)
+% - Date
+% - Initials
+%
+% The width of the entire signature field can be adjusted using the second argument.
+% The proportions remain the same while scaling.
+%
+% USAGE:
+%   \signField[<Printed Name>][<Width Factor>]
+%   - <Printed Name> (Optional): Defaults to "Printed Name"
+%   - <Width Factor>: A decimal value specifying the fraction of \textwidth
+%
+% EXAMPLES:
+%   - \shortSignField           
+%   - \signField                
+%   - \signField[Full Name]     → Uses "Full Name" for the name label by their usage.
+% ------------------------------------------------------------------------------
+\newcommand{\signField}[1][Printed Name]{
+    \stepcounter{nameCounter}
+    \begin{tabbing}
+        \hspace{0.3\textwidth} \= \hspace{0.35\textwidth} \= \hspace{0.20\textwidth} \= \hspace{0.15\textwidth} \kill
+        \makebox[0.3\textwidth]{} \> \TextField[name=name\arabic{nameCounter},width=0.35\textwidth,bordercolor=0 0 0]{} \> \TextField[name=date\arabic{nameCounter},width=0.20\textwidth,bordercolor=0 0 0]{} \> \makebox[0.15\textwidth]{} \\[-8pt]
+        \underline{\hspace{0.3\textwidth}} \> \underline{\hspace{0.35\textwidth}} \> \underline{\hspace{0.20\textwidth}} \> \underline{\hspace{0.15\textwidth}} \\ 
+        \textit{Signature} \> #1 \> Date \> \makebox[0.15\textwidth][r]{\textbf{\textit{Initials}}}
+    \end{tabbing}
+}
+\newcommand{\shortSignField}[1][Printed Name]{%
+    \stepcounter{nameCounter}
+
+    % Define overall width as a multiple of \textwidth
+    \newlength{\overallWidth}
+    \setlength{\overallWidth}{0.8\textwidth}  % Slightly reduced total width
+
+    % Calculate proportional column widths
+    \newlength{\colOne}
+    \newlength{\colTwo}
+    \newlength{\colThree}
+
+    \setlength{\colOne}{0.3\overallWidth}
+    \setlength{\colTwo}{0.4\overallWidth}
+    \setlength{\colThree}{0.3\overallWidth}
+
+    \begin{tabbing}
+        \hspace{\colOne} \= \hspace{\colTwo} \= \hspace{\colThree} \kill
+        \makebox[\colOne]{} \> 
+        \TextField[name=name\arabic{nameCounter},width=\colTwo,bordercolor=0 0 0]{} \> 
+        \generatedOn \\[-8pt]
+        \underline{\hspace{\colOne}} \> 
+        \underline{\hspace{\colTwo}} \> 
+        \underline{\hspace{\colThree}} \\ 
+        \textit{Signature} \> #1 \> Date
+    \end{tabbing}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title Page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\convertarraytostring}[2]{
+  \gdef#1{}
+  \foreach \x in {#2} {
+    \xdef#1{#1 \x \\}
+  }
+}
+\newcommand{\customtitle}[7]{
+    \title{
+        \includegraphics[width=1.75in]{images/emblem.png} \\ % fixed Logo settings
+        \vspace*{0.5in}
+        #1 \\ 
+        \vspace*{0.5in}
+        \textbf{#2}
+    }
+    \author{
+        #3 \\ 
+        \vspace*{1pt} \\
+        #4 \\
+        \vspace*{0.5in} \\
+        \textbf{#5} \\ 
+        \vspace*{1pt} \\
+        #6 \\ 
+        \vspace*{1pt} \\
+        \textbf{#7} \\ 
+    }
+    \date{\today} % fixed date settings
+    \maketitle
+    \newpage
+}
+
+% \convertarraytostring
+% {\titleauthors}                                                                       % Authors
+% {Jaehoon Song (lead), Manya Jain, Devika Papal, Yashman P Singh}
+% \customtitle
+% {Final Team Project: Process Book}                                                    % Title
+% {Music Trends and Insights: Visualization of Genres, Artists, and Listener Behaviors} % Subtitle
+% {Team: Vizualytics}                                                                   % Team name (e.g., "Team: Vizualytics")
+% {\titleauthors}
+% {CS-4460-B: Introduction to Information Visualization}                                % Course name (e.g., "CS-4460-B: Introduction to ...")
+% {Georgia Institute of Technology}                                                     % Institution (e.g., "Georgia Institute of Technology")
+% {Professor: Yalong Yang}                                                              % Professor name (e.g., "Yalong Yang")
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Handout Title (First Page) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% General Handout Format
+% \handout{<title>}{<course name>}{<date>}{<author>}{<secondary info>}{<number>}
+% Creates a formatted header for handouts. Parameters:
+% 1. <is_shadow>: is the box shadowed
+% 1. <title>: Title of the handout (e.g., "Lecture 1")
+% 2. <course name>: Name of the course (e.g., "CS 4510 Automata and Complexity")
+% 3. <author>: Name of the author (e.g., "Prof. Alice")
+% 4. <date>: Date of the handout (e.g., "Jan 15, 2025")
+% 5. <secondary info>: Additional info (e.g., "Scribe(s): Bob and Charlie")
+% 6. <number>: Handout number or identifier (used for page numbering)
+\usepackage{amsmath,amsfonts,amssymb,tikz} % Math symbols and environments
+\usepackage{fancybox}
+\usetikzlibrary{automata, positioning, arrows}
+\usetikzlibrary{arrows.meta}
+\newcommand{\handout}[7][false]{%
+    \renewcommand{\thepage}{#7-\arabic{page}} % Sets page numbering style to <number>-<page>
+    \noindent
+    \begin{center}
+    \ifthenelse{\equal{#1}{true}}{%
+        % Use shadowbox if the boolean is true
+        \shadowbox{%
+            \parbox{5.78in}{%
+                \vbox{
+                    \hbox to 5.78in { #3 \hfill #4 } % Course name and date
+                    \vspace{4mm}
+                    \hbox to 5.78in { {\Large \hfill #2 \hfill} } % Title centered
+                    \vspace{2mm}
+                    \hbox to 5.78in { {\it #5 \hfill #6} } % Author and secondary info
+                }
+            }
+        }
+    }{%
+        % Use standard framebox if the boolean is false
+        \framebox{%
+            \vbox{
+                \hbox to 5.78in { #3 \hfill #4 } % Course name and date
+                \vspace{4mm}
+                \hbox to 5.78in { {\Large \hfill #2 \hfill} } % Title centered
+                \vspace{2mm}
+                \hbox to 5.78in { {\it #5 \hfill #6} } % Author and secondary info
+            }
+        }
+    }
+    \end{center}
+    \vspace*{4mm}
+}
+
+
+% Example Usages:
+
+% \handout
+%    {Lecture 1}
+%    {CS 4510 Automata and Complexity}{Prof. Alice}
+%    {Jan 15, 2025}{Scribe(s): Bob and Charlie}
+%    {1}
+
+% \handout
+% {Homework 1: Finite Automata}
+% {\textbf{CS 4510 Automata and Complexity}}{Out: 01/08/2025}
+% { }{Due: 01/22/2025}
+% {1: Finite Automata}
+
+% \handout[true]
+% {Problem Set 1} 
+% {\textsc{Georgia Tech} S'25}{CS 4540: \textsc{Advanced Algorithms}}
+% {Out: Jan 7}{Due: Jan 14 11.59 pm}
+% {CS 4540}
+
+
+% \handout
+% {Exam 1: Regular Languages}
+% {\textbf{CS 4510 Automata and Complexity}}{Due: 12:30 pm February 6}
+% {Released: 12:30 pm February 5}{ }
+% {1: Regular Languages}
+
+
+% \handout
+%    {Project Proposal}
+%    {CS 4510 Automata and Complexity}{Prof. Alice}
+%    {Mar 1, 2025}{Team: Alpha Group}
+%    {1}
+
+% \handout
+%    {Midterm Announcement}
+%    {CS 4510 Automata and Complexity}{Prof. Alice}
+%    {Mar 10, 2025}{--}
+%    {--}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{definition}{Definition}
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% \begin{subanswer}[<Color>][<isWhite>] … \end{subanswer}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This custom environment displays an “Answer:” label with configurable text color.
+%   It is intended for formatting answers clearly in assignments or solutions.
+%
+% FEATURES:
+%   - Displays “Answer:” in bold, followed by answer content.
+%   - Automatically ends with a square symbol (□) aligned right.
+%   - First optional argument selects text color (default = red).
+%   - Second optional argument overrides to white text when set to true.
+%
+% PARAMETERS (both optional):
+%   [<Color>]    Text color name (e.g. blue, green). Defaults to red.
+%   [<isWhite>]  true  ⇒ force white text (for dark backgrounds)
+%                 false ⇒ use the chosen <Color>. Defaults to false.
+%
+% DEPENDENCIES:
+%   \usepackage{ifthen}
+%   \usepackage{xcolor}
+%   \usepackage{xparse}
+%
+% USAGE EXAMPLES:
+%   % defaults: red text, isWhite = false
+%   \begin{subanswer}
+%     This answer is red.
+%   \end{subanswer}
+%
+%   % blue text, isWhite = false
+%   \begin{subanswer}[blue]
+%     This answer is blue.
+%   \end{subanswer}
+%
+%   % green text, forced white override
+%   \begin{subanswer}[green][true]
+%     This answer is white (on green background).
+%   \end{subanswer}
+% ------------------------------------------------------------------------------
+\NewDocumentEnvironment{subanswer}{ O{red} O{false} }
+  {%
+    \par\medskip                     % start a paragraph with a bit of space
+    % choose white if second optional arg is “true”, otherwise #1
+    \ifthenelse{\equal{#2}{true}}%
+      {\color{white}}%
+      {\color{#1}}%
+    \noindent\textbf{Answer}:        % no \\ or \newline here
+  }
+  {%
+    \par\hfill$\square$\par
+  }
+\NewDocumentEnvironment{subprove}{ O{red} O{false} }
+  {%
+    \par\medskip                     % start a paragraph with a bit of space
+    % choose white if second optional arg is “true”, otherwise #1
+    \ifthenelse{\equal{#2}{true}}%
+      {\color{white}}%
+      {\color{#1}}%
+    \noindent\textbf{Proof}:        % no \\ or \newline here
+  }
+  {%
+    \par\hfill$\blacksquare$\par
+  }
+
+
+% Answer environment for responses
+% \answer[<color>] creates an answer environment with optional text color (default: teal).
+\newenvironment{answer}[1][redcolor]
+    {\ \newline \color{#1}\noindent\textbf{Answer}: }
+    {\par\hfill$\square$\newline\newpage}
+    % {\par\hfill$\square$\newline}
+
+% Prove environment for responses
+% \prove[<color>] creates an answer environment with optional text color (default: teal).
+\newenvironment{prove}[1][redcolor]
+    {\ \newline \color{#1}\noindent\textbf{Proof}: }
+    {\par\hfill$\blacksquare$\newline\newpage}
+    % {\par\hfill$\blacksquare$\newline}
+
+% Define environment for framed definitions
+% \define[<color>] creates a definition/theorem environment with a colored frame and background
+\usepackage{mdframed}
+\newenvironment{define}[2][bluecolor]
+    {
+    \vspace{2pt}
+    \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
+    \color{#1}
+    \textbf{\S~#2}\hspace{6pt}  % Start symbol for definition/theorem with a title
+    \vspace{4pt}
+    }
+{
+    \end{mdframed}
+}
+
+
+
+% Example Usage:
+
+% To use the \answer environment:
+% \begin{answer}
+%   <YOUR WORK GOES HERE>
+% \end{answer}
+% \begin{answer}[red]
+% This is a custom answer in green color.
+% \end{answer}
+
+% To use the \prove environment:
+% \begin{prove}
+%   <YOUR WORK GOES HERE>
+% \end{prove}
+% \begin{prove}[purple]
+% This is a custom proof in purple color.
+% \end{prove}
+
+% To use the \define environment:
+% \begin{define}{Name of Definition/Theorem/Property}
+%   <YOUR Theorem/Definition GOES HERE>
+% \end{define}
+% \begin{define}[orange]{Name of Definition/Theorem/Property}
+% This is a custom definition with an orange frame and background.
+% \end{define}
+
+% Passing a custom color example:
+% Replace <color> with a valid LaTeX color name (e.g., red, green, blue, cyan, etc.)
+% or define your own colors using \usepackage{xcolor} if needed.
+
+
+
+
+
+
+
+% % Commonly used math symbols
+% \newcommand{\T}{\mathrm{T}}
+% \newcommand{\F}{\mathrm{F}}
+% \newcommand{\Z}{\mathbb{Z}}
+% \newcommand{\N}{\mathbb{N}}
+% \newcommand{\R}{\mathbb{R}}
+% \renewcommand{\O}{\mathcal{O}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliographies (with Citations)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[backend=biber,style=apa]{biblatex}      % \newpage\printbibliography\end{document}
+\addbibresource{../references.bib}                      % \cite{reference1}
+% \addbibresource{references.bib}                         % \cite{reference1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DEFAULT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                    % \textbf{boldfaced}
+                                                    % \textit{intalicized}
+%%%% MATH underbrace
+% \[
+%     a + b + c = \underbrace{x + y + z
+%         }_{\text{
+%         Sum of terms
+%         }
+%         }
+% \]
+\usepackage{enumitem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%macros for Alg and Uncertainty
+\newcommand\p{\mbox{\bf P}\xspace}
+\newcommand\np{\mbox{\bf NP}\xspace}
+\newcommand{\Alg}{\text{Alg}}
+\newcommand{\Opt}{\text{Opt}}
+
+\newcommand{\one}{\mathbf{1}\xspace}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\sse}{\subseteq}
+\newcommand{\Clients}{\text{Clients}}
+\newcommand{\X}{\mathbf{X}}
+\newcommand{\Y}{\mathbf{Y}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\cc}{\mathbf{c}}
+\def \integers {\mathbb{Z}}
+
+\newcommand\OPT{\text{OPT}\xspace}
+
+
+%%Computational problems
+
+\newcommand\sat{\mbox{SAT}\xspace}
+
+\newcommand\numsat{\mbox{$\sharp$ SAT}\xspace}
+%% Notation for integers, natural numbers, reals, fractions, sets, cardinalities
+%%and so on
+
+\newcommand{\IGNORE}[1]{}
+\newcommand\bz{\mbox{\bf Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand\nat{\mbox{\bf N}}
+\newcommand\rea{\mbox{\bf R}}
+\newcommand\B{\{0,1\}}      % boolean alphabet  use in math mode
+\newcommand\Bs{\{0,1\}^*}   % B star            use in math mode
+\newcommand\true{\mbox{\sc True}}
+\newcommand\false{\mbox{\sc False}}
+\DeclareRobustCommand{\fracp}[2]{{#1 \overwithdelims()#2}}
+\DeclareRobustCommand{\fracb}[2]{{#1 \overwithdelims[]#2}}
+\newcommand{\marginlabel}[1]%
+{\mbox{}\marginpar{\it{\raggedleft\hspace{0pt}#1}}}
+\newcommand\card[1]{\left| #1 \right|} %cardinality of set S; usage \card{S}
+\newcommand\set[1]{\left\{#1\right\}} %usage \set{1,2,3,,}
+\newcommand\poly{\mbox{poly}}  %usage \poly(n)
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\rank}{rank}
+\newcommand{\floor}[1]{\lfloor\, $#1$\,\rfloor}
+\newcommand{\ceil}[1]{\lceil\, $#1$\,\rceil}
+\newcommand{\comp}[1]{\overline{#1}}
+\newcommand{\defeq}{\overset{\mathrm{def}}{=}}
+\newcommand{\bits}{\set{0,1}}
+
+
+
+% Ordinals
+% \newcommand{\st}{\textsuperscript{st}\ }
+% \newcommand{\nd}{\textsuperscript{nd}\ }
+% \newcommand{\rd}{\textsuperscript{rd}\ }
+\newcommand{\thsup}{\textsuperscript{th}\ }
+
+
+\usepackage{qtree} % `\Tree` for simple tree graphing!
+
+
+\newenvironment{algo}{\vspace{0.07in} \noindent \begin{minipage}	{5.5in}%\begin{quote}
+\hrule\vspace{0.01in}\hrule \vspace{0.05in}}{\vspace{-0.0in}\hrule\vspace{0.01in}\hrule \vspace{0.07in}%\end{quote} 
+\end{minipage}}%
+
+
+\usepackage{arydshln} % For dashed/dotted lines
+\usepackage{cellspace} % Extra padding in table cells
+\usepackage{multicol}
+
+\usepackage{xspace}
+\usepackage{braket}
+
+
+
+
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+% \newcommand{\algorithmiccomment}[1]{\quad$\triangleright$ #1}
+\makeatletter
+\renewcommand{\algorithmiccomment}[1]{\hfill$\triangleright$~#1}
+\makeatother
+
+% \makeatletter ... \makeatother
+% This pair temporarily makes @ a "letter" 
+% so you can redefine internals (macros whose names contain @ ). 
+% \algorithmiccomment internally uses @, so you need this wrapper.
+
+
+
+
+
+
+
+% % ─── Enter “@‑letter” mode ────────────────────────────────
+% \makeatletter
+
+%   % Define internal macro \@sayhello that takes one argument
+%   \def\@sayhello#1{Hello, #1!}
+
+%   % Define user‑level \sayhello that simply calls the internal one
+%   \newcommand{\sayhello}[1]{\@sayhello{#1}}
+
+% % ─── Leave “@‑letter” mode ───────────────────────────────
+% \makeatother
+
+% % ─── Now use your friendly command in the document ───────
+% \sayhello{World}
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% \begin{state}[state#]{title text} 
+%     ... your content ... 
+% \end{state}
+% : formats a subsection title.
+% ------------------------------------------------------------------------------
+% DESCRIPTION: 
+%   Define the custom environment "state"
+%   This environment formats a subsection title in the following style:
+%   ```
+%   §<number> (<title>)
+%   ```
+%
+% ARGUMENTS:
+%   - An optional argument: a number to which the counter should be reset.
+%       If provided, the counter "statecounter" is set to (#1 - 1) so that after
+%       incrementing, the displayed number is exactly the value provided.
+%   - A mandatory argument: the title text.
+%
+% USAGE:
+%   \begin{state}{title text}
+%       ... your content ...
+%   \end{state}
+%
+%   \begin{state}[<number>]{title text}
+%       ... your content ...
+%   \end{state}
+%
+% Example:
+%   \begin{state}{title1}  % Displays: §1 (title1)
+%   \end{state}
+%
+%   \begin{state}[2]{title4}  % Resets counter; displays: §2 (title4)
+%   \end{state}
+% ------------------------------------------------------------------------------
+\newcounter{statecounter} % The counter "statecounter" is used to number the subsections.
+\NewDocumentEnvironment{state}{ o m }{%
+  % Check if the optional argument is provided.
+  % If yes, reset the counter to (value - 1) so that after incrementing it equals the provided value.
+  \IfNoValueTF{#1}{%
+    % No optional argument provided; increment normally.
+    \stepcounter{statecounter}%
+  }{%
+    % Optional argument provided; reset counter accordingly.
+    \setcounter{statecounter}{\numexpr#1-1\relax}%
+    \stepcounter{statecounter}%
+  }%
+  % Create an unnumbered subsection with our custom format:
+  % "§<current counter> (<title text>)"
+  \subsection*{§\arabic{statecounter} (#2)}%
+}{%
+  % End of the "state" environment.
+}
+
+% ------------------------------------------------------------------------------
+% Define the alias environment "prop" as a wrapper for "state".
+%
+% This allows you to use either \begin{state} ... \end{state} or
+% \begin{prop} ... \end{prop} with identical behavior.
+% ------------------------------------------------------------------------------
+\NewDocumentEnvironment{prop}{ o m }{%
+  % Pass the arguments to the "state" environment.
+  \IfNoValueTF{#1}{%
+    \begin{state}{#2}%
+  }{%
+    \begin{state}[#1]{#2}%
+  }%
+}{%
+  \end{state}%
+}

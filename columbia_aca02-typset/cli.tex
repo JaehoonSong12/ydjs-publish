@@ -1,0 +1,119 @@
+\documentclass[11pt,oneside]{book} % oneside for single-sided layout
+%================ Packages ======================
+\usepackage{graphicx}       % for including images (e.g. emblem)
+\usepackage{amsmath,amssymb,amsfonts} % common math packages
+\usepackage{biblatex}       % bibliography management (recommended):contentReference[oaicite:10]{index=10}
+\addbibresource{references.bib} % Bibliography file
+\usepackage{geometry}       % set page margins
+\geometry{a4paper, margin=1in} 
+
+%================ Metadata ======================
+\newcommand{\BookTitle}{Your Book Title}
+\newcommand{\BookAuthor}{Jaehoon Song}
+\newcommand{\BookInstitution}{Hans edu LLC (Columbia Academy)}
+\newcommand{\BookEmblem}{./images/emblem.png} % Path to emblem image file
+%\newcommand{\BookSubtitle}{Subtitle (optional)} % uncomment if needed
+
+%================= Document ======================
+\begin{document}
+\frontmatter
+
+% Half-Title Page (title only, no page number):contentReference[oaicite:11]{index=11}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \vspace*{7cm} % adjust vertical position if needed
+  \begin{center}
+    {\Huge \BookTitle \par}
+  \end{center}
+\end{titlepage}
+
+\cleardoublepage
+\thispagestyle{empty}
+% Title Page (title, author, institution, emblem):contentReference[oaicite:12]{index=12}
+\begin{titlepage}
+  \begin{center}
+    \includegraphics[width=0.60\textwidth]{\BookEmblem}\par\vspace{1cm}
+    {\LARGE \BookTitle \par}
+    \vspace{0.5cm}
+    %{\large \BookSubtitle \par} % Uncomment if using a subtitle
+    \vspace{1cm}
+    {\Large \BookAuthor \par}
+    {\normalsize Lecturer, \BookInstitution \par}
+    \vfill
+    {\normalsize \today \par} % date or edition info
+  \end{center}
+\end{titlepage}
+
+\cleardoublepage
+\thispagestyle{empty}
+% Copyright Page (educational use statement):contentReference[oaicite:13]{index=13}:contentReference[oaicite:14]{index=14}
+\begin{center}
+  {\small \textcopyright\ \the\year\ \BookAuthor. All rights reserved.}\\
+  {\small This document is for educational use only and is not for commercial distribution:contentReference[oaicite:15]{index=15}.}\\
+  {\small No part of this work may be reproduced without permission.}\\
+  {\small The author disclaims any liability for errors; use at your own risk:contentReference[oaicite:16]{index=16}.}\\
+\end{center}
+
+\cleardoublepage
+\thispagestyle{empty}
+% Dedication (optional)
+% Uncomment and fill in to include a dedication page
+%\chapter*{Dedication}
+%{\itshape To [whomsoever it may concern]\par}
+
+\cleardoublepage
+\thispagestyle{empty}
+% Table of Contents
+\tableofcontents
+
+\cleardoublepage
+% Preface (Author's Note)
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+% [Write your preface or author’s note here.]
+
+\cleardoublepage
+% Acknowledgements
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+% [Write acknowledgements here (contributors, funding, etc.).]
+
+\cleardoublepage
+% Introduction
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+% [Write the introduction to the book here.]
+
+\cleardoublepage
+% List of Symbols / Notation
+\chapter*{List of Symbols}
+\addcontentsline{toc}{chapter}{List of Symbols}
+\begin{center}
+  \textbf{Symbol} \quad\quad\quad\ \textbf{Meaning}\\[0.2cm]
+  \begin{tabular}{ll}
+    $a$ & Description of symbol $a$.\\
+    $b$ & Description of symbol $b$.\\
+    $\alpha,\beta$ & Common notation (e.g., angles or coefficients).\\
+    % Add more symbols as needed.
+  \end{tabular}
+\end{center}
+
+\mainmatter
+%=============== Main Matter ===============
+% Begin Arabic page numbering and numbered chapters here.
+
+\chapter{First Chapter Title}
+% [Main text begins here; include sections, definitions, examples, etc.]
+
+\section{Example Section}
+Here is some example content. You can reference equations like \(E=mc^2\) and cite sources using \verb|\cite{key}|.  Footnotes can be added with \verb|\footnote{...}|.  For example, this is a footnote.\footnote{This is a sample footnote.}
+
+% Add chapters, sections, exercises, etc., as needed for lecture content.
+
+%=============== Back Matter ===============
+\backmatter
+% Bibliography / References
+\printbibliography[heading=bibintoc] % include bibliography in TOC
+% Alternatively, use \bibliography{references} if using BibTeX.
+
+\end{document}
