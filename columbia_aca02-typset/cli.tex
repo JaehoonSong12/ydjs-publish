@@ -1,4 +1,18 @@
 \documentclass[11pt,oneside]{book} % oneside for single-sided layout
+
+%================ Dependencies ======================
+% Required packages and their purposes:
+% - graphicx: For including and manipulating images (emblem)
+% - amsmath,amssymb,amsfonts: Mathematical symbols and equations
+% - biblatex: Modern bibliography management
+% - geometry: Page layout and margins
+% - pgffor: For foreach loops in macros
+% - hyperref: For interactive elements and PDF features
+%
+% Note: Make sure all these packages are installed in your LaTeX distribution.
+% If you encounter any "package not found" errors, you may need to install
+% the missing packages using your distribution's package manager.
+
 %================ Packages ======================
 \usepackage{graphicx}       % for including images (e.g. emblem)
 \usepackage{amsmath,amssymb,amsfonts} % common math packages
@@ -6,52 +20,257 @@
 \addbibresource{references.bib} % Bibliography file
 \usepackage{geometry}       % set page margins
 \geometry{a4paper, margin=1in} 
+\usepackage{pgffor}        % for foreach loops
+\usepackage{hyperref}      % for interactive elements
 
 %================ Metadata ======================
-\newcommand{\BookTitle}{Your Book Title}
+\newcommand{\BookTitle}{2025 SAT Summer Class}
+\newcommand{\BookSubtitle}{Week 3}
 \newcommand{\BookAuthor}{Jaehoon Song}
 \newcommand{\BookInstitution}{Hans edu LLC (Columbia Academy)}
 \newcommand{\BookEmblem}{./images/emblem.png} % Path to emblem image file
 %\newcommand{\BookSubtitle}{Subtitle (optional)} % uncomment if needed
 
+
+
+
+
+% ------------------------------------------------------------------------------
+% \signField[<Printed Name>][<Width Factor>]: Generates a signature field
+% ------------------------------------------------------------------------------
+% DEPENDENCIES:
+% - hyperref: Required for \TextField command
+% - tabbing: Built-in LaTeX environment
+%
+% DESCRIPTION:
+% This command creates a structured signature field with labeled sections for:
+% - Signature
+% - Printed Name (customizable label)
+% - Date
+% - Initials
+%
+% The width of the entire signature field can be adjusted using the second argument.
+% The proportions remain the same while scaling.
+%
+% USAGE:
+%   \signField[<Printed Name>][<Width Factor>]
+%   - <Printed Name> (Optional): Defaults to "Printed Name"
+%   - <Width Factor>: A decimal value specifying the fraction of \textwidth
+%
+% EXAMPLES:
+%   - \shortSignField           
+%   - \signField                
+%   - \signField[Full Name]     → Uses "Full Name" for the name label by their usage.
+% ------------------------------------------------------------------------------
+\newcommand{\signField}[1][Printed Name]{
+    \stepcounter{nameCounter}
+    \begin{tabbing}
+        \hspace{0.3\textwidth} \= \hspace{0.35\textwidth} \= \hspace{0.20\textwidth} \= \hspace{0.15\textwidth} \kill
+        \makebox[0.3\textwidth]{} \> \TextField[name=name\arabic{nameCounter},width=0.35\textwidth,bordercolor=0 0 0]{} \> \TextField[name=date\arabic{nameCounter},width=0.20\textwidth,bordercolor=0 0 0]{} \> \makebox[0.15\textwidth]{} \\[-8pt]
+        \underline{\hspace{0.3\textwidth}} \> \underline{\hspace{0.35\textwidth}} \> \underline{\hspace{0.20\textwidth}} \> \underline{\hspace{0.15\textwidth}} \\ 
+        \textit{Signature} \> #1 \> Date \> \makebox[0.15\textwidth][r]{\textbf{\textit{Initials}}}
+    \end{tabbing}
+}
+
+% ------------------------------------------------------------------------------
+% \shortSignField[<Printed Name>]: Generates a compact signature field
+% ------------------------------------------------------------------------------
+% DEPENDENCIES:
+% - hyperref: Required for \TextField command
+% - tabbing: Built-in LaTeX environment
+%
+% DESCRIPTION:
+% Creates a simplified signature field with:
+% - Signature
+% - Printed Name (customizable)
+% - Date
+%
+% USAGE:
+%   \shortSignField[<Printed Name>]
+%   - <Printed Name> (Optional): Defaults to "Printed Name"
+%
+% EXAMPLES:
+%   - \shortSignField           → Uses default "Printed Name" label
+%   - \shortSignField[Name]     → Uses "Name" for the name label
+% ------------------------------------------------------------------------------
+\newcommand{\shortSignField}[1][Printed Name]{%
+    \stepcounter{nameCounter}
+
+    % Define overall width as a multiple of \textwidth
+    \newlength{\overallWidth}
+    \setlength{\overallWidth}{0.8\textwidth}  % Slightly reduced total width
+
+    % Calculate proportional column widths
+    \newlength{\colOne}
+    \newlength{\colTwo}
+    \newlength{\colThree}
+
+    \setlength{\colOne}{0.3\overallWidth}
+    \setlength{\colTwo}{0.4\overallWidth}
+    \setlength{\colThree}{0.3\overallWidth}
+
+    \begin{tabbing}
+        \hspace{\colOne} \= \hspace{\colTwo} \= \hspace{\colThree} \kill
+        \makebox[\colOne]{} \> 
+        \TextField[name=name\arabic{nameCounter},width=\colTwo,bordercolor=0 0 0]{} \> 
+        \generatedOn \\[-8pt]
+        \underline{\hspace{\colOne}} \> 
+        \underline{\hspace{\colTwo}} \> 
+        \underline{\hspace{\colThree}} \\ 
+        \textit{Signature} \> #1 \> Date
+    \end{tabbing}
+}
+
+% ------------------------------------------------------------------------------
+% \customtitle{<Title>}{<Subtitle>}{<Team>}{<Authors>}{<Course>}{<Institution>}{<Professor>}
+% ------------------------------------------------------------------------------
+% DEPENDENCIES:
+% - graphicx: Required for \includegraphics command
+% - hyperref: Required for PDF metadata
+%
+% DESCRIPTION:
+% Creates a professional title page with:
+% - Institution logo
+% - Title and subtitle
+% - Team information
+% - Author list
+% - Course information
+% - Institution name
+% - Professor name
+%
+% USAGE:
+%   \customtitle{<Title>}{<Subtitle>}{<Team>}{<Authors>}{<Course>}{<Institution>}{<Professor>}
+%
+% PARAMETERS:
+%   - Title: Main title of the document
+%   - Subtitle: Secondary title or project description
+%   - Team: Team name or identifier
+%   - Authors: List of authors (use \convertarraytostring for multiple authors)
+%   - Course: Course name and code
+%   - Institution: Institution name
+%   - Professor: Professor's name
+%
+% EXAMPLES:
+%   \customtitle
+%     {Final Team Project: Process Book}
+%     {Music Trends and Insights}
+%     {Team: Vizualytics}
+%     {Author One, Author Two}
+%     {CS-4460-B: Introduction to Information Visualization}
+%     {Georgia Institute of Technology}
+%     {Professor: John Doe}
+% ------------------------------------------------------------------------------
+\newcommand{\convertarraytostring}[2]{
+  \gdef#1{}
+  \foreach \x in {#2} {
+    \xdef#1{#1 \x \\}
+  }
+}
+\newcommand{\customtitle}[7]{
+    \title{
+        % \includegraphics[width=0.60\textwidth]{\BookEmblem}\par\vspace{1cm}
+        \includegraphics[width=0.50\textwidth]{\BookEmblem} \\ % fixed Logo settings
+        \vspace*{0.5in}
+        \textbf{#1} \\ 
+        \vspace*{0.5in}
+        #2
+    }
+    \author{
+        #3 \\ 
+        \vspace*{1pt} \\
+        #4 \\
+        \vspace*{0.5in} \\
+        \textbf{#5} \\ 
+        \vspace*{1pt} \\
+        #6 \\ 
+        \vspace*{1pt} \\
+        \textbf{#7} \\ 
+    }
+    \date{\today} % fixed date settings
+    \maketitle
+    \newpage
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 %================= Document ======================
 \begin{document}
+
+
 \frontmatter
 
-% Half-Title Page (title only, no page number):contentReference[oaicite:11]{index=11}
-\begin{titlepage}
-  \thispagestyle{empty}
-  \vspace*{7cm} % adjust vertical position if needed
-  \begin{center}
-    {\Huge \BookTitle \par}
-  \end{center}
-\end{titlepage}
+% Title Page (title, author, institution, emblem)
+\convertarraytostring{\titleauthors}{\BookAuthor  (Lecturer)}% Authors
+\customtitle
+{\BookTitle}% Title
+{\BookSubtitle}% Subtitle
+{\space}% Team name (e.g., "Team: Vizualytics")
+{\titleauthors}
+{SAT/DSAT/SSAT}% Course name (e.g., "CS-4460-B: Introduction to ...")
+{\BookInstitution}% Institution (e.g., "Georgia Institute of Technology")
+{\space}% Professor name (e.g., "Yalong Yang")
 
-\cleardoublepage
-\thispagestyle{empty}
-% Title Page (title, author, institution, emblem):contentReference[oaicite:12]{index=12}
-\begin{titlepage}
-  \begin{center}
-    \includegraphics[width=0.60\textwidth]{\BookEmblem}\par\vspace{1cm}
-    {\LARGE \BookTitle \par}
-    \vspace{0.5cm}
-    %{\large \BookSubtitle \par} % Uncomment if using a subtitle
-    \vspace{1cm}
-    {\Large \BookAuthor \par}
-    {\normalsize Lecturer, \BookInstitution \par}
-    \vfill
-    {\normalsize \today \par} % date or edition info
-  \end{center}
-\end{titlepage}
 
-\cleardoublepage
-\thispagestyle{empty}
-% Copyright Page (educational use statement):contentReference[oaicite:13]{index=13}:contentReference[oaicite:14]{index=14}
+
+
+
+% % Title Page (title, author, institution, emblem)
+% \begin{titlepage}
+%   \thispagestyle{empty}
+%   \begin{center}
+%     \includegraphics[width=0.60\textwidth]{\BookEmblem}\par\vspace{1cm}
+%     {\Huge \BookTitle \par}
+%     \vspace{0.5cm}
+%     {\large \BookSubtitle \par}
+%     \vspace{1cm}
+%     {\Large \BookAuthor \par} 
+%     {\normalsize Lecturer, \BookInstitution \par}
+%     \vfill
+%     {\normalsize \today \par} % date or edition info
+%   \end{center}
+% \end{titlepage}
+
+% \cleardoublepage
+% \thispagestyle{empty}
+
+
+
+
+
+
+
+
+
+
+% Copyright Page
 \begin{center}
-  {\small \textcopyright\ \the\year\ \BookAuthor. All rights reserved.}\\
-  {\small This document is for educational use only and is not for commercial distribution:contentReference[oaicite:15]{index=15}.}\\
-  {\small No part of this work may be reproduced without permission.}\\
-  {\small The author disclaims any liability for errors; use at your own risk:contentReference[oaicite:16]{index=16}.}\\
+  {\small \textcopyright\ \the\year\ Hans edu LLC. All rights reserved.}\\[0.5cm]
+  {\small Written by \BookAuthor}\\[0.5cm]
+  {\small This document is for educational use only and is not for commercial distribution.}\\[0.5cm]
+  {\small No part of this work may be reproduced without permission.}\\[0.5cm]
+  {\small The author disclaims any liability for errors; use at your own risk.}
 \end{center}
 
 \cleardoublepage
@@ -70,7 +289,7 @@
 % Preface (Author's Note)
 \chapter*{Preface}
 \addcontentsline{toc}{chapter}{Preface}
-% [Write your preface or author’s note here.]
+% [Write your preface or author's note here.]
 
 \cleardoublepage
 % Acknowledgements
