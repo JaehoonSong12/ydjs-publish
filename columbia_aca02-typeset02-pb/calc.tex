@@ -1,0 +1,388 @@
+\handout
+{Collection of Problems}
+{\textsc{Single Variable Calculus (SVC)}}
+{\href{https://creativecommons.org/publicdomain/zero/1.0/}{CC0 1.0 Universal license}}
+{Author: Jaehoon Song}{Release: \generatedOn}
+{SVC: Collection of Problems}
+
+
+% \begin{subanswer}[red][true]
+% \begin{subanswer}[red][true][red][true]
+
+\begin{enumerate}
+  \item \textbf{Particular Solution Parameter} (10 points)\\
+  For what value of $k$, if any, is
+  \[
+    y = e^{-2x} + k e^{4x}
+  \]
+  a solution to the differential equation
+  \[
+    y - \frac{y''}{4} = 5 e^{4x}?
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Tangent Line Interpretation} (10 points)\\
+  An equation for the line tangent to the graph of the differentiable function $f$ at $x = 3$ is
+  \[
+    y = 4x + 6.
+  \]
+  Which of the following statements \emph{must} be true?\\
+  \begin{enumerate}[label=(\Roman*)]
+    \item $f(0) = 6$
+    \item $f(3) = 18$
+    \item $f'(3) = 4$
+  \end{enumerate}
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{General Solution via Separation of Variables} (10 points)\\
+  What is the general solution to the differential equation
+  \[
+    \frac{dy}{dx} = \frac{x \cos\bigl(x^2\bigr)}{4y},
+    \quad y > 0?
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Derivative of an Inverse Tangent} (5 points)\\
+  Compute
+  \[
+    \frac{d}{dx}\bigl(\tan^{-1}(3x)\bigr).
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Squeeze Theorem Limit} (10 points)\\
+  Let
+  \[
+    g(x) = \sin\Bigl(\tfrac{\pi}{2}(x+2)\Bigr) + 3,\quad
+    h(x) = -\tfrac{1}{4}x^3 - \tfrac{3}{2}x^2 - \tfrac{9}{4}x + 3.
+  \]
+  If $f$ is a function satisfying
+  \[
+    g(x) \le f(x) \le h(x)
+    \quad\text{for } -2 < x < 0,
+  \]
+  what is
+  \[
+    \lim_{x \to -1} f(x)?
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Implicit Differentiation} (5 points)\\
+  If
+  \[
+    y = \ln\bigl(3x + 4y\bigr),
+  \]
+  then compute
+  \[
+    \frac{dy}{dx}.
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Riemann Sum to Integral} (10 points)\\
+  Which of the following definite integrals are equal to
+  \[
+    \lim_{n \to \infty} \sum_{k=1}^n \sin\Bigl(-1 + \tfrac{5k}{n}\Bigr) \frac{5}{n}?
+  \]
+  \begin{enumerate}[label=(\Roman*)]
+    \item $\displaystyle \int_{-1}^{4} \sin x \,dx$
+    \item $\displaystyle \int_{0}^{5} \sin(-1+x) \,dx$
+    \item $\displaystyle 5 \int_{0}^{1} \sin(-1 + 5x) \,dx$
+  \end{enumerate}
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Chain Rule Application} (10 points)\\
+  If
+  \[
+    f(x) = \bigl(e^{3x} + \sin(2x)\bigr)^4,
+  \]
+  then compute
+  \[
+    f'(x).
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Definite Integral Evaluation} (10 points)\\
+  Evaluate
+  \[
+    \int_{3}^{5} \frac{2x^2 + x + 4}{x - 1} \,dx.
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Product Rule Derivative} (5 points)\\
+  Compute
+  \[
+    \frac{d}{dx}\bigl(\cos x \tan x\bigr).
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Inverse Function Derivative} (10 points)\\
+  For which of the following decreasing functions $f$ does
+  \[
+    \bigl(f^{-1}\bigr)'(10) = -\tfrac{1}{8}?
+  \]
+  \begin{enumerate}[label=(\Alph*)]
+    \item $f(x) = -5x + 15$
+    \item $f(x) = -2x^3 - 2x + 14$
+    \item $f(x) = -x^5 - 4x + 15$
+    \item $f(x) = e^{-2x} - x + 9$
+  \end{enumerate}
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Exponential Decay Model} (10 points)\\
+  A dose of 400 milligrams of a drug is administered to a patient. The amount of the drug, $A(t)$, in the bloodstream satisfies
+  \[
+    \frac{dA}{dt} = k A,
+  \]
+  for constant $k$. Which of the following could be an expression for $A(t)$?\\
+  \begin{enumerate}[label=(\Alph*)]
+    \item $A(t) = 400 e^{-0.3t}$
+    \item $A(t) = e^{-0.3t} + 399$
+    \item $A(t) = -3t + 400$
+  \end{enumerate}
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Continuity Check} (5 points)\\
+  Confirm that the function
+  \[
+    f(x) = \frac{x^2 - 5x + 4}{x^2 - 6x + 8}
+  \]
+  is continuous at $x = 4$.  
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Instantaneous Rate at a Time} (5 points)\\
+  The depth of water $t$ hours after midnight is
+  \[
+    D(t) = 10 + 4.9 \cos\Bigl(\tfrac{\pi}{6} t\Bigr).
+  \]
+  Describe the method to find the instantaneous rate of change (in ft/hr) at 6 A.M.
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Derivative at a Point} (5 points)\\
+  Let
+  \[
+    f(x) = 2x^3 - 4x^2 - 5.
+  \]
+  What is $f'(-1)$?
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Indefinite Integral} (10 points)\\
+  Compute
+  \[
+    \int \frac{12 x^2}{2x + 1} \,dx.
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Limit Evaluation} (5 points)\\
+  Evaluate
+  \[
+    \lim_{x \to 3} \frac{x - 3}{x^3 - 9x}.
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Combination of Derivatives} (5 points)\\
+  If $f'(1) = 2$ and $g'(1) = 6$, and
+  \[
+    h(x) = 5f(x) - 4g(x) + 3x^2 - 2,
+  \]
+  find $h'(1)$.
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Differential Equation Solutions} (5 points)\\
+  What are all solutions to
+  \[
+    \frac{dy}{dx} = \frac{1}{x \ln 2}?
+  \]
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Related Rates Relationship} (10 points)\\
+  Given $U = \tfrac{k}{N}$ with constant workforce, describe the relationship between $\tfrac{dU}{dt}$ and $\tfrac{dN}{dt}$.
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Points of Inflection} (10 points)\\
+  Find the $x$-values where
+  \[
+    y = e^{-x} + 2x e^{-x} + x^2 e^{-x}
+  \]
+  has inflection points.
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Vertical Tangents} (10 points)\\
+  Describe the $y$-coordinates of points on the curve
+  \[
+    e^x = \sin y
+  \]
+  where the tangent line is vertical.
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+
+
+
+
+
+
+
+
+
+  %% continues on ... Q30
+  \item \textbf{Inverse Function Derivative} (10 points)\\
+  Let $f$ and $g$ be inverse functions that are differentiable for all $x$. If $f(-5)=7$ and $g^{\prime}(7)=3$, which of the following statements must be false?
+  \begin{enumerate}[label=(\Roman*)]
+    \item $f^{\prime}(3)=-\frac{1}{3}$
+    \item $f^{\prime}(-5)=\frac{1}{3}$
+    \item $f^{\prime}(7)=\frac{1}{3}$
+  \end{enumerate}
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Marginal Cost Estimate} (10 points)\\
+  The function $C$ gives the production cost for a bakery to produce cakes of a certain type, where $C(x)$ is the cost, in dollars, to produce $x$ of the cakes. The function $M$ defined by
+  \[
+    M(x)=C(x+1)-C(x)
+  \]
+  gives the marginal cost, in dollars, to produce cake number $x+1$. Which of the following gives the best estimate for the marginal cost, in dollars, to produce the 40th cake?
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Left Riemann Sum Approximation} (10 points)\\
+  Which of the following is a left Riemann sum approximation of
+  \[
+    \int_1^7\bigl(4 \ln x + 2\bigr)\,dx
+  \]
+  with $n$ subintervals of equal length?
+  \begin{enumerate}[label=(\Alph*)]
+    \item $\displaystyle \sum_{k=1}^n\Bigl(4 \ln\bigl(1+\tfrac{k-1}{n}\bigr)+2\Bigr)\frac{1}{n}$
+    \item $\displaystyle \sum_{k=1}^n\Bigl(4 \ln\bigl(\tfrac{6k}{n}\bigr)+2\Bigr)\frac{6}{n}$
+    \item $\displaystyle \sum_{k=1}^n\Bigl(4 \ln\bigl(1+\tfrac{6(k-1)}{n}\bigr)+2\Bigr)\frac{6}{n}$
+    \item $\displaystyle \sum_{k=1}^n\Bigl(4 \ln\bigl(1+\tfrac{6k}{n}\bigr)+2\Bigr)\frac{6}{n}$
+  \end{enumerate}
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Instantaneous Rate of Change of the Derivative} (10 points)\\
+  Let $f(x)=-\frac{32}{x}+x^3$ on the closed interval $[1,4]$. What is the instantaneous rate of change of $f^{\prime}(x)$ at $x=2$?
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Arc Length} (10 points)\\
+  What is the length of the curve
+  \[
+    y = 1 - \cos x
+  \]
+  from $x=0$ to $x=4\pi$?
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Squeeze Theorem Limit} (10 points)\\
+  Let $g(x)=-x^2-2x+3$ and $h(x)=\tfrac{1}{2}x^2 + x + \tfrac{13}{2}$. If $f$ is a function satisfying
+  \[
+    g(x) \le f(x) \le h(x)
+    \quad\text{for all }x,
+  \]
+  what is
+  \[
+    \lim_{x\to -1} f(x)\;?
+  \]
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Relative Extrema of an Exponential Polynomial} (10 points)\\
+  The function $f$ is defined by
+  \[
+    f(x)=e^{-x}\bigl(x^2+2x\bigr).
+  \]
+  At what values of $x$ does $f$ have a relative maximum?
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Value from a Given Derivative} (10 points)\\
+  Let $f$ be a differentiable function such that $f(0)=5.420$ and
+  \[
+    f^{\prime}(x)=\sqrt{\sin^2 x + x}.
+  \]
+  What is the value of $f(2\pi)$?
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+  \item \textbf{Limit of a Piecewise Function} (10 points)\\
+  Define
+  \[
+    f(x) =
+    \begin{cases}
+      \displaystyle \frac{(x-1)^2 (x+1)}{|x-1|}, & x \neq 1,\\[8pt]
+      2, & x=1.
+    \end{cases}
+  \]
+  Find
+  \[
+    \lim_{x\to 1} f(x).
+  \]
+  \begin{subanswer}
+    % Student’s answer space
+  \end{subanswer}
+
+
+  %% continues on ... Q40
+  %% continues on ... Q--
+  %% continues on ... Q--
+  %% continues on ... Q--
+  %% continues on ... Q--
+  %% continues on ... Q--
+  %% continues on ... Q--
+
+
+
+
+  
+
+\end{enumerate}
