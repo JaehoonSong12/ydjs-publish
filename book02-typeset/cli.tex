@@ -7,6 +7,8 @@
 \usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry}
 
 
+\input{./macros.tex}
+
 \usepackage{graphicx}   % for including images:contentReference[oaicite:2]{index=2}
 \usepackage{fancyhdr}   % for custom headers/footers:contentReference[oaicite:3]{index=3}
 \usepackage{microtype}  % improves typography
@@ -33,42 +35,21 @@
 
 %== Front Matter (roman page numbers) ==%
 \frontmatter
-
 %-- Title Page --%
-\chapter*{\centering \Huge Book Title}
+\chapter*{\centering \Huge \BookTitle}
 \thispagestyle{empty}   % no header on title page
 \vspace{1em}
 \begin{center}
-  {\Large Author Name}\\[1ex]
-  {\normalsize \textcopyright\ \the\year\ Author Name}
+  {\Large \BookAuthor}\\[1ex]
+  {\normalsize \textcopyright\ \the\year\ \BookInstitution}
 \end{center}
 \newpage
-
-
-\section*{About the Author}
-Short author bio here. (e.g., background and inspiration; include website/contact if desired.)
-\lipsum[1]  % replace with actual content
-\section*{Acknowledgements}
-Brief acknowledgements or credits.
-\section*{Copyright}
-\noindent All rights reserved. No part of this book may be reproduced or used 
-in any form without prior permission.
-\newpage
-
-
-
+\input{chap00-bio_copyright.tex}
 %-- Table of Contents --%
 \tableofcontents
 \newpage
-
-\section*{Preface}
-\addcontentsline{toc}{chapter}{Preface}
-This is the preface to the book. Here you can share the purpose, background, or motivation for writing the book.
-\lipsum[2] % replace with actual preface content
-\section*{Introduction}
-\addcontentsline{toc}{chapter}{Introduction}
-This is the introduction. Provide an overview of the book's structure, main themes, or how to use the book.
-\lipsum[2] % replace with actual preface conten
+\input{chap00-preface.tex}
+\input{chap00-introduction.tex}
 
 
 
@@ -99,8 +80,8 @@ This is the introduction. Provide an overview of the book's structure, main them
 \input{chap04.tex}
 \input{chap05.tex}
 \input{chap06.tex}
-\input{chap07.tex}
-\input{chap08.tex}
+% \input{chap07.tex}
+% \input{chap08.tex}
 
 
 
@@ -123,7 +104,6 @@ This is the introduction. Provide an overview of the book's structure, main them
 
 %== Back Matter ==%
 \backmatter
-
 \input{appendix.tex}
 \printindex
 
