@@ -49,6 +49,7 @@
   - [Section 5: Prime and Composite Numbers](#section-5-prime-and-composite-numbers)
     - [Aaron Kim](#aaron-kim-4)
     - [What are Prime and Composite Numbers?](#what-are-prime-and-composite-numbers)
+    - [Prime Factorization Questions](#prime-factorization-questions)
   - [Section 6: Greatest Common Factor \& Least Common Multiple](#section-6-greatest-common-factor--least-common-multiple)
     - [Aaron Kim](#aaron-kim-5)
     - [What are GCF and LCM?](#what-are-gcf-and-lcm)
@@ -167,6 +168,58 @@ Some numbers stand alone. Others are made of parts. Prime numbers have only two 
 As you explore numbers further, you’ll discover that some numbers have only two factors, while others have many. A **prime number** is a number greater than 1 that has exactly two distinct factors: 1 and itself. For example, \(2, 3, 5, 7, 11, 13, 17,\) and \(19\) are all prime numbers under 20. In contrast, a **composite number** has more than two factors. For instance, \(15\) is composite because it can be divided by 1, 3, 5, and 15.
 
 Let’s practice identifying these. Consider the numbers \(14, 17, 21, 23,\) and \(25\). Among these, \(17\) and \(23\) are prime because they have only two factors. The others—\(14, 21,\) and \(25\)—are composite. If you look at all the composite numbers between \(10\) and \(20\), you’ll find \(10, 12, 14, 15, 16, 18,\) and \(20\). It’s also important to note that the number 1 is neither prime nor composite, since it has only one factor: itself. Recognizing prime and composite numbers is a foundational skill for understanding more advanced math concepts like prime factorization and divisibility.
+
+---
+
+### Prime Factorization Questions
+
+1. **Prime Factorization (Multiple Choice)**  
+   What is the prime factorization of \(60\)?  
+   A. \(2 \times 2 \times 3 \times 5\)  
+   B. \(2 \times 3 \times 10\)  
+   C. \(2 \times 5 \times 6\)  
+   D. \(3 \times 4 \times 5\)
+
+   </br>
+
+   **Answer:** The correct answer is **A**. The prime factorization of \(60\) is \(2 \times 2 \times 3 \times 5\) (or \(2^2 \times 3 \times 5\)).
+
+   </br></br>
+   
+
+2. **Prime Factorization (Open-Ended)**  
+   Find the prime factorization of \(84\).
+
+   </br>
+
+
+   **Answer:** The prime factorization of \(84\) is \(2 \times 2 \times 3 \times 7\) (or \(2^2 \times 3 \times 7\)).
+
+   </br></br>
+
+3. **Prime Factorization (Open-Ended)**  
+   Write the prime factorization of \(105\) using exponents.
+
+   </br>
+
+
+   **Answer:** The prime factorization of \(105\) is \(3 \times 5 \times 7\). Since all are single primes, no exponents are needed.
+
+   </br></br>
+
+4. **Prime Factorization (Multiple Choice)**  
+   Which of the following is the prime factorization of \(72\)?  
+
+   </br>
+
+   A. \(2^3 \times 3^2\)  
+   B. \(2^2 \times 3^3\)  
+   C. \(2^4 \times 3\)  
+   D. \(2 \times 6^2\)
+
+   **Answer:** The correct answer is **A**. \(72 = 2^3 \times 3^2\).
+
+   </br></br>
 
 ---
 

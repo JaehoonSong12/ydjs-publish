@@ -1,0 +1,9 @@
+\section*{About the Author}
+Short author bio here. (e.g., background and inspiration; include website/contact if desired.)
+\lipsum[1]  % replace with actual content
+\section*{Acknowledgements}
+Brief acknowledgements or credits.
+\section*{Copyright}
+\noindent All rights reserved. No part of this book may be reproduced or used 
+in any form without prior permission.
+\newpage

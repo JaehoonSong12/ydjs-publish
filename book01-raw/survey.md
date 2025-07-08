@@ -52,5 +52,3 @@ Please provide information so we can craft a brief acknowledgements section.
 
 7. **Final Words**:
    Any special shout-out or concise closing sentiment (e.g., “This book would not have been possible without…”).
-
-
