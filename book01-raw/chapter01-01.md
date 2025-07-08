@@ -171,12 +171,12 @@ Let’s practice identifying these. Consider the numbers \(14, 17, 21, 23,\) and
 4. **Prime Factorization (Multiple Choice)**  
    Which of the following is the prime factorization of \(72\)?  
 
-   </br>
-
    A. \(2^3 \times 3^2\)  
    B. \(2^2 \times 3^3\)  
    C. \(2^4 \times 3\)  
    D. \(2 \times 6^2\)
+
+   </br>
 
    **Answer:** The correct answer is **A**. \(72 = 2^3 \times 3^2\).
 
