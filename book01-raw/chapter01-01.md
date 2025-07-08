@@ -35,17 +35,23 @@
 - [Chapter 1: Table of Contents](#chapter-1-table-of-contents)
   - [Numbers \& Operations Overview](#numbers--operations-overview)
   - [Section 1: Place Value](#section-1-place-value)
+    - [Aaron Kim](#aaron-kim)
     - [What is Place Value?](#what-is-place-value)
   - [Section 2: Decimals and Fractions](#section-2-decimals-and-fractions)
+    - [Aaron Kim](#aaron-kim-1)
     - [What are Decimals and Fractions?](#what-are-decimals-and-fractions)
   - [Section 3: Comparing and Ordering Numbers](#section-3-comparing-and-ordering-numbers)
+    - [Aaron Kim](#aaron-kim-2)
     - [How do we compare and order numbers?](#how-do-we-compare-and-order-numbers)
   - [Section 4: Factors and Multiples](#section-4-factors-and-multiples)
+    - [Aaron Kim](#aaron-kim-3)
     - [What are Factors and Multiples?](#what-are-factors-and-multiples)
   - [Section 5: Prime and Composite Numbers](#section-5-prime-and-composite-numbers)
+    - [Aaron Kim](#aaron-kim-4)
     - [What are Prime and Composite Numbers?](#what-are-prime-and-composite-numbers)
     - [Prime Factorization Questions](#prime-factorization-questions)
   - [Section 6: Greatest Common Factor \& Least Common Multiple](#section-6-greatest-common-factor--least-common-multiple)
+    - [Aaron Kim](#aaron-kim-5)
     - [What are GCF and LCM?](#what-are-gcf-and-lcm)
   - [Did You Know?](#did-you-know)
 
@@ -58,6 +64,14 @@ Welcome! In this book, you’ll explore the world of numbers and how we use them
 ---
 
 ## Section 1: Place Value
+
+### Aaron Kim
+In our number system, every digit has a purpose. A 4 does not always mean 4. Sometimes it means 4000. That depends on where it sits in the number. This idea is called place value. Each place in a number is ten times the value of the one to its right. A number like 4275 is not just four digits. It is a structure: 4000 + 200 + 70 + 5. We do not read numbers one digit at a time. We read them as a system, where each part works because of its position.
+
+Place value turns a few digits into large or small numbers. Take 9836. The 8 is not just an 8. It is 800, because it sits in hundreds of places. In 5104, the 0 adds nothing but still matters. It shows that there are no tens. In 12345, the 2 sits in the thousands place and means 2000. These examples may seem simple, but they show a key truth: digits mean more when you know where they stand.
+
+Place value is more than vocabulary. It affects how we add, subtract, estimate, and think about numbers. When we know what each digit means, we can break numbers apart and put them back together. We stop guessing and start understanding. That shift helps us see math not as a list of rules but as a system that makes sense.
+
 
 ### What is Place Value?
 
@@ -78,7 +92,7 @@ To help visualize this, consider the following place value chart:
 
 Let’s see how this works in practice. If we write \(4275\) in expanded form, we get:
 \[
-4275 = 4000 + 200 + 70 + 5
+4275 = 4000 + 200 + 70zz + 5
 \]
 
 Now, imagine you are looking at the number \(9836\). You might wonder, what is the value of the digit 8 in this number? Since the 8 is in the hundreds place, its value is \(800\). This simple observation shows how the position of a digit determines its true value. Similarly, if you break down \(5104\) into its expanded form, you see it as \(5000 + 100 + 0 + 4\), making it clear what each digit stands for. In another example, the digit 2 in \(12345\) is in the thousands place, so it represents \(2000\). Understanding these positions helps us see the true value of every digit in a number, which is a fundamental skill in mathematics.
@@ -86,6 +100,12 @@ Now, imagine you are looking at the number \(9836\). You might wonder, what is t
 ---
 
 ## Section 2: Decimals and Fractions
+
+### Aaron Kim
+
+Sometimes, a whole number is too much. We want to describe something in parts: half a sandwich, a third of a mile, seventy-five hundredths of a dollar. That’s when we use fractions and decimals. There are two ways of saying the same thing: less than one. Fractions use numerators and denominators. Decimals use place value. But both express parts of a whole.
+
+Decimals and fractions are not separate languages. They translate. 0.75 is the same as 75/100, which reduces to 3/4. The fraction 3/10 becomes 0.3. The decimal 0.6 becomes 6/10, which is 3/5. Being able to switch between them is not just a trick. It is a skill. And that skill helps you compare, calculate, and make better sense of the numbers you see every day.
 
 ### What are Decimals and Fractions?
 
@@ -102,6 +122,13 @@ Let’s try converting between these forms. If you have the fraction \(\frac{3}{
 
 ## Section 3: Comparing and Ordering Numbers
 
+### Aaron Kim
+Math is not just about knowing what numbers are. It is about knowing how they relate. We compare. We rank. We ask, which is bigger? Which is smaller? Which is equal? Symbols like >, <, and = help us answer. But first, we have to understand the values.
+
+Take 5.03 and 5.3. They may look close. But 5.3 is larger. Now try comparing fractions: 2/5 and 3/7. Convert them to decimals. 2/5 is 0.4. 3/7 is about 0.428. So 3/7 is greater. This kind of comparison matters in real life—from prices to measurements to data.
+
+Ordering numbers builds the same skill. Imagine you are given 0.2, 1/3, 0.25, and 0.199. Which is the greatest? Which is least? Convert, compare, and you find the order. This process teaches more than math. It teaches precision, logic, and clarity
+
 ### How do we compare and order numbers?
 
 In mathematics, it’s important not only to understand numbers, but also to compare them and put them in order. We use symbols like \(>\) (greater than), \(<\) (less than), and \(=\) (equal to) to show how numbers relate to each other. For example, if you are given two numbers, you can decide which is larger or smaller, or if they are the same.
@@ -114,6 +141,12 @@ Ordering numbers is also a useful skill. Imagine you are asked to arrange the nu
 
 ## Section 4: Factors and Multiples
 
+### Aaron Kim
+
+Some numbers fit together cleanly. Others do not. Factors and multiples explain why. A factor is a number that divides evenly. A multiple is what you get when you multiply. These two ideas help us break numbers apart and build them back up.
+
+If you list the factors of 12, you get 1, 2, 3, 4, 6, and 12. Each divides 12 without a remainder. The multiples of 5 are 5, 10, 15, 20, and so on. These ideas may seem mechanical, but they are powerful. They lay the groundwork for division, fractions, and algebra.
+
 ### What are Factors and Multiples?
 
 As you continue your journey in mathematics, you’ll often need to break numbers down or build them up. This is where factors and multiples come in. A **factor** is a number that divides another number exactly, leaving no remainder. For example, the factors of \(12\) are \(1, 2, 3, 4, 6,\) and \(12\), because each of these divides \(12\) evenly. On the other hand, a **multiple** is what you get when you multiply a number by an integer. For instance, the multiples of \(5\) are \(5, 10, 15, 20,\) and so on.
@@ -123,6 +156,12 @@ Let’s see how this works with a few examples. If you want to find all the fact
 ---
 
 ## Section 5: Prime and Composite Numbers
+
+### Aaron Kim
+
+Some numbers stand alone. Others are made of parts. Prime numbers have only two factors: 1 and themselves. Composite numbers have more. This is not just a label—it is a clue to how numbers work.
+
+2, 3, 5, 7, 11, 13, and 17 are prime. They cannot be broken down. But 15 is composite: it splits into 3 and 5. Learning to recognize prime and composite numbers helps us factor numbers, simplify fractions, and understand the building blocks of math.
 
 ### What are Prime and Composite Numbers?
 
@@ -171,12 +210,12 @@ Let’s practice identifying these. Consider the numbers \(14, 17, 21, 23,\) and
 4. **Prime Factorization (Multiple Choice)**  
    Which of the following is the prime factorization of \(72\)?  
 
+   </br>
+
    A. \(2^3 \times 3^2\)  
    B. \(2^2 \times 3^3\)  
    C. \(2^4 \times 3\)  
    D. \(2 \times 6^2\)
-
-   </br>
 
    **Answer:** The correct answer is **A**. \(72 = 2^3 \times 3^2\).
 
@@ -185,6 +224,13 @@ Let’s practice identifying these. Consider the numbers \(14, 17, 21, 23,\) and
 ---
 
 ## Section 6: Greatest Common Factor & Least Common Multiple
+
+### Aaron Kim
+
+Sometimes two numbers meet in the middle. The Greatest Common Factor (GCF) is the biggest number they both share as a factor. The Least Common Multiple (LCM) is the smallest number they both share as a multiple. These ideas sound opposite, but they both help us solve problems with shared values.
+
+Take 12 and 18. Their GCF is 6 since it is the biggest number that divides them both. Their LCM is 36 which is the smallest number they both fit into. We find these using prime factorization. Once you learn how, you see how numbers connect. And once you see the connection, math becomes clearer.
+
 
 ### What are GCF and LCM?
 
@@ -206,4 +252,8 @@ Let’s apply this to a few more examples. The GCF of \(24\) and \(36\) is \(12\
 ---
 
 **Tip for Students:**  
-Practice writing numbers in expanded form and identifying the value of digits in different places. This will help you understand how numbers work and make math easier!
+
+Math is not just about solving problems. It is about seeing how ideas fit together. Learn the basics—place value, fractions, comparisons, factors, primes, and multiples. They are not just chapters. They are tools. And the better you understand them, the more confidently you can use them anywhere.
+
+
+--

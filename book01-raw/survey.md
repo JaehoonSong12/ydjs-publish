@@ -3,30 +3,27 @@
 Please provide responses to the following prompts. Your answers will form the basis of a concise, engaging author biography.
 
 1. **Full Name and Preferred Citation**:
-   What is your full name, and how would you like it to appear? (e.g., with middle initial, honorifics)
+   Jueon Kim, Yeoeun Kim
+   
+   Jaehoon Song (Editor, GT25 CS grad): generates latex typesetting system, refines, organizes, or proofreads that content.
 
 2. **Current Position & Affiliation**:
-   What is your current role (student, researcher, professor, etc.) and institutional affiliation?
+   Student (East Coweta Highschoo 10th and 12th)
 
-3. **Educational Background**:
-   What degrees have you earned, and from which institutions? Include fields of study and graduation years (optional).
-
-4. **Research Interests & Specializations**:
-   What are your primary areas of mathematical interest or research?
-
-5. **Professional Experience**:
+3. **Professional Experience**:
    Summarize any notable teaching, industry, or research positions relevant to this book.
 
-6. **Publications & Honors**:
+4. **Publications & Honors**:
    List key publications, awards, or recognitions (up to 2–3 highlights).
+   - High Honor
 
-7. **Motivation for Writing This Book**:
+5. **Motivation for Writing This Book**:
    Why did you decide to write a math textbook for Korean students learning in English?
 
-8. **Personal Background** (optional):
+6. **Personal Background** (optional):
    Any personal detail that humanizes you (hobbies, languages spoken, origin, etc.).
 
-9. **Contact or Social Links** (optional):
+7. **Contact or Social Links** (optional):
    Do you want to include a professional website, email, or social media handle?
 
 ---
@@ -55,6 +52,3 @@ Please provide information so we can craft a brief acknowledgements section.
 
 7. **Final Words**:
    Any special shout-out or concise closing sentiment (e.g., “This book would not have been possible without…”).
-
-
-Jaehoon Song (Editor): generates latex typesetting system, refines, organizes, or proofreads that content.
