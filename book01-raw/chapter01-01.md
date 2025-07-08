@@ -70,17 +70,17 @@ To help visualize this, consider the following place value chart:
 
 | Place      | Value   |
 |------------|---------|
-| Thousands  | \(1,000\)   |
+| Thousands  | \(1000\)   |
 | Hundreds   | \(100\)     |
 | Tens       | \(10\)      |
 | Ones       | \(1\)       |
 
-Let’s see how this works in practice. If we write \(4,275\) in expanded form, we get:
+Let’s see how this works in practice. If we write \(4275\) in expanded form, we get:
 \[
-4,275 = 4,000 + 200 + 70 + 5
+4275 = 4000 + 200 + 70 + 5
 \]
 
-Now, imagine you are looking at the number \(9,836\). You might wonder, what is the value of the digit 8 in this number? Since the 8 is in the hundreds place, its value is \(800\). This simple observation shows how the position of a digit determines its true value. Similarly, if you break down \(5,104\) into its expanded form, you see it as \(5,000 + 100 + 0 + 4\), making it clear what each digit stands for. In another example, the digit 2 in \(12,345\) is in the thousands place, so it represents \(2,000\). Understanding these positions helps us see the true value of every digit in a number, which is a fundamental skill in mathematics.
+Now, imagine you are looking at the number \(9836\). You might wonder, what is the value of the digit 8 in this number? Since the 8 is in the hundreds place, its value is \(800\). This simple observation shows how the position of a digit determines its true value. Similarly, if you break down \(5,104\) into its expanded form, you see it as \(5,000 + 100 + 0 + 4\), making it clear what each digit stands for. In another example, the digit 2 in \(12,345\) is in the thousands place, so it represents \(2,000\). Understanding these positions helps us see the true value of every digit in a number, which is a fundamental skill in mathematics.
 
 ---
 
