@@ -30,21 +30,21 @@
 
 ---
 
-# Table of Contents
+# Chapter 1: Table of Contents
 
-- [Table of Contents](#table-of-contents)
+- [Chapter 1: Table of Contents](#chapter-1-table-of-contents)
   - [Numbers \& Operations Overview](#numbers--operations-overview)
-  - [Chapter 1: Place Value](#chapter-1-place-value)
+  - [Section 1: Place Value](#section-1-place-value)
     - [What is Place Value?](#what-is-place-value)
-  - [Chapter 2: Decimals and Fractions](#chapter-2-decimals-and-fractions)
+  - [Section 2: Decimals and Fractions](#section-2-decimals-and-fractions)
     - [What are Decimals and Fractions?](#what-are-decimals-and-fractions)
-  - [Chapter 3: Comparing and Ordering Numbers](#chapter-3-comparing-and-ordering-numbers)
+  - [Section 3: Comparing and Ordering Numbers](#section-3-comparing-and-ordering-numbers)
     - [How do we compare and order numbers?](#how-do-we-compare-and-order-numbers)
-  - [Chapter 4: Factors and Multiples](#chapter-4-factors-and-multiples)
+  - [Section 4: Factors and Multiples](#section-4-factors-and-multiples)
     - [What are Factors and Multiples?](#what-are-factors-and-multiples)
-  - [Chapter 5: Prime and Composite Numbers](#chapter-5-prime-and-composite-numbers)
+  - [Section 5: Prime and Composite Numbers](#section-5-prime-and-composite-numbers)
     - [What are Prime and Composite Numbers?](#what-are-prime-and-composite-numbers)
-  - [Chapter 6: Greatest Common Factor \& Least Common Multiple](#chapter-6-greatest-common-factor--least-common-multiple)
+  - [Section 6: Greatest Common Factor \& Least Common Multiple](#section-6-greatest-common-factor--least-common-multiple)
     - [What are GCF and LCM?](#what-are-gcf-and-lcm)
   - [Did You Know?](#did-you-know)
 
@@ -52,11 +52,11 @@
 
 ## Numbers & Operations Overview
 
-Welcome! In this book, you’ll explore the world of numbers and how we use them every day. You’ll learn about place value, decimals, fractions, and more. Each chapter includes explanations, examples, and practice problems to help you master these important math skills.
+Welcome! In this book, you’ll explore the world of numbers and how we use them every day. You’ll learn about place value, decimals, fractions, and more. Each Section includes explanations, examples, and practice problems to help you master these important math skills.
 
 ---
 
-## Chapter 1: Place Value
+## Section 1: Place Value
 
 ### What is Place Value?
 
@@ -84,7 +84,7 @@ Now, imagine you are looking at the number \(9836\). You might wonder, what is t
 
 ---
 
-## Chapter 2: Decimals and Fractions
+## Section 2: Decimals and Fractions
 
 ### What are Decimals and Fractions?
 
@@ -99,7 +99,7 @@ Let’s try converting between these forms. If you have the fraction \(\frac{3}{
 
 ---
 
-## Chapter 3: Comparing and Ordering Numbers
+## Section 3: Comparing and Ordering Numbers
 
 ### How do we compare and order numbers?
 
@@ -111,7 +111,7 @@ Ordering numbers is also a useful skill. Imagine you are asked to arrange the nu
 
 ---
 
-## Chapter 4: Factors and Multiples
+## Section 4: Factors and Multiples
 
 ### What are Factors and Multiples?
 
@@ -121,7 +121,7 @@ Let’s see how this works with a few examples. If you want to find all the fact
 
 ---
 
-## Chapter 5: Prime and Composite Numbers
+## Section 5: Prime and Composite Numbers
 
 ### What are Prime and Composite Numbers?
 
@@ -131,7 +131,7 @@ Let’s practice identifying these. Consider the numbers \(14, 17, 21, 23,\) and
 
 ---
 
-## Chapter 6: Greatest Common Factor & Least Common Multiple
+## Section 6: Greatest Common Factor & Least Common Multiple
 
 ### What are GCF and LCM?
 
