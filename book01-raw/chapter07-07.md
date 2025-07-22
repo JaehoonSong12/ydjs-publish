@@ -1,3 +1,57 @@
+<!-- 
+ @requires
+ 1. VSCode extension: Markdown Preview Enhanced
+ 2. Shortcut: 'Ctrl' + 'Shift' + 'V'
+ 3. Split: Drag to right (->)
+
+ @requires
+ 1. VSCode extension: Markdown All in One
+ 2. `File` > `Preferences` > `Keyboard Shortcuts`
+ 3. toggle code span > `Ctrl + '` 
+ 4. toggle code block > `Ctrl + Shift + '` 
+
+ @usage
+ 1. End of Proof (Q.E.D.): <div style="text-align: right;">&#11035;</div>
+ 2. End of Each Section: 
+
+     <br /><br /><br />
+
+     ---
+
+
+
+     <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+ 3. ![image_title_](images/imagefile.png)
+ 4. [url_title](URL)
+ -->
+<!-- Anchor Tag (Object) for "back to top" -->
+<a id="readme-top"></a> 
+
+---
+
+# Chapter 1: Table of Contents
+
+- [Chapter 1: Table of Contents](#chapter-1-table-of-contents)
+- [Unit 7: Exponents \& Roots (지수와 근)](#unit-7-exponents--roots-지수와-근)
+  - [7.1 Powers and Exponents (거듭제곱과 지수)](#71-powers-and-exponents-거듭제곱과-지수)
+    - [What You’ll Learn](#what-youll-learn)
+    - [Key Ideas](#key-ideas)
+    - [Did You Know?](#did-you-know)
+    - [Tips for Students](#tips-for-students)
+  - [7.2 Square Roots and Cube Roots (제곱근과 세제곱근)](#72-square-roots-and-cube-roots-제곱근과-세제곱근)
+    - [What You’ll Learn](#what-youll-learn-1)
+    - [Key Ideas](#key-ideas-1)
+    - [Did You Know?](#did-you-know-1)
+    - [Tips for Students](#tips-for-students-1)
+  - [7.3 Scientific Notation (과학적 표기법)](#73-scientific-notation-과학적-표기법)
+    - [What You’ll Learn](#what-youll-learn-2)
+    - [Key Ideas](#key-ideas-2)
+    - [Did You Know?](#did-you-know-2)
+    - [Tips for Students](#tips-for-students-2)
+
+---
+
 # Unit 7: Exponents & Roots (지수와 근)
 
 ## 7.1 Powers and Exponents (거듭제곱과 지수)
