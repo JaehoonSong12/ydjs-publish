@@ -1,9 +1,12 @@
-\documentclass[11pt]{article}
+\documentclass[11pt,letterpaper]{article}
+
 \usepackage{enumitem}
 \usepackage{latexsym}
 \usepackage{amsfonts}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{xcolor}
+
+\usepackage{multirow}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -16,7 +19,7 @@
 \addtolength{\oddsidemargin}{-.5in}
 
 \input{../core.tex}
-
+\input{./macros.tex}
 
 \newcommand{\bl}[1]{\textcolor{blue}{#1}}
 \newcommand{\rd}[1]{\textcolor{red}{#1}}
@@ -50,6 +53,14 @@
 
 % \input{test01-calc1.tex}
 
-\input{test02-calc1.tex}
+% \input{test02-calc1.tex}
+
+
+
+\input{comb01.tex}
+
+
+
+% \insertimage{0.40}{images/2025_06_15_1eff2981bb1cf12f04f1g-18}{reference attached}
 
 \end{document}
