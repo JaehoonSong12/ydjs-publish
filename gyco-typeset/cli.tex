@@ -48,13 +48,33 @@
   %== Front Matter (roman page numbers) ==%
   \frontmatter
   %-- Title Page --%
-  \chapter*{\centering \Huge \BookTitle}
-  \thispagestyle{empty}   % no header on title page
-  \vspace{1em}
-  \begin{center}
-    {\Large \BookAuthor}\\[1ex]
-    {\normalsize \textcopyright\ \the\year\ \BookInstitution}
-  \end{center}
+  \begin{titlepage}
+    \centering
+    % Top fill for vertical centering
+    \vspace*{\fill}
+    % Main title block
+    {\bfseries\Huge\BookTitle\par}
+    \vspace{0.5em}
+    {\Large\BookSubtitle\par}
+    \vfill
+    \vspace{2em}
+    % Author and editor
+    {\Large Author: \BookAuthor\par}
+    {\Large Editor: \BookEditor\par}
+    \vspace{2em}
+    % Publisher and year
+    {\normalsize Published by \BookInstitution\par}
+    {\normalsize \PublicationYear\par}
+    % Bottom fill for vertical centering
+    \vspace*{\fill}
+    % Optional logo at bottom (uncomment to use)
+    \includegraphics[width=0.60\textwidth]{\BookEmblem}
+    % No page number
+    \thispagestyle{empty}
+  \end{titlepage}
+
+
+
 
   \newpage
   \input{chap00/bio_copyright.tex}
