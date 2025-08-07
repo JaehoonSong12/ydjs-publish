@@ -1,7 +1,7 @@
-cli.tex
-core.tex
+/cli.tex
+/core.tex
 blank.tex
-macros.tex
+/macros.tex
 cli.pdf
 *.exe
 *.docx

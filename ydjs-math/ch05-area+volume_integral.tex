@@ -1,0 +1,803 @@
+\handout
+{5.3 Moments of Mass}
+{\textbf{Chapter 5: Area and Volume Integral}}{Out: 04/02/2025}
+{Author: Jaehoon Song}{Due: 04/16/2025}
+{MVC: 5.3 Moments of Mass}
+
+
+
+% \handout
+% {Unit 9-1: Traditional Approach}
+% {\textbf{Unit 9: Differential Equations}}{Out: 02/22/2025}
+% {AP Calculus AB/BC}{Due: --/--/2025}
+% {9-1: Traditional Approach}
+
+
+% \input{./hw_instructions.tex}
+
+% Define custom commands for NP and coNP
+\newcommand{\NP}{\textsf{NP}}
+\newcommand{\coNP}{\textsf{co-NP}}
+\newcommand{\SAT}{\textsf{SAT}}
+\newcommand{\coSAT}{\textsf{co-SAT}}
+\newcommand{\VERTEXCOVER}{\textsf{VERTEX-COVER}}
+\newcommand{\DOMINATINGSET}{\textsf{DOMINATING-SET}}
+\newcommand{\SPANBOUND}{\textsf{SPAN-BOUND}}
+\newcommand{\HAMPATH}{\textsf{HAM-PATH}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% 3D Center‑of‑Mass: Mass Density and Moments of Mass
+
+% 3D Center‑of‑Mass: Mass Density and Moments of Mass
+
+\section*{1. Mass Density Function}
+\begin{define}{Mass Density Function}
+  A function $\delta:V\subset\mathbb{R}^3\to\mathbb{R}_{\ge0}$ assigning to each point $(x,y,z)\in V$ its mass per unit volume.  In differential form, an infinitesimal mass element is $dm=\delta(x,y,z)\,dV$.  Here $dV=dx\,dy\,dz$ denotes the volume element.
+\end{define}
+
+\section*{2. Moments of Mass}
+
+\subsection*{2.1 General $n$th Moments}
+\begin{define}{General $n$th Moment about Coordinate Planes}
+  For any integer $n\ge1$, the $n$th moment of mass about each coordinate plane is defined by
+  \[
+    M^{(n)}_{yz}=\iiint_V x^n\,\delta(x,y,z)\,dV,
+    \quad
+    M^{(n)}_{xz}=\iiint_V y^n\,\delta(x,y,z)\,dV,
+    \quad
+    M^{(n)}_{xy}=\iiint_V z^n\,\delta(x,y,z)\,dV.
+  \]
+  Additionally, moments about coordinate axes are defined as:
+  \[
+    M^{(n)}_x = \iiint_V x^n\,\delta(x,y,z)\,dV,
+    \quad
+    M^{(n)}_y = \iiint_V y^n\,\delta(x,y,z)\,dV,
+    \quad
+    M^{(n)}_z = \iiint_V z^n\,\delta(x,y,z)\,dV.
+  \]
+  \noindent
+  Here:
+  \begin{itemize}
+    \item $M^{(n)}_{yz}$ refers to the $n$th moment of mass about the $yz$-plane (i.e. weighted by $x^n$).
+    \item $M^{(n)}_{xz}$ refers to the $n$th moment of mass about the $xz$-plane (i.e. weighted by $y^n$).
+    \item $M^{(n)}_{xy}$ refers to the $n$th moment of mass about the $xy$-plane (i.e. weighted by $z^n$).
+    \item $M^{(n)}_x$ refers to the $n$th moment of mass along the $x$-axis.
+    \item $M^{(n)}_y$ refers to the $n$th moment of mass along the $y$-axis.
+    \item $M^{(n)}_z$ refers to the $n$th moment of mass along the $z$-axis.
+  \end{itemize}
+\end{define}
+
+\subsection*{2.2 First and Second Moments}
+
+\begin{define}{First Moment (Center‑of‑Mass Calculation)}
+  The first moment ($n=1$) of mass about each plane is used to find the center‑of‑mass coordinates:
+  \[
+    M_{yz}=\iiint_V x\,\delta(x,y,z)\,dV,
+    \quad
+    M_{xz}=\iiint_V y\,\delta(x,y,z)\,dV,
+    \quad
+    M_{xy}=\iiint_V z\,\delta(x,y,z)\,dV.
+  \]
+  Dividing by the total mass $M=\iiint_V\delta(x,y,z)\,dV$ gives
+  \[
+    X_{\mathrm{CM}}=\frac{M_{yz}}{M},
+    \quad
+    Y_{\mathrm{CM}}=\frac{M_{xz}}{M},
+    \quad
+    Z_{\mathrm{CM}}=\frac{M_{xy}}{M}.
+  \]
+\end{define}
+
+\begin{define}{Second Moment (Moment of Inertia Components)}
+  The second moment ($n=2$) about each plane measures the distribution of mass and appears in the moment of inertia formulas:
+  \[
+    I_{yz}=\iiint_V x^2\,\delta(x,y,z)\,dV,
+    \quad
+    I_{xz}=\iiint_V y^2\,\delta(x,y,z)\,dV,
+    \quad
+    I_{xy}=\iiint_V z^2\,\delta(x,y,z)\,dV.
+  \]
+  In rigid‑body mechanics, the moment of inertia about the $x$‑axis is
+  \[
+    I_x = \iiint_V (y^2+z^2)\,\delta(x,y,z)\,dV.
+  \]
+\end{define}
+
+
+\newpage
+
+
+
+% 3D Moments of Mass
+
+\section*{Moments of Mass in 3D}
+
+\subsection*{1. Mass Density and Total Mass}
+
+\begin{define}{Mass Density Function}
+  A function $\delta:V\subset\mathbb{R}^3\to\mathbb{R}_{\ge0}$ assigning to each point $(x,y,z)\in V$ its mass per unit volume.
+\end{define}
+
+\begin{define}{Total Mass}
+  The total mass of the body over volume $V$:
+  \[
+    M = \iiint_V \delta(x,y,z)\,\mathrm{d}V.
+  \]
+\end{define}
+
+\subsection*{2. First Moment about the \emph{yz}–Plane}
+
+\begin{define}{First Moment about the \emph{yz}–Plane}
+  The first moment of mass about the $yz$–plane:
+  \[
+    M_{yz} = \iiint_V x\,\delta(x,y,z)\,\mathrm{d}V.
+  \]
+\end{define}
+
+\subsection*{3. General $n$th Moment about the \emph{yz}–Plane}
+
+\begin{define}{General $n$th Moment about the \emph{yz}–Plane}
+  For any integer $n\ge1$, the $n$th moment of mass about the $yz$–plane is
+  \[
+    M^{(n)}_{yz}
+    = \iiint_V x^n\,\delta(x,y,z)\,\mathrm{d}V,
+  \]
+  where $\mathrm{d}V = \mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z$.
+\end{define}
+
+
+
+
+
+
+
+\newpage
+
+% Moments of Mass in 3D
+
+\section*{Moments of Mass}
+
+\subsection*{Total Mass}
+\[
+  M = \iiint_V \delta(x,y,z)\,\mathrm{d}V
+\]
+
+\subsection*{First Moment about the \emph{yz}–Plane}
+\[
+  M_{yz} = \iiint_V x\,\delta(x,y,z)\,\mathrm{d}V
+\]
+\textit{(Used to compute }$X_{\mathrm{CM}} = M_{yz}/M$\textit{.)}
+
+\subsection*{Second Moment about the \emph{yz}–Plane}
+\[
+  I_{yz} = \iiint_V x^2\,\delta(x,y,z)\,\mathrm{d}V
+\]
+\textit{(A component of the moment of inertia about the $x$–axis.)}
+
+\subsection*{Moment of Inertia about the $x$–Axis}
+\[
+  I_x 
+  = \iiint_V \bigl(y^2 + z^2\bigr)\,\delta(x,y,z)\,\mathrm{d}V
+  \quad\bigl(\text{i.e.\ second moment about the $x$–axis / $yz$–plane}\bigr)
+\]
+
+\subsection*{General $n$th Moment about the \emph{yz}–Plane}
+\[
+  M^{(n)}_{yz} 
+  = \iiint_V x^n\,\delta(x,y,z)\,\mathrm{d}V
+\]
+
+\newpage
+
+% 3D Center‐of‐Mass Summary
+
+\section*{3D Center‐of‐Mass Formulation}
+
+\subsection*{1. Mass density and total mass}
+\begin{itemize}
+  \item \textbf{Density function:} $\delta(x,y,z)$ gives the mass per unit volume at each point $(x,y,z)$.
+  \item \textbf{Total mass:}
+    \[
+      M = \iiint_V \delta(x,y,z)\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z.
+    \]
+\end{itemize}
+
+\subsection*{2. First moments of mass}
+To find the “balance point” along each axis, compute three first moments—each is a weighted integral of the distance from the corresponding coordinate plane:
+
+\begin{itemize}
+    \item \textbf{Moment $M_{yz}$:} 
+        \[
+            M_{yz} = \iiint_V x\,\delta(x,y,z)\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z
+        \]
+        Represents the $x$–distance from the \emph{yz}–plane.
+    \item \textbf{Moment $M_{xz}$:} 
+        \[
+            M_{xz} = \iiint_V y\,\delta(x,y,z)\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z
+        \]
+        Represents the $y$–distance from the \emph{xz}–plane.
+    \item \textbf{Moment $M_{xy}$:} 
+        \[
+            M_{xy} = \iiint_V z\,\delta(x,y,z)\,\mathrm{d}x\,\mathrm{d}y\,\mathrm{d}z
+        \]
+        Represents the $z$–distance from the \emph{xy}–plane.
+\end{itemize}
+
+\subsection*{3. Center‐of‐mass coordinates}
+Each coordinate of the center of mass is the corresponding first moment divided by the total mass:
+\[
+  X_{\mathrm{CM}} = \frac{M_{yz}}{M}, 
+  \quad
+  Y_{\mathrm{CM}} = \frac{M_{xz}}{M}, 
+  \quad
+  Z_{\mathrm{CM}} = \frac{M_{xy}}{M}.
+\]
+
+\subsection*{Intuition}
+The first moment $M_{yz} = \iiint_V x\,\delta\,\mathrm{d}V$ “weights” each element of mass by how far it sits from the $yz$–plane; dividing by $M$ gives the average $x$–position.  Analogous reasoning applies for $Y_{\mathrm{CM}}$ and $Z_{\mathrm{CM}}$.
+
+
+
+\newpage
+
+
+
+\begin{enumerate}
+    \item \textbf{co-NP} (4 points)\\
+    Show that if the complement of \textsf{CLIQUE} is in \NP, then \(\NP = \coNP\). 
+    (Recall that to prove two sets are equal, show that each set is a subset of the other.)
+    % % Definition of NP
+    % \begin{define}{Definition: $\NP$}
+    % A language $L\subseteq\{0,1\}^*$ belongs to the class $\NP$ if there exists a polynomial 
+    % $p:\mathbb{N} \to \mathbb{N}$ and a deterministic Turing machine (called the \emph{verifier}) $V$ such that for every 
+    % $x\in\{0,1\}^*$,
+    % \[
+    % x\in L \leftrightarrow \exists\, y\in\{0,1\}^{p(|x|)} \quad \mbox{with } V(x,y)=1.
+    % \]
+    % Here, $y$ is called a certificate (or witness) for the membership of $x$ in $L$.
+    % \end{define}
+    % Definition of coNP
+    \begin{define}{Definition: $\coNP$}
+    A language $L\subseteq\{0,1\}^*$ is in $\coNP$ if its complement
+    \[
+    \overline{L} = \{ x\in\{0,1\}^* : x\notin L \} \in \NP.
+    \]
+    In other words, for $L \in \coNP$, every "no'' instance has a short certificate that can be verified in polynomial time.
+    \end{define}
+    \begin{prove}
+        Assuming \(\overline{\textsf{CLIQUE}}\in\NP\), by 
+        the definition of \(\coNP\) it follows that \(\textsf{CLIQUE}\in\coNP\). 
+        Since \textsf{CLIQUE} is \(\NP\)\nobreakdash-complete, every language 
+        \(L\in\NP\) has a polynomial‑time many‑one reduction to \textsf{CLIQUE}. 
+        Let $f, g \colon \{0,1\}^* \to \{\text{encodings of graphs and integer }k\}$ be
+        the reductions for the following proof.
+        \begin{enumerate}
+            \item \(\NP \subseteq \coNP\):\\
+            Let \(L\in\NP\) be arbitrary.  Then there exists a polynomial‑time reduction \(f\) such that
+            \[
+                x\in L \leftrightarrow f(x)\in \textsf{CLIQUE}.
+            \]
+            By the assumption, \(\overline{\textsf{CLIQUE}}\in\NP\), 
+            \[
+                x \in \overline{L} 
+                \leftrightarrow
+                x\notin L
+                \leftrightarrow
+                f(x)\notin \textsf{CLIQUE}
+                \leftrightarrow
+                f(x)\in \overline{\textsf{CLIQUE}},
+            \]
+            and so \(\overline{L}\in\NP\).  By definition of \(\coNP\), it follows that \(L\in\coNP\).  Thus \(\NP\subseteq\coNP\).
+    
+            \item \(\coNP \subseteq \NP\):\\
+            Let \(L\in\coNP\).  Then \(\overline{L}\in\NP\) by definition.  Since \textsf{CLIQUE} is \(\NP\)\nobreakdash-complete, there exists a polynomial‑time reduction \(g\) such that
+            \[
+                x\in \overline{L}
+                \leftrightarrow
+                g(x)\in \textsf{CLIQUE}.
+            \]
+            By the assumption, \(\overline{\textsf{CLIQUE}}\in\NP\),  
+            there is a nondeterministic polynomial‑time machine 
+            \(M_{\overline{\textsf{CLIQUE}}}\) deciding \(\overline{\textsf{CLIQUE}}\). Then,
+            A nondeterministic polynomial‑time machine \(M_L\) for \(L\) is constructed as follows.
+            \begin{enumerate}
+                \item On input \(x\), compute \(g(x)\) deterministically in polynomial time.
+                \item Simulate \(M_{\overline{\textsf{CLIQUE}}}\) on \(g(x)\).
+                \item Accept if and only if \(M_{\overline{\textsf{CLIQUE}}}\) accepts.
+            \end{enumerate}
+            For all \(x\),
+            \[
+                x\in L
+                \leftrightarrow
+                x\notin \overline{L}
+                \leftrightarrow
+                g(x)\notin \textsf{CLIQUE}
+                \leftrightarrow
+                g(x)\in \overline{\textsf{CLIQUE}}
+                \leftrightarrow
+                M_{\overline{\textsf{CLIQUE}}}\text{ accepts }g(x)
+                \leftrightarrow
+                M_L\text{ accepts }x
+            \]
+            Therefore, \(M_L\) decides \(L\) in \(\NP\), proving \(L \in \NP\).
+            This shows \(\coNP \subseteq \NP\).
+        \end{enumerate}
+        Both \(\NP \subseteq \coNP\) and \(\coNP \subseteq \NP\) have been 
+        proven. Thus, \(\NP = \coNP\).        
+    \end{prove}
+    
+
+
+    % % Jaehoon
+    % \item \textbf{co-NP} (4 points)\\
+    % Show that if SAT is in co-NP, then NP = co-NP. 
+    % (Recall that to prove two sets are equal, show that each set is 
+    % a subset of the other.)
+    % \begin{prove}
+    %     Assuming SAT is in \coNP, by the definition of \coNP, 
+    %     the complement of SAT, denoted as \(\overline{\textsf{SAT}}\), 
+    %     belongs to \(\NP\). Since SAT is \(\NP\)-complete, every 
+    %     language \(L \in \NP\) can be reduced to SAT in polynomial time, 
+    %     that is, $L \leq_p \mathrm{SAT}$.
+    %     \begin{enumerate}
+    %         \item \(\NP \subseteq \coNP\): \\
+    %         Let \(L \in \NP\) be any language. Since $\SAT$ is $\NP$‑complete, 
+    %         there exists a polynomial‑time reduction 
+    %         $f\colon \{0,1\}^* \to \{\text{CNF formulas}\}$ such that
+    %         \[
+    %             x\in L \leftrightarrow f(x)\in\SAT.
+    %         \]
+    %         Since \(\textsf{SAT} \in \coNP\), it follows that 
+    %         \(\overline{\textsf{SAT}} \in \NP\). 
+    %         By the same reduction \(f\) and definition of complement, 
+    %         \[
+    %         x \in \overline{L} \leftrightarrow x \notin L 
+    %         \leftrightarrow f(x) \notin \textsf{SAT} 
+    %         \leftrightarrow f(x) \in \overline{\textsf{SAT}}.
+    %         \]
+    %         Therefore, \(L \in \coNP\) by the definition of \coNP. 
+    %         Thus, \(\NP \subseteq \coNP\).
+    %         \item \(\coNP \subseteq \NP\): \\ 
+    %         Let \(L \in \coNP\).  By definition of \(\coNP\), 
+    %         \(\overline{L} \in \NP\).  
+    %         Since \(\SAT\) is \(\NP\)‑complete, there is a 
+    %         polynomial‑time reduction 
+    %         \(g\colon \{0,1\}^* \to \{\text{CNF formulas}\}\) 
+    %         such that
+    %         \[
+    %             x \in \overline{L}
+    %             \leftrightarrow
+    %             g(x) \in \SAT.
+    %         \]
+    %         Since \(\textsf{SAT} \in \coNP\), it follows that 
+    %         \(\overline{\textsf{SAT}} \in \NP\). 
+    %         By the same reduction \(g\) and definition of complement, 
+    %         \[
+    %             x \in L
+    %             \leftrightarrow
+    %             x \notin \overline{L}
+    %             \leftrightarrow
+    %             g(x) \notin \SAT
+    %             \leftrightarrow
+    %             g(x) \in \overline{\SAT}.
+    %         \]
+    %         By the definition of 
+    %         \(\overline{\textsf{SAT}} \in \NP\),
+    %         there exists a nondeterministic 
+    %         polynomial-time machine 
+    %         \(M_{\overline{\textsf{SAT}}}\) that decides 
+    %         \(\overline{\textsf{SAT}}\) 
+    %         constructed to decide \(L\) in polynomial 
+    %         time as follows.
+    %         \begin{enumerate}
+    %             \item On input \(x\), \(g(x)\) is computed deterministically in polynomial time.
+    %             \item \(M_{\overline{\textsf{SAT}}}\) is simulated on input \(g(x)\). 
+    %             \item Accept if and only if \(M_{\overline{\textsf{SAT}}}\) accepts \(g(x)\).
+    %         \end{enumerate}
+    %         This machine \(M_L\) runs in nondeterministic polynomial time and for all \(x\),
+    %         \[
+    %             x \in L \leftrightarrow g(x) \in \overline{\textsf{SAT}} 
+    %             \leftrightarrow M_{\overline{\textsf{SAT}}} \text{ accepts } g(x)
+    %             \leftrightarrow M_L \text{ accepts } x.
+    %         \]
+    %         Therefore, \(M_L\) decides \(L\) in \(\NP\), proving \(L \in \NP\).
+    %         This shows \(\coNP \subseteq \NP\).
+    %     \end{enumerate}
+    %     Both \(\NP \subseteq \coNP\) and \(\coNP \subseteq \NP\) have been 
+    %     proven. Thus, \(\NP = \coNP\).        
+    % \end{prove}
+
+
+
+
+
+
+% % Definition of NP-completeness and SAT
+% \begin{define}{Definition: NP-Completeness and \textsf{SAT}}
+% A language $L\subseteq\{0,1\}^*$ is \emph{$\NP$-complete} if
+% \begin{enumerate}
+%     \item $L \in \NP$, and
+%     \item For every language $L'\in\NP$, there exists a polynomial-time computable function $f$ such that 
+%     \[
+%     x\in L' \leftrightarrow f(x)\in L,
+%     \]
+%     for all $x\in \{0,1\}^*$.
+% \end{enumerate}
+% An example is the satisfiability problem (\textsf{SAT}), which is defined as
+% \[
+% \textsf{SAT}=\left\{\phi\ \big|\ \phi \text{ is a Boolean formula and } \exists\, \tau:\text{Var}(\phi) \to \{0,1\}\text{ such that } \phi(\tau)=\text{true} \right\}.
+% \]
+% \end{define}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    \item \textbf{Polynomial Reductions} (4 points)\\
+    Show that if P = NP, then every language in P is NP-complete 
+    except for $\emptyset$ and $\Sigma^*$.
+    \begin{define}{Polynomial-Time Many-One Reduction}
+    A language \(A\) is said to be polynomial-time many-one reducible to a language \(L\), denoted as \(A \le^p_m L\), if there exists a function \(f \in \mathrm{FP}\) such that for all \(x \in \Sigma^*\),
+    \[
+    x \in A \leftrightarrow f(x) \in L,
+    \]
+    where \(\mathrm{FP}\) denotes the class of functions computable in polynomial time.
+    \end{define}
+    \begin{prove}
+    By direct proof, it is assumed that 
+    \(\mathrm{P} = \mathrm{NP}\), and let 
+    \(L \in \mathrm{P}\) such that \(L \neq \emptyset\) and 
+    \(L \neq \Sigma^*\).
+    It follows that \(L \in \mathrm{NP}\) by the assumption. 
+    Then, the there exists 
+    \(a \in L\) and \(b \in \Sigma^* \setminus L\) since 
+    $\emptyset$ and $\Sigma^*$ are 
+    excluded from NP-completeness. Let \(A \in \mathrm{NP}\) 
+    be an arbitrary language.
+    Since \(\mathrm{P} = \mathrm{NP}\), there exists a 
+    deterministic polynomial-time decider \(M_A\) for \(A\) 
+    with a function defined as follows. 
+    \[
+    f : \Sigma^* \to \Sigma^*, 
+    \quad
+    f(x) =
+    \begin{cases}
+    a, & \text{if } M_A(x) \text{ accepts},\\
+    b, & \text{if } M_A(x) \text{ rejects}.
+    \end{cases}
+    \]
+    The decider \(M_A\) runs in polynomial time, and the function 
+    \(f\) outputs one of the constant-length strings \(a\) or \(b\). 
+    Therefore, \(f\) belongs to the class of functions computable in polynomial time.
+    \begin{enumerate}
+        \item \textbf{\(x \in A \to f(x) \in L\)}: \\
+        Assume \(x \in A\). By the definition of \(A\), the decider 
+        \(M_A\) accepts \(x\). From the construction of \(f\), if 
+        \(M_A(x)\) accepts, then \(f(x) = a\). Since \(a \in L\) 
+        (by assumption), it follows that \(f(x) \in L\).
+        \item \textbf{\(x \notin A \to f(x) \notin L\)}: \\
+        Assume \(x \notin A\).  By definition of \(A\), the decider 
+        \(M_A\) rejects \(x\).  From the construction of \(f\), 
+        if 
+        \(M_A(x)\) rejects, then \(f(x)=b\).  Since \(b \notin L\) (by assumption), 
+        it follows that \(f(x)\notin L\).
+
+
+          
+    \end{enumerate}
+    Therefore, it has been shown that $x \in A \leftrightarrow f(x) \in L$.
+
+    Thus, \(f\) is a valid polynomial-time reduction from \(A\) to \(L\), that is, 
+    \(A \le^p_m L\). Since \(A\) was chosen arbitrarily in \(\mathrm{NP}\), it 
+    follows that \(L\) is NP-hard. (\(A\) can be arbitrarily set to a NP-hard problem.) 
+    Therefore, \(L\) is NP-complete.
+    Thus, under the assumption 
+    \(\mathrm{P} = \mathrm{NP}\), every \(L \in \mathrm{P}\) 
+    is NP‐complete except for $\emptyset$ and $\Sigma^*$.
+    \end{prove}
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    \item \textbf{NP-Complete} (8 points)
+    Show that the following problems are NP-complete:
+    \begin{itemize}
+        \item $\DOMINATINGSET$: A subset of the nodes of a graph 
+        $G$ is a \textbf{dominating set} if every other node of 
+        $G$ is adjacent to some node in the subset. Let 
+        $$\DOMINATINGSET = \{\langle G,k \rangle | G 
+        \text{ has a dominating set with } k \text{ nodes}\}$$
+        Show that it is NP-complete by the reduction from $\VERTEXCOVER$.
+        \begin{subprove}
+        To prove that $\DOMINATINGSET$ is NP-complete, 
+        it must be shown that it is in NP and it is NP-hard.\\
+
+        \textbf{NP-membership (\(\DOMINATINGSET\in\mathrm{NP}\))}:\\
+        Given an instance of \(\langle G=(V,E),k\rangle\), let \(S\subseteq V\) be a certificate 
+        such that \(|S| = k\) and define a verifier running 
+        in polynomial time as follows.
+        \begin{enumerate}
+            \item \(\lvert S\rvert = k\) is verified by counting elements of 
+            \(S\) in \(O(|V|)\) time.
+            \item For each \(v\in V\setminus S\), the adjacency list of \(v\) 
+            is scanned in total \(O(|E|)\) time to check for the existence of 
+            \(u\in S\) with \(\{u,v\}\in E\).
+        \end{enumerate}
+        Acceptance is granted if and only if every \(v\notin S\) 
+        has a neighbor in \(S\), 
+        showing a deterministic verifier of runtime \(O(|V|+|E|)\).
+        Therefore, \(\DOMINATINGSET\in\mathrm{NP}\). \\
+
+        \textbf{Reduction $f$ ($\VERTEXCOVER$ $\leq_p$ $\DOMINATINGSET$)}: \\
+        From an instance 
+        \(\langle G=(V,E),k\rangle\) of \(\VERTEXCOVER\) which is known to be NP‐complete, 
+        Define
+        \[
+            G'=(V',E'),\quad k'=k,
+        \]
+        where
+        \[
+            V' = V \cup \{x_e : e\in E\},\quad
+            E' = \{\{x_e,u\},\{x_e,v\}\mid e=\{u,v\}\in E\}.
+        \]
+        Each original edge \(e=\{u,v\}\) gives rise to a new 
+        gadget‑vertex \(x_e\) adjacent only to \(u\) and \(v\).
+        The transformation creates one new vertex and two new 
+        edges per edge of \(G\), so 
+        \(\lvert V'\rvert = \lvert V\rvert + \lvert E\rvert\) 
+        and \(\lvert E'\rvert = 2\lvert E\rvert\), and runs in 
+        \(O(\lvert V\rvert + \lvert E\rvert)\) time.
+        \begin{enumerate}
+            \item \textbf{$x\in \VERTEXCOVER \rightarrow f(x)\in\DOMINATINGSET$}\\
+            Assume \(C\subseteq V\) is a vertex cover of size \(k\) in \(G\). 
+            Every original vertex \(v\in V\setminus C\) is incident to some 
+            edge whose other endpoint lies in \(C\), so \(v\) has a neighbor 
+            in \(C\).  Each gadget‑vertex \(x_e\) for \(e=\{u,v\}\) is adjacent 
+            to at least one endpoint in \(C\).  Therefore \(C\) dominates all 
+            vertices of \(G'\) and is a dominating set of size \(k\).
+            \item \textbf{$x\notin \VERTEXCOVER \rightarrow f(x)\notin\DOMINATINGSET$}\\
+            Assume that no vertex cover of size 
+            \(k\) exists in \(G\) but \(D\subseteq V'\) is a dominating set of 
+            size \(k\) in \(G'\)
+            for the sake of contradiction. Replace each gadget‑vertex \(x_e\in D\) by 
+            one of its neighbors in \(V\), obtaining \(D'\subseteq V\) with 
+            \(\lvert D'\rvert\le k\) that still dominates \(G'\).  Then every 
+            gadget‑vertex \(x_e\) is dominated by an endpoint of \(e\) 
+            in \(D'\), so \(D'\) covers all edges of \(G\), providing a 
+            vertex cover of size \(\le k\).  
+            This contradicts the assumption.  Therefore, no dominating 
+            set of size \(k\) exists in \(G'\).
+        \end{enumerate}
+        Since $x \in$ $\VERTEXCOVER$ $\leftrightarrow f(x) \in$ $\DOMINATINGSET$ 
+        in polynomial time by the reduction, 
+        $\VERTEXCOVER$ $\leq_p$ $\DOMINATINGSET$. 
+        Therfore, \(\DOMINATINGSET\in\mathrm{NP}\) and 
+        $\VERTEXCOVER$ $\leq_p$ $\DOMINATINGSET$.
+        Thus, $\DOMINATINGSET$ is NP-hard.
+        \end{subprove}
+
+
+
+        % \item $\DOMINATINGSET$: A subset of the nodes of a graph 
+        % $G$ is a \textbf{dominating set} if every other node of 
+        % $G$ is adjacent to some node in the subset. Let 
+        % $$\DOMINATINGSET = \{\langle G,k \rangle | G 
+        % \text{ has a dominating set with } k \text{ nodes}\}$$
+        % Show that it is NP-complete by the reduction from $\VERTEXCOVER$.
+        % \begin{subprove}
+        % To prove that $\DOMINATINGSET$ is NP-complete, 
+        % it must be shown that it is in NP and it is NP-hard.\\
+        % \textbf{\(\DOMINATINGSET\in\mathrm{NP}\)}:\\
+        % Given an instance of \(\langle G=(V,E),k\rangle\), let \(S\subseteq V\) be a certificate 
+        % such that \(|S| = k\) and define a verifier running 
+        % in polynomial time as follows.
+        % \begin{enumerate}
+        %     \item \(\lvert S\rvert = k\) is verified by counting elements of 
+        %     \(S\) in \(O(|V|)\) time.
+        %     \item For each \(v\in V\setminus S\), the adjacency list of \(v\) 
+        %     is scanned in total \(O(|E|)\) time to check for the existence of 
+        %     \(u\in S\) with \(\{u,v\}\in E\).
+        % \end{enumerate}
+        % Acceptance is granted iff every \(v\notin S\) has a neighbor in \(S\), 
+        % showing a deterministic verifier of runtime \(O(|V|+|E|)\).
+        % Therefore, \(\DOMINATINGSET\in\mathrm{NP}\). \\
+        % \textbf{Reduction $f$}: \\
+        % From an instance 
+        % \(\langle G=(V,E),k\rangle\) of \(\VERTEXCOVER\), 
+        % Define
+        % \[
+        %     G'=(V',E'),\quad k'=k,
+        % \]
+        % where
+        % \[
+        %     V' = V \cup \{x_e : e\in E\},\quad
+        %     E' = \{\{x_e,u\},\{x_e,v\}\mid e=\{u,v\}\in E\}.
+        % \]
+        % Each original edge \(e=\{u,v\}\) gives rise to a new 
+        % gadget‑vertex \(x_e\) adjacent only to \(u\) and \(v\).
+        % The transformation creates one new vertex and two new 
+        % edges per edge of \(G\), so 
+        % \(\lvert V'\rvert = \lvert V\rvert + \lvert E\rvert\) 
+        % and \(\lvert E'\rvert = 2\lvert E\rvert\), and runs in 
+        % \(O(\lvert V\rvert + \lvert E\rvert)\) time.
+        % \begin{enumerate}
+        %     \item \textbf{$x \in \VERTEXCOVER \to f(x) \in \DOMINATINGSET$}\\ 
+        %     If \(C\subseteq V\) is a vertex cover of size \(k\) in \(G\), 
+        %     then \(C\) dominates \(G'\) because every vertex in 
+        %     \(V\setminus C\) has a neighbor in \(C\), and each 
+        %     gadget‑vertex \(x_e\) is adjacent to an endpoint in \(C\).
+        %     \item \textbf{$x \notin \VERTEXCOVER \to f(x) \notin \DOMINATINGSET$}\\ 
+        %     If \(D\subseteq V'\) is a dominating set of size \(k\) in \(G'\), any 
+        %     gadget‑vertex \(x_e\in D\) may be replaced by one of its neighbors 
+        %     without increasing size or losing domination, yielding 
+        %     \(D'\subseteq V\) with \(\lvert D'\rvert \le k\). Since 
+        %     each gadget \(x_e\) must then be dominated by an endpoint of 
+        %     \(e\) in \(D'\), \(D'\) covers every edge of \(G\). 
+        %     If \(\lvert D'\rvert<k\), arbitrary vertices from \(V\) 
+        %     can be added to reach size \(k\).
+        % \end{enumerate}
+        % Since $x \in$ $\VERTEXCOVER$ $\leftrightarrow f(x) \in$ $\DOMINATINGSET$ in polynomial time, by the reduction, 
+        % $\VERTEXCOVER$ $\leq_p$ $\DOMINATINGSET$. 
+        % Therfore, \(\DOMINATINGSET\in\mathrm{NP}\) and $\VERTEXCOVER$ $\leq_p$ $\DOMINATINGSET$.
+        % Thus, $\DOMINATINGSET$ is NP-hard.
+        % \end{subprove}
+
+
+            
+            
+        \item $\SPANBOUND$: Consider the following variant of 
+        the spanning tree problem. You are given an undirected 
+        graph $G = (V,E)$ and a parameter $k \in \mathbb{N}$ as 
+        input. The output is YES, if there is a spanning tree 
+        where every vertex of the degree has at most $k$, and 
+        NO if no such spanning tree exists.
+        \begin{prove}
+        To prove that \(\SPANBOUND\) is NP‐complete, it must be 
+        shown that it lies in NP and that it is NP‐hard.\\
+
+        \textbf{NP-membership (\(\SPANBOUND\in\mathrm{NP}\))}:\\
+        Given an instance \(\langle G=(V,E),k\rangle\), let 
+        \[T\subseteq E\]
+        be a certificate purported to form a spanning tree of 
+        \(G\) with maximum degree at most \(k\).  A verifier 
+        can check this in polynomial time as follows.
+        \begin{enumerate}
+            \item It is verified that \(\lvert T\rvert = \lvert V\rvert - 1\) in \(O(1)\) time.
+            \item It is verified that \((V,T)\) is acyclic and connected by performing a DFS or BFS in \(O(|V|+|E|)\) time.
+            \item For each \(v\in V\), the degree \(\deg_T(v)\) is counted in \(O(|V|+|E|)\) time and checked to satisfy \(\deg_T(v)\le k\).
+        \end{enumerate}
+        Acceptance is granted if and only if all tests succeed, 
+        showing a deterministic verifier running in 
+        \(O(|V|+|E|)\). Therefore, \(\SPANBOUND\in\mathrm{NP}\).\\
+
+        \textbf{Reduction \(f\colon \HAMPATH\le_p\SPANBOUND\)}:\\
+        Let 
+        \[
+            \HAMPATH  = \{\langle G=(V,E)\rangle\mid G\text{ has a Hamiltonian path}\},
+        \]
+        which is known to be NP‐complete. By an instance \(\langle G\rangle \in \HAMPATH\), define
+        \[
+            G' = G,
+            \quad
+            k' = 2.
+        \]
+        Clearly the transformation runs in \(O(|V|+|E|)\) time, and the output instance is \(\langle G',k'\rangle\).  It remains to show
+        \[
+            G\in\HAMPATH
+             \leftrightarrow 
+            \langle G',k'\rangle\in\SPANBOUND.
+        \]
+        \begin{enumerate}
+            \item \(\boldsymbol{G\in\HAMPATH \rightarrow \langle G',k'\rangle\in\SPANBOUND}\).\\
+            Assume that \(P\) is a Hamiltonian path in \(G\).  Then 
+            \(P\) uses exactly \(\lvert V\rvert-1\) edges, spans 
+            all vertices, and has maximum degree \(2\). \(P\) 
+            is a spanning tree of \(G'\) since \(G'=G\) with every 
+            vertex of degree at most \(2=k'\), so \(\langle G',k'\rangle\) 
+            is a YES‐instance of \(\SPANBOUND\).
+            \item \(\boldsymbol{\langle G',k'\rangle\in\SPANBOUND \rightarrow G\in\HAMPATH}\).\\
+            Assume \(T\subseteq E\) is a spanning tree of \(G'\) 
+            with maximum degree \(\le2\).  Since \(T\) is a tree 
+            on \(\lvert V\rvert\) vertices with \(\lvert V\rvert-1\) 
+            edges and no vertex of degree exceeding \(2\), it 
+            must be a simple path that visits every vertex 
+            exactly once. Therefore, \(T\) is a Hamiltonian path 
+            in \(G=G'\), and so \(G\in\HAMPATH\).
+        \end{enumerate}
+        Since $x \in$ $\HAMPATH$ $\leftrightarrow f(x) \in$ $\SPANBOUND$ 
+        in polynomial time by the reduction, 
+        $\HAMPATH$ $\leq_p$ $\SPANBOUND$. 
+        Therfore, \(\SPANBOUND\in\mathrm{NP}\) and 
+        $\HAMPATH$ $\leq_p$ $\SPANBOUND$.
+        Thus, $\SPANBOUND$ is NP-hard.
+        \end{prove}
+    \end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    \item \textbf{Bonus} (1 points)
+    In your opinion, what are the three most important 
+    concepts or arguments or ideas presented in this course? 
+    Give a 1-2 sentence explanation for why you chose each item.
+    \begin{answer}
+        In my opinion, the three most important concepts presented in this course in the order of 
+        the right flow are like the followings.
+        \begin{enumerate}
+            \item \textbf{Context‑Free Languages and Turing Machines.} 
+            Context‑Free Languages define exactly the patterns a pushdown 
+            automaton (a parser with a stack) can recognize, showing how nested, 
+            hierarchical structures are handled in computation. Building on this, 
+            Turing Machines—with their infinite tape and read/write head—generalize 
+            beyond any fixed memory model to capture the full scope of what an algorithm 
+            can compute, setting the stage for discussions of decidability.  
+            \item \textbf{Countability, Recognizability, and Undecidability.} By 
+            showing that the set of all languages is uncountable while the set of 
+            Turing Machines is only countable, we see that some languages cannot even 
+            be listed by any algorithm (undecidable). Moreover, the distinction between 
+            languages that a Turing Machine can recognize (but not necessarily decide) 
+            versus those it cannot even recognize highlights the precise limits of 
+            algorithmic power.  
+            \item \textbf{Many‑one (\(\le_m\)) and Polynomial‑time (\(\le_p\)) Reductions.} 
+            With the framework of decidability in place, many‑one reductions let us 
+            translate one decision problem into another by a single computable 
+            function, preserving solvability and undecidability results. Refining 
+            these transformations to run in polynomial time gives us \(\le_p\) 
+            reductions, which link the tractability of problems and reveal the central 
+            role of NP‑complete problems in complexity theory.  
+        \end{enumerate}
+        
+    \end{answer}
+\end{enumerate}
+
+
+\(A\notin\mathrm{P}\)\\
+\(\text{NP-hard}\le_p A\)
+

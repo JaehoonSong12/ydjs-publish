@@ -1,0 +1,561 @@
+\handout
+{Collection of Problems}
+{\textsc{Number Theory (NT)}}
+{\href{https://creativecommons.org/publicdomain/zero/1.0/}{CC0 1.0 Universal license}}
+{Author: Jaehoon Song}{Release: \generatedOn}
+{NT: Collection of Problems}
+
+
+
+
+\section*{Introduction}
+These notes introduce the concept of quadratic residues in the finite field $\mathbb{Z}_p$ (where $p$ is an odd prime) and explain a key lemma relating primitive roots to the Legendre symbol.  The reader is assumed to have completed Modules 1--8, familiar with basic group theory in $\mathbb{Z}_p$ and elementary number theory, but not yet with quadratic residues, Legendre symbols, or the use of primitive roots to solve polynomial congruences.
+
+\section{The Multiplicative Group $\mathbb{Z}_p^*$}
+
+
+\begin{definition}
+Let $p$ be a prime.  We write
+$$
+\mathbb{Z}_p = \{0,1,2,\dots,p-1\}
+$$
+for the integers modulo $p$, and
+$$
+\mathbb{Z}_p^* = \{[1],[2],\dots,[p-1]\}
+$$
+for its multiplicative group under multiplication modulo~$p$.
+\end{definition}
+
+It is a well-known consequence of Fermat's little theorem that $\mathbb{Z}_p^*$ is a cyclic group of order $p-1$.
+
+\begin{definition}
+A \emph{primitive root} modulo $p$ is an element $[g]\in\mathbb{Z}_p^*$ whose order is exactly $p-1$.  Equivalently,
+$$
+\{[g]^1,[g]^2,\dots,[g]^{p-1}\} = \mathbb{Z}_p^*.
+$$
+\end{definition}
+
+\begin{example}
+For $p=7$, one checks that $3$ is a primitive root since
+$$3^1\equiv3,\quad3^2\equiv2,\quad3^3\equiv6,\quad3^4\equiv4,\quad3^5\equiv5,\quad3^6\equiv1\pmod7,$$
+i.e.~all nonzero residues appear.
+\end{example}
+
+\section{Quadratic Residues and the Legendre Symbol}
+
+\begin{definition}
+Let $p$ be an odd prime.  An element $[a]\in\mathbb{Z}_p^*$ is called a \emph{quadratic residue} modulo $p$ if there exists $[x]\in\mathbb{Z}_p^*$ such that
+$$[x]^2 = [a]\quad\text{in }\mathbb{Z}_p.$$
+If no such $[x]$ exists, then $[a]$ is called a \emph{quadratic nonresidue}.
+\end{definition}
+
+\begin{definition}[Legendre symbol]
+For $a\in\mathbb{Z}_p$, define
+$$
+\left(\frac{a}{p}\right)
+=\begin{cases}
++1,&[a]\text{ is a quadratic residue modulo }p,\\
+-1,&[a]\text{ is a quadratic nonresidue modulo }p,\\
+0,&a\equiv0\pmod p.
+\end{cases}
+$$
+\end{definition}
+
+\begin{example}
+For $p=7$, the squares modulo 7 are $1^2\equiv1$, $2^2\equiv4$, $3^2\equiv2$, $4^2\equiv2^2\equiv4$, $5^2\equiv4$, $6^2\equiv1$.  Hence the quadratic residues are $[1],[2],[4]$, and
+$$
+\left(\frac{3}{7}\right)=-1,\quad\left(\frac{5}{7}\right)=-1,\quad\left(\frac{6}{7}\right)=+1.
+$$
+\end{example}
+
+\begin{remark}[Euler's Criterion]
+One can show that for $[a]\in\mathbb{Z}_p^*$,
+$$
+\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p,
+$$
+i.e.
+$$
+\left(\frac{a}{p}\right) = a^{\frac{p-1}{2}} \;\in\;\{\pm1\}.
+$$
+A brief proof uses Fermat's little theorem and the fact that the product of all nonzero squares in the group gives $a^{\frac{p-1}{2}}$.
+\end{remark}
+
+\section{Statement of the Lemma}
+
+\begin{lemma}
+Let $p$ be an odd prime, and let $[g]$ be a primitive root modulo $p$.  Then for each integer $i\ge1$,
+\begin{equation}
+\left(\frac{g^i}{p}\right) 
+= (-1)^i.
+\end{equation}
+\end{lemma}
+
+This lemma shows that the Legendre symbol evaluated on successive powers of a primitive root alternates between $+1$ and $-1$.  In particular, exactly half of the powers $[g]^i$ are quadratic residues.
+
+\section{Related Results (without proof)}
+
+Below are additional facts about quadratic residues and Legendre symbols that will be useful for applications:
+
+\begin{itemize}
+  \item \textbf{Multiplicativity:}
+    $$\left(\frac{ab}{p}\right) = \left(\frac{a}{p}\right)\left(\frac{b}{p}\right).$$
+  \item \textbf{Supplementary Laws:}
+    For odd primes $p,q$,
+    $$\left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2}\frac{q-1}{2}}\quad\text{(Quadratic reciprocity).}$$
+  \item \textbf{Euler's Criterion (revisited):}
+    $$\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p.
+    $$
+    One consequence is that $\left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}$.
+\end{itemize}
+
+\section{Proof of the Lemma}
+
+\begin{proof}
+Since $[g]$ is a primitive root, its powers exhaust all nonzero residues:
+$$
+\mathbb{Z}_p^* = \{[1],[g],[g^2],\dots,[g^{p-2}]\}.
+$$
+By definition $[g^i]$ is a quadratic residue if and only if there exists $[x]$ with $[x]^2=[g^i]$.  But every $[x]\in\mathbb{Z}_p^*$ can itself be written as $[g]^k$ for some integer $0\le k\le p-2$.  Then
+$$
+[g^k]^2 = [g^{2k}] = [g^i]
+\quad\Longleftrightarrow\quad
+2k \equiv i \pmod{p-1}.
+$$
+Thus $[g^i]$ is a square precisely when the congruence $2k\equiv i\pmod{p-1}$ has a solution $k$.  In the cyclic group of order $p-1$, this congruence has a solution if and only if $i$ is even.  Equivalently,
+$$
+[g^i]\text{ is a quadratic residue} \quad\Longleftrightarrow\quad i\equiv0\pmod2.
+$$
+By the definition of the Legendre symbol,
+$$
+\left(\frac{g^i}{p}\right) = \begin{cases}+1,&i\text{ even},\\-1,&i\text{ odd}.\end{cases}
+$$
+Hence
+$$
+\left(\frac{g^i}{p}\right) = (-1)^i,
+$$
+as required.
+\end{proof}
+
+\section{Applications and Examples}
+
+\begin{example}
+Let $p=11$, and take a primitive root $g=2$.  Then the sequence $2^i\bmod11$ for $i=1,2,\dots,10$ is
+$$2,4,8,5,10,9,7,3,6,1.$$
+According to the lemma, the Legendre symbol on these values alternates. Indeed one checks that $2,8,10,7,6$ are nonresidues while $4,5,9,3,1$ are residues.
+\end{example}
+
+\bigskip
+
+\noindent\textbf{How to decide if $[g]^i$ is a square:}  Write $i=2k$ or $i=2k+1$; if $i$ is even then $[g]^i=[g^{2k}]=([g]^k)^2$ is a square, and if $i$ is odd no square can land there.
+
+\newpage
+
+
+
+
+\begin{enumerate}
+  \section{Quick Notes}
+  
+
+
+
+
+
+
+
+
+
+
+
+  \section{Final}
+
+  
+  \item \textbf{Fermat prime} (10 points)\\
+  If $p$ is a Fermat prime (so $p=2^{2^n}+1$ is prime), prove that 3 is a primitive root modulo $p$, and that 5 and 7 are primitive roots provided $n>1$.\\
+  \textbf{Hint:} Explain why every quadratic nonresidue is a primitive root.
+  \begin{subanswer}
+  Let \(p=2^{2^n}+1\) be a Fermat prime.  Then
+  \[
+  p-1 \;=\; 2^{2^n},
+  \]
+  so the multiplicative group \((\mathbb{Z}/p\mathbb{Z})^\times\) is cyclic of order \(2^{2^n}\).
+
+  By Euler’s criterion, an element \(g\) satisfies
+  \[
+  g^{\frac{p-1}{2}}\equiv -1\pmod p
+  \]
+  if and only if \(g\) is a quadratic nonresidue modulo \(p\).  Such an element cannot have order dividing \(\tfrac{p-1}{2}=2^{2^n-1}\); since the full group has order \(2^{2^n}\), its order must be exactly \(2^{2^n}\).  Hence every quadratic nonresidue is a primitive root modulo \(p\).
+
+  It remains to show that
+  \[
+  3\quad\text{(for all \(n\ge1\)),}
+  \qquad
+  5\text{ and }7\quad\text{(for \(n>1\))}
+  \]
+  are quadratic nonresidues modulo \(p\).  By quadratic reciprocity,
+  for any odd prime \(q\) and \(p\),
+  \[
+  \Bigl(\frac{q}{p}\Bigr)
+  =\;
+  (-1)^{\frac{q-1}{2}\,\frac{p-1}{2}}\,
+  \Bigl(\frac{p}{q}\Bigr).
+  \]
+
+  \paragraph{Case \(q=3\).}
+  Since \(\tfrac{3-1}{2}\,\tfrac{p-1}{2}=1\cdot2^{2^n-1}\) is even,
+  \[
+  \Bigl(\frac{3}{p}\Bigr)
+  =\Bigl(\frac{p}{3}\Bigr).
+  \]
+  But \(2^{2^n}\equiv2\pmod3\), so \(p\equiv2+1\equiv0\pmod3\) only when \(n=0\).  For \(n\ge1\), \(p\equiv2\pmod3\), and \(2\) is not a square modulo \(3\).  Therefore
+  \[
+  \Bigl(\tfrac{3}{p}\Bigr)=-1,
+  \]
+  and \(3\) is a primitive root for all Fermat primes with \(n\ge1\).
+
+  \paragraph{Case \(q=5\), \(n>1\).}
+  Again,
+  \(\tfrac{5-1}{2}\,\tfrac{p-1}{2}=2\cdot2^{2^n-1}\) is even, so
+  \[
+  \Bigl(\frac{5}{p}\Bigr)
+  =\Bigl(\frac{p}{5}\Bigr).
+  \]
+  For \(n\ge2\), \(2^n\) is divisible by \(4\), hence \(2^{2^n}\equiv1\pmod5\) and \(p\equiv2\pmod5\).  Since \(2\) is not a square mod \(5\),
+  \[
+  \Bigl(\tfrac{5}{p}\Bigr)=-1,
+  \]
+  making \(5\) a primitive root whenever \(n>1\).
+
+  \paragraph{Case \(q=7\), \(n>1\).}
+  Similarly,
+  \[
+  \Bigl(\frac{7}{p}\Bigr)
+  =\Bigl(\frac{p}{7}\Bigr).
+  \]
+  The powers of \(2\) mod \(7\) cycle through \(\{2,4,1\}\), so for \(n\ge2\), \(2^{2^n}\equiv2\) or \(4\pmod7\).  Thus \(p\equiv3\) or \(5\pmod7\), neither of which is a square mod \(7\).  Hence
+  \[
+  \Bigl(\tfrac{7}{p}\Bigr)=-1,
+  \]
+  and \(7\) is a primitive root for \(n>1\).
+  \end{subanswer}
+  
+
+
+
+
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage 
+\section{Exam1}
+
+  \item \textbf{Euclidean Algorithm} (10 points)\\
+  Solve the following problems.
+  \begin{enumerate}[label=(\alph*)]
+    \item Use the Euclidean algorithm to find \(\gcd(24,15)\) (do not use prime factorizations).
+    \begin{subanswer}
+      your answer here.
+    \end{subanswer}
+    \item Express \(\gcd(24,15)\) as an integer linear combination of 24 and 15.
+    \begin{subanswer}
+      your answer here.
+    \end{subanswer}
+  \end{enumerate}
+  (a) Use the Euclidean algorithm to find the gcd of 24 and 15 (you may not use prime factorizations in this question).\\
+(b) Use your work from part (a) to express this gcd as an integer linear combination of 24 and 15.
+
+
+  \item \textbf{Common Multiples and Divisibility} (10 points)\\
+  Solve the following problems.
+  \begin{enumerate}[label=(\alph*)]
+    \item Prove that a number \(c\) is a common multiple of \(a\) and \(b\) 
+    if and only if \(c\) is a multiple of \(\mathrm{lcm}(a,b)\).
+    \begin{subanswer}
+      your answer here.
+    \end{subanswer}
+    \item Show that if \(c\mid ab\), then
+    \[
+    c \;\bigm|\; \bigl(\gcd(a,c)\bigr)\,\bigl(\gcd(b,c)\bigr).
+    \]
+    \begin{subanswer}
+      your answer here.
+    \end{subanswer}
+  \end{enumerate}
+  (a) Show that $c$ is a common multiple of $a$ and $b$ if and only if it is a multiple of the least common multiple of $a$ and $b$.\\
+(b) Show that if $c \mid a b$, then $c \mid (a, c)(b, c)$.
+
+
+  \item \textbf{Primes in Arithmetic Progression} (10 points)\\
+  Show that there are infinitely many primes congruent to \(5\pmod6\).
+  \begin{subanswer}
+    your answer here.
+  \end{subanswer}
+  Show that there are infinitely many prime numbers congruent to 5 modulo 6.
+
+
+  \item \textbf{Hensel Lifting} (10 points)\\
+  Use Hensel’s Lemma to find all integer solutions of
+  \[
+    x^3 + 8x - 5 \equiv 0 \pmod{125}.
+  \]
+  \begin{subanswer}
+    your answer here.
+  \end{subanswer}
+  Use Hensel's Lemma to find all integer solutions to the polynomial congruence
+$$
+x^3 + 8x - 5 \equiv 0 \pmod{125}.
+$$
+
+
+  \item \textbf{Quadratic Congruences} (10 points)\\
+  Find all solutions to
+  \[
+    x^2 \equiv 1 \pmod{441}.
+  \]
+  \textbf{Hint:} Apply the Chinese Remainder Theorem to 
+  reduce to prime‑power moduli; Hensel’s Lemma may also be useful.
+  \begin{subanswer}
+    your answer here.
+  \end{subanswer}
+  Find all solutions to the equation $x^2 \equiv 1 \pmod{441}$.\\
+  \textbf{Hint:} Use the Chinese Remainder Theorem to reduce this to the study of two equations modulo smaller numbers. It may also be useful to consider Hensel's Lemma.
+
+
+  
+
+
+
+
+  \item \textbf{Fibonacci Consecutive GCD} (10 points)\\
+  Let \(F_0, F_1, F_2, \ldots\) be the Fibonacci numbers with \(F_0=F_1=1\) and \(F_{n+1}=F_n+F_{n-1}\).  Prove that \(\gcd(F_n,F_{n+1})=1\).\\
+  \begin{subanswer}
+  Suppose a prime \(p\) divides both \(F_n\) and \(F_{n+1}\).  Then
+  \[
+    p\mid(F_{n+1}-F_n)=F_{n-1},
+  \]
+  and iterating downward shows \(p\mid F_{n-2},\ldots,p\mid F_1=1\) and \(p\mid F_0=1\), a contradiction.  Hence no prime \(p\ge2\) can divide both, so \(\gcd(F_n,F_{n+1})=1\).
+  \end{subanswer}
+  1. Let $F_0, F_1, F_2, \ldots$ be the Fibonacci numbers, given by $F_0=F_1=1$ and $F_{n+1}=$ $F_n+F_{n-1}$ for each $n \geq 1$. Prove that the gcd of two consecutive Fibonacci numbers is always 1 .
+  Solution:
+  Suppose that two consecutive Fibonacci numbers shared a common factor larger than 1. That is, suppose that $p \mid F_n, F_{n+1}$ for some $n$ and for some prime $p$. Then by the definition of Fibonacci numbers, $p$ divides $F_{n+1}-F_n=F_{n-1}$. Similarly, since $p$ divides both $F_n$ and $F_{n-1}, p$ divides the difference, $F_{n-2}$. Continuing in this way, we find that $p_{F_1}$ and $F_0$, namely, $p \mid(1,1)$. But this is a contradiction, as $p \mid 1$ implies $p= \pm 1$, but $p$ was a prime.
+  
+  
+
+  \item \textbf{GCD of Sum and Sum of Squares} (10 points)\\
+  If \(\gcd(a,b)=1\), determine \(\gcd(a^2+b^2,a+b)\).\\
+  \begin{subanswer}
+  Let \(p\) be a prime divisor of both \(a+b\) and \(a^2+b^2\).  Then
+  \[
+    a\equiv -b\pmod p
+    \quad\implies\quad
+    a^2+b^2\equiv2b^2\equiv0\pmod p.
+  \]
+  An odd \(p\) would then divide \(b^2\), forcing \(p\mid b\) and hence \(p\mid a\), contradicting \(\gcd(a,b)=1\).  Thus only \(p=2\) can occur.  Both \(a+b\) and \(a^2+b^2\) are even exactly when \(a,b\) have the same parity, which for coprime \(a,b\) means both odd.  Therefore
+  \[
+    \gcd(a^2+b^2,a+b)
+    =
+    \begin{cases}
+      2,&a,b\text{ both odd},\\
+      1,&\text{otherwise}.
+    \end{cases}
+  \]
+  \end{subanswer}
+  2. If $a$ and $b$ are relatively prime natural numbers, find, with proof, the greatest common divisor $\left(a^2+b^2, a+b\right)$. and prove your answer.
+  Solution:
+  Suppose that a prime $p$ divides both $a+b$ and $a^2+b^2$. As $p \mid(a+b)$, we have $a \equiv-b$ $(\bmod p)$. Thus, $a^2+b^2 \equiv 2 b^2 \equiv 0(\bmod p)$. There are two cases. First, suppose that $p$ is odd. In this case, we have that $p \mid b^2$, and so $p \mid b$. But then $a \equiv-0 \equiv 0(\bmod p)$. This contradicts the assumption that $a$ and $b$ are relatively prime. Thus, no odd prime can divide the gcd of these two numbers. Now we consider the case when $p=2$. We have shown that the gcd in question is always 1 or 2 , and need to distinguish between these cases. Now2 divides both $a^2+b^2$ and $a+b$ if and only if both of these numbers are even. This occurs if and only if the parity of $a$ and $b$ are equal. Since $a$ and $b$ are relatively prime, they cannot both be even, so this happens if and only if $a$ and $b$ are both odd. Furthermore, if $a$ and $b$ are both odd, then $a^2$ and $b^2$ are too, so the gcd of the two numbers really is odd. Thus, $\left(a^2+b^2, a+b\right)=\frac{1}{2}\left(3+(-1)^{a+b}\right)$ (this is just a slightly more convenient way of writing this piecewise function, and expressing it via its values in 2 cases is also ok).
+  
+  
+
+  \item \textbf{Euler's Totient Function and Last Three Digits} (10 points)\\
+  (a) Compute \(\varphi(1000)\).\\
+  (b) Find the last three digits of \(13^{5602}\).\\
+  \begin{subanswer}
+  Since \(1000=2^3\cdot5^3\),
+  \[
+    \varphi(1000)
+    =\varphi(2^3)\,\varphi(5^3)
+    =(8-4)(125-25)
+    =4\cdot100
+    =400.
+  \]
+  By Euler’s theorem, \(13^{400}\equiv1\pmod{1000}\), so
+  \[
+    13^{5602}
+    =13^{400\cdot14+2}
+    \equiv1^{14}\cdot13^2
+    =169
+    \pmod{1000}.
+  \]
+  Hence the last three digits are \(169\).
+  \end{subanswer}
+  3. (a) Compute $\varphi(1000)$.
+  (b) Use Euler's theorem to find the last three digits of $13^{5602}$.
+  
+  Solution:
+  Using the multiplicivity of $\varphi$ and the formula $\varphi\left(p^n\right)=p^n-p^{n-1}$ for its values on prime powers, we compute $\varphi(1000)=\varphi\left(2^3\right) \varphi\left(5^3\right)=\left(2^3-2^2\right)\left(5^3-5^2\right)=(8-4)(125-25)=$ $4 \cdot 100=400$. Thus, if $(a, 1000)=1$, i.e., if $a$ is odd and not divisible by 5 , Euler's theorem tells us that $a^{400} \equiv 1(\bmod 1000)$. Thus, since 13 satisfies this condition, we have $13^{5602} \equiv 13^{5600} \cdot 13^2 \equiv 13^{400 \cdot 14} \cdot 169 \equiv 1 \cdot 169 \equiv 169(\bmod 1000)$. Thus, the last three digits in question are 169 .
+  
+
+  \item \textbf{Chinese Remainder Theorem Application} (10 points)\\
+  Solve
+  \[
+    \begin{cases}
+      x\equiv3\pmod5,\\
+      x\equiv7\pmod8,\\
+      x\equiv5\pmod7.
+    \end{cases}
+  \]\\
+  \begin{subanswer}
+  The moduli \(5,8,7\) are pairwise coprime, so \(M=5\cdot8\cdot7=280\).  Set
+  \[
+    M_1=\tfrac{M}{5}=56,\quad
+    M_2=\tfrac{M}{8}=35,\quad
+    M_3=\tfrac{M}{7}=40.
+  \]
+  Compute inverses:
+  \[
+    56\equiv1\pmod5\implies M_1^{-1}=1,\quad
+    35\equiv3\pmod8\implies M_2^{-1}=3,\quad
+    40\equiv5\pmod7\implies M_3^{-1}=3.
+  \]
+  Then
+  \[
+    x
+    \equiv3\cdot56\cdot1
+      +7\cdot35\cdot3
+      +5\cdot40\cdot3
+    =168+735+600
+    =1503
+    \equiv103\pmod{280}.
+  \]
+  All solutions are \(x\equiv103\pmod{280}\).
+  \end{subanswer}
+
+  4. Find all integers $x$ which satisfy the following system of linear congruences:
+  $$
+  \begin{array}{ll}
+  x \equiv 3 & (\bmod 5), \\
+  x \equiv 7 & (\bmod 8), \\
+  x \equiv 5 & (\bmod 7) .
+  \end{array}
+  $$
+  Solution:
+  We will apply the Chinese Remainder Theorem. This is applicable as all three moduli are pairwise coprime. In the notation of the proof we gave in class, we have $M_1=56$, $M_2=35$, and $M_3=40$. We now look for inverses $y_j$ of each $M_j$ modulo $m_j$. For $j=1$, we want the inverse of 56 modulo 5 . We first reduce $56 \bmod 5$ to get 1 , which is clearly its own inverse, $y_1=1$. We next want an inverse of 35 modulo 8 . Reducing, we obtain $3 y_2 \equiv 1(\bmod 8)$, so we can take $y_2=3$. Finally, for $j=3$, we want to find an inverse of 40 modulo 7. That is, we want an inverse of 5 mod 7 . The reduced representative mod 7 is quickly found to be 3 (by guess-and-check, for example). Thus, we can take $y_3=3$. Thus, our solution is $x=3 \cdot 56 \cdot 1+7 \cdot 35 \cdot 3+5 \cdot 40 \cdot 3=168+735+600 \equiv$ $168+175+40 \equiv 383 \equiv 103(\bmod 280)$. This means that all integers $x$ satisfying the system are those integers satisfying $x \equiv 103(\bmod 280)$.
+  
+  
+
+
+
+
+  5. Use the general theorem from class on the set of solutions (i.e., brute force guessing isn't allowed, and in each part you must state which case of the general theorem applies/what it says) to linear congruences to solve the following equations:
+  (a) $2 x \equiv 6(\bmod 10)$.
+  (b) $5 x \equiv 7(\bmod 10)$.
+  (c) $3 x \equiv 7(\bmod 10)$.
+  
+  Solution: We know that the equation $a x \equiv b(\bmod m)$ has no solutions if $d=(a, m) \nmid$ $b$, and has $d$ distinct solutions $\bmod m$ otherwise.
+  In (a), we have $(2,10)=2 \mid 6$, and so there are two different solutions modulo 10 . To find them, we first find a particular solution. For this, we want to solve the linear diophantine equation $2 x+10 y=6$ (it doesn't matter if we call the second factor $10 y$ or $-10 y)$. There is a common factor of 2 in all terms, so we can reduce to the equation $x+5 y=3$. Since the coefficients of $x$ and $y, 1$ and -5 , are relatively prime, we can find the linear combination we want by finding a linear combination of 1 and 5 which gives 1 , and then we can multiply the whole equation by 3 . This is easy in this case; we have simply $1 \cdot 1+0 \cdot 5=1$. Multiplying by 3 gives us $3 \cdot 1+0 \cdot 5=3$. Thus, a particular solution to the above equation is $x=3$. This equation is really an equation modulo 5 , as seen by the above argument where we divided out by 2 's, and so the solutions modulo 10 are the two congruence classes lying "above" the class of 3 mod 5 , namely $x \equiv 3,8(\bmod 10)$. This is also exactly what the formula from the proof of our main theorem on linear congruences says.
+  For (b), we find that $(5,10)=5 \nmid 7$, so there are no solutions.
+  For $(\mathrm{c})$, we have $(3,10)=1$, and so there is a unique solution modulo 10 . To find this, we can find an inverse of $3 \bmod 10$, and then we would have $x \equiv \overline{3} \cdot 7(\bmod 10)$ as our solution. To find the inverse of $3 \bmod 10$, we perform the Euclidean Algorithm, yielding $10=3 \cdot 3+1,3=3 \cdot 1=0$, and so $10-3 \cdot 3=1$. Reducing this equation $\bmod 10$ shows that $\overline{3} \equiv-3 \equiv 7(\bmod 10)$. Now $\overline{3} \cdot 7 \equiv-3 \cdot 7 \equiv-21 \equiv-1(\bmod 10)$. Thus, the solutions to $(\mathrm{c})$ are $x \equiv-1(\bmod 10)($ or $9 \bmod 10$ if you prefer the reduced representative between 0 and 9 ).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage 
+\section{Exam2}
+
+
+1. Suppose that $p$ and $q$ are both odd primes, and that $q=4 p+1$. Show that 2 is a primitive root modulo $q$. (Hint: Consider Euler's Criterion)
+
+
+2. (a) Suppose that $r$ is a primitive root modulo a prime $p$. Since $-r$ is also relatively prime to $p$, it most be some power of $r$ modulo $p$. Make this explicit, i.e., find an integer $a$ such that $-r \equiv r^a(\bmod p)$.
+(b) Suppose now that $p$ is an odd prime, and assume the notation of part a). Find a simple formula for the order of $-r$ modulo $p$.
+
+
+3. Show that $a$ is a primitive root modulo $n$ if it is relatively prime to $n$ and $a^{\varphi(n) / p} \not \equiv 1$ $(\bmod n)$ for all primes $p \mid \varphi(n)$.
+
+
+
+4. Consider the von Mangoldt function, given by
+
+$$
+\Lambda(n)= \begin{cases}\log p & \text { if } n \text { is a positive power of a prime } p \\ 0 & \text { else }\end{cases}
+$$
+
+(a) Show that the summatory function of $\Lambda$ is $\sum_{d \mid n} \Lambda(d)=\log n$.
+(b) Show that
+
+$$
+\Lambda(n)=-\sum_{d \mid n} \mu(d) \log d
+$$
+
+5. (a) State Lucas' Converse of Fermat's Little Theorem.
+(b) Let $F_n=2^{2^n}+1$ denote the $n$-th Fermat number. Show that if there is an integer $x$ such that $x^{2^{2^n}} \equiv 1\left(\bmod F_n\right)$ and $x^{2^{2^n-1}} \not \equiv 1\left(\bmod F_n\right)$, then $F_n$ is prime.
+
+
+
+
+
+
+
+
+
+\end{enumerate}

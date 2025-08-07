@@ -1,0 +1,44 @@
+% \usepackage{fontspec}
+\usepackage{graphicx}   % for including images:contentReference[oaicite:2]{index=2}
+\usepackage{fancyhdr}   % for custom headers/footers:contentReference[oaicite:3]{index=3}
+\usepackage{microtype}  % improves typography
+
+
+\usepackage{lipsum}     % (optional) dummy text for examples
+\usepackage{tabularx}
+\usepackage[table]{xcolor}
+
+
+
+
+
+
+%% Short Quotation
+\usepackage[
+    left = “,% 
+    right = ”,% 
+    leftsub = ‘,% 
+    rightsub = ’ %
+]{dirtytalk}
+\newcommand{\inlinequote}[1]{\say{#1}}
+
+\newcommand{\blockquote}[1]{\begin{quote}\say{#1}\end{quote}}
+
+\usepackage{xparse}
+\usepackage{etoolbox}
+
+\NewDocumentCommand{\blockcite}{ O{} m m }{%
+  \begin{quote}
+    \say{#3} %
+    \ifstrempty{#1}
+      {\parencite{#2}.}               % no page given
+      {\parencite[p.~#1]{#2}.}       % page given
+  \end{quote}%
+}
+
+
+
+
+\usepackage{hyperref}   % clickable links in PDF
+\usepackage{makeidx}    % index generation
+\makeindex              % generate index page

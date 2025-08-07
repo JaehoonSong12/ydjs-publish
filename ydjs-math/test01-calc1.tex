@@ -1,0 +1,213 @@
+\handout
+{Practice Test 1}
+{\textsc{Single Variable Calculus (SVC)}}
+{\href{https://creativecommons.org/publicdomain/zero/1.0/}{CC0 1.0 Universal license}}
+{Author: Jaehoon Song}{Out: \generatedOn}
+{SVC: Practice Test 1}
+
+% subanswer environment can be flagged with [true] to hide the answers.
+
+\begin{enumerate}
+  \item \textbf{Area Calculation} (10 points)\\
+  Find the area of the bounded region in the first quadrant cut off by 
+  \[
+  3 = (\sqrt{x} + \sqrt{y})^2.
+  \]  
+  \begin{subanswer}[red]
+    \[
+    \begin{aligned}
+      &\begin{aligned}
+      A & =\int_0^3(\sqrt{3}-\sqrt{x})^2 d x \\
+      & =\left.\left[3 x-2 \sqrt{2}\left(\frac{2}{3}\right) x^{3 / 2}+x^2 / 2\right]\right|_0 ^3 \\
+      & =9-4 \sqrt{6}+9 / 2 \\
+      & =\frac{27-4 \sqrt{6}}{2}
+      \end{aligned}
+    \end{aligned}
+    \]
+  \end{subanswer}
+
+  \item \textbf{Work Done by Pump} (10 points)\\
+  A pump rated at \(1000 \, \text{ft-lbs per second}\) 
+  is used to pump \(250 \, \text{cubic feet}\) of water 
+  (weighing \(62.4 \, \text{lbs per cubic foot}\)) from a 
+  reservoir at level \(z = 0\) into a cylindrical tank with 
+  bottom \(50 \, \text{feet}\) above the reservoir and 
+  radius \(5 \, \text{ft}\). Calculate how long this 
+  should take.
+  \begin{subanswer}[red]
+    Notice that the tank will be filled to a height 
+    \[
+    H = \frac{250}{25\pi} = \frac{10}{\pi}.
+    \]
+    The work required to pump the slice of water which 
+    ends up at height \( h \) in the tank is approximately
+    \[
+    (50+h)(62.4)(25\pi) \, \Delta h.
+    \]
+    Thus, the total work required is
+    \[
+    W = \int_0^{\pi/10} (50+h)(62.4)(25\pi) \, 
+    dh = 25(62.4)\pi \left( 5\pi + \frac{\pi^2}{200} \right).
+    \]
+    This would be given in ft-lbs, and if we divide by 
+    the rating of the pump, we should obtain the total 
+    time in seconds:
+    \[
+    \frac{62.4\pi^2(125+\pi/8)}{1000} = 
+    \frac{15.6\pi^2(500+\pi/2)}{1000} = 
+    \frac{7.8\pi^2(1000+\pi)}{1000} = 
+    7.8\pi^2\left(1+\frac{\pi}{1000}\right),
+    \]
+    or about 77 seconds, or a little over a minute.
+  \end{subanswer}
+
+
+
+  \newpage
+
+
+
+
+
+
+
+  \item \textbf{Definite Integral} (10 points)\\
+  Compute the definite integral:
+  \[
+  \int_{-2}^0 5^{-\theta} \, d\theta.
+  \]
+  \begin{subanswer}[red]
+    By the u-substitution \(u = -\theta \ln 5\), 
+  \[
+  \begin{aligned}
+  \int_{-2}^0 e^{-\theta \ln 5} \, d\theta 
+  &= -\frac{1}{\ln 5} \int_{\ln 25}^0 e^u \, du \\
+  &= \left. \frac{1}{\ln 5} e^u \right|_{\ln 25}^0 \\
+  &= \frac{1}{\ln 5} (e^0 - e^{\ln 25}) \\
+  &= \frac{1}{\ln 5} (1 - 25) \\
+  &= \frac{-24}{\ln 5}.
+  \end{aligned}
+  \]
+  \end{subanswer}
+
+  \item \textbf{Initial Value Problem} (10 points)\\
+  Solve the initial value problem:
+  \[
+  \begin{cases}
+  \sqrt{x^2 - 9} \, y^{\prime} = 1, & \text{for } x > 3, \\
+  y(5) = \ln 3.
+  \end{cases}
+  \]
+  \begin{subanswer}[red]
+    Integrating \( y' = \frac{1}{\sqrt{x^2-9}} \), we obtain
+    \[
+    \begin{aligned}
+    y(x) - y(5) &= \int_5^x \frac{1}{\sqrt{t^2-9}} \, dt \\
+    &= \frac{1}{3} \int_5^x \frac{1}{\sqrt{(t/3)^2 - 1}} \, dt \\
+    &= \int_{5/3}^{x/3} \frac{1}{\sqrt{u^2-1}} \, du.
+    \end{aligned}
+    \]
+    At this point, we make a trigonometric substitution \( \sec \theta = u \), according to which \( \cot \theta = \frac{1}{\sqrt{u^2-1}} \) and \( du = \sec \theta \tan \theta \, d\theta \).
+    \[
+    \begin{aligned}
+    y(x) &= y(5) + \int_{5/3}^{x/3} \frac{1}{\sqrt{u^2-1}} \, du \\
+    &= y(5) + \int_{\sec^{-1}(5/3)}^{\sec^{-1}(x/3)} \sec \theta \, d\theta \\
+    &= y(5) + \left. \ln(\sec \theta + \tan \theta) \right|_{\sec^{-1}(5/3)}^{\sec^{-1}(x/3)} \\
+    &= \ln(3) + \ln\left(\frac{x}{3} + \frac{\sqrt{x^2-9}}{3}\right) - \ln(3) \\
+    &= \ln\left( \frac{x + \sqrt{x^2-9}}{3} \right).
+    \end{aligned}
+    \]
+  \end{subanswer}
+
+
+
+
+
+
+
+
+
+
+
+  \newpage
+
+
+
+
+
+
+  
+
+  \item \textbf{First-Order Linear Equation} (15 points)\\
+  Solve the first-order linear equation:
+  \[
+  x y^{\prime} + 3y = \frac{\sin x}{x^2}, \quad \text{for } x > 0.
+  \]
+  \begin{subanswer}[red]
+    Simplifying, 
+    $$
+    x^3 y^{\prime}+3 x^2 y=\left(x^3 y\right)^{\prime}=\sin x
+    $$
+    Integrating (anti-derivative),
+    $$
+    y=\frac{1}{x^3}\left(-\cos x+C\right)
+    $$
+    where $C$ is an arbitrary constant.
+  \end{subanswer}
+
+
+
+  \item \textbf{Sequence Convergence} (15 points)\\
+  Discuss the convergence of the sequence:
+  \[
+  \frac{(-4)^n}{n!}.
+  \]
+  \begin{subanswer}[red]
+    The sequence converges to \(0\) as \(n \to \infty\), since \(\frac{(-4)^n}{n!} \to 0\) due to the factorial in the denominator growing faster than the exponential in the numerator.
+  \end{subanswer}
+
+
+
+
+
+
+
+
+  \newpage
+
+  \item \textbf{Series Convergence} (15 points)\\
+  Find the interval of convergence of the series
+  $$\sum_{j=1}^{\infty} \frac{(-1)^{j+1}(x+2)^j}{j 2^j}$$
+  \begin{subanswer}[red]
+    By the ratio test where $a_n$ denotes $n$-th term, 
+    $$
+    r=\lim _{n \rightarrow \infty} \left|\frac{a_{n+1}}{a_n}\right| = \lim _{n \rightarrow \infty} \left|\frac{(x+2) n 2^n}{(n+1) 2^{n+1}}\right| = \frac{|x+2|}{2}
+    $$
+    Thus, the series absolutely converges if $r < 1$, that is, 
+    $|x+2|<2$. At the endpoints, the series becomes:
+    \[
+    \sum_{n=1}^\infty \frac{(-1)^{n+1}}{n}, \quad \text{where } x = 0,
+    \]
+    and
+    \[
+    \sum_{n=1}^\infty \frac{-1}{n}, \quad \text{where } x = -4.
+    \]
+    Since the harmonic series conditionally converges, 
+    the series converges for $-4 < x \leq 0$. Therefore, 
+    the interval of convergence is $(-4, 0]$.
+  \end{subanswer}
+
+  \item \textbf{Taylor Series Expansion} (15 points)\\
+  Find the Taylor series expansion for \(\cos(5x^2)\) at \(x = 0\) and discuss the convergence of the series.
+  \begin{subanswer}[red]
+    By the Taylor series expansion for \(\cos x\) at \(x = 0\),
+    $$
+    \cos x=\sum_{n=0}^{\infty} \frac{(-1)^n}{(2 n)!} x^{2 n}
+    $$
+    Therefore,
+    $$
+    \cos \left(5 x^2\right)=\sum_{n=0}^{\infty} \frac{(-25)^n}{(2 n)!} x^{4 n}
+    $$
+    and this series converges (absolutely) for all $x$ since the series for $\cos x$ converges for all $x$.
+  \end{subanswer}
+\end{enumerate}

@@ -1,0 +1,123 @@
+% (0) .tex file Configuration
+\documentclass[10pt,openany]{book}
+\input{./macros.tex}
+\input{./preamble.tex}
+% (1) Layout Style
+% \usepackage[paperwidth=4.25in,paperheight=6.87in,top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry} % paper size
+% (2) Header/footer Style
+\pagestyle{fancy}
+\fancyhf{}                              % clear default header/footer
+\fancyhead[LE,RO]{\bfseries\thepage}    % page number on left/even and right/odd
+\fancyhead[LO]{\bfseries\rightmark}     % chapter title on odd pages
+\fancyhead[RE]{\bfseries\leftmark}      % section title on even pages
+\renewcommand{\headrulewidth}{0.3pt}    % rule under header
+
+% (3) Content
+\usepackage{parskip}                        % no indent, spaced paragraphs
+% (4) Reference
+% choose your reference generation style:
+%   - for humanities: chicago-authordate, apa, mla
+%   - for sciences: numeric, numeric-comp, alphabetic
+%   - 
+\usepackage[
+  backend=biber,           % use biber for processing
+  style=numeric,           % APA style bibliography (e.g. numeric / alphabetic / apa / mla / chicago-authordate)
+  citestyle=authoryear,    % in-text citations
+  sorting=ynt,             % year-name_of_auther–title order
+  % maxcitenames=2,          % limit authors in citations
+  % bibencoding=utf8         % if your .bib is UTF-8
+]{biblatex}
+\addbibresource{citations.bib}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+  %=======================================%
+  %== Front Matter (roman page numbers) ==%
+  %=======================================%
+  \frontmatter
+  %-- Title Page --%
+  \begin{titlepage}
+    \centering
+    % Top fill for vertical centering
+    \vspace*{\fill}
+    % Main title block
+    {\bfseries\Huge\BookTitle\par}
+    \vspace{0.5em}
+    {\Large\BookSubtitle\par}
+    \vfill
+    \vspace{2em}
+    % Author and editor
+    {\Large Author: \BookAuthor\par}
+    {\Large Editor: \BookEditor\par}
+    \vspace{2em}
+    % Optional logo at bottom (uncomment to use)
+    \includegraphics[width=0.65\textwidth]{\BookEmblem}
+    {\normalsize \par}
+    \vspace{2em}
+    % Publisher and year
+    {\normalsize \textcopyright\ \PublicationYear\ \BookInstitution\par}
+    {\normalsize All rights reserved.\par}
+    % Bottom fill for vertical centering
+    \vspace*{\fill}
+    % No page number
+    \thispagestyle{empty}
+  \end{titlepage}
+  %-- Bio and Copyright --%
+  \newpage
+  \input{chap00/bio_copyright.tex}
+  %-- Table of Contents --%
+  \tableofcontents
+  %-- Praeface and Intruction --%
+  \newpage
+  \input{chap00/preface.tex}
+  \input{chap00/introduction.tex}
+
+
+
+
+  %=======================================%
+  %== Main Matter (arabic page numbers) ==%
+  %=======================================%
+  \mainmatter
+  \input{chap01/main.tex}
+  % \input{chap02/main.tex}
+  % \input{chap03/main.tex}
+  % \input{chap04/main.tex}
+  % \input{chap05/main.tex}
+  % \input{chap06/main.tex}
+  % \input{chap07/main.tex}
+  % \input{chap08/main.tex}
+
+
+
+
+  %=======================================%
+  %== Back Matter ==%
+  %=======================================%
+  \backmatter
+  \input{chap99/appendix.tex}
+  \input{chap99/index.tex}
+  \input{chap99/reference.tex}
+
+
+
+
+\end{document}
