@@ -1,26 +1,50 @@
 \documentclass[10pt,openany]{book}
-
-% \usepackage[paperwidth=4.25in,paperheight=6.87in,
-%             top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
-
-
-\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry}
-
-
 \input{./macros.tex}
+
+% \usepackage[paperwidth=4.25in,paperheight=6.87in,top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
+
+
+\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry} % paper size
+\usepackage{parskip}    % no indent, spaced paragraphs
+\usepackage{hyperref}   % clickable links in PDF
+\usepackage{makeidx}    % index generation
+
+% choose your reference generation style:
+%   - for humanities: chicago-authordate, apa, mla
+%   - for sciences: numeric, numeric-comp, alphabetic
+%   - 
+\usepackage[
+  backend=biber,           % use biber for processing
+  style=numeric,           % APA style bibliography (e.g. numeric / alphabetic / apa / mla / chicago-authordate)
+  citestyle=authoryear,    % in-text citations
+  sorting=ynt,             % year-name_of_auther–title order
+  % maxcitenames=2,          % limit authors in citations
+  % bibencoding=utf8         % if your .bib is UTF-8
+]{biblatex}
+\addbibresource{citations.bib}
+
 
 % \usepackage{fontspec}
 \usepackage{graphicx}   % for including images:contentReference[oaicite:2]{index=2}
 \usepackage{fancyhdr}   % for custom headers/footers:contentReference[oaicite:3]{index=3}
 \usepackage{microtype}  % improves typography
-\usepackage{parskip}    % no indent, spaced paragraphs
-\usepackage{hyperref}   % clickable links in PDF
+
+
+
 \usepackage{lipsum}     % (optional) dummy text for examples
-\usepackage{makeidx}
 \usepackage{tabularx}
 \usepackage[table]{xcolor}
-\makeindex
 
+%% Short Quotation
+\usepackage[
+    left = “,% 
+    right = ”,% 
+    leftsub = ‘,% 
+    rightsub = ’ %
+]{dirtytalk}
+%% Block Quotation
+\usepackage{csquotes}
+% \newcommand{\blockkquote}[1]{\begin{displayquote}#1\end{displayquote}}
 
 
 
@@ -33,6 +57,15 @@
 \fancyhead[LO]{\bfseries\rightmark}            % chapter title on odd pages
 \fancyhead[RE]{\bfseries\leftmark}             % section title on even pages
 \renewcommand{\headrulewidth}{0.3pt}           % rule under header
+\makeindex                    % generate index page
+
+
+
+
+
+
+
+
 
 \begin{document}
 
@@ -76,15 +109,14 @@
 
 %== Main Matter (arabic page numbers) ==%
 \mainmatter
-
 \input{chap01/main.tex}
 \input{chap02/main.tex}
 \input{chap03/main.tex}
-% \input{chap04/main.tex}
-% \input{chap05/main.tex}
-% \input{chap06/main.tex}
-% \input{chap07/main.tex}
-% \input{chap08/main.tex}
+\input{chap04/main.tex}
+\input{chap05/main.tex}
+\input{chap06/main.tex}
+\input{chap07/main.tex}
+\input{chap08/main.tex}
 
 
 
@@ -107,21 +139,18 @@
 
 %== Back Matter ==%
 \backmatter
+
 \input{chap99/appendix.tex}
+
+\phantomsection         % anchor for hyperref
+\addcontentsline{toc}{chapter}{\indexname}
 \printindex
 
-
-
-
-% \chapter*{Index}
-% \begin{description}
-%   \item[Author Name] 1, 2, 3
-%   \item[Book Title] 1
-%   \item[Destination, scenic] 5
-%   \item[Image, illustrative] 7
-%   \item[Travel narrative] 10
-% \end{description}
-% % (This is a simple example. For a real index, consider using the 'makeidx' package and \printindex.)
+% \printbibliography
+\printbibliography[
+  heading=bibnumbered,   % makes it a numbered chapter (Included in \tableofcontents), heading=bibintoc if you prefer it unnumbered but still in the ToC
+  title={References}     % change “References” text if needed
+]
 
 % \chapter*{Also by Author Name}
 % \begin{itemize}
