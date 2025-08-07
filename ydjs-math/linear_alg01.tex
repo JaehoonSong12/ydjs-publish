@@ -1,0 +1,59 @@
+
+
+
+\begin{enumerate}
+    \item Let $T\in\mathcal L(V)$, where $V$ is a finite-dimensional vector space over a field $\mathbb F$. Assume $T^2 = I$.
+    \begin{enumerate}[label=\alph*.]
+      \item Show that $V = \operatorname{range}(T+I)+\operatorname{range}(T-I)$.
+        \begin{subprove}
+          Let $v\in V$. Then
+          $$
+            (T+I)\bigl(\tfrac v2\bigr)+ (T-I)\bigl(-\tfrac v2\bigr)
+            = \tfrac12(Tv+v)-\tfrac12(Tv-v)
+            = v.
+          $$
+          Since $v/2, -v/2\in V$, this shows $v\in\operatorname{range}(T+I)+\operatorname{range}(T-I)$, so $V=\operatorname{range}(T+I)+\operatorname{range}(T-I)$.
+        \end{subprove}
+      \item Prove that if $\lambda\in\mathbb F$ is an eigenvalue of $T$, then $\lambda=1$ or $\lambda=-1$.
+      \begin{subprove}
+        If $Tv=\lambda v$ with $v\neq0$, then
+        $$
+          T^2v = T(\lambda v)=\lambda Tv=\lambda^2v,
+        $$
+        but $T^2=I$ gives $T^2v=v$. Hence $\lambda^2v=v$, so $\lambda^2=1$ and $\lambda=\pm1$.
+      \end{subprove}
+  
+      \item Show that $\operatorname{range}(T-I)=E(-1,T), \quad \operatorname{range}(T+I)=E(1,T)$, where $E(\mu,T)=\{v\in V: Tv=\mu v\}$ is the eigenspace of $T$ for eigenvalue $\mu$.
+      \begin{subprove}
+        First, if $w\in\operatorname{range}(T-I)$ then $w=(T-I)v$ for some $v$, and
+        $$
+          Tw = T(T-I)v = T^2v - Tv = v - Tv = -(Tv - v) = -w,
+        $$
+        so $w\in E(-1,T)$. Conversely, if $w\in E(-1,T)$ then $Tw=-w$ and
+        $$
+          (T-I)\bigl(-\tfrac w2\bigr)
+          = -\tfrac12(Tw-w)
+          = -\tfrac12(-w-w)
+          = w,
+        $$
+        showing $w\in\operatorname{range}(T-I)$. Thus $\operatorname{range}(T-I)=E(-1,T)$.
+        The argument for $\operatorname{range}(T+I)=E(1,T)$ is analogous.
+      \end{subprove}
+      \item Show that $T$ is diagonalizable.
+      \begin{subprove}
+        By part (a),
+        $$
+          V = \operatorname{range}(T+I)+\operatorname{range}(T-I)
+            = E(1,T)+E(-1,T).
+        $$
+        Since $E(1,T)\cap E(-1,T)=\{0\}$, we have the direct-sum decomposition
+        $$
+          V = E(1,T)\oplus E(-1,T),
+        $$
+        so $T$ is diagonalizable with eigenvalues $\pm1$.
+      \end{subprove}
+    \end{enumerate}
+    
+  
+  
+  \end{enumerate}
