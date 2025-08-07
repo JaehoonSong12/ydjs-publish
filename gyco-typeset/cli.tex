@@ -40,12 +40,18 @@
 
 
 
+
+
+
+
 \begin{document}
 
 
 
 
+  %=======================================%
   %== Front Matter (roman page numbers) ==%
+  %=======================================%
   \frontmatter
   %-- Title Page --%
   \begin{titlepage}
@@ -74,16 +80,12 @@
     % No page number
     \thispagestyle{empty}
   \end{titlepage}
-
-
-
-
-
+  %-- Bio and Copyright --%
   \newpage
   \input{chap00/bio_copyright.tex}
   %-- Table of Contents --%
   \tableofcontents
-
+  %-- Praeface and Intruction --%
   \newpage
   \input{chap00/preface.tex}
   \input{chap00/introduction.tex}
@@ -91,7 +93,9 @@
 
 
 
+  %=======================================%
   %== Main Matter (arabic page numbers) ==%
+  %=======================================%
   \mainmatter
   \input{chap01/main.tex}
   \input{chap02/main.tex}
@@ -105,7 +109,9 @@
 
 
 
+  %=======================================%
   %== Back Matter ==%
+  %=======================================%
   \backmatter
   \input{chap99/appendix.tex}
   \input{chap99/index.tex}
