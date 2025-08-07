@@ -1,14 +1,20 @@
+% (0) .tex file Configuration
 \documentclass[10pt,openany]{book}
 \input{./macros.tex}
-
+\input{./preamble.tex}
+% (1) Layout Style
 % \usepackage[paperwidth=4.25in,paperheight=6.87in,top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
-
-
 \usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry} % paper size
-\usepackage{parskip}    % no indent, spaced paragraphs
-\usepackage{hyperref}   % clickable links in PDF
-\usepackage{makeidx}    % index generation
-
+% (2) Header/footer Style
+\pagestyle{fancy}
+\fancyhf{}                              % clear default header/footer
+\fancyhead[LE,RO]{\bfseries\thepage}    % page number on left/even and right/odd
+\fancyhead[LO]{\bfseries\rightmark}     % chapter title on odd pages
+\fancyhead[RE]{\bfseries\leftmark}      % section title on even pages
+\renewcommand{\headrulewidth}{0.3pt}    % rule under header
+% (3) Content
+\usepackage{parskip}                        % no indent, spaced paragraphs
+% (4) Reference
 % choose your reference generation style:
 %   - for humanities: chicago-authordate, apa, mla
 %   - for sciences: numeric, numeric-comp, alphabetic
@@ -24,40 +30,6 @@
 \addbibresource{citations.bib}
 
 
-% \usepackage{fontspec}
-\usepackage{graphicx}   % for including images:contentReference[oaicite:2]{index=2}
-\usepackage{fancyhdr}   % for custom headers/footers:contentReference[oaicite:3]{index=3}
-\usepackage{microtype}  % improves typography
-
-
-
-\usepackage{lipsum}     % (optional) dummy text for examples
-\usepackage{tabularx}
-\usepackage[table]{xcolor}
-
-%% Short Quotation
-\usepackage[
-    left = “,% 
-    right = ”,% 
-    leftsub = ‘,% 
-    rightsub = ’ %
-]{dirtytalk}
-%% Block Quotation
-\usepackage{csquotes}
-% \newcommand{\blockkquote}[1]{\begin{displayquote}#1\end{displayquote}}
-
-
-
-
-
-% Header/footer style
-\pagestyle{fancy}
-\fancyhf{}                      % clear default header/footer
-\fancyhead[LE,RO]{\bfseries\thepage}            % page number on left/even and right/odd
-\fancyhead[LO]{\bfseries\rightmark}            % chapter title on odd pages
-\fancyhead[RE]{\bfseries\leftmark}             % section title on even pages
-\renewcommand{\headrulewidth}{0.3pt}           % rule under header
-\makeindex                    % generate index page
 
 
 
@@ -69,95 +41,53 @@
 
 \begin{document}
 
-%== Front Matter (roman page numbers) ==%
-\frontmatter
-%-- Title Page --%
-\chapter*{\centering \Huge \BookTitle}
-\thispagestyle{empty}   % no header on title page
-\vspace{1em}
-\begin{center}
-  {\Large \BookAuthor}\\[1ex]
-  {\normalsize \textcopyright\ \the\year\ \BookInstitution}
-\end{center}
-\newpage
-\input{chap00/bio_copyright.tex}
-%-- Table of Contents --%
-\tableofcontents
-\newpage
-\input{chap00/preface.tex}
-\input{chap00/introduction.tex}
+
+
+
+  %== Front Matter (roman page numbers) ==%
+  \frontmatter
+  %-- Title Page --%
+  \chapter*{\centering \Huge \BookTitle}
+  \thispagestyle{empty}   % no header on title page
+  \vspace{1em}
+  \begin{center}
+    {\Large \BookAuthor}\\[1ex]
+    {\normalsize \textcopyright\ \the\year\ \BookInstitution}
+  \end{center}
+
+  \newpage
+  \input{chap00/bio_copyright.tex}
+  %-- Table of Contents --%
+  \tableofcontents
+
+  \newpage
+  \input{chap00/preface.tex}
+  \input{chap00/introduction.tex}
 
 
 
 
+  %== Main Matter (arabic page numbers) ==%
+  \mainmatter
+  \input{chap01/main.tex}
+  \input{chap02/main.tex}
+  \input{chap03/main.tex}
+  \input{chap04/main.tex}
+  \input{chap05/main.tex}
+  \input{chap06/main.tex}
+  \input{chap07/main.tex}
+  \input{chap08/main.tex}
 
 
 
 
+  %== Back Matter ==%
+  \backmatter
+  \input{chap99/appendix.tex}
+  \input{chap99/index.tex}
+  \input{chap99/reference.tex}
 
 
-
-
-
-
-
-
-
-
-
-
-
-%== Main Matter (arabic page numbers) ==%
-\mainmatter
-\input{chap01/main.tex}
-\input{chap02/main.tex}
-\input{chap03/main.tex}
-\input{chap04/main.tex}
-\input{chap05/main.tex}
-\input{chap06/main.tex}
-\input{chap07/main.tex}
-\input{chap08/main.tex}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%== Back Matter ==%
-\backmatter
-
-\input{chap99/appendix.tex}
-
-\phantomsection         % anchor for hyperref
-\addcontentsline{toc}{chapter}{\indexname}
-\printindex
-
-% \printbibliography
-\printbibliography[
-  heading=bibnumbered,   % makes it a numbered chapter (Included in \tableofcontents), heading=bibintoc if you prefer it unnumbered but still in the ToC
-  title={References}     % change “References” text if needed
-]
-
-% \chapter*{Also by Author Name}
-% \begin{itemize}
-%   \item Other Book Title One
-%   \item Other Book Title Two
-%   \item Other Book Title Three
-% \end{itemize}
 
 
 \end{document}
