@@ -1,0 +1,137 @@
+\newpage
+
+
+
+\begin{define}{Permutations without Repetition}
+Arranging $r$ distinct objects from $n$ distinct objects, where each object 
+can be used at most once. Order matters, repetition not allowed.
+
+$$P(n,r) = \frac{n!}{(n-r)!}$$
+where $0 \leq r \leq n$.
+\end{define}
+
+\textbf{Example 1: Committee Leadership} (5 points)\\
+A committee of 8 people needs to elect a president, vice president, and secretary. How many different ways can these three positions be filled?
+\begin{subanswer}
+    $P(8,3) = \frac{8!}{(8-3)!} = \frac{8!}{5!} = 8 \times 7 \times 6 = 336$ ways. We choose 3 distinct people from 8 and arrange them in order.
+\end{subanswer}
+
+\textbf{Example 2: Password Creation} (5 points)\\
+How many 4-digit passwords can be created using the digits 1-9 if no digit can be repeated?
+\begin{subanswer}
+    $P(9,4) = \frac{9!}{(9-4)!} = \frac{9!}{5!} = 9 \times 8 \times 7 \times 6 = 3024$ passwords.
+\end{subanswer}
+
+\textbf{Example 3: Race Finishers} (5 points)\\
+In a race with 12 participants, how many different ways can the top 5 finishers be ordered?
+\begin{subanswer}
+    $P(12,5) = \frac{12!}{(12-5)!} = \frac{12!}{7!} = 12 \times 11 \times 10 \times 9 \times 8 = 95,040$ ways.
+\end{subanswer}
+
+\begin{define}{Permutations with Repetition}
+Arranging $n$ objects with $n_1$ identical of type 1, $n_2$ identical of type 2, 
+..., $n_k$ identical of type $k$. Order matters, identical objects indistinguishable.
+
+$$\frac{n!}{n_1! \cdot n_2! \cdot \cdots \cdot n_k!}$$
+where $n = n_1 + n_2 + \cdots + n_k$.
+\end{define}
+
+\textbf{Example 4: Letter Arrangements} (5 points)\\
+How many different arrangements can be made using all the letters in the word "MISSISSIPPI"?
+\begin{subanswer}
+    The word has 11 letters total: 1 M, 4 I's, 4 S's, and 2 P's. The number of arrangements is $\frac{11!}{1! \cdot 4! \cdot 4! \cdot 2!} = \frac{39,916,800}{1 \cdot 24 \cdot 24 \cdot 2} = 34,650$ arrangements.
+\end{subanswer}
+
+\textbf{Example 5: Coin Arrangements} (5 points)\\
+How many different ways can 3 pennies, 2 nickels, and 1 dime be arranged in a row?
+\begin{subanswer}
+    Total of 6 coins: 3 pennies, 2 nickels, 1 dime. Number of arrangements = $\frac{6!}{3! \cdot 2! \cdot 1!} = \frac{720}{6 \cdot 2 \cdot 1} = 60$ ways.
+\end{subanswer}
+
+\textbf{Example 6: Binary Strings} (5 points)\\
+How many different 8-bit binary strings can be formed with exactly 5 ones and 3 zeros?
+\begin{subanswer}
+    $\frac{8!}{5! \cdot 3!} = \frac{40320}{120 \cdot 6} = 56$ different binary strings.
+\end{subanswer}
+
+
+\newpage 
+
+
+
+\begin{define}{Combinations without Repetition}
+    Selecting $r$ objects from $n$ distinct objects, where order doesn't matter 
+    and each object can be chosen at most once.
+    
+    $$\binom{n}{r} = \frac{n!}{r!(n-r)!}$$
+    where $0 \leq r \leq n$.
+  \end{define}
+
+\textbf{Example 7: Committee Selection} (5 points)\\
+A club has 12 members. How many different 5-member committees can be formed?
+\begin{subanswer}
+    $\binom{12}{5} = \frac{12!}{5!(12-5)!} = \frac{12!}{5! \cdot 7!} = \frac{479,001,600}{120 \cdot 5040} = 792$ committees.
+\end{subanswer}
+
+\textbf{Example 8: Lottery Numbers} (5 points)\\
+In a lottery, players choose 6 numbers from 1 to 49. How many different combinations are possible?
+\begin{subanswer}
+    $\binom{49}{6} = \frac{49!}{6!(49-6)!} = \frac{49!}{6! \cdot 43!} = 13,983,816$ different combinations.
+\end{subanswer}
+
+\textbf{Example 9: Pizza Toppings} (5 points)\\
+A pizza place offers 8 different toppings. How many different 3-topping pizzas can be ordered?
+\begin{subanswer}
+    $\binom{8}{3} = \frac{8!}{3!(8-3)!} = \frac{8!}{3! \cdot 5!} = \frac{40320}{6 \cdot 120} = 56$ different pizzas.
+\end{subanswer}
+
+\begin{define}{Combinations with Repetition}
+    Distributing $n$ identical objects into $m$ distinct categories. 
+    Order doesn't matter, objects can be reused. Equivalent to counting 
+    non-negative integer solutions to $x_1+x_2+\cdots+x_m=n$.
+    
+    $$\binom{n+m-1}{n}$$
+    where $x_i \geq 0$ for all $i \in\{1,2, \ldots, m\}$.
+  \end{define}
+
+\textbf{Example 10: Ice Cream Cones} (5 points)\\
+An ice cream shop offers 5 flavors. How many different 3-scoop cones can be ordered if multiple scoops of the same flavor are allowed?
+\begin{subanswer}
+    $\binom{3+5-1}{3} = \binom{7}{3} = \frac{7!}{3!(7-3)!} = \frac{7!}{3! \cdot 4!} = \frac{5040}{6 \cdot 24} = 35$ different cones.
+\end{subanswer}
+
+\textbf{Example 11: Candy Distribution} (5 points)\\
+How many ways can 10 identical candies be distributed among 4 children if each child can receive any number of candies (including 0)?
+\begin{subanswer}
+    $\binom{10+4-1}{10} = \binom{13}{10} = \binom{13}{3} = \frac{13!}{3!(13-3)!} = \frac{13!}{3! \cdot 10!} = \frac{6,227,020,800}{6 \cdot 3,628,800} = 286$ ways.
+\end{subanswer}
+
+\textbf{Example 12: Variable Solutions} (5 points)\\
+How many non-negative integer solutions does the equation $x + y + z = 8$ have?
+\begin{subanswer}
+    $\binom{8+3-1}{8} = \binom{10}{8} = \binom{10}{2} = \frac{10!}{2!(10-2)!} = \frac{10!}{2! \cdot 8!} = \frac{3,628,800}{2 \cdot 40320} = 45$ solutions.
+\end{subanswer}
+
+
+\newpage
+
+\begin{define}{Combinations with Repetition}
+    The equation $x_1+x_2+\cdots+x_m=n$ has $\binom{n+m-1}{n}$ integer solutions such that $x_i \geq 0$ for any $i \in\{1,2, \ldots, m\}$.
+  \end{define}
+  
+  
+  
+  
+  \textbf{Strings with Multiple Restrictions: Permutations, Combinations, and Rule of Product} (10 points)\\
+    Let $X$ be the set of the 26 lowercase English letters and 10 decimal digits. How many $X$-strings of length 15 satisfy all of the following properties (at the same time)?
+    \begin{itemize}
+      \item The first and last symbols of the string are distinct digits (which may appear elsewhere in the string).
+      \item Precisely four of the symbols in the string are the letter 't'.
+      \item Precisely three characters in the string are elements of the set $V=\{a,e,i,o,u\}$ and these characters are all distinct.
+    \end{itemize}
+    \begin{subanswer}
+      $P(10,2) \cdot \binom{13}{4} \cdot \left(\binom{9}{3} \cdot P(5,3)\right) \cdot 30^6$. Place 2 distinct decimal digits at the first and last of the string, there are $P(10,2)$ such strings. Choose where to place the letter 't'. Since the first and last positions are not available, 4 positions will be chosen from 13 available positions: $\binom{13}{4}$. Choose 3 positions for vowels ($a,e,i,o,u$) from the rest of 9 positions, then place 3 distinct vowels in the positions: $\binom{9}{3} \cdot P(5,3)$. Lastly, we have 6 positions left to fill, and those 6 positions cannot contain vowels or 't' chosen previously: $30^6$.
+    \end{subanswer}
+  
+  
+  

@@ -1,0 +1,127 @@
+
+
+\begin{define}{Permutations without Repetition}
+Arranging $r$ distinct objects chosen from $n$ distinct objects, using each at most once. 
+Order matters, no object may repeat.
+
+$$P(n,r) = \frac{n!}{(n - r)!}$$
+where $0 \leq r \leq n$.
+\end{define}
+
+\textbf{What?} You have $n$ distinct items and want to choose an ordered 
+list of length $r$, with $0 \leq r \leq n$, using each item at most once.
+
+$$P(n,r) = \frac{n!}{(n - r)!}$$
+
+\textbf{Derivation.} Think in two steps:
+\begin{enumerate}
+\item First choose an ordered sequence of length $n$ from all $n$ items: $n!$ ways.
+\item Then "forget" the last $n-r$ positions: that overcounts by a factor of $(n - r)!$. 
+Hence divide.
+\end{enumerate}
+
+\textbf{Example.} $n=5,r=3$: how many ways to pick 3-letter "words" from 
+$\{A,B,C,D,E\}$ with no repeats?
+$$P(5,3)=\frac{5!}{2!}=60$$
+
+\newpage
+
+\begin{define}{Permutations of a Multiset}
+Arranging $n$ total objects when there are $n_1$ indistinguishable of type 1, 
+$n_2$ indistinguishable of type 2, ..., $n_k$ of type $k$. Order matters, 
+but objects of the same type are identical.
+
+$$\frac{n!}{n_1! \cdot n_2! \cdot \cdots \cdot n_k!}$$
+where $n = n_1 + n_2 + \cdots + n_k$.
+\end{define}
+
+\textbf{What?} You have $n$ total objects, but they come in $k$ types, 
+with $n_1$ copies of type 1, ..., $n_k$ copies of type $k$. Objects of 
+the same type are identical. You want to arrange all $n$ in a line.
+
+$$\frac{n!}{n_1! \cdot n_2! \cdot \cdots \cdot n_k!}$$
+where $n = n_1 + n_2 + \cdots + n_k$.
+
+\textbf{Derivation.}
+\begin{itemize}
+\item If all $n$ were distinct, there'd be $n!$ orders.
+\item But swapping among the $n_i$ copies of type $i$ doesn't change the 
+arrangement, so divide by each $n_i!$.
+\end{itemize}
+
+\textbf{Example.} Arrange the letters in "BALLOON":
+$$\frac{7!}{2! \cdot 2! \cdot 1! \cdot 1! \cdot 1!} = \frac{5040}{4} = 1260$$
+Here $n=7$, with $n_B=1,n_A=1,n_L=2,n_O=2,n_N=1$.
+
+\newpage
+
+\begin{define}{Combinations without Repetition}
+Selecting $r$ objects from $n$ distinct objects, where order does not 
+matter and no object may repeat.
+
+$$\binom{n}{r} = \frac{n!}{r!(n - r)!}$$
+where $0 \leq r \leq n$.
+\end{define}
+
+\textbf{What?} From $n$ distinct objects, choose an unordered subset 
+of size $r$ (each at most once).
+
+$$\binom{n}{r} = \frac{n!}{r!(n - r)!}$$
+
+\textbf{Derivation.}
+\begin{itemize}
+\item First count ordered sequences of length $r$: $P(n,r)=n!/(n-r)!$.
+\item But order within the chosen $r$ doesn't matter, so divide by $r!$.
+\end{itemize}
+
+\textbf{Example.} From $\{1,2,3,4,5\}$, the number of 3-element 
+subsets is $\binom{5}{3}=10$.
+
+\newpage
+
+\begin{define}{Combinations of a Multiset (with Repetition)}
+Choosing $r$ objects from $n$ types, where each type may appear any 
+number of times and order does not matter. Equivalently, the number 
+of nonnegative integer solutions to
+$$x_1 + x_2 + \cdots + x_n = r$$
+where $x_i \geq 0$.
+
+$$\binom{r + n - 1}{r} = \binom{r + n - 1}{n - 1}$$
+\end{define}
+
+\textbf{What?} You have $n$ types of object, and want to select $r$ 
+items in total; each type may be chosen any number of times. Order does not matter.
+
+$$\binom{r + n - 1}{r} = \binom{r + n - 1}{n - 1}$$
+
+\textbf{Derivation (Stars \& Bars).}
+\begin{itemize}
+\item Represent your $r$ chosen items as $r$ stars in a row.
+\item To group them into $n$ types, place $n-1$ bars between stars to 
+mark boundaries.
+\item There are $r + n - 1$ positions in total; choose which $n-1$ are 
+bars (or equivalently which $r$ are stars).
+\end{itemize}
+
+\textbf{Example.} Distribute 5 identical candies among 3 kids (kids 
+can get zero): $\binom{5+3-1}{5}=\binom{7}{5}=21$ ways.
+
+\newpage
+
+\begin{define}{Weak Compositions}
+The number of ways to write a nonnegative integer $r$ as an ordered 
+sum of $n$ nonnegative parts,
+$$x_1 + x_2 + \cdots + x_n = r$$
+where $x_i \geq 0$,
+is
+$$\binom{r + n - 1}{r}$$
+\end{define}
+
+\textbf{What?} Count the ordered nonnegative solutions $(x_1,\dots,x_n)$ to
+$$x_1 + x_2 + \cdots + x_n = r$$
+where $x_i \geq 0$.
+
+$$\#\{\text{solutions}\} = \binom{r + n - 1}{r}$$
+
+This is algebraically the same as "combinations of a multiset," but 
+viewed as an equation in nonnegative integers.
