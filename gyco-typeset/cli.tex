@@ -1,9 +1,9 @@
-% (1) .tex file General Configuration
+% (1) .tex Project General Configuration
 \documentclass[10pt,openany]{book}
 \input{./macros.tex}
 \input{./preamble.tex}
 
-% (2) .tex file Specific Configuration
+% (2) .tex Project Specific Configuration
 \pagestyle{fancy}                       % Header/footer Style
 \fancyhf{}                              % clear default header/footer
 \fancyhead[LE,RO]{\bfseries\thepage}    % page number on left/even and right/odd
@@ -19,7 +19,7 @@
 %   - 
 \usepackage[
   backend=biber,           % use biber for processing
-  style=numeric,           % APA style bibliography (e.g. numeric / alphabetic / apa / mla / chicago-authordate)
+  style=numeric,           % bibliography style
   citestyle=authoryear,    % in-text citations
   sorting=ynt,             % year-name_of_auther–title order
   % maxcitenames=2,          % limit authors in citations
