@@ -1,21 +1,18 @@
-% (0) .tex file Configuration
+% (1) .tex file General Configuration
 \documentclass[10pt,openany]{book}
 \input{./macros.tex}
 \input{./preamble.tex}
-% (1) Layout Style
-% \usepackage[paperwidth=4.25in,paperheight=6.87in,top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
-\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry} % paper size
-% (2) Header/footer Style
-\pagestyle{fancy}
+
+% (2) .tex file Specific Configuration
+\pagestyle{fancy}                       % Header/footer Style
 \fancyhf{}                              % clear default header/footer
 \fancyhead[LE,RO]{\bfseries\thepage}    % page number on left/even and right/odd
 \fancyhead[LO]{\bfseries\rightmark}     % chapter title on odd pages
 \fancyhead[RE]{\bfseries\leftmark}      % section title on even pages
 \renewcommand{\headrulewidth}{0.3pt}    % rule under header
+\usepackage{parskip}                    % no indent, spaced paragraphs
 
-% (3) Content
-\usepackage{parskip}                        % no indent, spaced paragraphs
-% (4) Reference
+% (3) Configuration Reference
 % choose your reference generation style:
 %   - for humanities: chicago-authordate, apa, mla
 %   - for sciences: numeric, numeric-comp, alphabetic
@@ -39,16 +36,7 @@
 
 
 
-
-
-
-
-
 \begin{document}
-
-
-
-
   %=======================================%
   %== Front Matter (roman page numbers) ==%
   %=======================================%
