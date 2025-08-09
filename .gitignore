@@ -6,7 +6,8 @@ blank.tex
 cli.pdf
 *.exe
 *.docx
-_setup-regular_size/
+_setup-mid_size/
+_setup-small_size/
 
 ######################################################################################################
 # COMMON
