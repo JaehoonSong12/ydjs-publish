@@ -24,7 +24,13 @@
     rightsub = ’ %
 ]{dirtytalk}
 \newcommand{\inlinequote}[1]{\say{#1}}
-\newcommand{\blockquote}[1]{\begin{quote}\say{#1}\end{quote}}
+\newcommand{\blockquote}[1]{%
+  \vspace{2.5em}%
+  \begin{quote}%
+    \say{#1}%
+  \end{quote}%
+  \vspace{2.5em}%
+}
 \NewDocumentCommand{\blockcite}{ O{} m m }{%
   \begin{quote}
     \say{#3} %

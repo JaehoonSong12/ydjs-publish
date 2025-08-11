@@ -241,7 +241,6 @@ To find the GCF and LCM, you can use prime factorization. For example, let’s f
 Let’s apply this to a few more examples. The GCF of \(24\) and \(36\) is \(12\), since \(12\) is the largest number that divides both. The LCM of \(8\) and \(12\) is \(24\), which is the smallest number both can divide into. For \(14\) and \(28\), we see that \(14 = 2 \times 7\) and \(28 = 2^2 \times 7\), so the GCF is \(14\) and the LCM is \(28\). Mastering GCF and LCM will help you with fractions, ratios, and solving many real-world problems.
 
 ---
-
 ## Did You Know?
 
 - The word "digit" comes from the Latin word for finger, because people used their fingers to count.
