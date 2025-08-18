@@ -6,6 +6,10 @@ blank.tex
 cli.pdf
 *.exe
 *.docx
+*.txt
+*.url
+clba-physics/
+clba-math/
 _setup-mid_size/
 _setup-small_size/
 
