@@ -1,0 +1,484 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% `preamble.tex` (core.tex) is a file commonly used in LaTeX projects to define 
+% custom configurations and packages for the document. It typically includes 
+% settings that control the overall appearance and behavior of the document, 
+% such as font size, margins, and the inclusion of external packages for 
+% enhanced functionality.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Suppress overfull and underfull box warnings
+\hbadness=10000
+\vbadness=10000
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% @requires
+% 1. VSCode extension: LaTeX Workshop by James Yu
+% 2. Command Palette (`View` > `Command Palette`) `Preferences: Open Keyboard Shortcuts (JSON)`
+% 
+  % {
+  %   "key": "ctrl+b",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "\\textbf{${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+  % {
+  %   "key": "ctrl+i",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "\\textit{${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+  % {
+  %   "key": "ctrl+u",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "\\underbar{${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+  % {
+  %   "key": "ctrl+shift+r",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "${TM_SELECTED_TEXT}\\index{${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+  % {
+  %   "key": "ctrl+q",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "\\inlinequote{${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+  % {
+  %   "key": "ctrl+shift+q",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "\\blockquote{${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+  % {
+  %   "key": "ctrl+r",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "\\parencite[p.~${1:#}]{${2:bibid}}"
+  %   }
+  % },
+
+
+
+
+    % Enable Korean Language, `vscode` > `settings.json`
+
+  % {
+  %   "key": "ctrl+k",
+  %   "command": "editor.action.insertSnippet",
+  %   "when": "editorLangId == 'latex'",
+  %   "args": {
+  %     "snippet": "{\\fontspec{Malgun Gothic}${TM_SELECTED_TEXT}}"
+  %   }
+  % },
+
+    % "latex-workshop.latex.tools": [
+    % {
+    %     "name": "xelatex",
+    %     "command": "xelatex",
+    %     "args": [
+    %     "-synctex=1",
+    %     "-interaction=nonstopmode",
+    %     "-file-line-error",
+    %     "%DOC%"
+    %     ]
+    % }
+    % ],
+    % "latex-workshop.latex.recipes": [
+    % {
+    %     "name": "XeLaTeX",
+    %     "tools": ["xelatex"]
+    % }
+    % ]
+
+
+
+% 
+% 3. Command Palette (`Ctrl` + `Shift` + `P`) `Preferences: Open User Settings (JSON)`, global settings
+% 
+% "latex-workshop.latex.synctex": 1
+% 
+% @usage
+% 1. import configuration: 
+%     ```
+%     \input{preamble.tex}
+%     ```
+% 2. bold: `Ctrl` + `B`
+% 3. italic: `Ctrl` + `I`
+% 4. PDF Backtracking LaTeX Code: `Ctrl` + `Click`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+% \usepackage{fontspec}
+
+\usepackage{graphicx}       % for including images:contentReference[oaicite:2]{index=2}
+
+
+
+% \usepackage{fancyhdr}   % for custom headers/footers:contentReference[oaicite:3]{index=3}
+% \usepackage{microtype}  % improves typography
+% \usepackage{lipsum}     % (optional) dummy text for examples
+% \usepackage{tabularx}
+% \usepackage[table]{xcolor}
+% \usepackage{changepage} % for adjustwidth
+% \usepackage{xparse}
+% \usepackage{etoolbox}
+
+% \usepackage{hyperref}   % clickable links in PDF
+% \usepackage{makeidx}    % index generation
+% \usepackage{amsmath}
+% \usepackage{enumitem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% % ============== Custom Commands ==============
+% \newcommand{\fullpageimage}[1]{%
+%   \begin{adjustwidth}{-\pageMargin}{-\pageMargin}%
+%     \includegraphics[width=\pageWidth]{#1}%
+%   \end{adjustwidth}%
+% }
+
+
+
+% ======= Resources / Assets Reference =======
+\makeindex              % generate index page
+\usepackage[
+    left = “,% 
+    right = ”,% 
+    leftsub = ‘,% 
+    rightsub = ’ %
+]{dirtytalk}
+\newcommand{\inlinequote}[1]{\say{#1}}
+\newcommand{\blockquote}[1]{%
+  \vspace{2.5em}%
+  \begin{quote}%
+    \say{#1}%
+  \end{quote}%
+  \vspace{2.5em}%
+}
+\NewDocumentCommand{\blockcite}{ O{} m m }{%
+  \begin{quote}
+    \say{#3} %
+    \ifstrempty{#1}
+      {\parencite{#2}.}         % no page given
+      {\parencite[p.~#1]{#2}.}  % page given
+  \end{quote}%
+}
+
+
+
+
+
+% ================== Layout ===================
+\usepackage[
+  paperwidth=\PaperWidth,
+  paperheight=\PaperHeight,
+  top=\MarginTop, bottom=\MarginBottom,
+  left=\MarginLeft, right=\MarginRight
+]{geometry}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% \generatedOn{<locale>}: Prints the exact date and time with regional formatting
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+% This command prints the current date and time in a readable way, formatted based on
+% the locale passed as an argument (e.g., "en-US", "ko-KR", "ja-JP").
+%
+% The format includes:
+% - Time in 12-hour format with AM/PM (in the specified region's style)
+% - Day of the week
+% - Month (full name)
+% - Day of the month
+% - Year
+% - Timezone abbreviation (depending on system locale)
+%
+% USAGE:
+% \generatedOn{<locale>} where <locale> is one of the following:
+%   - "en" for English format (12-hour with AM/PM)
+%   - "ko" for Korean format (24-hour, day of the week, etc.)
+%   - "ja" for Japanese format (similar to Korean style)
+%
+% EXAMPLE USAGE:
+% \generatedOn{en} will output: "11:59 PM EST, Wednesday, January 29, 2025"
+% \generatedOn{ko} will output: "2025년 1월 29일 수요일 23:59"
+% \generatedOn{ja} will output: "2025年1月29日水曜日 23:59"
+% ------------------------------------------------------------------------------
+\usepackage{datetime2}
+% ------------------------------------------------------------------------------
+% Command: \generatedOn
+% ------------------------------------------------------------------------------
+% \generatedOn: Prints the date and time of document compilation.
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+% This command prints the exact date and time when the LaTeX document was 
+% compiled. It uses the `datetime2` package to fetch the timestamp in the ISO 
+% 8601 format (YYYY-MM-DD HH:MM:SS).
+%
+% USAGE:
+% To use this command in your document, simply invoke `\generatedOn` where you 
+% want the compilation timestamp to appear.
+%
+% EXAMPLE:
+% The document was generated on: \generatedOn
+% ------------------------------------------------------------------------------
+
+\newcommand{\generatedOn}{\DTMnow}  % Automatically generates the current date and time
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% \begin{subanswer}[<Color>][<isWhite>] … \end{subanswer}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This custom environment displays an “Answer:” label with configurable text color.
+%   It is intended for formatting answers clearly in assignments or solutions.
+%
+% FEATURES:
+%   - Displays “Answer:” in bold, followed by answer content.
+%   - Automatically ends with a square symbol (□) aligned right.
+%   - First optional argument selects text color (default = red).
+%   - Second optional argument overrides to white text when set to true.
+%
+% PARAMETERS (both optional):
+%   [<Color>]    Text color name (e.g. blue, green). Defaults to red.
+%   [<isWhite>]  true  ⇒ force white text (for dark backgrounds)
+%                 false ⇒ use the chosen <Color>. Defaults to false.
+%
+% DEPENDENCIES:
+%   \usepackage{ifthen}
+%   \usepackage{xcolor}
+%   \usepackage{xparse}
+%
+% USAGE EXAMPLES:
+%   % defaults: red text, isWhite = false
+%   \begin{subanswer}
+%     This answer is red.
+%   \end{subanswer}
+%
+%   % blue text, isWhite = false
+%   \begin{subanswer}[blue]
+%     This answer is blue.
+%   \end{subanswer}
+%
+%   % green text, forced white override
+%   \begin{subanswer}[green][true]
+%     This answer is white (on green background).
+%   \end{subanswer}
+% ------------------------------------------------------------------------------
+\NewDocumentEnvironment{subanswer}{ O{red} O{false} }
+  {%
+    \par\medskip                     % start a paragraph with a bit of space
+    % choose white if second optional arg is “true”, otherwise #1
+    \ifthenelse{\equal{#2}{true}}%
+      {\color{white}}%
+      {\color{#1}}%
+    \noindent\textbf{Answer}:        % no \\ or \newline here
+  }
+  {%
+    \par\hfill$\square$\par
+  }
+\NewDocumentEnvironment{subprove}{ O{red} O{false} }
+  {%
+    \par\medskip                     % start a paragraph with a bit of space
+    % choose white if second optional arg is “true”, otherwise #1
+    \ifthenelse{\equal{#2}{true}}%
+      {\color{white}}%
+      {\color{#1}}%
+    \noindent\textbf{Proof}:        % no \\ or \newline here
+  }
+  {%
+    \par\hfill$\blacksquare$\par
+  }
+
+
+% Answer environment for responses
+% \answer[<color>] creates an answer environment with optional text color (default: teal).
+\newenvironment{answer}[1][redcolor]
+    {\ \newline \color{#1}\noindent\textbf{Answer}: }
+    {\par\hfill$\square$\newline\newpage}
+    % {\par\hfill$\square$\newline}
+
+% Prove environment for responses
+% \prove[<color>] creates an answer environment with optional text color (default: teal).
+\newenvironment{prove}[1][redcolor]
+    {\ \newline \color{#1}\noindent\textbf{Proof}: }
+    {\par\hfill$\blacksquare$\newline\newpage}
+    % {\par\hfill$\blacksquare$\newline}
+
+% Define environment for framed definitions
+% \define[<color>] creates a definition/theorem environment with a colored frame and background
+\usepackage{mdframed}
+\newenvironment{define}[2][bluecolor]
+    {
+    \vspace{2pt}
+    \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
+    \color{#1}
+    \textbf{\S~#2}\hspace{6pt}  % Start symbol for definition/theorem with a title
+    \vspace{4pt}
+    }
+{
+    \end{mdframed}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Handout Title (First Page) 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% General Handout Format
+% \handout{<title>}{<course name>}{<date>}{<author>}{<secondary info>}{<number>}
+% Creates a formatted header for handouts. Parameters:
+% 1. <is_shadow>: is the box shadowed
+% 1. <title>: Title of the handout (e.g., "Lecture 1")
+% 2. <course name>: Name of the course (e.g., "CS 4510 Automata and Complexity")
+% 3. <author>: Name of the author (e.g., "Prof. Alice")
+% 4. <date>: Date of the handout (e.g., "Jan 15, 2025")
+% 5. <secondary info>: Additional info (e.g., "Scribe(s): Bob and Charlie")
+% 6. <number>: Handout number or identifier (used for page numbering)
+\usepackage{amsmath,amsfonts,amssymb,tikz, amsthm} % Math symbols and environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+\usepackage{fancybox}
+\usetikzlibrary{automata, positioning, arrows}
+\usetikzlibrary{arrows.meta}
+\newcommand{\handout}[7][false]{%
+    \renewcommand{\thepage}{#7-\arabic{page}} % Sets page numbering style to <number>-<page>
+    \noindent
+    \begin{center}
+    \ifthenelse{\equal{#1}{true}}{%
+        % Use shadowbox if the boolean is true
+        \shadowbox{%
+            \parbox{5.78in}{%
+                \vbox{
+                    \hbox to 5.78in { #3 \hfill #4 } % Course name and date
+                    \vspace{4mm}
+                    \hbox to 5.78in { {\Large \hfill #2 \hfill} } % Title centered
+                    \vspace{2mm}
+                    \hbox to 5.78in { {\it #5 \hfill #6} } % Author and secondary info
+                }
+            }
+        }
+    }{%
+        % Use standard framebox if the boolean is false
+        \framebox{%
+            \vbox{
+                \hbox to 5.78in { #3 \hfill #4 } % Course name and date
+                \vspace{4mm}
+                \hbox to 5.78in { {\Large \hfill #2 \hfill} } % Title centered
+                \vspace{2mm}
+                \hbox to 5.78in { {\it #5 \hfill #6} } % Author and secondary info
+            }
+        }
+    }
+    \end{center}
+    \vspace*{4mm}
+}
+
