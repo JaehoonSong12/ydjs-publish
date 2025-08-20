@@ -10,109 +10,137 @@
 % such as font size, margins, and the inclusion of external packages for 
 % enhanced functionality.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Suppress overfull and underfull box warnings
+
+% ================== Package Definitions ===================
+\usepackage{graphicx}       % for including images
+\usepackage{makeidx}        % index generation
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % Math symbols and environments
+\usepackage{tikz}           % for diagrams and graphics
+\usepackage{fancybox}       % for shadowbox
+\usepackage{mdframed}       % for framed environments
+\usepackage{datetime2}     % for date/time formatting
+\usepackage[
+    left = ",% 
+    right = ",% 
+    leftsub = ',% 
+    rightsub = ' %
+]{dirtytalk}                % for smart quotes
+\usepackage[
+  paperwidth=\PaperWidth,
+  paperheight=\PaperHeight,
+  top=\MarginTop, bottom=\MarginBottom,
+  left=\MarginLeft, right=\MarginRight
+]{geometry}                 % for page layout
+
+% ================== TikZ Libraries ===================
+\usetikzlibrary{automata, positioning, arrows}
+\usetikzlibrary{arrows.meta}
+
+% ================== Suppress Warnings ===================
 \hbadness=10000
 \vbadness=10000
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ================== Index Generation ===================
+\makeindex
+
+% ================== Theorem Environments ===================
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+
+% ================== VSCode Configuration ===================
 % @requires
 % 1. VSCode extension: LaTeX Workshop by James Yu
 % 2. Command Palette (`View` > `Command Palette`) `Preferences: Open Keyboard Shortcuts (JSON)`
 % 
-  % {
-  %   "key": "ctrl+b",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "\\textbf{${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-  % {
-  %   "key": "ctrl+i",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "\\textit{${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-  % {
-  %   "key": "ctrl+u",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "\\underbar{${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-  % {
-  %   "key": "ctrl+shift+r",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "${TM_SELECTED_TEXT}\\index{${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-  % {
-  %   "key": "ctrl+q",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "\\inlinequote{${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-  % {
-  %   "key": "ctrl+shift+q",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "\\blockquote{${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-  % {
-  %   "key": "ctrl+r",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "\\parencite[p.~${1:#}]{${2:bibid}}"
-  %   }
-  % },
+% {
+%   "key": "ctrl+b",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\textbf{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+i",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\textit{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+u",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\underbar{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+shift+r",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "${TM_SELECTED_TEXT}\\index{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+q",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\inlinequote{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+shift+q",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\blockquote{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+r",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\parencite[p.~${1:#}]{${2:bibid}}"
+%   }
+% },
 
+% Enable Korean Language, `vscode` > `settings.json`
+% {
+%   "key": "ctrl+k",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "{\\fontspec{Malgun Gothic}${TM_SELECTED_TEXT}}"
+%   }
+% },
 
+% "latex-workshop.latex.tools": [
+% {
+%     "name": "xelatex",
+%     "command": "xelatex",
+%     "args": [
+%     "-synctex=1",
+%     "-interaction=nonstopmode",
+%     "-file-line-error",
+%     "%DOC%"
+%     ]
+% }
+% ],
+% "latex-workshop.latex.recipes": [
+% {
+%     "name": "XeLaTeX",
+%     "tools": ["xelatex"]
+% }
+% ]
 
-
-    % Enable Korean Language, `vscode` > `settings.json`
-
-  % {
-  %   "key": "ctrl+k",
-  %   "command": "editor.action.insertSnippet",
-  %   "when": "editorLangId == 'latex'",
-  %   "args": {
-  %     "snippet": "{\\fontspec{Malgun Gothic}${TM_SELECTED_TEXT}}"
-  %   }
-  % },
-
-    % "latex-workshop.latex.tools": [
-    % {
-    %     "name": "xelatex",
-    %     "command": "xelatex",
-    %     "args": [
-    %     "-synctex=1",
-    %     "-interaction=nonstopmode",
-    %     "-file-line-error",
-    %     "%DOC%"
-    %     ]
-    % }
-    % ],
-    % "latex-workshop.latex.recipes": [
-    % {
-    %     "name": "XeLaTeX",
-    %     "tools": ["xelatex"]
-    % }
-    % ]
-
-
-
-% 
 % 3. Command Palette (`Ctrl` + `Shift` + `P`) `Preferences: Open User Settings (JSON)`, global settings
-% 
 % "latex-workshop.latex.synctex": 1
 % 
 % @usage
@@ -124,38 +152,9 @@
 % 3. italic: `Ctrl` + `I`
 % 4. PDF Backtracking LaTeX Code: `Ctrl` + `Click`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
+% ================== Commented Packages ===================
 % \usepackage{fontspec}
-
-\usepackage{graphicx}       % for including images:contentReference[oaicite:2]{index=2}
-
-
-
-% \usepackage{fancyhdr}   % for custom headers/footers:contentReference[oaicite:3]{index=3}
+% \usepackage{fancyhdr}   % for custom headers/footers
 % \usepackage{microtype}  % improves typography
 % \usepackage{lipsum}     % (optional) dummy text for examples
 % \usepackage{tabularx}
@@ -163,58 +162,52 @@
 % \usepackage{changepage} % for adjustwidth
 % \usepackage{xparse}
 % \usepackage{etoolbox}
-
 % \usepackage{hyperref}   % clickable links in PDF
-% \usepackage{makeidx}    % index generation
-% \usepackage{amsmath}
 % \usepackage{enumitem}
 
+% ================== Custom Commands and Environments ===================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-% % ============== Custom Commands ==============
-% \newcommand{\fullpageimage}[1]{%
-%   \begin{adjustwidth}{-\pageMargin}{-\pageMargin}%
-%     \includegraphics[width=\pageWidth]{#1}%
-%   \end{adjustwidth}%
-% }
-
-
-
-% ======= Resources / Assets Reference =======
-\makeindex              % generate index page
-\usepackage[
-    left = “,% 
-    right = ”,% 
-    leftsub = ‘,% 
-    rightsub = ’ %
-]{dirtytalk}
+% ------------------------------------------------------------------------------
+% \inlinequote{<text>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command formats text as an inline quote using smart quotes.
+%   It provides a quick way to add quoted text within a paragraph.
+%
+% PARAMETERS:
+%   <text>    The text to be quoted (required)
+%
+% DEPENDENCIES:
+%   \usepackage{dirtytalk}
+%
+% USAGE EXAMPLES:
+%   \inlinequote{This is a quoted text}
+%   The author said \inlinequote{this is important}.
+% ------------------------------------------------------------------------------
 \newcommand{\inlinequote}[1]{\say{#1}}
+
+% ------------------------------------------------------------------------------
+% \blockquote{<text>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command creates a block quote with proper spacing and formatting.
+%   It centers the quoted text and adds vertical spacing above and below.
+%
+% FEATURES:
+%   - Adds 2.5em spacing above and below the quote
+%   - Centers the quoted text
+%   - Uses smart quotes for proper typography
+%
+% PARAMETERS:
+%   <text>    The text to be quoted (required)
+%
+% DEPENDENCIES:
+%   \usepackage{dirtytalk}
+%
+% USAGE EXAMPLES:
+%   \blockquote{This is a longer quote that deserves to be set apart}
+%   \blockquote{Another important quote}
+% ------------------------------------------------------------------------------
 \newcommand{\blockquote}[1]{%
   \vspace{2.5em}%
   \begin{quote}%
@@ -222,6 +215,31 @@
   \end{quote}%
   \vspace{2.5em}%
 }
+
+% ------------------------------------------------------------------------------
+% \blockcite[<page>]{<citation>}{<quote>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command creates a block quote with automatic citation formatting.
+%   It combines the quote with proper citation and page reference.
+%
+% FEATURES:
+%   - Automatically formats the citation
+%   - Optional page number parameter
+%   - Proper punctuation handling
+%
+% PARAMETERS:
+%   [<page>]      Page number (optional, defaults to empty)
+%   <citation>    Citation key (required)
+%   <quote>       The quoted text (required)
+%
+% DEPENDENCIES:
+%   \usepackage{etoolbox}
+%
+% USAGE EXAMPLES:
+%   \blockcite{smith2020}{This is a quote from Smith}
+%   \blockcite[42]{jones2019}{This quote is from page 42}
+% ------------------------------------------------------------------------------
 \NewDocumentCommand{\blockcite}{ O{} m m }{%
   \begin{quote}
     \say{#3} %
@@ -231,101 +249,37 @@
   \end{quote}%
 }
 
-
-
-
-
-% ================== Layout ===================
-\usepackage[
-  paperwidth=\PaperWidth,
-  paperheight=\PaperHeight,
-  top=\MarginTop, bottom=\MarginBottom,
-  left=\MarginLeft, right=\MarginRight
-]{geometry}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 % ------------------------------------------------------------------------------
-% \generatedOn{<locale>}: Prints the exact date and time with regional formatting
+% \generatedOn
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
-% This command prints the current date and time in a readable way, formatted based on
-% the locale passed as an argument (e.g., "en-US", "ko-KR", "ja-JP").
+%   This command prints the exact date and time when the LaTeX document was 
+%   compiled. It uses the `datetime2` package to fetch the timestamp in the ISO 
+%   8601 format (YYYY-MM-DD HH:MM:SS).
 %
-% The format includes:
-% - Time in 12-hour format with AM/PM (in the specified region's style)
-% - Day of the week
-% - Month (full name)
-% - Day of the month
-% - Year
-% - Timezone abbreviation (depending on system locale)
+% FEATURES:
+%   - Automatically generates current compilation timestamp
+%   - Uses ISO 8601 format for consistency
+%   - No parameters required
 %
-% USAGE:
-% \generatedOn{<locale>} where <locale> is one of the following:
-%   - "en" for English format (12-hour with AM/PM)
-%   - "ko" for Korean format (24-hour, day of the week, etc.)
-%   - "ja" for Japanese format (similar to Korean style)
+% DEPENDENCIES:
+%   \usepackage{datetime2}
 %
-% EXAMPLE USAGE:
-% \generatedOn{en} will output: "11:59 PM EST, Wednesday, January 29, 2025"
-% \generatedOn{ko} will output: "2025년 1월 29일 수요일 23:59"
-% \generatedOn{ja} will output: "2025年1月29日水曜日 23:59"
+% USAGE EXAMPLES:
+%   The document was generated on: \generatedOn
+%   Last compiled: \generatedOn
 % ------------------------------------------------------------------------------
-\usepackage{datetime2}
-% ------------------------------------------------------------------------------
-% Command: \generatedOn
-% ------------------------------------------------------------------------------
-% \generatedOn: Prints the date and time of document compilation.
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-% This command prints the exact date and time when the LaTeX document was 
-% compiled. It uses the `datetime2` package to fetch the timestamp in the ISO 
-% 8601 format (YYYY-MM-DD HH:MM:SS).
-%
-% USAGE:
-% To use this command in your document, simply invoke `\generatedOn` where you 
-% want the compilation timestamp to appear.
-%
-% EXAMPLE:
-% The document was generated on: \generatedOn
-% ------------------------------------------------------------------------------
-
-\newcommand{\generatedOn}{\DTMnow}  % Automatically generates the current date and time
-
-
-
-
-
-
-
-
-
+\newcommand{\generatedOn}{\DTMnow}
 
 % ------------------------------------------------------------------------------
 % \begin{subanswer}[<Color>][<isWhite>] … \end{subanswer}
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
-%   This custom environment displays an “Answer:” label with configurable text color.
+%   This custom environment displays an "Answer:" label with configurable text color.
 %   It is intended for formatting answers clearly in assignments or solutions.
 %
 % FEATURES:
-%   - Displays “Answer:” in bold, followed by answer content.
+%   - Displays "Answer:" in bold, followed by answer content.
 %   - Automatically ends with a square symbol (□) aligned right.
 %   - First optional argument selects text color (default = red).
 %   - Second optional argument overrides to white text when set to true.
@@ -359,7 +313,7 @@
 \NewDocumentEnvironment{subanswer}{ O{red} O{false} }
   {%
     \par\medskip                     % start a paragraph with a bit of space
-    % choose white if second optional arg is “true”, otherwise #1
+    % choose white if second optional arg is "true", otherwise #1
     \ifthenelse{\equal{#2}{true}}%
       {\color{white}}%
       {\color{#1}}%
@@ -368,10 +322,50 @@
   {%
     \par\hfill$\square$\par
   }
+
+% ------------------------------------------------------------------------------
+% \begin{subprove}[<Color>][<isWhite>] … \end{subprove}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This custom environment displays a "Proof:" label with configurable text color.
+%   It is intended for formatting mathematical proofs clearly in assignments or solutions.
+%
+% FEATURES:
+%   - Displays "Proof:" in bold, followed by proof content.
+%   - Automatically ends with a filled square symbol (■) aligned right.
+%   - First optional argument selects text color (default = red).
+%   - Second optional argument overrides to white text when set to true.
+%
+% PARAMETERS (both optional):
+%   [<Color>]    Text color name (e.g. blue, green). Defaults to red.
+%   [<isWhite>]  true  ⇒ force white text (for dark backgrounds)
+%                 false ⇒ use the chosen <Color>. Defaults to false.
+%
+% DEPENDENCIES:
+%   \usepackage{ifthen}
+%   \usepackage{xcolor}
+%   \usepackage{xparse}
+%
+% USAGE EXAMPLES:
+%   % defaults: red text, isWhite = false
+%   \begin{subprove}
+%     This proof is red.
+%   \end{subprove}
+%
+%   % blue text, isWhite = false
+%   \begin{subprove}[blue]
+%     This proof is blue.
+%   \end{subprove}
+%
+%   % green text, forced white override
+%   \begin{subprove}[green][true]
+%     This proof is white (on green background).
+%   \end{subprove}
+% ------------------------------------------------------------------------------
 \NewDocumentEnvironment{subprove}{ O{red} O{false} }
   {%
     \par\medskip                     % start a paragraph with a bit of space
-    % choose white if second optional arg is “true”, otherwise #1
+    % choose white if second optional arg is "true", otherwise #1
     \ifthenelse{\equal{#2}{true}}%
       {\color{white}}%
       {\color{#1}}%
@@ -381,24 +375,99 @@
     \par\hfill$\blacksquare$\par
   }
 
-
-% Answer environment for responses
-% \answer[<color>] creates an answer environment with optional text color (default: teal).
+% ------------------------------------------------------------------------------
+% \begin{answer}[<color>] … \end{answer}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates an answer section with optional text color.
+%   It automatically adds a new page after the answer for clean separation.
+%
+% FEATURES:
+%   - Displays "Answer:" in bold with specified color
+%   - Automatically ends with a square symbol (□) aligned right
+%   - Adds a new page after the answer
+%   - Optional color parameter for customization
+%
+% PARAMETERS:
+%   [<color>]    Text color name (optional, defaults to redcolor)
+%
+% DEPENDENCIES:
+%   None (uses basic LaTeX commands)
+%
+% USAGE EXAMPLES:
+%   \begin{answer}
+%     This is a default red answer.
+%   \end{answer}
+%
+%   \begin{answer}[blue]
+%     This is a blue answer.
+%   \end{answer}
+% ------------------------------------------------------------------------------
 \newenvironment{answer}[1][redcolor]
     {\ \newline \color{#1}\noindent\textbf{Answer}: }
     {\par\hfill$\square$\newline\newpage}
-    % {\par\hfill$\square$\newline}
 
-% Prove environment for responses
-% \prove[<color>] creates an answer environment with optional text color (default: teal).
+% ------------------------------------------------------------------------------
+% \begin{prove}[<color>] … \end{prove}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a proof section with optional text color.
+%   It automatically adds a new page after the proof for clean separation.
+%
+% FEATURES:
+%   - Displays "Proof:" in bold with specified color
+%   - Automatically ends with a filled square symbol (■) aligned right
+%   - Adds a new page after the proof
+%   - Optional color parameter for customization
+%
+% PARAMETERS:
+%   [<color>]    Text color name (optional, defaults to redcolor)
+%
+% DEPENDENCIES:
+%   None (uses basic LaTeX commands)
+%
+% USAGE EXAMPLES:
+%   \begin{prove}
+%     This is a default red proof.
+%   \end{prove}
+%
+%   \begin{prove}[blue]
+%     This is a blue proof.
+%   \end{prove}
+% ------------------------------------------------------------------------------
 \newenvironment{prove}[1][redcolor]
     {\ \newline \color{#1}\noindent\textbf{Proof}: }
     {\par\hfill$\blacksquare$\newline\newpage}
-    % {\par\hfill$\blacksquare$\newline}
 
-% Define environment for framed definitions
-% \define[<color>] creates a definition/theorem environment with a colored frame and background
-\usepackage{mdframed}
+% ------------------------------------------------------------------------------
+% \begin{define}[<color>]{<title>} … \end{define}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a framed definition or theorem with colored background
+%   and border. It provides a visually distinct way to present important concepts.
+%
+% FEATURES:
+%   - Colored frame and background (10% opacity)
+%   - Section symbol (§) followed by title
+%   - Configurable colors for customization
+%   - Proper spacing and typography
+%
+% PARAMETERS:
+%   [<color>]    Background and border color (optional, defaults to bluecolor)
+%   {<title>}    Title of the definition/theorem (required)
+%
+% DEPENDENCIES:
+%   \usepackage{mdframed}
+%
+% USAGE EXAMPLES:
+%   \begin{define}{Definition of Continuity}
+%     A function f is continuous at a point a if...
+%   \end{define}
+%
+%   \begin{define}[green]{Important Theorem}
+%     This theorem is framed in green.
+%   \end{define}
+% ------------------------------------------------------------------------------
 \newenvironment{define}[2][bluecolor]
     {
     \vspace{2pt}
@@ -411,44 +480,37 @@
     \end{mdframed}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Handout Title (First Page) 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% General Handout Format
-% \handout{<title>}{<course name>}{<date>}{<author>}{<secondary info>}{<number>}
-% Creates a formatted header for handouts. Parameters:
-% 1. <is_shadow>: is the box shadowed
-% 1. <title>: Title of the handout (e.g., "Lecture 1")
-% 2. <course name>: Name of the course (e.g., "CS 4510 Automata and Complexity")
-% 3. <author>: Name of the author (e.g., "Prof. Alice")
-% 4. <date>: Date of the handout (e.g., "Jan 15, 2025")
-% 5. <secondary info>: Additional info (e.g., "Scribe(s): Bob and Charlie")
-% 6. <number>: Handout number or identifier (used for page numbering)
-\usepackage{amsmath,amsfonts,amssymb,tikz, amsthm} % Math symbols and environments
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{example}{Example}
-\newtheorem{remark}{Remark}
-\usepackage{fancybox}
-\usetikzlibrary{automata, positioning, arrows}
-\usetikzlibrary{arrows.meta}
+% ------------------------------------------------------------------------------
+% \handout[<is_shadow>]{<title>}{<course_name>}{<date>}{<author>}{<secondary_info>}{<number>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command creates a formatted header for handouts with optional shadow effect.
+%   It provides a professional-looking title page for course materials.
+%
+% FEATURES:
+%   - Configurable shadow effect (shadowbox vs framebox)
+%   - Automatic page numbering with handout identifier
+%   - Responsive width using \textwidth instead of hardcoded values
+%   - Professional layout with course information
+%
+% PARAMETERS:
+%   [<is_shadow>]     Boolean for shadow effect (optional, defaults to false)
+%   <title>           Title of the handout (e.g., "Lecture 1")
+%   <course_name>     Name of the course (e.g., "CS 4510 Automata and Complexity")
+%   <date>            Date of the handout (e.g., "Jan 15, 2025")
+%   <author>          Name of the author (e.g., "Prof. Alice")
+%   <secondary_info>  Additional info (e.g., "Scribe(s): Bob and Charlie")
+%   <number>          Handout number or identifier (used for page numbering)
+%
+% DEPENDENCIES:
+%   \usepackage{fancybox}
+%   \usepackage{ifthen}
+%
+% USAGE EXAMPLES:
+%   \handout{Lecture 1}{CS 4510}{Jan 15, 2025}{Prof. Smith}{Scribe: John}{1}
+%   
+%   \handout[true]{Assignment 1}{CS 1010}{Feb 1, 2025}{Prof. Jones}{Due: Feb 15}{A1}
+% ------------------------------------------------------------------------------
 \newcommand{\handout}[7][false]{%
     \renewcommand{\thepage}{#7-\arabic{page}} % Sets page numbering style to <number>-<page>
     \noindent
@@ -456,13 +518,13 @@
     \ifthenelse{\equal{#1}{true}}{%
         % Use shadowbox if the boolean is true
         \shadowbox{%
-            \parbox{5.78in}{%
+            \parbox{\textwidth}{%
                 \vbox{
-                    \hbox to 5.78in { #3 \hfill #4 } % Course name and date
+                    \hbox to \textwidth { #3 \hfill #4 } % Course name and date
                     \vspace{4mm}
-                    \hbox to 5.78in { {\Large \hfill #2 \hfill} } % Title centered
+                    \hbox to \textwidth { {\Large \hfill #2 \hfill} } % Title centered
                     \vspace{2mm}
-                    \hbox to 5.78in { {\it #5 \hfill #6} } % Author and secondary info
+                    \hbox to \textwidth { {\it #5 \hfill #6} } % Author and secondary info
                 }
             }
         }
@@ -470,11 +532,11 @@
         % Use standard framebox if the boolean is false
         \framebox{%
             \vbox{
-                \hbox to 5.78in { #3 \hfill #4 } % Course name and date
+                \hbox to \textwidth { #3 \hfill #4 } % Course name and date
                 \vspace{4mm}
-                \hbox to 5.78in { {\Large \hfill #2 \hfill} } % Title centered
+                \hbox to \textwidth { {\Large \hfill #2 \hfill} } % Title centered
                 \vspace{2mm}
-                \hbox to 5.78in { {\it #5 \hfill #6} } % Author and secondary info
+                \hbox to \textwidth { {\it #5 \hfill #6} } % Author and secondary info
             }
         }
     }
