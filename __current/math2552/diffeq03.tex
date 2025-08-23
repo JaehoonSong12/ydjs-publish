@@ -1,0 +1,406 @@
+\newpage\handout
+{\textsc{MATH 2552: Differential Equations}}{\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA 4.0 license}}
+{Part 3: }
+{Author: \href{\HandoutAuthorUrl}{\HandoutAuthor}}{Generated on \generatedOn}
+{Diff.Equ.}
+\input{preface.tex}
+\newpage
+
+
+
+
+\begin{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART10-1
+a. Set up an integral for finding the Laplace transform of $f(t)=3$.
+
+$$
+F(s)=\mathcal{L}\{f(t)\}=\int_A^B \square
+$$
+
+where $A=$ $\square$ and $B=$ $\square$ .
+b. Find the antiderivative (with constant term 0 ) corresponding to the previous part.
+$\square$
+c. Evaluate appropriate limits to compute the Laplace transform of $f(t)$ :
+
+$$
+F(s)=\mathcal{L}\{f(t)\}=\square
+$$
+
+d. Where does the Laplace transform you found exist? In other words, what is the domain of $F(s)$ ?
+$\square$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART10-2
+Consider $f(t)=\tan (t)$.
+a. The function $f(t)$ is
+A. continuous on $0 \leq t<\infty$.
+B. discontinuous but piecewise continuous on $0 \leq t<\infty$.
+C. neither.
+
+
+b. Is $f(t)$ exponentially bounded on $0 \leq t<\infty$ ? $\square$ ?
+
+
+c. Does the Laplace transform of $f(t)$ exist (on some domain, i.e., for some values of s )? $\square$ ?
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART10-3
+Find the Laplace transform of $3 \sin (a t)+5 \sin (a t)$ :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART11-1
+
+Find the inverse Laplace transform $f(t)=\mathcal{L}^{-1}\{F(s)\}$ of the function $F(s)=\frac{5 s-8}{s^2+9}$.
+
+$$
+f(t)=\mathcal{L}^{-1}\left\{\frac{5 s-8}{s^2+9}\right\}=\square
+$$
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART11-2
+Consider the initial value problem
+
+$$
+y^{\prime}+3 y=45 t, \quad y(0)=5
+$$
+
+a. Take the Laplace transform of both sides of the given differential equation to create the corresponding algebraic equation. Denote the Laplace transform of $y(t)$ by $Y(s)$. Do not move any terms from one side of the equation to the other (until you get to part (b) below).
+$\square$ $=$ $\square$
+b. Solve your equation for $Y(s)$.
+
+$$
+Y(s)=\mathcal{L}\{y(t)\}=\square
+$$
+
+c. Take the inverse Laplace transform of both sides of the previous equation to solve for $y(t)$.
+
+$$
+y(t)=\square
+$$
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART11-3
+Use the Laplace transform to solve the following initial value problem:
+
+$$
+y^{\prime \prime}+5 y^{\prime}=0 \quad y(0)=8, y^{\prime}(0)=-1
+$$
+
+
+First, using $Y$ for the Laplace transform of $y(t)$, i.e., $Y=\mathcal{L}\{y(t)\}$, find the equation you get by taking the Laplace transform of the differential equation
+$\square$ $=0$
+
+Now solve for $Y(s)=$ $\square$
+and write the above answer in its partial fraction decomposition, $Y(s)=\frac{A}{s+a}+\frac{B}{s+b}$ where $a<b$
+
+$$
+Y(s)=\square+\square
+$$
+
+
+Now by inverting the transform, find $y(t)=$ $\square$ .
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART11-4
+Find the Laplace transform of
+
+$$
+f(t)= \begin{cases}0, & t<3 \\ t^2-6 t+14, & t \geq 3\end{cases}
+$$
+
+
+$$
+F(s)=\square
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART11-5
+
+Consider the initial value problem
+
+$$
+y^{\prime \prime}+4 y=12 t, \quad y(0)=7, \quad y^{\prime}(0)=6 .
+$$
+
+a. Take the Laplace transform of both sides of the given differential 
+equation to create the corresponding algebraic equation. Denote the 
+Laplace transform of $y(t)$ by $Y(s)$. Do not move any terms from 
+one side of the equation to the other (until you get to part (b) below).
+$\square$ $=$ $\square$
+b. Solve your equation for $Y(s)$.
+
+$$
+Y(s)=\mathcal{L}\{y(t)\}=\square
+$$
+
+c. Take the inverse Laplace transform of both sides of the previous equation to solve for $y(t)$.
+
+$$
+y(t)=\square
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%% PART11-6
+
+Compute the Laplace transform:
+
+$$
+\mathcal{L}\left\{u_1(t) t e^{2 t}+u_3(t)\right\}=\square
+$$
+
+
+If you don't get this in 2 tries, you can get a hint.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART13-1
+Solutions to linear differential equations can be written using convolutions as
+
+$$
+y=y_{\mathrm{IVP}}+(h(t) * f(t))
+$$
+
+- $y_{\text {IVP }}$ is the solution to the associated homogeneous differential equation with the given initial values
+(ignore the forcing function, keep initial values).
+- $h(t)$ is the impulse response
+(ignore the initial values and forcing function).
+- $f(t)$ is the forcing function.
+(ignore the initial values and differential equation).
+
+Use the form above to write the solution to the differential equation
+
+$$
+\begin{aligned}
+& \quad y^{\prime \prime}-7 y^{\prime}+10 y=9 t^2 e^{2 t} \quad \text { with } \quad y(0)=-3, \quad y^{\prime}(0)=-9 \\
+& y=\square+(\square * \square)
+\end{aligned}
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART13-2
+Consider the following integral equation, so called because the unknown dependent variable, $y$, appears within an integral:
+
+$$
+\int_0^t \sin (6(t-w)) y(w) d w=5 t^2
+$$
+
+
+This equation is defined for $t \geq 0$.
+a. Use convolution and Laplace transforms to find the Laplace transform of the solution.
+
+$$
+Y(s)=\mathcal{L}\{y(t)\}=
+$$
+
+$\square$
+b. Obtain the solution $y(t)$.
+
+$$
+y(t)=
+$$
+
+$\square$
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART13-3
+Use the Laplace transform to solve the following initial value problem:
+
+$$
+y^{\prime \prime}+14 y^{\prime}+74 y=\delta(t-2) \quad y(0)=0, y^{\prime}(0)=0
+$$
+
+
+Use step(t-c) for $u_c(t) . y(t)=$ $\square$
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART14-1
+Consider the system of equations
+
+$$
+\begin{aligned}
+& \frac{d x}{d t}=x\left(1-\frac{x}{2}-y\right) \\
+& \frac{d y}{d t}=y\left(1-\frac{y}{3}-x\right)
+\end{aligned}
+$$
+
+taking $(x, y)>0$.
+(a) Write an equation for the (non-zero) vertical ( $x$-)nullcline of this system:
+
+(Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)
+And for the (non-zero) horizontal ( $y$-)nullcline:
+$\square$
+(Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)
+(Note that there are also nullclines lying along the axes.)
+(b) What are the equilibrium points for the system?
+
+Equilibria = $\square$
+(Enter the points as comma-separated $(x, y)$ pairs, e.g., $(\mathbf{1 , 2}),(\mathbf{3 , 4})$.)
+(c) Use your nullclines to estimate trajectories in the phase plane, completing the following sentence:
+
+If we start at the initial position $\left(\frac{3}{2}, \frac{1}{2}\right)$, trajectories $\square$ converge to the point $\square$ .
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART14-2
+Consider the equations describing the interactions of robins $r$ and worms $w$,
+
+$$
+\frac{d w}{d t}=w-w r, \quad \text { and } \quad \frac{d r}{d t}=-r+r w .
+$$
+
+(a) What are the (non-zero) nullclines for this system?
+
+$$
+\begin{aligned}
+& w=\square \\
+& r=\square
+\end{aligned}
+$$
+
+(b) Your nullclines divide the phase plane into four regions. Give a sample point in each region, and indicate for that point whether each of the populations is increasing or decreasing (by entering the word increasing or decreasing appropriate blank):
+(i) $(w, r)=$ $\qquad$ , $\square$ ) is in one region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .
+(ii) $(w, r)=($ $\square$
+$\square$ ) is in a second region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .
+(iii) $(w, r)=$ $\square$ , $\square$ ) is in a third region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .
+(iv) $(w, r)=$ $\square$ , $\square$ ) is in the fourth region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .
+
+Notice what your conclusions about these four regions say about how the populations change with time.
+
+%%%%%%%%%%%%%%%%%%%%%%% PART14-3
+Consider the system of equations
+
+$$
+\begin{gathered}
+\frac{d x}{d t}=x(2-x-3 y) \\
+\frac{d y}{d t}=y(1-2 x)
+\end{gathered}
+$$
+
+(a) Write an equation for a vertical-tangent nullcline that is not a coordinate axis:
+$\square$
+(Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)
+And for a horizontal-tangent nullcline that is not a coordinate axis:
+$\square$
+(Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)
+(Note that there are also nullclines lying along the axes.)
+(b) What are the equilibrium points for the system?
+
+Equilibria = $\square$
+(Enter the points as comma-separated $(x, y)$ pairs, e.g., $(\mathbf{1 , 2}),(\mathbf{3 , 4})$.)
+(c) Use your nullclines to estimate trajectories in the phase plane, completing the following sentence:
+
+If we start at the initial position $(3,1)$, trajectories $\square$ converge to the point $\square$ .
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART15-1
+Suppose that we use Euler's method to approximate the solution to the differential equation
+
+$$
+\frac{d y}{d x}=\frac{x^2}{y} ; \quad y(0.5)=3 .
+$$
+
+
+Let $f(x, y)=x^2 / y$.
+We let $x_0=0.5$ and $y_0=3$ and pick a step size $h=0.2$. Euler's method is the the following algorithm. From $x_n$ and $y_n$, our approximations to the solution of the differential equation at the nth stage, we find the next stage by computing
+
+$$
+x_{n+1}=x_n+h, \quad y_{n+1}=y_n+h \cdot f\left(x_n, y_n\right) .
+$$
+
+
+Complete the following table. Your answers should be accurate to at least seven decimal places.
+
+\begin{tabular}{|c|c|c|}
+\hline$n$ & $x_n$ & $y_n$ \\
+\hline 0 & 0.5 & 3 \\
+\hline 1 & & \\
+\hline 2 & & \\
+\hline 3 & & \\
+\hline 4 & & \\
+\hline 5 & & \\
+\hline
+\end{tabular}
+
+The exact solution can also be found using separation of variables. It is
+
+$$
+y(x)=\square
+$$
+
+
+Thus the actual value of the function at the point $x=1.5$
+
+$$
+y(1.5)=\square .
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%% PART15-2
+Use Euler's method with the given step size to estimate $y(1.4)$ where $y(x)$ is the solution of the initial-value problem
+
+$$
+y^{\prime}=x-x y, \quad y(1)=1
+$$
+
+1. Estimate $y(1.4)$ with a step size $h=0.2$.
+
+Answer: $y(1.4) \approx$ $\square$
+2. Estimate $y(1.4)$ with a step size $h=0.1$.
+
+Answer: $y(1.4) \approx$ $\square$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% PART15-3
+Use Euler's method with step size 0.25 to compute the approximate $y$-values $y_1, y_2, y_3$, and $y_4$ of the solution of the initial-value problem
+
+$$
+y^{\prime}=-2+3 x-4 y, \quad y(1)=4 .
+$$
+
+
+$$
+\begin{aligned}
+& y_1=\square \\
+& y_2=\square \\
+& y_3=\square \\
+& y_4=\square
+\end{aligned}
+$$
+
+
+
+
+  
+
+
+
+\end{enumerate}
