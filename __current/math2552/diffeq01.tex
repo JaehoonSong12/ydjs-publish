@@ -7,7 +7,6 @@
 \newpage
 
 \begin{enumerate}
-
   \item \textbf{Integration Review --- Integration by Parts} (10 points)\\
   Use integration by parts to evaluate the definite integral
   $$
@@ -38,7 +37,13 @@
   \newpage
 
   \item \textbf{Differential Equation Classification} (10 points)\\
-  It can be helpful to classify a differential equation, so that we can predict the techniques that might help us to find a function which solves the equation. Two classifications are the order of the equation -- (what is the highest number of derivatives involved) and whether or not the equation is linear. Linearity is important because the structure of the the family of solutions to a linear equation is fairly simple. Linear equations can usually be solved completely and explicitly. Determine whether or not each equation is linear:
+  It can be helpful to classify a differential equation, so that we can predict the 
+  techniques that might help us to find a function which solves the equation. Two 
+  classifications are the \textbf{order of the equation} -- (what is the highest 
+  number of derivatives involved) and whether or not the equation is linear. \\
+  \textbf{Linearity} is important because the structure of the the family of solutions to a 
+  linear equation is fairly simple. Linear equations can usually be solved 
+  completely and explicitly. Determine whether or not each equation is linear:
   \begin{enumerate}[label=\arabic*.]
     \item $y^{\prime \prime}-y+y^2=0$\\
     \begin{subanswer}
@@ -62,17 +67,16 @@
   A culture of yeast grows at a rate proportional to its size. If the initial population is 5000 cells and it doubles after 3 hours, answer the following questions.
   \begin{enumerate}[label=\arabic*.]
     \item Write an expression for the number of yeast cells after $t$ hours.\\
-    Answer: $P(t)=$ $\square$\\
     \begin{subanswer}
+      $P(t)=$
       % your answer here
     \end{subanswer}
     \item Find the number of yeast cells after 10 hours.\\
-    Answer: $\square$\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Find the rate at which the population of yeast cells is increasing at 10 hours.\\
-    Answer (in cells per hour): $\square$\\
+    \item Find the rate at which the population of yeast cells is increasing at 
+    10 hours.~\footnote{\textbf{Note}: your answer should be in cells per hour.}\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -84,10 +88,6 @@
   \frac{d y}{d x}=(x-3) e^{-2 y}
   $$
   satisfying the initial condition $y(3)=\ln (3)$.
-  $$
-  y=\square
-  $$
-  Your answer should be a function of $x$.
   \begin{subanswer}
     % your answer here
   \end{subanswer}
@@ -95,23 +95,22 @@
   \newpage
 
   \item \textbf{First Order Linear Differential Equation} (10 points)\\
-  Solve the initial value problem $y^{\prime}+\frac{1}{x+8} y=x^{-2}, \quad y(1)=8$
-  $$
-  y(x)=
-  $$
+  Solve the initial value problem $y^{\prime}+\frac{1}{x+8} y=x^{-2}$, where $y(1)=8$
   \begin{subanswer}
     % your answer here
   \end{subanswer}
 
   \item \textbf{Newton's Law of Cooling} (10 points)\\
-  A thermometer is taken from a room where the temperature is $21^{\circ} \mathrm{C}$ to the outdoors, where the temperature is $-15^{\circ} \mathrm{C}$. After one minute the thermometer reads $3^{\circ} \mathrm{C}$.
+  A thermometer is taken from a room where the temperature is 
+  $21^{\circ} \mathrm{C}$ to the outdoors, where the temperature is 
+  $-15^{\circ} \mathrm{C}$. After one minute the thermometer reads 
+  $3^{\circ} \mathrm{C}$.
   \begin{enumerate}[label=(\alph*)]
     \item What will the reading on the thermometer be after 2 more minutes?\\
-    $\square$\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item When will the thermometer read $-14^{\circ} \mathrm{C}$?\\
+    \item When will the thermometer read $-14^{\circ} \mathrm{C}$? How many 
     minutes after it was taken to the outdoors.\\
     \begin{subanswer}
       % your answer here
@@ -125,23 +124,23 @@
   $$
   For each of the initial conditions below, determine the largest interval $a<t<b$ on which the existence and uniqueness theorem for first order linear differential equations guarantees the existence of a unique solution.
   \begin{enumerate}[label=\alph*.]
-    \item $y(-7)=-5.5$.\\
+    \item $y(-7)=-5.5$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $y(-0.5)=2.6$.\\
+    \item $y(-0.5)=2.6$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $y(0)=0$.\\
+    \item $y(0)=0$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $y(5.5)=6.4$.\\
+    \item $y(5.5)=6.4$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $y(8)=-3.14$.\\
+    \item $y(8)=-3.14$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -150,12 +149,13 @@
   \newpage
 
   \item \textbf{Linear System of Differential Equations} (10 points)\\
-  Find the solution to the linear system of differential equations $\left\{\begin{array}{ll}x^{\prime} & =37 x-60 y \\ y^{\prime} & =24 x-39 y\end{array}\right.$ satisfying the initial conditions $x(0)=11$ and $y(0)=7$.
-  $$
-  \begin{aligned}
-  & x(t)=\square \\
-  & y(t)=\square
-  \end{aligned}
+  Find the solution, $v$, as a vector to the linear system of differential equations 
+  $\left\{\begin{array}{ll}x^{\prime} & =37 x-60 y \\ y^{\prime} & =24 x-39 y\end{array}\right.$ 
+  satisfying the initial conditions $x(0)=11$ and $y(0)=7$.
+  $$v=\left[\begin{array}{l}
+    x(t) \\
+    y(t) 
+  \end{array}\right]
   $$
   \begin{subanswer}
     % your answer here
@@ -170,27 +170,9 @@
   6 & 2 & 6
   \end{array}\right] .
   $$
-  From smallest to largest, the eigenvalues are $\lambda_1<\lambda_2<\lambda_3$ where
-  $$
-  \begin{aligned}
-  & \lambda_1=\square \text { has an eigenvector }\left[\begin{array}{l}
-  \square \\
-  \square \\
-  \square
-  \end{array}\right], \\
-  & \lambda_2=\square \text { has an eigenvector }\left[\begin{array}{l}
-  \square \\
-  \square \\
-  \square
-  \end{array}\right], \\
-  & \lambda_3=\square \text { has an eigenvector }\left[\begin{array}{l}
-  \square \\
-  \square \\
-  \square
-  \end{array}\right] .
-  \end{aligned}
-  $$
-  Note: you may want to use a graphing calculator to estimate the roots of the polynomial which defines the eigenvalues.
+  From smallest to largest, the eigenvalues are $\lambda_1<\lambda_2<\lambda_3$\\
+  \textbf{Note}: you may want to use a graphing calculator to estimate the roots of 
+  the \textbf{characteristic polynomial} which defines the eigenvalues.
   \begin{subanswer}
     % your answer here
   \end{subanswer}
@@ -216,27 +198,37 @@
   $$
   \begin{enumerate}[label=(\alph*)]
     \item Find $c_1$ and $c_2$.\\
-    $$
-    \begin{aligned}
-    & c_1=\square \\
-    & c_2=\square
-    \end{aligned}
-    $$\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Sketch the phase plane trajectory that satisfies the given initial condition. Which graph most closely resembles the graph you drew? $\square$ Choose\\
+    \item Sketch the phase plane trajectory that satisfies the given initial 
+    condition. Which graph most closely resembles the graph you drew?\\
+    \begin{center}
+    \begin{tabular}{cccc}
+    A. & B. \\
+    \includegraphics[width=0.28\textwidth]{math2552/images/cus00-1} &
+    \includegraphics[width=0.28\textwidth]{math2552/images/cus00-2} \\
+    C. & D. \\
+    \includegraphics[width=0.28\textwidth]{math2552/images/cus00-3} &
+    \includegraphics[width=0.28\textwidth]{math2552/images/cus00-4} \\
+    \end{tabular}
+    \end{center}
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item What is the approximate direction of travel for the solution curve, as $t$ increases from $-\infty$ to $+\infty$ ?\\
-    A. along the line $y=x$ toward the origin and then along the line $y=-x$ away from the origin\\
-    B. along the line $y=-x$ toward the origin and then along the line $y=x$ away from the origin\\
-    C. none of the above\\
+    \newpage
+    \item What is the approximate direction of travel for the solution curve, as $t$ increases from $-\infty$ to $+\infty$ ?
+    \begin{enumerate}[label=\Alph*.]
+      \item along the line $y=x$ toward the origin and then along the line $y=-x$ away from the origin
+      \item along the line $y=-x$ toward the origin and then along the line $y=x$ away from the origin
+      \item none of the above
+    \end{enumerate}
     \begin{subanswer}
       % your answer here
     \end{subanswer}
   \end{enumerate}
+
+
 
   \item \textbf{Linear System Solutions} (10 points)\\
   \begin{enumerate}[label=\alph*.]
@@ -256,14 +248,16 @@
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item In the phase plane, this system is best described as a\\
-    source / unstable node\\
-    sink / stable node\\
-    saddle\\
-    center point / ellipses\\
-    spiral source\\
-    spiral sink\\
-    none of these\\
+    \item In the phase plane, this system is best described as a
+    \begin{enumerate}
+      \item source / unstable node
+      \item sink / stable node
+      \item saddle
+      \item center point / ellipses
+      \item spiral source
+      \item spiral sink
+      \item none of these
+    \end{enumerate}
     \begin{subanswer}
       % your answer here
     \end{subanswer}
