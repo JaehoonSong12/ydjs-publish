@@ -223,6 +223,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 % ================== Custom Commands and Environments ===================
 
 % ------------------------------------------------------------------------------
@@ -307,6 +318,29 @@
   \end{quote}%
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ------------------------------------------------------------------------------
 % \generatedOn
 % ------------------------------------------------------------------------------
@@ -328,6 +362,130 @@
 %   Last compiled: \generatedOn
 % ------------------------------------------------------------------------------
 \newcommand{\generatedOn}{\DTMnow}
+
+% ------------------------------------------------------------------------------
+% \handout[<is_shadow>]{<course_name>}{<date>}{<title>}{<author>}{<secondary_info>}{<number>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command creates a formatted header for handouts with optional shadow effect.
+%   It provides a professional-looking title page for course materials.
+%
+% FEATURES:
+%   - Configurable shadow effect (shadowbox vs framebox)
+%   - Automatic page numbering with handout identifier
+%   - Responsive width using \textwidth instead of hardcoded values
+%   - Professional layout with course information
+%
+% PARAMETERS:
+%   [<is_shadow>]     Boolean for shadow effect (optional, defaults to false)
+%   <course_name>     Name of the course (e.g., "CS 4510 Automata and Complexity")
+%   <date>            Date of the handout (e.g., "Jan 15, 2025")
+%   <title>           Title of the handout (e.g., "Lecture 1")
+%   <author>          Name of the author (e.g., "Prof. Alice")
+%   <secondary_info>  Additional info (e.g., "Scribe(s): Bob and Charlie")
+%   <number>          Handout number or identifier (used for page numbering)
+%
+% DEPENDENCIES:
+%   \usepackage{fancybox}
+%   \usepackage{ifthen}
+%
+% USAGE EXAMPLES:
+%   \newpage\handout
+%   {CS 4510}{Jan 15, 2025}
+%   {Lecture 1}
+%   {Prof. Smith}{Scribe: John}
+%   {1}
+%
+%   \newpage\handout[true]
+%   {CS 1010}{Feb 1, 2025}
+%   {Assignment 1}
+%   {Prof. Jones}{Due: Feb 15}
+%   {A1}
+% ------------------------------------------------------------------------------
+\newcommand{\handout}[7][false]{%
+  \renewcommand{\thepage}{#7-\arabic{page}}%
+  \noindent
+  \begin{center}%
+  \ifthenelse{\equal{#1}{true}}{%
+    \makebox[\linewidth]{%
+      \shadowbox{%
+        \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+          \vbox{%
+            \hbox to \linewidth{#2 \hfill #3}%
+            \vspace{4mm}%
+            \hbox to \linewidth{{\Large \hfill #4 \hfill}}%
+            \vspace{2mm}%
+            \hbox to \linewidth{{\it #5 \hfill #6}}%
+          }%
+        }%
+      }%
+    }%
+  }{%
+    \makebox[\linewidth]{%
+      \framebox[\linewidth]{%
+        \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+          \vbox{%
+            \hbox to \linewidth{#2 \hfill #3}%
+            \vspace{4mm}%
+            \hbox to \linewidth{{\Large \hfill #4 \hfill}}%
+            \vspace{2mm}%
+            \hbox to \linewidth{{\it #5 \hfill #6}}%
+          }%
+        }%
+      }%
+    }%
+  }%
+  \end{center}%
+  \vspace*{4mm}%
+}
+
+% ------------------------------------------------------------------------------
+% \begin{define}[<color>]{<title>} … \end{define}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a framed definition or theorem with colored background
+%   and border. It provides a visually distinct way to present important concepts.
+%
+% FEATURES:
+%   - Colored frame and background (10% opacity)
+%   - Section symbol (§) followed by title
+%   - Configurable colors for customization
+%   - Proper spacing and typography
+%
+% PARAMETERS:
+%   [<color>]    Background and border color (optional, defaults to bluecolor)
+%   {<title>}    Title of the definition/theorem (required)
+%
+% DEPENDENCIES:
+%   \usepackage{mdframed}
+%   \usepackage{xcolor}
+%
+% USAGE EXAMPLES:
+%   \begin{define}{Definition of Continuity}
+%     A function f is continuous at a point a if...
+%   \end{define}
+%
+%   \begin{define}[green]{Important Theorem}
+%     This theorem is framed in green.
+%   \end{define}
+% ------------------------------------------------------------------------------
+\newenvironment{define}[2][bluecolor]
+  {
+  \vspace{2pt}
+  \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
+  \color{#1}
+  \textbf{\S~#2}\hspace{6pt}  % Start symbol for definition/theorem with a title
+  \vspace{4pt}
+  }
+{
+  \end{mdframed}
+}
+
+
+
+
+
+
 
 % ------------------------------------------------------------------------------
 % \begin{subanswer}[<Color>][<isWhite>] … \end{subanswer}
@@ -503,122 +661,103 @@
 
 
 
-% ------------------------------------------------------------------------------
-% \begin{define}[<color>]{<title>} … \end{define}
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This environment creates a framed definition or theorem with colored background
-%   and border. It provides a visually distinct way to present important concepts.
-%
-% FEATURES:
-%   - Colored frame and background (10% opacity)
-%   - Section symbol (§) followed by title
-%   - Configurable colors for customization
-%   - Proper spacing and typography
-%
-% PARAMETERS:
-%   [<color>]    Background and border color (optional, defaults to bluecolor)
-%   {<title>}    Title of the definition/theorem (required)
-%
-% DEPENDENCIES:
-%   \usepackage{mdframed}
-%   \usepackage{xcolor}
-%
-% USAGE EXAMPLES:
-%   \begin{define}{Definition of Continuity}
-%     A function f is continuous at a point a if...
-%   \end{define}
-%
-%   \begin{define}[green]{Important Theorem}
-%     This theorem is framed in green.
-%   \end{define}
-% ------------------------------------------------------------------------------
-\newenvironment{define}[2][bluecolor]
-  {
-  \vspace{2pt}
-  \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
-  \color{#1}
-  \textbf{\S~#2}\hspace{6pt}  % Start symbol for definition/theorem with a title
-  \vspace{4pt}
-  }
-{
-  \end{mdframed}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % ------------------------------------------------------------------------------
-% \handout[<is_shadow>]{<course_name>}{<date>}{<title>}{<author>}{<secondary_info>}{<number>}
+% \begin{state}[state#]{title text} 
+%     ... your content ... 
+% \end{state}
+% : formats a subsection title.
 % ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This command creates a formatted header for handouts with optional shadow effect.
-%   It provides a professional-looking title page for course materials.
+% DESCRIPTION: 
+%   Define the custom environment "state"
+%   This environment formats a subsection title in the following style:
+%   ```
+%   §<number> (<title>)
+%   ```
 %
-% FEATURES:
-%   - Configurable shadow effect (shadowbox vs framebox)
-%   - Automatic page numbering with handout identifier
-%   - Responsive width using \textwidth instead of hardcoded values
-%   - Professional layout with course information
+% ARGUMENTS:
+%   - An optional argument: a number to which the counter should be reset.
+%       If provided, the counter "statecounter" is set to (#1 - 1) so that after
+%       incrementing, the displayed number is exactly the value provided.
+%   - A mandatory argument: the title text.
 %
-% PARAMETERS:
-%   [<is_shadow>]     Boolean for shadow effect (optional, defaults to false)
-%   <course_name>     Name of the course (e.g., "CS 4510 Automata and Complexity")
-%   <date>            Date of the handout (e.g., "Jan 15, 2025")
-%   <title>           Title of the handout (e.g., "Lecture 1")
-%   <author>          Name of the author (e.g., "Prof. Alice")
-%   <secondary_info>  Additional info (e.g., "Scribe(s): Bob and Charlie")
-%   <number>          Handout number or identifier (used for page numbering)
+% USAGE:
+%   \begin{state}{title text}
+%       ... your content ...
+%   \end{state}
 %
-% DEPENDENCIES:
-%   \usepackage{fancybox}
-%   \usepackage{ifthen}
+%   \begin{state}[<number>]{title text}
+%       ... your content ...
+%   \end{state}
 %
-% USAGE EXAMPLES:
-%   \newpage\handout
-%   {CS 4510}{Jan 15, 2025}
-%   {Lecture 1}
-%   {Prof. Smith}{Scribe: John}
-%   {1}
+% Example:
+%   \begin{state}{title1}  % Displays: §1 (title1)
+%   \end{state}
 %
-%   \newpage\handout[true]
-%   {CS 1010}{Feb 1, 2025}
-%   {Assignment 1}
-%   {Prof. Jones}{Due: Feb 15}
-%   {A1}
+%   \begin{state}[2]{title4}  % Resets counter; displays: §2 (title4)
+%   \end{state}
 % ------------------------------------------------------------------------------
-\newcommand{\handout}[7][false]{%
-  \renewcommand{\thepage}{#7-\arabic{page}}%
-  \noindent
-  \begin{center}%
-  \ifthenelse{\equal{#1}{true}}{%
-    \makebox[\linewidth]{%
-      \shadowbox{%
-        \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
-          \vbox{%
-            \hbox to \linewidth{#2 \hfill #3}%
-            \vspace{4mm}%
-            \hbox to \linewidth{{\Large \hfill #4 \hfill}}%
-            \vspace{2mm}%
-            \hbox to \linewidth{{\it #5 \hfill #6}}%
-          }%
-        }%
-      }%
-    }%
+\newcounter{statecounter} % The counter "statecounter" is used to number the subsections.
+\NewDocumentEnvironment{state}{ o m }{%
+  % Check if the optional argument is provided.
+  % If yes, reset the counter to (value - 1) so that after incrementing it equals the provided value.
+  \IfNoValueTF{#1}{%
+    % No optional argument provided; increment normally.
+    \stepcounter{statecounter}%
   }{%
-    \makebox[\linewidth]{%
-      \framebox[\linewidth]{%
-        \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
-          \vbox{%
-            \hbox to \linewidth{#2 \hfill #3}%
-            \vspace{4mm}%
-            \hbox to \linewidth{{\Large \hfill #4 \hfill}}%
-            \vspace{2mm}%
-            \hbox to \linewidth{{\it #5 \hfill #6}}%
-          }%
-        }%
-      }%
-    }%
+    % Optional argument provided; reset counter accordingly.
+    \setcounter{statecounter}{\numexpr#1-1\relax}%
+    \stepcounter{statecounter}%
   }%
-  \end{center}%
-  \vspace*{4mm}%
+  % Create an unnumbered subsection with our custom format:
+  % "§<current counter> (<title text>)"
+  \subsection*{§\arabic{statecounter} (#2)}%
+}{%
+  % End of the "state" environment.
 }
 
 
@@ -634,22 +773,52 @@
 
 
 
+% This command inserts an image into the document with a customizable size, file path, and caption.
+%
+% Parameters:
+%   #1: Size of the image relative to the text width. The value should be a number (e.g., 0.5 for half the width).
+%   #2: File path of the image, relative to the current directory (e.g., images/filename.png).
+%   #3: Caption text to be displayed below the image.
+%
+% Usage:
+%   The \insertimage command automatically formats the image and places it within the document, ensuring proper
+%   positioning and captioning.
+%
+% Example:
+%   \insertimage{0.8}{images/graph.png}{This is an example caption.}
+%
+% The figure will be centered, and the image size will be 80% of the text width.
+\usepackage{graphicx}
+\newcommand{\insertimage}[3]{                           % \ref{fig:images/filename}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=#1\textwidth]{#2}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
+    \ \newline
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% resource - videos
+\usepackage{media9}                                 % \insertvideo{width}{height}{video path}{caption}{autoplay (true/false)}{loop (true/false)}
+\newcommand{\insertvideo}[6]{                           % \ref{fig:video path}
+    \begin{figure}[h!]
+        \centering
+        \includemedia[
+            width=#1\textwidth,        % Video width (relative to text width)
+            height=#2\textwidth,       % Video height (relative to text width)
+            activate=onclick,          % Activate the video on click
+            addresource=#3,            % Video file path (e.g., video.mp4)
+            flashvars={
+                src=#3 % Video source
+                &autoPlay=#5 % Autoplay true/false
+                &loop=#6     % Loop true/false
+            }
+        ]{}{VPlayer.swf}
+        \caption{#4}                   % Caption for the video
+        \label{fig:#3}                 % Label using the video path for easy referencing
+    \end{figure}
+}
 
 
 
@@ -756,187 +925,4 @@
   \vspace{3pt}\par\noindent\rule{\linewidth}{1pt}\vspace{10pt}%
 }
 % ------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% \begin{state}[state#]{title text} 
-%     ... your content ... 
-% \end{state}
-% : formats a subsection title.
-% ------------------------------------------------------------------------------
-% DESCRIPTION: 
-%   Define the custom environment "state"
-%   This environment formats a subsection title in the following style:
-%   ```
-%   §<number> (<title>)
-%   ```
-%
-% ARGUMENTS:
-%   - An optional argument: a number to which the counter should be reset.
-%       If provided, the counter "statecounter" is set to (#1 - 1) so that after
-%       incrementing, the displayed number is exactly the value provided.
-%   - A mandatory argument: the title text.
-%
-% USAGE:
-%   \begin{state}{title text}
-%       ... your content ...
-%   \end{state}
-%
-%   \begin{state}[<number>]{title text}
-%       ... your content ...
-%   \end{state}
-%
-% Example:
-%   \begin{state}{title1}  % Displays: §1 (title1)
-%   \end{state}
-%
-%   \begin{state}[2]{title4}  % Resets counter; displays: §2 (title4)
-%   \end{state}
-% ------------------------------------------------------------------------------
-\newcounter{statecounter} % The counter "statecounter" is used to number the subsections.
-\NewDocumentEnvironment{state}{ o m }{%
-  % Check if the optional argument is provided.
-  % If yes, reset the counter to (value - 1) so that after incrementing it equals the provided value.
-  \IfNoValueTF{#1}{%
-    % No optional argument provided; increment normally.
-    \stepcounter{statecounter}%
-  }{%
-    % Optional argument provided; reset counter accordingly.
-    \setcounter{statecounter}{\numexpr#1-1\relax}%
-    \stepcounter{statecounter}%
-  }%
-  % Create an unnumbered subsection with our custom format:
-  % "§<current counter> (<title text>)"
-  \subsection*{§\arabic{statecounter} (#2)}%
-}{%
-  % End of the "state" environment.
-}
-
-% ------------------------------------------------------------------------------
-% Define the alias environment "prop" as a wrapper for "state".
-%
-% This allows you to use either \begin{state} ... \end{state} or
-% \begin{prop} ... \end{prop} with identical behavior.
-% ------------------------------------------------------------------------------
-\NewDocumentEnvironment{prop}{ o m }{%
-  % Pass the arguments to the "state" environment.
-  \IfNoValueTF{#1}{%
-    \begin{state}{#2}%
-  }{%
-    \begin{state}[#1]{#2}%
-  }%
-}{%
-  \end{state}%
-}
-
-
-
-
-
-
-
-
-
-% % ------------------------------------------------------------------------------
-% % \begin{define}[<color>]{<title>} … \end{define}
-% % ------------------------------------------------------------------------------
-% % DESCRIPTION:
-% %   This environment creates a framed definition or theorem with colored background
-% %   and border. It provides a visually distinct way to present important concepts.
-% %
-% % FEATURES:
-% %   - Colored frame and background (10% opacity)
-% %   - Section symbol (§) followed by title
-% %   - Configurable colors for customization
-% %   - Proper spacing and typography
-% %
-% % PARAMETERS:
-% %   [<color>]    Background and border color (optional, defaults to bluecolor)
-% %   {<title>}    Title of the definition/theorem (required)
-% %
-% % DEPENDENCIES:
-% %   \usepackage{mdframed}
-% %
-% % USAGE EXAMPLES:
-% %   \begin{define}{Definition of Continuity}
-% %     A function f is continuous at a point a if...
-% %   \end{define}
-% %
-% %   \begin{define}[green]{Important Theorem}
-% %     This theorem is framed in green.
-% %   \end{define}
-% % ------------------------------------------------------------------------------
-% \newenvironment{define}[2][bluecolor]
-%   {
-%   \vspace{2pt}
-%   \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
-%   \color{#1}
-%   \textbf{\S~#2}\hspace{6pt}  % Start symbol for definition/theorem with a title
-%   \vspace{4pt}
-%   }
-% {
-%   \end{mdframed}
-% }
-
-
-
-
-
-
-
-
-
-
-% This command inserts an image into the document with a customizable size, file path, and caption.
-%
-% Parameters:
-%   #1: Size of the image relative to the text width. The value should be a number (e.g., 0.5 for half the width).
-%   #2: File path of the image, relative to the current directory (e.g., images/filename.png).
-%   #3: Caption text to be displayed below the image.
-%
-% Usage:
-%   The \insertimage command automatically formats the image and places it within the document, ensuring proper
-%   positioning and captioning.
-%
-% Example:
-%   \insertimage{0.8}{images/graph.png}{This is an example caption.}
-%
-% The figure will be centered, and the image size will be 80% of the text width.
-\usepackage{graphicx}
-\newcommand{\insertimage}[3]{                           % \ref{fig:images/filename}
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=#1\textwidth]{#2}
-        \caption{#3}
-        \label{fig:#2}
-    \end{figure}
-    \ \newline
-}
-
-% resource - videos
-\usepackage{media9}                                 % \insertvideo{width}{height}{video path}{caption}{autoplay (true/false)}{loop (true/false)}
-\newcommand{\insertvideo}[6]{                           % \ref{fig:video path}
-    \begin{figure}[h!]
-        \centering
-        \includemedia[
-            width=#1\textwidth,        % Video width (relative to text width)
-            height=#2\textwidth,       % Video height (relative to text width)
-            activate=onclick,          % Activate the video on click
-            addresource=#3,            % Video file path (e.g., video.mp4)
-            flashvars={
-                src=#3 % Video source
-                &autoPlay=#5 % Autoplay true/false
-                &loop=#6     % Loop true/false
-            }
-        ]{}{VPlayer.swf}
-        \caption{#4}                   % Caption for the video
-        \label{fig:#3}                 % Label using the video path for easy referencing
-    \end{figure}
-}
 
