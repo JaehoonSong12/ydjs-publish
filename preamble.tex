@@ -586,18 +586,16 @@
 % ------------------------------------------------------------------------------
 \newlength{\courseTitleWidth}
 \setlength{\courseTitleWidth}{0.70\textwidth}
-\newlength{\courseHeaderTopGap}
-\setlength{\courseHeaderTopGap}{6pt}
 % Main command (tabularx implementation)
 \NewDocumentCommand{\courseheader}{ O{} m m m m }{%
   \noindent
   \begingroup
-    \setlength{\parindent}{0pt}%
+    \setlength{\parindent}{0em}%
     % tabularx: left column fixed, right column flexible
     \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{\courseTitleWidth}
                                  @{\extracolsep{\fill}}>{\raggedleft\arraybackslash}X@{}}%
       % Top row (small left / small right)
-      {\small #2} & {\small #3} \\[\courseHeaderTopGap]
+      {\small #2} & {\small #3} \\[1em]
       % Main row: title (centered in left fixed column) and date (right)
       \multicolumn{1}{@{}p{\courseTitleWidth}@{}}{%
         \centering
