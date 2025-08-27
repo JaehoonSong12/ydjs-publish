@@ -322,6 +322,99 @@
 
 
 
+% ------------------------------------------------------------------------------
+% \insertimage{<width>}{<path>}{<caption>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command inserts an image into the document with automatic formatting,
+%   centering, and captioning. The image is sized relative to the text width.
+%
+% FEATURES:
+%   - Automatic figure environment with proper positioning
+%   - Centered image with customizable width
+%   - Automatic caption and label generation
+%   - Responsive sizing using \textwidth
+%
+% PARAMETERS:
+%   {<width>}     Image width as fraction of text width (e.g., 0.8 for 80%)
+%   {<path>}      File path relative to current directory (e.g., images/graph.png)
+%   {<caption>}   Caption text displayed below the image
+%
+% DEPENDENCIES:
+%   \usepackage{graphicx}
+%
+% USAGE EXAMPLES:
+%   \insertimage{0.8}{images/graph.png}{This is an example caption.}
+%   \insertimage{0.5}{logo.png}{Company logo}
+%
+% RETURNS:
+%   Figure reference: \ref{fig:<path>}
+% ------------------------------------------------------------------------------
+\newcommand{\insertimage}[3]{%
+    \begin{figure}[h!]%
+        \centering%
+        \includegraphics[width=#1\textwidth]{#2}%
+        \caption{#3}%
+        \label{fig:#2}%
+    \end{figure}%
+}
+
+% ------------------------------------------------------------------------------
+% \insertvideo{<width>}{<height>}{<path>}{<caption>}{<autoplay>}{<loop>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command inserts a video into the document with automatic formatting
+%   and media player controls. The video is sized relative to the text width.
+%
+% FEATURES:
+%   - Automatic figure environment with proper positioning
+%   - Centered video with customizable dimensions
+%   - Click-to-activate media player
+%   - Configurable autoplay and loop settings
+%   - Automatic caption and label generation
+%
+% PARAMETERS:
+%   {<width>}     Video width as fraction of text width (e.g., 0.8 for 80%)
+%   {<height>}    Video height as fraction of text width
+%   {<path>}      Video file path (e.g., video.mp4)
+%   {<caption>}   Caption text displayed below the video
+%   {<autoplay>}  Autoplay setting (true/false)
+%   {<loop>}      Loop setting (true/false)
+%
+% DEPENDENCIES:
+%   \usepackage{media9}
+%
+% USAGE EXAMPLES:
+%   \insertvideo{0.8}{0.6}{video.mp4}{Tutorial video}{false}{true}
+%   \insertvideo{0.6}{0.4}{demo.mp4}{Product demonstration}{true}{false}
+%
+% RETURNS:
+%   Figure reference: \ref{fig:<path>}
+% ------------------------------------------------------------------------------
+\newcommand{\insertvideo}[6]{%
+    \begin{figure}[h!]%
+        \centering%
+        \includemedia[%
+            width=#1\textwidth,%
+            height=#2\textwidth,%
+            activate=onclick,%
+            addresource=#3,%
+            flashvars={%
+                src=#3%
+                &autoPlay=#5%
+                &loop=#6%
+            }%
+        ]{}{VPlayer.swf}%
+        \caption{#4}%
+        \label{fig:#3}%
+    \end{figure}%
+}
+
+
+
+
+
+
 
 
 
@@ -440,6 +533,87 @@
   \vspace*{4mm}%
 }
 
+
+
+% ------------------------------------------------------------------------------
+% \courseheader[<scale>]{<left-top>}{<right-top>}{<title>}{<date>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command creates a professional course/assignment header with a two-line
+%   layout. The header automatically handles text wrapping and can optionally
+%   scale long titles to fit the available space.
+%
+% FEATURES:
+%   - Responsive layout using minipages sized from \textwidth
+%   - Configurable title block width via \courseTitleWidth
+%   - Optional title scaling for long/unbreakable text
+%   - Professional typography with proper spacing
+%   - Automatic rule separator below the header
+%
+% PARAMETERS:
+%   [<scale>]      Title scaling option: 'fit' for auto-scaling, omit for natural wrapping
+%   {<left-top>}   Small text on the left of the top row (e.g., course name)
+%   {<right-top>}  Small text on the right of the top row (e.g., semester)
+%   {<title>}      Main title text (centered in left block)
+%   {<date>}       Date text (right-aligned on second row)
+%
+% DEPENDENCIES:
+%   \usepackage{graphicx} (for scaling functionality)
+%
+% USAGE EXAMPLES:
+%   % Set title block width (adjust as needed)
+%   \setlength{\courseTitleWidth}{0.70\textwidth}
+%
+%   % Natural text wrapping (preferred for most cases)
+%   \courseheader{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
+%                {ICA (In-Class Assignment) 1}{August 18th}
+%
+%   % Auto-scaling for long titles
+%   \courseheader[fit]{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
+%                     {Very Long Title That Should Be Scaled}{August 18th}
+%
+% NOTES:
+%   - Adjust \courseTitleWidth once to globally change the left/right split
+%   - Use scaling only when natural wrapping is not acceptable
+%   - The header automatically handles text overflow gracefully
+% ------------------------------------------------------------------------------
+\newlength{\courseTitleWidth}
+\setlength{\courseTitleWidth}{0.70\textwidth}
+
+\NewDocumentCommand{\courseheader}{ O{} m m m m }{%
+  \noindent
+  % Top row: left and right text
+  \begin{minipage}[t]{\courseTitleWidth}%
+    {\small #2}%
+  \end{minipage}\hfill%
+  \begin{minipage}[t]{\dimexpr\textwidth-\courseTitleWidth\relax}%
+    \raggedleft{\small #3}%
+  \end{minipage}%
+  
+  \vspace{6pt}\par
+  
+  % Main title row: title (centered) and date (right)
+  \begin{minipage}[t]{\courseTitleWidth}%
+    \centering
+    \IfValueTF{#1}{%
+      % Scaling mode
+      \resizebox{\courseTitleWidth}{!}{\Huge\bfseries #4}%
+    }{%
+      % Natural wrapping mode
+      {\Huge\bfseries #4\par}%
+    }%
+  \end{minipage}\hfill%
+  \begin{minipage}[t]{\dimexpr\textwidth-\courseTitleWidth\relax}%
+    \raggedleft{\normalsize #5\par}%
+  \end{minipage}%
+  
+  \vspace{3pt}\par\noindent\rule{\linewidth}{1pt}\vspace{10pt}%
+}
+
+
+
+
+
 % ------------------------------------------------------------------------------
 % \begin{define}[<color>]{<title>} … \end{define}
 % ------------------------------------------------------------------------------
@@ -526,9 +700,62 @@
 
 
 
+% ------------------------------------------------------------------------------
+% \begin{state}[<number>]{<title>} ... \end{state}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a numbered subsection title with automatic counter
+%   management. It formats subsection titles in the style "§<number> (<title>)".
+%
+% FEATURES:
+%   - Automatic counter incrementing
+%   - Optional counter reset to specific value
+%   - Consistent formatting with section symbol (§)
+%   - Unnumbered subsection with custom title format
+%
+% PARAMETERS:
+%   [<number>]    Counter reset value (optional, resets counter to this value)
+%   {<title>}     Title text for the subsection (required)
+%
+% DEPENDENCIES:
+%   \usepackage{xparse}
+%
+% USAGE EXAMPLES:
+%   \begin{state}{First Section}
+%     Content of the first section...
+%   \end{state}
+%
+%   \begin{state}[5]{Reset Section}
+%     Content with counter reset to 5...
+%   \end{state}
+% ------------------------------------------------------------------------------
+\newcounter{statecounter}
+\NewDocumentEnvironment{state}{ o m }{%
+  \IfNoValueTF{#1}{%
+    \stepcounter{statecounter}%
+  }{%
+    \setcounter{statecounter}{\numexpr#1-1\relax}%
+    \stepcounter{statecounter}%
+  }%
+  \subsection*{§\arabic{statecounter} (#2)}%
+}{}
 
-
-
+% ------------------------------------------------------------------------------
+% Alias environment "prop" as a wrapper for "state".
+% The following two commands are identical:
+% \begin{state} ... \end{state}
+% \begin{prop} ... \end{prop}
+% ------------------------------------------------------------------------------
+\NewDocumentEnvironment{prop}{ o m }{%
+  % Pass the arguments to the "state" environment.
+  \IfNoValueTF{#1}{%
+    \begin{state}{#2}%
+  }{%
+    \begin{state}[#1]{#2}%
+  }%
+}{%
+  \end{state}%
+}
 
 % ------------------------------------------------------------------------------
 % \begin{subanswer}[<Color>][<isWhite>] … \end{subanswer}
@@ -698,286 +925,4 @@
   {\ \newline \color{#1}\noindent\textbf{Proof}: }
   {\par\hfill$\blacksquare$\newline\newpage}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% \begin{state}[<number>]{<title>} ... \end{state}
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This environment creates a numbered subsection title with automatic counter
-%   management. It formats subsection titles in the style "§<number> (<title>)".
-%
-% FEATURES:
-%   - Automatic counter incrementing
-%   - Optional counter reset to specific value
-%   - Consistent formatting with section symbol (§)
-%   - Unnumbered subsection with custom title format
-%
-% PARAMETERS:
-%   [<number>]    Counter reset value (optional, resets counter to this value)
-%   {<title>}     Title text for the subsection (required)
-%
-% DEPENDENCIES:
-%   \usepackage{xparse}
-%
-% USAGE EXAMPLES:
-%   \begin{state}{First Section}
-%     Content of the first section...
-%   \end{state}
-%
-%   \begin{state}[5]{Reset Section}
-%     Content with counter reset to 5...
-%   \end{state}
-% ------------------------------------------------------------------------------
-\newcounter{statecounter}
-\NewDocumentEnvironment{state}{ o m }{%
-  \IfNoValueTF{#1}{%
-    \stepcounter{statecounter}%
-  }{%
-    \setcounter{statecounter}{\numexpr#1-1\relax}%
-    \stepcounter{statecounter}%
-  }%
-  \subsection*{§\arabic{statecounter} (#2)}%
-}{}
-
-% ------------------------------------------------------------------------------
-% Alias environment "prop" as a wrapper for "state".
-% The following two commands are identical:
-% \begin{state} ... \end{state}
-% \begin{prop} ... \end{prop}
-% ------------------------------------------------------------------------------
-\NewDocumentEnvironment{prop}{ o m }{%
-  % Pass the arguments to the "state" environment.
-  \IfNoValueTF{#1}{%
-    \begin{state}{#2}%
-  }{%
-    \begin{state}[#1]{#2}%
-  }%
-}{%
-  \end{state}%
-}
-
-
-
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% \insertimage{<width>}{<path>}{<caption>}
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This command inserts an image into the document with automatic formatting,
-%   centering, and captioning. The image is sized relative to the text width.
-%
-% FEATURES:
-%   - Automatic figure environment with proper positioning
-%   - Centered image with customizable width
-%   - Automatic caption and label generation
-%   - Responsive sizing using \textwidth
-%
-% PARAMETERS:
-%   {<width>}     Image width as fraction of text width (e.g., 0.8 for 80%)
-%   {<path>}      File path relative to current directory (e.g., images/graph.png)
-%   {<caption>}   Caption text displayed below the image
-%
-% DEPENDENCIES:
-%   \usepackage{graphicx}
-%
-% USAGE EXAMPLES:
-%   \insertimage{0.8}{images/graph.png}{This is an example caption.}
-%   \insertimage{0.5}{logo.png}{Company logo}
-%
-% RETURNS:
-%   Figure reference: \ref{fig:<path>}
-% ------------------------------------------------------------------------------
-\newcommand{\insertimage}[3]{%
-    \begin{figure}[h!]%
-        \centering%
-        \includegraphics[width=#1\textwidth]{#2}%
-        \caption{#3}%
-        \label{fig:#2}%
-    \end{figure}%
-}
-
-% ------------------------------------------------------------------------------
-% \insertvideo{<width>}{<height>}{<path>}{<caption>}{<autoplay>}{<loop>}
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This command inserts a video into the document with automatic formatting
-%   and media player controls. The video is sized relative to the text width.
-%
-% FEATURES:
-%   - Automatic figure environment with proper positioning
-%   - Centered video with customizable dimensions
-%   - Click-to-activate media player
-%   - Configurable autoplay and loop settings
-%   - Automatic caption and label generation
-%
-% PARAMETERS:
-%   {<width>}     Video width as fraction of text width (e.g., 0.8 for 80%)
-%   {<height>}    Video height as fraction of text width
-%   {<path>}      Video file path (e.g., video.mp4)
-%   {<caption>}   Caption text displayed below the video
-%   {<autoplay>}  Autoplay setting (true/false)
-%   {<loop>}      Loop setting (true/false)
-%
-% DEPENDENCIES:
-%   \usepackage{media9}
-%
-% USAGE EXAMPLES:
-%   \insertvideo{0.8}{0.6}{video.mp4}{Tutorial video}{false}{true}
-%   \insertvideo{0.6}{0.4}{demo.mp4}{Product demonstration}{true}{false}
-%
-% RETURNS:
-%   Figure reference: \ref{fig:<path>}
-% ------------------------------------------------------------------------------
-\newcommand{\insertvideo}[6]{%
-    \begin{figure}[h!]%
-        \centering%
-        \includemedia[%
-            width=#1\textwidth,%
-            height=#2\textwidth,%
-            activate=onclick,%
-            addresource=#3,%
-            flashvars={%
-                src=#3%
-                &autoPlay=#5%
-                &loop=#6%
-            }%
-        ]{}{VPlayer.swf}%
-        \caption{#4}%
-        \label{fig:#3}%
-    \end{figure}%
-}
-
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% \courseheader[<scale>]{<left-top>}{<right-top>}{<title>}{<date>}
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This command creates a professional course/assignment header with a two-line
-%   layout. The header automatically handles text wrapping and can optionally
-%   scale long titles to fit the available space.
-%
-% FEATURES:
-%   - Responsive layout using minipages sized from \textwidth
-%   - Configurable title block width via \courseTitleWidth
-%   - Optional title scaling for long/unbreakable text
-%   - Professional typography with proper spacing
-%   - Automatic rule separator below the header
-%
-% PARAMETERS:
-%   [<scale>]      Title scaling option: 'fit' for auto-scaling, omit for natural wrapping
-%   {<left-top>}   Small text on the left of the top row (e.g., course name)
-%   {<right-top>}  Small text on the right of the top row (e.g., semester)
-%   {<title>}      Main title text (centered in left block)
-%   {<date>}       Date text (right-aligned on second row)
-%
-% DEPENDENCIES:
-%   \usepackage{graphicx} (for scaling functionality)
-%
-% USAGE EXAMPLES:
-%   % Set title block width (adjust as needed)
-%   \setlength{\courseTitleWidth}{0.70\textwidth}
-%
-%   % Natural text wrapping (preferred for most cases)
-%   \courseheader{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
-%                {ICA (In-Class Assignment) 1}{August 18th}
-%
-%   % Auto-scaling for long titles
-%   \courseheader[fit]{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
-%                     {Very Long Title That Should Be Scaled}{August 18th}
-%
-% NOTES:
-%   - Adjust \courseTitleWidth once to globally change the left/right split
-%   - Use scaling only when natural wrapping is not acceptable
-%   - The header automatically handles text overflow gracefully
-% ------------------------------------------------------------------------------
-\newlength{\courseTitleWidth}
-\setlength{\courseTitleWidth}{0.70\textwidth}
-
-\NewDocumentCommand{\courseheader}{ O{} m m m m }{%
-  \noindent
-  % Top row: left and right text
-  \begin{minipage}[t]{\courseTitleWidth}%
-    {\small #2}%
-  \end{minipage}\hfill%
-  \begin{minipage}[t]{\dimexpr\textwidth-\courseTitleWidth\relax}%
-    \raggedleft{\small #3}%
-  \end{minipage}%
-  
-  \vspace{6pt}\par
-  
-  % Main title row: title (centered) and date (right)
-  \begin{minipage}[t]{\courseTitleWidth}%
-    \centering
-    \IfValueTF{#1}{%
-      % Scaling mode
-      \resizebox{\courseTitleWidth}{!}{\Huge\bfseries #4}%
-    }{%
-      % Natural wrapping mode
-      {\Huge\bfseries #4\par}%
-    }%
-  \end{minipage}\hfill%
-  \begin{minipage}[t]{\dimexpr\textwidth-\courseTitleWidth\relax}%
-    \raggedleft{\normalsize #5\par}%
-  \end{minipage}%
-  
-  \vspace{3pt}\par\noindent\rule{\linewidth}{1pt}\vspace{10pt}%
-}
 
