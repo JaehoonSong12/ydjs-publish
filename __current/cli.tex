@@ -19,6 +19,23 @@
 
 
 
+% (3) Configuration Reference
+% choose your reference generation style:
+%   - for humanities: chicago-authordate, apa, mla
+%   - for sciences: numeric, numeric-comp, alphabetic
+%   - 
+\usepackage[
+  backend=biber,           % use biber for processing
+  style=numeric,           % bibliography style
+  citestyle=authoryear,    % in-text citations
+  sorting=ynt,             % year-name_of_auther–title order
+  % maxcitenames=2,          % limit authors in citations
+  % bibencoding=utf8         % if your .bib is UTF-8
+]{biblatex}
+\addbibresource{citations.bib}
+
+
+
 
 
 
@@ -33,13 +50,13 @@
 
   %% MATH 2106: Foundations of Mathematical Proof
   % \input{math2106/syllabus.tex}
-  \input{math2106/lecture01.tex}
+  % \input{math2106/lecture01.tex}
 
   % \input{math2106/proof01.tex}
   % \input{math2106/proof02.tex}
 
   % \input{math2106/hw00.tex}
-  % \input{math2106/hw01.tex}
+  \input{math2106/hw01.tex}
 
 
 
