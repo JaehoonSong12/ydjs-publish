@@ -789,11 +789,22 @@
   \subsection*{§\arabic{statecounter} (#2)}%
 }{}
 
-
-
-
-
-
+% ------------------------------------------------------------------------------
+% Alias environment "prop" as a wrapper for "state".
+% The following two commands are identical:
+% \begin{state} ... \end{state}
+% \begin{prop} ... \end{prop}
+% ------------------------------------------------------------------------------
+\NewDocumentEnvironment{prop}{ o m }{%
+  % Pass the arguments to the "state" environment.
+  \IfNoValueTF{#1}{%
+    \begin{state}{#2}%
+  }{%
+    \begin{state}[#1]{#2}%
+  }%
+}{%
+  \end{state}%
+}
 
 
 
