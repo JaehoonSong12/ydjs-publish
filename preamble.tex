@@ -147,6 +147,7 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 
+
 \usepackage{fancybox}       % for shadowbox
 \usepackage{mdframed}       % for framed environments
 \usepackage{datetime2}     % for date/time formatting
@@ -166,13 +167,13 @@
 \usepackage{fancyhdr}   % for custom headers/footers
 \usepackage{microtype}  % improves typography
 \usepackage{lipsum}     % (optional) dummy text for examples
-\usepackage{tabularx}
 \usepackage[table]{xcolor}
 \usepackage{changepage} % for adjustwidth
-\usepackage{xparse}
 \usepackage{etoolbox}
+\usepackage{xparse}
 
 % Tabular Data (Tables)
+\usepackage{tabularx}
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{caption}
@@ -539,16 +540,18 @@
 % \courseheader[<scale>]{<left-top>}{<right-top>}{<title>}{<date>}
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
-%   This command creates a professional course/assignment header with a two-line
-%   layout. The header automatically handles text wrapping and can optionally
-%   scale long titles to fit the available space.
+%   This command creates a professional course/assignment header using a two-line
+%   layout implemented with tabularx. The left column is a fixed-width block
+%   controlled by \courseTitleWidth and the right column flexes to fill the line.
+%   This implementation ensures strict column alignment and consistent vertical
+%   alignment for both rows.
 %
 % FEATURES:
-%   - Responsive layout using minipages sized from \textwidth
-%   - Configurable title block width via \courseTitleWidth
-%   - Optional title scaling for long/unbreakable text
-%   - Professional typography with proper spacing
-%   - Automatic rule separator below the header
+%   - Column widths controlled explicitly (\courseTitleWidth).
+%   - Uses tabularx so rows line up predictably when widths change.
+%   - Optional title scaling ('fit') for long/unbreakable text via \resizebox.
+%   - Professional typography with ragged text controls to avoid over-centering.
+%   - Automatic horizontal rule under the header.
 %
 % PARAMETERS:
 %   [<scale>]      Title scaling option: 'fit' for auto-scaling, omit for natural wrapping
@@ -558,7 +561,10 @@
 %   {<date>}       Date text (right-aligned on second row)
 %
 % DEPENDENCIES:
+%   \usepackage{tabularx}
 %   \usepackage{graphicx} (for scaling functionality)
+%   \usepackage{xparse}   (for \NewDocumentCommand)
+%   \usepackage{array}    (for column modifiers)
 %
 % USAGE EXAMPLES:
 %   % Set title block width (adjust as needed)
@@ -570,46 +576,45 @@
 %
 %   % Auto-scaling for long titles
 %   \courseheader[fit]{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
-%                     {Very Long Title That Should Be Scaled}{August 18th}
+%                 {Very Long Title That Should Be Scaled}{August 18th}
 %
 % NOTES:
-%   - Adjust \courseTitleWidth once to globally change the left/right split
-%   - Use scaling only when natural wrapping is not acceptable
-%   - The header automatically handles text overflow gracefully
+%   - Adjust \courseTitleWidth to change the left/right split globally.
+%   - Use scaling only when natural wrapping is unacceptable.
+%   - This tabularx version keeps rows strictly aligned and is a good choice when
+%     precise column behavior is desired.
 % ------------------------------------------------------------------------------
 \newlength{\courseTitleWidth}
 \setlength{\courseTitleWidth}{0.70\textwidth}
-
+\newlength{\courseHeaderTopGap}
+\setlength{\courseHeaderTopGap}{6pt}
+% Main command (tabularx implementation)
 \NewDocumentCommand{\courseheader}{ O{} m m m m }{%
   \noindent
-  % Top row: left and right text
-  \begin{minipage}[t]{\courseTitleWidth}%
-    {\small #2}%
-  \end{minipage}\hfill%
-  \begin{minipage}[t]{\dimexpr\textwidth-\courseTitleWidth\relax}%
-    \raggedleft{\small #3}%
-  \end{minipage}%
-  
-  \vspace{6pt}\par
-  
-  % Main title row: title (centered) and date (right)
-  \begin{minipage}[t]{\courseTitleWidth}%
-    \centering
-    \IfValueTF{#1}{%
-      % Scaling mode
-      \resizebox{\courseTitleWidth}{!}{\Huge\bfseries #4}%
-    }{%
-      % Natural wrapping mode
-      {\Huge\bfseries #4\par}%
-    }%
-  \end{minipage}\hfill%
-  \begin{minipage}[t]{\dimexpr\textwidth-\courseTitleWidth\relax}%
-    \raggedleft{\normalsize #5\par}%
-  \end{minipage}%
-  
-  \vspace{3pt}\par\noindent\rule{\linewidth}{1pt}\vspace{10pt}%
-}
+  \begingroup
+    \setlength{\parindent}{0pt}%
+    % tabularx: left column fixed, right column flexible
+    \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{\courseTitleWidth}
+                                 @{\extracolsep{\fill}}>{\raggedleft\arraybackslash}X@{}}%
+      % Top row (small left / small right)
+      {\small #2} & {\small #3} \\[\courseHeaderTopGap]
+      % Main row: title (centered in left fixed column) and date (right)
+      \multicolumn{1}{@{}p{\courseTitleWidth}@{}}{%
+        \centering
+        \IfValueTF{#1}{%
+          % scaling mode: scale horizontally to the left column width
+          \resizebox{\courseTitleWidth}{!}{\Huge\bfseries #4}%
+        }{%
+          % natural wrapping mode
+          {\Huge\bfseries #4}%
+        }%
+      } &
+      {\normalsize #5} \\
+    \end{tabularx}
 
+    \vspace{3pt}\par\noindent\rule{\linewidth}{1pt}\vspace{10pt}%
+  \endgroup
+}
 
 
 
