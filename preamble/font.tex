@@ -221,11 +221,21 @@
 %   If P \THEN Q, then \NOT Q \THEN \NOT P.
 %   P \IFF Q means P \THEN Q \AND Q \THEN P.
 % ------------------------------------------------------------------------------
-\newcommand{\NOT}{\ensuremath{\lnot}\xspace}        % Logical negation
+\newcommand{\NOT}{\ensuremath{\sim}\xspace}        % Logical negation (\lnot)
 \newcommand{\AND}{\ensuremath{\land}\xspace}        % Logical AND
 \newcommand{\OR}{\ensuremath{\lor}\xspace}          % Logical OR
 \newcommand{\THEN}{\ensuremath{\rightarrow}\xspace} % Logical implication
 \newcommand{\IFF}{\ensuremath{\leftrightarrow}\xspace} % Logical equivalence
+
+
+
+\newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace} % tautology
+\newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace} % contradiction
+
+
+
+
+
 
 % ------------------------------------------------------------------------------
 % Set Theory Operators
@@ -259,6 +269,10 @@
 \newcommand{\sCARD}{\ensuremath{\#}\xspace}         % Cardinality
 \newcommand{\sEMPTY}{\ensuremath{\emptyset}\xspace} % Empty set
 \newcommand{\sUNIV}{\ensuremath{\mathcal{U}}\xspace} % Universal set
+
+
+
+
 
 % ------------------------------------------------------------------------------
 % Indexed Set Operations
