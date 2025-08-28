@@ -108,28 +108,33 @@
       \[
         Q \equiv p \AND q \AND \NOT r.
       \]
-      Truth table for $Q$:\\
-      \begin{tabular}{|c|c|c||c|}
-      \hline
-      $p$ & $q$ & $r$ & $Q \equiv p \AND q \AND \NOT r$ \\
-      \hline
-      \FALSE & \FALSE & \FALSE & \FALSE \\
-      \hline
-      \FALSE & \FALSE & \TRUE  & \FALSE \\
-      \hline
-      \FALSE & \TRUE  & \FALSE & \FALSE \\
-      \hline
-      \FALSE & \TRUE  & \TRUE  & \FALSE \\
-      \hline
-      \TRUE  & \FALSE & \FALSE & \FALSE \\
-      \hline
-      \TRUE  & \FALSE & \TRUE  & \FALSE \\
-      \hline
-      \TRUE  & \TRUE  & \FALSE & \TRUE  \\
-      \hline
-      \TRUE  & \TRUE  & \TRUE  & \FALSE \\
-      \hline
-      \end{tabular}
+      Truth table for $Q$:
+      \begin{table}[h!]
+          \centering
+          \caption{Truth table for $Q \equiv p \AND q \AND \NOT r$}
+          \label{tab:q_truth_table_1}
+          \begin{tabular}{|c|c|c||c|}
+          \hline
+          $p$ & $q$ & $r$ & $Q \equiv p \AND q \AND \NOT r$ \\
+          \hline
+          \FALSE & \FALSE & \FALSE & \FALSE \\
+          \hline
+          \FALSE & \FALSE & \TRUE  & \FALSE \\
+          \hline
+          \FALSE & \TRUE  & \FALSE & \FALSE \\
+          \hline
+          \FALSE & \TRUE  & \TRUE  & \FALSE \\
+          \hline
+          \TRUE  & \FALSE & \FALSE & \FALSE \\
+          \hline
+          \TRUE  & \FALSE & \TRUE  & \FALSE \\
+          \hline
+          \TRUE  & \TRUE  & \FALSE & \TRUE  \\
+          \hline
+          \TRUE  & \TRUE  & \TRUE  & \FALSE \\
+          \hline
+          \end{tabular}
+      \end{table}
     \end{subanswer}
 
     \item This $Q$ is true when exactly two of $p$, $q$, and $r$ are 
@@ -139,43 +144,36 @@
       \[
         Q \equiv (p \AND q \AND \NOT r) \OR (p \AND r \AND \NOT q) \OR (q \AND r \AND \NOT p).
       \]
-      Truth table for $Q$:\\
-      \begin{tabular}{|c|c|c||c|}
-      \hline
-      $p$ & $q$ & $r$ & $Q$ \\
-      \hline
-      \FALSE & \FALSE & \FALSE & \FALSE \\
-      \hline
-      \FALSE & \FALSE & \TRUE  & \FALSE \\
-      \hline
-      \FALSE & \TRUE  & \FALSE & \FALSE \\
-      \hline
-      \FALSE & \TRUE  & \TRUE  & \TRUE  \\
-      \hline
-      \TRUE  & \FALSE & \FALSE & \FALSE \\
-      \hline
-      \TRUE  & \FALSE & \TRUE  & \TRUE  \\
-      \hline
-      \TRUE  & \TRUE  & \FALSE & \TRUE  \\
-      \hline
-      \TRUE  & \TRUE  & \TRUE  & \FALSE \\
-      \hline
-      \end{tabular}
+      Truth table for $Q$:
+      \begin{table}[h!]
+          \centering
+          \caption{Truth table for $Q$ when exactly two of $p$, $q$, and $r$ are true}
+          \label{tab:q_truth_table_2}
+          \begin{tabular}{|c|c|c||c|}
+          \hline
+          $p$ & $q$ & $r$ & $Q$ \\
+          \hline
+          \FALSE & \FALSE & \FALSE & \FALSE \\
+          \hline
+          \FALSE & \FALSE & \TRUE  & \FALSE \\
+          \hline
+          \FALSE & \TRUE  & \FALSE & \FALSE \\
+          \hline
+          \FALSE & \TRUE  & \TRUE  & \TRUE  \\
+          \hline
+          \TRUE  & \FALSE & \FALSE & \FALSE \\
+          \hline
+          \TRUE  & \FALSE & \TRUE  & \TRUE  \\
+          \hline
+          \TRUE  & \TRUE  & \FALSE & \TRUE  \\
+          \hline
+          \TRUE  & \TRUE  & \TRUE  & \FALSE \\
+          \hline
+          \end{tabular}
+      \end{table}
     \end{subanswer}
   \end{enumerate}
 
-% \begin{table}[h!] % or other float placement options
-%     \centering
-%     \caption{Your Table Caption}
-%     \label{tab:your_table_label}
-%     \begin{tabular}{|c|c|} % or your desired column specifications
-%         \hline
-%         Header 1 & Header 2 \\
-%         \hline
-%         Data 1   & Data 2   \\
-%         \hline
-%     \end{tabular}
-% \end{table}
 
   \item \textbf{Constructing Compound Propositions} (10 points)\\
   Find a compound proposition $Q$ in terms of propositions $p$, $q$,
@@ -189,40 +187,50 @@
     The compound proposition is $Q \equiv p \AND q \AND \NOT r$. 
     This is a minterm that is true for the specific truth assignment $p=\TRUE, q=\TRUE, r=\FALSE$. The truth table below confirms this.
 
-    \begin{tabular}{|c|c|c|c|c|}
-    \hline
-    $p$ & $q$ & $r$ & $\NOT r$ & $p \AND q \AND \NOT r$ \\
-    \hline
-    T & T & T & F & F \\
-    T & T & F & T & T \\
-    T & F & T & F & F \\
-    T & F & F & T & F \\
-    F & T & T & F & F \\
-    F & T & F & T & F \\
-    F & F & T & F & F \\
-    F & F & F & T & F \\
-    \hline
-    \end{tabular}
+    \begin{table}[h!]
+        \centering
+        \caption{Truth table for $Q \equiv p \AND q \AND \NOT r$}
+        \label{tab:q_truth_table_3}
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $\NOT r$ & $p \AND q \AND \NOT r$ \\
+        \hline
+        T & T & T & F & F \\
+        T & T & F & T & T \\
+        T & F & T & F & F \\
+        T & F & F & T & F \\
+        F & T & T & F & F \\
+        F & T & F & T & F \\
+        F & F & T & F & F \\
+        F & F & F & T & F \\
+        \hline
+        \end{tabular}
+    \end{table}
   \end{subanswer}
   \item This $Q$ is true when exactly two of $p$, $q$, and $r$ are
   true, and is false otherwise.
   \begin{subanswer}
     The compound proposition is $Q = (p \AND q \AND \NOT r) \OR (p \AND \NOT q \AND r) \OR (\NOT p \AND q \AND r)$. Each term in the disjunction corresponds to a case where exactly two of the variables are true. The truth table confirms the result.
 
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-    \hline
-    $p$ & $q$ & $r$ & $p \AND q \AND \NOT r$ & $p \AND \NOT q \AND r$ & $\NOT p \AND q \AND r$ & $Q$ \\
-    \hline
-    T & T & T & F & F & F & F \\
-    T & T & F & T & F & F & T \\
-    T & F & T & F & T & F & T \\
-    T & F & F & F & F & F & F \\
-    F & T & T & F & F & T & T \\
-    F & T & F & F & F & F & F \\
-    F & F & T & F & F & F & F \\
-    F & F & F & F & F & F & F \\
-    \hline
-    \end{tabular}
+    \begin{table}[h!]
+        \centering
+        \caption{Truth table for $Q$ when exactly two of $p$, $q$, and $r$ are true}
+        \label{tab:q_truth_table_4}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $p \AND q \AND \NOT r$ & $p \AND \NOT q \AND r$ & $\NOT p \AND q \AND r$ & $Q$ \\
+        \hline
+        T & T & T & F & F & F & F \\
+        T & T & F & T & F & F & T \\
+        T & F & T & F & T & F & T \\
+        T & F & F & F & F & F & F \\
+        F & T & T & F & F & T & T \\
+        F & T & F & F & F & F & F \\
+        F & F & T & F & F & F & F \\
+        F & F & F & F & F & F & F \\
+        \hline
+        \end{tabular}
+    \end{table}
   \end{subanswer}
   \end{enumerate}
 
@@ -235,51 +243,164 @@
   \item Let $p$, $q$, and $r$ be propositions.  Determine whether the 
   following pairs of compound propositions are logically equivalent.
   Justify your answer \textbf{without using a full truth table}.
+  \begin{define}{Logical Equivalences}
+    The following table references all the logical equivalences listed by textbook authers. (Some of equivalences are named by myself.)
+    \begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{|p{5.0cm}|p{5.0cm}|p{5.2cm}|}
+    \hline
+    \rowcolor[HTML]{E0E0E0}
+    \multicolumn{2}{|l|}{\textbf{Expression}} & \textbf{Name} \\
+    \hline
+    $\,p \wedge q \equiv q \wedge p$ & $\,p \vee q \equiv q \vee p$ & Commutative laws \\
+    \hline
+    $\, (p \wedge q) \wedge r \equiv p \wedge (q \wedge r)$ & $\, (p \vee q) \vee r \equiv p \vee (q \vee r)$ & Associative laws \\
+    \hline
+    $\,p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$ & $\,p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$ & Distributive laws \\
+    \hline
+    $\,\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$ & $\,\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$ & De Morgan's laws \\
+    \hline
+    \multicolumn{2}{|l|}{$\,\overline{\overline{p}} \equiv p$} & Double negation law \\
+    \hline
+    $\,p \wedge \boldsymbol{T} \equiv p$ & $\,p \vee \boldsymbol{F} \equiv p$ & Identity laws \\
+    \hline
+    $\,p \vee \boldsymbol{T} \equiv \boldsymbol{T}$ & $\,p \wedge \boldsymbol{F} \equiv \boldsymbol{F}$ & Domination laws \\
+    \hline
+    $\,p \wedge p \equiv p$ & $\,p \vee p \equiv p$ & Idempotent laws \\
+    \hline
+    \multicolumn{2}{|l|}{$\,p \rightarrow q \equiv \bar{p} \vee q$} & Implication equivalence \\
+    \hline
+    \multicolumn{2}{|l|}{$\,\overline{p \rightarrow q} \equiv p \wedge \bar{q}$} & Negation of implication \\
+    \hline
+    \multicolumn{2}{|l|}{$\,p \rightarrow q \equiv \bar{q} \rightarrow \bar{p}$} & Contrapositive equivalence \\
+    \hline
+    \multicolumn{2}{|l|}{$\,p \vee \bar{p} \equiv \boldsymbol{T}$} & Law of Tautology \\
+    \hline
+    \multicolumn{2}{|l|}{$\,p \wedge \bar{p} \equiv \boldsymbol{F}$} & Law of Contradiction \\
+    \hline
+    \end{tabular}
+    \end{table}
+    
+    \begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \setlength{\tabcolsep}{8pt}
+    \begin{tabular}{|p{8.0cm}|p{8.0cm}|}
+    \hline
+    \rowcolor[HTML]{E0E0E0}
+    \multicolumn{2}{|l|}{\textbf{Expression}} \\
+    \hline
+    Commutative laws, $\,p \wedge q \equiv q \wedge p$ & Commutative laws, $\,p \vee q \equiv q \vee p$ \\
+    \hline
+    Associative laws, $\,(p \wedge q) \wedge r \equiv p \wedge (q \wedge r)$ & Associative laws, $\,(p \vee q) \vee r \equiv p \vee (q \vee r)$ \\
+    \hline
+    Distributive laws, $\,p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$ & Distributive laws, $\,p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$ \\
+    \hline
+    DeMorgan's laws, $\,\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$ & DeMorgan's laws, $\,\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$ \\
+    \hline
+    \multicolumn{2}{|l|}{Double negation law, $\,\overline{\overline{p}} \equiv p$} \\
+    \hline
+    Identity laws, $\,p \wedge \boldsymbol{T} \equiv p$ & Identity laws, $\,p \vee \boldsymbol{F} \equiv p$ \\
+    \hline
+    Domination laws, $\,p \vee \boldsymbol{T} \equiv \boldsymbol{T}$ & Domination laws, $\,p \wedge \boldsymbol{F} \equiv \boldsymbol{F}$ \\
+    \hline
+    Idempotent laws, $\,p \wedge p \equiv p$ & Idempotent laws, $\,p \vee p \equiv p$ \\
+    \hline
+    \multicolumn{2}{|l|}{Implication equivalence, $\,p \rightarrow q \equiv \bar{p} \vee q$} \\
+    \hline
+    \multicolumn{2}{|l|}{Negation of implication, $\,\overline{p \rightarrow q} \equiv p \wedge \bar{q}$} \\
+    \hline
+    \multicolumn{2}{|l|}{Contrapositive equivalence, $p \rightarrow q \equiv \bar{q} \rightarrow \bar{p}$} \\
+    \hline
+    \multicolumn{2}{|l|}{Law of Tautology, $p \vee \bar{p} \equiv \boldsymbol{T}$} \\
+    \hline
+    \multicolumn{2}{|l|}{Law of Contradiction, $p \wedge \bar{p} \equiv \boldsymbol{F}$} \\
+    \hline
+    \end{tabular}
+    \end{table}
+  \end{define}
 
   \begin{enumerate}
     \item $(p \THEN q) \AND (p \THEN r)$ and $p \THEN (q \AND r)$.\\
     \begin{subanswer}
-      Use the equivalence $a \THEN b \equiv \NOT a \OR b$ and the distributive law.
+      \textbf{They are logically equivalent.} We prove this step by step using the logical equivalences from the reference table:
+      
+      \textbf{Step 1:} Apply the \textbf{implication equivalence} ($p \rightarrow q \equiv \bar{p} \vee q$) to both implications:
       \[
         (p \THEN q) \AND (p \THEN r)
         \equiv (\NOT p \OR q) \AND (\NOT p \OR r)
-        \equiv \NOT p \OR (q \AND r),
       \]
-      by the distributive identity $(A\OR B)\AND(A\OR C)\equiv A\OR(B\AND C)$.
-      Since $\NOT p \OR (q \AND r)\equiv p \THEN (q \AND r)$, the two formulas are
-      logically equivalent.
+      
+      \textbf{Step 2:} Apply the \textbf{distributive law} ($p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$) in reverse:
+      \[
+        (\NOT p \OR q) \AND (\NOT p \OR r)
+        \equiv \NOT p \OR (q \AND r)
+      \]
+      
+      \textbf{Step 3:} Apply the \textbf{implication equivalence} again to the right side:
+      \[
+        \NOT p \OR (q \AND r) \equiv p \THEN (q \AND r)
+      \]
+      
+      Therefore, $(p \THEN q) \AND (p \THEN r) \equiv p \THEN (q \AND r)$, so the two formulas are logically equivalent.
     \end{subanswer}
 
     \item $(p \THEN r) \AND (q \THEN r)$ and $(p \OR q) \THEN r$.\\
     \begin{subanswer}
-      Transform each implication:
+      \textbf{They are logically equivalent.} We prove this step by step using the logical equivalences from the reference table:
+      
+      \textbf{Step 1:} Apply the \textbf{implication equivalence} ($p \rightarrow q \equiv \bar{p} \vee q$) to both implications:
       \[
         (p \THEN r) \AND (q \THEN r)
-        \equiv (\NOT p \OR r) \AND (\NOT q \OR r).
+        \equiv (\NOT p \OR r) \AND (\NOT q \OR r)
       \]
-      Apply the distributive identity again:
+      
+      \textbf{Step 2:} Apply the \textbf{distributive law} ($p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$) in reverse:
       \[
         (\NOT p \OR r) \AND (\NOT q \OR r)
-        \equiv (\NOT p \AND \NOT q) \OR r.
+        \equiv (\NOT p \AND \NOT q) \OR r
       \]
-      On the other hand,
+      
+      \textbf{Step 3:} For the right side, apply the \textbf{implication equivalence} first:
       \[
-        (p \OR q) \THEN r \equiv \NOT(p \OR q) \OR r \equiv (\NOT p \AND \NOT q) \OR r.
+        (p \OR q) \THEN r \equiv \NOT(p \OR q) \OR r
       \]
-      The two expressions are identical, so the pair is logically equivalent.
+      
+      \textbf{Step 4:} Apply \textbf{De Morgan's law} ($\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$):
+      \[
+        \NOT(p \OR q) \OR r \equiv (\NOT p \AND \NOT q) \OR r
+      \]
+      
+      Since both expressions simplify to $(\NOT p \AND \NOT q) \OR r$, the two formulas are logically equivalent.
     \end{subanswer}
 
     \item $(p \THEN q) \THEN r$ and $p \THEN (q \THEN r)$.\\
     \begin{subanswer}
-      Rewrite each with $\NOT$ and $\OR$:
+      \textbf{They are NOT logically equivalent.} We prove this step by step using the logical equivalences from the reference table:
+      
+      \textbf{Step 1:} For the left side, apply the \textbf{implication equivalence} ($p \rightarrow q \equiv \bar{p} \vee q$) to the inner implication:
       \[
-        (p \THEN q) \THEN r \equiv \NOT(\NOT p \OR q) \OR r \equiv (p \AND \NOT q) \OR r.
+        (p \THEN q) \THEN r \equiv \NOT(\NOT p \OR q) \OR r
       \]
-      While
+      
+      \textbf{Step 2:} Apply \textbf{De Morgan's law} ($\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$) to $\NOT(\NOT p \OR q)$:
       \[
-        p \THEN (q \THEN r) \equiv \NOT p \OR (\NOT q \OR r) \equiv \NOT p \OR \NOT q \OR r.
+        \NOT(\NOT p \OR q) \OR r \equiv (p \AND \NOT q) \OR r
       \]
-      These are not logically equivalent. A counterexample is $p=\FALSE,\ q=\TRUE,\ r=\FALSE$:
+      
+      \textbf{Step 3:} For the right side, apply the \textbf{implication equivalence} to both implications:
+      \[
+        p \THEN (q \THEN r) \equiv \NOT p \OR (\NOT q \OR r)
+      \]
+      
+      \textbf{Step 4:} Apply the \textbf{associative law} ($(p \vee q) \vee r \equiv p \vee (q \vee r)$) to the right side:
+      \[
+        \NOT p \OR (\NOT q \OR r) \equiv \NOT p \OR \NOT q \OR r
+      \]
+      
+      Since $(p \AND \NOT q) \OR r \not\equiv \NOT p \OR \NOT q \OR r$, the two formulas are not logically equivalent. A counterexample is $p=\FALSE,\ q=\TRUE,\ r=\FALSE$:
       \[
         (p \THEN q) \THEN r = ( \FALSE \THEN \TRUE ) \THEN \FALSE = \TRUE \THEN \FALSE = \FALSE,
       \]
@@ -287,26 +408,36 @@
       \[
         p \THEN (q \THEN r) = \FALSE \THEN (\TRUE \THEN \FALSE) = \FALSE \THEN \FALSE = \TRUE.
       \]
-      Thus the two formulas differ, so they are not logically equivalent.
+      Therefore, the two formulas are not logically equivalent.
     \end{subanswer}
 
     \item $(p \OR q) \THEN r$ and $(p \THEN r) \OR (q \THEN r)$.\\
     \begin{subanswer}
-      Express both sides with $\NOT$ and $\OR$:
+      \textbf{They are NOT logically equivalent.} We prove this step by step using the logical equivalences from the reference table:
+      
+      \textbf{Step 1:} For the left side, apply the \textbf{implication equivalence} ($p \rightarrow q \equiv \bar{p} \vee q$):
       \[
-        (p \OR q) \THEN r \equiv \NOT(p \OR q) \OR r \equiv (\NOT p \AND \NOT q) \OR r.
+        (p \OR q) \THEN r \equiv \NOT(p \OR q) \OR r
       \]
-      For the right-hand side,
+      
+      \textbf{Step 2:} Apply \textbf{De Morgan's law} ($\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$):
+      \[
+        \NOT(p \OR q) \OR r \equiv (\NOT p \AND \NOT q) \OR r
+      \]
+      
+      \textbf{Step 3:} For the right side, apply the \textbf{implication equivalence} to both implications:
       \[
         (p \THEN r) \OR (q \THEN r) \equiv (\NOT p \OR r) \OR (\NOT q \OR r)
-        \equiv \NOT p \OR \NOT q \OR r.
       \]
-      These are not equivalent in general because
+      
+      \textbf{Step 4:} Apply the \textbf{associative law} ($(p \vee q) \vee r \equiv p \vee (q \vee r)$) to group the terms:
       \[
-        (\NOT p \AND \NOT q) \OR r \not\equiv \NOT p \OR \NOT q \OR r.
+        (\NOT p \OR r) \OR (\NOT q \OR r) \equiv \NOT p \OR \NOT q \OR r
       \]
-      Note the entailment $(\NOT p \AND \NOT q) \OR r \implies \NOT p \OR \NOT q \OR r$ holds,
-      but the converse fails. A concrete counterexample is $p=\FALSE,\ q=\TRUE,\ r=\FALSE$:
+      
+      Since $(\NOT p \AND \NOT q) \OR r \not\equiv \NOT p \OR \NOT q \OR r$, the two formulas are not logically equivalent. Note that $(\NOT p \AND \NOT q) \OR r \implies \NOT p \OR \NOT q \OR r$ holds (by the \textbf{domination law}), but the converse fails.
+      
+      A concrete counterexample is $p=\FALSE,\ q=\TRUE,\ r=\FALSE$:
       \[
         (p \OR q) \THEN r = (\FALSE \OR \TRUE) \THEN \FALSE = \TRUE \THEN \FALSE = \FALSE,
       \]
@@ -315,8 +446,7 @@
         (p \THEN r) \OR (q \THEN r) = (\FALSE \THEN \FALSE) \OR (\TRUE \THEN \FALSE)
         = \TRUE \OR \FALSE = \TRUE.
       \]
-      Therefore the two formulas are not logically equivalent; moreover
-      $(p \OR q) \THEN r$ implies $(p \THEN r) \OR (q \THEN r)$, but not conversely.
+      Therefore, the two formulas are not logically equivalent; moreover, $(p \OR q) \THEN r$ implies $(p \THEN r) \OR (q \THEN r)$, but not conversely.
     \end{subanswer}
   \end{enumerate}
 
