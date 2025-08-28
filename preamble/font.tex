@@ -1,0 +1,106 @@
+% recommended packages
+\usepackage{amssymb} % math symbols + DeclarePairedDelimiter
+\usepackage{amsfonts} % math symbols + DeclarePairedDelimiter
+\usepackage{dsfont}                    % if you prefer \mathds (optional)
+\usepackage{xspace}                    % makes text-mode macros nicer
+\usepackage{accents}                   % for better wide bars if needed
+\usepackage{mathtools}
+
+
+
+\usepackage{mathrsfs}
+
+
+
+
+
+
+
+% usage: \paren*{...}, \abs*{...}, \setbr*{...}
+% the * form auto-sizes; use no * for fixed-size parentheses
+
+% auto-sizing delimiters
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\set}{\{}{\}}
+\DeclarePairedDelimiter{\bracket}{[}{]}
+\DeclarePairedDelimiter{\anglebr}{\langle}{\rangle}
+
+
+
+
+
+
+
+
+
+% ---------- Prefer semantic, readable names ----------
+% Full-word readable names (usable in text thanks to \xspace)
+\newcommand{\naturals}{\ensuremath{\mathds{N}}\xspace}
+\newcommand{\integers}{\ensuremath{\mathds{Z}}\xspace}
+\newcommand{\rationals}{\ensuremath{\mathds{Q}}\xspace}
+\newcommand{\reals}{\ensuremath{\mathds{R}}\xspace}
+\newcommand{\complexes}{\ensuremath{\mathds{C}}\xspace}
+
+
+
+% ---------- Quantifier helpers (semantic) ----------
+\newcommand{\Forall}[2]{\ensuremath{\forall #1\,\left[#2\right]}}
+\newcommand{\Exists}[2]{\ensuremath{\exists #1\,\left[#2\right]}}
+
+% Example: \Forall{x}{P(x)} produces: ∀ x [ P(x) ]
+
+% ---------- Logical connectives (semantic shortcuts) ----------
+\newcommand{\NOT}{\ensuremath{\lnot}\xspace}    % or \neg
+\newcommand{\AND}{\ensuremath{\land}\xspace}
+\newcommand{\OR}{\ensuremath{\lor}\xspace}
+\newcommand{\IMPLIES}{\ensuremath{\rightarrow}\xspace}
+\newcommand{\IFF}{\ensuremath{\leftrightarrow}\xspace}
+\newcommand{\ENTAILS}{\ensuremath{\models}\xspace}
+\newcommand{\PROVES}{\ensuremath{\vdash}\xspace}
+
+% % ---------- Overline / complement helpers ----------
+% % Small expressions: use \overline{...}
+% \newcommand{\overbar}[1]{\ensuremath{\overline{#1}}}
+
+% % For a nicer-looking wide bar on complicated expressions try accents:
+% \newcommand{\widebar}[1]{\ensuremath{\accentset{\rule{.4em}{.6pt}}{#1}}}
+% % (the look can be tuned; or use mathabx's \widebar but be aware it changes other glyphs)
+
+% % Set complement (semantic)
+% \newcommand{\compl}[1]{\ensuremath{#1^{c}}}
+
+% % ---------- Other small helpers ----------
+% \newcommand{\setbuilder}[2]{\ensuremath{\{\,#1 \mid #2\,\}}} % \setbuilder{x}{P(x)}
+% \newcommand{\suchthat}{\mid}
+
+
+
+
+
+
+
+
+
+
+
+% ---------------- mathfrak / mathcal helpers ----------------
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+
+% Option: use \mathscr via mathrsfs if you prefer fancier calligraphic: \scrip{F}
+\newcommand{\scrip}{\mathscr}
+
+% common short names
+\newcommand{\frg}{\mathfrak{g}}
+\newcommand{\frh}{\mathfrak{h}}
+\newcommand{\frp}{\mathfrak{p}}
+\newcommand{\frm}{\mathfrak{m}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cH}{\mathcal{H}}
