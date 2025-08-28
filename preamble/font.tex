@@ -36,11 +36,11 @@
 
 % ---------- Prefer semantic, readable names ----------
 % Full-word readable names (usable in text thanks to \xspace)
-\newcommand{\naturals}{\ensuremath{\mathds{N}}\xspace}
-\newcommand{\integers}{\ensuremath{\mathds{Z}}\xspace}
-\newcommand{\rationals}{\ensuremath{\mathds{Q}}\xspace}
-\newcommand{\reals}{\ensuremath{\mathds{R}}\xspace}
-\newcommand{\complexes}{\ensuremath{\mathds{C}}\xspace}
+\newcommand{\setN}{\ensuremath{\mathds{N}}\xspace}
+\newcommand{\setZ}{\ensuremath{\mathds{Z}}\xspace}
+\newcommand{\setQ}{\ensuremath{\mathds{Q}}\xspace}
+\newcommand{\setR}{\ensuremath{\mathds{R}}\xspace}
+\newcommand{\setC}{\ensuremath{\mathds{C}}\xspace}
 
 
 
@@ -54,14 +54,12 @@
 \newcommand{\NOT}{\ensuremath{\lnot}\xspace}    % or \neg
 \newcommand{\AND}{\ensuremath{\land}\xspace}
 \newcommand{\OR}{\ensuremath{\lor}\xspace}
-\newcommand{\IMPLIES}{\ensuremath{\rightarrow}\xspace}
+\newcommand{\THEN}{\ensuremath{\rightarrow}\xspace}
 \newcommand{\IFF}{\ensuremath{\leftrightarrow}\xspace}
-\newcommand{\ENTAILS}{\ensuremath{\models}\xspace}
-\newcommand{\PROVES}{\ensuremath{\vdash}\xspace}
 
-% % ---------- Overline / complement helpers ----------
-% % Small expressions: use \overline{...}
-% \newcommand{\overbar}[1]{\ensuremath{\overline{#1}}}
+% ---------- Overline / complement helpers ----------
+% Small expressions: use \overline{...}
+\newcommand{\sNOT}[1]{\ensuremath{\overline{#1}}}
 
 % % For a nicer-looking wide bar on complicated expressions try accents:
 % \newcommand{\widebar}[1]{\ensuremath{\accentset{\rule{.4em}{.6pt}}{#1}}}
