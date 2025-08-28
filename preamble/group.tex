@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grouping Shortcuts for VS Code (keybindings.json)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {
+%   "key": "ctrl+shift+9",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorTextFocus && editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\group{${TM_SELECTED_TEXT:${1}}}"
+%   }
+% },
+% {
+%   "key": "ctrl+9",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorTextFocus && editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\coord{${TM_SELECTED_TEXT:${1}}}"
+%   }
+% },
+% {
+%   "key": "ctrl+shift+\\",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorTextFocus && editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\abs{${TM_SELECTED_TEXT:${1}}}"
+%   }
+% },
+% {
+%   "key": "ctrl+[",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorTextFocus && editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\arr{${TM_SELECTED_TEXT:${1}}}"
+%   }
+% },
+% {
+%   "key": "ctrl+shift+[",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorTextFocus && editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\set{${TM_SELECTED_TEXT:${1}}}"
+%   }
+% },
+
+
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% Mathematical Grouping Commands
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Commands for mathematical grouping and delimiters with automatic sizing.
+%   These commands are designed for quick insertion via VS Code keybindings.
+%
+% FEATURES:
+%   - Automatic sizing with \left and \right
+%   - Safe to use in text mode with \xspace
+%   - VS Code keybinding integration
+%   - Consistent formatting across documents
+%
+% DEPENDENCIES:
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The inner product \coord{x,y} defines a metric.
+%   The group \group{G} acts on the set \set{X}.
+%   The absolute value \abs{x} is always non-negative.
+%   The interval \arr{a,b} contains all real numbers between a and b.
+% ------------------------------------------------------------------------------
+\newcommand{\coord}[1]{\left\langle#1\right\rangle\xspace}  % Angle brackets: ⟨x⟩
+\newcommand{\group}[1]{\left(#1\right)\xspace}              % Parentheses: (x)
+\newcommand{\abs}[1]{\left|#1\right|\xspace}                % Absolute value: |x|
+\newcommand{\arr}[1]{\left[#1\right]\xspace}                % Square brackets: [x]
+\newcommand{\set}[1]{\left\{#1\right\}\xspace}              % Curly braces: {x}
