@@ -24,80 +24,84 @@
     \item $(p \THEN r) \AND (q \THEN r)$ and $(p \OR q) \THEN r$.
     \begin{subprove}
       Let \(p,q,r\) be propositions. 
-      We begin by applying the \textbf{Implication Equivalence} ($A \THEN B \equiv \NOT A \OR B$) to both implications on the left-hand side:
       \[
-      (p \THEN r) \AND (q \THEN r) \equiv (\NOT p \OR r) \AND (\NOT q \OR r).
+        (p\THEN r)\AND(q\THEN r) \equiv (\NOT p\OR r)\AND(\NOT q\OR r)
       \]
-      By the \textbf{Distributive Law} in the form $(A \OR B) \AND (A \OR C) \equiv A \OR (B \AND C)$, we have
+      by applying the \textbf{Implication Equivalence} \(p\THEN q\equiv~\NOT p\OR q\) to both implications.
+      Moreover, by \textbf{Distributive Laws} in the form \((p\OR q)\AND(p\OR r)\equiv p\OR(q\AND r)\), 
       \[
-      (\NOT p \OR r) \AND (\NOT q \OR r) \equiv (\NOT p \AND \NOT q) \OR r.
+        (\NOT p\OR r)\AND(\NOT q\OR r) \equiv (\NOT p\AND\NOT q)\OR r.
       \]
-      Now we consider the right-hand side. By applying the \textbf{Implication Equivalence}, we get
+      For the right side, applying the \textbf{Implication Equivalence} first,
       \[
-      (p \OR q) \THEN r \equiv \NOT(p \OR q) \OR r.
+        (p\OR q)\THEN r \equiv \NOT(p\OR q)\OR r.
       \]
-      Lastly, by \textbf{De Morgan's Law} ($\NOT(A \OR B) \equiv \NOT A \AND \NOT B$), we have
+      Then by \textbf{De Morgan's Laws} \(\overline{p\vee q}\equiv\bar{p}\wedge\bar{q}\),
       \[
-      \NOT(p \OR q) \OR r \equiv (\NOT p \AND \NOT q) \OR r.
+        \NOT(p\OR q)\OR r \equiv (\NOT p\AND\NOT q)\OR r.
       \]
-      Since both expressions simplify to $(\NOT p \AND \NOT q) \OR r$, the two formulas are logically equivalent. $\blacksquare$
+      Thus, both expressions simplify to \((\NOT p\AND\NOT q)\OR r\), so the two formulas are \textbf{logically equivalent}.
     \end{subprove}
 
     \item $(p \THEN q) \THEN r$ and $p \THEN (q \THEN r)$.
     \begin{subprove}
-      \textbf{They are NOT logically equivalent.}
-      We simplify the left-hand side expression first by applying the \textbf{Implication Equivalence} ($A \THEN B \equiv \NOT A \OR B$):
+      Let \(p,q,r\) be propositions. 
       \[
-      (p \THEN q) \THEN r \equiv \NOT(p \THEN q) \OR r \equiv \NOT(\NOT p \OR q) \OR r.
+        (p\THEN q)\THEN r \equiv \NOT(\NOT p\OR q)\OR r
       \]
-      Next, by applying \textbf{De Morgan's Law} ($\NOT(\NOT A \OR B) \equiv A \AND \NOT B$), we obtain
+      by applying the \textbf{Implication Equivalence} \(p\THEN q\equiv~\NOT p\OR q\) to the inner implication.
+      Next, by \textbf{De Morgan's Laws} \(\overline{p\vee q}\equiv\bar{p}\wedge\bar{q}\), we obtain
       \[
-      \NOT(\NOT p \OR q) \OR r \equiv (p \AND \NOT q) \OR r.
+        \NOT(\NOT p\OR q)\OR r \equiv (p\AND\NOT q)\OR r.
       \]
-      Now we consider the right-hand side. By applying the \textbf{Implication Equivalence} twice, we get
+      For the right side, applying the \textbf{Implication Equivalence} twice,
       \[
-      p \THEN (q \THEN r) \equiv \NOT p \OR (\NOT q \OR r).
+        p\THEN(q\THEN r) \equiv \NOT p\OR(\NOT q\OR r).
       \]
-      Since $(p \AND \NOT q) \OR r$ is not logically equivalent to $\NOT p \OR \NOT q \OR r$, the two expressions are not equivalent.
-      For instance, if we take $p=\FALSE$, $q=\TRUE$, and $r=\FALSE$, the left-hand expression is
+      By the \textbf{Associative Laws} \((p\vee q)\vee r\equiv p\vee(q\vee r)\),
       \[
-      (\FALSE \THEN \TRUE) \THEN \FALSE \equiv \TRUE \THEN \FALSE \equiv \FALSE,
+        \NOT p\OR(\NOT q\OR r) \equiv \NOT p\OR\NOT q\OR r.
       \]
-      while the right-hand expression is
+      Since \((p\AND\NOT q)\OR r\not\equiv\NOT p\OR\NOT q\OR r\), the two expressions are not equivalent.
+      For instance, if we take \(p=\FALSE\), \(q=\TRUE\), and \(r=\FALSE\), the left expression is
       \[
-      \FALSE \THEN (\TRUE \THEN \FALSE) \equiv \FALSE \THEN \FALSE \equiv \TRUE.
+        (\FALSE\THEN\TRUE)\THEN\FALSE \equiv \TRUE\THEN\FALSE \equiv \FALSE,
       \]
-      As the truth values differ for the same assignment, the two compound propositions are not logically equivalent. $\blacksquare$
+      while the right expression is
+      \[
+        \FALSE\THEN(\TRUE\THEN\FALSE) \equiv \FALSE\THEN\FALSE \equiv \TRUE.
+      \]
+      As the truth values differ for the same assignment, the two compound propositions are \textbf{not logically equivalent}.
     \end{subprove}
 
     \item $(p \OR q) \THEN r$ and $(p \THEN r) \OR (q \THEN r)$.
     \begin{subprove}
-      \textbf{They are NOT logically equivalent.}
-      We begin by applying the \textbf{Implication Equivalence} ($A \THEN B \equiv \NOT A \OR B$) to the left-hand side expression:
+      Let \(p,q,r\) be propositions. 
       \[
-      (p \OR q) \THEN r \equiv \NOT(p \OR q) \OR r.
+        (p\OR q)\THEN r \equiv \NOT(p\OR q)\OR r
       \]
-      Then, by applying \textbf{De Morgan's Law} ($\NOT(A \OR B) \equiv \NOT A \AND \NOT B$), we have
+      by applying the \textbf{Implication Equivalence} \(p\THEN q\equiv~\NOT p\OR q\).
+      Then, by \textbf{De Morgan's Laws} \(\overline{p\vee q}\equiv\bar{p}\wedge\bar{q}\), we have
       \[
-      \NOT(p \OR q) \OR r \equiv (\NOT p \AND \NOT q) \OR r.
+        \NOT(p\OR q)\OR r \equiv (\NOT p\AND\NOT q)\OR r.
       \]
-      Now, we apply the \textbf{Implication Equivalence} to both implications on the right-hand side expression:
+      For the right side, applying the \textbf{Implication Equivalence} to both implications,
       \[
-      (p \THEN r) \OR (q \THEN r) \equiv (\NOT p \OR r) \OR (\NOT q \OR r).
+        (p\THEN r)\OR(q\THEN r) \equiv (\NOT p\OR r)\OR(\NOT q\OR r).
       \]
-      By applying the \textbf{Associative Law} ($(A \OR B) \OR C \equiv A \OR (B \OR C)$), we group the terms:
+      By the \textbf{Associative Laws} \((p\vee q)\vee r\equiv p\vee(q\vee r)\), we group the terms:
       \[
-      (\NOT p \OR r) \OR (\NOT q \OR r) \equiv \NOT p \OR \NOT q \OR r.
+        (\NOT p\OR r)\OR(\NOT q\OR r) \equiv \NOT p\OR\NOT q\OR r.
       \]
-      Since the simplified forms, $(\NOT p \AND \NOT q) \OR r$ and $\NOT p \OR \NOT q \OR r$, are not the same, the two expressions are not logically equivalent.
-      For instance, if we take $p=\TRUE$, $q=\FALSE$, and $r=\FALSE$, the left-hand expression becomes:
+      Since the simplified forms, \((\NOT p\AND\NOT q)\OR r\) and \(\NOT p\OR\NOT q\OR r\), are not the same, the two expressions are not equivalent.
+      For instance, if we take \(p=\TRUE\), \(q=\FALSE\), and \(r=\FALSE\), the left expression becomes:
       \[
-      (\TRUE \OR \FALSE) \THEN \FALSE \equiv \TRUE \THEN \FALSE \equiv \FALSE
+        (\TRUE\OR\FALSE)\THEN\FALSE \equiv \TRUE\THEN\FALSE \equiv \FALSE
       \]
-      while the right-hand expression becomes:
+      while the right expression becomes:
       \[
-      (\TRUE \THEN \FALSE) \OR (\FALSE \THEN \FALSE) \equiv \FALSE \OR \TRUE \equiv \TRUE.
+        (\TRUE\THEN\FALSE)\OR(\FALSE\THEN\FALSE) \equiv \FALSE\OR\TRUE \equiv \TRUE.
       \]
-      As the truth values differ for the same assignment, the two compound propositions are not logically equivalent. $\blacksquare$
+      As the truth values differ for the same assignment, the two compound propositions are \textbf{not logically equivalent}.
     \end{subprove}
   \end{enumerate}
