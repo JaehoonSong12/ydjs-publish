@@ -42,13 +42,18 @@
 %   }
 % },
 
-
-
-
-
-
-
-
+% ------------------------------------------------------------------------------
+% Required Packages for preamble/group.tex
+% ------------------------------------------------------------------------------
+\makeatletter
+% \@ifpackageloaded{amsmath}{}{\usepackage{amsmath}}      % (implicit) math foundations
+\@ifpackageloaded{xspace}{}{\usepackage{xspace}}        % text-usable macros
+% \@ifpackageloaded{dsfont}{}{\usepackage{dsfont}}        % \mathds{...}
+% \@ifpackageloaded{mathrsfs}{}{\usepackage{mathrsfs}}    % \mathscr{...}
+% \@ifpackageloaded{amssymb}{}{\usepackage{amssymb}}      % \mathfrak{...}
+% \@ifpackageloaded{amsfonts}{}{\usepackage{amsfonts}}    % math symbols + DeclarePairedDelimiter
+% \@ifpackageloaded{mathtools}{}{\usepackage{mathtools}}  % enhanced math tools
+\makeatother
 
 
 

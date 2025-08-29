@@ -1,8 +1,20 @@
 % ------------------------------------------------------------------------------
 % Required Packages for preamble/symbol.tex
 % ------------------------------------------------------------------------------
-\usepackage{xspace}           % text-usable macros
-\usepackage{dsfont}           % \mathds{...}
+\makeatletter
+\@ifpackageloaded{amsmath}{}{\usepackage{amsmath}}      % (implicit) math foundations
+\@ifpackageloaded{xspace}{}{\usepackage{xspace}}        % text-usable macros
+\@ifpackageloaded{dsfont}{}{\usepackage{dsfont}}        % \mathds{...}
+\@ifpackageloaded{mathrsfs}{}{\usepackage{mathrsfs}}    % \mathscr{...}
+\@ifpackageloaded{amssymb}{}{\usepackage{amssymb}}      % \mathfrak{...}
+% \@ifpackageloaded{amsfonts}{}{\usepackage{amsfonts}}    % math symbols + DeclarePairedDelimiter
+% \@ifpackageloaded{mathtools}{}{\usepackage{mathtools}}  % enhanced math tools
+\makeatother
+
+
+
+
+
 
 
 % ------------------------------------------------------------------------------
@@ -87,9 +99,9 @@
 %   \usepackage{xspace}
 %
 % USAGE EXAMPLES:
-%   X \sim \Bernoulli(p) follows a Bernoulli distribution.
-%   Y \sim \Normal(\mu,\sigma^2) is normally distributed.
-%   Z \sim \Exponential(\lambda) has exponential distribution.
+%   X $\sim$ \Bernoulli(p) follows a Bernoulli distribution.
+%   Y $\sim$ \Normal(\mu,\sigma^2) is normally distributed.
+%   Z $\sim$ \Exponential(\lambda) has exponential distribution.
 % ------------------------------------------------------------------------------
 \newcommand{\Bernoulli}{\ensuremath{\mathrm{Bernoulli}}\xspace}
 \newcommand{\Binomial}{\ensuremath{\mathrm{Binomial}}\xspace}
@@ -201,6 +213,3 @@
 \newcommand{\algp}{\ensuremath{\mathfrak{p}}\xspace}      % Prime ideal
 \newcommand{\algm}{\ensuremath{\mathfrak{m}}\xspace}      % Maximal ideal
 \newcommand{\algh}{\ensuremath{\mathfrak{h}}\xspace}      % Cartan subalgebra
-
-
-

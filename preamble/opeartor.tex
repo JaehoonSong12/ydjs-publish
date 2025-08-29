@@ -1,6 +1,15 @@
-
-
-
+% ------------------------------------------------------------------------------
+% Required Packages for preamble/operator.tex
+% ------------------------------------------------------------------------------
+\makeatletter
+\@ifpackageloaded{amsmath}{}{\usepackage{amsmath}}      % (implicit) math foundations
+\@ifpackageloaded{xspace}{}{\usepackage{xspace}}        % text-usable macros
+% \@ifpackageloaded{dsfont}{}{\usepackage{dsfont}}        % \mathds{...}
+% \@ifpackageloaded{mathrsfs}{}{\usepackage{mathrsfs}}    % \mathscr{...}
+% \@ifpackageloaded{amssymb}{}{\usepackage{amssymb}}      % \mathfrak{...}
+% \@ifpackageloaded{amsfonts}{}{\usepackage{amsfonts}}    % math symbols + DeclarePairedDelimiter
+% \@ifpackageloaded{mathtools}{}{\usepackage{mathtools}}  % enhanced math tools
+\makeatother
 
 
 
@@ -22,7 +31,6 @@
 %   - Flexible: no args (symbol only) or with args (formula)
 %
 % DEPENDENCIES:
-%   \usepackage{amssymb}
 %   \usepackage{xspace}
 %
 % USAGE EXAMPLES:
@@ -31,8 +39,7 @@
 %   P \IFF Q means P \THEN Q \AND Q \THEN P.
 %   \NOT{p} \AND{q}{r} \THEN{s}{t}
 % ------------------------------------------------------------------------------
-
-{\makeatletter % "ENABLE" internal \@... macros
+\makeatletter % "ENABLE" internal \@... macros
 
 % UNARY operator: none or 1 braced argument
 \newcommand{\NOT}{\@ifnextchar\bgroup{\NOT@with}{\NOT@noarg}}
@@ -87,7 +94,7 @@
 \newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace} % tautology
 \newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace} % contradiction
 
-\makeatother} % "DISABLE" internal \@... macros
+\makeatother % "DISABLE" internal \@... macros
 
 % ------------------------------------------------------------------------------
 % Set Theory Operators
@@ -104,7 +111,6 @@
 %   - Flexible: no args (symbol only) or with args (formula)
 %
 % DEPENDENCIES:
-%   \usepackage{amssymb}
 %   \usepackage{xspace}
 %
 % USAGE EXAMPLES:
@@ -114,8 +120,7 @@
 %   The cardinality \sCARD(A) of set A.
 %   \sOR{A}{B} \sAND{C}{D} \sMINUS{E}{F}
 % ------------------------------------------------------------------------------
-
-{\makeatletter % "ENABLE" internal \@... macros
+\makeatletter % "ENABLE" internal \@... macros
 
 % UNARY operator: none or 1 braced argument
 \newcommand{\sNOT}{\@ifnextchar\bgroup{\sNOT@with}{\sNOT@noarg}}
@@ -191,7 +196,7 @@
 \newcommand{\sEMPTY}{\ensuremath{\emptyset}\xspace} % Empty set
 \newcommand{\sUNIV}{\ensuremath{\mathcal{U}}\xspace} % Universal set
 
-\makeatother} % "DISABLE" internal \@... macros
+\makeatother % "DISABLE" internal \@... macros
 
 
 
@@ -210,12 +215,11 @@
 %   - Automatically adds proper spacing
 %
 % DEPENDENCIES:
-%   \usepackage{amssymb}
 %   \usepackage{xspace}
 %
 % USAGE EXAMPLES:
-%   The union \sORALL{i=1}{n}{A_i} of sets A_1 through A_n.
-%   The intersection \sANDALL{j=0}{k}{B_j} of sets B_0 through B_k.
+%   The union $\sORALL{i=1}{n}{A_i}$ of sets $A_1$ through $A_n$.
+%   The intersection $\sANDALL{j=0}{k}{B_j}$ of sets $B_0$ through $B_k$.
 % ------------------------------------------------------------------------------
 \newcommand{\sORALL}[3]{\ensuremath{\bigcup_{#1}^{#2} #3}\xspace}    % Indexed union: \sORALL{i=1}{n}{A_i}
 \newcommand{\sANDALL}[3]{\ensuremath{\bigcap_{#1}^{#2} #3}\xspace}   % Indexed intersection: \sANDALL{i=1}{n}{A_i}
@@ -233,10 +237,10 @@
 %   - Automatically adds proper spacing
 %
 % DEPENDENCIES:
-%   \usepackage{amssymb}
+%   <None>
 %
 % USAGE EXAMPLES:
-%   The set \sBUILD{x}{x > 0} of positive real numbers.
-%   The set \sBUILD{n}{n \in \setN \AND n \text{ is even}} of even naturals.
+%   The set $\sBUILD{x}{x > 0}$ of positive real numbers.
+%   The set $\sBUILD{n}{n \in \mathcal{N} \AND n \text{ is even}}$ of even naturals.
 % ------------------------------------------------------------------------------
 \newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}} % Set builder: {x | P(x)}
