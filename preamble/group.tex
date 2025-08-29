@@ -66,7 +66,7 @@
 %
 % FEATURES:
 %   - Automatic sizing with \left and \right
-%   - Safe to use in text mode with \xspace
+%   - Safe to use in text mode with \ensuremath and \xspace
 %   - VS Code keybinding integration
 %   - Consistent formatting across documents
 %
@@ -79,8 +79,8 @@
 %   The absolute value \abs{x} is always non-negative.
 %   The interval \arr{a,b} contains all real numbers between a and b.
 % ------------------------------------------------------------------------------
-\newcommand{\coord}[1]{\left\langle#1\right\rangle\xspace}  % Angle brackets: ⟨x⟩
-\newcommand{\group}[1]{\left(#1\right)\xspace}              % Parentheses: (x)
-\newcommand{\abs}[1]{\left|#1\right|\xspace}                % Absolute value: |x|
-\newcommand{\arr}[1]{\left[#1\right]\xspace}                % Square brackets: [x]
-\newcommand{\set}[1]{\left\{#1\right\}\xspace}              % Curly braces: {x}
+\newcommand{\coord}[1]{\ensuremath{\left\langle#1\right\rangle}\xspace}  % Angle brackets: ⟨x⟩
+\newcommand{\group}[1]{\ensuremath{\left(#1\right)}\xspace}              % Parentheses: (x)
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}\xspace}                % Absolute value: |x|
+\newcommand{\arr}[1]{\ensuremath{\left[#1\right]}\xspace}                % Square brackets: [x]
+\newcommand{\set}[1]{\ensuremath{\left\{#1\right\}}\xspace}              % Curly braces: {x}
