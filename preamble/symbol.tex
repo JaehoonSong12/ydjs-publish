@@ -1,16 +1,49 @@
 % ------------------------------------------------------------------------------
-% Required Packages for Mathematical Commands
+% Required Packages for preamble/symbol.tex
 % ------------------------------------------------------------------------------
 \usepackage{xspace}           % text-usable macros
 \usepackage{dsfont}           % \mathds{...}
 
 
-\usepackage{amsmath}           % \mathbb, math symbols
-\usepackage{mathrsfs}         % \mathscr
-\usepackage{amssymb}          % math symbols + DeclarePairedDelimiter
-\usepackage{amsfonts}         % math symbols + DeclarePairedDelimiter
-\usepackage{accents}          % for better wide bars if needed
-\usepackage{mathtools}        % enhanced math tools
+% ------------------------------------------------------------------------------
+% Canonical Number Sets
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   These commands define standard number sets using \mathds font.
+%   All commands are text-usable with \ensuremath and \xspace.
+%
+% FEATURES:
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%   - Uses double-struck font for mathematical clarity
+%
+% DEPENDENCIES:
+%   \usepackage{dsfont} 
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The set \setN contains all natural numbers.
+%   For any $x \in \setR$, we have $x^2 \geq 0$.
+%   The complex numbers \setC extend the reals.
+% ------------------------------------------------------------------------------
+\newcommand{\setN}{\ensuremath{\mathds{N}}\xspace} % Natural numbers
+\newcommand{\setZ}{\ensuremath{\mathds{Z}}\xspace} % Integers
+\newcommand{\setQ}{\ensuremath{\mathds{Q}}\xspace} % Rational numbers
+\newcommand{\setR}{\ensuremath{\mathds{R}}\xspace} % Real numbers
+\newcommand{\setC}{\ensuremath{\mathds{C}}\xspace} % Complex numbers
+\newcommand{\setK}{\ensuremath{\mathds{K}}\xspace} % Generic field
+\newcommand{\setF}{\ensuremath{\mathds{F}}\xspace} % Finite fields
+\newcommand{\setS}{\ensuremath{\mathds{S}}\xspace} % Unit sphere / sets
+\newcommand{\setT}{\ensuremath{\mathds{T}}\xspace} % Torus / time index
+\newcommand{\setE}{\ensuremath{\mathds{E}}\xspace} % Expectation symbol
+\newcommand{\setP}{\ensuremath{\mathds{P}}\xspace} % Probability symbol
+\newcommand{\setI}{\ensuremath{\mathds{I}}\xspace} % Identity matrix
+
+
+
+
+
+
 
 
 % ------------------------------------------------------------------------------
@@ -171,221 +204,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% Logical Operators
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Commands for logical operators and connectives.
-%   All commands are text-usable with \ensuremath and \xspace.
-%
-% FEATURES:
-%   - Standard logical notation
-%   - Safe to use in text mode
-%   - Automatically adds proper spacing
-%
-% DEPENDENCIES:
-%   \usepackage{amssymb}
-%   \usepackage{xspace}
-%
-% USAGE EXAMPLES:
-%   The statement P \AND Q is true.
-%   If P \THEN Q, then \NOT Q \THEN \NOT P.
-%   P \IFF Q means P \THEN Q \AND Q \THEN P.
-% ------------------------------------------------------------------------------
-\newcommand{\NOT}{\ensuremath{\sim}\xspace}        % Logical negation (\lnot)
-\newcommand{\AND}{\ensuremath{\land}\xspace}        % Logical AND
-\newcommand{\OR}{\ensuremath{\lor}\xspace}          % Logical OR
-\newcommand{\THEN}{\ensuremath{\rightarrow}\xspace} % Logical implication
-\newcommand{\IFF}{\ensuremath{\leftrightarrow}\xspace} % Logical equivalence
-
-
-
-\newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace} % tautology
-\newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace} % contradiction
-
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% Set Theory Operators
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Commands for set theory operations and notation.
-%   All commands are text-usable with \ensuremath and \xspace.
-%
-% FEATURES:
-%   - Standard set theory notation
-%   - Safe to use in text mode
-%   - Automatically adds proper spacing
-%
-% DEPENDENCIES:
-%   \usepackage{amssymb}
-%   \usepackage{xspace}
-%
-% USAGE EXAMPLES:
-%   The union A \sOR B of sets A and B.
-%   The complement \sNOT{A} of set A.
-%   The power set \sPOWER(X) of set X.
-%   The cardinality \sCARD(A) of set A.
-% ------------------------------------------------------------------------------
-\newcommand{\sNOT}[1]{\ensuremath{\overline{#1}}}   % Set complement
-\newcommand{\sOR}{\ensuremath{\cup}\xspace}         % Union
-\newcommand{\sAND}{\ensuremath{\cap}\xspace}        % Intersection
-\newcommand{\sMINUS}{\ensuremath{\setminus}\xspace} % Set difference
-\newcommand{\sXOR}{\ensuremath{\triangle}\xspace}   % Symmetric difference
-\newcommand{\sTIMES}{\ensuremath{\times}\xspace}    % Cartesian product
-\newcommand{\sPOWER}{\ensuremath{\mathcal{P}}\xspace} % Power set
-\newcommand{\sCARD}{\ensuremath{\#}\xspace}         % Cardinality
-\newcommand{\sEMPTY}{\ensuremath{\emptyset}\xspace} % Empty set
-\newcommand{\sUNIV}{\ensuremath{\mathcal{U}}\xspace} % Universal set
-
-
-
-
-
-% ------------------------------------------------------------------------------
-% Indexed Set Operations
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Commands for indexed union and intersection operations.
-%   These commands accept index definitions and create proper mathematical notation.
-%
-% FEATURES:
-%   - Creates indexed union/intersection with proper subscripts and superscripts
-%   - Safe to use in text mode
-%   - Automatically adds proper spacing
-%
-% DEPENDENCIES:
-%   \usepackage{amssymb}
-%   \usepackage{xspace}
-%
-% USAGE EXAMPLES:
-%   The union \sORALL{i=1}{n}{A_i} of sets A_1 through A_n.
-%   The intersection \sANDALL{j=0}{k}{B_j} of sets B_0 through B_k.
-% ------------------------------------------------------------------------------
-\newcommand{\sORALL}[3]{\ensuremath{\bigcup_{#1}^{#2} #3}\xspace}    % Indexed union: \sORALL{i=1}{n}{A_i}
-\newcommand{\sANDALL}[3]{\ensuremath{\bigcap_{#1}^{#2} #3}\xspace}   % Indexed intersection: \sANDALL{i=1}{n}{A_i}
-
-% ------------------------------------------------------------------------------
-% Set Builder Notation
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Command for building sets using set-builder notation.
-%   This command is text-usable with \ensuremath.
-%
-% FEATURES:
-%   - Creates sets with conditions
-%   - Safe to use in text mode
-%   - Automatically adds proper spacing
-%
-% DEPENDENCIES:
-%   \usepackage{amssymb}
-%
-% USAGE EXAMPLES:
-%   The set \sBUILD{x}{x > 0} of positive real numbers.
-%   The set \sBUILD{n}{n \in \setN \AND n \text{ is even}} of even naturals.
-% ------------------------------------------------------------------------------
-\newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}} % Set builder: {x | P(x)}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% \section*{Macro Demo (remove this section in real docs)}
-
-% This file sets up:
-% \begin{itemize}[leftmargin=*,itemsep=2pt]
-%   \item Canonical sets via \verb|\mathds|: \(\setN, \setZ, \setQ, \setR, \setC\).
-%   \item Probability/statistics: \(\Prob, \E, \Var, \Cov, \Corr, \sd, \SE, \MSE, \RMSE, \ind\).
-%   \item Distributions: \(\Normal, \Bernoulli, \Binomial, \Poisson, \Exponential, \GammaDist, \BetaDist, \Dirichlet, \Uniform, \StudentT, \ChiSq\).
-%   \item Convergences: \(X_n \pto X,\; X_n \dto X,\; X_n \asto X\).
-%   \item Information: \(\Ent, \MI, \KL\).
-%   \item Calligraphic/script/fraktur single-letter shortcuts: \(\opF, \opH, \shO, \algg, \algsl\).
-% \end{itemize}
-
-% \paragraph{Probability}
-% For events \(A,B\) with \(B\) measurable, \(\Prob(A \given B) = \frac{\Prob(A \cap B)}{\Prob(B)}\).
-% For a random variable \(X\),
-% \[
-%   \E[X] = \int X \,\diff \Prob, \quad
-%   \Var(X) = \E\!\left[(X - \E[X])^2\right], \quad
-%   \sd = \sqrt{\Var(X)}, \quad
-%   \SE(\hat{\theta}) = \frac{\sd(\hat{\theta})}{\sqrt{n}}.
-% \]
-% Conditional expectation: \(\Econd{X}{Y} = \E\!\left[ X \,\middle|\, Y \right]\).
-% The indicator \(\ind_A\) equals \(1\) on \(A\) and \(0\) otherwise.
-
-% \paragraph{Distributions}
-% If \(X \sim \Normal(\mu,\sigma^2)\) and \(Y \sim \Poisson(\lambda)\), then
-% \(\E[X]=\mu\), \(\Var(X)=\sigma^2\), and \(\E[Y]=\Var(Y)=\lambda\).
-% For \(Z \sim \ChiSq_k\), \(\E[Z]=k\) and \(\Var(Z)=2k\).
-
-% \paragraph{Convergence}
-% We write \(X_n \pto X\) for convergence in probability, \(X_n \dto X\) for convergence in distribution,
-% and \(X_n \asto X\) for almost sure convergence. If \(X \indep Y\), then \(\Cov(X,Y)=0\) (but the converse need not hold).
-
-% \paragraph{Information}
-% The entropy \(\Ent(X) = -\sum_x \Prob(X=x)\log \Prob(X=x)\).
-% KL divergence: \(\KL(P\|Q)=\displaystyle\sum_x P(x)\log\frac{P(x)}{Q(x)}\).
-
-% \paragraph{Analysis / Norms}
-% For \(x \in \setR^n\), \(\norm{x}_2 = \sqrt{x^\top x}\) and \(\abs{\cdot}\), \(\inner{\cdot,\cdot}\) provide absolute value and inner product.
-
-% \bigskip
-% \noindent Remove this demo section in your real document. The preamble above is designed to be copy-paste ready.

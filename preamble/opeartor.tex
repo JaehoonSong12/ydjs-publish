@@ -1,0 +1,159 @@
+
+
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% Logical Operators
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Commands for logical operators and connectives.
+%   All commands are text-usable with \ensuremath and \xspace.
+%
+% FEATURES:
+%   - Standard logical notation
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%
+% DEPENDENCIES:
+%   \usepackage{amssymb}
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The statement P \AND Q is true.
+%   If P \THEN Q, then \NOT Q \THEN \NOT P.
+%   P \IFF Q means P \THEN Q \AND Q \THEN P.
+% ------------------------------------------------------------------------------
+\newcommand{\NOT}{\ensuremath{\sim}\xspace}        % Logical negation (\lnot)
+\newcommand{\AND}{\ensuremath{\land}\xspace}        % Logical AND
+\newcommand{\OR}{\ensuremath{\lor}\xspace}          % Logical OR
+\newcommand{\THEN}{\ensuremath{\rightarrow}\xspace} % Logical implication
+\newcommand{\IFF}{\ensuremath{\leftrightarrow}\xspace} % Logical equivalence
+
+
+
+\newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace} % tautology
+\newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace} % contradiction
+
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% Set Theory Operators
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Commands for set theory operations and notation.
+%   All commands are text-usable with \ensuremath and \xspace.
+%
+% FEATURES:
+%   - Standard set theory notation
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%
+% DEPENDENCIES:
+%   \usepackage{amssymb}
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The union A \sOR B of sets A and B.
+%   The complement \sNOT{A} of set A.
+%   The power set \sPOWER(X) of set X.
+%   The cardinality \sCARD(A) of set A.
+% ------------------------------------------------------------------------------
+\newcommand{\sNOT}[1]{\ensuremath{\overline{#1}}}   % Set complement
+\newcommand{\sOR}{\ensuremath{\cup}\xspace}         % Union
+\newcommand{\sAND}{\ensuremath{\cap}\xspace}        % Intersection
+\newcommand{\sMINUS}{\ensuremath{\setminus}\xspace} % Set difference
+\newcommand{\sXOR}{\ensuremath{\triangle}\xspace}   % Symmetric difference
+\newcommand{\sTIMES}{\ensuremath{\times}\xspace}    % Cartesian product
+\newcommand{\sPOWER}{\ensuremath{\mathcal{P}}\xspace} % Power set
+\newcommand{\sCARD}{\ensuremath{\#}\xspace}         % Cardinality
+\newcommand{\sEMPTY}{\ensuremath{\emptyset}\xspace} % Empty set
+\newcommand{\sUNIV}{\ensuremath{\mathcal{U}}\xspace} % Universal set
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% Indexed Set Operations
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Commands for indexed union and intersection operations.
+%   These commands accept index definitions and create proper mathematical notation.
+%
+% FEATURES:
+%   - Creates indexed union/intersection with proper subscripts and superscripts
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%
+% DEPENDENCIES:
+%   \usepackage{amssymb}
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The union \sORALL{i=1}{n}{A_i} of sets A_1 through A_n.
+%   The intersection \sANDALL{j=0}{k}{B_j} of sets B_0 through B_k.
+% ------------------------------------------------------------------------------
+\newcommand{\sORALL}[3]{\ensuremath{\bigcup_{#1}^{#2} #3}\xspace}    % Indexed union: \sORALL{i=1}{n}{A_i}
+\newcommand{\sANDALL}[3]{\ensuremath{\bigcap_{#1}^{#2} #3}\xspace}   % Indexed intersection: \sANDALL{i=1}{n}{A_i}
+
+% ------------------------------------------------------------------------------
+% Set Builder Notation
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Command for building sets using set-builder notation.
+%   This command is text-usable with \ensuremath.
+%
+% FEATURES:
+%   - Creates sets with conditions
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%
+% DEPENDENCIES:
+%   \usepackage{amssymb}
+%
+% USAGE EXAMPLES:
+%   The set \sBUILD{x}{x > 0} of positive real numbers.
+%   The set \sBUILD{n}{n \in \setN \AND n \text{ is even}} of even naturals.
+% ------------------------------------------------------------------------------
+\newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}} % Set builder: {x | P(x)}
+
+
+
+
+
+
+
+
+
+
+
+
+% \makeatletter % "ENABLE" internal \@... macros
+
+
+% % UNARY operator: none or 1 braced argument
+% \newcommand{\NOT}{\@ifnextchar\bgroup{\NOT@with}{\NOT@noarg}}
+% \newcommand{\NOT@noarg}{\ensuremath{\lnot}\xspace}
+% \newcommand{\NOT@with}[1]{\ensuremath{\lnot\,{#1}}\xspace}
+
+
+% % BINARY operator: none or 2 braced arguments (error if exactly 1)
+% \newcommand{\AND}{\@ifnextchar\bgroup{\AND@with}{\AND@noarg}}
+% \newcommand{\AND@noarg}{\ensuremath{\mathbin{\land}}\xspace}
+% \newcommand{\AND@with}[1]{%
+%   \@ifnextchar\bgroup{\AND@twowith{#1}}{\AND@singleerror{#1}}%
+% }
+% \newcommand{\AND@twowith}[2]{\ensuremath{{#1}\mathbin{\land}{#2}}\xspace}
+% \newcommand{\AND@singleerror}[1]{%
+%   \@latex@error{`\string\AND' expects either no arguments or two braced arguments. Use `\string\AND{p}{q}'}\@ehc
+% }
+% \makeatother % "DISABLE" internal \@... macros
+
