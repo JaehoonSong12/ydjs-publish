@@ -30,9 +30,9 @@
 ]{biblatex}
 \addbibresource{citations.bib}
 % ==================== Index Page =====================
+\usepackage[backend=biber]{hyperref}  % Load hyperref FIRST (before makeidx)
 \usepackage{makeidx}
 \makeindex
-\usepackage{hyperref}
 
 \begin{document}
   %% MATH 2106: Foundations of Mathematical Proof
@@ -47,7 +47,14 @@
   \newpage
   \section{More Text}
   Here's a second page. We also index \emph{groups}\index{group theory}  
-  and \emph{rings}\index{ring theory}.  
+  and \emph{rings}\index{ring theory}. Let's add more content to ensure the index works properly.
+  
+  We can discuss \emph{mathematical proofs}\index{proofs!mathematical} and 
+  \emph{logic}\index{logic!mathematical}. The study of \emph{set theory}\index{set theory} 
+  is fundamental to mathematics, and \emph{functions}\index{functions} are everywhere.
+  
+  \emph{Linear algebra}\index{linear algebra} deals with vectors and matrices, 
+  while \emph{calculus}\index{calculus} explores limits and derivatives.
 
   % ================== Index ==================
   \newpage
