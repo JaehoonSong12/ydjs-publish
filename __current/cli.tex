@@ -34,54 +34,30 @@
 \usepackage{makeidx}
 \makeindex
 
-% NOTE: To generate index, compile with: pdflatex -> makeindex -> pdflatex
-% The makeidx package will automatically create .idx file during first pdflatex run
-% Then makeindex processes .idx to .ind, and second pdflatex run includes the index
-
 \begin{document}
   %% MATH 2106: Foundations of Mathematical Proof
-  % \input{math2106/syllabus.tex}
-  % \input{math2106/lecture01.tex}
-  % \input{math2106/hw00.tex}
-  % \input{math2106/proof01.tex}
-  % \input{math2106/proof02.tex}
-  \input{math2106/hw01.tex}
-
-
-  \newpage
-  \section{More Text}
-  Here's a second page. We also index \emph{groups}\index{group theory}   
-  and \emph{rings}\index{ring theory}. Let's add more content to ensure the index works properly.
-  
-  We can discuss \emph{mathematical proofs}\index{proofs!mathematical} and 
-  \emph{logic}\index{logic!mathematical}. The study of \emph{set theory}\index{set theory} 
-  is fundamental to mathematics, and \emph{functions}\index{functions} are everywhere.
-  
-  \emph{Linear algebra}\index{linear algebra} deals with vectors and matrices, 
-  while \emph{calculus}\index{calculus} explores limits and derivatives.
-
-  \section{Index Test}
-  This is a simple test to verify index generation works. We'll index some basic terms:
-  \emph{mathematics}\index{mathematics}, \emph{algebra}\index{algebra}, and \emph{geometry}\index{geometry}.
-  
-  % ================== Index ==================
-  \newpage
-  \input{math2106/index.tex}
+  % \input{math2106/syllabus.tex}\newpage
+  % \input{math2106/lecture01.tex}\newpage
+  % \input{math2106/hw00.tex}\newpage
+  % \input{math2106/proof01.tex}\newpage
+  % \input{math2106/proof02.tex}\newpage
+  \input{math2106/hw01.tex}\newpage
 
 
   %% MATH 4150: Number Theory
-  % \input{math4150/lecture01.tex}
+  % \input{math4150/lecture01.tex}\newpage
 
 
   %% MATH 2552: Differential Equations
-  % \input{math2552/diffeq01.tex}
-  % \input{math2552/diffeq02.tex}
-  % \input{math2552/diffeq03.tex}
+  % \input{math2552/diffeq01.tex}\newpage
+  % \input{math2552/diffeq02.tex}\newpage
+  % \input{math2552/diffeq03.tex}\newpage
 
 
 
   %% MATH 3012: Combinatorics
-  % \input{math3012/comb01.tex}
+  % \input{math3012/comb01.tex}\newpage
 
+  % ================== Index ==================
+  \input{math2106/index.tex}\newpage
 \end{document}
-
