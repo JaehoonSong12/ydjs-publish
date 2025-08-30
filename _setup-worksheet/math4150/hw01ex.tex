@@ -1,0 +1,435 @@
+\newpage\handout[true]
+{\textsc{Math 2106-B: Foundations of Mathematical Proof}}{Fall 2025}
+{Homework 1}
+{\textit{Prof.} \href{https://ceheitsch.github.io/webpage/}{Dr. Christine Heitsch}}{Due Date: August 28th}
+{Math 2106-B: HW1}
+{\large
+  \noindent
+  \textbf{Name:} \HandoutAuthor \smallskip \\
+
+  \noindent
+  \textbf{GTID:} 903743506 \smallskip \\
+
+  \noindent
+  %%% List anyone with whom you discussed the problems
+  \textbf{Collaborators:} None. This material reflects independent preparation. \smallskip \\
+
+  \noindent
+  %%% List all resources used OTHER than the textbook, lecture notes, 
+  %%% webwork problems, ICA questions, and previous homework assignments.
+  \textbf{Outside resources:} This work was informed by course materials 
+  from \HandoutInstitution\ (the course textbook is 
+  Chartrand \parencite{chartrand_mathematical_2018}). Outside references specifically include
+  textbooks written by 
+  Grimaldi \parencite{grimaldi_discrete_2004} (used in MATH 3012) and 
+  Rosen \parencite{rosen_discrete_2019} (used in CS 2050). \smallskip \\
+}
+\input{reference.tex}
+\newpage
+
+
+% \input{preface.tex}
+% \newpage
+
+
+
+
+
+
+
+
+
+
+\begin{enumerate} 
+  \item Rewrite each of these statements in the form \inlinequote{if $p$, then $q$}
+  in English.
+  \begin{enumerate}
+    \item It is necessary to wash the boss's car to get promoted.
+    \begin{subanswer}
+      If you get promoted, then you wash the boss's car.
+    \end{subanswer}
+    \item A sufficient condition for enrollment is that you pay the fees.
+    \begin{subanswer}
+      If you pay the fees, then you are enrolled. (Or alternatively, \inlinequote{can enroll} in the context of lanaguage.)
+    \end{subanswer}
+    \item You can access the library website only if you are a student.
+    \begin{subanswer}
+      If you can access the library website, then you are a student.
+    \end{subanswer}
+    \item The beach erodes whenever there is a storm.
+    \begin{subanswer}
+      If there is a storm, then the beach erodes.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+
+  \item Let $p$ and $q$ be the propositions $p$: \inlinequote{You buy an ice cream cone.}
+  and $q$: \inlinequote{It is hot outside.}\\
+  {\color{redcolor}\textbf{Note:} For clarity and improved readability, 
+  the logical negation of a proposition $p$ may be represented 
+  interchangeably as $\sNOT{p}$ or $\NOT p$.}
+  \begin{enumerate}[label=(\alph*)]
+    \item Write the converse, inverse, and contrapositive of the conditional
+    $p \THEN q$ in English using the \inlinequote{if\ldots, then\ldots} form.  
+    Clearly label each one.
+    \begin{subanswer}
+      The converse, inverse, and contrapositive of the conditional $p \THEN q$ in English are listed as follows.
+      \begin{itemize}
+        \item \textbf{Conditional ($p \THEN q$):} If you buy an ice cream cone, then it is hot outside.
+        \item \textbf{Converse ($q \THEN p$):} If it is hot outside, then you buy an ice cream cone.
+        \item \textbf{Inverse ($\sNOT{p} \THEN \sNOT{q}$):} If you do not buy an ice cream cone, then it is not hot outside.
+        \item \textbf{Contrapositive ($\sNOT{q} \THEN \sNOT{p}$):} If it is not hot outside, then you do not buy an ice cream cone.
+      \end{itemize}
+    \end{subanswer}
+    \item Which, if any,
+    of the four implications are logically equivalent to each other?
+    \begin{subanswer}
+      The original conditional ($p \THEN q$) is logically equivalent to its 
+      contrapositive ($\sNOT{q} \THEN \sNOT{p} $). The converse ($q \THEN p$) 
+      is logically equivalent to the inverse ($\sNOT{p} \THEN \sNOT{q}$).
+
+    \end{subanswer}
+    \item Write the negation of $p \THEN q$ in English as simply as possible, i.e.\ 
+    without using \inlinequote{It is not the case that\ldots}.
+    \begin{subanswer}
+      You buy an ice cream cone and it is not hot outside.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \item Find a compound proposition $Q$ in terms of propositions $p$, $q$, 
+  and $r$ and logical connectives ($\NOT$, $\AND$, $\OR$, $\THEN$, $\IFF$)
+  satisfying the conditions.
+  Justify your answers with a truth table.\\
+  {\color{redcolor}\textbf{Note:} For clarity and improved readability, 
+  the logical negation of a proposition $p$ may be represented 
+  interchangeably as $\sNOT{p}$ or $\NOT p$.}
+  \begin{enumerate}
+    \item This $Q$ is true when $p$ and $q$ are true and $r$ is false, 
+    but false otherwise.
+    \begin{subanswer}
+      The compound proposition is $Q \equiv p \AND q \AND \NOT r$. The truth table confirms 
+      this as follows.
+      \begin{center}
+        \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $\NOT r$ & $Q$ \\
+        \hline
+        T & T & T & F & F \\
+        T & T & F & T & T \\
+        T & F & T & F & F \\
+        T & F & F & T & F \\
+        F & T & T & F & F \\
+        F & T & F & T & F \\
+        F & F & T & F & F \\
+        F & F & F & T & F \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{subanswer}
+    \item This $Q$ is true when exactly two of $p$, $q$, and $r$ are 
+    true, and is false otherwise.
+    \begin{subanswer}
+      The compound proposition is 
+      $Q \equiv (p \AND q \AND \NOT r) \OR (p \AND \NOT q \AND r) \OR (\NOT p \AND q \AND r)$. 
+      The truth table confirms the result as follows.
+      \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        $p$ & $q$ & $r$ & $p \AND q \AND \NOT r$ & $p \AND \NOT q \AND r$ & $\NOT p \AND q \AND r$ & $Q$ \\
+        \hline
+        T & T & T & F & F & F & F \\
+        T & T & F & T & F & F & T \\
+        T & F & T & F & T & F & T \\
+        T & F & F & F & F & F & F \\
+        F & T & T & F & F & T & T \\
+        F & T & F & F & F & F & F \\
+        F & F & T & F & F & F & F \\
+        F & F & F & F & F & F & F \\
+        \hline
+        \end{tabular}
+      \end{center}
+    \end{subanswer}
+  \end{enumerate}
+
+
+  \newpage
+
+
+
+
+  \item Let $p$, $q$, and $r$ be propositions.  Determine whether the 
+  following pairs of compound propositions are logically equivalent.
+  Justify your answer \textbf{without using a full truth table}.\\
+  {\color{redcolor}\textbf{Note:} For clarity and improved readability, 
+  the logical negation of a proposition $p$ may be represented 
+  interchangeably as $\sNOT{p}$ or $\NOT p$.}
+  \begin{enumerate}
+    \item $(p \THEN q) \AND (p \THEN r)$ and $p \THEN (q \AND r)$.
+    \begin{subprove}
+      Let \(p,q,r\) be propositions. 
+      \[
+        (p\THEN q)\AND(p\THEN r) \equiv (\NOT p\OR q)\AND(\NOT p\OR r)
+      \]
+      by applying the \textbf{Implication Equivalence} \(p\THEN q\equiv~\NOT p\OR q\) to both implications.
+      Moreover, by \textbf{Distributive Law} in the form \((p\OR q)\AND(p\OR r)\equiv p\OR(q\AND r)\), 
+      \[
+        (\NOT p\OR q)\AND(\NOT p\OR r) \equiv \NOT p\OR(q\AND r).
+      \]
+      Lastly, applying the \textbf{Implication Equivalence} in reverse,
+      \[
+        \OR{\NOT{p}}{\group{q\AND r}}\equiv\THEN{p}{(q\AND r)}.
+      \]
+      Thus, \((p\THEN q)\AND(p\THEN r)\equiv p\THEN(q\AND r)\), so the two compound propositions are \textbf{logically equivalent}. 
+    \end{subprove}
+
+    \item $(p \THEN r) \AND (q \THEN r)$ and $(p \OR q) \THEN r$.
+    \begin{subprove}
+      Let \(p,q,r\) be propositions. 
+      \[
+        (p\THEN r)\AND(q\THEN r) \equiv (\NOT p\OR r)\AND(\NOT q\OR r)
+      \]
+      by applying the \textbf{Implication Equivalence} \(p\THEN q\equiv~\NOT p\OR q\) to both implications.
+      Moreover, by \textbf{Distributive Law} in the form \((p\OR q)\AND(p\OR r)\equiv p\OR(q\AND r)\), 
+      considering \textbf{Commutative Law},
+      \[
+        (\NOT p\OR r)\AND(\NOT q\OR r) \equiv (r\OR \NOT p)\AND(r\OR \NOT q) \equiv r\OR(\NOT p\AND \NOT q) \equiv (\NOT p\AND\NOT q)\OR r.
+      \]
+      Then by \textbf{DeMorgan's Law} \(\sNOT{p\OR q}\equiv\sNOT{p}\AND\sNOT{q}\) in reverse,
+      \[
+        (\NOT p\AND\NOT q)\OR r\equiv~\sNOT{p\OR q}\OR r.
+      \]
+      Furthermore, by the \textbf{Implication Equivalence} in reverse,
+      \[
+        \sNOT{p\OR q}\OR r \equiv (p\OR q)\THEN r.
+      \]
+      Thus, by transitivity of logical equivalence, so the two compound propositions are \textbf{logically equivalent}.
+    \end{subprove}
+
+    \newpage
+
+    \item $(p \THEN q) \THEN r$ and $p \THEN (q \THEN r)$.
+    \begin{subprove}
+      Let \(p,q,r\) be propositions. For the sake of counterexample, 
+      take \(p=\FALSE\), \(q=\TRUE\), and \(r=\FALSE\). Then, 
+      \[
+        \text{L.H.S: }(\FALSE\THEN\TRUE)\THEN\FALSE \equiv \TRUE\THEN\FALSE \equiv \FALSE,
+      \]
+      \[
+        \text{R.H.S: }\FALSE\THEN(\TRUE\THEN\FALSE) \equiv \FALSE\THEN\FALSE \equiv \TRUE.
+      \]
+      Since the truth values differ for some propositions arbitrarily chosen (counterexample), the two compound propositions are \textbf{not logically equivalent}.
+    \end{subprove}
+
+    \item $(p \OR q) \THEN r$ and $(p \THEN r) \OR (q \THEN r)$.
+    \begin{subprove}
+      Let \(p,q,r\) be propositions. For the sake of counterexample, 
+      take $p=\TRUE$, $q=\FALSE$, and $r=\FALSE$. Then, 
+      \[
+        \text{L.H.S: }(\TRUE\OR\FALSE)\THEN\FALSE \equiv \TRUE\THEN\FALSE \equiv \FALSE,
+      \]
+      \[
+        \text{R.H.S: }(\TRUE\THEN\FALSE)\OR(\FALSE\THEN\FALSE) \equiv \FALSE\OR\TRUE \equiv \TRUE.
+      \]
+      Since the truth values differ for some propositions arbitrarily chosen (counterexample), the two compound propositions are \textbf{not logically equivalent}.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+
+  \newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \item 
+  Prove the following directly from the two definitions and three axioms
+  given in ICA2 on 8/20.
+  \begin{define}{ICA2 Definitions and Axioms}
+    Here are the ICA2 Definitions and Axioms as follows.
+    \begin{enumerate}
+      \item \textbf{Definition:} An integer $n$ is \underbar{even} if there exists some integer $k$ such that
+      \[
+      n = 2k.
+      \]
+      \item \textbf{Definition:} An integer $n$ is \underbar{odd} if there exists some integer $k$ such that
+      \[
+      n = 2k + 1.
+      \]
+      \item \textbf{Axiom 1:} The sum of two integers is again an integer. (Closure under addition)
+      \item \textbf{Axiom 2:} The product of two integers is again an integer. (Closure under multiplication)
+      \item \textbf{Axiom 3:} An integer is odd if and only if it is not even.
+    \end{enumerate}
+  \end{define}
+  You may not use any other results without proving them first.
+  Every statement in your proof must be fully justified.
+  See \textbf{Elements of (Proof) Style} guidelines in Canvas for information.
+  \begin{enumerate}
+  \item Direct proof: For all integers $n$, if $n$ is odd, then $9n + 5$ is even.
+  \begin{subprove}
+    Let $n$ be an arbitrary integer then assume $n$ is odd (condition) for the sake of direct proof. 
+    By the definition of odd, there exists an integer $k$ such that
+    \[
+      n = 2k + 1.
+    \]
+    By substitution, 
+    \[
+      9n + 5 = 9(2k + 1) + 5 = 18k + 9 + 5 = 18k + 14= 2(9k + 7).
+    \]
+    By Axiom 1 and 2 (closure under addition and multiplication), $9k+7$ is an integer since $9$, $k$, and $7$ are integers. (Trivial)
+
+    Therefore, by the definition of even, $9n+5$ is even (conclusion).
+    Hence, by direct proof, \inlinequote{for all integers $n$, if $n$ is odd, then $9n + 5$ is even.}
+  \end{subprove}
+
+
+
+  \item Contrapositive proof: For all integers $n$, if $7n + 5$ is odd, then $n$ is even.
+  \begin{subprove}
+    Let $n$ be an arbitrary integer then assume $n$ is odd (\NOT conclusion) for the sake of contrapositive proof.
+    By the definition of odd, there exists an integer $k$ such that
+    \[
+      n = 2k + 1.
+    \]
+    By substitution,
+    \[
+      7n + 5 = 7(2k + 1) + 5 = 14k + 7 + 5 = 14k + 12 = 2(7k + 6).
+    \]
+    By Axiom 1 and Axiom 2 (closure under addition and multiplication), 
+    $7k+6$ is an integer since $7$, $k$, and $6$ are integers. (Trivial)
+
+    Therefore, by the definition of even, $7n+5$ is even (\NOT condition).
+    Hence, by contrapositive proof, \inlinequote{for all integers $n$, if $7n + 5$ is odd, then $n$ is even.}
+  \end{subprove}
+
+  \item Proof by contradiction: For all integers $n$, if $3n + 2$ is even, then $n$ is even.
+  \begin{subprove}
+    Let $n$ be an arbitrary integer then assume $3n+2$ is even and assume, for the sake of contradiction, that $n$ is not even.
+    By Axiom 3, $n$ not even implies $n$ is odd. By the definition of odd, there exists an integer $k$ such that
+    \[
+      n = 2k + 1.
+    \]
+    By substitution,
+    \[
+      3n + 2 = 3(2k + 1) + 2 = 6k + 3 + 2 = 6k + 5= 2(3k+2) + 1.
+    \]
+    By Axiom 1 and Axiom 2 (closure under addition and multiplication), 
+    $3k+2$ is an integer since $3$, $k$, and $2$ are integers. (Trivial)
+    
+    Thus $3k+2$ is odd by the definition of odd, and this contradicts the assumption that 
+    $3n+2$ is even. 
+    Hence, by contradiction, \inlinequote{for all integers $n$, if $3n + 2$ is even, then $n$ is even.}
+  \end{subprove}
+
+
+  \end{enumerate}
+
+
+
+  \newpage
+
+
+
+  \item
+  Meanwhile, back in the Land of Logicalia,
+  before you are allowed into the castle, you must identify the
+  type of the two guards: Branwyn (she) and Caradoc (he). \\
+  \textbf{Prove} your answers to the puzzles are correct.
+  Be certain to first clearly state your claim.
+
+  \begin{enumerate}
+  \item
+  Branwyn says \inlinequote{If I am a Knight, then so is Caradoc.}
+  Can you enter the castle?\\
+
+  {\color{redcolor}\textbf{Claim}: \inlinequote{Branwyn is a Knight and Caradoc is a Knight.}}
+  \begin{subprove}
+    Let the propositions \(p\) be \inlinequote{Branwyn is a Knight} and 
+    \(q\) be \inlinequote{Caradoc is a Knight}. Let \(S\) be Branwyn's propositional 
+    sentence, the implication given, then it is \(p \THEN q\).\\
+    \textbf{Inferences of Implications}
+    \begin{enumerate}
+      \item Assume, for contradiction, \(\NOT p\). (Branwyn is a Knave.)
+      \item \(S\) is false. (Knave always lies.)
+      \item \(p \THEN q\) is false, then, \(p\) is true and \(q\) is false.
+      \item \(\NOT p\) and \(p\), so \FALSE. Therefore, the assumption \(\NOT p\) is impossible.
+      \item Thus, \(p\) is true. (by contradiction)
+      \item If \(p\) is true, then \(S\) was made by a Knight, so \(S\) is true. (Knights never lies.)
+      \item The conditional, \(S\), is true and the condition, \(p\), is true. Thus, the conclusion, $q$, is true.
+      \item Therefore, \(p\) and \(q\).
+    \end{enumerate}
+    Hence, Branwyn is a Knight and Caradoc is a Knight. (Yes, can enter)
+  \end{subprove}
+
+
+  \item What if Caradoc had instead said \inlinequote{If Branwyn is a Knight, then I am a Knave.}
+  Could you enter the castle now?\\
+
+  {\color{redcolor}\textbf{Claim}: Branwyn is a Knave and Caradoc is a Knight.}
+  \begin{subprove}
+    Let the propositions \(p\) be \inlinequote{Branwyn is a Knight} and 
+    \(q\) be \inlinequote{Caradoc is a Knight}. Let \(S\) be Caradoc's propositional
+    sentence, the implication given, then it is \(p \THEN \NOT q\).\\
+    \textbf{Inferences of Implications}
+    \begin{enumerate}
+      \item Assume, for contradiction, \(\NOT q\). (Caradoc is a Knave.)
+      \item \(S\) is false. (Knave always lies.)
+      \item \(p \THEN ~\NOT q\) is false, thus, \(p\) is true and \(q\) is true.
+      \item \(\NOT q\) and \(q\), so \FALSE. Therefore, the assumption \(\NOT q\) is impossible.
+      \item Thus, \(q\) is true. (by contradiction)
+      \item If \(q\) is true, then \(S\) was made by a Knight, so \(S\) is true. (Knights never lie.)
+      \item The conditional, \(S\), is true. Moreover, its contrapositive is also true. So, \(q \THEN \NOT p\) is true.
+      \item Since \(q \THEN \NOT p\) and its condition, $q$, is true, its conclusion, \(\NOT p\), is also true.
+      \item Therefore, \(\NOT p\) and \(q\).
+    \end{enumerate}
+    Hence, Branwyn is a Knave and Caradoc is a Knight. (No, cannot enter)
+  \end{subprove}
+  \end{enumerate}
+\end{enumerate}
