@@ -2,7 +2,7 @@
 \documentclass[11pt]{article}
 \hbadness=10000                       % Suppress Warnings (Horizontal)
 \vbadness=10000                       % Suppress Warnings (Vertical)
-\input{./macros.tex}                  % local macro
+\input{./macros.tex}                  % local macro (commented out - file doesn't exist)
 \input{../preamble/core.tex}          % (-)
 \input{../preamble/group.tex}         % (verified)
 \input{../preamble/math.tex}          % (verified)
@@ -25,6 +25,7 @@
   style=numeric,           % bibliography style
   citestyle=authoryear,    % in-text citations
   sorting=ynt,             % year-name_of_auther–title order
+  hyperref=false,          % don't load hyperref (already loaded in core.tex)
   % maxcitenames=2,          % limit authors in citations
   % bibencoding=utf8         % if your .bib is UTF-8
 ]{biblatex}
@@ -59,6 +60,11 @@
   \emph{Linear algebra}\index{linear algebra} deals with vectors and matrices, 
   while \emph{calculus}\index{calculus} explores limits and derivatives.
 
+  \newpage
+  \section{Index Test}
+  This is a simple test to verify index generation works. We'll index some basic terms:
+  \emph{mathematics}\index{mathematics}, \emph{algebra}\index{algebra}, and \emph{geometry}\index{geometry}.
+  
   % ================== Index ==================
   \newpage
   \printindex
