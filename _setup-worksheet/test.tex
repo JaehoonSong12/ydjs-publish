@@ -1,22 +1,22 @@
-% (1) .tex Project General Configuration
+% (1) General Configurations (.tex Project) 
 \documentclass[11pt]{article}
 \hbadness=10000                       % Suppress Warnings (Horizontal)
 \vbadness=10000                       % Suppress Warnings (Vertical)
-\input{./macros.tex}                  % local macro
+\input{./macros.tex}                  % local macro (commented out - file doesn't exist)
 \input{../preamble/core.tex}          % (-)
 % \input{../preamble/group.tex}         % (verified)
 % \input{../preamble/math.tex}          % (verified)
 % \input{../preamble/opeartor.tex}      % (verified)
 % \input{../preamble/symbol.tex}        % (verified)
 
-% (2) .tex Project Specific Configuration
+% (2) Specific Configurations
 %%% MATH 2106
 \newcommand{\VF}{\vspace*{\fill}}
 \newcommand{\HF}{\hspace*{\fill}}
 \newcommand{\tab}{\hspace*{2em}}
 
-% (3) Configuration Reference
-% ================== Reference Page ==================
+% (3) References Configurations
+% < Reference Page >
 % choose your reference generation style:
 %   - for humanities: chicago-authordate, apa, mla
 %   - for sciences: numeric, numeric-comp, alphabetic
@@ -25,14 +25,15 @@
   style=numeric,           % bibliography style
   citestyle=authoryear,    % in-text citations
   sorting=ynt,             % year-name_of_auther–title order
+  hyperref=false,          % don't load hyperref (already loaded in core.tex)
   % maxcitenames=2,          % limit authors in citations
   % bibencoding=utf8         % if your .bib is UTF-8
 ]{biblatex}
 \addbibresource{citations.bib}
-%%% 
-% % ==================== Index Page =====================
-% \usepackage{makeidx}
-% \makeindex
+% < Index Page >
+\usepackage{makeidx}
+\makeindex
+
 
 \begin{document}
 
@@ -42,8 +43,8 @@
   {Lecture 1}
   {Prof. Smith}{Scribe: John}
   {1}
-
-  \newpage\handout[true]
+  
+  \handout[true]
   {CS 1010}{Feb 1, 2025}
   {Assignment 1}
   {Prof. Jones}{Due: Feb 15}
