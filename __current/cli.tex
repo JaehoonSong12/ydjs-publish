@@ -30,9 +30,12 @@
 ]{biblatex}
 \addbibresource{citations.bib}
 % ==================== Index Page =====================
-\usepackage[backend=biber]{hyperref}  % Load hyperref FIRST (before makeidx)
 \usepackage{makeidx}
 \makeindex
+
+% NOTE: To generate index, compile with: pdflatex -> makeindex -> pdflatex
+% The makeidx package will automatically create .idx file during first pdflatex run
+% Then makeindex processes .idx to .ind, and second pdflatex run includes the index
 
 \begin{document}
   %% MATH 2106: Foundations of Mathematical Proof
