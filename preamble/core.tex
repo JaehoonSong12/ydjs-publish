@@ -270,9 +270,12 @@
 %
 % FEATURES:
 %   - Configurable shadow effect (shadowbox vs framebox)
-%   - Automatic page numbering with handout identifier
+%   - Smart page numbering: only changes if handout number is provided
 %   - Responsive width using \textwidth instead of hardcoded values
 %   - Professional layout with course information
+%   - Index-friendly: preserves page numbering when no handout number given
+%   - If <number> is provided: changes page numbering to "number-page" (e.g., "1-1", "1-2")
+%   - If <number> is empty: keeps default page numbering (index-friendly)
 %
 % PARAMETERS:
 %   [<is_shadow>]     Boolean for shadow effect (optional, defaults to false)
@@ -281,27 +284,44 @@
 %   <title>           Title of the handout (e.g., "Lecture 1")
 %   <author>          Name of the author (e.g., "Prof. Alice")
 %   <secondary_info>  Additional info (e.g., "Scribe(s): Bob and Charlie")
-%   <number>          Handout number or identifier (used for page numbering)
+%   <number>          Handout number or identifier (optional, affects page numbering)
 %
 % DEPENDENCIES:
 %   \usepackage{fancybox}
 %   \usepackage{ifthen}
 %
 % USAGE EXAMPLES:
+%   % With handout number (changes page numbering)
 %   \newpage\handout
 %   {CS 4510}{Jan 15, 2025}
 %   {Lecture 1}
 %   {Prof. Smith}{Scribe: John}
 %   {1}
 %
+%   % With shadow effect and handout number
 %   \newpage\handout[true]
 %   {CS 1010}{Feb 1, 2025}
 %   {Assignment 1}
 %   {Prof. Jones}{Due: Feb 15}
 %   {A1}
+%
+%   % Without handout number (preserves page numbering for index)
+%   \newpage\handout
+%   {CS 4510}{Jan 15, 2025}
+%   {Lecture 1}
+%   {Prof. Smith}{Scribe: John}
+%   {}
 % ------------------------------------------------------------------------------
 \newcommand{\handout}[7][false]{%
-  \renewcommand{\thepage}{#7-\arabic{page}}%
+  % Only change page numbering if handout number (#7) is provided and not empty
+  \ifthenelse{\equal{#7}{}}{%
+    % No handout number provided - keep default page numbering
+  }{%
+    % Handout number provided - temporarily change page numbering
+    \let\oldthepage\thepage
+    \renewcommand{\thepage}{#7-\arabic{page}}%
+  }%
+  
   \noindent
   \begin{center}%
   \ifthenelse{\equal{#1}{true}}{%
