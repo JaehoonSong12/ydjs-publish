@@ -16,6 +16,7 @@
 % \@ifpackageloaded{amssymb}{}{\usepackage{amssymb}}       % \mathfrak{...}, \square, \blacksquare
 % \@ifpackageloaded{amsmath}{}{\usepackage{amsmath}}       % math foundations, align, cases, ...
 % \@ifpackageloaded{amsthm}{}{\usepackage{amsthm}}         % theorem/proof environments
+\@ifpackageloaded{ifthen}{}{\usepackage{ifthen}}        % basic conditional logic (\ifthenelse)
 % ====================== Document =====================
 \@ifpackageloaded{fancybox}{}{\usepackage{fancybox}}     % shadowbox, ovalbox, etc.
 \@ifpackageloaded{mdframed}{}{\usepackage{mdframed}}     % framed environments
@@ -51,7 +52,6 @@
 \@ifpackageloaded{longtable}{}{\usepackage{longtable}}   % multipage tables
 \@ifpackageloaded{caption}{}{\usepackage{caption}}       % customize captions
 \@ifpackageloaded{arydshln}{}{\usepackage{arydshln}}     % dashed/dotted lines in tables
-\@ifpackageloaded{cellspace}{}{\usepackage{cellspace}}   % extra padding in table cells
 \@ifpackageloaded{multicol}{}{\usepackage{multicol}}     % multiple columns in text
 % ================== TikZ Libraries ===================
 \@ifpackageloaded{tikz}{}{\usepackage{tikz}}             % diagrams and graphics
