@@ -1,79 +1,109 @@
-% (1) .tex Project General Configuration
-\documentclass[11pt]{article}
-\hbadness=10000                       % Suppress Warnings (Horizontal)
-\vbadness=10000                       % Suppress Warnings (Vertical)
-\input{./macros.tex}                  % local macro
-\input{../preamble/core.tex}          % (-)
-% \input{../preamble/group.tex}         % (verified)
-% \input{../preamble/math.tex}          % (verified)
-% \input{../preamble/opeartor.tex}      % (verified)
-% \input{../preamble/symbol.tex}        % (verified)
+% % (1) .tex Project General Configuration
+% \documentclass[11pt]{article}
+% \hbadness=10000                       % Suppress Warnings (Horizontal)
+% \vbadness=10000                       % Suppress Warnings (Vertical)
+% \input{./macros.tex}                  % local macro
+% \input{../preamble/core.tex}          % (-)
+% % \input{../preamble/group.tex}         % (verified)
+% % \input{../preamble/math.tex}          % (verified)
+% % \input{../preamble/opeartor.tex}      % (verified)
+% % \input{../preamble/symbol.tex}        % (verified)
 
-% (2) .tex Project Specific Configuration
-%%% MATH 2106
-\newcommand{\VF}{\vspace*{\fill}}
-\newcommand{\HF}{\hspace*{\fill}}
-\newcommand{\tab}{\hspace*{2em}}
+% % (2) .tex Project Specific Configuration
+% %%% MATH 2106
+% \newcommand{\VF}{\vspace*{\fill}}
+% \newcommand{\HF}{\hspace*{\fill}}
+% \newcommand{\tab}{\hspace*{2em}}
 
-% (3) Configuration Reference
-% ================== Reference Page ==================
-% choose your reference generation style:
-%   - for humanities: chicago-authordate, apa, mla
-%   - for sciences: numeric, numeric-comp, alphabetic
-\usepackage[
-  backend=biber,           % use biber for processing
-  style=numeric,           % bibliography style
-  citestyle=authoryear,    % in-text citations
-  sorting=ynt,             % year-name_of_auther–title order
-  % maxcitenames=2,          % limit authors in citations
-  % bibencoding=utf8         % if your .bib is UTF-8
-]{biblatex}
-\addbibresource{citations.bib}
-%%% 
-% % ==================== Index Page =====================
-% \usepackage{makeidx}
-% \makeindex
+% % (3) Configuration Reference
+% % ================== Reference Page ==================
+% % choose your reference generation style:
+% %   - for humanities: chicago-authordate, apa, mla
+% %   - for sciences: numeric, numeric-comp, alphabetic
+% \usepackage[
+%   backend=biber,           % use biber for processing
+%   style=numeric,           % bibliography style
+%   citestyle=authoryear,    % in-text citations
+%   sorting=ynt,             % year-name_of_auther–title order
+%   % maxcitenames=2,          % limit authors in citations
+%   % bibencoding=utf8         % if your .bib is UTF-8
+% ]{biblatex}
+% \addbibresource{citations.bib}
+% %%% 
+% % % ==================== Index Page =====================
+% % \usepackage{makeidx}
+% % \makeindex
+
+% \begin{document}
+
+
+%   \newpage\handout
+%   {CS 4510}{Jan 15, 2025}
+%   {Lecture 1}
+%   {Prof. Smith}{Scribe: John}
+%   {1}
+
+%   \newpage\handout[true]
+%   {CS 1010}{Feb 1, 2025}
+%   {Assignment 1}
+%   {Prof. Jones}{Due: Feb 15}
+%   {A1}
+%   The document was generated on: \generatedOn
+%   Last compiled: \generatedOn
+
+%   % \insertvideo{0.8}{0.6}{video.mp4}{Tutorial video}{false}{true}
+%   % \insertvideo{0.6}{0.4}{demo.mp4}{Product demonstration}{true}{false}
+%   % \insertimage{0.8}{images/graph.png}{This is an example caption.}
+%   % \insertimage{0.5}{logo.png}{Company logo}
+%   \blockcite{chartrand_mathematical_2018}{This is a quote from Smith}
+%   \blockcite[42]{chartrand_mathematical_2018}{This quote is from page 42}
+
+%   \blockquote{This is a longer quote that deserves to be set apart}
+%   \blockquote{Another important quote}
+%   \inlinequote{This is a quoted text}
+%   The author said \inlinequote{this is important}.
+  
+
+%   % Natural text wrapping (preferred for most cases)
+%   \courseheader{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
+%                {ICA (In-Class Assignment) 1}{August 18th}
+
+%   % Auto-scaling for long titles
+%   \courseheader[fit]{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
+%                 {Very Long Title That Should Be Scaled}{August 18th}
+
+
+  
+
+% \end{document}
+
+
+
+
+\documentclass{article}
+
+% ================== Packages ==================
+\usepackage{makeidx}
+\makeindex                      % enable index creation
+\usepackage{hyperref}
+
+
+
 
 \begin{document}
 
+  \section{Introduction}
+  This is an example of an indexed document.  
+  We can add an entry for \LaTeX\index{LaTeX},  
+  and another entry for \textbf{mathematics}\index{mathematics}.  
 
-  \newpage\handout
-  {CS 4510}{Jan 15, 2025}
-  {Lecture 1}
-  {Prof. Smith}{Scribe: John}
-  {1}
+  \newpage
+  \section{More Text}
+  Here's a second page. We also index \emph{groups}\index{group theory}  
+  and \emph{rings}\index{ring theory}.  
 
-  \newpage\handout[true]
-  {CS 1010}{Feb 1, 2025}
-  {Assignment 1}
-  {Prof. Jones}{Due: Feb 15}
-  {A1}
-  The document was generated on: \generatedOn
-  Last compiled: \generatedOn
-
-  % \insertvideo{0.8}{0.6}{video.mp4}{Tutorial video}{false}{true}
-  % \insertvideo{0.6}{0.4}{demo.mp4}{Product demonstration}{true}{false}
-  % \insertimage{0.8}{images/graph.png}{This is an example caption.}
-  % \insertimage{0.5}{logo.png}{Company logo}
-  \blockcite{chartrand_mathematical_2018}{This is a quote from Smith}
-  \blockcite[42]{chartrand_mathematical_2018}{This quote is from page 42}
-
-  \blockquote{This is a longer quote that deserves to be set apart}
-  \blockquote{Another important quote}
-  \inlinequote{This is a quoted text}
-  The author said \inlinequote{this is important}.
-  
-
-  % Natural text wrapping (preferred for most cases)
-  \courseheader{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
-               {ICA (In-Class Assignment) 1}{August 18th}
-
-  % Auto-scaling for long titles
-  \courseheader[fit]{Math 2106-B: Foundations of Mathematical Proof}{Fall 2025}%
-                {Very Long Title That Should Be Scaled}{August 18th}
-
-
-  
+  % ================== Index ==================
+  \newpage
+  \printindex
 
 \end{document}
-

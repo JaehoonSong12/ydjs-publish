@@ -29,10 +29,10 @@
   % bibencoding=utf8         % if your .bib is UTF-8
 ]{biblatex}
 \addbibresource{citations.bib}
-%%% 
-% % ==================== Index Page =====================
-% \usepackage{makeidx}
-% \makeindex
+% ==================== Index Page =====================
+\usepackage{makeidx}
+\makeindex
+\usepackage{hyperref}
 
 \begin{document}
   %% MATH 2106: Foundations of Mathematical Proof
@@ -44,6 +44,14 @@
   \input{math2106/hw01.tex}
 
 
+  \newpage
+  \section{More Text}
+  Here's a second page. We also index \emph{groups}\index{group theory}  
+  and \emph{rings}\index{ring theory}.  
+
+  % ================== Index ==================
+  \newpage
+  \printindex
 
 
   %% MATH 4150: Number Theory
