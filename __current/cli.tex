@@ -1,32 +1,25 @@
 % (1) .tex Project General Configuration
 \documentclass[11pt]{article}
-\input{./macros.tex}
-\input{../preamble.tex}
-\input{../preamble/font.tex}
-\input{../preamble/group.tex}
-\input{../preamble/math.tex}
-
+\hbadness=10000                       % Suppress Warnings (Horizontal)
+\vbadness=10000                       % Suppress Warnings (Vertical)
+\input{./macros.tex}                  % local macro
+\input{../preamble/core.tex}          % (-)
+\input{../preamble/group.tex}         % (verified)
+\input{../preamble/math.tex}          % (verified)
+\input{../preamble/opeartor.tex}      % (verified)
+\input{../preamble/symbol.tex}        % (verified)
 
 % (2) .tex Project Specific Configuration
-% %%% Sets page margins, overriding 11pt article defaults
-% \setlength{\topmargin}{0 in}
-% \setlength{\headheight}{0 in}
-% \setlength{\headsep}{0 in}
-% \setlength{\oddsidemargin}{0in}
-% \setlength{\textwidth}{6.5 in}
-% \setlength{\textheight}{9 in}
-
-% %%% Useful for layout
-% \newcommand{\VF}{\vspace*{\fill}}
-% \newcommand{\HF}{\hspace*{\fill}}
-
-
+%%% MATH 2106
+\newcommand{\VF}{\vspace*{\fill}}
+\newcommand{\HF}{\hspace*{\fill}}
+\newcommand{\tab}{\hspace*{2em}}
 
 % (3) Configuration Reference
+% ================== Reference Page ==================
 % choose your reference generation style:
 %   - for humanities: chicago-authordate, apa, mla
 %   - for sciences: numeric, numeric-comp, alphabetic
-%   - 
 \usepackage[
   backend=biber,           % use biber for processing
   style=numeric,           % bibliography style
@@ -36,30 +29,18 @@
   % bibencoding=utf8         % if your .bib is UTF-8
 ]{biblatex}
 \addbibresource{citations.bib}
-
-
-
-
-
-
-
-
-
-
-
+%%% 
+% % ==================== Index Page =====================
+% \usepackage{makeidx}
+% \makeindex
 
 \begin{document}
-
-
   %% MATH 2106: Foundations of Mathematical Proof
   % \input{math2106/syllabus.tex}
   % \input{math2106/lecture01.tex}
-  % \input{math2106/test.tex}
-
+  % \input{math2106/hw00.tex}
   % \input{math2106/proof01.tex}
   % \input{math2106/proof02.tex}
-
-  % \input{math2106/hw00.tex}
   \input{math2106/hw01.tex}
 
 

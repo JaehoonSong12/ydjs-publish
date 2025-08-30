@@ -458,31 +458,3 @@
 \makeatletter
 \renewcommand{\algorithmiccomment}[1]{\hfill$\triangleright$~#1}
 \makeatother
-
-% \makeatletter ... \makeatother
-% This pair temporarily makes @ a "letter" 
-% so you can redefine internals (macros whose names contain @ ). 
-% \algorithmiccomment internally uses @, so you need this wrapper.
-
-
-
-
-
-
-
-% % ─── Enter “@‑letter” mode ────────────────────────────────
-% \makeatletter
-
-%   % Define internal macro \@sayhello that takes one argument
-%   \def\@sayhello#1{Hello, #1!}
-
-%   % Define user‑level \sayhello that simply calls the internal one
-%   \newcommand{\sayhello}[1]{\@sayhello{#1}}
-
-% % ─── Leave “@‑letter” mode ───────────────────────────────
-% \makeatother
-
-% % ─── Now use your friendly command in the document ───────
-% \sayhello{World}
-
-
