@@ -1,0 +1,407 @@
+\newpage\handout
+{\textsc{MATH 2552: Differential Equations}}{\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA 4.0 license}}
+{Part 2: }
+{Author: \href{\HandoutAuthorUrl}{\HandoutAuthor}}{Generated on \generatedOn}
+{Diff.Equ.}
+\input{preface.tex}
+\newpage
+
+\begin{enumerate}
+
+  \item \textbf{Phase Plane Matching} (10 points)\\
+  Match each initial value problem with the phase plane plot of its solution. (The arrows on the curves indicate how the solution point moves as $t$ increases.)
+  \begin{enumerate}[label=\arabic*.]
+    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}0 & -1 \\ 1 & 0\end{array}\right] \overrightarrow{\boldsymbol{y}}, \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}-1 & -0.5 \\ 0.5 & -1\end{array}\right] \overrightarrow{\boldsymbol{y}}, \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item $\vec{y}^{\prime}=\left[\begin{array}{rr}0 & 2 \\ -2 & 0\end{array}\right] \vec{y}, \quad \vec{y}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}1 & -0.5 \\ 0.5 & 1\end{array}\right] \overrightarrow{\boldsymbol{y}}_{,} \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+  \end{enumerate}
+
+  \insertimage{0.40}{math2552/images/cus01}{reference attached}
+
+  \newpage
+
+  \item \textbf{Repeated Eigenvalues and Generalized Eigenvectors} (10 points)\\
+  Suppose that the matrix $A$ has repeated eigenvalue with the following eigenvector and generalized eigenvector:  
+  \[
+  \lambda = 2 \quad \text{with eigenvector } \vec{v} = 
+  \begin{bmatrix}
+  -2 \\ -3
+  \end{bmatrix}
+  \quad \text{and generalized eigenvector } 
+  \vec{w} =
+  \begin{bmatrix}
+  0 \\ -4
+  \end{bmatrix}.
+  \]
+  Write the solution to the linear system $\vec{r}\,' = A \vec{r}$ in the following forms.
+  \begin{enumerate}[label=\textbf{\Alph*.}]
+    \item In eigenvalue/eigenvector form:
+    \begin{subanswer}
+      % your answer here
+      \[
+      \begin{bmatrix}
+      x(t) \\ y(t)
+      \end{bmatrix}
+      =
+      c_{1}
+      \begin{bmatrix}
+      -2 \\ -3
+      \end{bmatrix} e^{2t}
+      +
+      c_{2}\left(
+      \begin{bmatrix}
+      0 \\ -4
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+      -2 \\ -3
+      \end{bmatrix} t
+      \right) e^{2t}.
+      \]
+    \end{subanswer}
+    \item In fundamental matrix form:
+    \begin{subanswer}
+      % your answer here
+      \[
+      \begin{bmatrix}
+      x(t) \\ y(t)
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+      -2e^{2t} & \; -2t e^{2t} \\[6pt]
+      -3e^{2t} & \; (-4 - 3t)e^{2t}
+      \end{bmatrix}
+      \begin{bmatrix}
+      c_{1} \\ c_{2}
+      \end{bmatrix}.
+      \]
+    \end{subanswer}
+    \item As two equations:
+    \begin{subanswer}
+      % your answer here
+      \[
+      x(t) = -2c_{1}e^{2t} - 2c_{2}t e^{2t},
+      \]
+      \[
+      y(t) = -3c_{1}e^{2t} + (-4c_{2} - 3c_{2}t)e^{2t}.
+      \]
+    \end{subanswer}
+  \end{enumerate}
+
+  \textbf{Note}: if you are feeling adventurous you could use other 
+  eigenvectors like $4 \overrightarrow{\boldsymbol{v}}$ and other 
+  generalized eigenvectors like $\overrightarrow{\boldsymbol{w}}-3 \overrightarrow{\boldsymbol{v}}$. 
+  Just remember that if you change $\overrightarrow{\boldsymbol{v}}$, 
+  you must also change $\overrightarrow{\boldsymbol{w}}$ for its fundamental solution!
+
+  \newpage
+
+
+
+
+
+  \item \textbf{Repeated Eigenvalues --- Initial Value Problem} (10 points)\\
+  Consider the initial value problem
+  $$
+  \overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}
+  -6 & 1 \\
+  0 & -6
+  \end{array}\right] \overrightarrow{\boldsymbol{y}}, \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}
+  -4 \\
+  -2
+  \end{array}\right]
+  $$
+  \begin{enumerate}[label=(\alph*)]
+    \item Find the eigenvalue $\lambda$, an eigenvector $\overrightarrow{\boldsymbol{v}_1}$, and a generalized eigenvector $\overrightarrow{\boldsymbol{v}_2}$ for the coefficient matrix of this linear system.
+    \begin{subanswer}
+      The coefficient matrix is
+      \[
+        A=\begin{bmatrix}-6 & 1\\[4pt]0 & -6\end{bmatrix}.
+      \]
+      By the characteristic polynomial, $(\lambda+6)^2$, the repeated eigenvalue is defined as follows.
+      \[
+        \lambda=-6.
+      \]
+      Thus, \(\overrightarrow{v_1}\in\operatorname{null}(A+6I)\) where
+      \[
+        A+6I=\begin{bmatrix}0 & 1\\[4pt]0 & 0\end{bmatrix}
+      \]
+      Therefore,
+      \[
+        \overrightarrow{v_1}=\begin{bmatrix}1\\[4pt]0\end{bmatrix}.
+      \]
+      Moreover, a generalized eigenvector $\overrightarrow{v_2}$ satisfies 
+      $(A+6I)\overrightarrow{v_2}=\overrightarrow{v_1}$. Thus,
+      \[
+        \overrightarrow{v_2}=\begin{bmatrix}0\\[4pt]1\end{bmatrix}.
+      \]
+    \end{subanswer}
+
+    \item Find the most general real-valued solution to the linear system of differential equations. Use $t$ as the independent variable in your answers.
+    \begin{subanswer}
+      For a repeated eigenvalue with one eigenvector and one generalized eigenvector, the general real solution is
+      \[
+        \overrightarrow{y}(t)=e^{\lambda t}\big(C_1\overrightarrow{v_1}+C_2(t\overrightarrow{v_1}+\overrightarrow{v_2})\big).
+      \]
+      , that is, 
+      \[
+        \overrightarrow{y}(t)=e^{-6t}\Big(C_1\begin{bmatrix}1\\[4pt]0\end{bmatrix}+C_2\Big(t\begin{bmatrix}1\\[4pt]0\end{bmatrix}+\begin{bmatrix}0\\[4pt]1\end{bmatrix}\Big)\Big)
+        =e^{-6t}\begin{bmatrix}C_1+C_2 t\\[6pt]C_2\end{bmatrix},
+      \]
+      where $C_1,C_2\in\mathbb{R}$ are arbitrary constants.
+    \end{subanswer}
+
+    \item Solve the original initial value problem.
+    \begin{subanswer}
+      Apply $\overrightarrow{y}(0)=\begin{bmatrix}-4\\[4pt]-2\end{bmatrix}$. From the general solution at $t=0$,
+      \[
+        \overrightarrow{y}(0)=\begin{bmatrix}C_1\\[4pt]C_2\end{bmatrix}=\begin{bmatrix}-4\\[4pt]-2\end{bmatrix},
+      \]
+      so $C_1=-4$ and $C_2=-2$. Therefore the IVP solution is
+      \[
+        \boxed{\displaystyle
+          \overrightarrow{y}(t)=e^{-6t}\begin{bmatrix}-4-2t\\[6pt]-2\end{bmatrix}
+          \quad\text{or}\quad
+          y_1(t)=(-4-2t)e^{-6t},\; y_2(t)=-2e^{-6t}.
+        }
+      \]
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+
+  \newpage
+
+
+
+
+
+
+  \item \textbf{Flow System Modeling} (10 points)\\
+  The flow system shown in the figure is activated at time $t=0$. 
+  Let $Q_i(t)$ denote the amount of solute present in the $i$ th tank at 
+  time $t$. Assume that all the flow rates are a constant $10 \mathrm{~L} / \mathrm{min}$. 
+  It follows that the volume of solution in each tank remains constant; 
+  assume this volume to be 1000 L . The concentration of solute in the inflow to 
+  Tank 1 (from a source other than Tank 2) is $0.2 \mathrm{~kg} / \mathrm{L}$, and 
+  the concentration of solute in the inflow to Tank 2 (from a source other than Tank 1) 
+  is $0 \mathrm{~kg} / \mathrm{L}$. Assume each tank is mixed perfectly.
+  \insertimage{0.40}{math2552/images/cus02}{reference attached}
+
+  \begin{enumerate}[label=(\alph*)]
+    \item Set up a system of first-order differential equations that models this situation.\\
+    $$
+    \left[\begin{array}{l}
+    Q_1^{\prime} \\
+    Q_2^{\prime}
+    \end{array}\right]=\left[\begin{array}{ll} 
+    & \square \\
+    & \square
+    \end{array}\right]+\left[\begin{array}{l}
+    Q_1 \\
+    Q_2
+    \end{array}\right]+\left[\begin{array}{l}
+    \square \\
+    \square
+    \end{array}\right]
+    $$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item If $Q_1(0)=30 \mathrm{~kg}$ and $Q_2(0)=30 \mathrm{~kg}$, find the amount of solute in each tank after $t$ minutes.\\
+    $$
+    \begin{aligned}
+    & Q_1(t)=\square \mathrm{kg} \\
+    & Q_2(t)=\square \mathrm{kg}
+    \end{aligned}
+    $$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item As $t \rightarrow \infty$, how much solute is in each tank?\\
+    In the long run, Tank 1 will have $\square$ kg of solute.\\
+    In the long run, Tank 2 will have $\square$ kg of solute.\\
+    (Reread the question and think about why this answer makes sense.)\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+  \end{enumerate}
+
+
+  \newpage
+
+  \item \textbf{Second Order Homogeneous Differential Equation} (10 points)\\
+  Solve the initial-value problem $2 y^{\prime \prime}+5 y^{\prime}-3 y=0, y(0)=-3, y^{\prime}(0)=30$.\\
+  Answer: $y(x)=$ $\square$\\
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Characteristic Equation Roots} (10 points)\\
+  Find the general solution to the homogeneous differential equation
+  $$
+  \frac{d^2 y}{d t^2}-17 \frac{d y}{d t}+70 y=0
+  $$
+  The solution can be written in the form
+  $$
+  y=C_1 e^{r_1 t}+C_2 e^{r_2 t}
+  $$
+  with
+  $$
+  r_1<r_2
+  $$
+  Using this form, $r_1=$ $\square$ and $r_2=$ $\square$\\
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \newpage
+
+  \item \textbf{Second Order to First Order System} (10 points)\\
+  Consider the second order differential equation with initial conditions
+  $$
+  u^{\prime \prime}-4 u^{\prime}-5.5 u=-1.5 \sin (3 t), \quad u(1)=6, \quad u^{\prime}(1)=7.5
+  $$
+  Without solving it, rewrite the differential equation as an equivalent set of first order equations. In your answer use the single letter $\mathbf{u}$ to represent the function $u$ and the single letter $\mathbf{v}$ to represent the "velocity function" $u^{\prime}$. Do not use $u(t)$ or $v(t)$ to represent these functions. Expressions like $\sin (t)$ that represent other functions are OK.
+  $$
+  \begin{aligned}
+  & u^{\prime}=\square \\
+  & v^{\prime}=\square
+  \end{aligned}
+  $$
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+  Now write the first order system using matrices:
+  $$
+  \frac{d}{d t}\left[\begin{array}{l}
+  u \\
+  v
+  \end{array}\right]=\left[\begin{array}{ll}
+  \square & \square \\
+  \square & \square
+  \end{array}\right] \quad\left[\begin{array}{l}
+  u \\
+  v
+  \end{array}\right]+\left[\begin{array}{l}
+  \square \\
+  \square
+  \end{array}\right]
+  $$
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+  The initial value of the vector valued solution for this system is:
+  $$
+  \left[\begin{array}{l}
+  u(1) \\
+  v(1)
+  \end{array}\right]=\left[\begin{array}{l}
+  \square \\
+  \square
+  \end{array}\right] .
+  $$
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \item \textbf{Complex Roots of Characteristic Equation} (10 points)\\
+  The general solution to the second-order differential equation $\frac{d^2 y}{d t^2}-2 \frac{d y}{d t}+6 y=0$ is in the form $y(x)=e^{\alpha x}\left(c_1 \cos \beta x+c_2 \sin \beta x\right)$. Find the values of $\alpha$ and $\beta$, where $\beta>0$.\\
+  Answer: $\alpha=$ $\square$ and $\beta=$ $\square$\\
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \newpage
+
+  \item \textbf{Mass-Spring System} (10 points)\\
+  A hollow steel ball weighing 4 pounds is suspended from a spring. This stretches the spring $\frac{1}{7}$ feet. The ball is started in motion from the equilibrium position with a downward velocity of 5 feet per second. The air resistance (in pounds) of the moving ball numerically equals 4 times its velocity (in feet per second).\\
+  Suppose that after t seconds the ball is y feet below its rest position. Find y in terms of t . (Note that the positive direction is down.)\\
+  Take as the gravitational acceleration 32 feet per second per second.
+  $$
+  y=\square
+  $$
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+
+  \newpage
+
+  \item \textbf{Nonhomogeneous Differential Equation} (10 points)\\
+  \begin{enumerate}[label=(\alph*)]
+    \item Find a particular solution to the nonhomogeneous differential equation $y^{\prime \prime}+4 y^{\prime}+5 y=5 x+5 e^{-x}$.\\
+    $$
+    y_p=\square
+    $$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item Find the most general solution to the associated homogeneous differential equation. Use $c_1$ and $c_2$ in your answer to denote arbitrary constants, and enter them as c 1 and c 2 .\\
+    $$
+    y_h=\square
+    $$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item Find the most general solution to the original nonhomogeneous differential equation. Use $c_1$ and $c_2$ in your answer to denote arbitrary constants.\\
+    $$
+    y=\square
+    $$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+  \end{enumerate}
+
+  \item \textbf{Method of Undetermined Coefficients} (10 points)\\
+  Match the following guess solutions $y_p$ for the method of undetermined coefficients with the second-order nonhomogeneous linear equations below.\\
+  A. $y_p(x)=A x^2+B x+C$,\\
+  B. $y_p(x)=A e^{2 x}$,\\
+  C. $y_p(x)=A \cos 2 x+B \sin 2 x$,\\
+  D. $y_p(x)=(A x+B) \cos 2 x+(C x+D) \sin 2 x$\\
+  E. $y_p(x)=A x e^{2 x}$, and\\
+  F. $y_p(x)=e^{3 x}(A \cos 2 x+B \sin 2 x)$\\
+  \begin{enumerate}[label=\arabic*.]
+    \item $\square$ $\frac{d^2 y}{d x^2}-5 \frac{d y}{d x}+6 y=e^{2 x}$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item $\square$ $\frac{d^2 y}{d x^2}+4 y=-3 x^2+2 x+3$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item $\square$ $y^{\prime \prime}+4 y^{\prime}+13 y=3 \cos 2 x$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+    \item $\square$ $y^{\prime \prime}-2 y^{\prime}-15 y=e^{3 x} \cos 2 x$\\
+    \begin{subanswer}
+      % your answer here
+    \end{subanswer}
+  \end{enumerate}
+
+  \item \textbf{Particular Solution for Trigonometric Forcing} (10 points)\\
+  Find a particular solution to
+  $$
+  y^{\prime \prime}+9 y=-6 \sin (3 t)
+  $$
+  $$
+  y_p=
+  $$
+  \begin{subanswer}
+    % your answer here
+  \end{subanswer}
+\end{enumerate}

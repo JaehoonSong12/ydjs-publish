@@ -1,0 +1,83 @@
+% (1) General Configurations (.tex Project) 
+\documentclass[11pt]{article}
+\hbadness=10000                       % Suppress Warnings (Horizontal)
+\vbadness=10000                       % Suppress Warnings (Vertical)
+\input{./macros.tex}                  % local macro (commented out - file doesn't exist)
+\input{../preamble/core.tex}          % (-)
+\input{../preamble/group.tex}         % (verified)
+\input{../preamble/math.tex}          % (verified)
+\input{../preamble/opeartor.tex}      % (verified)
+\input{../preamble/symbol.tex}        % (verified)
+
+% (2) Specific Configurations
+%%% MATH 2106
+\newcommand{\VF}{\vspace*{\fill}}
+\newcommand{\HF}{\hspace*{\fill}}
+\newcommand{\tab}{\hspace*{2em}}
+
+% Add necessary macros for mathematical notation
+\newcommand{\divides}{\mid}
+\newcommand{\ndivides}{\nmid}
+% \newcommand{\gcd}{\text{gcd}}
+\newcommand{\lcm}{\text{lcm}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
+
+% (3) References Configurations
+% < Reference Page >
+% choose your reference generation style:
+%   - for humanities: chicago-authordate, apa, mla
+%   - for sciences: numeric, numeric-comp, alphabetic
+\usepackage[
+  backend=biber,           % use biber for processing
+  style=numeric,           % bibliography style
+  citestyle=authoryear,    % in-text citations
+  sorting=ynt,             % year-name_of_auther–title order
+  hyperref=false,          % don't load hyperref (already loaded in core.tex)
+  % maxcitenames=2,          % limit authors in citations
+  % bibencoding=utf8         % if your .bib is UTF-8
+]{biblatex}
+\addbibresource{citations.bib}
+% % < Index Page >
+% \usepackage{makeidx}
+% \makeindex
+
+\begin{document}
+  %% MATH 2106: Foundations of Mathematical Proof
+  % \input{math2106/syllabus.tex}\newpage
+  % \input{math2106/lecture01.tex}\newpage
+
+  % \input{math2106/hw00.tex}\newpage
+  % \input{math2106/proof01.tex}\newpage
+  % \input{math2106/proof02.tex}\newpage
+  % \input{math2106/hw01.tex}\newpage 
+
+
+  %% MATH 4150: Number Theory
+  % \input{math4150/lecture01.tex}\newpage
+  \input{math4150/hw01.tex}\newpage
+
+
+
+
+
+
+  %% MATH 2552: Differential Equations
+  % \input{math2552/diffeq01.tex}\newpage
+  % \input{math2552/diffeq02.tex}\newpage
+  % \input{math2552/diffeq03.tex}\newpage
+
+
+
+  %% MATH 3012: Combinatorics
+  % \input{math3012/comb01.tex}\newpage
+
+  % % ================== Index ==================
+  % \input{index.tex}\newpage
+\end{document}
