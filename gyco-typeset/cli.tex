@@ -1,28 +1,25 @@
-% (0) .tex file Configuration
+% (1) .tex Project General Configuration
 \documentclass[10pt,openany]{book}
 \input{./macros.tex}
 \input{./preamble.tex}
-% (1) Layout Style
-% \usepackage[paperwidth=4.25in,paperheight=6.87in,top=0.5in,bottom=0.5in,left=0.5in,right=0.5in]{geometry}
-\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.75in]{geometry} % paper size
-% (2) Header/footer Style
-\pagestyle{fancy}
+
+% (2) .tex Project Specific Configuration
+\pagestyle{fancy}                       % Header/footer Style
 \fancyhf{}                              % clear default header/footer
 \fancyhead[LE,RO]{\bfseries\thepage}    % page number on left/even and right/odd
 \fancyhead[LO]{\bfseries\rightmark}     % chapter title on odd pages
 \fancyhead[RE]{\bfseries\leftmark}      % section title on even pages
 \renewcommand{\headrulewidth}{0.3pt}    % rule under header
+\usepackage{parskip}                    % no indent, spaced paragraphs
 
-% (3) Content
-\usepackage{parskip}                        % no indent, spaced paragraphs
-% (4) Reference
+% (3) Configuration Reference
 % choose your reference generation style:
 %   - for humanities: chicago-authordate, apa, mla
 %   - for sciences: numeric, numeric-comp, alphabetic
 %   - 
 \usepackage[
   backend=biber,           % use biber for processing
-  style=numeric,           % APA style bibliography (e.g. numeric / alphabetic / apa / mla / chicago-authordate)
+  style=numeric,           % bibliography style
   citestyle=authoryear,    % in-text citations
   sorting=ynt,             % year-name_of_auther–title order
   % maxcitenames=2,          % limit authors in citations
@@ -39,16 +36,7 @@
 
 
 
-
-
-
-
-
 \begin{document}
-
-
-
-
   %=======================================%
   %== Front Matter (roman page numbers) ==%
   %=======================================%
@@ -66,7 +54,7 @@
     \vspace{2em}
     % Author and editor
     {\Large Author: \BookAuthor\par}
-    {\Large Editor: \BookEditor\par}
+    % {\Large Editor: \BookEditor\par}
     \vspace{2em}
     % Optional logo at bottom (uncomment to use)
     \includegraphics[width=0.65\textwidth]{\BookEmblem}
@@ -81,12 +69,11 @@
     \thispagestyle{empty}
   \end{titlepage}
   %-- Bio and Copyright --%
-  \newpage
   \input{chap00/bio_copyright.tex}
   %-- Table of Contents --%
+  \newpage
   \tableofcontents
   %-- Praeface and Intruction --%
-  \newpage
   \input{chap00/preface.tex}
   \input{chap00/introduction.tex}
 
@@ -98,8 +85,8 @@
   %=======================================%
   \mainmatter
   \input{chap01/main.tex}
-  % \input{chap02/main.tex}
-  % \input{chap03/main.tex}
+  \input{chap02/main.tex}
+  \input{chap03/main.tex}
   % \input{chap04/main.tex}
   % \input{chap05/main.tex}
   % \input{chap06/main.tex}

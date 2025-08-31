@@ -1,11 +1,20 @@
 /cli.tex
 /core.tex
+# /preamble.tex
+auto.sh
 blank.tex
 /macros.tex
 cli.pdf
 *.exe
 *.docx
-_setup-regular_size/
+*.txt
+*.url
+clba-physics/
+clba-math/
+_setup-mid_size/
+_setup-small_size/
+
+
 
 ######################################################################################################
 # COMMON

@@ -1,0 +1,76 @@
+%%% Makes it easier to remember logical operators
+% \newcommand{\NOT}{\ensuremath{\sim}\xspace}        % Logical negation (\lnot)
+% \newcommand{\AND}{\ensuremath{\land}\xspace}        % Logical AND
+% \newcommand{\OR}{\ensuremath{\lor}\xspace}          % Logical OR
+% \newcommand{\THEN}{\ensuremath{\rightarrow}\xspace} % Logical implication
+% \newcommand{\IFF}{\ensuremath{\leftrightarrow}\xspace} % Logical equivalence
+% \newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace} % tautology
+% \newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace} % contradiction
+% \newcommand{\sNOT}[1]{\ensuremath{\overline{#1}}}   % Set complement
+
+
+
+  \item 
+  Prove the following directly from the two definitions and three axioms
+  given in ICA2 on 8/20.
+  \begin{define}{ICA2 Definitions and Axioms}
+    Here are the ICA2 Definitions and Axioms as follows.
+    \begin{enumerate}
+      \item \textbf{Definition:} An integer $n$ is \underbar{even} if there exists some integer $k$ such that
+      \[
+      n = 2k.
+      \]
+      \item \textbf{Definition:} An integer $n$ is \underbar{odd} if there exists some integer $k$ such that
+      \[
+      n = 2k + 1.
+      \]
+      \item \textbf{Axiom 1:} The sum of two integers is again an integer. (Closure under addition)
+      \item \textbf{Axiom 2:} The product of two integers is again an integer. (Closure under multiplication)
+      \item \textbf{Axiom 3:} An integer is odd if and only if it is not even.
+    \end{enumerate}
+  \end{define}
+  You may not use any other results without proving them first.
+  Every statement in your proof must be fully justified.
+  See \textbf{Elements of (Proof) Style} guidelines in Canvas for information.
+  \begin{enumerate}
+  \item Direct proof: For all integers $n$, if $n$ is odd, then $9n + 5$ is even.
+  \begin{subprove}
+    Let $n$ be an arbitrary integer then assume $n$ is odd for the sake of direct proof. 
+    By the definition of odd, there exists an integer $k$ such that
+    \[
+      n = 2k + 1.
+    \]
+    By substitution, 
+    \[
+      9n + 5 = 9(2k + 1) + 5 = 18k + 9 + 5 = 18k + 14= 2(9k + 7).
+    \]
+    By Axiom 1 and 2 (closure under addition and multiplication), $9k+7$ is an integer since $9$, $k$, and $7$ are integers. (Trivial)
+
+    Therefore, by the definition of even, $9n+5$ is even.
+  \end{subprove}
+
+  \item Contrapositive proof: For all integers $n$, if $7n + 5$ is odd, then $n$ is even.\\
+  \begin{subanswer}
+    \textbf{Claim.} For every integer $n$, if $7n+5$ is odd then $n$ is even.\\
+
+    \textbf{Remark (justifying the contrapositive method).} The implication $P \THEN Q$ is logically equivalent to its contrapositive $\NOT Q \THEN \NOT P$, because both are false exactly in the case $P$ is true and $Q$ is false. Hence proving the contrapositive suffices.\\
+
+    \textbf{Proof (by contrapositive).} The contrapositive of the statement is: \inlinequote{If $n$ is odd, then $7n+5$ is even.} Assume $n$ is odd. By definition of odd there exists integer $k$ with $n = 2k + 1$. Then
+    \[
+      7n + 5 = 7(2k+1) + 5 = 14k + 7 + 5 = 14k + 12 = 2(7k + 6).
+    \]
+    By Axiom 2 and Axiom 1, $7k+6$ is an integer, so $7n+5$ equals $2$ times an integer. By the definition of even, $7n+5$ is even. Thus the contrapositive is proved, and therefore the original implication holds: if $7n+5$ is odd then $n$ is even.
+  \end{subanswer}
+
+  \item Proof by contradiction: For all integers $n$, if $3n + 2$ is even, then $n$ is even.\\
+  \begin{subanswer}
+    \textbf{Claim.} For every integer $n$, if $3n+2$ is even then $n$ is even.\\
+
+    \textbf{Proof (by contradiction).} Assume, for contradiction, that $3n+2$ is even and $n$ is \emph{not} even. By Axiom 3, $n$ is not even implies $n$ is odd. Thus there exists integer $k$ with $n = 2k + 1$. Compute:
+    \[
+      3n + 2 = 3(2k+1) + 2 = 6k + 3 + 2 = 6k + 5.
+    \]
+    Write $6k+5 = 2(3k+2) + 1$, so $6k+5$ is of the form $2(\text{integer})+1$, hence odd by the definition of odd. This contradicts the assumption that $3n+2$ is even. Therefore the assumption that $n$ is not even is false, so $n$ must be even. This completes the proof by contradiction.
+  \end{subanswer}
+  \end{enumerate}
+
