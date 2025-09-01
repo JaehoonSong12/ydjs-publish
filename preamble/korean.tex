@@ -6,13 +6,16 @@
 % It automatically detects the LaTeX engine and loads appropriate packages.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% ------------------------------------------------------------------------------
-% Required Packages for Korean Language Support
-% ------------------------------------------------------------------------------
-\makeatletter
-% Engine detection and Korean language support
-\@ifpackageloaded{iftex}{}{\usepackage{iftex}}        % Engine detection
-\makeatother
+% % ------------------------------------------------------------------------------
+% % Required Packages for Korean Language Support
+% % ------------------------------------------------------------------------------
+% \makeatletter
+% % Engine detection and Korean language support
+% \@ifpackageloaded{iftex}{}{\usepackage{iftex}}        % Engine detection
+% \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}  % Font specification (XeLaTeX/LuaLaTeX)
+% \@ifpackageloaded{xeCJK}{}{\usepackage{xeCJK}}        % CJK support for XeLaTeX/LuaLaTeX
+% \makeatother
+
 
 % ------------------------------------------------------------------------------
 % \kr{<text>}
@@ -39,47 +42,32 @@
 %   \kr{수학} means mathematics in Korean.
 % ------------------------------------------------------------------------------
 
+\usepackage{iftex}
 \ifPDFTeX
   % pdfLaTeX branch (legacy): use CJKutf8
   \usepackage[utf8]{inputenc}
   \usepackage[T1]{fontenc}
   \usepackage{CJKutf8}
-  
-  % Define Korean font family - use a more standard approach
-  \newCJKfamily{kor}{NanumGothic}
-  \newCJKfamily{koralt}{NanumMyeongjo}
-  
   % Usage for pdfLaTeX: \kr{...} wraps Korean text using a CJK family code.
   \newenvironment{foreigntext}[1]{\begin{CJK}{UTF8}{#1}}{\end{CJK}}
-  \newcommand{\kr}[1]{\begin{foreigntext}{kor}#1\end{foreigntext}}
-  
-  % Alternative command for different font style
-  \newcommand{\krserif}[1]{\begin{foreigntext}{koralt}#1\end{foreigntext}}
+  \newcommand{\kr}[1]{\begin{foreigntext}{mj}#1\end{foreigntext}}
 \else
   % XeLaTeX / LuaLaTeX branch (recommended)
   \usepackage{fontspec}
   \usepackage{xeCJK}
-  
   % Set fonts (change to fonts installed on your system)
   \setmainfont{TeX Gyre Termes}
   \setsansfont{TeX Gyre Heros}
-  
-  % Try to set Korean fonts with fallbacks
-  \setCJKmainfont{Noto Serif CJK KR}[
-    BoldFont={Noto Sans CJK KR Bold},
-    ItalicFont={Noto Serif CJK KR Light}
-  ]
-  \setCJKsansfont{Noto Sans CJK KR}
-  \setCJKmonofont{Noto Sans Mono CJK KR}
-  
+  \setCJKmainfont{Noto Serif CJK KR}
   % Simple wrapper: under Xe/Lua this is identity
   \newcommand{\kr}[1]{#1}
-  \newcommand{\krserif}[1]{#1}
 \fi
 
-% ------------------------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Korean Language Shortcuts for VS Code (`View` > `Command Palette` > `Preferences: Open Keyboard Shortcuts (JSON)`)
-% ------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % {
 %   "key": "ctrl+shift+k",
 %   "command": "editor.action.insertSnippet",
