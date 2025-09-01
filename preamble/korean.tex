@@ -1,13 +1,77 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Foreign Language
+% Foreign Language Support - Korean
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This file provides Korean language support for LaTeX documents.
+% It automatically detects the LaTeX engine and loads appropriate packages.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ------------------------------------------------------------------------------
+% Required Packages for Korean Language Support
+% ------------------------------------------------------------------------------
+\makeatletter
+% Engine detection and Korean language support
+\@ifpackageloaded{iftex}{}{\usepackage{iftex}}        % Engine detection
+\@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}  % Font specification (XeLaTeX/LuaLaTeX)
+\@ifpackageloaded{xeCJK}{}{\usepackage{xeCJK}}        % CJK support for XeLaTeX/LuaLaTeX
+\makeatother
+
+
+% ------------------------------------------------------------------------------
+% \kr{<text>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command provides Korean text support that works across different LaTeX engines.
+%   It automatically adapts to the compilation engine being used.
+%
+% FEATURES:
+%   - pdfLaTeX: Uses CJKutf8 package with proper font family
+%   - XeLaTeX/LuaLaTeX: Direct text rendering with CJK fonts
+%   - Cross-engine compatibility
+%
+% PARAMETERS:
+%   <text>    Korean text to be rendered (required)
+%
+% DEPENDENCIES:
+%   pdfLaTeX: CJKutf8 package
+%   XeLaTeX/LuaLaTeX: xeCJK package with CJK fonts
+%
+% USAGE EXAMPLES:
+%   \kr{안녕하세요} - Hello in Korean
+%   This is English text with \kr{한국어} mixed in.
+%   \kr{수학} means mathematics in Korean.
+% ------------------------------------------------------------------------------
+\ifPDFTeX
+  % pdfLaTeX branch (legacy): use CJKutf8
+  \makeatletter
+  \@ifpackageloaded{inputenc}{}{\usepackage[utf8]{inputenc}}  % UTF-8 input encoding
+  \@ifpackageloaded{fontenc}{}{\usepackage[T1]{fontenc}}     % T1 font encoding
+  \@ifpackageloaded{CJKutf8}{}{\usepackage{CJKutf8}}         % CJK support for pdfLaTeX
+  \makeatother
+  
+  % Usage for pdfLaTeX: \kr{...} wraps Korean text using a CJK family code.
+  \newenvironment{foreigntext}[1]{\begin{CJK}{UTF8}{#1}}{\end{CJK}}
+  \newcommand{\kr}[1]{\begin{foreigntext}{mj}#1\end{foreigntext}}
+\else
+  % XeLaTeX / LuaLaTeX branch (recommended)
+  % Set fonts (change to fonts installed on your system)
+  \setmainfont{TeX Gyre Termes}
+  \setsansfont{TeX Gyre Heros}
+  \setCJKmainfont{Noto Serif CJK KR}
+  
+  % Simple wrapper: under Xe/Lua this is identity
+  \newcommand{\kr}[1]{#1}
+\fi
+
+% ------------------------------------------------------------------------------
+% VS Code Snippet Configuration
+% ------------------------------------------------------------------------------
 % Enable Korean Language, `vscode` > `settings.json`
 % {
-%   "key": "ctrl+k",
+%   "key": "ctrl+shift+k",
 %   "command": "editor.action.insertSnippet",
 %   "when": "editorLangId == 'latex'",
 %   "args": {
-%     "snippet": "{\\fontspec{Malgun Gothic}${TM_SELECTED_TEXT}}"
+%     "snippet": "\\kr{${TM_SELECTED_TEXT}}"
 %   }
 % },
