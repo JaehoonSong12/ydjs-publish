@@ -1,27 +1,9 @@
 % Number_Sense_Place_Value.tex
 \documentclass[12pt]{article}
-% Engine-aware Unicode / Korean (Hangul) support.
-% Recommended: compile with XeLaTeX or LuaLaTeX. A pdfLaTeX fallback is provided.
-\usepackage{iftex}
-\ifPDFTeX
-  % pdfLaTeX branch (legacy): use CJKutf8
-  \usepackage[utf8]{inputenc}
-  \usepackage[T1]{fontenc}
-  \usepackage{CJKutf8}
-  % Usage for pdfLaTeX: \kr{...} wraps Korean text using a CJK family code.
-  \newenvironment{foreigntext}[1]{\begin{CJK}{UTF8}{#1}}{\end{CJK}}
-  \newcommand{\kr}[1]{\begin{foreigntext}{mj}#1\end{foreigntext}}
-\else
-  % XeLaTeX / LuaLaTeX branch (recommended)
-  \usepackage{fontspec}
-  \usepackage{xeCJK}
-  % Set fonts (change to fonts installed on your system)
-  \setmainfont{TeX Gyre Termes}
-  \setsansfont{TeX Gyre Heros}
-  \setCJKmainfont{Noto Serif CJK KR}
-  % Simple wrapper: under Xe/Lua this is identity
-  \newcommand{\kr}[1]{#1}
-\fi
+
+
+\input{../preamble/korean.tex}
+
 
 % Usual math / layout packages
 \usepackage{amsmath,amssymb}
