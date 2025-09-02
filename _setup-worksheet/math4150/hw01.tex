@@ -144,18 +144,67 @@
   \begin{enumerate}
     \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
     \begin{subprove}
-      % your answer must be like the questions answered already... must have the same proof style and tone
+      ($\Rightarrow$) Assume $a\mid b$. 
+      \begin{define}{Divisibility}
+      Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
+      integer $c\in\Z$ such that
+      \[
+      b = a c.
+      \]
+      If no such integer $c$ exists we write $a\nmid b$.
+      \end{define}
+      By definition of divisibility there exists $k\in\mathbb{Z}$ such that
+      \[
+        b = a k
+      \]
+      that is,
+      \[
+        bc = (a k)c = (ac)k.
+      \]
+      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\mid bc$. 
+      Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
+      ($\Leftarrow$) Assume $ac\mid bc$. Then there exists $t\in\mathbb{Z}$ with
+      \[
+        bc = (ac)t = at\cdot c
+      \]
+      that is, by division,
+      \[
+        b = a t
+      \]
+      since $c\neq 0$.
+      Thus $a\mid b$. Hence, $a\divides b$ if $ac \divides bc$.\vspace*{10px}\\
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a\divides b$ if and only if $ac \divides bc$ for $c\neq 0$.
     \end{subprove}
+
     \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
     \begin{subanswer}
-      % your answer must be like the questions answered already... must have the same proof style and tone
+      Take $a=2, b=1, c=0$. Then $ac = 0$ and $bc=0$, so $ac\mid bc$ is true by 
+      multiplicative identity, $0=0\cdot k$ for every integer $k$.
+      However,  $a\divides b$ is false, $a\nmid b$, since there is no integer $k$ such that $1=2k$. 
+      Thus, the conclusion above does not hold if $c = 0$.
     \end{subanswer}
   \end{enumerate}
 
+  \newpage
+
   \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \begin{subprove}
-      % your answer must be like the questions answered already... must have the same proof style and tone
+    ($\Rightarrow$) ...\vspace*{10px}\\
+    % your answer must be like the questions answered already... must have the same proof style and tone
+    ($\Leftarrow$) Assume $m\divides n$. Then there exists $k\in\setZ_{>0}$ such that
+    \[
+      n = m k.
+    \]
+    where the integer $k\ge 2$, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{mk}-1 = \bigl(a^{m}\bigr)^{k}-1
+        = (a^{m}-1)\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr).
+    \]
+    By the Closure Property of Integers, $\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr)\in\setZ$, 
+    hence $a^{m}-1\mid a^{n}-1$. Thus, $a^{m}-1 \divides a^{n}-1$ if $m\divides n$.\vspace*{10px}\\
+    Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \end{subprove}
+
 
   \newpage
 
@@ -252,7 +301,8 @@
 
   \newpage
 
-  \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
+  \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the 
+  gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
   \begin{subanswer}
     By Euclidean algorithm,
     \[
@@ -274,9 +324,11 @@
   \end{subanswer}
 
 
-  \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose sum is $\frac{7}{143}$.
+  \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose 
+  sum is $\frac{7}{143}$.
   \begin{subanswer}
-    Let $x,y\in\setZ$ be arbitrary, for the sake of definition of rational numbers, then construct the following equation,
+    Let $x,y\in\setZ$ be arbitrary, for the sake of definition of rational numbers, then construct 
+    the following equation,
     $$\dfrac{x}{11}+\dfrac{y}{13}=\dfrac{7}{143}.$$
     Then, since $13\times11=143$, it is equivalent to 
     $$13x+11y=7.$$ 
