@@ -100,37 +100,41 @@
 
   \item Exercise Set 1.1, \#10. Let $n\in \Z$.
   \begin{enumerate}
-    \item Prove that $3\divides n^{3}-n$
+    \item Prove that $3\divides n^{3}-n$.
     \begin{subprove}
-      Factor
+      By algebra,
       \[
-        n^{3}-n = n(n-1)(n+1).
+        n^{3}-n = (n-1)(n)(n+1).
       \]
-      These are three consecutive integers. Among any three consecutive integers, one is a multiple of $3$ by the Division Algorithm applied to each in turn. Hence $3\divides n(n-1)(n+1)$, i.e. $3\divides (n^{3}-n)$.
+      By the Division Algorithm with divisor $3$, there exist integers $q\in\setZ$ and $r$ with $0\le r<3$ such that
+      \[
+        n = 3q + r.
+      \] 
+      This only includes $n = 3q$, $n = 3q + 1$, and $n = 3q + 2$.
+      Without loss of generality, 
+      \[
+        n^{3}-n = (n-1)(n)(n+1)=(3q-1)(3q)(3q+1)=3(3q-1)(q)(3q+1).
+      \]
+      It shows at least one of the three consecutive integers has $3$ as its factor.
+      Thus, $3\divides n^{3}-n$.
     \end{subprove}
-    \item Prove that $5\divides n^{5}-n$
+    \item Prove that $5\divides n^{5}-n$.
     \begin{subprove}
-      Using the Division Algorithm, write $n=5q+r$ with integers $q$ and $r$ where $0\le r<5$. Consider cases:
-      \begin{itemize}
-        \item If $r=0$ then $5\divides n$ and so $5\divides (n^{5}-n)$.
-        \item If $r=1$ then $n-1=5q$, so $5\divides (n-1)$ and hence $5\divides n(n-1)(n+1)\subset n^{5}-n$.
-        \item If $r=4$ then $n+1=5(q+1)$, so $5\divides (n+1)$ and again $5\divides n(n-1)(n+1)\subset n^{5}-n$.
-        \item If $r=2$ then
-        \[
-          n^{2}+1=(5q+2)^{2}+1=25q^{2}+20q+5=5\bigl(5q^{2}+4q+1\bigr),
-        \]
-        so $5\divides (n^{2}+1)$.
-        \item If $r=3$ then
-        \[
-          n^{2}+1=(5q+3)^{2}+1=25q^{2}+30q+10=5\bigl(5q^{2}+6q+2\bigr),
-        \]
-        so $5\divides (n^{2}+1)$.
-      \end{itemize}
-      Using the factorization
+      By algebra,
       \[
-        n^{5}-n = n(n^{4}-1) = n(n^{2}-1)(n^{2}+1) = n(n-1)(n+1)(n^{2}+1),
+      n^{5}-n = (n-1)(n)(n+1)(n^{2}+1).
       \]
-      in each case at least one factor is divisible by $5$, so $5\divides (n^{5}-n)$.
+      By the Division Algorithm with divisor $5$, there exist integers $q\in\mathbb{Z}$ and $r$ with $0\le r<5$ such that
+      \[
+      n = 5q + r.
+      \]
+      Thus, for each $r\in\{0,1,2,3,4\}$, \\
+      If $r=0$ then $5\mid n$, so $5\mid n^{5}-n$.\\
+      If $r=1$ then $5\mid n-1$, so $5\mid n^{5}-n$.\\
+      If $r=2$ then $n^{2}+1=(5q+2)^{2}+1=5(5q^{2}+4q+1)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=3$ then $n^{2}+1=(5q+3)^{2}+1=5(5q^{2}+6q+2)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=4$ then $n+1=5q+5=5(q+1)$, so $5\mid n+1$ and hence $5\mid n^{5}-n$.\\
+      In every condition, the conclusion, $5\mid n^{5}-n$, has been consistent. Therefore, $5\mid n^{5}-n$.
     \end{subprove}
     \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
     \begin{subanswer}
@@ -138,34 +142,57 @@
     \end{subanswer}
   \end{enumerate}
 
+  \newpage
+
+  \begin{define}[redcolor]{Claim}
+  Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
+    \begin{subprove}
+    Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
+    odd. Then, $n=2k+1$ for some $k\in\mathbb{Z}$. That is,
+    \[
+    n^{2}+1=(2k+1)^{2}+1=4k^{2}+4k+2=2\bigl(2k^{2}+2k+1\bigr).
+    \]
+    Thus, $n^{2}+1$ is even where $n^{2}+1 \ge 5$ by the assumption, not a prime. Therefore, by contradiction, If $n^{2}+1$ is prime then $n$ is even.
+    \end{subprove}
+  \end{define}
+
   \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that 
   if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
   \begin{subprove}
-    Suppose $a^{n}+1$ is prime. First, $a$ must be even. Indeed, if $a$ were odd then $a^{n}$ is odd, so $a^{n}+1$ is even and greater than $2$, hence composite. Thus $a$ is even.
-
-    Next, write $n=2^{t}u$ where $t\ge 0$ and $u\ge 1$ is odd (extract the largest power of $2$ from $n$). If $u=1$ then $n$ is a power of $2$ and we are done. If $u>1$, set $x:=a^{2^{t}}$ so that
+    Assume $a^{n}+1$ is prime, then $n$ is even by the claim above. Suppose, for 
+    the sake of contradiction, $n$ is not a power of $2$. 
+    Let $n=2^{t}u$ where $t\ge 0$ and a relative prime (or odd integer) $u>2$, 
+    which does not follow the defintion of a power of $2$. Then,
     \[
-      a^{n}+1 = a^{2^{t}u}+1 = x^{u}+1.
+    a^{n}+1 = \group{a^{2^{t}}}^u+1
+    = \bigl(a^{2^{t}}+1\bigr)\bigl(a^{2^{t}(u-1)}-a^{2^{t}(u-2)}+\cdots - a^{2^{t}}+1\bigr),
     \]
-    Since $u$ is odd, we have the algebraic factorization
-    \[
-      x^{u}+1 = (x+1)\bigl(x^{u-1}-x^{u-2}+\cdots - x + 1\bigr),
-    \]
-    so $a^{n}+1$ is composite, a contradiction. Therefore $u=1$ and $n$ is a power of $2$.
+    so $a^{n}+1$ is composite, which contradicts the assumption, $a^{n}+1$ is prime. 
+    Therefore, by contradiction, if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
   \end{subprove}
-
-  \newpage
-
 
   \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then 
   $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
   \begin{subprove}
-    If $n$ is odd, then $n^{2}$ is odd and $n^{2}+1$ is even and greater than $2$, hence not prime. Therefore, if $n^{2}+1$ is prime we must have $n$ even. Write $n=2t$ for some $t\in\Z$. Then $n^{2}=4t^{2}$ and
+    Suppose, for the sake of direct proof, $n^{2} + 1$ is a prime number. By the claim above, $n$ is even. 
+    Then, by the definition of even, $n=2t$ for some $t\in\Z$. Then $n^{2}=4t^{2}$ and
     \[
-      n^{2}+1 = 4t^{2}+1 = 4\,t^{2} + 1 = 4k + 1
+      n^{2}+1 = 4t^{2}+1 = 4\,(t^{2}) + 1.
     \]
-    with $k=t^{2}\in\Z$. Thus $n^{2}+1$ has the form $4k+1$.
+    Let $k=t^{2}\in\Z$. Then, $k$ is an integer by Closure Property of Integers. Thus, 
+    $n^{2}+1$ has the form $4k+1$.
   \end{subprove}
+
+
+
+
+
+  \newpage
+
+
+
+
+
 
   \item Exercise Set 1.3, \#43.
   \begin{enumerate}
