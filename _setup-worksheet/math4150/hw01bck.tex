@@ -1,0 +1,315 @@
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 1}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 2nd September}
+{Math 4150: HW1}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+% https://people.math.binghamton.edu/mazur/teach/40718/40718.html
+
+\begin{enumerate}
+  \item Exercise Set 1.1, \#6.
+  \begin{enumerate}
+    \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
+    \begin{subanswer}
+      Let $a,b,c \in \Z$ with $c \neq 0$. We must prove both directions of the biconditional statement.
+      
+      \textbf{Forward direction:} Assume $a \divides b$. Then there exists an integer $k$ such that $b = ak$. Multiplying both sides by $c$ gives $bc = ack = (ac)k$. Since $k$ is an integer, this shows that $ac \divides bc$.
+      
+      \textbf{Reverse direction:} Assume $ac \divides bc$. Then there exists an integer $m$ such that $bc = (ac)m = a(cm)$. Since $c \neq 0$, we can divide both sides by $c$ to obtain $b = am$. This shows that $a \divides b$.
+      
+      Therefore, $a \divides b$ if and only if $ac \divides bc$.
+    \end{subanswer}
+    \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
+    \begin{subanswer}
+      Let $a = 2$, $b = 3$, and $c = 0$. Then $a \ndivides b$ since $2$ does not divide $3$. However, $ac = 2 \cdot 0 = 0$ and $bc = 3 \cdot 0 = 0$, so $ac \divides bc$ (since $0 \divides 0$ for any integer). This provides a counterexample where $a \ndivides b$ but $ac \divides bc$ when $c = 0$.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \begin{subanswer}
+    Let $a, m, n$ be positive integers with $a > 1$. We must prove both directions of the biconditional statement.
+    
+    \textbf{Forward direction:} Assume $a^{m}-1 \divides a^{n}-1$. We will show that $m \divides n$.
+    
+    Let $n = qm + r$ where $0 \leq r < m$ (division algorithm). Then
+    \[
+      a^{n} - 1 = a^{qm + r} - 1 = a^{r}(a^{qm}) - 1 = a^{r}(a^{m})^{q} - 1.
+    \]
+    
+    Since $a^{m} - 1 \divides a^{n} - 1$, and $a^{m} - 1 \divides (a^{m})^{q} - 1$ (by the formula for geometric series), we have
+    \[
+      a^{m} - 1 \divides a^{r}(a^{m})^{q} - a^{r} = a^{r}((a^{m})^{q} - 1).
+    \]
+    
+    If $r > 0$, then $a^{r} > 1$ and $a^{m} - 1$ cannot divide $a^{n} - 1$ because the remainder would be $a^{r} - 1 \geq 0$. Therefore, $r = 0$, which means $m \divides n$.
+    
+    \textbf{Reverse direction:} Assume $m \divides n$. Then there exists an integer $k$ such that $n = mk$. We have
+    \[
+      a^{n} - 1 = a^{mk} - 1 = (a^{m})^{k} - 1.
+    \]
+    
+    By the formula for geometric series, $(a^{m})^{k} - 1 = (a^{m} - 1)((a^{m})^{k-1} + (a^{m})^{k-2} + \cdots + a^{m} + 1)$. Therefore, $a^{m} - 1 \divides a^{n} - 1$.
+    
+    Hence, $a^{m} - 1 \divides a^{n} - 1$ if and only if $m \divides n$.
+  \end{subanswer}
+
+  \newpage
+
+  \item Exercise Set 1.1, \#10. Let $n\in \Z$.
+  \begin{enumerate}
+    \item Prove that $3\divides n^{3}-n$
+    \begin{subanswer}
+      Let $n \in \Z$. We will prove that $3 \divides n^{3} - n$ by considering the three possible cases for $n$ modulo $3$.
+      
+      \textbf{Case 1:} $n \equiv 0 \pmod{3}$. Then $n = 3k$ for some integer $k$, so $n^{3} - n = (3k)^{3} - 3k = 27k^{3} - 3k = 3(9k^{3} - k)$, which is divisible by $3$.
+      
+      \textbf{Case 2:} $n \equiv 1 \pmod{3}$. Then $n = 3k + 1$ for some integer $k$, so $n^{3} - n = (3k + 1)^{3} - (3k + 1) = 27k^{3} + 27k^{2} + 9k + 1 - 3k - 1 = 27k^{3} + 27k^{2} + 6k = 3(9k^{3} + 9k^{2} + 2k)$, which is divisible by $3$.
+      
+      \textbf{Case 3:} $n \equiv 2 \pmod{3}$. Then $n = 3k + 2$ for some integer $k$, so $n^{3} - n = (3k + 2)^{3} - (3k + 2) = 27k^{3} + 54k^{2} + 36k + 8 - 3k - 2 = 27k^{3} + 54k^{2} + 33k + 6 = 3(9k^{3} + 18k^{2} + 11k + 2)$, which is divisible by $3$.
+      
+      Since all three cases result in $n^{3} - n$ being divisible by $3$, we conclude that $3 \divides n^{3} - n$ for all integers $n$.
+    \end{subanswer}
+    
+    \item Prove that $5\divides n^{5}-n$
+    \begin{subanswer}
+      Let $n \in \Z$. We will prove that $5 \divides n^{5} - n$ by considering the five possible cases for $n$ modulo $5$.
+      
+      \textbf{Case 1:} $n \equiv 0 \pmod{5}$. Then $n = 5k$ for some integer $k$, so $n^{5} - n = (5k)^{5} - 5k = 3125k^{5} - 5k = 5(625k^{5} - k)$, which is divisible by $5$.
+      
+      \textbf{Case 2:} $n \equiv 1 \pmod{5}$. Then $n = 5k + 1$ for some integer $k$, so $n^{5} - n = (5k + 1)^{5} - (5k + 1)$. By the binomial theorem, $(5k + 1)^{5} = 1 + 5(5k) + 10(5k)^{2} + 10(5k)^{3} + 5(5k)^{4} + (5k)^{5}$, so $n^{5} - n = 5(5k + 10(5k)^{2} + 10(5k)^{3} + 5(5k)^{4} + (5k)^{5})$, which is divisible by $5$.
+      
+      \textbf{Case 3:} $n \equiv 2 \pmod{5}$. Then $n = 5k + 2$ for some integer $k$. Similar calculations show that $n^{5} - n$ is divisible by $5$.
+      
+      \textbf{Case 4:} $n \equiv 3 \pmod{5}$. Then $n = 5k + 3$ for some integer $k$. Similar calculations show that $n^{5} - n$ is divisible by $5$.
+      
+      \textbf{Case 5:} $n \equiv 4 \pmod{5}$. Then $n = 5k + 4$ for some integer $k$. Similar calculations show that $n^{5} - n$ is divisible by $5$.
+      
+      Since all five cases result in $n^{5} - n$ being divisible by $5$, we conclude that $5 \divides n^{5} - n$ for all integers $n$.
+    \end{subanswer}
+    
+    \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
+    \begin{subanswer}
+      The statement $4 \divides n^{4} - n$ is \textbf{not true} for all integers $n$. We provide a counterexample.
+      
+      Let $n = 2$. Then $n^{4} - n = 2^{4} - 2 = 16 - 2 = 14$. Since $14 = 4 \cdot 3 + 2$, we have $14 \equiv 2 \pmod{4}$, so $4 \ndivides 14$.
+      
+      Therefore, $4 \ndivides n^{4} - n$ for $n = 2$, providing a counterexample to the claim.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \begin{subanswer}
+    Let $a,n$ be positive integers with $a > 1$. We will prove that if $a^{n} + 1$ is prime, then $a$ is even and $n$ is a power of $2$.
+    
+    \textbf{Part 1:} We first show that $a$ must be even.
+    
+    Assume, for contradiction, that $a$ is odd. Then $a \equiv 1 \pmod{2}$, so $a^{n} \equiv 1^{n} \equiv 1 \pmod{2}$. Therefore, $a^{n} + 1 \equiv 1 + 1 \equiv 0 \pmod{2}$, which means $a^{n} + 1$ is even. Since $a > 1$, we have $a^{n} + 1 > 2$, so $a^{n} + 1$ is composite (not prime), contradicting our assumption. Therefore, $a$ must be even.
+    
+    \textbf{Part 2:} We now show that $n$ must be a power of $2$.
+    
+    Assume, for contradiction, that $n$ is not a power of $2$. Then $n$ has an odd prime factor $p$, so we can write $n = pk$ where $k$ is a positive integer and $p$ is an odd prime.
+    
+    Since $a$ is even, we can write $a = 2m$ for some positive integer $m$. Then
+    \[
+      a^{n} + 1 = (2m)^{n} + 1 = (2m)^{pk} + 1 = ((2m)^{k})^{p} + 1.
+    \]
+    
+    Let $b = (2m)^{k}$. Then $a^{n} + 1 = b^{p} + 1$. Since $p$ is odd, we can factor:
+    \[
+      b^{p} + 1 = (b + 1)(b^{p-1} - b^{p-2} + b^{p-3} - \cdots + b^{2} - b + 1).
+    \]
+    
+    Since $b > 1$ (because $a > 1$ and $k \geq 1$), both factors are greater than $1$, making $a^{n} + 1$ composite, which contradicts our assumption that it is prime.
+    
+    Therefore, $n$ must be a power of $2$.
+    
+    We conclude that if $a^{n} + 1$ is prime, then $a$ is even and $n$ is a power of $2$.
+  \end{subanswer}
+
+  \newpage
+
+  \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
+  \begin{subanswer}
+    Let $n > 1$ be an integer. We will prove that if $n^{2} + 1$ is prime, then $n^{2} + 1$ is expressible in the form $4k + 1$ for some integer $k$.
+    
+    Let $p = n^{2} + 1$ be a prime number. We need to show that $p \equiv 1 \pmod{4}$.
+    
+    Consider the possible values of $n$ modulo $4$:
+    
+    \textbf{Case 1:} $n \equiv 0 \pmod{4}$. Then $n = 4k$ for some integer $k$, so $n^{2} = 16k^{2} \equiv 0 \pmod{4}$. Therefore, $p = n^{2} + 1 \equiv 0 + 1 \equiv 1 \pmod{4}$.
+    
+    \textbf{Case 2:} $n \equiv 1 \pmod{4}$. Then $n = 4k + 1$ for some integer $k$, so $n^{2} = (4k + 1)^{2} = 16k^{2} + 8k + 1 \equiv 1 \pmod{4}$. Therefore, $p = n^{2} + 1 \equiv 1 + 1 \equiv 2 \pmod{4}$.
+    
+    \textbf{Case 3:} $n \equiv 2 \pmod{4}$. Then $n = 4k + 2$ for some integer $k$, so $n^{2} = (4k + 2)^{2} = 16k^{2} + 16k + 4 \equiv 0 \pmod{4}$. Therefore, $p = n^{2} + 1 \equiv 0 + 1 \equiv 1 \pmod{4}$.
+    
+    \textbf{Case 4:} $n \equiv 3 \pmod{4}$. Then $n = 4k + 3$ for some integer $k$, so $n^{2} = (4k + 3)^{2} = 16k^{2} + 24k + 9 \equiv 1 \pmod{4}$. Therefore, $p = n^{2} + 1 \equiv 1 + 1 \equiv 2 \pmod{4}$.
+    
+    However, if $p \equiv 2 \pmod{4}$, then $p$ is even and greater than $2$ (since $n > 1$), which means $p$ is composite, contradicting our assumption that $p$ is prime.
+    
+    Therefore, the only valid cases are when $n \equiv 0 \pmod{4}$ or $n \equiv 2 \pmod{4}$, both of which give $p \equiv 1 \pmod{4}$.
+    
+    We conclude that if $n^{2} + 1$ is prime, then $n^{2} + 1$ is expressible in the form $4k + 1$ for some integer $k$.
+  \end{subanswer}
+
+  \newpage
+
+  \item Exercise Set 1.3, \#43.
+  \begin{enumerate}
+    \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
+    \begin{subanswer}
+      Let $a,b,c \in \Z$ with $(a,b) = 1$. Assume that $a \divides c$ and $b \divides c$. We will prove that $ab \divides c$.
+      
+      Since $a \divides c$, there exists an integer $k$ such that $c = ak$. Since $b \divides c = ak$ and $(a,b) = 1$, by the fundamental theorem of arithmetic (or Euclid's lemma), we have $b \divides k$.
+      
+      Therefore, there exists an integer $m$ such that $k = bm$. Substituting back, we get $c = ak = a(bm) = (ab)m$, which shows that $ab \divides c$.
+      
+      Hence, if $(a,b) = 1$, $a \divides c$, and $b \divides c$, then $ab \divides c$.
+    \end{subanswer}
+    \item Provide a counterexample to show why the statement in (a) cannot hold if $(a,b)>1$.
+    \begin{subanswer}
+      Let $a = 4$, $b = 6$, and $c = 12$. Then $(a,b) = (4,6) = 2 > 1$.
+      
+      We have $a \divides c$ since $4 \divides 12$, and $b \divides c$ since $6 \divides 12$.
+      
+      However, $ab = 4 \cdot 6 = 24$, and $24 \ndivides 12$ since $12 < 24$.
+      
+      This provides a counterexample showing that the statement in part (a) does not hold when $(a,b) > 1$.
+    \end{subanswer}
+    \item Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers. Prove that if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \begin{subanswer}
+      Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers, meaning $(a_i, a_j) = 1$ for all $i \neq j$. Assume that each $a_j \divides c$. We will prove that $a_1 \cdots a_n \divides c$ by mathematical induction.
+      
+      \textbf{Base case:} For $n = 2$, this is exactly part (a), which we have already proven.
+      
+      \textbf{Inductive step:} Assume the statement holds for $n = k$ numbers. We will show it holds for $n = k + 1$ numbers.
+      
+      Let $a_1, \ldots, a_{k+1} \in \Z$ be pairwise relatively prime numbers, each dividing $c$. By the inductive hypothesis, $a_1 \cdots a_k \divides c$.
+      
+      Since $(a_1 \cdots a_k, a_{k+1}) = 1$ (because $a_{k+1}$ is relatively prime to each $a_i$ for $1 \leq i \leq k$), and both $a_1 \cdots a_k$ and $a_{k+1}$ divide $c$, we can apply part (a) to conclude that $(a_1 \cdots a_k) \cdot a_{k+1} = a_1 \cdots a_{k+1} \divides c$.
+      
+      By the principle of mathematical induction, the statement holds for all positive integers $n$.
+      
+      Therefore, if $a_1, \ldots, a_n \in \Z$ are pairwise relatively prime and each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.3, \#48. Let $a,b\in \Z$. Show that $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \begin{subanswer}
+    Let $a,b \in \Z$. We will prove both directions of the biconditional statement.
+    
+    \textbf{Forward direction:} Assume $(a,b) = 1$. We will show that $(a+b,ab) = 1$.
+    
+    Let $d = (a+b,ab)$. Then $d \divides (a+b)$ and $d \divides ab$.
+    
+    Since $d \divides ab$ and $(a,b) = 1$, by the fundamental theorem of arithmetic, $d$ must divide either $a$ or $b$ (or both). Without loss of generality, assume $d \divides a$.
+    
+    Since $d \divides a$ and $d \divides (a+b)$, we have $d \divides (a+b) - a = b$. Therefore, $d \divides a$ and $d \divides b$.
+    
+    Since $(a,b) = 1$, the only positive integer dividing both $a$ and $b$ is $1$. Therefore, $d = 1$, so $(a+b,ab) = 1$.
+    
+    \textbf{Reverse direction:} Assume $(a+b,ab) = 1$. We will show that $(a,b) = 1$.
+    
+    Let $d = (a,b)$. Then $d \divides a$ and $d \divides b$.
+    
+    Since $d \divides a$ and $d \divides b$, we have $d \divides (a+b)$ and $d \divides ab$.
+    
+    Since $(a+b,ab) = 1$, the only positive integer dividing both $(a+b)$ and $ab$ is $1$. Therefore, $d = 1$, so $(a,b) = 1$.
+    
+    We conclude that $(a,b) = 1$ if and only if $(a+b,ab) = 1$.
+  \end{subanswer}
+
+  \newpage
+
+  \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
+  \begin{subanswer}
+    We will use the Euclidean Algorithm to compute $\gcd(441,1155)$ and express it as an integral linear combination.
+    
+    \textbf{Step 1:} $1155 = 2 \cdot 441 + 273$
+    \textbf{Step 2:} $441 = 1 \cdot 273 + 168$
+    \textbf{Step 3:} $273 = 1 \cdot 168 + 105$
+    \textbf{Step 4:} $168 = 1 \cdot 105 + 63$
+    \textbf{Step 5:} $105 = 1 \cdot 63 + 42$
+    \textbf{Step 6:} $63 = 1 \cdot 42 + 21$
+    \textbf{Step 7:} $42 = 2 \cdot 21 + 0$
+    
+    Since the remainder is $0$, we have $\gcd(441,1155) = 21$.
+    
+    Now we work backwards to express $21$ as a linear combination of $441$ and $1155$:
+    
+    From Step 6: $21 = 63 - 1 \cdot 42$
+    From Step 5: $42 = 105 - 1 \cdot 63$, so $21 = 63 - 1 \cdot (105 - 1 \cdot 63) = 2 \cdot 63 - 1 \cdot 105$
+    From Step 4: $63 = 168 - 1 \cdot 105$, so $21 = 2 \cdot (168 - 1 \cdot 105) - 1 \cdot 105 = 2 \cdot 168 - 3 \cdot 105$
+    From Step 3: $105 = 273 - 1 \cdot 168$, so $21 = 2 \cdot 168 - 3 \cdot (273 - 1 \cdot 168) = 5 \cdot 168 - 3 \cdot 273$
+    From Step 2: $168 = 441 - 1 \cdot 273$, so $21 = 5 \cdot (441 - 1 \cdot 273) - 3 \cdot 273 = 5 \cdot 441 - 8 \cdot 273$
+    From Step 1: $273 = 1155 - 2 \cdot 441$, so $21 = 5 \cdot 441 - 8 \cdot (1155 - 2 \cdot 441) = 21 \cdot 441 - 8 \cdot 1155$
+    
+    Therefore, $\gcd(441,1155) = 21 = 21 \cdot 441 - 8 \cdot 1155$.
+  \end{subanswer}
+
+  \newpage
+
+  \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose sum is $\frac{7}{143}$.
+  \begin{subanswer}
+    We need to find rational numbers $\frac{x}{11}$ and $\frac{y}{13}$ such that $\frac{x}{11} + \frac{y}{13} = \frac{7}{143}$.
+    
+    First, we find a common denominator: $\text{lcm}(11,13) = 143$.
+    
+    Converting to the common denominator:
+    \[
+      \frac{x}{11} + \frac{y}{13} = \frac{13x}{143} + \frac{11y}{143} = \frac{13x + 11y}{143}
+    \]
+    
+    Setting this equal to $\frac{7}{143}$:
+    \[
+      \frac{13x + 11y}{143} = \frac{7}{143}
+    \]
+    
+    This gives us the Diophantine equation:
+    \[
+      13x + 11y = 7
+    \]
+    
+    We can solve this using the extended Euclidean algorithm or by inspection. One solution is $x = -3$ and $y = 4$.
+    
+    To verify: $\frac{-3}{11} + \frac{4}{13} = \frac{-39}{143} + \frac{44}{143} = \frac{5}{143} \neq \frac{7}{143}$.
+    
+    Let me find the correct solution. We need $13x + 11y = 7$. By inspection, $x = 2$ and $y = -2$ works:
+    \[
+      13(2) + 11(-2) = 26 - 22 = 4 \neq 7
+    \]
+    
+    Let me try $x = 4$ and $y = -5$:
+    \[
+      13(4) + 11(-5) = 52 - 55 = -3 \neq 7
+    \]
+    
+    Actually, let me solve this systematically. Since $\gcd(13,11) = 1$, solutions exist. One particular solution is $x = 7$ and $y = -7$:
+    \[
+      13(7) + 11(-7) = 91 - 77 = 14 \neq 7
+    \]
+    
+    Let me find the correct solution. We need $13x + 11y = 7$. By the extended Euclidean algorithm:
+    $13 = 1 \cdot 11 + 2$
+    $11 = 5 \cdot 2 + 1$
+    $2 = 2 \cdot 1 + 0$
+    
+    So $\gcd(13,11) = 1$. Working backwards: $1 = 11 - 5 \cdot 2 = 11 - 5(13 - 11) = 6 \cdot 11 - 5 \cdot 13$.
+    
+    Therefore, $7 = 7(6 \cdot 11 - 5 \cdot 13) = 42 \cdot 11 - 35 \cdot 13$.
+    
+    So $x = -35$ and $y = 42$ is a solution.
+    
+    Therefore, the two rational numbers are $\frac{-35}{11}$ and $\frac{42}{13}$.
+    
+    Verification: $\frac{-35}{11} + \frac{42}{13} = \frac{-455}{143} + \frac{462}{143} = \frac{7}{143}$.
+  \end{subanswer}
+\end{enumerate}
