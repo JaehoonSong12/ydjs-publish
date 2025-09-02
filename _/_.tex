@@ -7,9 +7,49 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{dsfont} % if you prefer \mathds for sets; otherwise use \mathds
+
 \usepackage[version=4]{mhchem}
 \usepackage{stmaryrd}
 \usepackage{bbold}
+
+% -----------------------
+% Macros and theorem styles
+% -----------------------
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\divides}{\mid}
+\newcommand{\ndivides}{\nmid}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\numberwithin{equation}{section}
+
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+
+
+
+
+
+
+
+
 
 
 \begin{document}
@@ -117,183 +157,174 @@ are precisely the prime numbers \(\le n\).
 
 
 
-
-
-
 \section*{L1: Divisibility}
-\begin{itemize}
-  \item Elementary number theory is the study of divisibility properties of the integers ( $\mathbb{Z}$ ).
-  \item This topic dates back to 300 B.C, and many ideas in this class (and used widely today) appeared in "Elements" by Euclid i.e. Enclid's proof of the infinitude of primes, dividion (Enclidean) algorithm, perfect numbers, Pythagorean triples etc.\\
-Definition: Let $a, b \in \mathbb{Z}$. Then $a$ divides $b$, denoted $a \mid b$, if there exists $c \in \mathbb{Z}$ such that $b=a c$. If $a \mid b$, then $a$ is said to be $a$ divisor or factor of $b$. The notation $a \times b$ means that $a$ does not divide $b$.
-\end{itemize}
+% NOTE: Rewritten and reorganized to follow a textbook style (Definitions, Examples, Theorems, Proofs).
+% Major corrections: spelling (Euclid), notation (\mathds{Z}, \mid, \nmid), floor symbol, removal of ambiguous 'O' characters, corrected examples and proofs.
 
-Example: 316 since there exists $c \in \mathbb{Z}$ such that $6=3 c$. In particular, $c=2$.
+\subsection*{Introduction}
+Elementary number theory is the study of arithmetic properties of the integers, especially 
+divisibility properties of the integers $\Z$. Many classical results originate in Euclid's 
+\emph{Elements} (e.g., Euclid's proof of the infinitude of primes, the Euclidean algorithm, 
+perfect numbers, Pythagorean triples).
 
-\begin{itemize}
-  \item $31-6$ since there exists $c \in \mathbb{Z}$ such that\\
-$-6=3 c$. In particular, $c=-2$.
-  \item If $a \in \mathbb{Z}$, then $a 10$ since there exists\\
-$c \in \mathbb{Z}$ such that $0=a c$. In particular, $c=0$. Any integer divides 0 .
-  \item If $a \in \mathbb{Z}$ and $O \mid a$, then there exists $c \in \mathbb{Z}$ such that $a=O c$ if and only if $a=0$.\\
-Remark: The notation alb does not have the same meaning as $a / b$ and $b / a$. The statement alb is about the relationship between two integers i.e. a divides into $b$ with no remainder.\\
-The notations $a / b$ and $b / a$ mean $a \div b$ and $b \div a$ respectively, and each are rational numbers. Note that $a l b$ implies that a divides $b$ exactly $b / a$ times provided that $a \neq 0$.\\
-Remark: We say O1O because it is consistent with our definition of divisibility. It should not be interpreted as implying that 0 divides $O$ exactly "O/" times. The form "O/O"\\
-is indeterminate, and has no meaning.\\
-Proposition 1.1: Let $a, b, c \in \mathbb{Z}$. If $a \| b$ and $b \mid c$, then alc.\\
-Proof: Since $a l b$ and $b l c$, there exist $e, f \in \mathbb{Z}$ such that $b=a e$ and $c=b f$. Then
-\end{itemize}
+\begin{definition}
+Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
+integer $c\in\Z$ such that
+\[
+b = a c.
+\]
+If no such integer $c$ exists we write $a\nmid b$.
+\end{definition}
+% NOTE: Replaced ambiguous wording and corrected notation for "does not divide" to \nmid.
 
-$$
-c=b f=(a e) f=a(e f),
-$$
+\begin{remark}
+When $a\divides b$ with $a\neq 0$, the integer $c=b/a$ is the exact (integer) quotient. 
+The symbols 
+$a/b$ or $b/a$ in plain text denote rational numbers (when the division is performed in 
+$\mathds{Q}$), which is a different notion from the divisibility relation $a\divides b$.
+\end{remark}
 
-and so $a \mid c$.
+\begin{example}
+\begin{enumerate}
+  \item $3\divides 6$, since $6 = 3\cdot 2$.
+  \item $3\divides -6$, since $-6 = 3\cdot(-2)$.
+  \item For any $a\in\Z$ we have $a\divides 0$, because $0 = a\cdot 0$.
+  \item $0\divides a$ only if $a=0$. Indeed, $0\divides a$ would require $a = 0\cdot c = 0$ 
+  for some integer $c$.
+\end{enumerate}
+\end{example}
 
-\begin{itemize}
-  \item The previous Proposition proves that divisibility is transitive.\\
-Proposition 1.2: Let $a, b, c, m, n \in \mathbb{Z}$. If $c l a$, and $c l b$, then $c l m a+n b$.\\
-Proof: Since $c \mid a$ and $c \mid b$, there exist e, $f \in \mathbb{Z}$ such that $a=c e$ and $b=c f$. Then
-\end{itemize}
+\begin{proposition}[Transitivity of divisibility]
+\label{prop:transitive}
+If $a,b,c\in\Z$ and $a\divides b$ and $b\divides c$, then $a\divides c$.
+\end{proposition}
 
-$$
-m a+n b=m c e+n c f=c(m e+n f),
-$$
+\begin{proof}
+Write $b = a e$ and $c = b f$ for some integers $e,f$. Then
+\[
+c = b f = (a e) f = a(e f),
+\]
+so $a\divides c$.
+\end{proof}
 
-and so $c$ lma+nb.\\
-Definition: The expression $m a+n b$ is said to be an integral linear combination of $a$ and $b$.
+\begin{proposition}
+\label{prop:linear-combination}
+Let $a,b,c,m,n\in\Z$. If $c\divides a$ and $c\divides b$, then for all integers $m,n$ we have
+\[
+c \divides (m a + n b).
+\]
+\end{proposition}
 
-Definition: Let $x \in \mathbb{R}$. The greatest integer function of $x$, denoted $[x]$, is the greatest integer less than or equal to $x$.
+\begin{proof}
+Since $c\divides a$ and $c\divides b$, there exist $e,f\in\Z$ with $a=c e$ and $b=c f$. Thus
+\[
+m a + n b = m(c e) + n(c f) = c(m e + n f),
+\]
+and therefore $c\divides (m a + n b)$.
+\end{proof}
 
-\begin{itemize}
-  \item The existence of a greatest integer less than or equal to a given real number follows from\\
-(1) Well ordering principle of $\mathbb{Z}$ : any non-empty set of positive integers contains a least element.\\
-(2) Archimedean property of $\mathbb{R}$.
-\end{itemize}
+\subsection*{The greatest integer (floor) function}
+\begin{definition}
+For $x\in\R$, the \emph{greatest integer function} (floor) is denoted $\floor{x}$ and 
+defined as the greatest integer less than or equal to $x$.
+\end{definition}
 
-Example: If $a \in \mathbb{Z}$, then $[a]=a$.\\
-The converse that if $[a]=a$ for some $a \in \mathbb{R}$, then $a \in \mathbb{Z}$ is also true.
+% NOTE: Replaced ambiguous square-bracket notation [x] by standard \lfloor x\rfloor (floor).
+\begin{example}
+If $a\in\Z$ then $\floor{a}=a$. Also
+\[
+\floor{5/3}=1,\qquad \floor{\pi}=3,\qquad \floor{-5/3}=-2,\qquad \floor{-\pi}=-4.
+\]
+\end{example}
 
-\begin{itemize}
-  \item $[5 / 3]=1,[\pi]=3,[-5 / 3]=-2,[-\pi]=-4$.
-\end{itemize}
+\begin{lemma}
+\label{lem:floor-ineq}
+For every $x\in\R$,
+\[
+\floor{x} \le x < \floor{x}+1.
+\]
+Equivalently,
+\[
+x-1 < \floor{x} \le x.
+\]
+\end{lemma}
 
-Lemma 1.3: Let $x \in \mathbb{R}$. Then $x-1<[x] \leqslant x$.\\
-Proof: Since the greatest integer function of $x$ is less than or equal to $x$, the second inequality is clear. For the first inequality, assume that $x-1 \geqslant[x]$. Then $[x]+1 \leqslant x$, and
+\begin{proof}
+By definition $\floor{x}$ is an integer and it is the greatest integer not exceeding $x$, 
+so $\floor{x}\le x$. If $x \ge \floor{x}+1$ then $\floor{x}+1$ would be an integer $\le x$ 
+larger than $\floor{x}$, contradicting maximality of $\floor{x}$. Therefore $x<\floor{x}+1$.
+\end{proof}
 
-$$
-[x]<[x]+1 \leqslant x .
-$$
+\subsection*{Division algorithm and remainders}
+When an integer (the divisor) is divided into another integer (the dividend), one obtains 
+an integer quotient and an integer remainder.
 
-Since $[x]+1 \in \mathbb{Z}$, this contradids the fact that $[x]$ is the grentest integer less than or equal to $x$.
+\begin{theorem}[Division Algorithm]
+\label{thm:division-alg}
+Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
+\[
+a = b q + r \qquad\text{and}\qquad 0\le r < b.
+\]
+Here $q$ is called the \emph{quotient} and $r$ the \emph{remainder}.
+\end{theorem}
 
-Hence $x-1<[x]$, as required.
+\begin{proof}[Existence]
+Let $q := \floor{a/b}$ and set $r := a - b q$. Clearly $a = b q + r$. By Lemma 
+\ref{lem:floor-ineq} applied to $a/b$ we have
+\[
+\floor{a/b} \le \frac{a}{b} < \floor{a/b} + 1,
+\]
+so
+\[
+0 \le a - b\floor{a/b} < b,
+\]
+i.e. $0\le r < b$.
+\end{proof}
 
-\begin{itemize}
-  \item When one integer (the divisor) is divided into another integer (the dividend), to obtain an integer quotient, an integer remainder is obtained.\\
-Example: $\quad 5=3 \cdot 1+2$
-  \item "The dividend is equal divisor $\frac{-3}{2}$ to the divisor times the Guotient plus the remainden" remainder
-  \item The remainder is strictly less than the divisor.
-\end{itemize}
+\begin{proof}[Uniqueness]
+Suppose $a = b q_1 + r_1 = b q_2 + r_2$ with $0\le r_1,r_2 < b$. Subtracting gives
+\[
+0 = b(q_1-q_2) + (r_1-r_2),
+\]
+so
+\[
+b(q_1-q_2) = r_2 - r_1.
+\]
+Hence $b\mid (r_2-r_1)$. But $-(b-1) \le r_2-r_1 \le b-1$, so the only multiple of $b$ 
+in that range is $0$. Therefore $r_2-r_1=0$, so $r_1=r_2$, and consequently $q_1=q_2$. 
+This proves uniqueness.
+\end{proof}
 
-Theorem 1.4 (The Division Algorithm):\\
-Let $a, b \in \mathbb{Z}$ with $b>0$. Then there exist unique $q, r \in \mathbb{Z}$ such that
+\begin{example}
+Take $a=-5$ and $b=3$. Then
+\[
+q=\floor{a/b}=\floor{-5/3}=-2,\qquad r = a - bq = -5 - 3(-2)=1.
+\]
+So $-5 = 3\cdot(-2) + 1$ with $0\le 1 < 3$.
+\end{example}
 
-$$
-\begin{aligned}
-& a=b q+r, 0 \leq r<b . \\
-& \ell, 0 \text { remainder } \\
-& \text { quotient }
-\end{aligned}
-$$
+\begin{remark}
+Although one might informally write $-5 = 3\cdot(-1) + (-2)$, this pair $(q,r)=(-1,-2)$ 
+does satisfy $a=bq+r$ but \emph{does not} satisfy the required inequality $0\le r < b$. 
+The Division Algorithm fixes a unique remainder in the interval $[0,b)$.
+\end{remark}
 
-Proof: Let $q:=\left[\frac{a}{b}\right]$ and $r=a-b\left[\frac{a}{b}\right]$.\\
-Then $a=b q+r$. We now prove that $0 \leqslant r<b$.
+\subsection*{Parity}
+\begin{definition}
+An integer $n\in\Z$ is \emph{even} if there exists $k\in\Z$ such that $n = 2k$. An 
+integer $n$ is \emph{odd} if there exists $k\in\Z$ such that $n = 2k+1$.
+\end{definition}
 
-By Lemma 1.3 we have that
-
-$$
-\frac{a}{b}-1<\left[\frac{a}{b}\right] \leqslant \frac{a}{b} .
-$$
-
-Multiplying all terms of this inequality by $-b$ gives
-
-$$
-b-a>-b\left[\frac{a}{b}\right] \geqslant-a .
-$$
-
-Reversing the inequality and adding $a$ to all terms gives
-
-$$
-0 \leqslant a-b\left[\frac{a}{b}\right]<b,
-$$
-
-which is exactly $0 \leqslant r<b$, as desired. Thus the $q$ and $r$ defined above have the desired properties. It remains to show the uniqueness of $q$ and $r$. Assume that
-
-$$
-\begin{array}{ll}
-a=b q_{1}+r_{1}, & 0 \leqslant r_{1}<b . \\
-a=b q_{2}+r_{2}, & 0 \leqslant r_{2}<b .
-\end{array}
-$$
-
-We have $0=a-a=b q_{1}+r_{1}-\left(b q_{2}+r_{2}\right)$
-
-$$
-=b\left(q_{1}-q_{2}\right)+\left(r_{1}-r_{2}\right),
-$$
-
-which implies that
-
-$$
-r_{2}-r_{1}=b\left(q_{1}-q_{2}\right)
-$$
-
-Hence $b \mid r_{2}-r_{1}$. Now $O \leqslant r_{1}<b$ and\\
-$0 \leqslant r_{2}<b$ imply that $-b<r_{2}-r_{1}<b$.\\
-Thus we have $r_{2}-r_{1}=0$ i.e. $r_{1}=r_{2}$. Thus (1)\\
-becomes
-
-$$
-0=b\left(q_{1}-q_{2}\right) .
-$$
-
-Since $b \neq 0$ we have that $q_{1}-q_{2}=0$\\
-i.e. $q_{1}=q_{2}$. Thus we have the uniqueness claim for $q$ and $r$.
-
-\begin{itemize}
-  \item Observe that $r=0$ in the Division Algorithm if and only if $b / a$.\\
-Example: Suppose $a=-5$ and $b=3$.\\
-we have $q=\left[\frac{a}{b}\right]=\left[-\frac{5}{3}\right]=-2$,\\
-and $\quad r=a-b\left[\frac{a}{b}\right]=-5-3(-2)=1$.\\
-Check:
-\end{itemize}
-
-$$
-\begin{aligned}
-a & =\log +r \\
--5 & =3(-2)+1
-\end{aligned}, 0 \leqslant r=1<3 .
-$$
-
-Remark: What is " 5 divided by 3?" Someone might respond with "-1 with remainder - 2 "\\
-since $-\frac{5}{3}=-1-\frac{2}{3}$. Although $q=-1$\\
-and $r=-2$ satisfy $a=b q+r$, the condition that $0 \leqslant r<b$ in Theorem 1.4 is no longer true. Hence, division in the context of the Division algorithm must be performed carefully so that $a=b q+r$ and $0 \leq r<b$ both hold.
-
-Definition: Let $n \in \mathbb{Z}$. Then $n$ is said to be even if $2 \ln$ and $n$ is said to be odd if $2 \times n$.
-
-Example: The set of even integers is
-
-$$
-\{\cdots,-6,-4,-2,0,2,4,6, \ldots\}
-$$
-
-The set of odd integers is
-
-$$
-\{\cdots,-7,-5,-3,-7,0,1,3,5,7, \cdots\}
-$$
-
-
+\begin{example}
+The set of even integers is
+\[
+\{\ldots, -6,-4,-2,0,2,4,6,\ldots\},
+\]
+and the set of odd integers is
+\[
+\{\ldots,-5,-3,-1,1,3,5,\ldots\}.
+\]
+\end{example}
 
 
 
@@ -315,120 +346,175 @@ $$
 
 
 
-
-
+% ------------------------
+% L2: Prime Numbers (append or include after L1 content)
+% Assumes preamble and theorem environments are already defined as in previous snippet.
+% Uses \mathds for number sets per your preference.
+% ------------------------
 
 \section*{L2: Prime Numbers}
-Definition: Let $p \in \mathbb{Z}$ with $p>1$. Then $p$ is said to be a prime if the only positive divisors of $p$ are 1 and $p$. If $n \in \mathbb{Z}, n>1$, and $n$ is not prime, then $n$ is said to be composite.
+% NOTE: This section was rewritten for clarity, corrected typos, and reorganized to match Strayer-style structure.
 
-\begin{itemize}
-  \item The positive integer 1 is neither prime non composite. We will give a compelling reason for this later in the course.\\
-Example: The prime numbers between 2 and 50 are $2,3,5,7,11,13,17,19,23,29,31,37,41,43$, and 47. All primes except 2 are odd.\\
-Lemma 1.5: Every integer greater than 1 has a prime divisor.\\
-Proof: Assume there exists an integer $n>1$ that has no prime divisor. By the well ordering principle we may assume that $n$ is the least such integer. Clearly $n \mid n$, so $n$ is not prime. Thus $n$ is Composite and Consequently there\\
-exist $a, b \in \mathbb{Z}$ such that $n=a b$, where $1<a<n$ and $1<b<n$. Since $1<a<n$, we have that $a$ has a prime divisor, say $p$, so that $p l a$. But $a l n$, so we have that pln by Proposition 1.1 (transitivity of divisibility). Contradiction! Thus every integer greater than I has a prime divisor.\\
-Theorem 1.6 (Enclid) There are infinitely many prime numbers.\\
-Proof: Assume that there are only finitely many prime numbers, say $P_{1}, P_{2}, \ldots, P_{n}$. Consider the integer $N:=P_{1} P_{2} \ldots P_{n}+I$. By Lemma 1.5 we know that $N$ has a prime divisor, say $\rho$. Thus $p=p_{i}$ for some $i$, $i=1, \cdots, n$. Then $p \mid\left(N-p_{1} p_{2} \cdots p_{n}\right)$ by Proposition 1.2, so P|1, a contradiction. Thus there are infinitely many prime numbers.
-\end{itemize}
+\begin{definition}
+Let $p\in\mathds{Z}$ with $p>1$. We say $p$ is \emph{prime} if its only positive divisors are $1$ and $p$. An 
+integer $n>1$ which is not prime is called \emph{composite}.
+\end{definition}
 
-Proposition 1.7: Let $n$ be a composite number. Then $n$ has a prime dividor $p$ with $p \leq \sqrt{n}$. Proof: Since $n$ is composite, there exist $a, b \in \mathbb{Z}$ such that $n=a b, 1<a<n, 1<b<n$, and without loss of generality, $a \leq b$. We must have $a \leqslant \sqrt{n}$, otherwise if $a>\sqrt{n}$ we have $n=a b>\sqrt{n} \sqrt{n}=n$, which is not possible.\\
-By Lemma 1.5 we know that a must have a prime divisor, say $p$. Since $p l a$ and $a l n$ we have pln by Proposition 1.1 (transitivity of divisibility). Furthermone, $p \leq a \leq \sqrt{n}$, so $p$ is the desired prime factor of $n$.
+\begin{remark}
+The integer $1$ is neither prime nor composite. (We will give a conceptual reason for this later in the course; 
+it is tied to the uniqueness of prime factorization.)
+\end{remark}
 
-\begin{itemize}
-  \item Proposition 1.7 gives a method for finding all the prime numbers less than or equal to a specified integer $n>1$ This is called the sieve of Eratosthenes.\\
-Example: Suppose one wants to find all the primes less than 50. By Proposition 1.7\\
-any composite number less than 50 must have a prime dividor less than or equal to $\sqrt{50} \approx 7.07$ i.e. $2,3,5,7$. Deleting all multiples of these primes (except for themselves) gives:\\
-$\begin{array}{llllllllll}11 & 12 & 13 & 14 & 18 & 16 & 17 & 18 & 19 & 26\end{array}$\\
-21 22 23 24 25 26 27 28 29 30\\
-$31 \quad 32 \quad 35 \quad 34 \quad 35 \quad 36 \quad 37 \quad 38 \quad 39 \quad 46$\\
-$41 \quad 42 \quad 43 \quad 44 \quad 45 \quad 46 \quad 47 \quad 48 \quad 49 \quad 50$\\
-Remaining numbers are prime:\\
-$2,3,5,7,11,13,17,19,23,29,31,37,41$,\\
-$43,47$.
-  \item Proposition 1.7 gives a very crude primality test i.e. an algorithm to test whether a given $n>1$ is prime or composite\\
-i.e. Check whether $n$ is divisible by any prime number $p \leq \sqrt{n}$. If $n$ is divisible by such a prime, then $n$ is composite. Otherwise, $n$ is
-\end{itemize}
+\begin{example}
+The primes between $2$ and $50$ are
+\[
+2,3,5,7,11,13,17,19,23,29,31,37,41,43,47.
+\]
+Observe that every prime except $2$ is odd.
+\end{example}
 
-\section*{prime.}
-\begin{itemize}
-  \item We will discuss more efficient primality tests later in the course.
-  \item If one does larger experiments with the sieve of Eratos thenes one might guess that the primes are more sparsely distributed as you progress through larger and larger integers. The next Proposition shows that there exist arbitrarily long sequences of Consecutive positive integers that don't Contain Prime numbers\\
-Proposition 1.8: For any positive integer $n$, there are at least $n$ consecutive composite positive integers.\\
-Proof: Given $n \geqslant 1$, consider the sequence
-\end{itemize}
+\begin{lemma}
+Every integer $n>1$ has at least one prime divisor.
+\end{lemma}
 
-$$
-(n+1)!+2,(n+1)!+3, \cdots,(n+1)!+n+1 .
-$$
+\begin{proof}
+Suppose, toward contradiction, that there exists $n>1$ with no prime divisor. By the well-ordering principle, take 
+the smallest such $n$. Since $n$ has no prime divisors, $n$ cannot be prime, so $n$ is composite: there exist 
+integers $a,b$ with $1<a<n$, $1<b<n$, and $n=ab$. By minimality of $n$, the factor $a$ (being $>1$ and $<n$) 
+must have a prime divisor $p$. Then $p\mid a$ and $a\mid n$, so by transitivity $p\mid n$, contradicting the 
+assumption. Hence every $n>1$ has a prime divisor.
+\end{proof}
 
-Let $i$ be an integer such that $2 \leq i \leq n+1$. Since $i|(n+1)|$ and $i \mid i$, we have $i|(n+1)|+i$ for $2 \leq i \leq n+1$, by Proposition 1.2. Thus each integer in the sequence is composite.
+\begin{theorem}[Euclid]
+There are infinitely many prime numbers.
+\end{theorem}
 
-\begin{itemize}
-  \item It also seems that one can find primes (6) very close to one another\\
-i.e. $(3,5),(5,7),(11,13), \ldots$\\
-A pair ( $P, P+2$ ) with both entries prime are called twin primes.\\
-Conjecture: There are infinitely many prime numbers $P$ for which $P+2$ is also Prime.
-  \item There has been very recent breakthroughs on this problem. Let $p_{1}, p_{2}, \ldots$ denote the sequence of primes. Zhang (2013) proved that there are infinitely many primes $p_{n}$ such that $P_{n+1}-P_{n} \leqslant 70000000$. This has been improved by others, Maynard, Tao, $\cdots$, but not all the way to 2 .\\
-One of the most famous (and classical) results about the Primes is the Prime Number Theorem (PNT). This was conjectured by Gauss in 1793 and was proved independently\\
-in 1896 by C.J. de la Vallée Poussin 7 and J. Hadamard. The PNT gives an estimate for the number of primes up to a real positive number $x$.\\
-Definition: Let $x \in \mathbb{R}$ with $x>0$. Then
-\end{itemize}
+\begin{proof}
+Assume, for contradiction, that there are only finitely many primes $p_1,p_2,\dots,p_k$. Consider
+\[
+N := p_1 p_2 \cdots p_k + 1.
+\]
+By the previous lemma $N$ has a prime divisor $p$. This $p$ cannot be any of $p_1,\dots,p_k$ because 
+dividing $N$ by any $p_i$ gives remainder $1$. Thus $p$ is a prime not in the list, contradiction. 
+Therefore primes are infinite in number.
+\end{proof}
 
-$$
-\pi(x):=\mid\{p: p \text { prime; } \mid<p \leqslant x\} \mid \text {. }
-$$
+\begin{proposition}
+Let $n$ be a composite integer. Then $n$ has a prime divisor $p$ with $p \le \sqrt{n}$.
+\end{proposition}
 
-Theorem 1.9 (PNT): $\lim _{x \rightarrow \infty} \frac{\pi(x)}{x / \log x}=I$.
+\begin{proof}
+Write $n=ab$ with integers $1<a\le b<n$. Then $a\le\sqrt{n}$ (otherwise $ab>\sqrt{n}\cdot\sqrt{n}=n$). 
+By the lemma, $a$ has a prime divisor $p$, so $p\mid a$ and hence $p\mid n$. Since $p\le a\le\sqrt{n}$, 
+the conclusion follows.
+\end{proof}
 
-\begin{itemize}
-  \item Theorem 1.9 is equivalent to saying that $\pi(x)$ may be approximated by $\frac{x}{\log x}$ as $x \rightarrow \infty$.
-  \item The proof of PNT is beyond the scope of this class (requires Complex analysis and more advanced number theory).\\
-Many unsolved problems in number theory deal with integers that are expressible in certain forms.
-\end{itemize}
+\begin{remark}
+Proposition above underlies the \emph{trial division} primality test and is the theoretical basis for 
+the Sieve of Eratosthenes: to decide whether $n$ is composite, it suffices to check divisibility by 
+primes $\le\sqrt{n}$.
+\end{remark}
 
-\section*{Conjecture (Goldbach, 1742):}
-Every even integer greater than 2 can be expressed as the sum of two (not necessarily distunct) prime numbers.\\
-i.e. $4=2+2,6=3+3,8=3+5$, and so on
+\begin{example}[Sieve idea]
+To find all primes $\le 50$, it suffices to remove multiples of primes $\le \sqrt{50}\approx 7.07$, 
+i.e., delete multiples of $2,3,5,7$ (except the primes themselves). Remaining integers are the primes 
+listed earlier.
+\end{example}
 
-\begin{itemize}
-  \item Goldbach's conjecture has been Verified experimentally up to some large finite point, but a proof still eludes the research community. In fuct, Hardy and Littlewood predicted a frmula for the number of representations an even integer has in terms of a sum of two primes. Still an open problem!
-  \item We now consider other families of Primes and close with some more open conjectures.\\
-Definition: Any prime number expressible in the form $2^{p}-1$ with $p$ prime is said to be a Mersenne prime.
-\end{itemize}
+\begin{proposition}
+For any positive integer $n$, there exist $n$ consecutive composite positive integers.
+\end{proposition}
 
-Example: The first five Mersenne primes\\
-are $3=2^{2}-1,7=2^{3}-1,31=2^{5}-1$,\\
-$127=2^{7}-1$ and $8191=2^{13}-1$.\\
-Note that $2^{\prime \prime}-1=2047=(23)(89)$ is not a Mersenne prime.\\
-Conjecture: There are infinitely many Mersenne primes.
+\begin{proof}
+Consider the integers
+\[
+(n+1)!+2, \ (n+1)!+3, \ \ldots,\ (n+1)!+(n+1).
+\]
+For any $2\le i\le n+1$, we have $i\mid (n+1)!$ and $i\mid i$, hence $i\mid\big((n+1)! + i\big)$. Thus 
+each term is composite (it has the factor $i$).
+\end{proof}
 
-Another interesting family of prime numbers are due to Fermat.\\
-Definition: Any prime number expressible in the form $2^{2^{n}}+1$ with $n \in \mathbb{Z}$ and $n \geqslant 0$ is said to be a Fermat Prime.\\
-Example: The first five Fermat primes are $3=2^{2^{0}}+1,5=2^{2^{1}}+1,17=2^{2^{2}}+1$,\\
-$257=2^{2^{3}}+1$, and $65537=2^{2^{4}}+1$.
+\begin{remark}
+Pairs $(p,p+2)$ of primes are called \emph{twin primes} (e.g. $(3,5),(5,7),(11,13),\dots$). The Twin 
+Prime Conjecture asserts there are infinitely many such pairs; it remains open, though there has been 
+substantial progress on bounded prime gaps (Zhang and subsequent work).
+\end{remark}
 
-\begin{itemize}
-  \item Fermat in 1640 conjectured that any.\\
-number expressible in the form $2^{2^{n}}+1$\\
-with $n \in \mathbb{Z}$ and $n \geqslant 0$ is prime.
-  \item Fermat's conjecture was disproved in 1732 by Enler who proved that $641 / 2^{2^{5}}+1$ i.e. $2^{2^{5}}+1$ is not a Fermat prime.
-\end{itemize}
+\subsection*{Prime number distribution and famous conjectures}
 
-Conjecture: There are exactly five Fermat primes.
+\begin{definition}
+For $x>0$, let
+\[
+\pi(x) := \#\{p \text{ prime} : p\le x\},
+\]
+the prime-counting function.
+\end{definition}
 
-\begin{itemize}
-  \item The last family we consider is due to Hardy and Littlewood 1922 :\\
-Conjecture: There are infinitely many primes expressible in the form $n^{2}+1$ where $n$ is a positive integer.\\
-Remark: In view of the above conjecture it may be tempting to conjecture there are infinitely many primes of the form $n^{2}-1$ for $n$ a positive integer. However,
-\end{itemize}
+\begin{theorem}[Prime Number Theorem]
+\[
+\lim_{x\to\infty} \frac{\pi(x)}{x/\log x} = 1.
+\]
+\end{theorem}
 
-$$
-n^{2}-1=(n+1)(n-1),
-$$
+\begin{remark}
+The Prime Number Theorem (PNT) states that $\pi(x)\sim x/\log x$. Its proof uses complex analysis 
+and was independently obtained by Hadamard and de la Vallée Poussin in 1896. A proof is beyond the 
+scope of this course, but the statement explains the average density of primes among large integers.
+\end{remark}
 
-which rules out the primality of $n^{2}-1$ for\\
-$n>2$. Factorisations can be a powerful (II) tool.
+\subsection*{Special families of primes}
 
+\begin{definition}
+A \emph{Mersenne} prime is a prime of the form $2^p-1$ where $p$ is prime.
+\end{definition}
+
+\begin{example}
+The first few Mersenne primes are
+\[
+3 = 2^2-1,\quad 7=2^3-1,\quad 31=2^5-1,\quad 127=2^7-1,\quad 8191=2^{13}-1.
+\]
+Note $2^{11}-1=2047=23\cdot 89$ is composite (so not all numbers $2^p-1$ are prime).
+\end{example}
+
+\begin{definition}
+A \emph{Fermat} prime is a prime of the form $2^{2^n}+1$ for some integer $n\ge0$.
+\end{definition}
+
+\begin{example}
+The Fermat numbers for $n=0,1,2,3,4$ give
+\[
+3,5,17,257,65537,
+\]
+all prime. However the next, $F_5 = 2^{2^5}+1 = 2^{32}+1 = 4294967297$, is composite; Euler showed 
+that $641\mid F_5$, so not all Fermat numbers are prime.
+\end{example}
+
+\begin{remark}
+Fermat conjectured that all numbers of the form $2^{2^n}+1$ are prime; Euler disproved this by 
+showing $F_5$ is composite. It is unknown whether there are infinitely many Fermat primes; current 
+evidence suggests only finitely many are prime (only the five above are known to be prime).
+\end{remark}
+
+\begin{conjecture}[Goldbach, 1742]
+Every even integer greater than $2$ is the sum of two (not necessarily distinct) primes.
+\end{conjecture}
+
+\begin{remark}
+Goldbach's conjecture has been verified by computation up to very large bounds, but a proof remains 
+open. Hardy and Littlewood proposed an asymptotic formula for representations of even numbers as 
+sums of two primes, but the full conjecture is unresolved.
+\end{remark}
+
+\begin{conjecture}[Hardy--Littlewood quadratic prime conjecture]
+There are infinitely many primes of the form $n^2+1$ for integer $n\ge0$.
+\end{conjecture}
+
+\begin{remark}
+Note $n^2-1=(n+1)(n-1)$ is composite for $n>2$, so this form yields no new large primes for $n>2$. 
+Factorizations are a central tool for ruling out primality in many forms.
+\end{remark}
+
+% End of L2
 
 
 
@@ -459,184 +545,195 @@ $n>2$. Factorisations can be a powerful (II) tool.
 
 
 
+% ------------------------
+% L3: Greatest Common Divisors
+% Assumes the preamble and theorem environments from previous sections are present.
+% Uses \mathds{Z} for integers (per your preference).
+% ------------------------
+\section*{L3: Greatest Common Divisors}
+% NOTE: Rewritten, corrected OCR errors (O -> 0, velatively -> relatively, ged/god -> gcd), and reorganized.
+% All occurrences of (a,b) have been replaced by \gcd(a,b).
 
+\begin{definition}
+Let $a,b\in\mathds{Z}$, not both zero. The \emph{set of common divisors} of $a$ and $b$ is
+\[
+\Delta := \{c\in\mathds{Z}: c\mid a \text{ and } c\mid b\}.
+\]
+\end{definition}
 
-\section*{L3: Greatest Common divisors}
-\begin{itemize}
-  \item Given $a, b \in \mathbb{Z}$, both not zero, consider
-\end{itemize}
+\begin{remark}
+If $a$ and $b$ are not both zero then $\Delta$ is nonempty (since $\pm 1\in\Delta$) and finite 
+(every common divisor divides $|a|$ or $|b|$, and any nonzero integer has only finitely many 
+divisors). Hence the greatest element of $\Delta$ exists and is positive.
+\end{remark}
 
-$$
-\delta:=\{c: c \in \mathbb{Z}, c \mid a \text {, and } c \mid b\} \text {. }
-$$
+\begin{definition}
+Let $a,b\in\mathds{Z}$, not both zero. The \emph{greatest common divisor} of $a$ and $b$, 
+denoted $\gcd(a,b)$, is the greatest positive integer $d$ such that $d\mid a$ and $d\mid b$. 
+If $\gcd(a,b)=1$ we say $a$ and $b$ are \emph{relatively prime}.
+\end{definition}
 
-The set $\delta$ is non-empty since $\pm 1 \in S$, and finite since $O$ is the only integer that has an infinite number of divisors, and at least one of $a$ and $b$ are non-zero. Thus it makes sense to speak of the greatest element of $S_{\text {, }}$ and that element is necessarily positive.\\
-Definition: Let $a, b \in \mathbb{Z}$ with $a$ and $b$ not both zero. The greatest common divisor of a and $b$, denoted $(a, b)$, is the greatest positive integer $d$ such that dla and dib. If $(a, b)=1$, then $a$ and $b$ are said to be relatively prime.\\
-Remark: Note that $(0,0)$ is undefined.\\
-Remark: If $(a, b)=d$, then
+\begin{remark}
+The quantity $\gcd(0,0)$ is undefined. Also, if $\gcd(a,b)=d$ then
+\[
+\gcd(-a,b) = \gcd(a,-b) = \gcd(-a,-b) = d.
+\]
+Thus we may restrict many computations to nonnegative integers without loss of generality.
+\end{remark}
 
-$$
-(-a, b)=(a,-b)=(-a,-b)=d . \quad \text { (*) }
-$$
+\begin{example}
+Divisors of $24$: $\pm 1,\pm 2,\pm 3,\pm 4,\pm 6,\pm 8,\pm 12,\pm 24$.\\
+Divisors of $60$: $\pm 1,\pm 2,\pm 3,\pm 4,\pm 5,\pm 6,\pm 10,\pm 12,\pm 15,\pm 20,\pm 30,\pm 60$.\\
+Hence $\gcd(24,60)=12$.
+\end{example}
 
-Thus without loss of generality we vestrict our\\
-computations of the gcd of two non-negative integers in the following example.\\
-Example:
+\begin{remark}
+If $a\in\mathds{Z}$ with $a\neq 0$ then $\gcd(a,0)=|a|$.
+\end{remark}
 
-\begin{itemize}
-  \item Divisors of $24: \pm 1, \pm 2, \pm 3, \pm 4, \pm 6, \pm 8, \pm 12, \pm 24$
-\end{itemize}
+\begin{proposition}
+Let $a,b\in\mathds{Z}$ and let $\gcd(a,b)=d$. Then $\gcd(a/d,\, b/d)=1$.
+\end{proposition}
 
-Divisors of $60: \pm 1, \pm 2, \pm 3, \pm 4, \pm 5, \pm 6, \pm 10$,
+\begin{proof}
+Let $d'=\gcd(a/d,b/d)$. Then $d'\mid a/d$ and $d'\mid b/d$, so there exist $e,f\in\mathds{Z}$ 
+with $a/d=d'e$ and $b/d=d'f$. Hence $a=d'de$ and $b=d'df$, so $d'd$ divides both $a$ and $b$. 
+By maximality of $d$ as the gcd we must have $d'd\le d$, so $d'=1$.
+\end{proof}
 
-$$
-\pm(2), \pm 15, \pm 20, \pm 30, \pm 60
-$$
+\begin{proposition}[Bézout's characterization of the gcd]
+\label{prop:bezout-min}
+Let $a,b\in\mathds{Z}$, not both zero. Then
+\[
+\gcd(a,b)=\min\{ma+nb : m,n\in\mathds{Z},\ ma+nb>0\}.
+\]
+Moreover, there exist integers $m_0,n_0$ such that
+\[
+\gcd(a,b)=m_0 a + n_0 b.
+\]
+\end{proposition}
 
-Thus $(24,60)=12$.
+\begin{proof}
+Let $S=\{ma+nb: m,n\in\mathds{Z},\ ma+nb>0\}$. Since $a$ and $b$ are not both zero, 
+$S\neq\varnothing$ (take $m=1,n=0$ or $m=-1,n=0$, etc.), and by the well-ordering principle 
+$S$ has a least positive element; denote it $d$. So $d=m'a+n'b$ for some $m',n'\in\mathds{Z}$.
 
-\begin{itemize}
-  \item In general, if $a \in \mathbb{Z}$ with $a \neq 0$, then $(a, 0)=|a| . \quad(* *)$
-  \item Divisors of $35: \pm 1, \pm 5, \pm 7, \pm 35$.
-\end{itemize}
+We show $d\mid a$ and $d\mid b$. Apply the division algorithm to write $a=dq+r$ with $0\le r<d$. 
+Then
+\[
+r = a-dq = a - q(m'a+n'b) = (1-qm')a + (-qn')b,
+\]
+so $r\in S\cup\{0\}$. Since $0\le r<d$ and $d$ is the least positive element of $S$, we 
+must have $r=0$. Thus $d\mid a$. Similarly $d\mid b$.
 
-Thus $(24,35)=1$, and 24 and 35 are velatively prime.\\
-Remark: If $(a, b)=d$, then $d \mid a$ and $d \mid b$.\\
-Proposition 1.10: Let $a, b \in \mathbb{Z}$ with $(a, b)=d$. Then $(a / d, b / d)=1$.\\
-Proof: Let $d^{\prime}:=(a / d, b / d)$. Then $d^{\prime} \mid a / d$ and $d^{\prime} \mid b / d$, so there exist $e, f \in \mathbb{Z}$ such\\
-that $a / d=d^{\prime} e$ and $b / d=d^{\prime} f$. Thus $a=d^{\prime} d e$ and $b=d^{\prime} d f$, and consequently we have $d^{\prime} d \mid a$ and $d^{\prime} d \mid b$. This implies that $d^{\prime} d$ is a common divisor of $a$ and $b$, and since $d$ is the $\operatorname{gcd}$ of $a$ and $b$, we have $d^{\prime}=1$, as required.
+Finally, if $c$ is any common divisor of $a$ and $b$, then $c\mid(ma+nb)$ for any integers 
+$m,n$, hence $c\mid d$. Therefore $c\le d$. Thus $d$ is the greatest common divisor. This 
+proves the claim.
+\end{proof}
 
-Proposition 1.11: Let $a, b \in \mathbb{Z}$ with $a$ and $b$ not both zero. Then\\
-$(a, b)=\min \{m a+n b: m, n \in \mathbb{Z}, m a+n b>0\}$.\\
-Proof: We first need to prove that the minimum exists. Observe that
+\begin{remark}
+The fact that the gcd is an integral linear combination of $a$ and $b$ is commonly referred 
+to as Bézout's identity. In the special case $\gcd(a,b)=1$ the identity shows there exist 
+integers $m,n$ with $ma+nb=1$; any common divisor of $a$ and $b$ must then divide $1$, so 
+it is $1$.
+\end{remark}
 
-$$
-\{m a+n b: m, n \in \mathbb{Z} \partial m a+n b>0\} \neq \varnothing,
-$$
+\begin{definition}
+For integers $a_1,\dots,a_k$ not all zero, their greatest common divisor $\gcd(a_1,\dots,a_k)$ 
+is the largest positive integer dividing each $a_i$. If $\gcd(a_1,\dots,a_k)=1$ we say the 
+$a_i$ are \emph{relatively prime}. If every pair $\gcd(a_i,a_j)=1$ for $i\neq j$ we say 
+they are \emph{pairwise relatively prime}.
+\end{definition}
 
-Since, without loss of generality, $a \neq 0$, and then either $l a+O b>0$ or $-\mid a+O b>0$. Thus min $\{m a+n b: m, n \in \mathbb{Z}, m a+n b>0\}$ exists by the well-ordering principle, denote it $d$. Then $d=m^{\prime} a+n^{\prime} b$ for some $m^{\prime} n^{\prime} \in \mathbb{Z}$.
+\begin{example}
+The common divisors of $24,60,30$ are $\pm1,\pm2,\pm3,\pm6$, so $\gcd(24,60,30)=6$. Note 
+that pairwise relatively prime integers are relatively prime, but the converse need not hold.
+\end{example}
 
-We first prove that dla and d/b. By the (4) division algorithm there exist $q, r \in \mathbb{Z}$ such that
+\subsection*{The Euclidean Algorithm}
 
-$$
-a=d q+r, \quad 0 \leqslant r<d
-$$
+\begin{lemma}
+\label{lem:gcd-remainder}
+Let $a,b\in\mathds{Z}$ with $a\ge b>0$. If $a=bq+r$ with integers $q,r$ and $0\le r<b$, then
+\[
+\gcd(a,b)=\gcd(b,r).
+\]
+\end{lemma}
 
-Now,
+\begin{proof}
+If $c$ divides $a$ and $b$, then $c\mid(a-qb)=r$, so $c$ divides $b$ and $r$. Conversely, 
+if $c$ divides $b$ and $r$ then $c\mid(qb+r)=a$. Thus the set of common divisors of 
+$\gcd(a,b)$ equals the set of common divisors of $\gcd(b,r)$, so their greatest elements 
+are equal.
+\end{proof}
 
-$$
+\begin{theorem}[Euclidean algorithm]
+\label{thm:euclid}
+Let $a,b\in\mathds{Z}$ with $a\ge b>0$. Perform repeated division:
+\[
 \begin{aligned}
-r=a-d q & =a-\left(m^{\prime} a+n^{\prime} b\right) q \\
-& =\left(1-q m^{\prime}\right) a-q n^{\prime} b_{J}
+a &= bq_1 + r_1,\quad 0\le r_1<b,\\
+b &= r_1 q_2 + r_2,\quad 0\le r_2<r_1,\\
+r_1 &= r_2 q_3 + r_3,\quad 0\le r_3<r_2,\\
+&\ \,\vdots
 \end{aligned}
-$$
+\]
+This process terminates: for some $n\ge 1$, $r_n=0$. Then
+\[
+\gcd(a,b)=
+\begin{cases}
+b &\text{if }n=1,\\
+r_{n-1} &\text{if }n>1.
+\end{cases}
+\]
+\end{theorem}
 
-and we have that $n$ is an integral linear combination of $a$ and $b$. Since $O \leq r<d$ and $d$ is the minimum positive integral linear combination of $a$ and $b$, we have $r=0$, from which $a=d q+r$ implies that $a=d q$. Thus $d l a$, and by a similar argument, $d \mid b$. It remains to show that $d$ is the greatest common divisor. Let $c$ be any common divisor of $a$ and $b$, then $c l a$ and $c l b$. Then $c\left(m^{\prime} a+n^{\prime} b=d\right.$ by Proposition 1.2, and so $c \leqslant d$.
+\begin{proof}
+The remainders form a strictly decreasing sequence of nonnegative integers:
+\[
+b > r_1 > r_2 > \cdots \ge 0.
+\]
+Such a sequence cannot be infinite, so for some $n$ we must have $r_n=0$. Repeated 
+application of Lemma \ref{lem:gcd-remainder} yields
+\[
+\gcd(a,b)=\gcd(b,r_1)=\gcd(r_1,r_2)=\cdots=\gcd(r_{n-1},r_n)=\gcd(r_{n-1},0)=r_{n-1}.
+\]
+If $n=1$ then $r_1=0$ already and $\gcd(a,b)=b$.
+\end{proof}
 
-\begin{itemize}
-  \item Proposition 1.11 tells us that $(a, b)=d$ implies that d may be expressed as an integral linear combination of $a$ and $b$. The converse of this statement is true if $d=1$, namely, if 1 is expressible as an integral linear combination of $a$ and $b$, then $(a, b)=1$. Why?\\
-Well, $1=m a+n b$ for some $m, n \in \mathbb{Z}$, and any $d \in \mathbb{Z}$ such that $d \mid a$ and $d \mid b$ must then satisfy $d \mid m a+n b=1$ by Proposition $(.2$, so $(a, b)=1$.
-  \item Proposition 1.11 also can be used to show that a common divisor is not only less them the greatest common diviser, but also divides the greatest common divisor:\\
-$(a, b)=a m+b n$ for some $m, n \in \mathbb{Z}$, so if\\
-dla and $d \mid b$, then $d \mid a m+b n=(a, b)$ by Proposition 1.2.
-\end{itemize}
+\begin{example}
+Compute $\gcd(803,154)$ via the Euclidean algorithm:
+\[
+\begin{aligned}
+803 &= 154\cdot 5 + 33,\\
+154 &= 33\cdot 4 + 22,\\
+33  &= 22\cdot 1 + 11,\\
+22  &= 11\cdot 2 + 0.
+\end{aligned}
+\]
+Hence $\gcd(803,154)=11$.
+\end{example}
 
-Definition: Let $a_{1}, a_{2}, \ldots, a_{n} \in \mathbb{Z}$ with $a_{1}, a_{2}, \ldots, a_{n}$ not all zero. The greatest common divitor of $a_{1}, a_{2}, \ldots, a_{n}$, denoted $\left(a_{1}, a_{2}, \ldots, a_{n}\right)$ is the greatest integer $d$ such that $d \mid a_{i}$ for all $i=1, \ldots, n$. If $\left(a_{1}, a_{2}, \ldots, a_{n}\right)=I$, then $a_{1}, a_{2}, \ldots, a_{n}$, are said to be velatively prime. If $\left(a_{i}, a_{j}\right)=1$ for all pairs $i, j$ with $i \neq j$, then $a_{1}, a_{2}, \ldots, a_{n}$ are said to be pairwise relatively prime.\\
-Example: The common dividoss of $24,60,30$ are $\pm 1, \pm 2, \pm 3, \pm 6$. Thus $(24,60,30)=6$.
+\subsubsection*{Back-substitution to obtain Bézout coefficients}
+We can express the gcd as a linear combination of the original numbers by back-substitution.
 
-Pairwise relatively prime integers are relatively prine, but the converse is not always true.\\
-Example: Check that $(24,60,49)=1$, so $24,66,49$ are relatively prime. However, $(24,60)=12 \neq 1$, so they are not pairwise
-
-\section*{relatively prime.}
-\section*{The Enclidean Algorithm}
-\begin{itemize}
-  \item We want a move efficient method for computing the god of two integers than just listing of their divisors.\\
-Lemma 1.12: If $a, b \in \mathbb{Z}, a \geqslant b>0$, and $a=b q+r$ with $q, r \in \mathbb{Z}$, then $(a, b)=(b, r)$.\\
-Proof: Let $c$ be a common divisor of a and $b$. Then $c / a$ and $c / b$ imply that $c \mid a-q b=r$, and so $c$ is a common divisor of $b$ and $r$.
-\end{itemize}
-
-Now let $c$ be a common divisor of $b$ and $r$, so that $c \mid b$ and $c \mid r$. Then $c \mid q b+r=a$ by Proposition 1.2 , from which $c(a)$ and so $c$ is a common divisor of $a$ and $b$.\\
-The set of common divisors of $a$ and $b$ is the same as the set of common divisors of $b$ and $r$, and so $(a, b)=(b, r)$.
-
-\begin{itemize}
-  \item The Enclidean algorithm for computing\\
-the ged of two positive integers comes from Book VII of Enclid's "Elements".\\
-Theorem 1.13: Let $a, b \in \mathbb{Z}$ with $a \geqslant b>0$. By the division algorithm (Theorem 1.4), there exist $\left.q_{1}\right) r_{1} \in \mathbb{Z}$ such that
-\end{itemize}
-
-$$
-a=b q_{1}+r_{1}, 0 \leqslant r_{1}<b .
-$$
-
-If $r_{1}>0$, there exist $q_{2}, r_{2} \in \mathbb{Z}$ by the division algosithm such that
-
-$$
-b=r_{1} q_{2}+r_{2}, \quad 0 \leqslant r_{2}<r_{1} .
-$$
-
-If $r_{2}>0$, there exist $q_{3}, r_{3} \in \mathbb{Z}$ such that
-
-$$
-r_{1}=r_{2} q_{3}+r_{3}, \quad 0 \leq r_{3}<r_{2}
-$$
-
-Continue this process. Then $r_{n}=0$ for some $n \geqslant 1$, and
-
-$$
-(a, b)= \begin{cases}b & \text { if } n=1 \\ r_{n-1} & \text { if } n>1\end{cases}
-$$
-
-Proof: Note that $r_{1}>r_{2}>r_{3}>\ldots$ If $r_{n} \neq 0$ for all $n \geqslant 1$, then $r_{1}, r_{2}, r_{3}, \ldots$ is an\\
-infinite, strictly decreasing sequence of positive integers, which is not possible!\\
-Thus $r_{n}=0$ for some $n$. If $n>1$ we repeatedly apply Lemma 1.12 to obtain\\
-$(a, b)=\left(b, r_{1}\right)=\left(r_{1}, r_{2}\right)=\left(r_{2}, r_{3}\right)=\cdots=\left(r_{n-1}, r_{n}\right)$
-
-$$
-\left.=\left(r_{n-1}, 0\right)=r_{n-1}\right)
-$$
-
-as desired. If $n=1$, the statement is clear.
-
-Remark: The Enclidean Algosithm finds the ged of $a, b$ when they are positive integers. By (*) and (**), all other cases are reducible to this case or trivial.\\
-Example: Find $(803,154)$ using the Euclidean algorithm:
-
-
-\begin{align*}
-803 & =154 \cdot 5+33  \tag{1}\\
-154 & =33 \cdot 4+22  \tag{2}\\
-33 & =22 \cdot 1+11  \tag{3}\\
-22 & =11 \cdot 2+0 \tag{4}
-\end{align*}
-
-
-Thus $(803,154)=11$.
-
-\begin{itemize}
-  \item Recall that Rroposition 1.11 says that the ged of two integen is expressible as an integral linear combination of the two integers. The Euclidean algorithm gives a Systematic way to find Such a linear combination.\\
-Example: Express $(803,154)$ as an integral linear combination of 803 and 154.\\
-We work through the previous example backward. We have
-\end{itemize}
-
-
-\begin{align*}
-(803,154)=11 & =33-22 \text { by } \\
-& =33-(154-33 \cdot 4) \text { by }(2) \\
-& =33 \cdot 5-154 \\
-& =(803-154 \cdot 5) 5-154 \text { by }(0)  \tag{0}\\
-& =803 \cdot 5-154 \cdot 26 \\
-& =5.803+(-26) \cdot 154 \text {. }
-\end{align*}
-
-
-Remark: This integral linear combination of\\
-$(803,154)$ is not unique. Can verify that $11=19.803-99.154$ is another such expression. We will study this more later in the course.
-
-\begin{itemize}
-  \item No integral linear combination of 803 and
-\end{itemize}
-
-154 can yield any of the integers $1,2,3, \ldots, 10$ by Proposition 1.11.
-
+From the third nonzero remainder:
+\[
+11 = 33 - 22\cdot 1.
+\]
+Substitute $22=154-33\cdot 4$ (from the second line):
+\[
+11 = 33 - (154-33\cdot 4) = 33\cdot 5 - 154.
+\]
+Substitute $33 = 803 - 154\cdot 5$ (from the first line):
+\[
+11 = (803 - 154\cdot 5)\cdot 5 - 154 = 803\cdot 5 - 154\cdot 26.
+\]
+Thus
+\[
+11 = 5\cdot 803 + (-26)\cdot 154,
+\]
+so $\gcd(803,154)=11$ is a linear combination of $803$ and $154$. (These coefficients are not unique.)
 
 
 
@@ -661,148 +758,167 @@ $(803,154)$ is not unique. Can verify that $11=19.803-99.154$ is another such ex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L4
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \section*{L4: The Fundamental Theorem of Arithmetic}
-Lemma 1.14 (Euclid): Let $a, b, p \in \mathbb{Z}$ with $p$ prime. If $p l a b$, then $p l a$ or $p l b$.\\
-Proof: Assume that $p+a$. Then $(a, p)=1$. We must show that plb. By Proposition (.11, there exist $m, n \in \mathbb{Z}$ such that $m a+n p=1$. Also, plab implies that $a b=p c$ for some $c \in \mathbb{Z}$. After multiplying both sides of $m a+n p=I$ by $b$, we have that $m a b+n p b=b$. Then $a b=p c$ implies that $m p c+n p b=b$, or equivalently $p(m c+n b)=b$. Thus we have $p \mid b$, as desired.
 
-Remark: Note that Lemma 1.14 does not hold if $p$ is composite i.e. take $p=6 a=2, b=3$.
+\begin{lemma}[Euclid's lemma]
+\label{lem:euclid}
+Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\mid ab$, then $p\mid a$ or $p\mid b$.
+\end{lemma}
 
-Corollary 1.15: Let $a_{1}, a_{2}, \ldots, a_{n}, p \in \mathbb{Z}$ with $p$ Prime. If $p\left(a_{1} a_{2} \cdots a_{n}\right)$ then $p\left(a_{i}\right.$ for some $i$.
+\begin{proof}
+Suppose $p\nmid a$. Then $\gcd(a,p)=1$. By Bézout's identity there exist integers $m,n$ 
+such that
+\[
+m a + n p = 1.
+\]
+Multiply both sides by $b$ to obtain
+\[
+mab + npb = b.
+\]
+Since $p\mid ab$, the term $mab$ is divisible by $p$, and clearly $npb$ is divisible by 
+$p$, hence the left-hand side is divisible by $p$. Therefore $p\mid b$. This proves the 
+lemma.
+\end{proof}
 
-Proof: We use induction on $n$. The statement for $n=1$ is trivially true. The statement for $n=2$ is Lemma 1.14. Assume that $k \geqslant 2$ and that the desired statement is true for $n=k$ i.e. that $p \mid a_{1} \ldots a_{k}$ implies that plai for some $i$ with $1 \leqslant i \leqslant k$. Now we need to prove that $p \mid a_{1} \ldots a_{k+1}$ implies that $p \mid a_{i}$ for some $i$ with $1 \leq i \leq k+1$, So that the desired statement holds for $n=k+1$. Observe that $p \mid a_{1} \ldots a_{k+1}$ implies that $p \mid\left(a_{1} \ldots a_{k}\right) a_{k+1}$, so Lemma 1.14 then implies that $p \mid a_{1} \ldots a_{k}$ or $p \mid a_{k+1}$.\\
-If $p \mid a_{k+1}$ we are done. If $p \nmid a_{k+1}$, then\\
-$p / a_{1} \ldots a_{k}$ which implies that $p / a_{i}$ for some\\
-$i$ with $1 \leq i \leq k$ by the induction hypothesis.\\
-The desired statement holds for $n=k+1$,\\
-as required.
+\begin{corollary}
+\label{cor:prime-divides-product}
+Let $a_1,\dots,a_n,p\in\mathds{Z}$ with $p$ prime. If $p\mid(a_1 a_2\cdots a_n)$ then 
+$p\mid a_i$ for some $i$.
+\end{corollary}
 
-Theorem 1.1.6(FTA): Every integer greater than I can be expressed in the form $p_{1}^{a_{1}} p_{2}^{a_{2}} \ldots p_{n}^{a_{n}}$ with $P_{1}, P_{2}, \cdots, P_{n}$ distinct primes and $a_{1}, a_{2}, \ldots, a_{n}$ positive integers. This form is said to be the prime factorisation of $n$. The prime factorisation is unique except up to permutation of the $p_{i} a_{i}$.\\
-Remark: One of the main reasons 1 is not a prime is because the uniqueness of prime factorisations would be lost otherwise. Proof (of FTA): Assume, by way of contradiction, that $k>I$ is an integer that does not have a prime factorisation. By the well-ordering principle we may assume that $k$ is the least such integer. Note that $k$ can't be prime, otherwise it would be of the desired form. Thus $k$ is composite and $k=a b$ with $\mid<a<k$ and $\mid<b<k$. Due to the minimality of $k$, both $a$ and $b$ have\\
-prime factorisations, and so to does $k=a b$. Contradiction! Thus every integer greater than I has a prime factorisation.\\
-We now need to prove the uniqueness of prime factorisation (up to permutations). Assume $k$ has two prime factorisations, say
+\begin{proof}
+Prove by induction on $n$. The base case $n=1$ is trivial. The case $n=2$ is Lemma 
+\ref{lem:euclid}. For the inductive step, assume the statement for $n=k$ and suppose 
+$p\mid(a_1\cdots a_k a_{k+1})$. By Lemma \ref{lem:euclid}, either $p\mid a_{k+1}$ (done) 
+or $p\mid(a_1\cdots a_k)$, in which case the induction hypothesis yields $p\mid a_i$ 
+for some $i\le k$.
+\end{proof}
 
-$$
-k=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{n}^{a_{n}}=q_{1}^{b_{1}} q_{2}^{b_{2}} \cdots q_{m}^{b_{m}},
-$$
+\begin{theorem}[Fundamental Theorem of Arithmetic]
+Every integer $n>1$ can be written as
+\[
+n = p_1^{\alpha_1} p_2^{\alpha_2}\cdots p_r^{\alpha_r},
+\]
+where the $p_i$ are distinct primes and the $\alpha_i$ are positive integers. Moreover 
+this factorization is unique up to the ordering of the prime factors.
+\end{theorem}
 
-where $p_{1}, p_{2}, \cdots, p_{n}$ are distinct primes,\\
-$q_{1}, q_{2}, \ldots, q_{m}$ are distinct primes, and $a_{1}, a_{2}, \ldots, a_{n}, b_{1}, b_{2}, \ldots, b_{m}$ are positive integers. Without loss of generality, we may assume that $p_{1}<p_{2}<\ldots<p_{n}$ and $q_{1}<q_{2}<\cdots<q_{m}$. We must show that $\left\{\begin{array}{l}n=m \\ p_{i}=q_{i}, i=1, \ldots, n \\ a_{i}=b_{i}, i=1, \ldots, n .\end{array}\right.$
+\begin{proof}[Existence]
+Assume, for contradiction, that there exists $n>1$ having no prime factorization. By 
+the well-ordering principle let $N$ be the least such integer. Then $N$ is not prime 
+(otherwise $N$ itself is a one-term factorization), so $N=ab$ with $1<a,b<N$. By 
+minimality of $N$, both $a$ and $b$ have prime factorizations; hence so does $N=ab$, 
+contradiction. Therefore every $n>1$ has a prime factorization.
+\end{proof}
 
-Given a $P_{i}$, we have\\
-$p_{i} \mid q_{1}^{b_{1}} q_{2}^{b_{2}} \ldots q_{m}^{b_{m}}$,\\
-which implies that $p_{i} \mid q_{j}$ for some $j$ by Corollary 1.15. Thus $P_{i}=q_{j}$ for some $j$. Similarly, given some $q_{k}$, we have $q_{k}=P_{e}$ for some $l$. Thus $n=m$. By the ordering of the $p_{i}$ 's and $q_{j}$ s we have $p_{i}=q_{i}$ for $i=1, \ldots, n$. Consequently,
+\begin{proof}[Uniqueness]
+Suppose
+\[
+p_1^{\alpha_1}\cdots p_r^{\alpha_r}
+= q_1^{\beta_1}\cdots q_s^{\beta_s},
+\]
+where the $p_i$'s and the $q_j$'s are primes and each list is in increasing order. 
+Take $p_1$ (the smallest $p$). Since $p_1$ divides the right-hand side, Corollary 
+\ref{cor:prime-divides-product} shows $p_1$ equals one of the $q_j$; by ordering we 
+may assume $p_1=q_1$. Cancel the common power $p_1^{\min(\alpha_1,\beta_1)}$ from 
+both sides to reduce to a similar equality with strictly smaller total exponent sum. 
+Repeating this cancellation shows the multisets of primes on both sides coincide; 
+hence $r=s$, $p_i=q_i$ for all $i$, and comparing exponents yields $\alpha_i=\beta_i$ 
+for each $i$. This proves uniqueness.
+\end{proof}
 
-$$
-k=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{n}^{a_{n}}=p_{1}^{b_{1}} p_{2}^{b_{2}} \cdots p_{n}^{b_{n}} .
-$$
+\begin{example}
+Prime factorization: $756 = 2^{2}\,3^{3}\,7^{1}$.
+\end{example}
 
-Assume, by way of contradiction, that $a_{i} \neq b_{i}$ for some $i$. Without loss of\\
-generality we may assume that $a_{i}<b_{i}$. Then $p_{i}^{b_{i}} \mid p_{1}^{a_{1}} \ldots p_{n}^{a_{n}}$,\\
-which implies that
+\begin{definition}
+For $a,b\in\mathds{Z}$, $a,b>0$, the \emph{least common multiple} $\lcm(a,b)$ is the 
+least positive integer $m$ such that $a\mid m$ and $b\mid m$.
+\end{definition}
 
-$$
-p^{b_{i}-a_{i}} \mid p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{i-1}^{a_{i-1}} p_{i+1}^{a_{i+1}} \cdots p_{n}^{a_{n}} .
-$$
+\begin{remark}
+Equivalently, the set $T=\{c\in\mathds{Z}: c>0,\, a\mid c,\, b\mid c\}$ is nonempty 
+(contains $ab$) and by the well-ordering principle has a least element $\lcm(a,b)$.
+\end{remark}
 
-Since $b_{i}-a_{i}>0$, we have that
+\begin{proposition}
+\label{prop:gcd-lcm-exponents}
+Let $a,b>1$ and write their prime factorizations using the same distinct primes
+\[
+a=\prod_{i=1}^n p_i^{\alpha_i},\qquad b=\prod_{i=1}^n p_i^{\beta_i},
+\]
+where $\alpha_i,\beta_i\ge 0$ (possibly zero). Then
+\[
+\gcd(a,b)=\prod_{i=1}^n p_i^{\min\{\alpha_i,\beta_i\}},\qquad
+\lcm(a,b)=\prod_{i=1}^n p_i^{\max\{\alpha_i,\beta_i\}}.
+\]
+\end{proposition}
 
-$$
-p_{i} \mid p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{i-1}^{a_{i-1}} p_{i+1}^{a_{i+1}} \cdots p_{n}^{a_{n}},
-$$
+\begin{proof}
+Immediate from the definitions of gcd and lcm and the uniqueness of prime exponents 
+in the prime factorizations.
+\end{proof}
 
-from which $P_{i} \mid P_{j}$ for some $j \neq i$ by Corollary 1.15. Contradiction! Thus $a_{i}=b_{i}$, for $i=1,2, \ldots, n$, as required.\\
-Example: $\quad 756=2^{2} 3^{3} 7$\\
-Definition: Let $a, b \in \mathbb{Z}$ with $a, b>0$. The least common multiple of $a$ and $b$, denoted $[a, b] \mathrm{J}$ is the least positive integer $m$ such that $a / m$ and $b / m$.\\
-Remark: Given two positive integers $a, b$, Consider the set
+\begin{example}
+Factorizations:
+\[
+756=2^{2}3^{3}5^{0}7^{1},\qquad 2205=2^{0}3^{2}5^{1}7^{2}.
+\]
+Thus
+\[
+\gcd(756,2205)=2^{0}3^{2}5^{0}7^{1}=9\cdot7=63,
+\]
+and
+\[
+\lcm(756,2205)=2^{2}3^{3}5^{1}7^{2}=26460.
+\]
+\end{example}
 
-$$
-T:=\{c: c \in \mathbb{Z}, c>0, a \mid c, \text { and } b \mid c\} .
-$$
+\begin{lemma}
+\label{lem:minmax-sum}
+For real numbers $x,y$,
+\[
+\min\{x,y\}+\max\{x,y\} = x+y.
+\]
+\end{lemma}
 
-We have $a b>0$ and $a b \in T$, so $T \neq \phi$, and contains only positive integer, so the least common multiple always exists by the well-ordering Principle.
+\begin{theorem}
+\label{thm:gcd-lcm-product}
+For positive integers $a,b$,
+\[
+\gcd(a,b)\,\lcm(a,b)=a b.
+\]
+\end{theorem}
 
-\section*{Example:}
-\begin{itemize}
-  \item Positive multiples of $6: 6,12,18,24,30,36,(42,48, \ldots$
-\end{itemize}
+\begin{proof}
+Write $a=\prod p_i^{\alpha_i}$ and $b=\prod p_i^{\beta_i}$ as in Proposition 
+\ref{prop:gcd-lcm-exponents}. Then by that proposition and Lemma \ref{lem:minmax-sum},
+\[
+\gcd(a,b)\,\lcm(a,b)
+= \prod_i p_i^{\min(\alpha_i,\beta_i)+\max(\alpha_i,\beta_i)}
+= \prod_i p_i^{\alpha_i+\beta_i}
+= \Big(\prod_i p_i^{\alpha_i}\Big)\Big(\prod_i p_i^{\beta_i}\Big)=ab.
+\]
+This proves the identity. (The cases involving $1$ are immediate.)
+\end{proof}
 
-$$
-\text { of } 7: 7,14,21,28,35,(42), 49,54, \ldots
-$$
+\begin{corollary}
+For positive integers $a,b$, $\lcm(a,b)=ab$ if and only if $\gcd(a,b)=1$.
+\end{corollary}
 
-$[6,7]=42$.
+\begin{proof}
+Using Theorem \ref{thm:gcd-lcm-product}, $ab=\gcd(a,b)\,\lcm(a,b)$. Hence 
+$\lcm(a,b)=ab$ iff $\gcd(a,b)=1$.
+\end{proof}
 
-\begin{itemize}
-  \item Positive multiples of $8: 8,16,24,32,40,48,56,64, \ldots$\\
-$[6,8]=24$
-  \item The FTA can be used to compute gcds and lcms.
-\end{itemize}
-
-Proposition 1.17: Let $a, b \in \mathbb{Z}$ with $a, b>1$. Write $a=p_{1}^{a_{1}} p_{2}^{a_{2}} \ldots p_{n}^{a_{n}}$ and $b=p_{1}^{b_{1}} p_{2}^{b_{2}} \ldots p_{n}^{b_{n}}$, where $p_{1}, \ldots, p_{n}$ are distinct primes and $a_{1}, a_{2}, \ldots, a_{n}, b_{1}, \ldots, b_{n}$ are non-negative integers (possibly zero). Then\\
-$(a, b)=P_{1}^{\min \left\{a_{1}, b_{1}\right\}} P_{2}^{\min \left\{a_{2}, b_{2}\right\}} \ldots P_{n}^{\min \left\{a_{n}, b_{n}\right\}}$ and,\\
-$[a, b]=P_{1}^{\max \left\{a_{1}, b_{1}\right\}} P_{2}^{\max \left\{a_{2}, b_{2}\right\}} \ldots P_{n}^{\max \left\{a_{n}, b_{n}\right\}}$.
-
-Proof: This follows from the FTA and definitions of $(a, b)$ and $[a, b]$.\\
-(8)
-
-Example: Find $(756,2205)$ and $[756,2205]$ using prime factorisations.
-
-$$
-\begin{gathered}
-756=2^{2} 3^{3} 5^{0} 7^{1} \\
-2205=2^{0} 3^{2} 5^{1} 7^{2} \\
-(756,2205)=2^{0} 3^{2} 5^{0} 7=63 \\
-{[756,2205]=2^{2} 3^{3} 5^{1} 7^{2}=26460}
-\end{gathered}
-$$
-
-Remark:
-
-\begin{itemize}
-  \item Prime factorisations most certainly do not make the Enclidean algorithm for computing gcds obsolete. Prime factorisations for large integers are hard to obtain!\\
-Lemma 1.18: Let $x, y \in \mathbb{R}$. Then
-\end{itemize}
-
-$$
-\max \{x, y\}+\min \{x, y\}=x+y .
-$$
-
-Proof: If $x<y$, then $\max \{x, y\}=y$\\
-and $\min \{x, y\}=x$, and the result follows. (9)\\
-The cases for $x=y$ and $x>y$ are similar.\\
-Theorem 1.19: Let $a, b \in \mathbb{Z}$ with $a, b>0$.\\
-Then $(a, b)[a, b]=a b$.\\
-Proof: If $a, b>1$, write
-
-$$
-a=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{n}^{a_{n}}
-$$
-
-and $\quad b=p_{1}^{b_{1}} p_{2}^{b_{2}} \cdots p_{n}^{b_{n}}$ )\\
-with $p_{1}, \ldots p_{n}$ distinct primes and $a_{1}, \ldots, a_{n}$,\\
-$b_{1}, \cdots$, bn won-negative integers. Then by\\
-Proposition 1.17,\\
-$(a, b)[a, b]$\\
-$=P_{1}^{\min \left\{a_{1}, b_{1}\right\}} P_{2}^{\min \left\{a_{2}, b_{2}\right\}} \cdots P_{n}^{\min \left\{a_{n}, b_{n}\right\}}$\\
-$\times P_{1}^{\max \left\{a_{1}, b_{1}\right\}} P_{2}^{\max \left\{a_{2}, b_{2}\right\}} \ldots P_{n}^{\max \left\{a_{n}, b_{n}\right\}}$\\
-$=p^{\min \left\{a_{1}, b_{1}\right\}+\max \left\{a_{1}, b_{1}\right\} \quad \min \left\{a_{n}, b_{n}\right\}+\max \left\{a_{n}, b_{n}\right\}}$\\
-$\cdots P_{n}$\\
-$a_{n}+b_{n}$\\
-(by Lemma 1.18)\\
-$=\left(p_{1}^{a_{1}} \ldots p_{n}^{a_{n}}\right)\left(p_{1}^{b_{1}} \ldots p_{n}^{b_{n}}\right)$\\
-$=a b$, as required.\\
-The cases $\left\{\begin{array}{l}a=1 \text { and } b>1 \\ a> \pm \text { and } b=1 \\ a=b=1\end{array}\right.$\\
-are left as an exercise.
-
-\begin{itemize}
-  \item To find the 1 cm of two positive integers without using prime factorisation, compute their gcd using the Euclidean algorithm, and then use Theorem 1.19.\\
-Conollary 1.20: Let $a, b \in \mathbb{Z}$ with $a, b>0$. Then $[a, b]=a b$ if and only if $(a, b)=1$.\\
-Proof: Left as an exercise.\\
-Hint: Use Theorem 1.19.
-\end{itemize}
-
+\begin{remark}
+In practice, for large integers it is usually more efficient to compute $\gcd(a,b)$ 
+via the Euclidean algorithm and then compute
+\[
+\lcm(a,b)=\frac{ab}{\gcd(a,b)}
+\]
+rather than factoring large numbers.
+\end{remark}
 
 
 
