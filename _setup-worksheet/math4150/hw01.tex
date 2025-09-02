@@ -14,8 +14,8 @@
   \begin{enumerate}
     \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
     \begin{subprove}
-      ($\Rightarrow$) Assume $a\mid b$. 
-      \begin{define}{Divisibility}
+      ($\Rightarrow$) Assume $a\divides b$. 
+      \begin{define}[redcolor]{Divisibility}
       Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
       integer $c\in\Z$ such that
       \[
@@ -31,9 +31,9 @@
       \[
         bc = (a k)c = (ac)k.
       \]
-      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\mid bc$. 
+      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\divides bc$. 
       Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
-      ($\Leftarrow$) Assume $ac\mid bc$. Then there exists $t\in\mathbb{Z}$ with
+      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\mathbb{Z}$ with
       \[
         bc = (ac)t = at\cdot c
       \]
@@ -42,13 +42,13 @@
         b = a t
       \]
       since $c\neq 0$.
-      Thus $a\mid b$. Hence, $a\divides b$ if $ac \divides bc$.\vspace*{10px}\\
+      Thus $a\divides b$. Hence, $a\divides b$ if $ac \divides bc$.\vspace*{10px}\\
       Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a\divides b$ if and only if $ac \divides bc$ for $c\neq 0$.
     \end{subprove}
 
     \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
     \begin{subanswer}
-      Take $a=2, b=1, c=0$. Then $ac = 0$ and $bc=0$, so $ac\mid bc$ is true by 
+      Take $a=2, b=1, c=0$. Then $ac = 0$ and $bc=0$, so $ac\divides bc$ is true by 
       multiplicative identity, $0=0\cdot k$ for every integer $k$.
       However,  $a\divides b$ is false, $a\nmid b$, since there is no integer $k$ such that $1=2k$. 
       Thus, the conclusion above does not hold if $c = 0$.
@@ -59,15 +59,27 @@
 
   \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \begin{subprove}
-    ($\Rightarrow$) Assume $a^{m}-1\mid a^{n}-1$. By the Division Algorithm there exist integers $q\ge 0$ and $r$ with $0\le r<m$ such that
+    ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
+    \begin{define}[redcolor]{Division Algorithm}
+    Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
+    \[
+    a = b q + r \qquad\text{and}\qquad 0\le r < b.
+    \]
+    Here $q$ is called the \emph{quotient} and $r$ the \emph{remainder}.
+    \end{define}
+    there exist integers $q\ge 0$ and $r$ with $0\le r<m$ such that
     \[
       n = qm + r.
     \]
-    Then, using elementary algebra,
+    Then, by the geometric series (trivial algebra),
     \[
-      a^{n}-1 = a^{qm+r}-1 = a^{r}\bigl(a^{qm}-1\bigr) + \bigl(a^{r}-1\bigr).
+      a^{n}-1 = a^{qm+r}-1 = a^{r}\bigl({a^{m}}^{q}-1\bigr) + \bigl(a^{r}-1\bigr)= a^{r}(a^{m}-1)\bigl(1+a^{m}+\cdots+a^{m(q-1)}\bigr) + \bigl(a^{r}-1\bigr).
     \]
-    Since $a^{qm}-1 = (a^{m}-1)\bigl(1+a^{m}+\cdots+a^{m(q-1)}\bigr)$ when $q\ge 1$ (and is $0$ when $q=0$), it follows that the remainder upon division of $a^{n}-1$ by $a^{m}-1$ is $a^{r}-1$. By hypothesis $a^{m}-1\mid a^{n}-1$, hence we must have $a^{r}-1=0$. Thus $r=0$ because $a>1$. Therefore $n=qm$ and so $m\mid n$.\vspace*{10px}\\
+    It follows that the remainder upon division of $a^{n}-1$ by $a^{m}-1$ is $a^{r}-1$ where $a^{r}-1 < a^{m}-1$. 
+    By hypothesis 
+    $a^{m}-1\divides a^{n}-1$, $a^{r}-1=0$. 
+    Thus, $r=0$ since $a>1$. Moreover, $n=qm$, so $m\divides n$.
+    Thus, $a^{m}-1 \divides a^{n}-1$ only if $m\divides n$.\vspace*{10px}\\
     ($\Leftarrow$) Assume $m\divides n$. Then there exists $k\in\setZ_{>0}$ such that
     \[
       n = m k.
@@ -78,7 +90,8 @@
         = (a^{m}-1)\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr).
     \]
     By the Closure Property of Integers, $\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr)\in\setZ$, 
-    hence $a^{m}-1\mid a^{n}-1$. Thus, $a^{m}-1 \divides a^{n}-1$ if $m\divides n$.\vspace*{10px}\\
+    hence $a^{m}-1\divides a^{n}-1$. 
+    Thus, $a^{m}-1 \divides a^{n}-1$ if $m\divides n$.\vspace*{10px}\\
     Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \end{subprove}
 
@@ -89,40 +102,22 @@
   \begin{enumerate}
     \item Prove that $3\divides n^{3}-n$
     \begin{subprove}
-      Factor
-      \[
-        n^{3}-n = n(n-1)(n+1).
-      \]
-      These are three consecutive integers; among any three consecutive integers, exactly one is a multiple of $3$. Hence $3\mid n(n-1)(n+1)$, i.e. $3\mid (n^{3}-n)$.
+      % dsa
     \end{subprove}
     \item Prove that $5\divides n^{5}-n$
     \begin{subprove}
-      We argue modulo $5$. Every integer $n$ is congruent to one of $0,1,2,3,4$ mod $5$. Compute
-      \[
-        0^{5}-0\equiv0,\quad 1^{5}-1\equiv0,\quad 2^{5}-2=30\equiv0,\quad 3^{5}-3=240\equiv0,\quad 4^{5}-4=1020\equiv0\pmod 5.
-      \]
-      Hence $n^{5}-n\equiv 0\pmod 5$ in all cases, so $5\mid(n^{5}-n)$.
+      % dsa
     \end{subprove}
     \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
     \begin{subanswer}
-      It is \emph{not} true in general. Take $n=2$. Then $n^{4}-n=16-2=14$, and $4\nmid14$. (For completeness, if $n\equiv0,1\pmod 4$ then $n^{4}-n\equiv0$, while if $n\equiv2,3\pmod 4$ then $n^{4}-n\equiv2$.)
+      Take $n=2$. $4 \nmid \group{n^{4}-n}$ since $n^{4}-n=16-2=14$ and $4\nmid14$. This is a counterexample. (false)
     \end{subanswer}
   \end{enumerate}
 
   \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that 
   if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
   \begin{subprove}
-      Suppose $a^{n}+1$ is prime. First, $a$ must be even. Indeed, if $a$ were odd then $a^{n}$ is odd, so $a^{n}+1$ is even and greater than $2$, hence composite. Thus $a$ is even.
-      
-      Next, write $n=2^{t}u$ with $u\ge 1$ odd. If $u=1$ we are done. If $u>1$, set $x:=a^{2^{t}}$. Then $x$ is an integer and
-      \[
-        a^{n}+1 = a^{2^{t}u}+1 = x^{u}+1.
-      \]
-      Since $u$ is odd, we have the factorization
-      \[
-        x^{u}+1 = (x+1)\bigl(x^{u-1}-x^{u-2}+\cdots - x + 1\bigr),
-      \]
-      so $a^{n}+1$ is composite. This contradicts primality. Therefore $u=1$ and $n$ is a power of $2$.
+    % dsa
   \end{subprove}
 
   \newpage
@@ -131,22 +126,36 @@
   \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then 
   $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
   \begin{subprove}
-      For any integer $n$, $n^{2}\equiv 0$ or $1\pmod 4$ according as $n$ is even or odd. If $n$ is odd then $n^{2}+1\equiv 2\pmod 4$, which is even and greater than $2$, hence not prime. Thus $n$ must be even, so $n^{2}\equiv0\pmod 4$ and consequently $n^{2}+1\equiv1\pmod 4$. Hence there exists $k\in\Z$ with $n^{2}+1=4k+1$.
+    % dsa
   \end{subprove}
 
   \item Exercise Set 1.3, \#43.
   \begin{enumerate}
     \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
     \begin{subprove}
-      Since $a\mid c$, write $c=a s$ with $s\in\Z$. Also $b\mid c$, so $b\mid as$. Because $(a,b)=1$, by Euclid's Lemma we have $b\mid s$. Thus $s=bt$ for some $t\in\Z$, and hence $c=as=a(bt)=ab\,t$. Therefore $ab\mid c$.
+      Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
+      \begin{define}[redcolor]{Euclid's Lemma}
+      Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
+      \end{define}
+      by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
     \end{subprove}
     \item Provide a counterexample to show why the statement in (a) cannot hold if $(a,b)>1$.
     \begin{subanswer}
-      Take $a=b=2$ and $c=2$. Then $a\mid c$ and $b\mid c$, but $ab=4\nmid 2$.
+      Take $a=b=2$ and $c=2$. Then $a\divides c$ and $b\divides c$, but $ab=4\nmid 2$. 
+      This is a counterexample. (false)
     \end{subanswer}
     \item Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers. Prove that if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
     \begin{subprove}
-      Proceed by induction on $n\ge 2$. The case $n=2$ is part (a). For the inductive step, assume the statement holds for $n-1$ pairwise relatively prime integers. Let $A:=a_1\cdots a_{n-1}$. By pairwise coprimality we have $(A,a_n)=1$, and by hypothesis $A\mid c$ and $a_n\mid c$. Applying part (a) to $A$ and $a_n$ yields $A a_n\mid c$, i.e. $a_1\cdots a_n\mid c$.
+      It is trivial to say \inlinequote{$a \divides c$, then $a \divides c$} since it is a 
+      tautology, for the sake of inductive proof, base step is true. (base step)\vspace*{10px}\\
+      Suppose, for the sake of inductive proof (inductive step), the statement holds for $n-1$ 
+      pairwise relatively prime integers.
+      Let $b=a_1\cdots a_{n-1}$ satisfying the $n-1$ relative primes and $c=b\cdot a_n = a_1\cdots a_{n}$ assuming $a_n$ is another 
+      pairwise prime with $b$, for the sake of direct proof. 
+      Then, by the definition of pairwise prime numbers, we have $(b,a_n)=1$, and by all the 
+      assumptions, $b\divides c$ and $a_n\divides c$. This satisfies the condition of part (a). 
+      Thus, by the part (a), $b a_n\divides c$. In other words, $a_1\cdots a_{n}\divides c$.\vspace*{10px}\\
+      Thus, by (base step) and (inductive step), for all $n\in\setZ$, if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
     \end{subprove}
   \end{enumerate}
 
@@ -157,7 +166,7 @@
     ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
     $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
     Principle Lemma.
-    \begin{define}{Well-Ordering Principle Lemma}
+    \begin{define}[redcolor]{Well-Ordering Principle Lemma}
     Every integer $n>1$ has at least one prime divisor.
     \end{define}
     Thus, by the transitive property of divisibility,
@@ -165,7 +174,7 @@
     p \divides(a+b) \quad \text { and } \quad p \divides a b
     $$
     since $p \divides d$, $d \divides \group{a+b}$, and $d \divides \group{a\cdot b}$.
-    \begin{define}{Euclid's Lemma}
+    \begin{define}[redcolor]{Euclid's Lemma}
     Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
     \end{define}
     Then, by Euclid's Lemma, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
