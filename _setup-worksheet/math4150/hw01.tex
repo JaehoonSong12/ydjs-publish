@@ -148,11 +148,21 @@
   \begin{enumerate}
     \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
     \begin{subprove}
-      % your answer here.
+      ($\Rightarrow$) Suppose $a\mid b$. Then $b=a k$ for some $k\in\Z$. Multiplying by $c$ gives
+      \[
+        bc = (ak)c = a(ck),
+      \]
+      so $ac\mid bc$.
+      \\
+      ($\Leftarrow$) Suppose $ac\mid bc$. Then $bc = (ac) t$ for some $t\in\Z$. Factoring $c$ yields
+      \[
+        c\,b = c\,(a t).
+      \]
+      Since $c\ne 0$ and $\Z$ has no zero divisors, we cancel $c$ to get $b = a t$, hence $a\mid b$.
     \end{subprove}
     \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
     \begin{subanswer}
-      % your answer here.
+      Take $a=2$, $b=1$, and $c=0$. Then $a\nmid b$ (since $2\nmid 1$), but $ac=0$ and $bc=0$, and by convention $0\mid 0$. Thus $ac\mid bc$ while $a\nmid b$.
     \end{subanswer}
   \end{enumerate}
 
@@ -160,7 +170,13 @@
 
   \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \begin{subprove}
-    % your answer here.
+    ($\Rightarrow$) If $m\mid n$, write $n=mk$. Then $a^n-1=(a^m)^k-1$ is divisible by $a^m-1$.
+    \\
+    ($\Leftarrow$) Suppose $a^m-1\mid a^n-1$. Write $n=qm+r$ with $0\le r<m$. Then
+    \[
+      a^n-1=a^{qm+r}-1=a^r(a^{qm}-1)+(a^r-1).
+    \]
+    Since $a^m-1\mid a^{qm}-1$, it divides $a^r-1$. But $0\le a^r-1<a^m-1$ for $0\le r<m$ and $a>1$, so $a^r-1=0$, hence $r=0$ and $m\mid n$.
   \end{subprove}
 
   \newpage
@@ -169,15 +185,15 @@
   \begin{enumerate}
     \item Prove that $3\divides n^{3}-n$
     \begin{subprove}
-      % your answer here.
+      Since $n^3-n=n(n-1)(n+1)$ is the product of three consecutive integers, one is divisible by $3$, so $3\mid n^3-n$.
     \end{subprove}
     \item Prove that $5\divides n^{5}-n$
     \begin{subprove}
-      % your answer here.
+      Check residues mod $5$: for $n\equiv 0,1,2,3,4$, one has $n^5-n\equiv 0\pmod{5}$. Hence $5\mid n^5-n$.
     \end{subprove}
     \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
     \begin{subanswer}
-      % your answer here.
+      No. For $n=2$, $n^4-n=16-2=14$ and $4\nmid 14$.
     \end{subanswer}
   \end{enumerate}
 
@@ -185,14 +201,16 @@
 
   \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
   \begin{subprove}
-    % your answer here.
+    If $a$ is odd then $a^n+1$ is even $>2$, hence composite. So $a$ is even.
+    \\
+    Write $n=2^t s$ with $s$ odd. If $s>1$ then with $x=a^{2^t}$ we have $a^n+1=x^s+1$, which factors as $(x+1)(\cdots)$ for odd $s$, so $a^n+1$ is composite. Hence $s=1$ and $n$ is a power of $2$.
   \end{subprove}
 
   \newpage
 
   \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
   \begin{subprove}
-    % your answer here.
+    For any $n$, $n^2\equiv 0$ or $1\pmod{4}$. If $n$ is odd then $n^2+1\equiv2\pmod{4}$, which is even and $>2$, so not prime. Thus $n$ is even, $n^2\equiv0\pmod{4}$, and $n^2+1\equiv1\pmod{4}$, i.e. $n^2+1=4k+1$.
   \end{subprove}
 
   \newpage
@@ -201,15 +219,15 @@
   \begin{enumerate}
     \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
     \begin{subprove}
-      % your answer here.
+      Write $c=a k$. Since $b\mid c$, we have $b\mid ak$. Because $(a,b)=1$, it follows that $b\mid k$. Thus $k=bt$ and $c=ab t$, so $ab\mid c$.
     \end{subprove}
     \item Provide a counterexample to show why the statement in (a) cannot hold if $(a,b)>1$.
     \begin{subanswer}
-      % your answer here.
+      Take $a=2$, $b=2$, $c=2$. Then $a\mid c$ and $b\mid c$ but $ab=4\nmid 2$.
     \end{subanswer}
     \item Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers. Prove that if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
     \begin{subprove}
-      % your answer here.
+      Induct on $n$. The case $n=2$ is part (a). For the step, set $A=a_1\cdots a_{n-1}$. Pairwise coprime implies $(A,a_n)=1$. If each $a_j\mid c$, then $A\mid c$ by induction and $a_n\mid c$; apply (a) to conclude $Aa_n\mid c$.
     \end{subprove}
   \end{enumerate}
 
@@ -217,20 +235,41 @@
 
   \item Exercise Set 1.3, \#48. Let $a,b\in \Z$. Show that $(a,b)=1$ if and only if $(a+b,ab) = 1$.
   \begin{subprove}
-    % your answer here.
+    ($\Rightarrow$) If $(a,b)=1$ and $d\mid a+b$ and $d\mid ab$, then $d\mid a(a+b)-ab=a^2$ and similarly $d\mid b^2$. Any common divisor of $a^2$ and $b^2$ divides both $a$ and $b$, hence $d=1$.
+    \\
+    ($\Leftarrow$) If $(a+b,ab)=1$ and $g\mid a$ and $g\mid b$, then $g\mid ab$ and $g\mid a+b$, contradicting $(a+b,ab)=1$ unless $g=1$. Thus $(a,b)=1$.
   \end{subprove}
 
   \newpage
 
   \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
   \begin{subanswer}
-    % your answer here.
+    Euclidean algorithm:
+    \[
+      \begin{aligned}
+        1155 &= 441\cdot 2 + 273,\\
+        441 &= 273\cdot 1 + 168,\\
+        273 &= 168\cdot 1 + 105,\\
+        168 &= 105\cdot 1 + 63,\\
+        105 &= 63\cdot 1 + 42,\\
+        63  &= 42\cdot 1 + 21,\\
+        42  &= 21\cdot 2 + 0.
+      \end{aligned}
+    \]
+    Hence $\gcd(441,1155)=21$. Back-substitution yields
+    \[
+      21 = 21\cdot 441 - 8\cdot 1155.
+    \]
+    Thus $21 = (21)\,441 + (-8)\,1155$.
   \end{subanswer}
 
   \newpage
 
   \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose sum is $\frac{7}{143}$.
   \begin{subanswer}
-    % your answer here.
+    Seek $\dfrac{x}{11}+\dfrac{y}{13}=\dfrac{7}{143}$. Clearing denominators: $13x+11y=7$. One solution is $x=9$, $y=-10$ since $117-110=7$. Hence
+    \[
+      \frac{9}{11}+\frac{-10}{13}=\frac{7}{143}.
+    \]
   \end{subanswer}
 \end{enumerate}
