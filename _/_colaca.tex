@@ -1,0 +1,237 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\input{macros.tex}
+
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{dsfont} % if you prefer \mathds for sets; otherwise use \mathds
+\usepackage{longdivision}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+% -----------------------
+% Macros and theorem styles
+% -----------------------
+\newcommand{\Z}{\mathds{Z}}
+\newcommand{\N}{\mathds{N}}
+\newcommand{\R}{\mathds{R}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\RC}{RC}
+
+\newcommand{\tauRC}{\tau_{RC}}
+
+
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ldiv}{\mid}
+\newcommand{\ndiv}{\nmid}
+
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\numberwithin{equation}{section}
+
+
+\newcommand{\lcm}{\operatorname{lcm}}
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sieve of Eratosthenes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+An \textbf{RC circuit} consists of a \textbf{resistor} \(R\) and a \textbf{capacitor} \(C\) connected in series with a voltage source (electromotive force) \(\E\). The capacitor stores energy in its electric field and \textbf{resists sudden changes in voltage} across its plates.
+
+\section*{Basic relations}
+The basic voltage--current and capacitor relations are
+\[
+V_R = I R,\qquad V_C = \frac{Q}{C},\qquad I = \frac{dQ}{dt},
+\]
+where \(Q\) is the capacitor charge, \(V_C\) the capacitor voltage, and \(I\) the circuit current.
+Because \(Q=C V_C\), the current may also be written as
+\[
+I = C\frac{dV_C}{dt}.
+\]
+
+\section*{KVL and governing differential equation}
+Applying Kirchhoff's Voltage Law (KVL) around the loop gives
+\[
+\E - V_R - V_C = 0.
+\]
+Substituting \(V_R = I R\) and \(I = C\,\dfrac{dV_C}{dt}\) yields
+\[
+\E - R\!\left(C\frac{dV_C}{dt}\right) - V_C = 0.
+\]
+Rearrange to obtain the first-order linear ODE for the capacitor voltage:
+\[
+\boxed{\; RC\frac{dV_C}{dt} + V_C = \E \;}.
+\]
+
+\section*{Solution: Charging (initially uncharged capacitor)}
+Assume the capacitor is uncharged at \(t=0\), i.e. \(V_C(0)=0\). The ODE
+\[
+\frac{dV_C}{dt} + \frac{1}{RC}V_C = \frac{\E}{RC}
+\]
+has the solution (standard integrating factor / linear ODE):
+\[
+\boxed{\,V_C(t) = \E\!\left(1 - e^{-t/(RC)}\right)\,.}
+\]
+The circuit current follows from \(I = C\,\dfrac{dV_C}{dt}\):
+\[
+\boxed{\,I(t) = C\frac{dV_C}{dt} = \frac{\E}{R}\,e^{-t/(RC)}\,.}
+\]
+
+\paragraph{Remarks}
+\begin{itemize}
+  \item \(\displaystyle V_C(\infty)=\E\) (steady-state). The capacitor behaves like an open circuit to steady DC.
+  \item \(\displaystyle I(0)=\frac{\E}{R}\) (initial current). At the instant the switch is closed the capacitor acts like a short circuit.
+  \item The \textbf{time constant} is
+  \[
+  \boxed{\,\tau = RC\,}
+  \]
+  and after \(t=\tau\) the capacitor voltage reaches \(1-e^{-1}\approx 0.632\) (about \(63.2\%\)) of its final value.
+\end{itemize}
+
+\section*{Discharging (no source)}
+If a capacitor charged to voltage \(V_0\) at \(t=0\) is disconnected from the source and allowed to discharge through \(R\), KVL gives
+\[
+RC\frac{dV_C}{dt} + V_C = 0.
+\]
+The solution is
+\[
+\boxed{\,V_C(t) = V_0\,e^{-t/(RC)}\,,\qquad I(t) = -\frac{V_0}{R}\,e^{-t/(RC)}\,}
+\]
+(the negative sign for \(I\) indicates the current flows opposite the charging direction).
+
+\section*{Energy stored}
+The energy stored in the capacitor's electric field is
+\[
+\boxed{\,E_{\text{cap}} = \frac{1}{2}C V_C^2 \,.}
+\]
+During charging substitute \(V_C(t)=\E(1-e^{-t/RC})\) to get the instantaneous stored energy. During discharging this energy is dissipated as heat in the resistor \(R\).
+
+\section*{Key observations (summary)}
+\begin{enumerate}
+  \item \textbf{Initial behavior (charging):} \(V_C(0)=0,\; I(0)=\E/R.\) The capacitor initially behaves like a short circuit.
+  \item \textbf{Steady-state behavior:} \(V_C(\infty)=\E,\; I(\infty)=0.\) The capacitor behaves like an open circuit to DC.
+  \item \textbf{Time constant:} \(\tau = RC.\) Larger \(R\) or \(C\) slows charging/discharging.
+  \item \textbf{Complement to RL circuits:} An inductor resists changes in current; a capacitor resists changes in voltage.
+  \item \textbf{Applications:} Timing circuits, filters (low-pass/high-pass), coupling/decoupling, pulse shaping.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sieve of Eratosthenes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent \textbf{Relations:}
+\[
+V_R=IR,\quad V_C=\frac{Q}{C},\quad I=\frac{dQ}{dt}=C\frac{dV_C}{dt}.
+\]
+
+\noindent \textbf{KVL:}
+\[
+\E - IR - V_C = 0 \quad\Rightarrow\quad RC\frac{dV_C}{dt}+V_C=\E.
+\]
+
+\noindent \textbf{Charging (} \(V_C(0)=0\) \textbf{):}
+\[
+V_C(t)=\E\big(1-e^{-t/(RC)}\big),\quad
+I(t)=\frac{\E}{R}e^{-t/(RC)},\quad
+Q(t)=C\E\big(1-e^{-t/(RC)}\big).
+\]
+\[
+\tauRC = RC.
+\]
+
+\noindent \textbf{Discharging (} \(V(0)=V_0\) \textbf{):}
+\[
+V_C(t)=V_0 e^{-t/(RC)},\quad I(t)=-\frac{V_0}{R}e^{-t/(RC)}.
+\]
+
+\noindent \textbf{Energy:}
+\[
+U=\frac{1}{2}CV^2=\frac{Q^2}{2C}.
+\]
+
+\bigskip
+\noindent \textbf{Notes:} Initial current at switch-on is \(\E/R\). The capacitor behaves like a short at \(t=0\) and as an open circuit at steady DC. Use \(RC\) to estimate transient durations.
+
+
+
+\end{document}

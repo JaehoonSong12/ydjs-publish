@@ -10,6 +10,8 @@
 \usepackage{amsthm}
 \usepackage{mathtools}
 \usepackage{dsfont} % if you prefer \mathds for sets; otherwise use \mathds
+\usepackage{longdivision}
+
 
 \usepackage[version=4]{mhchem}
 \usepackage{stmaryrd}
@@ -22,8 +24,10 @@
 \newcommand{\N}{\mathds{N}}
 \newcommand{\R}{\mathds{R}}
 \newcommand{\floor}[1]{\lfloor #1 \rfloor}
-\newcommand{\divides}{\mid}
-\newcommand{\ndivides}{\nmid}
+\newcommand{\ldiv}{\mid}
+\newcommand{\ndiv}{\nmid}
+
+
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -75,6 +79,10 @@
 
 
 
+% $$\intlongdivision{12345}{13}$$
+
+% \intlongdivision{12345}{13}
+
 
 
 
@@ -83,7 +91,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sieve of Eratosthenes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 
 \section*{Sieve of Eratosthenes (1--100)}
@@ -159,7 +166,7 @@ are precisely the prime numbers \(\le n\).
 
 \section*{L1: Divisibility}
 % NOTE: Rewritten and reorganized to follow a textbook style (Definitions, Examples, Theorems, Proofs).
-% Major corrections: spelling (Euclid), notation (\mathds{Z}, \mid, \nmid), floor symbol, removal of ambiguous 'O' characters, corrected examples and proofs.
+% Major corrections: spelling (Euclid), notation (\mathds{Z}, ldiv, \ndiv), floor symbol, removal of ambiguous 'O' characters, corrected examples and proofs.
 
 \subsection*{Introduction}
 Elementary number theory is the study of arithmetic properties of the integers, especially 
@@ -168,35 +175,35 @@ divisibility properties of the integers $\Z$. Many classical results originate i
 perfect numbers, Pythagorean triples).
 
 \begin{definition}
-Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
+Let $a,b\in\Z$. We say \emph{$a$ ldiv $b$}, and write $a\ldiv b$, if there exists an 
 integer $c\in\Z$ such that
 \[
 b = a c.
 \]
-If no such integer $c$ exists we write $a\nmid b$.
+If no such integer $c$ exists we write $a\ndiv b$.
 \end{definition}
-% NOTE: Replaced ambiguous wording and corrected notation for "does not divide" to \nmid.
+% NOTE: Replaced ambiguous wording and corrected notation for "does not divide" to \ndiv.
 
 \begin{remark}
-When $a\divides b$ with $a\neq 0$, the integer $c=b/a$ is the exact (integer) quotient. 
+When $a\ldiv b$ with $a\neq 0$, the integer $c=b/a$ is the exact (integer) quotient. 
 The symbols 
 $a/b$ or $b/a$ in plain text denote rational numbers (when the division is performed in 
-$\mathds{Q}$), which is a different notion from the divisibility relation $a\divides b$.
+$\mathds{Q}$), which is a different notion from the divisibility relation $a\ldiv b$.
 \end{remark}
 
 \begin{example}
 \begin{enumerate}
-  \item $3\divides 6$, since $6 = 3\cdot 2$.
-  \item $3\divides -6$, since $-6 = 3\cdot(-2)$.
-  \item For any $a\in\Z$ we have $a\divides 0$, because $0 = a\cdot 0$.
-  \item $0\divides a$ only if $a=0$. Indeed, $0\divides a$ would require $a = 0\cdot c = 0$ 
+  \item $3\ldiv 6$, since $6 = 3\cdot 2$.
+  \item $3\ldiv -6$, since $-6 = 3\cdot(-2)$.
+  \item For any $a\in\Z$ we have $a\ldiv 0$, because $0 = a\cdot 0$.
+  \item $0\ldiv a$ only if $a=0$. Indeed, $0\ldiv a$ would require $a = 0\cdot c = 0$ 
   for some integer $c$.
 \end{enumerate}
 \end{example}
 
 \begin{proposition}[Transitivity of divisibility]
 \label{prop:transitive}
-If $a,b,c\in\Z$ and $a\divides b$ and $b\divides c$, then $a\divides c$.
+If $a,b,c\in\Z$ and $a\ldiv b$ and $b\ldiv c$, then $a\ldiv c$.
 \end{proposition}
 
 \begin{proof}
@@ -204,23 +211,23 @@ Write $b = a e$ and $c = b f$ for some integers $e,f$. Then
 \[
 c = b f = (a e) f = a(e f),
 \]
-so $a\divides c$.
+so $a\ldiv c$.
 \end{proof}
 
 \begin{proposition}
 \label{prop:linear-combination}
-Let $a,b,c,m,n\in\Z$. If $c\divides a$ and $c\divides b$, then for all integers $m,n$ we have
+Let $a,b,c,m,n\in\Z$. If $c\ldiv a$ and $c\ldiv b$, then for all integers $m,n$ we have
 \[
-c \divides (m a + n b).
+c \ldiv (m a + n b).
 \]
 \end{proposition}
 
 \begin{proof}
-Since $c\divides a$ and $c\divides b$, there exist $e,f\in\Z$ with $a=c e$ and $b=c f$. Thus
+Since $c\ldiv a$ and $c\ldiv b$, there exist $e,f\in\Z$ with $a=c e$ and $b=c f$. Thus
 \[
 m a + n b = m(c e) + n(c f) = c(m e + n f),
 \]
-and therefore $c\divides (m a + n b)$.
+and therefore $c\ldiv (m a + n b)$.
 \end{proof}
 
 \subsection*{The greatest integer (floor) function}
@@ -290,7 +297,7 @@ so
 \[
 b(q_1-q_2) = r_2 - r_1.
 \]
-Hence $b\mid (r_2-r_1)$. But $-(b-1) \le r_2-r_1 \le b-1$, so the only multiple of $b$ 
+Hence $bldiv (r_2-r_1)$. But $-(b-1) \le r_2-r_1 \le b-1$, so the only multiple of $b$ 
 in that range is $0$. Therefore $r_2-r_1=0$, so $r_1=r_2$, and consequently $q_1=q_2$. 
 This proves uniqueness.
 \end{proof}
@@ -381,7 +388,7 @@ Every integer $n>1$ has at least one prime divisor.
 Suppose, toward contradiction, that there exists $n>1$ with no prime divisor. By the well-ordering principle, take 
 the smallest such $n$. Since $n$ has no prime divisors, $n$ cannot be prime, so $n$ is composite: there exist 
 integers $a,b$ with $1<a<n$, $1<b<n$, and $n=ab$. By minimality of $n$, the factor $a$ (being $>1$ and $<n$) 
-must have a prime divisor $p$. Then $p\mid a$ and $a\mid n$, so by transitivity $p\mid n$, contradicting the 
+must have a prime divisor $p$. Then $pldiv a$ and $aldiv n$, so by transitivity $pldiv n$, contradicting the 
 assumption. Hence every $n>1$ has a prime divisor.
 \end{proof}
 
@@ -405,7 +412,7 @@ Let $n$ be a composite integer. Then $n$ has a prime divisor $p$ with $p \le \sq
 
 \begin{proof}
 Write $n=ab$ with integers $1<a\le b<n$. Then $a\le\sqrt{n}$ (otherwise $ab>\sqrt{n}\cdot\sqrt{n}=n$). 
-By the lemma, $a$ has a prime divisor $p$, so $p\mid a$ and hence $p\mid n$. Since $p\le a\le\sqrt{n}$, 
+By the lemma, $a$ has a prime divisor $p$, so $pldiv a$ and hence $pldiv n$. Since $p\le a\le\sqrt{n}$, 
 the conclusion follows.
 \end{proof}
 
@@ -430,7 +437,7 @@ Consider the integers
 \[
 (n+1)!+2, \ (n+1)!+3, \ \ldots,\ (n+1)!+(n+1).
 \]
-For any $2\le i\le n+1$, we have $i\mid (n+1)!$ and $i\mid i$, hence $i\mid\big((n+1)! + i\big)$. Thus 
+For any $2\le i\le n+1$, we have $ildiv (n+1)!$ and $ildiv i$, hence $ildiv\big((n+1)! + i\big)$. Thus 
 each term is composite (it has the factor $i$).
 \end{proof}
 
@@ -486,7 +493,7 @@ The Fermat numbers for $n=0,1,2,3,4$ give
 3,5,17,257,65537,
 \]
 all prime. However the next, $F_5 = 2^{2^5}+1 = 2^{32}+1 = 4294967297$, is composite; Euler showed 
-that $641\mid F_5$, so not all Fermat numbers are prime.
+that $641ldiv F_5$, so not all Fermat numbers are prime.
 \end{example}
 
 \begin{remark}
@@ -557,19 +564,19 @@ Factorizations are a central tool for ruling out primality in many forms.
 \begin{definition}
 Let $a,b\in\mathds{Z}$, not both zero. The \emph{set of common divisors} of $a$ and $b$ is
 \[
-\Delta := \{c\in\mathds{Z}: c\mid a \text{ and } c\mid b\}.
+\Delta := \{c\in\mathds{Z}: cldiv a \text{ and } cldiv b\}.
 \]
 \end{definition}
 
 \begin{remark}
 If $a$ and $b$ are not both zero then $\Delta$ is nonempty (since $\pm 1\in\Delta$) and finite 
-(every common divisor divides $|a|$ or $|b|$, and any nonzero integer has only finitely many 
+(every common divisor ldiv $|a|$ or $|b|$, and any nonzero integer has only finitely many 
 divisors). Hence the greatest element of $\Delta$ exists and is positive.
 \end{remark}
 
 \begin{definition}
 Let $a,b\in\mathds{Z}$, not both zero. The \emph{greatest common divisor} of $a$ and $b$, 
-denoted $\gcd(a,b)$, is the greatest positive integer $d$ such that $d\mid a$ and $d\mid b$. 
+denoted $\gcd(a,b)$, is the greatest positive integer $d$ such that $dldiv a$ and $dldiv b$. 
 If $\gcd(a,b)=1$ we say $a$ and $b$ are \emph{relatively prime}.
 \end{definition}
 
@@ -596,8 +603,8 @@ Let $a,b\in\mathds{Z}$ and let $\gcd(a,b)=d$. Then $\gcd(a/d,\, b/d)=1$.
 \end{proposition}
 
 \begin{proof}
-Let $d'=\gcd(a/d,b/d)$. Then $d'\mid a/d$ and $d'\mid b/d$, so there exist $e,f\in\mathds{Z}$ 
-with $a/d=d'e$ and $b/d=d'f$. Hence $a=d'de$ and $b=d'df$, so $d'd$ divides both $a$ and $b$. 
+Let $d'=\gcd(a/d,b/d)$. Then $d'ldiv a/d$ and $d'ldiv b/d$, so there exist $e,f\in\mathds{Z}$ 
+with $a/d=d'e$ and $b/d=d'f$. Hence $a=d'de$ and $b=d'df$, so $d'd$ ldiv both $a$ and $b$. 
 By maximality of $d$ as the gcd we must have $d'd\le d$, so $d'=1$.
 \end{proof}
 
@@ -618,16 +625,16 @@ Let $S=\{ma+nb: m,n\in\mathds{Z},\ ma+nb>0\}$. Since $a$ and $b$ are not both ze
 $S\neq\varnothing$ (take $m=1,n=0$ or $m=-1,n=0$, etc.), and by the well-ordering principle 
 $S$ has a least positive element; denote it $d$. So $d=m'a+n'b$ for some $m',n'\in\mathds{Z}$.
 
-We show $d\mid a$ and $d\mid b$. Apply the division algorithm to write $a=dq+r$ with $0\le r<d$. 
+We show $dldiv a$ and $dldiv b$. Apply the division algorithm to write $a=dq+r$ with $0\le r<d$. 
 Then
 \[
 r = a-dq = a - q(m'a+n'b) = (1-qm')a + (-qn')b,
 \]
 so $r\in S\cup\{0\}$. Since $0\le r<d$ and $d$ is the least positive element of $S$, we 
-must have $r=0$. Thus $d\mid a$. Similarly $d\mid b$.
+must have $r=0$. Thus $dldiv a$. Similarly $dldiv b$.
 
-Finally, if $c$ is any common divisor of $a$ and $b$, then $c\mid(ma+nb)$ for any integers 
-$m,n$, hence $c\mid d$. Therefore $c\le d$. Thus $d$ is the greatest common divisor. This 
+Finally, if $c$ is any common divisor of $a$ and $b$, then $cldiv(ma+nb)$ for any integers 
+$m,n$, hence $cldiv d$. Therefore $c\le d$. Thus $d$ is the greatest common divisor. This 
 proves the claim.
 \end{proof}
 
@@ -661,8 +668,8 @@ Let $a,b\in\mathds{Z}$ with $a\ge b>0$. If $a=bq+r$ with integers $q,r$ and $0\l
 \end{lemma}
 
 \begin{proof}
-If $c$ divides $a$ and $b$, then $c\mid(a-qb)=r$, so $c$ divides $b$ and $r$. Conversely, 
-if $c$ divides $b$ and $r$ then $c\mid(qb+r)=a$. Thus the set of common divisors of 
+If $c$ ldiv $a$ and $b$, then $cldiv(a-qb)=r$, so $c$ ldiv $b$ and $r$. Conversely, 
+if $c$ ldiv $b$ and $r$ then $cldiv(qb+r)=a$. Thus the set of common divisors of 
 $\gcd(a,b)$ equals the set of common divisors of $\gcd(b,r)$, so their greatest elements 
 are equal.
 \end{proof}
@@ -762,11 +769,11 @@ so $\gcd(803,154)=11$ is a linear combination of $803$ and $154$. (These coeffic
 
 \begin{lemma}[Euclid's lemma]
 \label{lem:euclid}
-Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\mid ab$, then $p\mid a$ or $p\mid b$.
+Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $pldiv ab$, then $pldiv a$ or $pldiv b$.
 \end{lemma}
 
 \begin{proof}
-Suppose $p\nmid a$. Then $\gcd(a,p)=1$. By Bézout's identity there exist integers $m,n$ 
+Suppose $p\ndiv a$. Then $\gcd(a,p)=1$. By Bézout's identity there exist integers $m,n$ 
 such that
 \[
 m a + n p = 1.
@@ -775,22 +782,22 @@ Multiply both sides by $b$ to obtain
 \[
 mab + npb = b.
 \]
-Since $p\mid ab$, the term $mab$ is divisible by $p$, and clearly $npb$ is divisible by 
-$p$, hence the left-hand side is divisible by $p$. Therefore $p\mid b$. This proves the 
+Since $pldiv ab$, the term $mab$ is divisible by $p$, and clearly $npb$ is divisible by 
+$p$, hence the left-hand side is divisible by $p$. Therefore $pldiv b$. This proves the 
 lemma.
 \end{proof}
 
 \begin{corollary}
-\label{cor:prime-divides-product}
-Let $a_1,\dots,a_n,p\in\mathds{Z}$ with $p$ prime. If $p\mid(a_1 a_2\cdots a_n)$ then 
-$p\mid a_i$ for some $i$.
+\label{cor:prime-ldiv-product}
+Let $a_1,\dots,a_n,p\in\mathds{Z}$ with $p$ prime. If $pldiv(a_1 a_2\cdots a_n)$ then 
+$pldiv a_i$ for some $i$.
 \end{corollary}
 
 \begin{proof}
 Prove by induction on $n$. The base case $n=1$ is trivial. The case $n=2$ is Lemma 
 \ref{lem:euclid}. For the inductive step, assume the statement for $n=k$ and suppose 
-$p\mid(a_1\cdots a_k a_{k+1})$. By Lemma \ref{lem:euclid}, either $p\mid a_{k+1}$ (done) 
-or $p\mid(a_1\cdots a_k)$, in which case the induction hypothesis yields $p\mid a_i$ 
+$pldiv(a_1\cdots a_k a_{k+1})$. By Lemma \ref{lem:euclid}, either $pldiv a_{k+1}$ (done) 
+or $pldiv(a_1\cdots a_k)$, in which case the induction hypothesis yields $pldiv a_i$ 
 for some $i\le k$.
 \end{proof}
 
@@ -818,8 +825,8 @@ p_1^{\alpha_1}\cdots p_r^{\alpha_r}
 = q_1^{\beta_1}\cdots q_s^{\beta_s},
 \]
 where the $p_i$'s and the $q_j$'s are primes and each list is in increasing order. 
-Take $p_1$ (the smallest $p$). Since $p_1$ divides the right-hand side, Corollary 
-\ref{cor:prime-divides-product} shows $p_1$ equals one of the $q_j$; by ordering we 
+Take $p_1$ (the smallest $p$). Since $p_1$ ldiv the right-hand side, Corollary 
+\ref{cor:prime-ldiv-product} shows $p_1$ equals one of the $q_j$; by ordering we 
 may assume $p_1=q_1$. Cancel the common power $p_1^{\min(\alpha_1,\beta_1)}$ from 
 both sides to reduce to a similar equality with strictly smaller total exponent sum. 
 Repeating this cancellation shows the multisets of primes on both sides coincide; 
@@ -833,11 +840,11 @@ Prime factorization: $756 = 2^{2}\,3^{3}\,7^{1}$.
 
 \begin{definition}
 For $a,b\in\mathds{Z}$, $a,b>0$, the \emph{least common multiple} $\lcm(a,b)$ is the 
-least positive integer $m$ such that $a\mid m$ and $b\mid m$.
+least positive integer $m$ such that $aldiv m$ and $bldiv m$.
 \end{definition}
 
 \begin{remark}
-Equivalently, the set $T=\{c\in\mathds{Z}: c>0,\, a\mid c,\, b\mid c\}$ is nonempty 
+Equivalently, the set $T=\{c\in\mathds{Z}: c>0,\, aldiv c,\, bldiv c\}$ is nonempty 
 (contains $ab$) and by the well-ordering principle has a least element $\lcm(a,b)$.
 \end{remark}
 
