@@ -12,14 +12,12 @@ The following definitions and axioms are presented from standard mathematical so
   \end{enumerate}
 \end{define}
 
-The following definitions and claims extend the understanding of integers including divisibility.
+The following definitions and claims extend the understanding of integers.
 
-
+Here are the ICA2 Definitions and Axioms as follows.
 \begin{define}{ICA2 Definitions and Axioms}
-  Here are the ICA2 Definitions and Axioms as follows.
   \begin{enumerate}
-    \item \textbf{Definition:} An integer $n$ is \underbar{even} if 
-    there exists some integer $k$ such that
+    \item \textbf{Definition:} An integer $n$ is \underbar{even} if there exists (existential quantification logic $\exists$) an integer $k$ such that
     \[
     n = 2k.
     \]
@@ -37,41 +35,44 @@ The following definitions and claims extend the understanding of integers includ
   \end{enumerate}
 \end{define}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Here are the ICA3 Definitions and Axioms as follows.
 \begin{define}{ICA3 Definitions and Axioms}
-  Here are the ICA3 Definitions and Axioms as follows.
   \begin{enumerate}
-    \item \textbf{Definition:} An integer $n$ is even if and only if $n^2$ is even.
+    \item \textbf{Axiom 1:} The sum of two integers (Universal quantification for all, for every, for each) is again an integer. (Closure under addition)
+    \item \textbf{Axiom 2:} The product of two integers (Universal quantification for all, for every, for each) is again an integer. (Closure under multiplication)
+    \item \textbf{Axiom 3:} An integer $n$ is even if and only if $n^2$ is even.
   \end{enumerate}
 \end{define}
 
+\begin{claim}{Sum of Even Integers}
+  The sum of two even integers is again an even integer.
+  \begin{subprove}[bluecolor]
+    Let $x$ be an integer and $y$ be an integer ($\forall x,y \in \setZ$). 
+    Suppose $x$ is even and $y$ is even. Then, by definition, there exists an integer 
+    $k$ and an integer $j$ such that $x=2k$ and $y=2j$. Then, 
+    $x+y=\left(2k\right)+\left(2j\right)=2\left(k+j\right)$. By the axiom, since $k$ and 
+    $j$ are integers, then so is $\left(k+j\right)$. Hence, by definition, $x+y$ is an 
+    even integer.
+  \end{subprove}
+\end{claim}
 
-\begin{define}{Rational Number.}
-  A real number $x$ is rational if there exists integers $a$ and $b$ with $b\ne 0$ such that $bx=a$.
-  Otherwise, $x$ is irrational.\\
-  \textbf{Note}: Compare this with the even/odd exiom \inlinequote{odd iff not even} from ICA2.\\
-  \textbf{Note}: ICA3 and ICA4, an integer $n$ is even if and only if $n^2$ is even.
-\end{define}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
-
-\newpage
+The following definitions and claims extend the understanding of integers including divisibility.
 
 \begin{define}{Divisibility}
   An integer $n$ divides an integer $m$, denoted $n \mid m$, if there 
   exist an integer $k$ such that $m=n k$. Otherwise, $n \nmid m$.
 \end{define}
 
+\newpage
+
+The following definitions and claims extend the classification of real numbers into rational and irrational numbers.
+
+\begin{define}{Rational Number}
+  A real number $x$ is \underbar{rational} if there exists integers $a$ and $b$ with $b \neq 0$ such that $bx = a$.
+  Otherwise, $x$ is \underbar{irrational}.
+
+  \textbf{Note}: Compare the rational number definition with the even/odd axiom \inlinequote{odd iff not even} from ICA2.
+\end{define}
 
 \begin{claim}{Irrationality}
   $\sqrt{2}$ is irrational.
@@ -92,12 +93,3 @@ The following definitions and claims extend the understanding of integers includ
     common to $a$ and $b$ have already been removed.
   \end{subprove}
 \end{claim}
-
-
-The following definitions and claims extend the classification of real numbers into rational and irrational numbers.
-
-\begin{define}{Rational Number}
-  A real number $x$ is \underbar{rational} if there exists integers $a$ and $b$ with $b \neq 0$ such that $bx = a$.
-  Otherwise, $x$ is \underbar{irrational}.
-\end{define}
-
