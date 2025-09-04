@@ -1,10 +1,54 @@
-The following definitions are presented from standard mathematical sources together with the author's own (or the student, myself, Jaehoon Song) clarifications and labels where applicable.
+The following definitions are presented from standard mathematical sources (\textbf{Sets}) together with the author's own (or the student, myself, Jaehoon Song) clarifications and labels where applicable.
 
+
+
+\begin{define}{Universal Set}
+  A \underbar{universal set} $\setUNIV$ is a set that contains all objects under consideration in a particular context or problem.
+\end{define}
+
+\begin{define}{Empty Set}
+  The \underbar{empty set}, denoted $\setNULL$, is the unique set that contains no elements.
+\end{define}
+
+\begin{define}{Subset}
+  Let $A$ and $B$ be sets. We say $A$ is a \underbar{subset} of $B$ ($A \subseteq B$) if (and only if) for all $x \in A$, $x \in B$.
+\end{define}
+
+\begin{define}{Set Equality}
+  Let $A$ and $B$ be sets. We say $A$ and $B$ are \underbar{equal} ($A = B$) if $A \subseteq B$ and $B \subseteq A$.
+\end{define}
 
 \begin{define}{Set Difference}
-  Let $A$, $B$ be subsets of a universal set $\mathcal{U}$.
+  Let $A$, $B$ be subsets of a universal set $\setUNIV$.
   The set difference $A \setminus B$ is defined to be the set
-  $\{ x \in \mathcal{U} \mid x \in A \text{ and } x \notin B\}$. \\
+  $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \\
   \textit{It is sometimes called the relative complement of $B$ in $A$, and 
   denoted in the textbook as $A - B$.}
 \end{define}
+
+
+
+This is the Cartesian product of $A$ and $B$ which is the set consisting of all orders pairs, i.e.
+
+$$
+A \times B=\{(a, b) \LDIV a \in A, b \in B\} .
+$$
+
+
+
+
+
+Set Properties from the standard sources
+
+\begin{define}{Union and Subset Property}
+  Let $A, B \subseteq \setUNIV$ where $\setUNIV$ is a universal set. Then $A \subseteq A \cup B$.
+\end{define}
+
+\begin{define}{Empty Set Property}
+  Let $A \subseteq \setUNIV$ where $\setUNIV$ is a universal set. Then $\setNULL \subseteq A$.
+\end{define}
+
+\begin{define}{Union Equality Condition}
+  Let $A, B \subseteq \setUNIV$ where $\setUNIV$ is a universal set. Then $A \cup B = A$ if and only if $B \subseteq A$.
+\end{define}
+

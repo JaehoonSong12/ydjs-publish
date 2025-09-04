@@ -1,4 +1,4 @@
-The following table presents the standard logical equivalences from these sources together with 
+The following table presents the standard logical equivalences from the sources (\textbf{Propositional Calculus}) together with 
 the author's own (or the student, myself, Jaehoon Song) clarifications and labels where applicable.
 
 \begin{table}[h!]
@@ -16,25 +16,69 @@ the author's own (or the student, myself, Jaehoon Song) clarifications and label
     \hline
     $\,p \AND (q \OR r) \equiv (p \AND q) \OR (p \AND r)$ & $\,p \OR (q \AND r) \equiv (p \OR q) \AND (p \OR r)$ & Distributive Law \\
     \hline
-    $\,\overline{p \AND q} \equiv \sNOT{p} \OR \sNOT{q}$ & $\,\overline{p \OR q} \equiv \sNOT{p} \AND \sNOT{q}$ & DeMorgan's Law \\
+    $\,\sNOT{p \AND q} \equiv \sNOT{p} \OR \sNOT{q}$ & $\,\sNOT{p \OR q} \equiv \sNOT{p} \AND \sNOT{q}$ & DeMorgan's Law \\
     \hline
-    \multicolumn{2}{|l|}{$\,\overline{\overline{p}} \equiv p$} & Double Negation law \\
+    \multicolumn{2}{|l|}{$\,\sNOT{\sNOT{p}} \equiv p$} & Double Negation law \\
     \hline
-    $\,p \AND \boldsymbol{T} \equiv p$ & $\,p \OR \boldsymbol{F} \equiv p$ & Identity Law \\
+    $\,p \AND \TRUE \equiv p$ & $\,p \OR \FALSE \equiv p$ & Identity Law \\
     \hline
-    $\,p \OR \boldsymbol{T} \equiv \boldsymbol{T}$ & $\,p \AND \boldsymbol{F} \equiv \boldsymbol{F}$ & Domination Law \\
+    $\,p \OR \TRUE \equiv \TRUE$ & $\,p \AND \FALSE \equiv \FALSE$ & Domination Law \\
     \hline
     $\,p \AND p \equiv p$ & $\,p \OR p \equiv p$ & Idempotent Law \\
     \hline
     \multicolumn{2}{|l|}{$\,p \THEN q \equiv \sNOT{p} \OR q$} & Implication Equivalence \\
     \hline
-    \multicolumn{2}{|l|}{$\,\overline{p \THEN q} \equiv p \AND \sNOT{q}$} & Negation of Implication \\
+    \multicolumn{2}{|l|}{$\,\sNOT{p \THEN q} \equiv p \AND \sNOT{q}$} & Negation of Implication \\
     \hline
     \multicolumn{2}{|l|}{$\,p \THEN q \equiv \sNOT{q} \THEN \sNOT{p}$} & Contrapositive Equivalence \\
     \hline
-    \multicolumn{2}{|l|}{$\,p \OR \sNOT{p} \equiv \boldsymbol{T}$} & Law of Tautology \\
+    \multicolumn{2}{|l|}{$\,p \OR \sNOT{p} \equiv \TRUE$} & Law of Tautology \\
     \hline
-    \multicolumn{2}{|l|}{$\,p \AND \sNOT{p} \equiv \boldsymbol{F}$} & Law of Contradiction \\
+    \multicolumn{2}{|l|}{$\,p \AND \sNOT{p} \equiv \FALSE$} & Law of Contradiction \\
     \hline
   \end{tabular}
 \end{table}
+
+The following sections provide guidance on expressing logical statements in natural language and methods for proving implications.
+
+\begin{define}{Implication in Natural Language}
+  Instead of using logical symbols like $p \to q$ in proofs, use natural language:
+  \begin{enumerate}
+    \item If $p$, then $q$
+    \item $q$ if $p$
+    \item $q$ only if $p$
+    \item $p$ then $q$
+    \item $q$ whenever $p$
+    \item $q$ is necessary for $p$
+    \item $p$ is sufficient for $q$
+  \end{enumerate}
+\end{define}
+
+\begin{define}{Biconditional in Natural Language}
+  Instead of $p \leftrightarrow q$, use:
+  \begin{enumerate}
+    \item $p$ if and only if $q$
+    \item $p$ is necessary and sufficient for $q$
+  \end{enumerate}
+\end{define}
+
+
+\newpage 
+
+When proving implications, there are three standard methods available:
+
+\begin{define}{Methods to Prove Implications}
+  To prove an implication $p \to q$, you can use any of these three methods:
+  \begin{enumerate}
+    \item \textbf{Direct Proof:} Assume $p$, prove $q$.
+    \item \textbf{Contrapositive:} Assume $\sNOT{q}$, prove $\sNOT{p}$.
+    \item \textbf{Contradiction:} Assume $p \wedge \sNOT{q}$, prove $\FALSE$ (contradiction).
+  \end{enumerate}
+  
+  For predicates $P(x)$ and $Q(x)$ with domain $D$, to prove $P(x) \to Q(x)$ for all $x \in D$:
+  \begin{enumerate}
+    \item \textbf{Direct Proof:} Let $x \in D$. Assume $P(x)$ is true, prove $Q(x)$ is true.
+    \item \textbf{Contrapositive:} Let $x \in D$. Assume $Q(x)$ is false, prove $P(x)$ is false.
+    \item \textbf{Contradiction:} Let $x \in D$. Assume $P(x)$ is true and $Q(x)$ is false, prove a contradiction.
+  \end{enumerate}
+\end{define}
