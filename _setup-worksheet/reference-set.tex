@@ -1,4 +1,58 @@
-The following definitions are presented from standard mathematical sources (\textbf{Sets}) together with the author's own (or the student, myself, Jaehoon Song) clarifications and labels where applicable.
+% You can assume the following custom macros or alias are available...
+% You can also assume \begin{define}{Definition name}...\end{define} and \begin{claim}{claim statement}...\end{claim} are available in the env.
+% \usepackage{amsmath,amssymb,mathrsfs,dsfont,xspace}
+
+% % Logical operators
+% \newcommand{\NOT}[1]{\ensuremath{\lnot\,#1}\xspace}                           % logical negation
+% \newcommand{\AND}[2]{\ensuremath{#1\mathbin{\land}#2}\xspace}                 % logical conjunction (binary)
+% \newcommand{\OR}[2]{\ensuremath{#1\mathbin{\lor}#2}\xspace}                   % logical disjunction (binary)
+% \newcommand{\THEN}[2]{\ensuremath{#1\mathbin{\rightarrow}#2}\xspace}          % implication (binary)
+% \newcommand{\IFF}[2]{\ensuremath{#1\mathbin{\leftrightarrow}#2}\xspace}       % biconditional (binary)
+% \newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace}                        % tautology symbol
+% \newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace}                       % contradiction symbol
+
+% % Set theory
+% \newcommand{\sNOT}[1]{\ensuremath{\overline{#1}}\xspace}                      % set complement (unary)
+% \newcommand{\sOR}[2]{\ensuremath{#1\mathbin{\cup}#2}\xspace}                  % union (binary)
+% \newcommand{\sAND}[2]{\ensuremath{#1\mathbin{\cap}#2}\xspace}                 % intersection (binary)
+% \newcommand{\sMINUS}[2]{\ensuremath{#1\mathbin{\setminus}#2}\xspace}          % set difference (binary)
+% \newcommand{\sXOR}[2]{\ensuremath{#1\mathbin{\triangle}#2}\xspace}            % symmetric difference (binary)
+% \newcommand{\sTIMES}[2]{\ensuremath{#1\mathbin{\times}#2}\xspace}             % Cartesian product (binary)
+% \newcommand{\sPOWER}[1]{\ensuremath{\mathcal{P}(#1)}\xspace}                  % power set (unary)
+% \newcommand{\sCARD}[1]{\ensuremath{\#(#1)}\xspace}                            % cardinality (unary)
+% \newcommand{\sEMPTY}{\ensuremath{\emptyset}\xspace}                           % empty set
+% \newcommand{\sUNIV}{\ensuremath{\mathcal{U}}\xspace}                          % universal set
+% \newcommand{\sORALL}[3]{\ensuremath{\bigcup_{#1}^{#2} #3}\xspace}             % indexed union (index, upper, expr)
+% \newcommand{\sANDALL}[3]{\ensuremath{\bigcap_{#1}^{#2} #3}\xspace}            % indexed intersection (index, upper, expr)
+% \newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}\xspace}               % set-builder (expr, condition)
+
+% % Number theory & floor/ceiling
+% \newcommand{\LDIV}[2]{\ensuremath{#1\mathbin{\mid}#2}\xspace}                 % divides (binary)
+% \newcommand{\NDIV}[2]{\ensuremath{#1\mathbin{\nmid}#2}\xspace}                % does not divide (binary)
+% \newcommand{\FLOOR}[1]{\ensuremath{\lfloor #1\rfloor}\xspace}                 % floor (unary)
+% \newcommand{\CEIL}[1]{\ensuremath{\lceil #1\rceil}\xspace}                    % ceiling (unary)
+% \newcommand{\LCM}[2]{\ensuremath{\operatorname{lcm}(#1,#2)}\xspace}           % least common multiple (binary)
+% \newcommand{\GCD}[2]{\ensuremath{\operatorname{gcd}(#1,#2)}\xspace}           % greatest common divisor (binary)
+
+% % Canonical number sets & basic symbols
+% \newcommand{\setN}{\ensuremath{\mathds{N}}\xspace}                            % natural numbers
+% \newcommand{\setZ}{\ensuremath{\mathds{Z}}\xspace}                            % integers
+% \newcommand{\setQ}{\ensuremath{\mathds{Q}}\xspace}                            % rationals
+% \newcommand{\setR}{\ensuremath{\mathds{R}}\xspace}                            % reals
+% \newcommand{\setC}{\ensuremath{\mathds{C}}\xspace}                            % complex numbers
+% \newcommand{\setK}{\ensuremath{\mathds{K}}\xspace}                            % generic field
+% \newcommand{\setF}{\ensuremath{\mathds{F}}\xspace}                            % finite field
+% \newcommand{\setS}{\ensuremath{\mathds{S}}\xspace}                            % sphere / set S
+% \newcommand{\setT}{\ensuremath{\mathds{T}}\xspace}                            % torus / time index
+% \newcommand{\setE}{\ensuremath{\mathds{E}}\xspace}                            % expectation symbol
+% \newcommand{\setP}{\ensuremath{\mathds{P}}\xspace}                            % probability symbol
+% \newcommand{\setI}{\ensuremath{\mathds{I}}\xspace}                            % identity matrix
+% \newcommand{\setUNIV}{\ensuremath{\mathcal{U}}\xspace}                        % universal set (calligraphic)
+% \newcommand{\setNULL}{\ensuremath{\emptyset}\xspace}                          % empty set alias
+
+
+The following definitions are presented from standard mathematical sources (\textbf{Sets}). 
+Clarifications and labels have been added where applicable.
 
 \begin{define}{Basic Set Concepts}
   \begin{enumerate}
@@ -6,25 +60,31 @@ The following definitions are presented from standard mathematical sources (\tex
     set that contains all objects under consideration in a particular context or problem.
     \item \textbf{Empty Set:} The empty set, denoted $\setNULL$, 
     is the unique set that contains no elements.
-    \item \textbf{Subset:} Let $A$ and $B$ be sets. We say $A$ is a 
+    \item \textbf{Subset:} Let $A$ and $B$ be sets. $A$ is a 
     subset of $B$ ($A \subseteq B$) if (and only if) 
     for all $x \in A$, $x \in B$.
-    \item \textbf{Set Equality:} Let $A$ and $B$ be sets. We say $A$ and $B$ are 
+    \item \textbf{Set Equality:} Let $A$ and $B$ be sets. The sets $A$ and $B$ are 
     equal ($A = B$) if $A \subseteq B$ and $B \subseteq A$.
   \end{enumerate}
 \end{define}
 
 \begin{define}{Set Operations}
   \begin{enumerate}
-    \item \textbf{Set Difference:} Let $A$, $B$ be subsets of a universal set $\setUNIV$. The set difference $A \setminus B$ is defined to be the set $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \textit{It is sometimes called the relative complement of $B$ in $A$, and denoted in the textbook as $A - B$.}
-    \item \textbf{Cartesian Product:} Let $A$ and $B$ be sets. The Cartesian product of $A$ and $B$, denoted $A \times B$, is the set consisting of all ordered pairs:
+    \item \textbf{Set Difference:} Let $A$, $B$ be subsets of a universal set $\setUNIV$. 
+    The set difference $A \sMINUS B$ is defined to be the set 
+    $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. 
+    \textit{It is sometimes called the relative complement of $B$ in $A$, 
+    and denoted in the textbook as $A - B$.}
+    \item \textbf{Cartesian Product:} Let $A$ and $B$ be sets. The Cartesian product of 
+    $A$ and $B$, denoted $A \sTIMES B$, is the set consisting of all ordered pairs:
     \[
-    A \times B = \{(a, b) \LDIV a \in A, b \in B\}.
+    A \sTIMES B = \{(a, b) \LDIV a \in A, b \in B\}.
     \]
   \end{enumerate}
 \end{define}
 
-The following definitions and claims extend the understanding of set operations and properties.
+The following definitions and claims extend the understanding of set operations 
+and properties.
 
 \begin{define}{Set Properties}
   Let $A, B \subseteq \setUNIV$ where $\setUNIV$ is a universal set.
@@ -34,4 +94,3 @@ The following definitions and claims extend the understanding of set operations 
     \item \textbf{Union Equality Condition:} $A \sOR B = A$ if and only if $B \subseteq A$
   \end{enumerate}
 \end{define}
-

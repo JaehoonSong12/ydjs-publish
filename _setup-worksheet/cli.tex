@@ -87,3 +87,81 @@
   % % ================== Index ==================
   % \input{index.tex}\newpage
 \end{document}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Prefix	Environment/Object Type	    Example
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cha:    Chapter (\chapter)	        \label{cha:introduction}
+% sec:    Section (\section)	        \label{sec:background}
+% subsec: Subsection (\subsection)	  \label{subsec:methodology}
+% fig:    Figure (figure)	            \label{fig:flowchart}
+% tab:    Table (table)	              \label{tab:results-summary}
+% eq:     Equation (equation)	        \label{eq:maxwell}
+% thm:    Theorem (theorem)	          \label{thm:pythagorean}
+% lem:	  Lemma (lemma)	              \label{lem:divisibility}
+% prob:	  Problem/Exercise (\item)	  \label{prob:divisibility-by-3}
+% def:	  Definition (definition)	    \label{def:rational-number}
+% app:	  Appendix (\appendix)	      \label{app:proof-details}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% You can assume the following custom macros or alias are available...
+% \usepackage{amsmath,amssymb,mathrsfs,dsfont,xspace}
+
+% % Logical operators
+% \newcommand{\NOT}[1]{\ensuremath{\lnot\,#1}\xspace}                           % logical negation
+% \newcommand{\AND}[2]{\ensuremath{#1\mathbin{\land}#2}\xspace}                 % logical conjunction (binary)
+% \newcommand{\OR}[2]{\ensuremath{#1\mathbin{\lor}#2}\xspace}                   % logical disjunction (binary)
+% \newcommand{\THEN}[2]{\ensuremath{#1\mathbin{\rightarrow}#2}\xspace}          % implication (binary)
+% \newcommand{\IFF}[2]{\ensuremath{#1\mathbin{\leftrightarrow}#2}\xspace}       % biconditional (binary)
+% \newcommand{\TRUE}{\ensuremath{\boldsymbol{T}}\xspace}                        % tautology symbol
+% \newcommand{\FALSE}{\ensuremath{\boldsymbol{F}}\xspace}                       % contradiction symbol
+
+% % Set theory
+% \newcommand{\sNOT}[1]{\ensuremath{\overline{#1}}\xspace}                      % set complement (unary)
+% \newcommand{\sOR}[2]{\ensuremath{#1\mathbin{\cup}#2}\xspace}                  % union (binary)
+% \newcommand{\sAND}[2]{\ensuremath{#1\mathbin{\cap}#2}\xspace}                 % intersection (binary)
+% \newcommand{\sMINUS}[2]{\ensuremath{#1\mathbin{\setminus}#2}\xspace}          % set difference (binary)
+% \newcommand{\sXOR}[2]{\ensuremath{#1\mathbin{\triangle}#2}\xspace}            % symmetric difference (binary)
+% \newcommand{\sTIMES}[2]{\ensuremath{#1\mathbin{\times}#2}\xspace}             % Cartesian product (binary)
+% \newcommand{\sPOWER}[1]{\ensuremath{\mathcal{P}(#1)}\xspace}                  % power set (unary)
+% \newcommand{\sCARD}[1]{\ensuremath{\#(#1)}\xspace}                            % cardinality (unary)
+% \newcommand{\sEMPTY}{\ensuremath{\emptyset}\xspace}                           % empty set
+% \newcommand{\sUNIV}{\ensuremath{\mathcal{U}}\xspace}                          % universal set
+% \newcommand{\sORALL}[3]{\ensuremath{\bigcup_{#1}^{#2} #3}\xspace}             % indexed union (index, upper, expr)
+% \newcommand{\sANDALL}[3]{\ensuremath{\bigcap_{#1}^{#2} #3}\xspace}            % indexed intersection (index, upper, expr)
+% \newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}\xspace}               % set-builder (expr, condition)
+
+% % Number theory & floor/ceiling
+% \newcommand{\LDIV}[2]{\ensuremath{#1\mathbin{\mid}#2}\xspace}                 % divides (binary)
+% \newcommand{\NDIV}[2]{\ensuremath{#1\mathbin{\nmid}#2}\xspace}                % does not divide (binary)
+% \newcommand{\FLOOR}[1]{\ensuremath{\lfloor #1\rfloor}\xspace}                 % floor (unary)
+% \newcommand{\CEIL}[1]{\ensuremath{\lceil #1\rceil}\xspace}                    % ceiling (unary)
+% \newcommand{\LCM}[2]{\ensuremath{\operatorname{lcm}(#1,#2)}\xspace}           % least common multiple (binary)
+% \newcommand{\GCD}[2]{\ensuremath{\operatorname{gcd}(#1,#2)}\xspace}           % greatest common divisor (binary)
+
+% % Canonical number sets & basic symbols
+% \newcommand{\setN}{\ensuremath{\mathds{N}}\xspace}                            % natural numbers
+% \newcommand{\setZ}{\ensuremath{\mathds{Z}}\xspace}                            % integers
+% \newcommand{\setQ}{\ensuremath{\mathds{Q}}\xspace}                            % rationals
+% \newcommand{\setR}{\ensuremath{\mathds{R}}\xspace}                            % reals
+% \newcommand{\setC}{\ensuremath{\mathds{C}}\xspace}                            % complex numbers
+% \newcommand{\setK}{\ensuremath{\mathds{K}}\xspace}                            % generic field
+% \newcommand{\setF}{\ensuremath{\mathds{F}}\xspace}                            % finite field
+% \newcommand{\setS}{\ensuremath{\mathds{S}}\xspace}                            % sphere / set S
+% \newcommand{\setT}{\ensuremath{\mathds{T}}\xspace}                            % torus / time index
+% \newcommand{\setE}{\ensuremath{\mathds{E}}\xspace}                            % expectation symbol
+% \newcommand{\setP}{\ensuremath{\mathds{P}}\xspace}                            % probability symbol
+% \newcommand{\setI}{\ensuremath{\mathds{I}}\xspace}                            % identity matrix
+% \newcommand{\setUNIV}{\ensuremath{\mathcal{U}}\xspace}                        % universal set (calligraphic)
+% \newcommand{\setNULL}{\ensuremath{\emptyset}\xspace}                          % empty set alias
