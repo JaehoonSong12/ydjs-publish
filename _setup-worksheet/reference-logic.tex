@@ -11,70 +11,31 @@ the author's own (or the student, myself, Jaehoon Song) clarifications and label
     \rowcolor[HTML]{E0E0E0}
     \multicolumn{2}{|l|}{\textbf{Logical Equivalences}} & \textbf{Name} \\
     \hline
-    $\,p \wedge q \equiv q \wedge p$ & $\,p \vee q \equiv q \vee p$ & Commutative Law \\
+    $\,p \AND q \equiv q \AND p$ & $\,p \OR q \equiv q \OR p$ & Commutative Law \\
     \hline
-    $\, (p \wedge q) \wedge r \equiv p \wedge (q \wedge r)$ & $\, (p \vee q) \vee r \equiv p \vee (q \vee r)$ & Associative Law \\
+    $\, (p \AND q) \AND r \equiv p \AND (q \AND r)$ & $\, (p \OR q) \OR r \equiv p \OR (q \OR r)$ & Associative Law \\
     \hline
-    $\,p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$ & $\,p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$ & Distributive Law \\
+    $\,p \AND (q \OR r) \equiv (p \AND q) \OR (p \AND r)$ & $\,p \OR (q \AND r) \equiv (p \OR q) \AND (p \OR r)$ & Distributive Law \\
     \hline
-    $\,\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$ & $\,\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$ & DeMorgan's Law \\
+    $\,\overline{p \AND q} \equiv \sNOT{p} \OR \sNOT{q}$ & $\,\overline{p \OR q} \equiv \sNOT{p} \AND \sNOT{q}$ & DeMorgan's Law \\
     \hline
     \multicolumn{2}{|l|}{$\,\overline{\overline{p}} \equiv p$} & Double Negation law \\
     \hline
-    $\,p \wedge \boldsymbol{T} \equiv p$ & $\,p \vee \boldsymbol{F} \equiv p$ & Identity Law \\
+    $\,p \AND \boldsymbol{T} \equiv p$ & $\,p \OR \boldsymbol{F} \equiv p$ & Identity Law \\
     \hline
-    $\,p \vee \boldsymbol{T} \equiv \boldsymbol{T}$ & $\,p \wedge \boldsymbol{F} \equiv \boldsymbol{F}$ & Domination Law \\
+    $\,p \OR \boldsymbol{T} \equiv \boldsymbol{T}$ & $\,p \AND \boldsymbol{F} \equiv \boldsymbol{F}$ & Domination Law \\
     \hline
-    $\,p \wedge p \equiv p$ & $\,p \vee p \equiv p$ & Idempotent Law \\
+    $\,p \AND p \equiv p$ & $\,p \OR p \equiv p$ & Idempotent Law \\
     \hline
-    \multicolumn{2}{|l|}{$\,p \rightarrow q \equiv \bar{p} \vee q$} & Implication Equivalence \\
+    \multicolumn{2}{|l|}{$\,p \THEN q \equiv \sNOT{p} \OR q$} & Implication Equivalence \\
     \hline
-    \multicolumn{2}{|l|}{$\,\overline{p \rightarrow q} \equiv p \wedge \bar{q}$} & Negation of Implication \\
+    \multicolumn{2}{|l|}{$\,\overline{p \THEN q} \equiv p \AND \sNOT{q}$} & Negation of Implication \\
     \hline
-    \multicolumn{2}{|l|}{$\,p \rightarrow q \equiv \bar{q} \rightarrow \bar{p}$} & Contrapositive Equivalence \\
+    \multicolumn{2}{|l|}{$\,p \THEN q \equiv \sNOT{q} \THEN \sNOT{p}$} & Contrapositive Equivalence \\
     \hline
-    \multicolumn{2}{|l|}{$\,p \vee \bar{p} \equiv \boldsymbol{T}$} & Law of Tautology \\
+    \multicolumn{2}{|l|}{$\,p \OR \sNOT{p} \equiv \boldsymbol{T}$} & Law of Tautology \\
     \hline
-    \multicolumn{2}{|l|}{$\,p \wedge \bar{p} \equiv \boldsymbol{F}$} & Law of Contradiction \\
+    \multicolumn{2}{|l|}{$\,p \AND \sNOT{p} \equiv \boldsymbol{F}$} & Law of Contradiction \\
     \hline
   \end{tabular}
 \end{table}
-
-
-% \begin{table}[h!]
-%   \centering
-%   \renewcommand{\arraystretch}{1.2}
-%   \setlength{\tabcolsep}{8pt}
-%   \begin{tabular}{|p{8.0cm}|p{8.0cm}|}
-%     \hline
-%     \rowcolor[HTML]{E0E0E0}
-%     \multicolumn{2}{|l|}{\textbf{Logical Equivalences}} \\
-%     \hline
-%     Commutative Law, $\,p \wedge q \equiv q \wedge p$ & Commutative Law, $\,p \vee q \equiv q \vee p$ \\
-%     \hline
-%     Associative Law, $\,(p \wedge q) \wedge r \equiv p \wedge (q \wedge r)$ & Associative Law, $\,(p \vee q) \vee r \equiv p \vee (q \vee r)$ \\
-%     \hline
-%     Distributive Law, $\,p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$ & Distributive Law, $\,p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$ \\
-%     \hline
-%     DeMorgan's Law, $\,\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$ & DeMorgan's Law, $\,\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$ \\
-%     \hline
-%     \multicolumn{2}{|l|}{Double negation law, $\,\overline{\overline{p}} \equiv p$} \\
-%     \hline
-%     Identity Law, $\,p \wedge \boldsymbol{T} \equiv p$ & Identity Law, $\,p \vee \boldsymbol{F} \equiv p$ \\
-%     \hline
-%     Domination Law, $\,p \vee \boldsymbol{T} \equiv \boldsymbol{T}$ & Domination Law, $\,p \wedge \boldsymbol{F} \equiv \boldsymbol{F}$ \\
-%     \hline
-%     Idempotent Law, $\,p \wedge p \equiv p$ & Idempotent Law, $\,p \vee p \equiv p$ \\
-%     \hline
-%     \multicolumn{2}{|l|}{Implication Equivalence, $\,p \rightarrow q \equiv \bar{p} \vee q$} \\
-%     \hline
-%     \multicolumn{2}{|l|}{Negation of Implication, $\,\overline{p \rightarrow q} \equiv p \wedge \bar{q}$} \\
-%     \hline
-%     \multicolumn{2}{|l|}{Contrapositive Equivalence, $p \rightarrow q \equiv \bar{q} \rightarrow \bar{p}$} \\
-%     \hline
-%     \multicolumn{2}{|l|}{Law of Tautology, $p \vee \bar{p} \equiv \boldsymbol{T}$} \\
-%     \hline
-%     \multicolumn{2}{|l|}{Law of Contradiction, $p \wedge \bar{p} \equiv \boldsymbol{F}$} \\
-%     \hline
-%   \end{tabular}
-% \end{table}
