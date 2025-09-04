@@ -257,3 +257,85 @@
 %   The set $\sBUILD{n}{n \in \mathcal{N} \AND n \text{ is even}}$ of even naturals.
 % ------------------------------------------------------------------------------
 \newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}} % Set builder: {x | P(x)}
+
+% ------------------------------------------------------------------------------
+% Number Theory Operators
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Commands for number theory operators and functions.
+%   All commands are text-usable with \ensuremath and \xspace.
+%   Operators can be used with or without arguments.
+%
+% FEATURES:
+%   - Standard number theory notation
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%   - Flexible: no args (symbol only) or with args (formula)
+%
+% DEPENDENCIES:
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The floor \FLOOR{x} and ceiling \CEIL{x} of x.
+%   The number 3 \LDIV 6 means 3 divides 6.
+%   The number 4 \NDIV 6 means 4 does not divide 6.
+%   The \LCM{a}{b} and \GCD{a}{b} of a and b.
+%   \FLOOR{x} \CEIL{y} \LDIV{z} \NDIV{w}
+% ------------------------------------------------------------------------------
+\makeatletter % "ENABLE" internal \@... macros
+
+% UNARY operator: none or 1 braced argument
+\newcommand{\FLOOR}{\@ifnextchar\bgroup{\FLOOR@with}{\FLOOR@noarg}}
+\newcommand{\FLOOR@noarg}{\ensuremath{\lfloor\,\rfloor}\xspace}
+\newcommand{\FLOOR@with}[1]{\ensuremath{\lfloor{#1}\rfloor}\xspace}
+
+% UNARY operator: none or 1 braced argument
+\newcommand{\CEIL}{\@ifnextchar\bgroup{\CEIL@with}{\CEIL@noarg}}
+\newcommand{\CEIL@noarg}{\ensuremath{\lceil\,\rceil}\xspace}
+\newcommand{\CEIL@with}[1]{\ensuremath{\lceil{#1}\rceil}\xspace}
+
+% BINARY operator: none or 2 braced arguments (error if exactly 1)
+\newcommand{\LDIV}{\@ifnextchar\bgroup{\LDIV@with}{\LDIV@noarg}}
+\newcommand{\LDIV@noarg}{\ensuremath{\mathbin{\mid}}\xspace}
+\newcommand{\LDIV@with}[1]{%
+  \@ifnextchar\bgroup{\LDIV@twowith{#1}}{\LDIV@singleerror{#1}}%
+}
+\newcommand{\LDIV@twowith}[2]{\ensuremath{{#1}\mathbin{\mid}{#2}}\xspace}
+\newcommand{\LDIV@singleerror}[1]{%
+  \@latex@error{`\string\LDIV' expects either no arguments or two braced arguments. Use `\string\LDIV{a}{b}'}\@ehc
+}
+
+% BINARY operator: none or 2 braced arguments (error if exactly 1)
+\newcommand{\NDIV}{\@ifnextchar\bgroup{\NDIV@with}{\NDIV@noarg}}
+\newcommand{\NDIV@noarg}{\ensuremath{\mathbin{\nmid}}\xspace}
+\newcommand{\NDIV@with}[1]{%
+  \@ifnextchar\bgroup{\NDIV@twowith{#1}}{\NDIV@singleerror{#1}}%
+}
+\newcommand{\NDIV@twowith}[2]{\ensuremath{{#1}\mathbin{\nmid}{#2}}\xspace}
+\newcommand{\NDIV@singleerror}[1]{%
+  \@latex@error{`\string\NDIV' expects either no arguments or two braced arguments. Use `\string\NDIV{a}{b}'}\@ehc
+}
+
+% BINARY operator: none or 2 braced arguments (error if exactly 1)
+\newcommand{\LCM}{\@ifnextchar\bgroup{\LCM@with}{\LCM@noarg}}
+\newcommand{\LCM@noarg}{\ensuremath{\operatorname{lcm}}\xspace}
+\newcommand{\LCM@with}[1]{%
+  \@ifnextchar\bgroup{\LCM@twowith{#1}}{\LCM@singleerror{#1}}%
+}
+\newcommand{\LCM@twowith}[2]{\ensuremath{\operatorname{lcm}({#1},{#2})}\xspace}
+\newcommand{\LCM@singleerror}[1]{%
+  \@latex@error{`\string\LCM' expects either no arguments or two braced arguments. Use `\string\LCM{a}{b}'}\@ehc
+}
+
+% BINARY operator: none or 2 braced arguments (error if exactly 1)
+\newcommand{\GCD}{\@ifnextchar\bgroup{\GCD@with}{\GCD@noarg}}
+\newcommand{\GCD@noarg}{\ensuremath{\operatorname{gcd}}\xspace}
+\newcommand{\GCD@with}[1]{%
+  \@ifnextchar\bgroup{\GCD@twowith{#1}}{\GCD@singleerror{#1}}%
+}
+\newcommand{\GCD@twowith}[2]{\ensuremath{\operatorname{gcd}({#1},{#2})}\xspace}
+\newcommand{\GCD@singleerror}[1]{%
+  \@latex@error{`\string\GCD' expects either no arguments or two braced arguments. Use `\string\GCD{a}{b}'}\@ehc
+}
+
+\makeatother % "DISABLE" internal \@... macros

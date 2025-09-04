@@ -3,6 +3,9 @@
 \usepackage[T1]{fontenc}
 \input{macros.tex}
 
+\input{../preamble/opeartor.tex} 
+\input{../preamble/symbol.tex} 
+
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -17,15 +20,8 @@
 \usepackage{stmaryrd}
 \usepackage{bbold}
 
-% -----------------------
-% Macros and theorem styles
-% -----------------------
-\newcommand{\Z}{\mathds{Z}}
-\newcommand{\N}{\mathds{N}}
-\newcommand{\R}{\mathds{R}}
-\newcommand{\floor}[1]{\lfloor #1 \rfloor}
-\newcommand{\ldiv}{\mid}
-\newcommand{\ndiv}{\nmid}
+
+
 
 
 
@@ -44,20 +40,9 @@
 \numberwithin{equation}{section}
 
 
-\newcommand{\lcm}{\operatorname{lcm}}
-
-
-
-
-
-
-
-
-
 
 
 \begin{document}
-
 
 
 
@@ -109,7 +94,7 @@ are precisely the prime numbers \(\le n\).
   \item For each current smallest unprocessed \(p\) 
   (starting at \(p=2\)), remove all multiples 
   \(2p,3p,4p,\dots\) up to \(n\).
-  \item Stop once \(p^2>n\) (i.e. \(p>\lfloor\sqrt{n}\rfloor\)). 
+  \item Stop once \(p^2>n\) (i.e. \(p>\FLOOR{\sqrt{n}}\)). 
   Remaining numbers are primes.
 \end{enumerate}
 
@@ -166,44 +151,44 @@ are precisely the prime numbers \(\le n\).
 
 \section*{L1: Divisibility}
 % NOTE: Rewritten and reorganized to follow a textbook style (Definitions, Examples, Theorems, Proofs).
-% Major corrections: spelling (Euclid), notation (\mathds{Z}, ldiv, \ndiv), floor symbol, removal of ambiguous 'O' characters, corrected examples and proofs.
+% Major corrections: spelling (Euclid), notation (\mathds{Z}, ldiv, \\NDIV), floor symbol, removal of ambiguous 'O' characters, corrected examples and proofs.
 
 \subsection*{Introduction}
 Elementary number theory is the study of arithmetic properties of the integers, especially 
-divisibility properties of the integers $\Z$. Many classical results originate in Euclid's 
+divisibility properties of the integers $\setZ$. Many classical results originate in Euclid's 
 \emph{Elements} (e.g., Euclid's proof of the infinitude of primes, the Euclidean algorithm, 
 perfect numbers, Pythagorean triples).
 
 \begin{definition}
-Let $a,b\in\Z$. We say \emph{$a$ ldiv $b$}, and write $a\ldiv b$, if there exists an 
-integer $c\in\Z$ such that
+Let $a,b\in\setZ$. We say \emph{$a$ ldiv $b$}, and write $a\LDIV b$, if there exists an 
+integer $c\in\setZ$ such that
 \[
 b = a c.
 \]
-If no such integer $c$ exists we write $a\ndiv b$.
+If no such integer $c$ exists we write $a\\NDIV b$.
 \end{definition}
-% NOTE: Replaced ambiguous wording and corrected notation for "does not divide" to \ndiv.
+% NOTE: Replaced ambiguous wording and corrected notation for "does not divide" to \\NDIV.
 
 \begin{remark}
-When $a\ldiv b$ with $a\neq 0$, the integer $c=b/a$ is the exact (integer) quotient. 
+When $a\LDIV b$ with $a\neq 0$, the integer $c=b/a$ is the exact (integer) quotient. 
 The symbols 
 $a/b$ or $b/a$ in plain text denote rational numbers (when the division is performed in 
-$\mathds{Q}$), which is a different notion from the divisibility relation $a\ldiv b$.
+$\mathds{Q}$), which is a different notion from the divisibility relation $a\LDIV b$.
 \end{remark}
 
 \begin{example}
 \begin{enumerate}
-  \item $3\ldiv 6$, since $6 = 3\cdot 2$.
-  \item $3\ldiv -6$, since $-6 = 3\cdot(-2)$.
-  \item For any $a\in\Z$ we have $a\ldiv 0$, because $0 = a\cdot 0$.
-  \item $0\ldiv a$ only if $a=0$. Indeed, $0\ldiv a$ would require $a = 0\cdot c = 0$ 
+  \item $3\LDIV 6$, since $6 = 3\cdot 2$.
+  \item $3\LDIV -6$, since $-6 = 3\cdot(-2)$.
+  \item For any $a\in\setZ$ we have $a\LDIV 0$, because $0 = a\cdot 0$.
+  \item $0\LDIV a$ only if $a=0$. Indeed, $0\LDIV a$ would require $a = 0\cdot c = 0$ 
   for some integer $c$.
 \end{enumerate}
 \end{example}
 
 \begin{proposition}[Transitivity of divisibility]
 \label{prop:transitive}
-If $a,b,c\in\Z$ and $a\ldiv b$ and $b\ldiv c$, then $a\ldiv c$.
+If $a,b,c\in\setZ$ and $a\LDIV b$ and $b\LDIV c$, then $a\LDIV c$.
 \end{proposition}
 
 \begin{proof}
@@ -211,55 +196,55 @@ Write $b = a e$ and $c = b f$ for some integers $e,f$. Then
 \[
 c = b f = (a e) f = a(e f),
 \]
-so $a\ldiv c$.
+so $a\LDIV c$.
 \end{proof}
 
 \begin{proposition}
 \label{prop:linear-combination}
-Let $a,b,c,m,n\in\Z$. If $c\ldiv a$ and $c\ldiv b$, then for all integers $m,n$ we have
+Let $a,b,c,m,n\in\setZ$. If $c\LDIV a$ and $c\LDIV b$, then for all integers $m,n$ we have
 \[
-c \ldiv (m a + n b).
+c \LDIV (m a + n b).
 \]
 \end{proposition}
 
 \begin{proof}
-Since $c\ldiv a$ and $c\ldiv b$, there exist $e,f\in\Z$ with $a=c e$ and $b=c f$. Thus
+Since $c\LDIV a$ and $c\LDIV b$, there exist $e,f\in\setZ$ with $a=c e$ and $b=c f$. Thus
 \[
 m a + n b = m(c e) + n(c f) = c(m e + n f),
 \]
-and therefore $c\ldiv (m a + n b)$.
+and therefore $c\LDIV (m a + n b)$.
 \end{proof}
 
 \subsection*{The greatest integer (floor) function}
 \begin{definition}
-For $x\in\R$, the \emph{greatest integer function} (floor) is denoted $\floor{x}$ and 
+For $x\in\setR$, the \emph{greatest integer function} (floor) is denoted $\FLOOR{x}$ and 
 defined as the greatest integer less than or equal to $x$.
 \end{definition}
 
-% NOTE: Replaced ambiguous square-bracket notation [x] by standard \lfloor x\rfloor (floor).
+% NOTE: Replaced ambiguous square-bracket notation [x] by standard \FLOOR x\setRfloor (floor).
 \begin{example}
-If $a\in\Z$ then $\floor{a}=a$. Also
+If $a\in\setZ$ then $\FLOOR{a}=a$. Also
 \[
-\floor{5/3}=1,\qquad \floor{\pi}=3,\qquad \floor{-5/3}=-2,\qquad \floor{-\pi}=-4.
+\FLOOR{5/3}=1,\qquad \FLOOR{\pi}=3,\qquad \FLOOR{-5/3}=-2,\qquad \FLOOR{-\pi}=-4.
 \]
 \end{example}
 
 \begin{lemma}
 \label{lem:floor-ineq}
-For every $x\in\R$,
+For every $x\in\setR$,
 \[
-\floor{x} \le x < \floor{x}+1.
+\FLOOR{x} \le x < \FLOOR{x}+1.
 \]
 Equivalently,
 \[
-x-1 < \floor{x} \le x.
+x-1 < \FLOOR{x} \le x.
 \]
 \end{lemma}
 
 \begin{proof}
-By definition $\floor{x}$ is an integer and it is the greatest integer not exceeding $x$, 
-so $\floor{x}\le x$. If $x \ge \floor{x}+1$ then $\floor{x}+1$ would be an integer $\le x$ 
-larger than $\floor{x}$, contradicting maximality of $\floor{x}$. Therefore $x<\floor{x}+1$.
+By definition $\FLOOR{x}$ is an integer and it is the greatest integer not exceeding $x$, 
+so $\FLOOR{x}\le x$. If $x \ge \FLOOR{x}+1$ then $\FLOOR{x}+1$ would be an integer $\le x$ 
+larger than $\FLOOR{x}$, contradicting maximality of $\FLOOR{x}$. Therefore $x<\FLOOR{x}+1$.
 \end{proof}
 
 \subsection*{Division algorithm and remainders}
@@ -268,7 +253,7 @@ an integer quotient and an integer remainder.
 
 \begin{theorem}[Division Algorithm]
 \label{thm:division-alg}
-Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
+Let $a,b\in\setZ$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
 \[
 a = b q + r \qquad\text{and}\qquad 0\le r < b.
 \]
@@ -276,14 +261,14 @@ Here $q$ is called the \emph{quotient} and $r$ the \emph{remainder}.
 \end{theorem}
 
 \begin{proof}[Existence]
-Let $q := \floor{a/b}$ and set $r := a - b q$. Clearly $a = b q + r$. By Lemma 
+Let $q := \FLOOR{a/b}$ and set $r := a - b q$. Clearly $a = b q + r$. By Lemma 
 \ref{lem:floor-ineq} applied to $a/b$ we have
 \[
-\floor{a/b} \le \frac{a}{b} < \floor{a/b} + 1,
+\FLOOR{a/b} \le \frac{a}{b} < \FLOOR{a/b} + 1,
 \]
 so
 \[
-0 \le a - b\floor{a/b} < b,
+0 \le a - b\FLOOR{a/b} < b,
 \]
 i.e. $0\le r < b$.
 \end{proof}
@@ -305,7 +290,7 @@ This proves uniqueness.
 \begin{example}
 Take $a=-5$ and $b=3$. Then
 \[
-q=\floor{a/b}=\floor{-5/3}=-2,\qquad r = a - bq = -5 - 3(-2)=1.
+q=\FLOOR{a/b}=\FLOOR{-5/3}=-2,\qquad r = a - bq = -5 - 3(-2)=1.
 \]
 So $-5 = 3\cdot(-2) + 1$ with $0\le 1 < 3$.
 \end{example}
@@ -318,8 +303,8 @@ The Division Algorithm fixes a unique remainder in the interval $[0,b)$.
 
 \subsection*{Parity}
 \begin{definition}
-An integer $n\in\Z$ is \emph{even} if there exists $k\in\Z$ such that $n = 2k$. An 
-integer $n$ is \emph{odd} if there exists $k\in\Z$ such that $n = 2k+1$.
+An integer $n\in\setZ$ is \emph{even} if there exists $k\in\setZ$ such that $n = 2k$. An 
+integer $n$ is \emph{odd} if there exists $k\in\setZ$ such that $n = 2k+1$.
 \end{definition}
 
 \begin{example}
@@ -559,7 +544,7 @@ Factorizations are a central tool for ruling out primality in many forms.
 % ------------------------
 \section*{L3: Greatest Common Divisors}
 % NOTE: Rewritten, corrected OCR errors (O -> 0, velatively -> relatively, ged/god -> gcd), and reorganized.
-% All occurrences of (a,b) have been replaced by \gcd(a,b).
+% All occurrences of (a,b) have been replaced by \GCD(a,b).
 
 \begin{definition}
 Let $a,b\in\mathds{Z}$, not both zero. The \emph{set of common divisors} of $a$ and $b$ is
@@ -576,14 +561,14 @@ divisors). Hence the greatest element of $\Delta$ exists and is positive.
 
 \begin{definition}
 Let $a,b\in\mathds{Z}$, not both zero. The \emph{greatest common divisor} of $a$ and $b$, 
-denoted $\gcd(a,b)$, is the greatest positive integer $d$ such that $dldiv a$ and $dldiv b$. 
-If $\gcd(a,b)=1$ we say $a$ and $b$ are \emph{relatively prime}.
+denoted $\GCD(a,b)$, is the greatest positive integer $d$ such that $dldiv a$ and $dldiv b$. 
+If $\GCD(a,b)=1$ we say $a$ and $b$ are \emph{relatively prime}.
 \end{definition}
 
 \begin{remark}
-The quantity $\gcd(0,0)$ is undefined. Also, if $\gcd(a,b)=d$ then
+The quantity $\GCD(0,0)$ is undefined. Also, if $\GCD(a,b)=d$ then
 \[
-\gcd(-a,b) = \gcd(a,-b) = \gcd(-a,-b) = d.
+\GCD(-a,b) = \GCD(a,-b) = \GCD(-a,-b) = d.
 \]
 Thus we may restrict many computations to nonnegative integers without loss of generality.
 \end{remark}
@@ -591,19 +576,19 @@ Thus we may restrict many computations to nonnegative integers without loss of g
 \begin{example}
 Divisors of $24$: $\pm 1,\pm 2,\pm 3,\pm 4,\pm 6,\pm 8,\pm 12,\pm 24$.\\
 Divisors of $60$: $\pm 1,\pm 2,\pm 3,\pm 4,\pm 5,\pm 6,\pm 10,\pm 12,\pm 15,\pm 20,\pm 30,\pm 60$.\\
-Hence $\gcd(24,60)=12$.
+Hence $\GCD(24,60)=12$.
 \end{example}
 
 \begin{remark}
-If $a\in\mathds{Z}$ with $a\neq 0$ then $\gcd(a,0)=|a|$.
+If $a\in\mathds{Z}$ with $a\neq 0$ then $\GCD(a,0)=|a|$.
 \end{remark}
 
 \begin{proposition}
-Let $a,b\in\mathds{Z}$ and let $\gcd(a,b)=d$. Then $\gcd(a/d,\, b/d)=1$.
+Let $a,b\in\mathds{Z}$ and let $\GCD(a,b)=d$. Then $\GCD(a/d,\, b/d)=1$.
 \end{proposition}
 
 \begin{proof}
-Let $d'=\gcd(a/d,b/d)$. Then $d'ldiv a/d$ and $d'ldiv b/d$, so there exist $e,f\in\mathds{Z}$ 
+Let $d'=\GCD(a/d,b/d)$. Then $d'ldiv a/d$ and $d'ldiv b/d$, so there exist $e,f\in\mathds{Z}$ 
 with $a/d=d'e$ and $b/d=d'f$. Hence $a=d'de$ and $b=d'df$, so $d'd$ ldiv both $a$ and $b$. 
 By maximality of $d$ as the gcd we must have $d'd\le d$, so $d'=1$.
 \end{proof}
@@ -612,11 +597,11 @@ By maximality of $d$ as the gcd we must have $d'd\le d$, so $d'=1$.
 \label{prop:bezout-min}
 Let $a,b\in\mathds{Z}$, not both zero. Then
 \[
-\gcd(a,b)=\min\{ma+nb : m,n\in\mathds{Z},\ ma+nb>0\}.
+\GCD(a,b)=\min\{ma+nb : m,n\in\mathds{Z},\ ma+nb>0\}.
 \]
 Moreover, there exist integers $m_0,n_0$ such that
 \[
-\gcd(a,b)=m_0 a + n_0 b.
+\GCD(a,b)=m_0 a + n_0 b.
 \]
 \end{proposition}
 
@@ -640,20 +625,20 @@ proves the claim.
 
 \begin{remark}
 The fact that the gcd is an integral linear combination of $a$ and $b$ is commonly referred 
-to as Bézout's identity. In the special case $\gcd(a,b)=1$ the identity shows there exist 
+to as Bézout's identity. In the special case $\GCD(a,b)=1$ the identity shows there exist 
 integers $m,n$ with $ma+nb=1$; any common divisor of $a$ and $b$ must then divide $1$, so 
 it is $1$.
 \end{remark}
 
 \begin{definition}
-For integers $a_1,\dots,a_k$ not all zero, their greatest common divisor $\gcd(a_1,\dots,a_k)$ 
-is the largest positive integer dividing each $a_i$. If $\gcd(a_1,\dots,a_k)=1$ we say the 
-$a_i$ are \emph{relatively prime}. If every pair $\gcd(a_i,a_j)=1$ for $i\neq j$ we say 
+For integers $a_1,\dots,a_k$ not all zero, their greatest common divisor $\GCD(a_1,\dots,a_k)$ 
+is the largest positive integer dividing each $a_i$. If $\GCD(a_1,\dots,a_k)=1$ we say the 
+$a_i$ are \emph{relatively prime}. If every pair $\GCD(a_i,a_j)=1$ for $i\neq j$ we say 
 they are \emph{pairwise relatively prime}.
 \end{definition}
 
 \begin{example}
-The common divisors of $24,60,30$ are $\pm1,\pm2,\pm3,\pm6$, so $\gcd(24,60,30)=6$. Note 
+The common divisors of $24,60,30$ are $\pm1,\pm2,\pm3,\pm6$, so $\GCD(24,60,30)=6$. Note 
 that pairwise relatively prime integers are relatively prime, but the converse need not hold.
 \end{example}
 
@@ -663,14 +648,14 @@ that pairwise relatively prime integers are relatively prime, but the converse n
 \label{lem:gcd-remainder}
 Let $a,b\in\mathds{Z}$ with $a\ge b>0$. If $a=bq+r$ with integers $q,r$ and $0\le r<b$, then
 \[
-\gcd(a,b)=\gcd(b,r).
+\GCD(a,b)=\GCD(b,r).
 \]
 \end{lemma}
 
 \begin{proof}
 If $c$ ldiv $a$ and $b$, then $cldiv(a-qb)=r$, so $c$ ldiv $b$ and $r$. Conversely, 
 if $c$ ldiv $b$ and $r$ then $cldiv(qb+r)=a$. Thus the set of common divisors of 
-$\gcd(a,b)$ equals the set of common divisors of $\gcd(b,r)$, so their greatest elements 
+$\GCD(a,b)$ equals the set of common divisors of $\GCD(b,r)$, so their greatest elements 
 are equal.
 \end{proof}
 
@@ -687,7 +672,7 @@ r_1 &= r_2 q_3 + r_3,\quad 0\le r_3<r_2,\\
 \]
 This process terminates: for some $n\ge 1$, $r_n=0$. Then
 \[
-\gcd(a,b)=
+\GCD(a,b)=
 \begin{cases}
 b &\text{if }n=1,\\
 r_{n-1} &\text{if }n>1.
@@ -703,13 +688,13 @@ b > r_1 > r_2 > \cdots \ge 0.
 Such a sequence cannot be infinite, so for some $n$ we must have $r_n=0$. Repeated 
 application of Lemma \ref{lem:gcd-remainder} yields
 \[
-\gcd(a,b)=\gcd(b,r_1)=\gcd(r_1,r_2)=\cdots=\gcd(r_{n-1},r_n)=\gcd(r_{n-1},0)=r_{n-1}.
+\GCD(a,b)=\GCD(b,r_1)=\GCD(r_1,r_2)=\cdots=\GCD(r_{n-1},r_n)=\GCD(r_{n-1},0)=r_{n-1}.
 \]
-If $n=1$ then $r_1=0$ already and $\gcd(a,b)=b$.
+If $n=1$ then $r_1=0$ already and $\GCD(a,b)=b$.
 \end{proof}
 
 \begin{example}
-Compute $\gcd(803,154)$ via the Euclidean algorithm:
+Compute $\GCD(803,154)$ via the Euclidean algorithm:
 \[
 \begin{aligned}
 803 &= 154\cdot 5 + 33,\\
@@ -718,7 +703,7 @@ Compute $\gcd(803,154)$ via the Euclidean algorithm:
 22  &= 11\cdot 2 + 0.
 \end{aligned}
 \]
-Hence $\gcd(803,154)=11$.
+Hence $\GCD(803,154)=11$.
 \end{example}
 
 \subsubsection*{Back-substitution to obtain Bézout coefficients} 
@@ -740,7 +725,7 @@ Thus
 \[
 11 = 5\cdot 803 + (-26)\cdot 154,
 \]
-so $\gcd(803,154)=11$ is a linear combination of $803$ and $154$. (These coefficients are not unique.)
+so $\GCD(803,154)=11$ is a linear combination of $803$ and $154$. (These coefficients are not unique.)
 
 
 
@@ -773,7 +758,7 @@ Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $pldiv ab$, then $pldiv a$ or $pldiv
 \end{lemma}
 
 \begin{proof}
-Suppose $p\ndiv a$. Then $\gcd(a,p)=1$. By Bézout's identity there exist integers $m,n$ 
+Suppose $p\\NDIV a$. Then $\GCD(a,p)=1$. By Bézout's identity there exist integers $m,n$ 
 such that
 \[
 m a + n p = 1.
@@ -839,13 +824,13 @@ Prime factorization: $756 = 2^{2}\,3^{3}\,7^{1}$.
 \end{example}
 
 \begin{definition}
-For $a,b\in\mathds{Z}$, $a,b>0$, the \emph{least common multiple} $\lcm(a,b)$ is the 
+For $a,b\in\mathds{Z}$, $a,b>0$, the \emph{least common multiple} $\LCM(a,b)$ is the 
 least positive integer $m$ such that $aldiv m$ and $bldiv m$.
 \end{definition}
 
 \begin{remark}
 Equivalently, the set $T=\{c\in\mathds{Z}: c>0,\, aldiv c,\, bldiv c\}$ is nonempty 
-(contains $ab$) and by the well-ordering principle has a least element $\lcm(a,b)$.
+(contains $ab$) and by the well-ordering principle has a least element $\LCM(a,b)$.
 \end{remark}
 
 \begin{proposition}
@@ -856,8 +841,8 @@ a=\prod_{i=1}^n p_i^{\alpha_i},\qquad b=\prod_{i=1}^n p_i^{\beta_i},
 \]
 where $\alpha_i,\beta_i\ge 0$ (possibly zero). Then
 \[
-\gcd(a,b)=\prod_{i=1}^n p_i^{\min\{\alpha_i,\beta_i\}},\qquad
-\lcm(a,b)=\prod_{i=1}^n p_i^{\max\{\alpha_i,\beta_i\}}.
+\GCD(a,b)=\prod_{i=1}^n p_i^{\min\{\alpha_i,\beta_i\}},\qquad
+\LCM(a,b)=\prod_{i=1}^n p_i^{\max\{\alpha_i,\beta_i\}}.
 \]
 \end{proposition}
 
@@ -873,11 +858,11 @@ Factorizations:
 \]
 Thus
 \[
-\gcd(756,2205)=2^{0}3^{2}5^{0}7^{1}=9\cdot7=63,
+\GCD(756,2205)=2^{0}3^{2}5^{0}7^{1}=9\cdot7=63,
 \]
 and
 \[
-\lcm(756,2205)=2^{2}3^{3}5^{1}7^{2}=26460.
+\LCM(756,2205)=2^{2}3^{3}5^{1}7^{2}=26460.
 \]
 \end{example}
 
@@ -893,7 +878,7 @@ For real numbers $x,y$,
 \label{thm:gcd-lcm-product}
 For positive integers $a,b$,
 \[
-\gcd(a,b)\,\lcm(a,b)=a b.
+\GCD(a,b)\,\LCM(a,b)=a b.
 \]
 \end{theorem}
 
@@ -901,7 +886,7 @@ For positive integers $a,b$,
 Write $a=\prod p_i^{\alpha_i}$ and $b=\prod p_i^{\beta_i}$ as in Proposition 
 \ref{prop:gcd-lcm-exponents}. Then by that proposition and Lemma \ref{lem:minmax-sum},
 \[
-\gcd(a,b)\,\lcm(a,b)
+\GCD(a,b)\,\LCM(a,b)
 = \prod_i p_i^{\min(\alpha_i,\beta_i)+\max(\alpha_i,\beta_i)}
 = \prod_i p_i^{\alpha_i+\beta_i}
 = \Big(\prod_i p_i^{\alpha_i}\Big)\Big(\prod_i p_i^{\beta_i}\Big)=ab.
@@ -910,19 +895,19 @@ This proves the identity. (The cases involving $1$ are immediate.)
 \end{proof}
 
 \begin{corollary}
-For positive integers $a,b$, $\lcm(a,b)=ab$ if and only if $\gcd(a,b)=1$.
+For positive integers $a,b$, $\LCM(a,b)=ab$ if and only if $\GCD(a,b)=1$.
 \end{corollary}
 
 \begin{proof}
-Using Theorem \ref{thm:gcd-lcm-product}, $ab=\gcd(a,b)\,\lcm(a,b)$. Hence 
-$\lcm(a,b)=ab$ iff $\gcd(a,b)=1$.
+Using Theorem \ref{thm:gcd-lcm-product}, $ab=\GCD(a,b)\,\LCM(a,b)$. Hence 
+$\LCM(a,b)=ab$ iff $\GCD(a,b)=1$.
 \end{proof}
 
 \begin{remark}
-In practice, for large integers it is usually more efficient to compute $\gcd(a,b)$ 
+In practice, for large integers it is usually more efficient to compute $\GCD(a,b)$ 
 via the Euclidean algorithm and then compute
 \[
-\lcm(a,b)=\frac{ab}{\gcd(a,b)}
+\LCM(a,b)=\frac{ab}{\GCD(a,b)}
 \]
 rather than factoring large numbers.
 \end{remark}
