@@ -347,3 +347,87 @@
   {\ \newline \color{#1}\noindent\textbf{Proof}: }
   {\par\hfill$\blacksquare$\newline\newpage}
 
+% ------------------------------------------------------------------------------
+% \begin{subdisprove}[<Color>][<isWhite>] … \end{subdisprove}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This custom environment displays a "Disproof:" label with configurable text color.
+%   It is intended for formatting mathematical disproofs clearly in assignments or solutions.
+%
+% FEATURES:
+%   - Displays "Disproof:" in bold, followed by disproof content.
+%   - Automatically ends with a filled square symbol (■) aligned right.
+%   - First optional argument selects text color (default = red).
+%   - Second optional argument overrides to white text when set to true.
+%
+% PARAMETERS (both optional):
+%   [<Color>]    Text color name (e.g. blue, green). Defaults to red.
+%   [<isWhite>]  true  -> force white text (for dark backgrounds)
+%                 false -> use the chosen <Color>. Defaults to false.
+%
+% DEPENDENCIES:
+%   \usepackage{ifthen}
+%   \usepackage{xcolor}
+%   \usepackage{xparse}
+%
+% USAGE EXAMPLES:
+%   % defaults: red text, isWhite = false
+%   \begin{subdisprove}
+%     This disproof is red.
+%   \end{subdisprove}
+%
+%   % blue text, isWhite = false
+%   \begin{subdisprove}[blue]
+%     This disproof is blue.
+%   \end{subdisprove}
+%
+%   % green text, forced white override
+%   \begin{subdisprove}[green][true]
+%     This disproof is white (on green background).
+%   \end{subdisprove}
+% ------------------------------------------------------------------------------
+\NewDocumentEnvironment{subdisprove}{ O{red} O{false} }
+{%
+  \par\medskip                     % start a paragraph with a bit of space
+  % choose white if second optional arg is "true", otherwise #1
+  \ifthenelse{\equal{#2}{true}}%
+    {\color{white}}%
+    {\color{#1}}%
+  \noindent\textbf{Disproof}:     % no \\ or \newline here
+}
+{%
+  \par\hfill$\blacksquare$\par
+}
+
+% ------------------------------------------------------------------------------
+% \begin{disprove}[<color>] … \end{disprove}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a disproof section with optional text color.
+%   It automatically adds a new page after the disproof for clean separation.
+%
+% FEATURES:
+%   - Displays "Disproof:" in bold with specified color
+%   - Automatically ends with a filled square symbol (■) aligned right
+%   - Adds a new page after the disproof
+%   - Optional color parameter for customization
+%
+% PARAMETERS:
+%   [<color>]    Text color name (optional, defaults to redcolor)
+%
+% DEPENDENCIES:
+%   None (uses basic LaTeX commands)
+%
+% USAGE EXAMPLES:
+%   \begin{disprove}
+%     This is a default red disproof.
+%   \end{disprove}
+%
+%   \begin{disprove}[blue]
+%     This is a blue disproof.
+%   \end{disprove}
+% ------------------------------------------------------------------------------
+\newenvironment{disprove}[1][redcolor]
+  {\ \newline \color{#1}\noindent\textbf{Disproof}: }
+  {\par\hfill$\blacksquare$\newline\newpage}
+

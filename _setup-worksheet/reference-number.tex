@@ -37,10 +37,62 @@ The following definitions and claims extend the understanding of integers includ
   \end{enumerate}
 \end{define}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{define}{ICA3 Definitions and Axioms}
+  Here are the ICA3 Definitions and Axioms as follows.
+  \begin{enumerate}
+    \item \textbf{Definition:} An integer $n$ is even if and only if $n^2$ is even.
+  \end{enumerate}
+\end{define}
+
+
+\begin{define}{Rational Number.}
+  A real number $x$ is rational if there exists integers $a$ and $b$ with $b\ne 0$ such that $bx=a$.
+  Otherwise, $x$ is irrational.\\
+  \textbf{Note}: Compare this with the even/odd exiom \inlinequote{odd iff not even} from ICA2.\\
+  \textbf{Note}: ICA3 and ICA4, an integer $n$ is even if and only if $n^2$ is even.
+\end{define}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+\newpage
+
 \begin{define}{Divisibility}
   An integer $n$ divides an integer $m$, denoted $n \mid m$, if there 
   exist an integer $k$ such that $m=n k$. Otherwise, $n \nmid m$.
 \end{define}
+
+
+\begin{claim}{Irrationality}
+  $\sqrt{2}$ is irrational.
+  \begin{subprove}[bluecolor]
+    Suppose $\sqrt{2}$ is rational. Then, by the definition, there exists $a,b\in \setZ$ 
+    with $b\ne 0$ such that $b\cdot\sqrt{2}=a$. We may further assume that any factors 
+    common to $a$ and $b$ have already been removed.\\
+
+    Then, squaring both sides, this yields $2\cdot b^2 = a^2$.
+    Since products of integers are again integers, we have that $a^2,b^2\in \setZ$.
+    Thus, by definition, $a^2$ is even. There by, previous result we had that $a$ is even. 
+    Thus, there exists $c\in\setZ$ such that $a=2c$. Then
+    $$
+    2b^2=a^2={2c}^2=4c^2
+    $$
+    Then, $b^2=2c^2$. Then, as before, $b^2$ is even, so $b$ is even.
+    However, $a$ and $b$ both being even contradicts the fact that any factors 
+    common to $a$ and $b$ have already been removed.
+  \end{subprove}
+\end{claim}
+
 
 The following definitions and claims extend the classification of real numbers into rational and irrational numbers.
 
