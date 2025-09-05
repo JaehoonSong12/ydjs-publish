@@ -82,3 +82,40 @@ When proving implications, there are three standard methods available:
     \item \textbf{Contradiction:} Let $x \in D$. Assume $P(x)$ is true and $Q(x)$ is false, prove a contradiction.
   \end{enumerate}
 \end{define}
+
+The following definitions extend the understanding of quantified statements and their negations.
+
+\begin{define}{Prove or Disprove by Counterexample}
+  Let $P(x)$ be a predicate with domain of discourse $\opD$. The 
+  universally quantified proposition, $\forall x \in \opD, P(x)$
+  is false if and only if the existentially quantified proposition 
+  $\exists x \in \opD, \sNOT{P(x)}$, is true.
+\end{define}
+
+The following claims demonstrate methods for proving existential statements and disproving universal statements.
+
+\begin{claim}{Even Implies Odd: If $n^2+3n$ is even, then $n$ is odd.}
+  
+  \begin{subdisprove}[bluecolor]
+    Let $n\in \setZ$. 
+    Consider $n=2$. Then $n^2+3n=2^2+3(2)=4+6=10$ is even, 
+    but $n=2$ is also even, not odd. Since we found a case where the hypothesis 
+    is true but the conclusion is false, the statement is disproven.
+  \end{subdisprove}
+\end{claim}
+
+\begin{claim}{Integer with Equal Cube and Square: There exists an integer whose cube equals its square.}
+  \begin{subprove}[bluecolor]
+    Consider the integer $1$. We have $1^2=1$ and $1^3=1$, so $1^2=1^3=1$.
+    Therefore, there exists an integer (namely $1$) whose cube equals its square.
+  \end{subprove}
+\end{claim}
+
+\begin{claim}{Proof by Example: Sum of Three Odd Integers}
+  There exist odd integers $a$, $b$, and $c$ such that $a+b+c=1$.
+  \begin{subprove}[bluecolor]
+    Consider $(a,b,c)=(5,-3,-1)$. Each of these numbers is odd 
+    since $5=2\cdot 2 + 1$, $-3=2\cdot (-2) + 1$, and $-1=2\cdot (-1) + 1$. 
+    Thus, $5+(-3)+(-1)=1$. Therefore, there exist odd integers whose sum is $1$.
+  \end{subprove}
+\end{claim}
