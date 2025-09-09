@@ -39,9 +39,12 @@ the author's own (or the student, myself, Jaehoon Song) clarifications and label
   \end{tabular}
 \end{table}
 
-The following sections provide guidance on expressing logical statements in natural language and methods for proving implications.
+The following sections provide guidance on expressing logical statements 
+in natural language and methods for proving implications.
 
-\begin{define}{Implication in Natural Language}
+\begin{define}{Implication in Natural Language}\phantomsection
+  \label{def:implication-natural-language} 
+  % \hyperref[def:implication-natural-language]{YOUR_CONTEXT}
   Instead of using logical symbols like $p \to q$ in proofs, use natural language:
   \begin{enumerate}
     \item If $p$, then $q$
@@ -54,7 +57,9 @@ The following sections provide guidance on expressing logical statements in natu
   \end{enumerate}
 \end{define}
 
-\begin{define}{Biconditional in Natural Language}
+\begin{define}{Biconditional in Natural Language}\phantomsection
+  \label{def:biconditional-natural-language} 
+  % \hyperref[def:biconditional-natural-language]{YOUR_CONTEXT}
   Instead of $p \leftrightarrow q$, use:
   \begin{enumerate}
     \item $p$ if and only if $q$
@@ -67,7 +72,9 @@ The following sections provide guidance on expressing logical statements in natu
 
 When proving implications, there are three standard methods available:
 
-\begin{define}{Methods to Prove Implications}
+\begin{define}{Methods to Prove Implications}\phantomsection
+  \label{def:methods-prove-implications} 
+  % \hyperref[def:methods-prove-implications]{YOUR_CONTEXT}
   To prove an implication $p \to q$, you can use any of these three methods:
   \begin{enumerate}
     \item \textbf{Direct Proof:} Assume $p$, prove $q$.
@@ -85,7 +92,9 @@ When proving implications, there are three standard methods available:
 
 The following definitions extend the understanding of quantified statements and their negations.
 
-\begin{define}{Prove or Disprove by Counterexample}
+\begin{define}{Prove or Disprove by Counterexample}\phantomsection
+  \label{def:counterexample} 
+  % \hyperref[def:counterexample]{YOUR_CONTEXT}
   Let $P(x)$ be a predicate with domain of discourse $\opD$. The 
   universally quantified proposition, $\forall x \in \opD, P(x)$
   is false if and only if the existentially quantified proposition 
@@ -94,8 +103,9 @@ The following definitions extend the understanding of quantified statements and 
 
 The following claims demonstrate methods for proving existential statements and disproving universal statements.
 
-\begin{claim}{Even Implies Odd: If $n^2+3n$ is even, then $n$ is odd.}
-  
+\begin{claim}{Even Implies Odd: If $n^2+3n$ is even, then $n$ is odd.}\phantomsection
+  \label{claim:even-implies-odd} 
+  % \hyperref[claim:even-implies-odd]{YOUR_CONTEXT}
   \begin{subdisprove}[bluecolor]
     Let $n\in \setZ$. 
     Consider $n=2$. Then $n^2+3n=2^2+3(2)=4+6=10$ is even, 
@@ -104,14 +114,16 @@ The following claims demonstrate methods for proving existential statements and 
   \end{subdisprove}
 \end{claim}
 
-\begin{claim}{Integer with Equal Cube and Square: There exists an integer whose cube equals its square.}
+\begin{claim}{Integer with Equal Cube and Square: There exists an integer whose cube equals its square.}\phantomsection\label{claim:integer-cube-square} % \hyperref[claim:integer-cube-square]{YOUR_CONTEXT}
   \begin{subprove}[bluecolor]
     Consider the integer $1$. We have $1^2=1$ and $1^3=1$, so $1^2=1^3=1$.
     Therefore, there exists an integer (namely $1$) whose cube equals its square.
   \end{subprove}
 \end{claim}
 
-\begin{claim}{Proof by Example: Sum of Three Odd Integers}
+\begin{claim}{Proof by Example: Sum of Three Odd Integers}\phantomsection
+  \label{claim:sum-three-odd-integers} 
+  % \hyperref[claim:sum-three-odd-integers]{YOUR_CONTEXT}
   There exist odd integers $a$, $b$, and $c$ such that $a+b+c=1$.
   \begin{subprove}[bluecolor]
     Consider $(a,b,c)=(5,-3,-1)$. Each of these numbers is odd 

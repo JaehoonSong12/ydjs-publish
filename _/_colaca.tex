@@ -3,6 +3,8 @@
 \usepackage[T1]{fontenc}
 \input{macros.tex}
 
+\input{../preamble/math.tex}
+
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -73,258 +75,249 @@
 
 
 
-For $i=\sqrt{-1}$, which of the following is equivalent to $(5-3 i)-(-2+5 i)$ ?
-A) $3-8 i$
-B) $3+2 i$
-C) $7-8 i$
-D) $7+2 i$
 
 
 
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Physics E & M
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\begin{enumerate}
 
-Given that $i=\sqrt{-1}$, which of the following is equal to $i(i+1)$ ?
-A) $i-2$
-B) $i-1$
-C) $i+1$
-D) 0
+\item \textbf{Limit at 0} (2 points)\\
+Let $f(x)=\begin{cases}x^2+4, & x<0\\[4pt]\sqrt{x}, & x\ge 0\end{cases}$.\\
+\begin{subanswer}[red][true]
+$\displaystyle \lim_{x\to0^-}f(x)=\lim_{x\to0^-}(x^2+4)=4$, \quad $\displaystyle \lim_{x\to0^+}f(x)=\lim_{x\to0^+}\sqrt{x}=0$. Since the one-sided limits differ, $\displaystyle \lim_{x\to0}f(x)$ does not exist.
+\end{subanswer}
+
+\item \textbf{Find $b$ for continuity at 5} (2 points)\\
+Let $f(x)=\begin{cases}2x-3, & x<5\\[4pt]\tfrac{2}{3}x+b, & x\ge5\end{cases}$. Determine $b$ so $\lim_{x\to5}f(x)$ exists.\\
+\begin{subanswer}[red][true]
+Left limit at $5$ is $2(5)-3=7$. Right limit is $\tfrac{2}{3}(5)+b=\tfrac{10}{3}+b$. Equate: $\tfrac{10}{3}+b=7$, so $b=\dfrac{11}{3}$.
+\end{subanswer}
+
+\item \textbf{Limit at 2} (2 points)\\
+Let $f(x)=\begin{cases}\tfrac{3}{2}x+7, & x<2\\[4pt]3x+4, & x\ge2\end{cases}$. Evaluate $\lim_{x\to2}f(x)$.\\
+\begin{subanswer}[red][true]
+Left limit: $\tfrac{3}{2}(2)+7=10$. Right limit: $3(2)+4=10$. Both sides equal $10$, so $\displaystyle \lim_{x\to2}f(x)=10$.
+\end{subanswer}
 
+\item \textbf{Limit at 4} (2 points)\\
+Let $f(x)=\begin{cases}\sin\bigl(\tfrac{\pi}{8}x\bigr), & x<4\\[4pt]\tfrac{1}{4}x, & x\ge4\end{cases}$. Evaluate $\lim_{x\to4}f(x)$.\\
+\begin{subanswer}[red][true]
+Left limit: $\sin\bigl(\tfrac{\pi}{8}\cdot4\bigr)=\sin\bigl(\tfrac{\pi}{2}\bigr)=1$. Right limit: $\tfrac{1}{4}\cdot4=1$. Thus $\displaystyle \lim_{x\to4}f(x)=1$.
+\end{subanswer}
 
+\item \textbf{Limit at 1 (infinite one-sided)} (2 points)\\
+Let $f(x)=\begin{cases}(x-2)^2, & x<1\\[4pt]\dfrac{1}{x-1}, & x\ge1\end{cases}$. Evaluate $\lim_{x\to1}f(x)$.\\
+\begin{subanswer}[red][true]
+Left limit: $\lim_{x\to1^-}(x-2)^2=(1-2)^2=1$. Right limit: $\lim_{x\to1^+}\dfrac{1}{x-1}=+\infty$. The one-sided limits are not equal (right side is unbounded), so $\displaystyle \lim_{x\to1}f(x)$ does not exist.
+\end{subanswer}
 
+\item \textbf{Limit at -5} (2 points)\\
+Let $f(x)=\begin{cases}\tfrac{3}{5}x+2, & x<-5\\[4pt]2x+\tfrac{8}{3}, & x\ge-5\end{cases}$. Evaluate $\lim_{x\to-5}f(x)$.\\
+\begin{subanswer}[red][true]
+Left limit: $\tfrac{3}{5}(-5)+2=-3+2=-1$. Right limit: $2(-5)+\tfrac{8}{3}=-10+\tfrac{8}{3}=-\tfrac{22}{3}$. Since $-1\neq -\tfrac{22}{3}$, $\displaystyle \lim_{x\to-5}f(x)$ does not exist.
+\end{subanswer}
 
+\item \textbf{Find $b$ for limit at -6 to exist} (2 points)\\
+Let $f(x)=\begin{cases}x^2+b, & x<-6\\[4pt]\tfrac{1}{2}x+9, & x\ge-6\end{cases}$. Determine $b$ so $\lim_{x\to-6}f(x)$ exists.\\
+\begin{subanswer}[red][true]
+Right limit at $-6$ is $\tfrac{1}{2}(-6)+9=-3+9=6$. Left limit is $(-6)^2+b=36+b$. Set $36+b=6$, so $b=-30$.
+\end{subanswer}
 
+\item \textbf{Find $m$ for limit at 3 to exist} (2 points)\\
+Let $f(x)=\begin{cases}2x+7, & x<3\\[4pt]mx-4, & x\ge3\end{cases}$. Determine $m$ so $\lim_{x\to3}f(x)$ exists.\\
+\begin{subanswer}[red][true]
+Left limit: $2(3)+7=13$. Right limit at $3$ is $3m-4$. Equate $3m-4=13$, hence $m=\dfrac{17}{3}$.
+\end{subanswer}
 
+\item \textbf{Find $m,b$ so the limit at 4 equals 10} (3 points)\\
+Let $f(x)=\begin{cases}mx+2b, & x<4\\[4pt]5x+b, & x\ge4\end{cases}$. Determine $m$ and $b$ so $\displaystyle \lim_{x\to4}f(x)=10$.\\
+\begin{subanswer}[red][true]
+Right-hand value at $4$ is $5(4)+b=20+b$, so $20+b=10\Rightarrow b=-10$. Left-hand value at $4$ is $4m+2b=4m+2(-10)=4m-20$. Set $4m-20=10\Rightarrow 4m=30\Rightarrow m=\dfrac{15}{2}$. Thus $m=\dfrac{15}{2}$ and $b=-10$.
+\end{subanswer}
 
 
 
+
+
 
-$$
-i^4+3 i^2+2
-$$
 
+\newpage
+
+
+\item \textbf{Two-sided limit} (2 points)\\
+Evaluate $\displaystyle \lim_{x\to0}\lfloor x\rfloor$.\\
+\begin{subanswer}[red][true]
+For $x\to0^+$, $\lfloor x\rfloor=0$. For $x\to0^-$, $-1<x<0$ so $\lfloor x\rfloor=-1$. The one-sided limits differ, hence $\displaystyle \lim_{x\to0}\lfloor x\rfloor$ does not exist.
+\end{subanswer}
 
-Which of the following is equal to the expression above? (Note: $i=\sqrt{-1}$ )
-A) $i$
-B) -1
-C) 0
-D) 1
+\item \textbf{Asymptotic ratio} (3 points)\\
+Evaluate $\displaystyle \lim_{x\to0^+}\frac{\lfloor 1/x\rfloor}{1/x}$.\\
+\begin{subanswer}[red][true]
+Write $t=1/x\to+\infty$. Then $\frac{\lfloor t\rfloor}{t}=1-\frac{\{t\}}{t}$ where $0\le\{t\}<1$. As $t\to\infty$ the term $\{t\}/t\to0$, so the limit equals $1$.
+\end{subanswer}
 
+\item \textbf{Scaled floor} (3 points)\\
+Compute $\displaystyle \lim_{x\to0^+} x\lfloor 1/x\rfloor$.\\
+\begin{subanswer}[red][true]
+With $t=1/x$, $x\lfloor 1/x\rfloor=\frac{\lfloor t\rfloor}{t}=1-\frac{\{t\}}{t}\to1$ as $t\to\infty$. Hence the limit is $1$.
+\end{subanswer}
 
+\item \textbf{Oscillatory difference} (4 points)\\
+Discuss existence of $\displaystyle \lim_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)$ and find its $\limsup$ and $\liminf$.\\
+\begin{subanswer}[red][true]
+Write $t=1/x$. Then $\lfloor t\rfloor-t=-\{t\}\in(-1,0]$. As $t$ runs through large positive reals, $\{t\}$ densely attains values in $[0,1)$, so the quantity oscillates over $(-1,0]$. Thus the limit does not exist. Moreover $\displaystyle \limsup_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)=0$ and $\displaystyle \liminf_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)=-1$.
+\end{subanswer}
 
+\item \textbf{Symmetric floor quotient} (4 points)\\
+Evaluate $\displaystyle \lim_{x\to0}\frac{\lfloor x\rfloor+\lfloor -x\rfloor}{x}$, if it exists.\\
+\begin{subanswer}[red][true]
+For $x>0$ small, $\lfloor x\rfloor=0$, $\lfloor -x\rfloor=-1$, so the ratio is $(-1)/x\to -\infty$ as $x\to0^+$. For $x<0$ small, $\lfloor x\rfloor=-1$, $\lfloor -x\rfloor=0$, so the ratio is $(-1)/x\to +\infty$ as $x\to0^-$. The one-sided behaviors are unbounded with opposite signs, hence the two-sided limit does not exist (and there is no finite one-sided limit).
+\end{subanswer}
 
+\item \textbf{Limit at an integer point} (3 points)\\
+Let $n\in\mathbb{Z}$. Evaluate $\displaystyle \lim_{x\to n}\lfloor x\rfloor$.\\
+\begin{subanswer}[red][true]
+For $x\to n^-$, $x\in(n-1,n)$ so $\lfloor x\rfloor=n-1$. For $x\to n^+$, $\lfloor x\rfloor=n$. The one-sided limits differ, therefore $\displaystyle \lim_{x\to n}\lfloor x\rfloor$ does not exist.
+\end{subanswer}
 
+\item \textbf{Parameter question} (5 points)\\
+Determine all real numbers $a$ for which the two-sided limit $\displaystyle \lim_{x\to0}\frac{\lfloor a x\rfloor}{x}$ exists (as a finite real number). Justify.\\
+\begin{subanswer}[red][true]
+Case $a=0$: then $\lfloor a x\rfloor=0$ for all $x$, so the quotient is $0$ and the limit exists (equals $0$).\\
+Case $a>0$: for $x>0$ sufficiently small we have $0\le ax<1$, so $\lfloor ax\rfloor=0$ and the right-hand limit equals $0$. For $x<0$ with $|x|$ small we have $-1<ax<0$, so $\lfloor ax\rfloor=-1$ and the left-hand quotient is $(-1)/x\to +\infty$. Thus no finite two-sided limit.\\
+Case $a<0$: the sign reverses: for $x>0$ small, $ax\in(-1,0)$ so $\lfloor ax\rfloor=-1$ and the right-hand quotient $\to -\infty$, while for $x<0$ small, $\lfloor ax\rfloor=0$ so left-hand limit is $0$. Hence no finite two-sided limit.\\
+Conclusion: the only $a\in\mathbb{R}$ for which the two-sided finite limit exists is $a=0$.
+\end{subanswer}
 
-
-
-
-
-$$
-2+3 i+4 i^2+5 i^3+6 i^4
-$$
-
-
-If the expression above is equivalent to $a+b i$, where $a$ and $b$ are constants, what is the value of $a+b$ ? (Note $i=\sqrt{-1}$ )
-A) 2
-B) 6
-C) 10
-D) 12
-
-
-
-
-
-
-
-
-
-$$
-(6+2 i)(2+5 i)
-$$
-
-
-If the expression above is equivalent to $a+b i$, where $a$ and $b$ are constants, what is the value of $a$ ?
-A) 2
-B) 12
-C) 22
-D) 34
-
-
-
-
-
-
-
-
-
-
-Which of the following is equal to $3(i+2)-2(5-4 i)$ ? (Note: $i=\sqrt{-1}$ )
-A) $16-5 i$
-B) $-4+7 i$
-C) $-4+11 i$
-D) $16+11 i$
-
-
-
-
-
-
-
-
-
-
-For $i=\sqrt{-1}$, which of the following is equivalent to $3 i(i+2)-i(i-1)$ ?
-A) $-4+7 i$
-B) $-2+7 i$
-C) $-4+5 i$
-D) $-2+5 i$
-
-
-
-
-
-
-
-For $i=\sqrt{-1}$, which of the following is equal to $i^{93}$ ?
-A) -1
-B) 1
-C) $-i$
-D) $i$
-
-
-
-
-
-
-
-
-Which of the following complex numbers is equivalent to $(3-i)^2$ ? (Note: $i=\sqrt{-1}$ )
-A) $8-6 i$
-B) $8+6 i$
-C) $10-6 i$
-D) $10+6 i$
-
-
-
-
-
-
-
-
-
-
-
-
-$$
-(-i)^2-(-i)^4
-$$
-
-
-In the complex number system, what is the value of the expression above? (Note: $i=\sqrt{-1}$ )
-A) -2
-B) 0
-C) 1
-D) 2
-
-
-
-
-
-
-
-
-
-
-$$
-(5-2 i)(4-3 i)
-$$
-
-
-Which of the following is equal to the expression above? (Note: $i=\sqrt{-1}$ )
-A) $14-7 i$
-B) $14-23 i$
-C) $26+7 i$
-D) $26-23 i$
-
-
-
-
-
-
-
-
-
-Which of the following is equal to $\frac{1}{i}+\frac{1}{i^2}+\frac{1}{i^4}$ ?
-(Note: $i=\sqrt{-1}$ )
-A) $-i$
-B) $i$
-C) 0
-D) 1
-
-
-
-
-
-
-
-
-
-
-Which of the following is equal to $\frac{1-3 i}{3+i}$ ?
-(Note: $i=\sqrt{-1}$ )
-A) $-i$.
-B) $i$
-C) $-\frac{5}{4} i$
-D) $\frac{3}{4}-\frac{5}{4} i$
-
-
-
-
-
-
-
-
-
-
-
-
-Which of the following complex numbers is equivalent to $\frac{2-i}{2+i}$ ? (Note: $i=\sqrt{-1}$ )
-A) $\frac{3}{5}-\frac{4}{5} i$
-B) $1-\frac{4}{5} i$
-C) $\frac{5}{3}-\frac{4}{3} i$
-D) $1-\frac{4}{3} i$
-
-
-
-
-
-
-
-
-
-
-
-
-
-$$
-\frac{4+i}{1-i}+\frac{2-i}{1+i}
-$$
-
-
-Which of the following is equal to the expression above? (Note: $i=\sqrt{-1}$ )
-A) $-2-i$
-B) $2+i$
-C) $4+i$
-D) $4-i$
-
-
-
-
-
-
-
-
-
+\item \textbf{Limit involving the fractional part function} (4 points)\\
+Let $\{t\}=t-\lfloor t\rfloor$ denote the fractional part. Evaluate $\displaystyle \lim_{x\to0^+} x\,\{1/x\}$.\\
+\begin{subanswer}[red][true]
+Set $t=1/x\to+\infty$. Then $x\,\{1/x\}=\frac{\{t\}}{t}$. Since $0\le\{t\}<1$ and $t\to\infty$, $\{t\}/t\to0$. Thus $\displaystyle \lim_{x\to0^+} x\,\{1/x\}=0$.
+\end{subanswer}
+
+
+
+
+
+
+
+\newpage
+
+\item \textbf{Gaussian decay: limits of $x^n e^{-x^2}$} (3 points)\\
+For any fixed integer $n\ge 0$, evaluate $\displaystyle \lim_{x\to\infty} x^n e^{-x^2}$.\\
+\begin{subanswer}[red][true]
+Note that exponential decay dominates any polynomial growth. Using repeated application of L'Hôpital's rule to the form $\dfrac{x^n}{e^{x^2}}$ (or substituting $t=x^2$) yields $0$. Hence $\displaystyle \lim_{x\to\infty} x^n e^{-x^2}=0$ for every integer $n\ge 0$. 
+\end{subanswer}
+
+\item \textbf{Gaussian integral} (4 points)\\
+Prove that for $a>0$, $\displaystyle \int_{-\infty}^{\infty} e^{-a x^2}\,dx=\sqrt{\dfrac{\pi}{a}}\,$.\\
+\begin{subanswer}[red][true]
+Let $I=\int_{-\infty}^{\infty} e^{-a x^2}\,dx$. Then $I^2=\int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} e^{-a(x^2+y^2)}\,dx\,dy$. Switch to polar coordinates: $I^2=\int_{0}^{2\pi}\int_{0}^{\infty} e^{-a r^2} r\,dr\,d\theta=2\pi\cdot \dfrac{1}{2a}=\dfrac{\pi}{a}$. Taking positive square roots gives $I=\sqrt{\dfrac{\pi}{a}}$.
+\end{subanswer}
+
+\item \textbf{Fourier transform of a Gaussian} (5 points)\\
+Using the convention $\displaystyle\mathcal{F}\{f\}(k)=\int_{-\infty}^{\infty} f(x)e^{-ikx}\,dx$, compute $\mathcal{F}\{e^{-a x^2}\}(k)$ for $a>0$.\\
+\begin{subanswer}[red][true]
+Complete the square in the exponent:
+$\displaystyle \int_{-\infty}^{\infty} e^{-a x^2} e^{-ikx}\,dx
+= e^{-k^2/(4a)}\int_{-\infty}^{\infty} e^{-a\left(x+\tfrac{ik}{2a}\right)^2}\,dx$.
+The shift does not change the Gaussian integral value, so the result is $\displaystyle \sqrt{\dfrac{\pi}{a}}\, e^{-k^2/(4a)}$.
+\end{subanswer}
+
+\item \textbf{Convolution of two Gaussians} (4 points)\\
+Let $g_{\sigma}(x)=\dfrac{1}{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$. Show that $g_{\sigma_1}*g_{\sigma_2}=g_{\sqrt{\sigma_1^2+\sigma_2^2}}$.\\
+\begin{subanswer}[red][true]
+Using Fourier transforms, $\mathcal{F}\{g_{\sigma}\}(k)=e^{-(\sigma^2 k^2)/2}$. Convolution corresponds to product of transforms:
+$\mathcal{F}\{g_{\sigma_1}*g_{\sigma_2}\}(k)=e^{-(\sigma_1^2+\sigma_2^2)k^2/2}$,
+which is $\mathcal{F}\{g_{\sqrt{\sigma_1^2+\sigma_2^2}}\}(k)$. Inverse transforming gives $g_{\sigma_1}*g_{\sigma_2}=g_{\sqrt{\sigma_1^2+\sigma_2^2}}$.
+\end{subanswer}
+
+\item \textbf{Narrowing Gaussian and pointwise vs.\ integral limits} (5 points)\\
+Let $\displaystyle G_\sigma(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$ for $\sigma>0$. (a) For fixed $x\neq 0$, compute $\displaystyle \lim_{\sigma\to0^+} G_\sigma(x)$. (b) Compute $\displaystyle \lim_{\sigma\to0^+} \int_{-\varepsilon}^{\varepsilon} G_\sigma(x)\,dx$ for any fixed $\varepsilon>0$.\\
+\begin{subanswer}[red][true]
+(a) For fixed $x\neq 0$, the exponent $-x^2/(2\sigma^2)\to -\infty$ as $\sigma\to0^+$ while the prefactor grows like $1/\sigma$, hence $G_\sigma(x)\to 0$. Thus pointwise for $x\neq0$ the limit is $0$.\\
+(b) Each $G_\sigma$ is a probability density, so $\int_{-\infty}^{\infty} G_\sigma(x)\,dx=1$. As $\sigma\to0^+$ the mass concentrates near $0$, therefore $\displaystyle \lim_{\sigma\to0^+}\int_{-\varepsilon}^{\varepsilon} G_\sigma(x)\,dx=1$ for any fixed $\varepsilon>0$. This demonstrates that $G_\sigma$ converges to the Dirac delta in the distributional sense.
+\end{subanswer}
+
+\item \textbf{Uniform convergence failure for scaled Gaussians} (3 points)\\
+Consider $f_n(x)=n e^{-n^2 x^2}$ on $\mathbb{R}$. Show that $f_n\to 0$ pointwise but the convergence is not uniform on $\mathbb{R}$.\\
+\begin{subanswer}[red][true]
+For fixed $x\neq0$, $n^2 x^2\to\infty$ so $f_n(x)\to0$; at $x=0$, $f_n(0)=n\to\infty$ so pointwise limit is $0$ for every fixed $x\neq0$ but not finite at $x=0$ — to correct: consider $g_n(x)=n^{1/2} e^{-n x^2}$ instead, which satisfies $g_n(0)=n^{1/2}\to\infty$, so choose the standard family $h_n(x)=n e^{-n x^2}$ to observe the sup norm $\sup_x h_n(x)=h_n(0)=n\not\to0$, hence convergence to $0$ is not uniform. Therefore the sequence does not converge uniformly on $\mathbb{R}$.
+\end{subanswer}
+
+
+\end{enumerate}
+
+
+
+
+
+% % \newpage
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Math, Deep
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \section{Relations and Functions}
+% In mathematics, a relation describes a relationship between elements of sets. A function is a specific, well-behaved type of relation, which can be defined by examining the properties of its inverse.
+
+% \subsection{Relation}
+% A \textbf{relation} $R$ from a set $A$ to a set $B$ is defined as a subset of the Cartesian product $A \times B$. The set $A$ is the \textbf{domain} of the relation, and the set $B$ is the \textbf{codomain}.
+% $$ R \subseteq A \times B = \{ (a, b) \mid a \in A, b \in B \} $$
+% The set of all first elements from the domain that appear in the pairs of $R$ is denoted $\operatorname{dom}(R)$. The \textbf{range} of $R$, denoted $\operatorname{ran}(R)$, is the set of all second elements from the codomain that appear in the pairs of $R$.
+% $$ \operatorname{dom}(R) = \{ a \in A \mid \exists b \in B, (a, b) \in R \} \subseteq A $$
+% $$ \operatorname{ran}(R) = \{ b \in B \mid \exists a \in A, (a, b) \in R \} \subseteq B $$
+
+% \subsection{Inverse Relation}
+% For any given relation $R \subseteq A \times B$, the \textbf{inverse relation}, $R^{-1}$, is the relation from $B$ to $A$ defined by reversing the order of the pairs in $R$:
+% $$ R^{-1} = \{ (b, a) \in B \times A \mid (a, b) \in R \} $$
+% It is noted that $\operatorname{dom}(R^{-1}) = \operatorname{ran}(R)$ and $\operatorname{ran}(R^{-1}) = \operatorname{dom}(R)$.
+
+% \subsection{Properties of Relations}
+% Any relation $R \subseteq A \times B$ can be classified by certain properties.
+% \begin{itemize}
+%   \item[\textbullet] A relation $R$ is \textbf{injective} (or left-unique) if no two distinct elements from the domain map to the same element in the codomain.
+%   $$ \forall a_1, a_2 \in A, \forall b \in B, \quad [(a_1, b) \in R \land (a_2, b) \in R] \implies a_1 = a_2 $$
+%   \item[\textbullet] A relation $R$ is \textbf{surjective} if its range is equal to its codomain. That is, every element in the codomain is the image of at least one element from the domain.
+%   $$ \forall b \in B, \exists a \in A \text{ such that } (a, b) \in R \quad (\text{i.e., } \operatorname{ran}(R) = B) $$
+% \end{itemize}
+
+% \subsection{Function as a Special Relation}
+% A relation from $A$ to $B$ is called a \textbf{function} if and only if its inverse relation is both surjective and injective.
+
+% Let a relation be denoted by $R \subseteq A \times B$. This relation $R$ is a function, written $f: A \to B$, if its inverse $R^{-1} \subseteq B \times A$ satisfies the following two conditions:
+% \begin{enumerate}
+%   \item \textbf{$R^{-1}$ is surjective}: The range of $R^{-1}$ must be its codomain, $A$. Since $\operatorname{ran}(R^{-1}) = \operatorname{dom}(R)$, this condition is equivalent to $\operatorname{dom}(R) = A$. This ensures that every element in the domain $A$ is related to at least one element in $B$ (the existence of an image).
+%   \item \textbf{$R^{-1}$ is injective}: For any $(b_1, a) \in R^{-1}$ and $(b_2, a) \in R^{-1}$, it must be that $b_1 = b_2$. By the definition of an inverse, this is equivalent to the condition on $R$ that for any $(a, b_1) \in R$ and $(a, b_2) \in R$, it must be that $b_1 = b_2$. This ensures that no element in $A$ is related to more than one element in $B$ (the uniqueness of the image).
+% \end{enumerate}
+% Therefore, this definition is equivalent to the standard definition of a function: a relation where every element of the domain is mapped to exactly one element of the codomain.
+
+% \subsection{Properties of Functions and Invertibility}
+% A function, being a type of relation, can also be injective or surjective. These properties determine if its inverse relation is also a function.
+
+% \subsubsection{Injective and Surjective Functions}
+% \begin{itemize}
+%   \item[\textbullet] An \textbf{injective function} (one-to-one) is a function that is injective as a relation. Using function notation, this is commonly written as:
+%   $$ \forall a_1, a_2 \in A, \quad f(a_1) = f(a_2) \implies a_1 = a_2 $$
+%   \item[\textbullet] A \textbf{surjective function} (onto) is a function that is surjective as a relation; its range equals its codomain.
+% \end{itemize}
+% A function that is both injective and surjective is called \textbf{bijective}.
+
+% \subsubsection{Invertible Functions}
+% An \textbf{invertible function} is a function whose inverse relation, $f^{-1}$, is also a function.
+
+% Based on the definition of a function provided above, for the relation $f^{-1}: B \to A$ to be a function, its inverse, $(f^{-1})^{-1}$, must be both surjective and injective. Since $(f^{-1})^{-1} = f$, this means the relation $f: A \to B$ must be surjective and injective.
+
+% Thus, a function $f$ is invertible if and only if $f$ is bijective.
 
 
 
@@ -353,7 +346,7 @@ D) $4-i$
 % \newpage
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sieve of Eratosthenes
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Physics E & M
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -448,50 +441,6 @@ D) $4-i$
 
 
 
-
-
-
-
-
-% \newpage
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Sieve of Eratosthenes
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \noindent \textbf{Relations:}
-% \[
-% V_R=IR,\quad V_C=\frac{Q}{C},\quad I=\frac{dQ}{dt}=C\frac{dV_C}{dt}.
-% \]
-
-% \noindent \textbf{KVL:}
-% \[
-% \E - IR - V_C = 0 \quad\Rightarrow\quad RC\frac{dV_C}{dt}+V_C=\E.
-% \]
-
-% \noindent \textbf{Charging (} \(V_C(0)=0\) \textbf{):}
-% \[
-% V_C(t)=\E\big(1-e^{-t/(RC)}\big),\quad
-% I(t)=\frac{\E}{R}e^{-t/(RC)},\quad
-% Q(t)=C\E\big(1-e^{-t/(RC)}\big).
-% \]
-% \[
-% \tauRC = RC.
-% \]
-
-% \noindent \textbf{Discharging (} \(V(0)=V_0\) \textbf{):}
-% \[
-% V_C(t)=V_0 e^{-t/(RC)},\quad I(t)=-\frac{V_0}{R}e^{-t/(RC)}.
-% \]
-
-% \noindent \textbf{Energy:}
-% \[
-% U=\frac{1}{2}CV^2=\frac{Q^2}{2C}.
-% \]
-
-% \bigskip
-% \noindent \textbf{Notes:} Initial current at switch-on is \(\E/R\). The capacitor behaves like a short at \(t=0\) and as an open circuit at steady DC. Use \(RC\) to estimate transient durations.
 
 
 

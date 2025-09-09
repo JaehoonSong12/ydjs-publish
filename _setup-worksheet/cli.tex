@@ -35,6 +35,7 @@
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\ps}{\phantomsection}  % shortcut for \phantomsection
 
 
 % (3) References Configurations
@@ -61,10 +62,10 @@
   % \input{math2106/syllabus.tex}\newpage
 
   % \input{math2106/hw00.tex}\newpage
-  \input{math2106/proof01.tex}\newpage
-  \input{math2106/proof02.tex}\newpage
+  % \input{math2106/proof01.tex}\newpage
+  % \input{math2106/proof02.tex}\newpage
   % \input{math2106/hw01.tex}\newpage 
-  % \input{math2106/hw02.tex}\newpage 
+  \input{math2106/hw02.tex}\newpage 
 
 
   %% MATH 4150: Number Theory
@@ -100,21 +101,21 @@
 
 % Label convention provided
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Prefix	Environment/Object Type	    Example
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% cha:    Chapter (\chapter)	        \label{cha:introduction}
-% sec:    Section (\section)	        \label{sec:background}
-% subsec: Subsection (\subsection)	  \label{subsec:methodology}
-% fig:    Figure (figure)	            \label{fig:flowchart}
-% tab:    Table (table)	              \label{tab:results-summary}
-% eq:     Equation (equation)	        \label{eq:maxwell}
-% thm:    Theorem (theorem)	          \label{thm:pythagorean}
-% lem:	  Lemma (lemma)	              \label{lem:divisibility}
-% prob:	  Problem/Exercise (\item)	  \label{prob:divisibility-by-3}
-% def:	  Definition (definition)	    \label{def:rational-number}
-% app:	  Appendix (\appendix)	      \label{app:proof-details}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cha:    Chapter (\chapter)	        \phantomsection\label{cha:introduction}  % \hyperref[cha:introduction]{YOUR_CONTEXT}
+% sec:    Section (\section)	        \phantomsection\label{sec:background}  % \hyperref[sec:background]{YOUR_CONTEXT}
+% subsec: Subsection (\subsection)	  \phantomsection\label{subsec:methodology}  % \hyperref[subsec:methodology]{YOUR_CONTEXT}
+% fig:    Figure (figure)	            \phantomsection\label{fig:flowchart}  % \hyperref[fig:flowchart]{YOUR_CONTEXT}
+% tab:    Table (table)	              \phantomsection\label{tab:results-summary}  % \hyperref[tab:results-summary]{YOUR_CONTEXT}
+% eq:     Equation (equation)	        \phantomsection\label{eq:maxwell}  % \hyperref[eq:maxwell]{YOUR_CONTEXT}
+% thm:    Theorem (theorem)	          \phantomsection\label{thm:pythagorean}  % \hyperref[thm:pythagorean]{YOUR_CONTEXT}
+% lem:	  Lemma (lemma)	              \phantomsection\label{lem:divisibility}  % \hyperref[lem:divisibility]{YOUR_CONTEXT}
+% prob:	  Problem/Exercise (\item)	  \phantomsection\label{prob:divisibility-by-3}  % \hyperref[prob:divisibility-by-3]{YOUR_CONTEXT}
+% def:	  Definition (definition)	    \phantomsection\label{def:rational-number}  % \hyperref[def:rational-number]{YOUR_CONTEXT}
+% app:	  Appendix (\appendix)	      \phantomsection\label{app:proof-details}  % \hyperref[app:proof-details]{YOUR_CONTEXT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
