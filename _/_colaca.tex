@@ -6,6 +6,7 @@
 \input{../preamble/math.tex}
 
 
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -72,6 +73,96 @@
 
 
 
+% Basic definition without cross-reference
+\begin{define}{Definition of Continuity}
+  A function f is continuous at a point a if...
+\end{define}
+
+% Definition with cross-reference label
+\begin{define}{Important Theorem}[graycolor][def:continuity]
+  A function f is continuous at a point a if for every epsilon > 0, there exists a delta > 0 such that...
+\end{define}
+
+\newpage
+
+% Example of cross-referencing with the new environments
+This also points to \nameref{def:continuity} on page~\pageref{def:continuity}.
+
+% Example of referencing the labeled environments
+The \nameref{def:continuity} provides the mathematical foundation.
+
+
+
+
+
+
+
+
+
+% % \newpage
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Physics E & M
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{enumerate}
+
+% \item \textbf{Limit at 0} (2 points)\\
+% Let $f(x)=\begin{cases}x^2+4, & x<0\\[4pt]\sqrt{x}, & x\ge 0\end{cases}$.\\
+% \begin{subanswer}[red][true]
+% $\displaystyle \lim_{x\to0^-}f(x)=\lim_{x\to0^-}(x^2+4)=4$, \quad $\displaystyle \lim_{x\to0^+}f(x)=\lim_{x\to0^+}\sqrt{x}=0$. Since the one-sided limits differ, $\displaystyle \lim_{x\to0}f(x)$ does not exist.
+% \end{subanswer}
+
+% \item \textbf{Find $b$ for continuity at 5} (2 points)\\
+% Let $f(x)=\begin{cases}2x-3, & x<5\\[4pt]\tfrac{2}{3}x+b, & x\ge5\end{cases}$. Determine $b$ so $\lim_{x\to5}f(x)$ exists.\\
+% \begin{subanswer}[red][true]
+% Left limit at $5$ is $2(5)-3=7$. Right limit is $\tfrac{2}{3}(5)+b=\tfrac{10}{3}+b$. Equate: $\tfrac{10}{3}+b=7$, so $b=\dfrac{11}{3}$.
+% \end{subanswer}
+
+% \item \textbf{Limit at 2} (2 points)\\
+% Let $f(x)=\begin{cases}\tfrac{3}{2}x+7, & x<2\\[4pt]3x+4, & x\ge2\end{cases}$. Evaluate $\lim_{x\to2}f(x)$.\\
+% \begin{subanswer}[red][true]
+% Left limit: $\tfrac{3}{2}(2)+7=10$. Right limit: $3(2)+4=10$. Both sides equal $10$, so $\displaystyle \lim_{x\to2}f(x)=10$.
+% \end{subanswer}
+
+% \item \textbf{Limit at 4} (2 points)\\
+% Let $f(x)=\begin{cases}\sin\bigl(\tfrac{\pi}{8}x\bigr), & x<4\\[4pt]\tfrac{1}{4}x, & x\ge4\end{cases}$. Evaluate $\lim_{x\to4}f(x)$.\\
+% \begin{subanswer}[red][true]
+% Left limit: $\sin\bigl(\tfrac{\pi}{8}\cdot4\bigr)=\sin\bigl(\tfrac{\pi}{2}\bigr)=1$. Right limit: $\tfrac{1}{4}\cdot4=1$. Thus $\displaystyle \lim_{x\to4}f(x)=1$.
+% \end{subanswer}
+
+% \item \textbf{Limit at 1 (infinite one-sided)} (2 points)\\
+% Let $f(x)=\begin{cases}(x-2)^2, & x<1\\[4pt]\dfrac{1}{x-1}, & x\ge1\end{cases}$. Evaluate $\lim_{x\to1}f(x)$.\\
+% \begin{subanswer}[red][true]
+% Left limit: $\lim_{x\to1^-}(x-2)^2=(1-2)^2=1$. Right limit: $\lim_{x\to1^+}\dfrac{1}{x-1}=+\infty$. The one-sided limits are not equal (right side is unbounded), so $\displaystyle \lim_{x\to1}f(x)$ does not exist.
+% \end{subanswer}
+
+% \item \textbf{Limit at -5} (2 points)\\
+% Let $f(x)=\begin{cases}\tfrac{3}{5}x+2, & x<-5\\[4pt]2x+\tfrac{8}{3}, & x\ge-5\end{cases}$. Evaluate $\lim_{x\to-5}f(x)$.\\
+% \begin{subanswer}[red][true]
+% Left limit: $\tfrac{3}{5}(-5)+2=-3+2=-1$. Right limit: $2(-5)+\tfrac{8}{3}=-10+\tfrac{8}{3}=-\tfrac{22}{3}$. Since $-1\neq -\tfrac{22}{3}$, $\displaystyle \lim_{x\to-5}f(x)$ does not exist.
+% \end{subanswer}
+
+% \item \textbf{Find $b$ for limit at -6 to exist} (2 points)\\
+% Let $f(x)=\begin{cases}x^2+b, & x<-6\\[4pt]\tfrac{1}{2}x+9, & x\ge-6\end{cases}$. Determine $b$ so $\lim_{x\to-6}f(x)$ exists.\\
+% \begin{subanswer}[red][true]
+% Right limit at $-6$ is $\tfrac{1}{2}(-6)+9=-3+9=6$. Left limit is $(-6)^2+b=36+b$. Set $36+b=6$, so $b=-30$.
+% \end{subanswer}
+
+% \item \textbf{Find $m$ for limit at 3 to exist} (2 points)\\
+% Let $f(x)=\begin{cases}2x+7, & x<3\\[4pt]mx-4, & x\ge3\end{cases}$. Determine $m$ so $\lim_{x\to3}f(x)$ exists.\\
+% \begin{subanswer}[red][true]
+% Left limit: $2(3)+7=13$. Right limit at $3$ is $3m-4$. Equate $3m-4=13$, hence $m=\dfrac{17}{3}$.
+% \end{subanswer}
+
+% \item \textbf{Find $m,b$ so the limit at 4 equals 10} (3 points)\\
+% Let $f(x)=\begin{cases}mx+2b, & x<4\\[4pt]5x+b, & x\ge4\end{cases}$. Determine $m$ and $b$ so $\displaystyle \lim_{x\to4}f(x)=10$.\\
+% \begin{subanswer}[red][true]
+% Right-hand value at $4$ is $5(4)+b=20+b$, so $20+b=10\Rightarrow b=-10$. Left-hand value at $4$ is $4m+2b=4m+2(-10)=4m-20$. Set $4m-20=10\Rightarrow 4m=30\Rightarrow m=\dfrac{15}{2}$. Thus $m=\dfrac{15}{2}$ and $b=-10$.
+% \end{subanswer}
+
 
 
 
@@ -79,68 +170,58 @@
 
 
 % \newpage
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Physics E & M
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{enumerate}
+% \item \textbf{Two-sided limit} (2 points)\\
+% Evaluate $\displaystyle \lim_{x\to0}\lfloor x\rfloor$.\\
+% \begin{subanswer}[red][true]
+% For $x\to0^+$, $\lfloor x\rfloor=0$. For $x\to0^-$, $-1<x<0$ so $\lfloor x\rfloor=-1$. The one-sided limits differ, hence $\displaystyle \lim_{x\to0}\lfloor x\rfloor$ does not exist.
+% \end{subanswer}
 
-\item \textbf{Limit at 0} (2 points)\\
-Let $f(x)=\begin{cases}x^2+4, & x<0\\[4pt]\sqrt{x}, & x\ge 0\end{cases}$.\\
-\begin{subanswer}[red][true]
-$\displaystyle \lim_{x\to0^-}f(x)=\lim_{x\to0^-}(x^2+4)=4$, \quad $\displaystyle \lim_{x\to0^+}f(x)=\lim_{x\to0^+}\sqrt{x}=0$. Since the one-sided limits differ, $\displaystyle \lim_{x\to0}f(x)$ does not exist.
-\end{subanswer}
+% \item \textbf{Asymptotic ratio} (3 points)\\
+% Evaluate $\displaystyle \lim_{x\to0^+}\frac{\lfloor 1/x\rfloor}{1/x}$.\\
+% \begin{subanswer}[red][true]
+% Write $t=1/x\to+\infty$. Then $\frac{\lfloor t\rfloor}{t}=1-\frac{\{t\}}{t}$ where $0\le\{t\}<1$. As $t\to\infty$ the term $\{t\}/t\to0$, so the limit equals $1$.
+% \end{subanswer}
 
-\item \textbf{Find $b$ for continuity at 5} (2 points)\\
-Let $f(x)=\begin{cases}2x-3, & x<5\\[4pt]\tfrac{2}{3}x+b, & x\ge5\end{cases}$. Determine $b$ so $\lim_{x\to5}f(x)$ exists.\\
-\begin{subanswer}[red][true]
-Left limit at $5$ is $2(5)-3=7$. Right limit is $\tfrac{2}{3}(5)+b=\tfrac{10}{3}+b$. Equate: $\tfrac{10}{3}+b=7$, so $b=\dfrac{11}{3}$.
-\end{subanswer}
+% \item \textbf{Scaled floor} (3 points)\\
+% Compute $\displaystyle \lim_{x\to0^+} x\lfloor 1/x\rfloor$.\\
+% \begin{subanswer}[red][true]
+% With $t=1/x$, $x\lfloor 1/x\rfloor=\frac{\lfloor t\rfloor}{t}=1-\frac{\{t\}}{t}\to1$ as $t\to\infty$. Hence the limit is $1$.
+% \end{subanswer}
 
-\item \textbf{Limit at 2} (2 points)\\
-Let $f(x)=\begin{cases}\tfrac{3}{2}x+7, & x<2\\[4pt]3x+4, & x\ge2\end{cases}$. Evaluate $\lim_{x\to2}f(x)$.\\
-\begin{subanswer}[red][true]
-Left limit: $\tfrac{3}{2}(2)+7=10$. Right limit: $3(2)+4=10$. Both sides equal $10$, so $\displaystyle \lim_{x\to2}f(x)=10$.
-\end{subanswer}
+% \item \textbf{Oscillatory difference} (4 points)\\
+% Discuss existence of $\displaystyle \lim_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)$ and find its $\limsup$ and $\liminf$.\\
+% \begin{subanswer}[red][true]
+% Write $t=1/x$. Then $\lfloor t\rfloor-t=-\{t\}\in(-1,0]$. As $t$ runs through large positive reals, $\{t\}$ densely attains values in $[0,1)$, so the quantity oscillates over $(-1,0]$. Thus the limit does not exist. Moreover $\displaystyle \limsup_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)=0$ and $\displaystyle \liminf_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)=-1$.
+% \end{subanswer}
 
-\item \textbf{Limit at 4} (2 points)\\
-Let $f(x)=\begin{cases}\sin\bigl(\tfrac{\pi}{8}x\bigr), & x<4\\[4pt]\tfrac{1}{4}x, & x\ge4\end{cases}$. Evaluate $\lim_{x\to4}f(x)$.\\
-\begin{subanswer}[red][true]
-Left limit: $\sin\bigl(\tfrac{\pi}{8}\cdot4\bigr)=\sin\bigl(\tfrac{\pi}{2}\bigr)=1$. Right limit: $\tfrac{1}{4}\cdot4=1$. Thus $\displaystyle \lim_{x\to4}f(x)=1$.
-\end{subanswer}
+% \item \textbf{Symmetric floor quotient} (4 points)\\
+% Evaluate $\displaystyle \lim_{x\to0}\frac{\lfloor x\rfloor+\lfloor -x\rfloor}{x}$, if it exists.\\
+% \begin{subanswer}[red][true]
+% For $x>0$ small, $\lfloor x\rfloor=0$, $\lfloor -x\rfloor=-1$, so the ratio is $(-1)/x\to -\infty$ as $x\to0^+$. For $x<0$ small, $\lfloor x\rfloor=-1$, $\lfloor -x\rfloor=0$, so the ratio is $(-1)/x\to +\infty$ as $x\to0^-$. The one-sided behaviors are unbounded with opposite signs, hence the two-sided limit does not exist (and there is no finite one-sided limit).
+% \end{subanswer}
 
-\item \textbf{Limit at 1 (infinite one-sided)} (2 points)\\
-Let $f(x)=\begin{cases}(x-2)^2, & x<1\\[4pt]\dfrac{1}{x-1}, & x\ge1\end{cases}$. Evaluate $\lim_{x\to1}f(x)$.\\
-\begin{subanswer}[red][true]
-Left limit: $\lim_{x\to1^-}(x-2)^2=(1-2)^2=1$. Right limit: $\lim_{x\to1^+}\dfrac{1}{x-1}=+\infty$. The one-sided limits are not equal (right side is unbounded), so $\displaystyle \lim_{x\to1}f(x)$ does not exist.
-\end{subanswer}
+% \item \textbf{Limit at an integer point} (3 points)\\
+% Let $n\in\mathbb{Z}$. Evaluate $\displaystyle \lim_{x\to n}\lfloor x\rfloor$.\\
+% \begin{subanswer}[red][true]
+% For $x\to n^-$, $x\in(n-1,n)$ so $\lfloor x\rfloor=n-1$. For $x\to n^+$, $\lfloor x\rfloor=n$. The one-sided limits differ, therefore $\displaystyle \lim_{x\to n}\lfloor x\rfloor$ does not exist.
+% \end{subanswer}
 
-\item \textbf{Limit at -5} (2 points)\\
-Let $f(x)=\begin{cases}\tfrac{3}{5}x+2, & x<-5\\[4pt]2x+\tfrac{8}{3}, & x\ge-5\end{cases}$. Evaluate $\lim_{x\to-5}f(x)$.\\
-\begin{subanswer}[red][true]
-Left limit: $\tfrac{3}{5}(-5)+2=-3+2=-1$. Right limit: $2(-5)+\tfrac{8}{3}=-10+\tfrac{8}{3}=-\tfrac{22}{3}$. Since $-1\neq -\tfrac{22}{3}$, $\displaystyle \lim_{x\to-5}f(x)$ does not exist.
-\end{subanswer}
+% \item \textbf{Parameter question} (5 points)\\
+% Determine all real numbers $a$ for which the two-sided limit $\displaystyle \lim_{x\to0}\frac{\lfloor a x\rfloor}{x}$ exists (as a finite real number). Justify.\\
+% \begin{subanswer}[red][true]
+% Case $a=0$: then $\lfloor a x\rfloor=0$ for all $x$, so the quotient is $0$ and the limit exists (equals $0$).\\
+% Case $a>0$: for $x>0$ sufficiently small we have $0\le ax<1$, so $\lfloor ax\rfloor=0$ and the right-hand limit equals $0$. For $x<0$ with $|x|$ small we have $-1<ax<0$, so $\lfloor ax\rfloor=-1$ and the left-hand quotient is $(-1)/x\to +\infty$. Thus no finite two-sided limit.\\
+% Case $a<0$: the sign reverses: for $x>0$ small, $ax\in(-1,0)$ so $\lfloor ax\rfloor=-1$ and the right-hand quotient $\to -\infty$, while for $x<0$ small, $\lfloor ax\rfloor=0$ so left-hand limit is $0$. Hence no finite two-sided limit.\\
+% Conclusion: the only $a\in\mathbb{R}$ for which the two-sided finite limit exists is $a=0$.
+% \end{subanswer}
 
-\item \textbf{Find $b$ for limit at -6 to exist} (2 points)\\
-Let $f(x)=\begin{cases}x^2+b, & x<-6\\[4pt]\tfrac{1}{2}x+9, & x\ge-6\end{cases}$. Determine $b$ so $\lim_{x\to-6}f(x)$ exists.\\
-\begin{subanswer}[red][true]
-Right limit at $-6$ is $\tfrac{1}{2}(-6)+9=-3+9=6$. Left limit is $(-6)^2+b=36+b$. Set $36+b=6$, so $b=-30$.
-\end{subanswer}
-
-\item \textbf{Find $m$ for limit at 3 to exist} (2 points)\\
-Let $f(x)=\begin{cases}2x+7, & x<3\\[4pt]mx-4, & x\ge3\end{cases}$. Determine $m$ so $\lim_{x\to3}f(x)$ exists.\\
-\begin{subanswer}[red][true]
-Left limit: $2(3)+7=13$. Right limit at $3$ is $3m-4$. Equate $3m-4=13$, hence $m=\dfrac{17}{3}$.
-\end{subanswer}
-
-\item \textbf{Find $m,b$ so the limit at 4 equals 10} (3 points)\\
-Let $f(x)=\begin{cases}mx+2b, & x<4\\[4pt]5x+b, & x\ge4\end{cases}$. Determine $m$ and $b$ so $\displaystyle \lim_{x\to4}f(x)=10$.\\
-\begin{subanswer}[red][true]
-Right-hand value at $4$ is $5(4)+b=20+b$, so $20+b=10\Rightarrow b=-10$. Left-hand value at $4$ is $4m+2b=4m+2(-10)=4m-20$. Set $4m-20=10\Rightarrow 4m=30\Rightarrow m=\dfrac{15}{2}$. Thus $m=\dfrac{15}{2}$ and $b=-10$.
-\end{subanswer}
+% \item \textbf{Limit involving the fractional part function} (4 points)\\
+% Let $\{t\}=t-\lfloor t\rfloor$ denote the fractional part. Evaluate $\displaystyle \lim_{x\to0^+} x\,\{1/x\}$.\\
+% \begin{subanswer}[red][true]
+% Set $t=1/x\to+\infty$. Then $x\,\{1/x\}=\frac{\{t\}}{t}$. Since $0\le\{t\}<1$ and $t\to\infty$, $\{t\}/t\to0$. Thus $\displaystyle \lim_{x\to0^+} x\,\{1/x\}=0$.
+% \end{subanswer}
 
 
 
@@ -148,112 +229,52 @@ Right-hand value at $4$ is $5(4)+b=20+b$, so $20+b=10\Rightarrow b=-10$. Left-ha
 
 
 
-\newpage
+% \newpage
+
+% \item \textbf{Gaussian decay: limits of $x^n e^{-x^2}$} (3 points)\\
+% For any fixed integer $n\ge 0$, evaluate $\displaystyle \lim_{x\to\infty} x^n e^{-x^2}$.\\
+% \begin{subanswer}[red][true]
+% Note that exponential decay dominates any polynomial growth. Using repeated application of L'Hôpital's rule to the form $\dfrac{x^n}{e^{x^2}}$ (or substituting $t=x^2$) yields $0$. Hence $\displaystyle \lim_{x\to\infty} x^n e^{-x^2}=0$ for every integer $n\ge 0$. 
+% \end{subanswer}
+
+% \item \textbf{Gaussian integral} (4 points)\\
+% Prove that for $a>0$, $\displaystyle \int_{-\infty}^{\infty} e^{-a x^2}\,dx=\sqrt{\dfrac{\pi}{a}}\,$.\\
+% \begin{subanswer}[red][true]
+% Let $I=\int_{-\infty}^{\infty} e^{-a x^2}\,dx$. Then $I^2=\int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} e^{-a(x^2+y^2)}\,dx\,dy$. Switch to polar coordinates: $I^2=\int_{0}^{2\pi}\int_{0}^{\infty} e^{-a r^2} r\,dr\,d\theta=2\pi\cdot \dfrac{1}{2a}=\dfrac{\pi}{a}$. Taking positive square roots gives $I=\sqrt{\dfrac{\pi}{a}}$.
+% \end{subanswer}
+
+% \item \textbf{Fourier transform of a Gaussian} (5 points)\\
+% Using the convention $\displaystyle\mathcal{F}\{f\}(k)=\int_{-\infty}^{\infty} f(x)e^{-ikx}\,dx$, compute $\mathcal{F}\{e^{-a x^2}\}(k)$ for $a>0$.\\
+% \begin{subanswer}[red][true]
+% Complete the square in the exponent:
+% $\displaystyle \int_{-\infty}^{\infty} e^{-a x^2} e^{-ikx}\,dx
+% = e^{-k^2/(4a)}\int_{-\infty}^{\infty} e^{-a\left(x+\tfrac{ik}{2a}\right)^2}\,dx$.
+% The shift does not change the Gaussian integral value, so the result is $\displaystyle \sqrt{\dfrac{\pi}{a}}\, e^{-k^2/(4a)}$.
+% \end{subanswer}
+
+% \item \textbf{Convolution of two Gaussians} (4 points)\\
+% Let $g_{\sigma}(x)=\dfrac{1}{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$. Show that $g_{\sigma_1}*g_{\sigma_2}=g_{\sqrt{\sigma_1^2+\sigma_2^2}}$.\\
+% \begin{subanswer}[red][true]
+% Using Fourier transforms, $\mathcal{F}\{g_{\sigma}\}(k)=e^{-(\sigma^2 k^2)/2}$. Convolution corresponds to product of transforms:
+% $\mathcal{F}\{g_{\sigma_1}*g_{\sigma_2}\}(k)=e^{-(\sigma_1^2+\sigma_2^2)k^2/2}$,
+% which is $\mathcal{F}\{g_{\sqrt{\sigma_1^2+\sigma_2^2}}\}(k)$. Inverse transforming gives $g_{\sigma_1}*g_{\sigma_2}=g_{\sqrt{\sigma_1^2+\sigma_2^2}}$.
+% \end{subanswer}
+
+% \item \textbf{Narrowing Gaussian and pointwise vs.\ integral limits} (5 points)\\
+% Let $\displaystyle G_\sigma(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$ for $\sigma>0$. (a) For fixed $x\neq 0$, compute $\displaystyle \lim_{\sigma\to0^+} G_\sigma(x)$. (b) Compute $\displaystyle \lim_{\sigma\to0^+} \int_{-\varepsilon}^{\varepsilon} G_\sigma(x)\,dx$ for any fixed $\varepsilon>0$.\\
+% \begin{subanswer}[red][true]
+% (a) For fixed $x\neq 0$, the exponent $-x^2/(2\sigma^2)\to -\infty$ as $\sigma\to0^+$ while the prefactor grows like $1/\sigma$, hence $G_\sigma(x)\to 0$. Thus pointwise for $x\neq0$ the limit is $0$.\\
+% (b) Each $G_\sigma$ is a probability density, so $\int_{-\infty}^{\infty} G_\sigma(x)\,dx=1$. As $\sigma\to0^+$ the mass concentrates near $0$, therefore $\displaystyle \lim_{\sigma\to0^+}\int_{-\varepsilon}^{\varepsilon} G_\sigma(x)\,dx=1$ for any fixed $\varepsilon>0$. This demonstrates that $G_\sigma$ converges to the Dirac delta in the distributional sense.
+% \end{subanswer}
+
+% \item \textbf{Uniform convergence failure for scaled Gaussians} (3 points)\\
+% Consider $f_n(x)=n e^{-n^2 x^2}$ on $\mathbb{R}$. Show that $f_n\to 0$ pointwise but the convergence is not uniform on $\mathbb{R}$.\\
+% \begin{subanswer}[red][true]
+% For fixed $x\neq0$, $n^2 x^2\to\infty$ so $f_n(x)\to0$; at $x=0$, $f_n(0)=n\to\infty$ so pointwise limit is $0$ for every fixed $x\neq0$ but not finite at $x=0$ — to correct: consider $g_n(x)=n^{1/2} e^{-n x^2}$ instead, which satisfies $g_n(0)=n^{1/2}\to\infty$, so choose the standard family $h_n(x)=n e^{-n x^2}$ to observe the sup norm $\sup_x h_n(x)=h_n(0)=n\not\to0$, hence convergence to $0$ is not uniform. Therefore the sequence does not converge uniformly on $\mathbb{R}$.
+% \end{subanswer}
 
 
-\item \textbf{Two-sided limit} (2 points)\\
-Evaluate $\displaystyle \lim_{x\to0}\lfloor x\rfloor$.\\
-\begin{subanswer}[red][true]
-For $x\to0^+$, $\lfloor x\rfloor=0$. For $x\to0^-$, $-1<x<0$ so $\lfloor x\rfloor=-1$. The one-sided limits differ, hence $\displaystyle \lim_{x\to0}\lfloor x\rfloor$ does not exist.
-\end{subanswer}
-
-\item \textbf{Asymptotic ratio} (3 points)\\
-Evaluate $\displaystyle \lim_{x\to0^+}\frac{\lfloor 1/x\rfloor}{1/x}$.\\
-\begin{subanswer}[red][true]
-Write $t=1/x\to+\infty$. Then $\frac{\lfloor t\rfloor}{t}=1-\frac{\{t\}}{t}$ where $0\le\{t\}<1$. As $t\to\infty$ the term $\{t\}/t\to0$, so the limit equals $1$.
-\end{subanswer}
-
-\item \textbf{Scaled floor} (3 points)\\
-Compute $\displaystyle \lim_{x\to0^+} x\lfloor 1/x\rfloor$.\\
-\begin{subanswer}[red][true]
-With $t=1/x$, $x\lfloor 1/x\rfloor=\frac{\lfloor t\rfloor}{t}=1-\frac{\{t\}}{t}\to1$ as $t\to\infty$. Hence the limit is $1$.
-\end{subanswer}
-
-\item \textbf{Oscillatory difference} (4 points)\\
-Discuss existence of $\displaystyle \lim_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)$ and find its $\limsup$ and $\liminf$.\\
-\begin{subanswer}[red][true]
-Write $t=1/x$. Then $\lfloor t\rfloor-t=-\{t\}\in(-1,0]$. As $t$ runs through large positive reals, $\{t\}$ densely attains values in $[0,1)$, so the quantity oscillates over $(-1,0]$. Thus the limit does not exist. Moreover $\displaystyle \limsup_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)=0$ and $\displaystyle \liminf_{x\to0^+}\bigl(\lfloor 1/x\rfloor-\tfrac{1}{x}\bigr)=-1$.
-\end{subanswer}
-
-\item \textbf{Symmetric floor quotient} (4 points)\\
-Evaluate $\displaystyle \lim_{x\to0}\frac{\lfloor x\rfloor+\lfloor -x\rfloor}{x}$, if it exists.\\
-\begin{subanswer}[red][true]
-For $x>0$ small, $\lfloor x\rfloor=0$, $\lfloor -x\rfloor=-1$, so the ratio is $(-1)/x\to -\infty$ as $x\to0^+$. For $x<0$ small, $\lfloor x\rfloor=-1$, $\lfloor -x\rfloor=0$, so the ratio is $(-1)/x\to +\infty$ as $x\to0^-$. The one-sided behaviors are unbounded with opposite signs, hence the two-sided limit does not exist (and there is no finite one-sided limit).
-\end{subanswer}
-
-\item \textbf{Limit at an integer point} (3 points)\\
-Let $n\in\mathbb{Z}$. Evaluate $\displaystyle \lim_{x\to n}\lfloor x\rfloor$.\\
-\begin{subanswer}[red][true]
-For $x\to n^-$, $x\in(n-1,n)$ so $\lfloor x\rfloor=n-1$. For $x\to n^+$, $\lfloor x\rfloor=n$. The one-sided limits differ, therefore $\displaystyle \lim_{x\to n}\lfloor x\rfloor$ does not exist.
-\end{subanswer}
-
-\item \textbf{Parameter question} (5 points)\\
-Determine all real numbers $a$ for which the two-sided limit $\displaystyle \lim_{x\to0}\frac{\lfloor a x\rfloor}{x}$ exists (as a finite real number). Justify.\\
-\begin{subanswer}[red][true]
-Case $a=0$: then $\lfloor a x\rfloor=0$ for all $x$, so the quotient is $0$ and the limit exists (equals $0$).\\
-Case $a>0$: for $x>0$ sufficiently small we have $0\le ax<1$, so $\lfloor ax\rfloor=0$ and the right-hand limit equals $0$. For $x<0$ with $|x|$ small we have $-1<ax<0$, so $\lfloor ax\rfloor=-1$ and the left-hand quotient is $(-1)/x\to +\infty$. Thus no finite two-sided limit.\\
-Case $a<0$: the sign reverses: for $x>0$ small, $ax\in(-1,0)$ so $\lfloor ax\rfloor=-1$ and the right-hand quotient $\to -\infty$, while for $x<0$ small, $\lfloor ax\rfloor=0$ so left-hand limit is $0$. Hence no finite two-sided limit.\\
-Conclusion: the only $a\in\mathbb{R}$ for which the two-sided finite limit exists is $a=0$.
-\end{subanswer}
-
-\item \textbf{Limit involving the fractional part function} (4 points)\\
-Let $\{t\}=t-\lfloor t\rfloor$ denote the fractional part. Evaluate $\displaystyle \lim_{x\to0^+} x\,\{1/x\}$.\\
-\begin{subanswer}[red][true]
-Set $t=1/x\to+\infty$. Then $x\,\{1/x\}=\frac{\{t\}}{t}$. Since $0\le\{t\}<1$ and $t\to\infty$, $\{t\}/t\to0$. Thus $\displaystyle \lim_{x\to0^+} x\,\{1/x\}=0$.
-\end{subanswer}
-
-
-
-
-
-
-
-\newpage
-
-\item \textbf{Gaussian decay: limits of $x^n e^{-x^2}$} (3 points)\\
-For any fixed integer $n\ge 0$, evaluate $\displaystyle \lim_{x\to\infty} x^n e^{-x^2}$.\\
-\begin{subanswer}[red][true]
-Note that exponential decay dominates any polynomial growth. Using repeated application of L'Hôpital's rule to the form $\dfrac{x^n}{e^{x^2}}$ (or substituting $t=x^2$) yields $0$. Hence $\displaystyle \lim_{x\to\infty} x^n e^{-x^2}=0$ for every integer $n\ge 0$. 
-\end{subanswer}
-
-\item \textbf{Gaussian integral} (4 points)\\
-Prove that for $a>0$, $\displaystyle \int_{-\infty}^{\infty} e^{-a x^2}\,dx=\sqrt{\dfrac{\pi}{a}}\,$.\\
-\begin{subanswer}[red][true]
-Let $I=\int_{-\infty}^{\infty} e^{-a x^2}\,dx$. Then $I^2=\int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} e^{-a(x^2+y^2)}\,dx\,dy$. Switch to polar coordinates: $I^2=\int_{0}^{2\pi}\int_{0}^{\infty} e^{-a r^2} r\,dr\,d\theta=2\pi\cdot \dfrac{1}{2a}=\dfrac{\pi}{a}$. Taking positive square roots gives $I=\sqrt{\dfrac{\pi}{a}}$.
-\end{subanswer}
-
-\item \textbf{Fourier transform of a Gaussian} (5 points)\\
-Using the convention $\displaystyle\mathcal{F}\{f\}(k)=\int_{-\infty}^{\infty} f(x)e^{-ikx}\,dx$, compute $\mathcal{F}\{e^{-a x^2}\}(k)$ for $a>0$.\\
-\begin{subanswer}[red][true]
-Complete the square in the exponent:
-$\displaystyle \int_{-\infty}^{\infty} e^{-a x^2} e^{-ikx}\,dx
-= e^{-k^2/(4a)}\int_{-\infty}^{\infty} e^{-a\left(x+\tfrac{ik}{2a}\right)^2}\,dx$.
-The shift does not change the Gaussian integral value, so the result is $\displaystyle \sqrt{\dfrac{\pi}{a}}\, e^{-k^2/(4a)}$.
-\end{subanswer}
-
-\item \textbf{Convolution of two Gaussians} (4 points)\\
-Let $g_{\sigma}(x)=\dfrac{1}{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$. Show that $g_{\sigma_1}*g_{\sigma_2}=g_{\sqrt{\sigma_1^2+\sigma_2^2}}$.\\
-\begin{subanswer}[red][true]
-Using Fourier transforms, $\mathcal{F}\{g_{\sigma}\}(k)=e^{-(\sigma^2 k^2)/2}$. Convolution corresponds to product of transforms:
-$\mathcal{F}\{g_{\sigma_1}*g_{\sigma_2}\}(k)=e^{-(\sigma_1^2+\sigma_2^2)k^2/2}$,
-which is $\mathcal{F}\{g_{\sqrt{\sigma_1^2+\sigma_2^2}}\}(k)$. Inverse transforming gives $g_{\sigma_1}*g_{\sigma_2}=g_{\sqrt{\sigma_1^2+\sigma_2^2}}$.
-\end{subanswer}
-
-\item \textbf{Narrowing Gaussian and pointwise vs.\ integral limits} (5 points)\\
-Let $\displaystyle G_\sigma(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-x^2/(2\sigma^2)}$ for $\sigma>0$. (a) For fixed $x\neq 0$, compute $\displaystyle \lim_{\sigma\to0^+} G_\sigma(x)$. (b) Compute $\displaystyle \lim_{\sigma\to0^+} \int_{-\varepsilon}^{\varepsilon} G_\sigma(x)\,dx$ for any fixed $\varepsilon>0$.\\
-\begin{subanswer}[red][true]
-(a) For fixed $x\neq 0$, the exponent $-x^2/(2\sigma^2)\to -\infty$ as $\sigma\to0^+$ while the prefactor grows like $1/\sigma$, hence $G_\sigma(x)\to 0$. Thus pointwise for $x\neq0$ the limit is $0$.\\
-(b) Each $G_\sigma$ is a probability density, so $\int_{-\infty}^{\infty} G_\sigma(x)\,dx=1$. As $\sigma\to0^+$ the mass concentrates near $0$, therefore $\displaystyle \lim_{\sigma\to0^+}\int_{-\varepsilon}^{\varepsilon} G_\sigma(x)\,dx=1$ for any fixed $\varepsilon>0$. This demonstrates that $G_\sigma$ converges to the Dirac delta in the distributional sense.
-\end{subanswer}
-
-\item \textbf{Uniform convergence failure for scaled Gaussians} (3 points)\\
-Consider $f_n(x)=n e^{-n^2 x^2}$ on $\mathbb{R}$. Show that $f_n\to 0$ pointwise but the convergence is not uniform on $\mathbb{R}$.\\
-\begin{subanswer}[red][true]
-For fixed $x\neq0$, $n^2 x^2\to\infty$ so $f_n(x)\to0$; at $x=0$, $f_n(0)=n\to\infty$ so pointwise limit is $0$ for every fixed $x\neq0$ but not finite at $x=0$ — to correct: consider $g_n(x)=n^{1/2} e^{-n x^2}$ instead, which satisfies $g_n(0)=n^{1/2}\to\infty$, so choose the standard family $h_n(x)=n e^{-n x^2}$ to observe the sup norm $\sup_x h_n(x)=h_n(0)=n\not\to0$, hence convergence to $0$ is not uniform. Therefore the sequence does not converge uniformly on $\mathbb{R}$.
-\end{subanswer}
-
-
-\end{enumerate}
+% \end{enumerate}
 
 
 

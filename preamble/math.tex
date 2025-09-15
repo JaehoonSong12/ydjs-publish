@@ -12,6 +12,7 @@
 % \@ifpackageloaded{xparse}{}{\usepackage{xparse}}        % define flexible macros (\NewDocumentCommand)
 \@ifpackageloaded{ifthen}{}{\usepackage{ifthen}}        % basic conditional logic (\ifthenelse)
 \@ifpackageloaded{mdframed}{}{\usepackage{mdframed}}    % framed / boxed environments
+\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}    % hyperlinks and cross-references
 \@ifpackageloaded{xcolor}{}{\usepackage{xcolor}         % color definitions and coloring text/math
   \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
   \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
@@ -37,7 +38,7 @@
 
 
 % ------------------------------------------------------------------------------
-% \begin{define}[<color>]{<title>} … \end{define}
+% \begin{define}{<title>}[<color>][<label>] … \end{define}
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
 %   This environment creates a framed definition or theorem with colored background
@@ -48,36 +49,68 @@
 %   - Section symbol (§) followed by title
 %   - Configurable colors for customization
 %   - Proper spacing and typography
+%   - Optional cross-reference label support
 %
 % PARAMETERS:
-%   [<color>]    Background and border color (optional, defaults to graycolor)
 %   {<title>}    Title of the definition/theorem (required)
+%   [<color>]    Background and border color (optional, defaults to graycolor)
+%   [<label>]    Label for cross-referencing (optional, e.g. "def:continuity").
+%                If provided, enables \nameref{<label>} and \pageref{<label>}.
 %
 % DEPENDENCIES:
 %   \usepackage{mdframed}
 %   \usepackage{xcolor}
+%   \usepackage{ifthen}
 %
 % USAGE EXAMPLES:
+%   % Case 1: Basic usage - only title, default gray color, no cross-reference
 %   \begin{define}{Definition of Continuity}
-%     A function f is continuous at a point a if...
+%     A function f is continuous at a point a if for every ε > 0, 
+%     there exists a δ > 0 such that |f(x) - f(a)| < ε whenever |x - a| < δ.
 %   \end{define}
 %
-%   \begin{define}[green]{Important Theorem}
-%     This theorem is framed in green.
+%   % Case 2: With custom color but no cross-reference
+%   \begin{define}{Pythagorean Theorem}[green]
+%     In a right triangle, the square of the hypotenuse equals the sum 
+%     of squares of the other two sides: a² + b² = c².
 %   \end{define}
+%
+%   % Case 3: With cross-reference label (explicitly specify graycolor)
+%   \begin{define}{Fundamental Theorem of Calculus}[graycolor][thm:fundamental]
+%     If f is continuous on [a,b] and F is an antiderivative of f, then
+%     ∫[a to b] f(x) dx = F(b) - F(a).
+%   \end{define}
+%
+%   % Case 4: With both custom color and cross-reference label
+%   \begin{define}{Euler's Identity}[blue][eq:euler]
+%     e^(iπ) + 1 = 0, where e is Euler's number, i is the imaginary unit, 
+%     and π is the ratio of a circle's circumference to its diameter.
+%   \end{define}
+%
+%   % Case 5: Referencing the labeled definitions
+%   As we saw in \nameref{thm:fundamental}, integration and differentiation 
+%   are inverse operations. The beautiful \nameref{eq:euler} connects 
+%   five fundamental mathematical constants.
 % ------------------------------------------------------------------------------
-\newenvironment{define}[2][graycolor]
+\makeatletter % "ENABLE" internal \@... macros
+\NewDocumentEnvironment{define}{ m O{graycolor} O{} }
   {
   \vspace{2pt}
-  \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
-  \color{#1}
-  \textbf{\S~#2}\hspace{6pt}  % Start symbol for definition/theorem with a title
+  \begin{mdframed}[backgroundcolor=#2!10, linecolor=#2]
+  \color{#2}
+  % Create cross-reference if label is provided
+  \ifthenelse{\equal{#3}{}}{}{%
+    \phantomsection
+    \def\@currentlabelname{#1}%
+    \label{#3}%
+  }%
+  \textbf{\S~#1}\hspace{6pt}  % Start symbol for definition/theorem with a title
   \vspace{4pt}
   }
 {
   \end{mdframed}
 }
-
+\makeatother % "DISABLE" internal \@... macros
 % ------------------------------------------------------------------------------
 % \begin{claim}[<color>]{<title>} … \end{claim}
 % ------------------------------------------------------------------------------
