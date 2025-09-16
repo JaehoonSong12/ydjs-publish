@@ -38,7 +38,7 @@
 
 
 % ------------------------------------------------------------------------------
-% \begin{define}{<title>}[<color>][<label>] … \end{define}
+% \begin{define}{<title>}[<label>][<color>] … \end{define}
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
 %   This environment creates a framed definition or theorem with colored background
@@ -53,9 +53,9 @@
 %
 % PARAMETERS:
 %   {<title>}    Title of the definition/theorem (required)
-%   [<color>]    Background and border color (optional, defaults to graycolor)
 %   [<label>]    Label for cross-referencing (optional, e.g. "def:continuity").
 %                If provided, enables \nameref{<label>} and \pageref{<label>}.
+%   [<color>]    Background and border color (optional, defaults to graycolor)
 %
 % DEPENDENCIES:
 %   \usepackage{mdframed}
@@ -65,26 +65,26 @@
 % USAGE EXAMPLES:
 %   % Case 1: Basic usage - only title, default gray color, no cross-reference
 %   \begin{define}{Definition of Continuity}
-%     A function f is continuous at a point a if for every ε > 0, 
-%     there exists a δ > 0 such that |f(x) - f(a)| < ε whenever |x - a| < δ.
+%     A function $f$ is continuous at a point $a$ if for every $\varepsilon > 0$, 
+%     there exists a $\delta > 0$ such that $|f(x) - f(a)| < \varepsilon$ whenever $|x - a| < \delta$.
 %   \end{define}
 %
-%   % Case 2: With custom color but no cross-reference
-%   \begin{define}{Pythagorean Theorem}[green]
+%   % Case 2: With cross-reference label but default color
+%   \begin{define}{Fundamental Theorem of Calculus}[thm:fundamental]
+%     If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$, then
+%     $\int_a^b f(x) \, dx = F(b) - F(a)$.
+%   \end{define}
+%
+%   % Case 3: With both cross-reference label and custom color
+%   \begin{define}{Euler's Identity}[eq:euler][blue]
+%     $e^{i\pi} + 1 = 0$, where $e$ is Euler's number, $i$ is the imaginary unit, 
+%     and $\pi$ is the ratio of a circle's circumference to its diameter.
+%   \end{define}
+%
+%   % Case 4: With custom color but no cross-reference
+%   \begin{define}{Pythagorean Theorem}[][green]
 %     In a right triangle, the square of the hypotenuse equals the sum 
-%     of squares of the other two sides: a² + b² = c².
-%   \end{define}
-%
-%   % Case 3: With cross-reference label (explicitly specify graycolor)
-%   \begin{define}{Fundamental Theorem of Calculus}[graycolor][thm:fundamental]
-%     If f is continuous on [a,b] and F is an antiderivative of f, then
-%     ∫[a to b] f(x) dx = F(b) - F(a).
-%   \end{define}
-%
-%   % Case 4: With both custom color and cross-reference label
-%   \begin{define}{Euler's Identity}[blue][eq:euler]
-%     e^(iπ) + 1 = 0, where e is Euler's number, i is the imaginary unit, 
-%     and π is the ratio of a circle's circumference to its diameter.
+%     of squares of the other two sides: $a^2 + b^2 = c^2$.
 %   \end{define}
 %
 %   % Case 5: Referencing the labeled definitions
@@ -93,16 +93,16 @@
 %   five fundamental mathematical constants.
 % ------------------------------------------------------------------------------
 \makeatletter % "ENABLE" internal \@... macros
-\NewDocumentEnvironment{define}{ m O{graycolor} O{} }
+\NewDocumentEnvironment{define}{ m O{} O{graycolor} }
   {
   \vspace{2pt}
-  \begin{mdframed}[backgroundcolor=#2!10, linecolor=#2]
-  \color{#2}
+  \begin{mdframed}[backgroundcolor=#3!10, linecolor=#3]
+  \color{#3}
   % Create cross-reference if label is provided
-  \ifthenelse{\equal{#3}{}}{}{%
+  \ifthenelse{\equal{#2}{}}{}{%
     \phantomsection
     \def\@currentlabelname{#1}%
-    \label{#3}%
+    \label{#2}%
   }%
   \textbf{\S~#1}\hspace{6pt}  % Start symbol for definition/theorem with a title
   \vspace{4pt}
@@ -112,46 +112,79 @@
 }
 \makeatother % "DISABLE" internal \@... macros
 % ------------------------------------------------------------------------------
-% \begin{claim}[<color>]{<title>} … \end{claim}
+% \begin{claim}[<label>][<color>] … \end{claim}
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
 %   This environment creates a framed claim or assertion with colored background
 %   and border. It provides a visually distinct way to present important claims.
+%   Titles are automatically generated as "Claim 1", "Claim 2", etc.
 %
 % FEATURES:
 %   - Colored frame and background (10% opacity)
-%   - Section symbol (§) followed by title
+%   - Section symbol (§) followed by auto-generated title
+%   - Automatic enumeration (Claim 1, Claim 2, ...)
 %   - Configurable colors for customization
 %   - Proper spacing and typography
+%   - Optional cross-reference label support
 %
 % PARAMETERS:
-%   [<color>]    Background and border color (optional, defaults to bluecolor)
-%   {<title>}    Title of the claim/assertion (required)
+%   [<label>]    Label for cross-referencing (optional, e.g. "claim:key").
+%                If provided, enables \nameref{<label>} and \pageref{<label>}.
+%   [<color>]    Background and border color (optional, defaults to redcolor)
 %
 % DEPENDENCIES:
 %   \usepackage{mdframed}
 %   \usepackage{xcolor}
+%   \usepackage{ifthen}
 %
 % USAGE EXAMPLES:
-%   \begin{claim}{Key Claim}
+%   % Case 1: Auto-generated title with default red color
+%   \begin{claim}
 %     This is an important claim that needs to be proven.
 %   \end{claim}
 %
-%   \begin{claim}[red]{Critical Assertion}
-%     This claim is framed in red.
+%   % Case 2: Auto-generated title with cross-reference label
+%   \begin{claim}[claim:auto]
+%     This claim will be titled "Claim 1" and can be referenced.
 %   \end{claim}
+%
+%   % Case 3: Auto-generated title with custom color
+%   \begin{claim}[][green]
+%     This claim will be titled "Claim 2" and uses green color.
+%   \end{claim}
+%
+%   % Case 4: Auto-generated title with both label and custom color
+%   \begin{claim}[claim:critical][blue]
+%     This claim is critical and needs immediate attention.
+%   \end{claim}
+%
+%   % Case 5: Referencing the labeled claims
+%   As mentioned in \nameref{claim:critical}, we need to address this issue.
+%   The \nameref{claim:auto} provides additional insight.
 % ------------------------------------------------------------------------------
-\newenvironment{claim}[2][bluecolor]
+\newcounter{claimcounter}
+\makeatletter % "ENABLE" internal \@... macros
+\NewDocumentEnvironment{claim}{ O{} O{redcolor} }
   {
   \vspace{2pt}
-  \begin{mdframed}[backgroundcolor=#1!10, linecolor=#1]
-  \color{#1}
-  \textbf{\S~#2}\hspace{6pt}  % Start symbol for claim/assertion with a title
+  \begin{mdframed}[backgroundcolor=#2!10, linecolor=#2]
+  \color{#2}
+  % Always generate auto title
+  \stepcounter{claimcounter}%
+  \edef\@claimtitle{Claim \arabic{claimcounter}}%
+  % Create cross-reference if label is provided
+  \ifthenelse{\equal{#1}{}}{}{%
+    \phantomsection
+    \edef\@currentlabelname{\@claimtitle}%
+    \label{#1}%
+  }%
+  \textbf{\S~\@claimtitle}\hspace{6pt}  % Start symbol for claim/assertion with a title
   \vspace{4pt}
   }
 {
   \end{mdframed}
 }
+\makeatother % "DISABLE" internal \@... macros
 
 
 
