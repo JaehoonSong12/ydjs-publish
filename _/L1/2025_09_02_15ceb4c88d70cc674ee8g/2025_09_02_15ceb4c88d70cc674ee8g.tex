@@ -1,0 +1,189 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\begin{document}
+L1
+
+\section*{L1: Divisibility}
+\begin{itemize}
+  \item Is minute discussion of the Syllabuslexpectations
+  \item Elementary number theory is the study of divisibility properties of the integers ( $\mathbb{Z}$ ).
+  \item This topic dates back to 300 B.C, and many ideas in this class (and used widely today) appeared in "Elements" by Euclid i.e. Enclid's proof of the infinitude of primes, dividion (Enclidean) algorithm, perfect numbers, Pythagorean triples etc.\\
+Definition: Let $a, b \in \mathbb{Z}$. Then $a$ divides $b$, denoted $a \mid b$, if there exists $c \in \mathbb{Z}$ such that $b=a c$. If $a \mid b$, then $a$ is said to be $a$ divisor or factor of $b$. The notation $a \times b$ means that $a$ does not divide $b$.
+\end{itemize}
+
+Example: 316 since there exists $c \in \mathbb{Z}$ such that $6=3 c$. In particular, $c=2$.
+
+\begin{itemize}
+  \item $31-6$ since there exists $c \in \mathbb{Z}$ such that\\
+$-6=3 c$. In particular, $c=-2$.
+  \item If $a \in \mathbb{Z}$, then $a 10$ since there exists\\
+$c \in \mathbb{Z}$ such that $0=a c$. In particular, $c=0$. Any integer divides 0 .
+  \item If $a \in \mathbb{Z}$ and $O \mid a$, then there exists $c \in \mathbb{Z}$ such that $a=O c$ if and only if $a=0$.\\
+Remark: The notation alb does not have the same meaning as $a / b$ and $b / a$. The statement alb is about the relationship between two integers i.e. a divides into $b$ with no remainder.\\
+The notations $a / b$ and $b / a$ mean $a \div b$ and $b \div a$ respectively, and each are rational numbers. Note that $a l b$ implies that a divides $b$ exactly $b / a$ times provided that $a \neq 0$.\\
+Remark: We say O1O because it is consistent with our definition of divisibility. It should not be interpreted as implying that 0 divides $O$ exactly "O/" times. The form "O/O"\\
+is indeterminate, and has no meaning.\\
+Proposition 1.1: Let $a, b, c \in \mathbb{Z}$. If $a \| b$ and $b \mid c$, then alc.\\
+Proof: Since $a l b$ and $b l c$, there exist $e, f \in \mathbb{Z}$ such that $b=a e$ and $c=b f$. Then
+\end{itemize}
+
+$$
+c=b f=(a e) f=a(e f),
+$$
+
+and so $a \mid c$.
+
+\begin{itemize}
+  \item The previous Proposition proves that divisibility is transitive.\\
+Proposition 1.2: Let $a, b, c, m, n \in \mathbb{Z}$. If $c l a$, and $c l b$, then $c l m a+n b$.\\
+Proof: Since $c \mid a$ and $c \mid b$, there exist e, $f \in \mathbb{Z}$ such that $a=c e$ and $b=c f$. Then
+\end{itemize}
+
+$$
+m a+n b=m c e+n c f=c(m e+n f),
+$$
+
+and so $c$ lma+nb.\\
+Definition: The expression $m a+n b$ is said to be an integral linear combination of $a$ and $b$.
+
+Definition: Let $x \in \mathbb{R}$. The greatest integer function of $x$, denoted $[x]$, is the greatest integer less than or equal to $x$.
+
+\begin{itemize}
+  \item The existence of a greatest integer less than or equal to a given real number follows from\\
+(1) Well ordering principle of $\mathbb{Z}$ : any non-empty set of positive integers contains a least element.\\
+(2) Archimedean property of $\mathbb{R}$.
+\end{itemize}
+
+Example: If $a \in \mathbb{Z}$, then $[a]=a$.\\
+The converse that if $[a]=a$ for some $a \in \mathbb{R}$, then $a \in \mathbb{Z}$ is also true.
+
+\begin{itemize}
+  \item $[5 / 3]=1,[\pi]=3,[-5 / 3]=-2,[-\pi]=-4$.
+\end{itemize}
+
+Lemma 1.3: Let $x \in \mathbb{R}$. Then $x-1<[x] \leqslant x$.\\
+Proof: Since the greatest integer function of $x$ is less than or equal to $x$, the second inequality is clear. For the first inequality, assume that $x-1 \geqslant[x]$. Then $[x]+1 \leqslant x$, and
+
+$$
+[x]<[x]+1 \leqslant x .
+$$
+
+Since $[x]+1 \in \mathbb{Z}$, this contradids the fact that $[x]$ is the grentest integer less than or equal to $x$.
+
+Hence $x-1<[x]$, as required.
+
+\begin{itemize}
+  \item When one integer (the divisor) is divided into another integer (the dividend), to obtain an integer quotient, an integer remainder is obtained.\\
+Example: $\quad 5=3 \cdot 1+2$
+  \item "The dividend is equal divisor $\frac{-3}{2}$ to the divisor times the Guotient plus the remainden" remainder
+  \item The remainder is strictly less than the divisor.
+\end{itemize}
+
+Theorem 1.4 (The Division Algorithm):\\
+Let $a, b \in \mathbb{Z}$ with $b>0$. Then there exist unique $q, r \in \mathbb{Z}$ such that
+
+$$
+\begin{aligned}
+& a=b q+r, 0 \leq r<b . \\
+& \ell, 0 \text { remainder } \\
+& \text { quotient }
+\end{aligned}
+$$
+
+Proof: Let $q:=\left[\frac{a}{b}\right]$ and $r=a-b\left[\frac{a}{b}\right]$.\\
+Then $a=b q+r$. We now prove that $0 \leqslant r<b$.
+
+By Lemma 1.3 we have that
+
+$$
+\frac{a}{b}-1<\left[\frac{a}{b}\right] \leqslant \frac{a}{b} .
+$$
+
+Multiplying all terms of this inequality by $-b$ gives
+
+$$
+b-a>-b\left[\frac{a}{b}\right] \geqslant-a .
+$$
+
+Reversing the inequality and adding $a$ to all terms gives
+
+$$
+0 \leqslant a-b\left[\frac{a}{b}\right]<b,
+$$
+
+which is exactly $0 \leqslant r<b$, as desired. Thus the $q$ and $r$ defined above have the desired properties. It remains to show the uniqueness of $q$ and $r$. Assume that
+
+$$
+\begin{array}{ll}
+a=b q_{1}+r_{1}, & 0 \leqslant r_{1}<b . \\
+a=b q_{2}+r_{2}, & 0 \leqslant r_{2}<b .
+\end{array}
+$$
+
+We have $0=a-a=b q_{1}+r_{1}-\left(b q_{2}+r_{2}\right)$
+
+$$
+=b\left(q_{1}-q_{2}\right)+\left(r_{1}-r_{2}\right),
+$$
+
+which implies that
+
+$$
+r_{2}-r_{1}=b\left(q_{1}-q_{2}\right)
+$$
+
+Hence $b \mid r_{2}-r_{1}$. Now $O \leqslant r_{1}<b$ and\\
+$0 \leqslant r_{2}<b$ imply that $-b<r_{2}-r_{1}<b$.\\
+Thus we have $r_{2}-r_{1}=0$ i.e. $r_{1}=r_{2}$. Thus (1)\\
+becomes
+
+$$
+0=b\left(q_{1}-q_{2}\right) .
+$$
+
+Since $b \neq 0$ we have that $q_{1}-q_{2}=0$\\
+i.e. $q_{1}=q_{2}$. Thus we have the uniqueness claim for $q$ and $r$.
+
+\begin{itemize}
+  \item Observe that $r=0$ in the Division Algorithm if and only if $b / a$.\\
+Example: Suppose $a=-5$ and $b=3$.\\
+we have $q=\left[\frac{a}{b}\right]=\left[-\frac{5}{3}\right]=-2$,\\
+and $\quad r=a-b\left[\frac{a}{b}\right]=-5-3(-2)=1$.\\
+Check:
+\end{itemize}
+
+$$
+\begin{aligned}
+a & =\log +r \\
+-5 & =3(-2)+1
+\end{aligned}, 0 \leqslant r=1<3 .
+$$
+
+Remark: What is " 5 divided by 3?" Someone might respond with "-1 with remainder - 2 "\\
+since $-\frac{5}{3}=-1-\frac{2}{3}$. Although $q=-1$\\
+and $r=-2$ satisfy $a=b q+r$, the condition that $0 \leqslant r<b$ in Theorem 1.4 is no longer true. Hence, division in the context of the Division algorithm must be performed carefully so that $a=b q+r$ and $0 \leq r<b$ both hold.
+
+Definition: Let $n \in \mathbb{Z}$. Then $n$ is said to be even if $2 \ln$ and $n$ is said to be odd if $2 \times n$.
+
+Example: The set of even integers is
+
+$$
+\{\cdots,-6,-4,-2,0,2,4,6, \ldots\}
+$$
+
+The set of odd integers is
+
+$$
+\{\cdots,-7,-5,-3,-7,0,1,3,5,7, \cdots\}
+$$
+
+
+\end{document}

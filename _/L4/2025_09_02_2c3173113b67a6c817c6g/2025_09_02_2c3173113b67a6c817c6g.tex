@@ -1,0 +1,154 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\begin{document}
+$44$
+
+\section*{L4: The Fundamental Theorem of Arithmetic}
+Lemma 1.14 (Euclid): Let $a, b, p \in \mathbb{Z}$ with $p$ prime. If $p l a b$, then $p l a$ or $p l b$.\\
+Proof: Assume that $p+a$. Then $(a, p)=1$. We must show that plb. By Proposition (.11, there exist $m, n \in \mathbb{Z}$ such that $m a+n p=1$. Also, plab implies that $a b=p c$ for some $c \in \mathbb{Z}$. After multiplying both sides of $m a+n p=I$ by $b$, we have that $m a b+n p b=b$. Then $a b=p c$ implies that $m p c+n p b=b$, or equivalently $p(m c+n b)=b$. Thus we have $p \mid b$, as desired.
+
+Remark: Note that Lemma 1.14 does not hold if $p$ is composite i.e. take $p=6 a=2, b=3$.
+
+Corollary 1.15: Let $a_{1}, a_{2}, \ldots, a_{n}, p \in \mathbb{Z}$ with $p$ Prime. If $p\left(a_{1} a_{2} \cdots a_{n}\right)$ then $p\left(a_{i}\right.$ for some $i$.
+
+Proof: We use induction on $n$. The statement for $n=1$ is trivially true. The statement for $n=2$ is Lemma 1.14. Assume that $k \geqslant 2$ and that the desired statement is true for $n=k$ i.e. that $p \mid a_{1} \ldots a_{k}$ implies that plai for some $i$ with $1 \leqslant i \leqslant k$. Now we need to prove that $p \mid a_{1} \ldots a_{k+1}$ implies that $p \mid a_{i}$ for some $i$ with $1 \leq i \leq k+1$, So that the desired statement holds for $n=k+1$. Observe that $p \mid a_{1} \ldots a_{k+1}$ implies that $p \mid\left(a_{1} \ldots a_{k}\right) a_{k+1}$, so Lemma 1.14 then implies that $p \mid a_{1} \ldots a_{k}$ or $p \mid a_{k+1}$.\\
+If $p \mid a_{k+1}$ we are done. If $p \nmid a_{k+1}$, then\\
+$p / a_{1} \ldots a_{k}$ which implies that $p / a_{i}$ for some\\
+$i$ with $1 \leq i \leq k$ by the induction hypothesis.\\
+The desired statement holds for $n=k+1$,\\
+as required.
+
+Theorem 1.1.6(FTA): Every integer greater than I can be expressed in the form $p_{1}^{a_{1}} p_{2}^{a_{2}} \ldots p_{n}^{a_{n}}$ with $P_{1}, P_{2}, \cdots, P_{n}$ distinct primes and $a_{1}, a_{2}, \ldots, a_{n}$ positive integers. This form is said to be the prime factorisation of $n$. The prime factorisation is unique except up to permutation of the $p_{i} a_{i}$.\\
+Remark: One of the main reasons 1 is not a prime is because the uniqueness of prime factorisations would be lost otherwise. Proof (of FTA): Assume, by way of contradiction, that $k>I$ is an integer that does not have a prime factorisation. By the well-ordering principle we may assume that $k$ is the least such integer. Note that $k$ can't be prime, otherwise it would be of the desired form. Thus $k$ is composite and $k=a b$ with $\mid<a<k$ and $\mid<b<k$. Due to the minimality of $k$, both $a$ and $b$ have\\
+prime factorisations, and so to does $k=a b$. Contradiction! Thus every integer greater than I has a prime factorisation.\\
+We now need to prove the uniqueness of prime factorisation (up to permutations). Assume $k$ has two prime factorisations, say
+
+$$
+k=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{n}^{a_{n}}=q_{1}^{b_{1}} q_{2}^{b_{2}} \cdots q_{m}^{b_{m}},
+$$
+
+where $p_{1}, p_{2}, \cdots, p_{n}$ are distinct primes,\\
+$q_{1}, q_{2}, \ldots, q_{m}$ are distinct primes, and $a_{1}, a_{2}, \ldots, a_{n}, b_{1}, b_{2}, \ldots, b_{m}$ are positive integers. Without loss of generality, we may assume that $p_{1}<p_{2}<\ldots<p_{n}$ and $q_{1}<q_{2}<\cdots<q_{m}$. We must show that $\left\{\begin{array}{l}n=m \\ p_{i}=q_{i}, i=1, \ldots, n \\ a_{i}=b_{i}, i=1, \ldots, n .\end{array}\right.$
+
+Given a $P_{i}$, we have\\
+$p_{i} \mid q_{1}^{b_{1}} q_{2}^{b_{2}} \ldots q_{m}^{b_{m}}$,\\
+which implies that $p_{i} \mid q_{j}$ for some $j$ by Corollary 1.15. Thus $P_{i}=q_{j}$ for some $j$. Similarly, given some $q_{k}$, we have $q_{k}=P_{e}$ for some $l$. Thus $n=m$. By the ordering of the $p_{i}$ 's and $q_{j}$ s we have $p_{i}=q_{i}$ for $i=1, \ldots, n$. Consequently,
+
+$$
+k=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{n}^{a_{n}}=p_{1}^{b_{1}} p_{2}^{b_{2}} \cdots p_{n}^{b_{n}} .
+$$
+
+Assume, by way of contradiction, that $a_{i} \neq b_{i}$ for some $i$. Without loss of\\
+generality we may assume that $a_{i}<b_{i}$. Then $p_{i}^{b_{i}} \mid p_{1}^{a_{1}} \ldots p_{n}^{a_{n}}$,\\
+which implies that
+
+$$
+p^{b_{i}-a_{i}} \mid p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{i-1}^{a_{i-1}} p_{i+1}^{a_{i+1}} \cdots p_{n}^{a_{n}} .
+$$
+
+Since $b_{i}-a_{i}>0$, we have that
+
+$$
+p_{i} \mid p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{i-1}^{a_{i-1}} p_{i+1}^{a_{i+1}} \cdots p_{n}^{a_{n}},
+$$
+
+from which $P_{i} \mid P_{j}$ for some $j \neq i$ by Corollary 1.15. Contradiction! Thus $a_{i}=b_{i}$, for $i=1,2, \ldots, n$, as required.\\
+Example: $\quad 756=2^{2} 3^{3} 7$\\
+Definition: Let $a, b \in \mathbb{Z}$ with $a, b>0$. The least common multiple of $a$ and $b$, denoted $[a, b] \mathrm{J}$ is the least positive integer $m$ such that $a / m$ and $b / m$.\\
+Remark: Given two positive integers $a, b$, Consider the set
+
+$$
+T:=\{c: c \in \mathbb{Z}, c>0, a \mid c, \text { and } b \mid c\} .
+$$
+
+We have $a b>0$ and $a b \in T$, so $T \neq \phi$, and contains only positive integer, so the least common multiple always exists by the well-ordering Principle.
+
+\section*{Example:}
+\begin{itemize}
+  \item Positive multiples of $6: 6,12,18,24,30,36,(42,48, \ldots$
+\end{itemize}
+
+$$
+\text { of } 7: 7,14,21,28,35,(42), 49,54, \ldots
+$$
+
+$[6,7]=42$.
+
+\begin{itemize}
+  \item Positive multiples of $8: 8,16,24,32,40,48,56,64, \ldots$\\
+$[6,8]=24$
+  \item The FTA can be used to compute gcds and lcms.
+\end{itemize}
+
+Proposition 1.17: Let $a, b \in \mathbb{Z}$ with $a, b>1$. Write $a=p_{1}^{a_{1}} p_{2}^{a_{2}} \ldots p_{n}^{a_{n}}$ and $b=p_{1}^{b_{1}} p_{2}^{b_{2}} \ldots p_{n}^{b_{n}}$, where $p_{1}, \ldots, p_{n}$ are distinct primes and $a_{1}, a_{2}, \ldots, a_{n}, b_{1}, \ldots, b_{n}$ are non-negative integers (possibly zero). Then\\
+$(a, b)=P_{1}^{\min \left\{a_{1}, b_{1}\right\}} P_{2}^{\min \left\{a_{2}, b_{2}\right\}} \ldots P_{n}^{\min \left\{a_{n}, b_{n}\right\}}$ and,\\
+$[a, b]=P_{1}^{\max \left\{a_{1}, b_{1}\right\}} P_{2}^{\max \left\{a_{2}, b_{2}\right\}} \ldots P_{n}^{\max \left\{a_{n}, b_{n}\right\}}$.
+
+Proof: This follows from the FTA and definitions of $(a, b)$ and $[a, b]$.\\
+(8)
+
+Example: Find $(756,2205)$ and $[756,2205]$ using prime factorisations.
+
+$$
+\begin{gathered}
+756=2^{2} 3^{3} 5^{0} 7^{1} \\
+2205=2^{0} 3^{2} 5^{1} 7^{2} \\
+(756,2205)=2^{0} 3^{2} 5^{0} 7=63 \\
+{[756,2205]=2^{2} 3^{3} 5^{1} 7^{2}=26460}
+\end{gathered}
+$$
+
+Remark:
+
+\begin{itemize}
+  \item Prime factorisations most certainly do not make the Enclidean algorithm for computing gcds obsolete. Prime factorisations for large integers are hard to obtain!\\
+Lemma 1.18: Let $x, y \in \mathbb{R}$. Then
+\end{itemize}
+
+$$
+\max \{x, y\}+\min \{x, y\}=x+y .
+$$
+
+Proof: If $x<y$, then $\max \{x, y\}=y$\\
+and $\min \{x, y\}=x$, and the result follows. (9)\\
+The cases for $x=y$ and $x>y$ are similar.\\
+Theorem 1.19: Let $a, b \in \mathbb{Z}$ with $a, b>0$.\\
+Then $(a, b)[a, b]=a b$.\\
+Proof: If $a, b>1$, write
+
+$$
+a=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{n}^{a_{n}}
+$$
+
+and $\quad b=p_{1}^{b_{1}} p_{2}^{b_{2}} \cdots p_{n}^{b_{n}}$ )\\
+with $p_{1}, \ldots p_{n}$ distinct primes and $a_{1}, \ldots, a_{n}$,\\
+$b_{1}, \cdots$, bn won-negative integers. Then by\\
+Proposition 1.17,\\
+$(a, b)[a, b]$\\
+$=P_{1}^{\min \left\{a_{1}, b_{1}\right\}} P_{2}^{\min \left\{a_{2}, b_{2}\right\}} \cdots P_{n}^{\min \left\{a_{n}, b_{n}\right\}}$\\
+$\times P_{1}^{\max \left\{a_{1}, b_{1}\right\}} P_{2}^{\max \left\{a_{2}, b_{2}\right\}} \ldots P_{n}^{\max \left\{a_{n}, b_{n}\right\}}$\\
+$=p^{\min \left\{a_{1}, b_{1}\right\}+\max \left\{a_{1}, b_{1}\right\} \quad \min \left\{a_{n}, b_{n}\right\}+\max \left\{a_{n}, b_{n}\right\}}$\\
+$\cdots P_{n}$\\
+$a_{n}+b_{n}$\\
+(by Lemma 1.18)\\
+$=\left(p_{1}^{a_{1}} \ldots p_{n}^{a_{n}}\right)\left(p_{1}^{b_{1}} \ldots p_{n}^{b_{n}}\right)$\\
+$=a b$, as required.\\
+The cases $\left\{\begin{array}{l}a=1 \text { and } b>1 \\ a> \pm \text { and } b=1 \\ a=b=1\end{array}\right.$\\
+are left as an exercise.
+
+\begin{itemize}
+  \item To find the 1 cm of two positive integers without using prime factorisation, compute their gcd using the Euclidean algorithm, and then use Theorem 1.19.\\
+Conollary 1.20: Let $a, b \in \mathbb{Z}$ with $a, b>0$. Then $[a, b]=a b$ if and only if $(a, b)=1$.\\
+Proof: Left as an exercise.\\
+Hint: Use Theorem 1.19.
+\end{itemize}
+
+\end{document}
