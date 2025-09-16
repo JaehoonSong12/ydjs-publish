@@ -7,200 +7,114 @@
 \input{reference.tex}
 \newpage
 
-% Recalls from lecture notes (for cross-reference via \nameref)
-\begin{define}{Definition (Congruence modulo $m$)}[def:congruence][redcolor]
-Let $a,b,m\in\mathbb{Z}$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$}, and write
-\[
- a\equiv b\pmod{m},
-\]
-if $m\mid (a-b)$. The integer $m$ is called the \emph{modulus} of the congruence.
-\end{define}
 
-\begin{define}{Proposition 2.4 (Arithmetic with congruences)}[prop:2.4][redcolor]
-Let $a,b,c,d\in\mathbb{Z}$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
-\begin{enumerate}
-  \item $a+c\equiv b+d\pmod{m}$,
-  \item $ac\equiv bd\pmod{m}$.
-\end{enumerate}
-\end{define}
 
-\begin{define}{Corollary 2.8 (When inverses exist)}[cor:2.8][redcolor]
-The congruence $ax\equiv 1\pmod{m}$ has a solution if and only if $\gcd(a,m)=1$. In that case the
-inverse is unique modulo $m$.
-\end{define}
 
-\begin{define}{Theorem 2.9 (Chinese Remainder Theorem)}[thm:2.9][redcolor]
-Let $m_1,\dots,m_n$ be pairwise relatively prime positive integers and let $b_1,\dots,b_n\in\mathbb{Z}$.
-Then the system $x\equiv b_i\pmod{m_i}$ for $i=1,\dots,n$ has a solution, unique modulo $M:=m_1\cdots m_n$.
-\end{define}
-
-\begin{define}{Theorem 2.11 (Wilson's Theorem)}[thm:2.11][redcolor]
-Let $p$ be prime. Then $(p-1)!\equiv -1\pmod{p}$.
-\end{define}
 
 \begin{enumerate}
 \item Exercise Set 1.5, \#61.
 Find the greatest common divisor and the least common multiple of each pair of integers below.
-\begin{enumerate}
-\item $2^2 \cdot 3^3 \cdot 5 \cdot 7$, \quad $2^2 \cdot 3^2 \cdot 5 \cdot 7^2$
-\begin{subanswer}
-Let $a = 2^2 \cdot 3^3 \cdot 5 \cdot 7$ and $b = 2^2 \cdot 3^2 \cdot 5 \cdot 7^2$.
-\begin{define}{Definition (gcd and lcm)}[def:gcdlcm][redcolor]
-For nonzero integers $a,b$, the greatest common divisor $(a,b)$ and least common multiple $[a,b]$ are defined in the usual way. One has the prime-power rules
-\[
- (a,b)=\prod p^{\min(\alpha_p,\beta_p)},\qquad [a,b]=\prod p^{\max(\alpha_p,\beta_p)},
-\]
-when $a=\prod p^{\alpha_p}$ and $b=\prod p^{\beta_p}$ are prime factorizations.
+\begin{define}{GCD and LCM}[def:gcdlcm][redcolor]
+  For nonzero integers $a,b$, the greatest common divisor $(a,b)$ and least common 
+  multiple $[a,b]$ are defined in the usual way. One has the prime-power rules
+  \[
+  (a,b)=\prod p^{\min(\alpha_p,\beta_p)},\qquad [a,b]=\prod p^{\max(\alpha_p,\beta_p)},
+  \]
+  when $a=\prod p^{\alpha_p}$ and $b=\prod p^{\beta_p}$ are prime factorizations.
 \end{define}
-By the prime factorization method:
-\begin{align*}
-\gcd(a,b) &= 2^{\min(2,2)} \cdot 3^{\min(3,2)} \cdot 5^{\min(1,1)} \cdot 7^{\min(1,2)} \\
-&= 2^2 \cdot 3^2 \cdot 5^1 \cdot 7^1 \\
-&= 4 \cdot 9 \cdot 5 \cdot 7 = 1260
-\end{align*}
-\begin{align*}
-\lcm(a,b) &= 2^{\max(2,2)} \cdot 3^{\max(3,2)} \cdot 5^{\max(1,1)} \cdot 7^{\max(1,2)} \\
-&= 2^2 \cdot 3^3 \cdot 5^1 \cdot 7^2 \\
-&= 4 \cdot 27 \cdot 5 \cdot 49 \qquad(\text{value not expanded})
-\end{align*}
-\end{subanswer}
-
-\item $2^2 \cdot 5^2 \cdot 7^3 \cdot 11^2$, \quad $3 \cdot 5 \cdot 11 \cdot 13 \cdot 17$
-\begin{subanswer}
-Let $a = 2^2 \cdot 5^2 \cdot 7^3 \cdot 11^2$ and $b = 3 \cdot 5 \cdot 11 \cdot 13 \cdot 17$.
-\begin{align*}
-\gcd(a,b) &= 5^{\min(2,1)} \cdot 11^{\min(2,1)} = 5^1 \cdot 11^1 = 55
-\end{align*}
-\begin{align*}
-\lcm(a,b) &= 2^{\max(2,0)} \cdot 3^{\max(0,1)} \cdot 5^{\max(2,1)} \cdot 7^{\max(3,0)} \cdot 11^{\max(2,1)} \cdot 13^{\max(0,1)} \cdot 17^{\max(0,1)} \\
-&= 2^2 \cdot 3^1 \cdot 5^2 \cdot 7^3 \cdot 11^2 \cdot 13^1 \cdot 17^1 \\
-&= 4 \cdot 3 \cdot 25 \cdot 343 \cdot 121 \cdot 13 \cdot 17 = 2,186,847,300
-\end{align*}
-\end{subanswer}
-
-\item $2^2 \cdot 5^7 \cdot 11^{13}$, \quad $3^2 \cdot 7^5 \cdot 13^{11}$
-\begin{subanswer}
-Let $a = 2^2 \cdot 5^7 \cdot 11^{13}$ and $b = 3^2 \cdot 7^5 \cdot 13^{11}$.
-Since $a$ and $b$ have no common prime factors, $\gcd(a,b) = 1$.
-\begin{align*}
-\lcm(a,b) &= 2^{\max(2,0)} \cdot 3^{\max(0,2)} \cdot 5^{\max(7,0)} \cdot 7^{\max(0,5)} \cdot 11^{\max(13,0)} \cdot 13^{\max(0,11)} \\
-&= 2^2 \cdot 3^2 \cdot 5^7 \cdot 7^5 \cdot 11^{13} \cdot 13^{11} \\
-&= 4 \cdot 9 \cdot 78,125 \cdot 16,807 \cdot 11^{13} \cdot 13^{11}
-\end{align*}
-\end{subanswer}
-
-\item $3 \cdot 17 \cdot 19^2 \cdot 23$, \quad $5 \cdot 7^2 \cdot 11 \cdot 19 \cdot 29$
-\begin{subanswer}
-Let $a = 3 \cdot 17 \cdot 19^2 \cdot 23$ and $b = 5 \cdot 7^2 \cdot 11 \cdot 19 \cdot 29$.
-\begin{align*}
-\gcd(a,b) &= 19^{\min(2,1)} = 19^1 = 19
-\end{align*}
-\begin{align*}
-\lcm(a,b) &= 3^{\max(1,0)} \cdot 5^{\max(0,1)} \cdot 7^{\max(0,2)} \cdot 11^{\max(0,1)} \cdot 17^{\max(1,0)} \cdot 19^{\max(2,1)} \cdot 23^{\max(1,0)} \cdot 29^{\max(0,1)} \\
-&= 3^1 \cdot 5^1 \cdot 7^2 \cdot 11^1 \cdot 17^1 \cdot 19^2 \cdot 23^1 \cdot 29^1 \\
-&= 3 \cdot 5 \cdot 49 \cdot 11 \cdot 17 \cdot 361 \cdot 23 \cdot 29 = 1,234,567,890
-\end{align*}
-\end{subanswer}
-\end{enumerate}
-
-
-
-
-\item Exercise Set 1.5, \#70.  
-Prove or disprove the following statements.
 \begin{enumerate}
-\item If $a,b \in \mathbb{Z}$, $a,b>0$, and $a^2 \mid b^3$, then $a \mid b$.
-\begin{subprove}
-This statement is \textbf{false}. Take $a=8$, $b=4$. Then $a^2=64$ and $b^3=64$, so $a^2\mid b^3$ but $a\nmid b$.
-\end{subprove}
-
-\item If $a,b \in \mathbb{Z}$, $a,b>0$, and $a^2 \mid b^2$, then $a \mid b$.
-\begin{subprove}
-This statement is \textbf{true}. We prove it using prime factorization.
-Let $a = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$ and $b = p_1^{f_1} p_2^{f_2} \cdots p_k^{f_k}$ be the prime factorizations of $a$ and $b$, where $p_i$ are distinct primes and $e_i, f_i \geq 0$.
-
-Since $a^2 \mid b^2$, we have $a^2 = p_1^{2e_1} p_2^{2e_2} \cdots p_k^{2e_k}$ divides $b^2 = p_1^{2f_1} p_2^{2f_2} \cdots p_k^{2f_k}$.
-
-This means $2e_i \leq 2f_i$ for all $i$, which implies $e_i \leq f_i$ for all $i$.
-
-Therefore, $a = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$ divides $b = p_1^{f_1} p_2^{f_2} \cdots p_k^{f_k}$.
-\end{subprove}
-
-\item If $a \in \mathbb{Z}$, $a>0$, $p$ is a prime number, and $p^4 \mid a^3$, then $p^2 \mid a$.   
-\begin{subprove}
-This statement is \textbf{true}. We prove it using prime factorization.
-Let $a = p^{k} \cdot m$ where $p \nmid m$ and $k \geq 0$. Then $a^3 = p^{3k} \cdot m^3$.
-
-Since $p^4 \mid a^3$, we have $p^4 \mid p^{3k} \cdot m^3$. Since $p \nmid m$, we have $p^4 \mid p^{3k}$.
-
-This means $4 \leq 3k$, which implies $k \geq \frac{4}{3}$. Since $k$ is an integer, we have $k \geq 2$.
-
-Therefore, $p^2 \mid p^k \mid a$, so $p^2 \mid a$.
-\end{subprove}
+  \item $2^2 \cdot 3^3 \cdot 5 \cdot 7$, \quad $2^2 \cdot 3^2 \cdot 5 \cdot 7^2$
+  \begin{subanswer}
+    Let $a = 2^2 \cdot 3^3 \cdot 5 \cdot 7$ and $b = 2^2 \cdot 3^2 \cdot 5 \cdot 7^2$.
+    By the prime factorization method,
+    \begin{align*}
+    \gcd(a,b) &= 2^{\min(2,2)} \cdot 3^{\min(3,2)} \cdot 5^{\min(1,1)} \cdot 7^{\min(1,2)} = 2^2 \cdot 3^2 \cdot 5^1 \cdot 7^1 \\
+    \lcm(a,b) &= 2^{\max(2,2)} \cdot 3^{\max(3,2)} \cdot 5^{\max(1,1)} \cdot 7^{\max(1,2)} = 2^2 \cdot 3^3 \cdot 5^1 \cdot 7^2
+    \end{align*}
+  \end{subanswer}
+  \item $2^2 \cdot 5^2 \cdot 7^3 \cdot 11^2$, \quad $3 \cdot 5 \cdot 11 \cdot 13 \cdot 17$
+  \begin{subanswer}
+    Let $a = 2^2 \cdot 5^2 \cdot 7^3 \cdot 11^2$ and $b = 3 \cdot 5 \cdot 11 \cdot 13 \cdot 17$. Considering common prime factors of $a$ and $b$,
+    \begin{align*}
+    \gcd(a,b) &= 5^{\min(2,1)} \cdot 11^{\min(2,1)} = 5^1 \cdot 11^1 \\
+    \lcm(a,b) &= 2^2 \cdot 3^1 \cdot 5^2 \cdot 7^3 \cdot 11^2 \cdot 13^1 \cdot 17^1
+    \end{align*}
+  \end{subanswer}
+  \item $2^2 \cdot 5^7 \cdot 11^{13}$, \quad $3^2 \cdot 7^5 \cdot 13^{11}$
+  \begin{subanswer}
+    Let $a = 2^2 \cdot 5^7 \cdot 11^{13}$ and $b = 3^2 \cdot 7^5 \cdot 13^{11}$.
+    Since $a$ and $b$ have no common prime factors, $\gcd(a,b) = 1$.
+    \begin{align*}
+    \lcm(a,b) &= 2^{\max(2,0)} \cdot 3^{\max(0,2)} \cdot 5^{\max(7,0)} \cdot 7^{\max(0,5)} \cdot 11^{\max(13,0)} \cdot 13^{\max(0,11)} \\
+    &= 2^2 \cdot 3^2 \cdot 5^7 \cdot 7^5 \cdot 11^{13} \cdot 13^{11}
+    \end{align*}
+  \end{subanswer}
+  \item $3 \cdot 17 \cdot 19^2 \cdot 23$, \quad $5 \cdot 7^2 \cdot 11 \cdot 19 \cdot 29$
+  \begin{subanswer}
+    Let $a = 3 \cdot 17 \cdot 19^2 \cdot 23$ and $b = 5 \cdot 7^2 \cdot 11 \cdot 19 \cdot 29$.
+    \begin{align*}
+    \gcd(a,b) &= 19^{\min(2,1)} = 19^1 = 19 \\
+    \lcm(a,b) &= 3^1 \cdot 5^1 \cdot 7^2 \cdot 11^1 \cdot 17^1 \cdot 19^2 \cdot 23^1 \cdot 29^1
+    \end{align*}
+  \end{subanswer}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 \newpage
-\item Exercise Set 1.5, \#78  
-Let $n \in \mathbb{Z}$ with $n>1$. The $n$th \emph{harmonic number} $H_n$
+\item Exercise Set 1.5, \#70.
+Prove or disprove the following statements.
+\begin{enumerate}
+  \item If $a,b \in \setZ$, $a,b>0$, and $a^2 \mid b^3$, then $a \mid b$.
+  \begin{subdisprove}
+    Take $a=8$, $b=4$. Then $a^2=64$ and $b^3=64$, so $a^2\mid b^3$ but $a\nmid b$.\vspace*{10px}\\
+    Therefore, by counterexample, it has been disproved.
+  \end{subdisprove}
+  \item If $a,b \in \setZ$, $a,b>0$, and $a^2 \mid b^2$, then $a \mid b$.
+  \begin{subprove}
+    Let $a = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$ and $b = p_1^{f_1} p_2^{f_2} \cdots p_k^{f_k}$ 
+    be the prime factorizations of $a$ and $b$, where $p_i$ are distinct primes and 
+    $e_i, f_i \geq 0$. Then, suppose $a^2 = p_1^{2e_1} p_2^{2e_2} \cdots p_k^{2e_k}$ divides 
+    $b^2 = p_1^{2f_1} p_2^{2f_2} \cdots p_k^{2f_k}$ 
+    for the sake of direct proof. This implies $2e_i \leq 2f_i$ for all $i$, also, it implies 
+    $e_i \leq f_i$ for all $i$. Thus, $a \mid b$.\vspace*{10px}\\
+    Therefore, by direct proof, $a,b \in \setZ$, $a,b>0$, and $a^2 \mid b^2$ only if $a \mid b$.
+  \end{subprove}
+  \item If $a \in \setZ$, $a>0$, $p$ is a prime number, and $p^4 \mid a^3$, then $p^2 \mid a$.   
+  \begin{subprove}
+    Let $a = p^{k} \cdot m$ where $p \nmid m$ and $k \geq 0$. 
+    Then, $a^3 = p^{3k} \cdot m^3$. Suppose $p^4 \mid a^3$ for the sake of direct proof. 
+    Then, $p^4 \mid p^{3k} \cdot m^3$, so $p^4 \mid p^{3k}$ since $p \nmid m$.
+    This implies $4 \leq 3k$, which implies $k \geq \frac{4}{3}$, so $k \geq 2$ since $k$ is an integer.
+    Thus, $p^2 \mid p^k$ and $p^k \mid a$, so $p^2 \mid a$ by transitivity.\vspace*{10px}\\
+    Therefore, by direct proof, $a \in \setZ$, $a>0$, $p$ is a prime number, and $p^4 \mid a^3$ only if $p^2 \mid a$.   
+  \end{subprove}
+\end{enumerate}
+\item Exercise Set 1.5, \#78. 
+Let $n \in \setZ$ with $n>1$. The $n$th \emph{harmonic number} $H_n$
 is defined by $H_n:=1+\tfrac{1}{2}+\tfrac{1}{3}+\cdots+\tfrac{1}{n}$.
-Prove that $H_n \not \in \mathbb{Z}$.
+Prove that $H_n \not \in \setZ$.
 \begin{subprove}
-We prove this by contradiction. Suppose $H_n \in \mathbb{Z}$ for some $n > 1$.
-
-Let $m$ be the largest power of 2 that divides $n!$. That is, $2^m \mid n!$ but $2^{m+1} \nmid n!$.
-
-Consider $n! \cdot H_n = n! \left(1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n}\right)$.
-
-This can be written as:
-\[
-n! \cdot H_n = n! + \frac{n!}{2} + \frac{n!}{3} + \cdots + \frac{n!}{n}
-\]
-
-Since $H_n \in \mathbb{Z}$ by assumption, we have $n! \cdot H_n \in \mathbb{Z}$.
-
-Now, let's analyze the power of 2 in each term:
-\begin{itemize}
-\item The term $n!$ has exactly $m$ factors of 2.
-\item The term $\frac{n!}{2}$ has exactly $m-1$ factors of 2.
-\item For terms $\frac{n!}{k}$ where $k$ is odd, they have exactly $m$ factors of 2.
-\item For terms $\frac{n!}{k}$ where $k$ is even but not a power of 2, they have at least $m-1$ factors of 2.
-\end{itemize}
-
-The only term with exactly $m-1$ factors of 2 is $\frac{n!}{2}$. All other terms have at least $m$ factors of 2.
-
-Therefore, $n! \cdot H_n$ has exactly $m-1$ factors of 2, which means it is odd.
-
-But since $H_n \in \mathbb{Z}$ and $n!$ is even (since $n > 1$), we have $n! \cdot H_n$ is even.
-
-This is a contradiction. Therefore, $H_n \not \in \mathbb{Z}$.
+  Assume $H_n \in \setZ$ for some integer $n>1$ for the sake of contradiction.
+  Let $L = \operatorname{lcm}(1,2,\dots,n)$ and 
+  $r$ be the largest integer with $2^r\le n$. By the definition of $\operatorname{lcm}$,
+  $2^r\mid L$ but $2^{r+1}\nmid L$.
+  Since $H_n\in\setZ$ by assumption, $L\cdot H_n\in\setZ$ by closure of the integers under multiplication.
+  Now, consider
+  \[
+    L\cdot H_n = \sum_{k=1}^n \frac{L}{k},
+  \]
+  where each $\dfrac{L}{k}$ is an integer. If $k=2^r$ then $k$ contains exactly the $r$ factors of 
+  $2$ that $L$ contains, so $\dfrac{L}{2^r}$ is odd. If $k\neq 2^r$, let $k=2^s\cdot t$ where $t$ 
+  odd and $s<r$ by assumption. Thus, $\dfrac{L}{k}=\dfrac{L}{2^s t}$ still contains at least one 
+  factor of $2$ and hence is even. This implies $L\cdot H_n$ is odd since it is summation of evens
+  with only one odd integer. (the case of $k=2^r$)
+  However, $2\LDIV L \group{= \operatorname{lcm}(1,2,\dots,n)}$ by assumption. 
+  If $H_n\in\setZ$, then $L\cdot H_n$ is a multiple of $L$. 
+  Since $L$ is even, $L\cdot H_n$ is also even, which contradicts the fact that $L\cdot H_n$ is odd.\vspace*{10px}\\
+  Therefore, by contradiction, $H_n\not\in\setZ$ for every integer $n>1$.
 \end{subprove}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -208,56 +122,38 @@ This is a contradiction. Therefore, $H_n \not \in \mathbb{Z}$.
 
 \newpage 
 \item Exercise Set 1.5, \#87.
-\begin{enumerate}
-\item Let $a,b \in \mathbb{Z}$. Prove that if $a$ and $b$ are expressible in the form $6n+1$, where $n$ is an integer, then $ab$ is also expressible in that form.
-\begin{subprove}
-Let $a = 6m + 1$ and $b = 6k + 1$ for some integers $m, k$.
-Then:
-\begin{align*}
-ab &= (6m + 1)(6k + 1) \\
-&= 36mk + 6m + 6k + 1 \\
-&= 6(6mk + m + k) + 1
-\end{align*}
-Since $6mk + m + k$ is an integer, we have $ab = 6n + 1$ where $n = 6mk + m + k$.
-Therefore, $ab$ is expressible in the form $6n+1$.
-\end{subprove}
-
-\item Prove that there are infinitely many prime numbers of the form $6n+5$, where $n$ is an integer. (Hint: Parallel the proof of Proposition 1.22 that uses proof by contradiction).
-\begin{subprove}
-We prove this by contradiction, following the approach of Proposition 1.22.
-\begin{define}{Proposition 1.22 (Infinitely many primes $\equiv 3\ (4)$)}[prop:1.22][redcolor]
-There are infinitely many primes of the form $4n+3$. See \nameref{prop:1.22} in the notes.
+\begin{define}{Proposition 1.22}[prop:1.22][redcolor]
+  There are infinitely many primes of the form $4n+3$, where $n$ is a nonnegative integer.
+  In other words, Infinitely many primes congruent to $3$ modulo $4$.
 \end{define}
-
-Suppose there are only finitely many primes of the form $6n+5$. Let them be $p_1, p_2, \ldots, p_k$.
-
-Consider the number $N = 6(p_1 p_2 \cdots p_k) - 1$.
-
-Since $N \equiv -1 \equiv 5 \pmod{6}$, we have $N = 6m + 5$ for some integer $m$.
-
-Now, $N$ is not divisible by any of the primes $p_1, p_2, \ldots, p_k$ since $N \equiv -1 \pmod{p_i}$ for each $i$.
-
-Also, $N$ is not divisible by 2 or 3, since $N \equiv 5 \pmod{6}$.
-
-Therefore, all prime factors of $N$ must be of the form $6n+1$ or $6n+5$.
-
-However, if all prime factors of $N$ were of the form $6n+1$, then $N$ would be of the form $6n+1$ (by part (a)), which contradicts $N = 6m + 5$.
-
-Therefore, $N$ must have at least one prime factor of the form $6n+5$, but this prime factor is not in our list $p_1, p_2, \ldots, p_k$.
-
-This contradicts our assumption that there are only finitely many primes of the form $6n+5$.
-
-Therefore, there are infinitely many primes of the form $6n+5$.
+\begin{enumerate}
+\item Let $a,b \in \setZ$. Prove that if $a$ and $b$ are expressible in the form $6n+1$, 
+where $n$ is an integer, then $ab$ is also expressible in that form.
+\begin{subprove}
+  Let $a=6x+1$ and $b=6y+1$ for some $x,y\in\setZ$ for the sake of direct proof. Then
+  \[
+    ab=(6x+1)(6y+1)=36xy+6x+6y+1=6\bigl(6xy+x+y\bigr)+1.
+  \]
+  Since $6xy+x+y\in\setZ$, $ab$ has the form $6n+1$.\vspace*{10px}\\
+  Therefore, by direct proof, $a$ and $b$ are of the form $6n+1$ only if so is $ab$.
+\end{subprove}
+\item Prove that there are infinitely many prime numbers of the form $6n+5$, where $n$ is an integer. 
+(Hint: Parallel the proof of Proposition 1.22 that uses proof by contradiction).
+\begin{subprove}
+  Suppose there are only finitely many primes of the form $6n+5$ for the sake of contradiction.
+  List them as $p_1,\dots,p_k$, where each $p_i\equiv 5\pmod{6}$. Let $P:=p_1p_2\cdots p_k$ and
+  consider the integer
+  \[
+    N:=6P-1.
+  \]
+  Then $N\equiv -1\equiv 5\pmod{6}$, so $N>1$ and $N$ is not divisible by $2$ or $3$.
+  Let $q$ be any prime divisor of $N$. Since $q\nmid 6$, we must have $q\ge 5$ and hence
+  $q\equiv 1\text{ or }5\pmod{6}$. Moreover, none of $p_1,\dots,p_k$ divides $N$ because each $p_i$ divides $6P$ and hence cannot divide $6P-1=N$.
+  If all prime divisors of $N$ were congruent to $1\pmod{6}$, then their product would be $\equiv 1\pmod{6}$, contradicting $N\equiv 5\pmod{6}$. Therefore, at least one prime divisor $q$ of $N$ satisfies $q\equiv 5\pmod{6}$.
+  This $q$ is a prime of the form $6n+5$ not among $p_1,\dots,p_k$, contradicting the assumed finiteness.\vspace*{10px}\\
+  Therefore, by contradiction, there are infinitely many primes of the form $6n+5$ like \nameref{prop:1.22}.
 \end{subprove}
 \end{enumerate}
-
-
-
-
-
-
-
-
 
 
 
@@ -265,61 +161,36 @@ Therefore, there are infinitely many primes of the form $6n+5$.
 
 \newpage 
 \item Exercise Set 2.1, \#12. 
-Let $a,b,c,d \in \mathbb{Z}$ such that $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$. Prove or disprove the following statements.
-\begin{enumerate}
-\item $(a-c) \equiv (b-d) \pmod{m}$.
-\begin{subprove}
-This statement is \textbf{true}. We prove it using the definition of congruence.
-\begin{define}{Congruence}[def:congruence][redcolor]
-Let $a,b,m\in\Z$ with $m>0$. We say \emph{$a$ is congruent to $b$ modulo $m$}, and write $a\equiv b\pmod{m}$, if $m\mid(a-b)$.
+Let $a,b,c,d \in \setZ$ such that $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$. Prove or disprove the following statements.
+\begin{define}{Congruence modulo $m$}[def:congruence][redcolor]
+  Let $a,b,m\in\setZ$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$}, and write
+  \[
+  a\equiv b\pmod{m},
+  \]
+  if $m\mid (a-b)$. The integer $m$ is called the \emph{modulus} of the congruence.
 \end{define}
-
-Since $a \equiv b \pmod{m}$, we have $m \mid (a-b)$.
-Since $c \equiv d \pmod{m}$, we have $m \mid (c-d)$.
-
-Therefore, $m \mid (a-b) - (c-d) = (a-c) - (b-d)$.
-
-By the definition of congruence, this means $(a-c) \equiv (b-d) \pmod{m}$.
-\end{subprove}
-
-\item If $c \mid a$ and $d \mid b$, then $\tfrac{a}{c} \equiv \tfrac{b}{d} \pmod{m}$.
-\begin{subprove}
-This statement is \textbf{false}. We provide a counterexample.
-Let $a = 6$, $b = 3$, $c = 2$, $d = 1$, and $m = 3$.
-
-Then $a \equiv b \pmod{m}$ since $6 \equiv 3 \pmod{3}$.
-Also $c \equiv d \pmod{m}$ since $2 \equiv 1 \pmod{3}$.
-
-We have $c \mid a$ since $2 \mid 6$, and $d \mid b$ since $1 \mid 3$.
-
-However, $\tfrac{a}{c} = \tfrac{6}{2} = 3$ and $\tfrac{b}{d} = \tfrac{3}{1} = 3$.
-
-Since $3 \equiv 3 \pmod{3}$, we have $\tfrac{a}{c} \equiv \tfrac{b}{d} \pmod{m}$ in this case.
-
-Let me try a different counterexample: $a = 8$, $b = 2$, $c = 4$, $d = 2$, and $m = 3$.
-
-Then $a \equiv b \pmod{m}$ since $8 \equiv 2 \pmod{3}$.
-Also $c \equiv d \pmod{m}$ since $4 \equiv 2 \pmod{3}$.
-
-We have $c \mid a$ since $4 \mid 8$, and $d \mid b$ since $2 \mid 2$.
-
-However, $\tfrac{a}{c} = \tfrac{8}{4} = 2$ and $\tfrac{b}{d} = \tfrac{2}{2} = 1$.
-
-Since $2 \not\equiv 1 \pmod{3}$, we have $\tfrac{a}{c} \not\equiv \tfrac{b}{d} \pmod{m}$.
-
-Therefore, the statement is false.
-\end{subprove}
+\begin{enumerate}
+  \item $(a-c) \equiv (b-d) \pmod{m}$.
+  \begin{subprove}
+    Assume $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$ for the sake of direct proof. By \nameref{def:congruence}, 
+    $m$ divides their difference,
+    \[
+      (a-b)-(c-d)=(a-c)-(b-d),
+    \]
+    since divisibility is closed under subtraction. Thus $m\mid\bigl((a-c)-(b-d)\bigr)$, i.e.,
+    $(a-c)\equiv(b-d)\pmod{m}$.\vspace*{10px}\\
+    Therefore, by direct proof, $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$ only if $(a-c) \equiv (b-d) \pmod{m}$.
+  \end{subprove}
+  \item If $c \mid a$ and $d \mid b$, then $\tfrac{a}{c} \equiv \tfrac{b}{d} \pmod{m}$.
+  \begin{subdisprove}
+    Take $m=4$, $a=4$, $b=8$, $c=2$, and $d=2$.
+    Then $a\equiv b\pmod{4}$ and $c\equiv d\pmod{4}$, with $c\mid a$ and $d\mid b$. But
+    \[
+      \frac{a}{c}=2 \not\equiv 4=\frac{b}{d} \pmod{4} \quad(2\not\equiv 0\pmod{4}).
+    \]
+    Therefore, by counterexample, it has been disproved.
+  \end{subdisprove}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -327,99 +198,41 @@ Therefore, the statement is false.
 
 
 \newpage 
-\item Exercise Set 2.1 \#13
+\item Exercise Set 2.1 \#13.
 \begin{enumerate}
-\item Let $a$ be an even integer. Prove that $a^2 \equiv 0 \pmod{4}$.
-\begin{subprove}
-Let $a$ be an even integer. Then $a = 2k$ for some integer $k$.
-Therefore:
-\[
-a^2 = (2k)^2 = 4k^2 = 4(k^2)
-\]
-Since $k^2$ is an integer, we have $a^2 = 4(k^2)$, which means $4 \mid a^2$.
-By the definition of congruence, this means $a^2 \equiv 0 \pmod{4}$.
-\end{subprove}
-
-\item Let $a$ be an odd integer. Prove that $a^2 \equiv 1 \pmod{8}$. Deduce that $a^2 \equiv 1 \pmod{4}$.
-\begin{subprove}
-Let $a$ be an odd integer. Then $a = 2k + 1$ for some integer $k$.
-Therefore:
-\[
-a^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 4k(k + 1) + 1
-\]
-Since $k(k + 1)$ is always even (as one of $k$ or $k+1$ must be even), we have $k(k + 1) = 2m$ for some integer $m$.
-Therefore:
-\[
-a^2 = 4(2m) + 1 = 8m + 1
-\]
-This means $a^2 \equiv 1 \pmod{8}$.
-
-Since $a^2 \equiv 1 \pmod{8}$, we have $8 \mid (a^2 - 1)$.
-Since $4 \mid 8$, we have $4 \mid (a^2 - 1)$ by transitivity of divisibility.
-Therefore, $a^2 \equiv 1 \pmod{4}$.
-\end{subprove}
-
-\item Prove that if $n$ is a positive integer such that $n \equiv 3 \pmod{4}$, then $n$ can't be written as the sum of
-two squares of integers.
-\begin{subprove}
-We prove this by contradiction. Suppose $n \equiv 3 \pmod{4}$ and $n = a^2 + b^2$ for some integers $a, b$.
-
-By parts (a) and (b), we know that:
-\begin{itemize}
-\item If $a$ is even, then $a^2 \equiv 0 \pmod{4}$.
-\item If $a$ is odd, then $a^2 \equiv 1 \pmod{4}$.
-\end{itemize}
-
-The same holds for $b$. Therefore, $a^2 + b^2$ can only be congruent to:
-\begin{itemize}
-\item $0 + 0 = 0 \pmod{4}$ (both even)
-\item $0 + 1 = 1 \pmod{4}$ (one even, one odd)
-\item $1 + 0 = 1 \pmod{4}$ (one odd, one even)
-\item $1 + 1 = 2 \pmod{4}$ (both odd)
-\end{itemize}
-
-However, $n \equiv 3 \pmod{4}$, which is not achievable as a sum of two squares.
-
-This is a contradiction. Therefore, if $n \equiv 3 \pmod{4}$, then $n$ cannot be written as the sum of two squares.
-\end{subprove}
-
-\item Prove or disprove the converse of the statement in part (c) above.
-\begin{subprove}
-The converse statement is: "If $n$ cannot be written as the sum of two squares, then $n \equiv 3 \pmod{4}$."
-
-This statement is \textbf{false}. We provide a counterexample.
-
-Let $n = 6$. Then $n \equiv 2 \pmod{4}$.
-
-We show that $6$ cannot be written as the sum of two squares:
-\begin{itemize}
-\item $6 = 0^2 + 6^2$ is not valid since $6^2 = 36 > 6$.
-\item $6 = 1^2 + 5^2 = 1 + 25 = 26 \neq 6$.
-\item $6 = 2^2 + 2^2 = 4 + 4 = 8 \neq 6$.
-\end{itemize}
-
-In fact, $6$ cannot be written as the sum of two squares, but $6 \not\equiv 3 \pmod{4}$.
-
-Therefore, the converse is false.
-\end{subprove}
+  \item Let $a$ be an even integer. Prove that $a^2 \equiv 0 \pmod{4}$.
+  \begin{subprove}
+    Let $a$ be even, so $a=2k$ for some $k\in\setZ$ for the sake of direct proof. Then
+    \[
+      a^2=(2k)^2=4k^2,
+    \]
+    so $4\mid a^2$. By \nameref{def:congruence}, $a^2\equiv 0\pmod{4}$.\vspace*{10px}\\
+    Therefore, by direct proof, if $a$ is even then $a^2\equiv 0\pmod{4}$.
+  \end{subprove}
+  \item Let $a$ be an odd integer. Prove that $a^2 \equiv 1 \pmod{8}$. Deduce that $a^2 \equiv 1 \pmod{4}$.
+  \begin{subprove}
+    Let $a$ be odd, so $a=2k+1$ for some $k\in\setZ$ for the sake of direct proof. Then
+    \[
+      a^2=(2k+1)^2=4k(k+1)+1.
+    \]
+    Since $k(k+1)$ is even, $k(k+1)=2m$ for some $m\in\setZ$, so $a^2=8m+1\equiv 1\pmod{8}$. \vspace*{10px}\\
+    Therefore, by direct proof, if $a$ is odd then $a^2\equiv 1\pmod{8}$ and hence $a^2\equiv 1\pmod{4}$.
+  \end{subprove}
+  \item Prove that if $n$ is a positive integer such that $n \equiv 3 \pmod{4}$, then $n$ can't be written as the sum of
+  two squares of integers.
+  \begin{subprove}
+    Suppose $n\equiv 3\pmod{4}$ and $n=a^2+b^2$ with $a,b\in\setZ$ for the sake of contradiction. 
+    By parts (a) and (b), each square is congruent to $0\pmod{4}$ or $1\pmod{4}$, 
+    so $a^2+b^2\equiv 0,1,$ or $2\pmod{4}$, never $3$, which contradicts the assumption.\vspace*{10px}\\
+    Therefore, by contradiction, if $n\equiv 3\pmod{4}$ then $n$ is not a sum of two squares.
+  \end{subprove}
+  \item Prove or disprove the converse of the statement in part (c) above.
+  \begin{subdisprove}
+    Take $n=6\equiv 2\pmod{4}$ since $6\ne x^2+y^2$ for any $x,y\in\setZ$. 
+    Then, $n\equiv 2\pmod{4}$, not $n\equiv 3\pmod{4}.$\vspace*{10px}\\
+    Therefore, by counterexample, the converse is disproved.
+  \end{subdisprove}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -428,301 +241,125 @@ Therefore, the converse is false.
 \newpage 
 \item Exercise Set 2.2, \#29 (b),(d),(f).
 Find the inverse modulo $m$ of each integer $n$ below.
-\begin{enumerate}
-\item $n=8$, $m=35$.
-\begin{subanswer}
-We need to find an integer $x$ such that $8x \equiv 1 \pmod{35}$.
-\begin{define}{Corollary 2.8 (When inverses exist)}[cor:2.8][redcolor]
-If $\gcd(a,m)=1$ then there exists $x$ with $ax\equiv 1\pmod m$, unique modulo $m$; otherwise no inverse exists. (See \nameref{cor:2.8}.)
+\begin{define}{Corollary 2.8}[cor:2.8][redcolor]
+  The congruence $ax\equiv 1\pmod{m}$ has a solution if and only if $\gcd(a,m)=1$. In that case the
+  inverse is unique modulo $m$.
 \end{define}
-
-We use the Extended Euclidean Algorithm to find $\gcd(8,35)$ and express it as a linear combination:
-\[
-35 = 8 \cdot 4 + 3
-\]
-\[
-8 = 3 \cdot 2 + 2
-\]
-\[
-3 = 2 \cdot 1 + 1
-\]
-\[
-2 = 1 \cdot 2 + 0
-\]
-
-Working backwards:
-\[
-1 = 3 - 2 \cdot 1 = 3 - (8 - 3 \cdot 2) = 3 \cdot 3 - 8 = (35 - 8 \cdot 4) \cdot 3 - 8 = 35 \cdot 3 - 8 \cdot 13
-\]
-
-Therefore, $1 = 35 \cdot 3 - 8 \cdot 13$, which means $8 \cdot (-13) \equiv 1 \pmod{35}$.
-
-Since $-13 \equiv 22 \pmod{35}$, the modular inverse of $8$ modulo $35$ is $22$.
-\end{subanswer}
-
-\item $n=51$, $m=99$.
-\begin{subanswer}
-We need to find an integer $x$ such that $51x \equiv 1 \pmod{99}$.
-
-First, we find $\gcd(51,99)$:
-\[
-99 = 51 \cdot 1 + 48
-\]
-\[
-51 = 48 \cdot 1 + 3
-\]
-\[
-48 = 3 \cdot 16 + 0
-\]
-
-Since $\gcd(51,99) = 3 \neq 1$, the modular inverse of $51$ modulo $99$ does not exist.
-\end{subanswer}
-
-\item $n=1333$, $m=1517$.
-\begin{subanswer}
-We need to find an integer $x$ such that $1333x \equiv 1 \pmod{1517}$.
-
-We use the Extended Euclidean Algorithm:
-\[
-1517 = 1333 \cdot 1 + 184
-\]
-\[
-1333 = 184 \cdot 7 + 45
-\]
-\[
-184 = 45 \cdot 4 + 4
-\]
-\[
-45 = 4 \cdot 11 + 1
-\]
-\[
-4 = 1 \cdot 4 + 0
-\]
-
-Working backwards:
-\[
-1 = 45 - 4 \cdot 11 = 45 - (184 - 45 \cdot 4) \cdot 11 = 45 \cdot 45 - 184 \cdot 11
-\]
-\[
-= (1333 - 184 \cdot 7) \cdot 45 - 184 \cdot 11 = 1333 \cdot 45 - 184 \cdot 326
-\]
-\[
-= 1333 \cdot 45 - (1517 - 1333 \cdot 1) \cdot 326 = 1333 \cdot 371 - 1517 \cdot 326
-\]
-
-Therefore, $1 = 1333 \cdot 371 - 1517 \cdot 326$, which means $1333 \cdot 371 \equiv 1 \pmod{1517}$.
-
-The modular inverse of $1333$ modulo $1517$ is $371$.
-\end{subanswer}
+\begin{enumerate}
+  \item $n=8$, $m=35$.
+  \begin{subanswer}
+    By \nameref{cor:2.8}, since $\gcd(8,35)=1$, an inverse exists. From the extended Euclidean algorithm,
+    \[
+      1=35\cdot 3-8\cdot 13,
+    \]
+    so $8\cdot(-13)\equiv 1\pmod{35}$. As $-13\equiv 22\pmod{35}$, the inverse is $22$.\vspace*{10px}\\
+    Therefore, by the extended Euclidean algorithm, $8^{-1}\equiv 22\pmod{35}$.
+  \end{subanswer}
+  \item $n=51$, $m=99$.
+  \begin{subanswer}
+    By \nameref{cor:2.8}, an inverse exists iff $\gcd(51,99)=1$. Since $\gcd(51,99)=3\ne 1$, no inverse exists.\vspace*{10px}\\
+    Therefore, by \nameref{cor:2.8}, $51$ has no inverse modulo $99$.
+  \end{subanswer}
+  \item $n=1333$, $m=1517$.
+  \begin{subanswer}
+    By \nameref{cor:2.8}, the inverse exists since $\gcd(1333,1517)=1$. A backward substitution yields
+    \[
+      1=1333\cdot 371-1517\cdot 326,
+    \]
+    so $1333\cdot 371\equiv 1\pmod{1517}$.\vspace*{10px}\\
+    Therefore, by the extended Euclidean algorithm, $1333^{-1}\equiv 371\pmod{1517}$.
+  \end{subanswer}
 \end{enumerate}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage 
+\newpage
 \item Exercise Set 2.3, \#33(a),(e), 34 (b) 
 Find the least non-negative solution of each system of congruences below.
+\begin{define}{Chinese Remainder Theorem}[thm:2.9][redcolor]
+  Let $m_1,\dots,m_n$ be pairwise relatively prime positive integers and let $b_1,\dots,b_n\in\setZ$.
+  Then the system $x\equiv b_i\pmod{m_i}$ for $i=1,\dots,n$ has a solution, unique modulo $M:=m_1\cdots m_n$.
+\end{define}
+% \begin{define}{Congruences Arithmetic}[prop:2.4][redcolor]
+% Let $a,b,c,d\in\setZ$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
+% \begin{enumerate}
+%   \item $a+c\equiv b+d\pmod{m}$,
+%   \item $ac\equiv bd\pmod{m}$.
+% \end{enumerate}
+% \end{define}
 \begin{enumerate}
-\item 
-\begin{align*}
-x & \equiv 3 \pmod{4} \\
-x & \equiv 2 \pmod{5}
-\end{align*}
-\begin{subanswer}
-We use the Chinese Remainder Theorem. Since $\gcd(4,5) = 1$, the system has a unique solution modulo $4 \cdot 5 = 20$.
-
-Let $x = 4k + 3$ for some integer $k$. Substituting into the second congruence:
-\[
-4k + 3 \equiv 2 \pmod{5}
-\]
-\[
-4k \equiv -1 \equiv 4 \pmod{5}
-\]
-\[
-k \equiv 1 \pmod{5}
-\]
-
-Therefore, $k = 5m + 1$ for some integer $m$, so:
-\[
-x = 4(5m + 1) + 3 = 20m + 7
-\]
-
-The least non-negative solution is $x = 7$.
-\end{subanswer}
-
-\item 
-\begin{align*}
-x & \equiv 1 \pmod{2} \\
-x & \equiv 2 \pmod{3} \\
-x & \equiv 4 \pmod{5} \\
-x & \equiv 6 \pmod{7} 
-\end{align*}
-\begin{subanswer}
-We solve this step by step using the Chinese Remainder Theorem.
-
-First, solve $x \equiv 1 \pmod{2}$ and $x \equiv 2 \pmod{3}$:
-Let $x = 2k + 1$. Then $2k + 1 \equiv 2 \pmod{3}$, so $2k \equiv 1 \pmod{3}$, which gives $k \equiv 2 \pmod{3}$.
-Therefore, $x = 2(3m + 2) + 1 = 6m + 5$.
-
-Next, solve $x \equiv 5 \pmod{6}$ and $x \equiv 4 \pmod{5}$:
-Let $x = 6k + 5$. Then $6k + 5 \equiv 4 \pmod{5}$, so $6k \equiv -1 \equiv 4 \pmod{5}$, which gives $k \equiv 4 \pmod{5}$.
-Therefore, $x = 6(5m + 4) + 5 = 30m + 29$.
-
-Finally, solve $x \equiv 29 \pmod{30}$ and $x \equiv 6 \pmod{7}$:
-Let $x = 30k + 29$. Then $30k + 29 \equiv 6 \pmod{7}$, so $30k \equiv -23 \equiv 5 \pmod{7}$, which gives $k \equiv 4 \pmod{7}$.
-Therefore, $x = 30(7n + 4) + 29 = 210n + 149$.
-
-The least non-negative solution is $x = 149$.
-\end{subanswer}
-
-\item 
-\begin{align*}
-3x & \equiv 2 \pmod{4} \\
-4x & \equiv 1 \pmod{5} \\
-6x & \equiv 3 \pmod{9} \\
-\end{align*}
-\begin{subanswer}
-We first solve each congruence for $x$:
-
-For $3x \equiv 2 \pmod{4}$: Since $\gcd(3,4) = 1$, we have $x \equiv 2 \cdot 3^{-1} \equiv 2 \cdot 3 \equiv 6 \equiv 2 \pmod{4}$.
-
-For $4x \equiv 1 \pmod{5}$: Since $\gcd(4,5) = 1$, we have $x \equiv 1 \cdot 4^{-1} \equiv 1 \cdot 4 \equiv 4 \pmod{5}$.
-
-For $6x \equiv 3 \pmod{9}$: Since $\gcd(6,9) = 3$ and $3 \mid 3$, we have $2x \equiv 1 \pmod{3}$, so $x \equiv 2 \pmod{3}$.
-
-Now we solve the system:
-\begin{align*}
-x & \equiv 2 \pmod{4} \\
-x & \equiv 4 \pmod{5} \\
-x & \equiv 2 \pmod{3}
-\end{align*}
-
-First, solve $x \equiv 2 \pmod{4}$ and $x \equiv 2 \pmod{3}$:
-Let $x = 4k + 2$. Then $4k + 2 \equiv 2 \pmod{3}$, so $4k \equiv 0 \pmod{3}$, which gives $k \equiv 0 \pmod{3}$.
-Therefore, $x = 4(3m) + 2 = 12m + 2$.
-
-Next, solve $x \equiv 2 \pmod{12}$ and $x \equiv 4 \pmod{5}$:
-Let $x = 12k + 2$. Then $12k + 2 \equiv 4 \pmod{5}$, so $12k \equiv 2 \pmod{5}$, which gives $k \equiv 1 \pmod{5}$.
-Therefore, $x = 12(5n + 1) + 2 = 60n + 14$.
-
-The least non-negative solution is $x = 14$.
-\end{subanswer}
+  \item 
+  \begin{align*}
+  x & \equiv 3 \pmod{4} \\
+  x & \equiv 2 \pmod{5}
+  \end{align*}
+  \begin{subanswer}
+    Since $\gcd(4,5)=1$, there is a unique solution modulo $20$. Let $x=4k+3$. 
+    Then $4k+3\equiv 2\pmod{5}$ gives $4k\equiv 4\pmod{5}$, so $k\equiv 1\pmod{5}$ 
+    and $x=20m+7$.\vspace*{10px}\\
+    Therefore, by the \nameref{thm:2.9}, the least non-negative solution is $x=7$.
+  \end{subanswer}
+  \item 
+  \begin{align*}
+  x & \equiv 1 \pmod{2} \\
+  x & \equiv 2 \pmod{3} \\
+  x & \equiv 4 \pmod{5} \\
+  x & \equiv 6 \pmod{7} 
+  \end{align*}
+  \begin{subanswer}
+    Combine congruences stepwise. From $x\equiv 1\pmod{2}$ and $x\equiv 2\pmod{3}$, 
+    write $x=2k+1$, so $2k+1\equiv 2\pmod{3}$ which gives $2k\equiv 1\pmod{3}$. 
+    Multiplying by $2^{-1}\equiv 2\pmod{3}$ yields $k\equiv 2\pmod{3}$, 
+    hence $x=2(3n+2)+1=6n+5$, so $x\equiv 5\pmod{6}$. 
+    With $x=6k+5$ and $x\equiv 4\pmod{5}$, we get $6k+5\equiv 4\pmod{5}$, 
+    so $k\equiv -1\equiv 4\pmod{5}$, yielding $x=6(5n+4)+5=30n+29$, so $x\equiv 29\pmod{30}$. 
+    Finally, with $x=30k+29$ and $x\equiv 6\pmod{7}$, we have $30k+29\equiv 6\pmod{7}$. 
+    This simplifies to $2k+1\equiv 6\pmod{7}$, so $2k\equiv 5\pmod{7}$. 
+    Since $2^{-1}\equiv 4\pmod{7}$, we find $k\equiv 5 \cdot 4 \equiv 20 \equiv 6\pmod{7}$. 
+    This gives $x=30(7n+6)+29=210n+180+29=210n+209$.\vspace*{10px}\\
+    Therefore, by the \nameref{thm:2.9}, the least non-negative solution is $x=209$.
+  \end{subanswer}
+  \item 
+  \begin{align*}
+  3x & \equiv 2 \pmod{4} \\
+  4x & \equiv 1 \pmod{5} \\
+  6x & \equiv 3 \pmod{9} \\
+  \end{align*}
+  \begin{subanswer}
+    Reduce each congruence. Since $3^{-1}\equiv 3\pmod{4}$, $x\equiv 2\cdot 3\equiv 2\pmod{4}$. 
+    Since $4^{-1}\equiv 4\pmod{5}$, $x\equiv 1\cdot 4\equiv 4\pmod{5}$. 
+    From $6x\equiv 3\pmod{9}$ we get $2x\equiv 1\pmod{3}$, so $x\equiv 2\pmod{3}$. Now solve
+    \begin{align*}
+    x & \equiv 2 \pmod{4} \\
+    x & \equiv 4 \pmod{5} \\
+    x & \equiv 2 \pmod{3}.
+    \end{align*}
+    Let $x=4k+2$. Then $4k\equiv 0\pmod{3}$ so $k\equiv 0\pmod{3}$, giving $x\equiv 2\pmod{12}$. 
+    With $x=12k+2$ and $x\equiv 4\pmod{5}$, we obtain $12k\equiv 2\pmod{5}$, 
+    so $k\equiv 1\pmod{5}$ and $x=60n+14$.\vspace*{10px}\\
+    Therefore, by the \nameref{thm:2.9}, the least non-negative solution is $x=14$.
+  \end{subanswer}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage 
 \item Exercise Set 2.3 \#35.
 There are $n$ eggs in a basket. If eggs are removed from the basket $2,3,4,5$ and $6$ at a time,
 there remain $1,2,3,4$ and $5$ eggs in the basket, respectively. If eggs are removed from the basket
 $7$ at a time, no eggs remain in the basket.  What is the smallest value of $n$ for which this scenario could 
 occur (Show all of your work)?
 \begin{subanswer}
-We translate this problem into a system of congruences:
-\begin{align*}
-n & \equiv 1 \pmod{2} \\
-n & \equiv 2 \pmod{3} \\
-n & \equiv 3 \pmod{4} \\
-n & \equiv 4 \pmod{5} \\
-n & \equiv 5 \pmod{6} \\
-n & \equiv 0 \pmod{7}
-\end{align*}
-
-We solve this step by step using the Chinese Remainder Theorem.
-
-First, solve $n \equiv 1 \pmod{2}$ and $n \equiv 2 \pmod{3}$:
-Let $n = 2k + 1$. Then $2k + 1 \equiv 2 \pmod{3}$, so $2k \equiv 1 \pmod{3}$, which gives $k \equiv 2 \pmod{3}$.
-Therefore, $n = 2(3m + 2) + 1 = 6m + 5$.
-
-Next, solve $n \equiv 5 \pmod{6}$ and $n \equiv 3 \pmod{4}$:
-Let $n = 6k + 5$. Then $6k + 5 \equiv 3 \pmod{4}$, so $6k \equiv -2 \equiv 2 \pmod{4}$, which gives $k \equiv 1 \pmod{2}$.
-Therefore, $n = 6(2m + 1) + 5 = 12m + 11$.
-
-Next, solve $n \equiv 11 \pmod{12}$ and $n \equiv 4 \pmod{5}$:
-Let $n = 12k + 11$. Then $12k + 11 \equiv 4 \pmod{5}$, so $12k \equiv -7 \equiv 3 \pmod{5}$, which gives $k \equiv 4 \pmod{5}$.
-Therefore, $n = 12(5m + 4) + 11 = 60m + 59$.
-
-Next, solve $n \equiv 59 \pmod{60}$ and $n \equiv 5 \pmod{6}$:
-Let $n = 60k + 59$. Then $60k + 59 \equiv 5 \pmod{6}$, so $60k \equiv -54 \equiv 0 \pmod{6}$, which gives $k \equiv 0 \pmod{1}$.
-Therefore, $n = 60m + 59$.
-
-Finally, solve $n \equiv 59 \pmod{60}$ and $n \equiv 0 \pmod{7}$:
-Let $n = 60k + 59$. Then $60k + 59 \equiv 0 \pmod{7}$, so $60k \equiv -59 \equiv 4 \pmod{7}$, which gives $k \equiv 3 \pmod{7}$.
-Therefore, $n = 60(7t + 3) + 59 = 420t + 239$.
-
-The smallest positive solution is $n = 239$.
-
-Verification:
-\begin{itemize}
-\item $239 \div 2 = 119$ remainder $1$ (true)
-\item $239 \div 3 = 79$ remainder $2$ (true)
-\item $239 \div 4 = 59$ remainder $3$ (true)
-\item $239 \div 5 = 47$ remainder $4$ (true)
-\item $239 \div 6 = 39$ remainder $5$ (true)
-\item $239 \div 7 = 34$ remainder $1$ (false)
-\end{itemize}
-
-Let me recalculate. The issue is with the last step. Let me solve $n \equiv 59 \pmod{60}$ and $n \equiv 0 \pmod{7}$:
-Let $n = 60k + 59$. Then $60k + 59 \equiv 0 \pmod{7}$, so $60k \equiv -59 \equiv 4 \pmod{7}$.
-Since $60 \equiv 4 \pmod{7}$, we have $4k \equiv 4 \pmod{7}$, so $k \equiv 1 \pmod{7}$.
-Therefore, $n = 60(7t + 1) + 59 = 420t + 119$.
-
-The smallest positive solution is $n = 119$.
-
-Verification:
-\begin{itemize}
-\item $119 \div 2 = 59$ remainder $1$ (true)
-\item $119 \div 3 = 39$ remainder $2$ (true)
-\item $119 \div 4 = 29$ remainder $3$ (true)
-\item $119 \div 5 = 23$ remainder $4$ (true)
-\item $119 \div 6 = 19$ remainder $5$ (true)
-\item $119 \div 7 = 17$ remainder $0$ (true)
-\end{itemize}
-
-Therefore, the smallest value of $n$ is $119$.
+  Translation to congruences are done as follows.
+  \begin{align*}
+  n & \equiv 1 \pmod{2},\quad n \equiv 2 \pmod{3},\quad n \equiv 3 \pmod{4},\\
+  n & \equiv 4 \pmod{5},\quad n \equiv 5 \pmod{6},\quad n \equiv 0 \pmod{7}.
+  \end{align*}
+  Solve stepwise. From the first two, $n\equiv 5\pmod{6}$. With $n=6k+5$ and $n\equiv 3\pmod{4}$, 
+  we get $6k\equiv -2\equiv 2\pmod{4}$, so $k\equiv 1\pmod{2}$ and $n\equiv 11\pmod{12}$. 
+  With $n=12k+11$ and $n\equiv 4\pmod{5}$, we obtain $12k\equiv -7\equiv 3\pmod{5}$, so 
+  $k\equiv 4\pmod{5}$ and $n\equiv 59\pmod{60}$. Finally, write $n=60k+59$ and impose 
+  $n\equiv 0\pmod{7}$ to get $60k\equiv -59\equiv 4\pmod{7}$. Since $60\equiv 4\pmod{7}$, 
+  we have $4k\equiv 4\pmod{7}$, so $k\equiv 1\pmod{7}$ and $n=420t+119$. 
+  The smallest positive solution is $n=119$.\vspace*{10px}\\
+  Therefore, by the \nameref{thm:2.9}, the smallest $n$ is $119$.
 \end{subanswer}
 
 
@@ -730,14 +367,7 @@ Therefore, the smallest value of $n$ is $119$.
 
 
 
-
-
-
-
-
-
-
-
+\newpage
 \item Exercise Set 2.3, \#40.
 Prove that the system of linear congruences in one variable given by 
 \begin{align*}
@@ -748,160 +378,90 @@ x & \equiv b_n \pmod{m_n}
 \end{align*}
 is solvable if and only if $(m_i,m_j) \mid b_i-b_j$ for all pairs $i,j$ with $i \neq j$. In this case, prove that each solution is unique modulo $[m_1,m_2,\ldots,m_n]$.
 \begin{subprove}
-We prove both directions of the biconditional statement.
-
-($\Rightarrow$) Assume the system is solvable. Let $x_0$ be a solution.
-Then $x_0 \equiv b_i \pmod{m_i}$ and $x_0 \equiv b_j \pmod{m_j}$ for all $i,j$.
-Therefore, $b_i \equiv x_0 \equiv b_j \pmod{m_i}$ and $b_i \equiv x_0 \equiv b_j \pmod{m_j}$.
-This means $m_i \mid (b_i - b_j)$ and $m_j \mid (b_i - b_j)$.
-Since $(m_i, m_j)$ divides both $m_i$ and $m_j$, we have $(m_i, m_j) \mid (b_i - b_j)$.
-
-($\Leftarrow$) Assume $(m_i, m_j) \mid (b_i - b_j)$ for all pairs $i,j$ with $i \neq j$.
-We prove by induction on $n$.
-
-Base case ($n = 2$): The system $x \equiv b_1 \pmod{m_1}$ and $x \equiv b_2 \pmod{m_2}$ is solvable if and only if $(m_1, m_2) \mid (b_1 - b_2)$.
-This is a standard result from the Chinese Remainder Theorem.
-
-Inductive step: Assume the result holds for $n-1$ congruences.
-Consider the system with $n$ congruences. By the inductive hypothesis, the first $n-1$ congruences have a solution $x_0$ modulo $[m_1, m_2, \ldots, m_{n-1}]$.
-
-We need to solve $x \equiv x_0 \pmod{[m_1, m_2, \ldots, m_{n-1}]}$ and $x \equiv b_n \pmod{m_n}$.
-This is solvable if and only if $([m_1, m_2, \ldots, m_{n-1}], m_n) \mid (x_0 - b_n)$.
-
-Since $x_0 \equiv b_i \pmod{m_i}$ for $i = 1, 2, \ldots, n-1$, we have $x_0 - b_n \equiv b_i - b_n \pmod{m_i}$.
-By our assumption, $(m_i, m_n) \mid (b_i - b_n)$ for all $i$.
-Since $[m_1, m_2, \ldots, m_{n-1}]$ is divisible by each $m_i$, we have $([m_1, m_2, \ldots, m_{n-1}], m_n) \mid (b_i - b_n)$ for all $i$.
-
-Therefore, the system is solvable.
-
-For uniqueness: If $x_1$ and $x_2$ are both solutions, then $x_1 \equiv x_2 \pmod{m_i}$ for all $i$.
-This means $m_i \mid (x_1 - x_2)$ for all $i$.
-Since $[m_1, m_2, \ldots, m_n]$ is the least common multiple of the $m_i$, we have $[m_1, m_2, \ldots, m_n] \mid (x_1 - x_2)$.
-Therefore, $x_1 \equiv x_2 \pmod{[m_1, m_2, \ldots, m_n]}$.
+  ($\Rightarrow$) Assume a solution $x_0$ exists for the sake of direct proof. 
+  Then for any pair $i,j$, we have $x_0 \equiv b_i \pmod{m_i}$ and $x_0 \equiv b_j \pmod{m_j}$. 
+  Let $d = \gcd(m_i, m_j)$. Since $d$ divides both $m_i$ and $m_j$, we can reduce the congruences 
+  modulo $d$ to get $x_0 \equiv b_i \pmod d$ and $x_0 \equiv b_j \pmod d$. By transitivity, this 
+  implies $b_i \equiv b_j \pmod d$, which is the condition $\gcd(m_i, m_j) \mid (b_i - b_j)$.\vspace*{10px}\\
+  ($\Leftarrow$) Assume $\gcd(m_i,m_j)\mid(b_i-b_j)$ for all $i\ne j$ for the sake of direct proof. 
+  We proceed by induction on $n$. The base case $n=2$ is solvable, as the congruence 
+  $m_1 k \equiv b_2 - b_1 \pmod{m_2}$ has a solution if and only if $\gcd(m_1, m_2) \mid (b_2 - b_1)$. 
+  For the inductive step, assume a solution exists for the first $n-1$ congruences. Let this solution 
+  be $x_0$, which is unique modulo $M:=[m_1,\dots,m_{n-1}]$. We must solve the system
+  \[
+    x\equiv x_0\pmod{M},\qquad x\equiv b_n\pmod{m_n}.
+  \]
+  This system is solvable if and only if $\gcd(M,m_n)\mid(x_0-b_n)$. For any $i < n$, we have 
+  $x_0 \equiv b_i \pmod{m_i}$, so $x_0-b_n \equiv b_i-b_n \pmod{m_i}$. By hypothesis, 
+  $\gcd(m_i,m_n)\mid(b_i-b_n)$, so $x_0-b_n$ is a multiple of $\gcd(m_i,m_n)$ for all $i<n$. 
+  It follows that $x_0-b_n$ is a multiple of $\lcm(\gcd(m_1,m_n), \dots, \gcd(m_{n-1},m_n))$, 
+  which equals $\gcd(M,m_n)$. The condition holds, so a solution to the full system exists.\vspace*{10px}\\
+  For uniqueness, if $x_1,x_2$ are two solutions, then $m_i\mid(x_1-x_2)$ for all $i$. 
+  Thus, $x_1-x_2$ is a common multiple of all $m_i$, and hence $[m_1,\dots,m_n]\mid(x_1-x_2)$.
+  \vspace*{10px}\\
+  Therefore, the system is solvable exactly under the stated condition, 
+  and solutions are unique modulo $[m_1,\dots,m_n]$.
 \end{subprove}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage 
+\newpage
 \item Exercise Set 2.4, \#43.
-\begin{enumerate}
-\item Prove that if $p$ is an odd prime number, then $2(p-3)! \equiv -1 \pmod{p}$.
-\begin{subprove}
-We use Wilson's Theorem and properties of factorials modulo primes.
-\begin{define}{Wilson's Theorem (recall)}[thm:wilson][redcolor]
-See \nameref{thm:2.11}: if $p$ is prime, then $(p-1)!\equiv -1\pmod p$.
+\begin{define}{Wilson's Theorem}[thm:2.11][redcolor]
+  Let $p$ be prime. Then $(p-1)!\equiv -1\pmod{p}$.
 \end{define}
-
-By Wilson's Theorem, we have $(p-1)! \equiv -1 \pmod{p}$.
-
-Now, $(p-1)! = (p-1)(p-2)(p-3)!$.
-
-Since $p$ is odd, we have $p-1 \equiv -1 \pmod{p}$ and $p-2 \equiv -2 \pmod{p}$.
-
-Therefore:
-\[
-(p-1)! = (p-1)(p-2)(p-3)! \equiv (-1)(-2)(p-3)! \equiv 2(p-3)! \pmod{p}
-\]
-
-Since $(p-1)! \equiv -1 \pmod{p}$, we have:
-\[
-2(p-3)! \equiv -1 \pmod{p}
-\]
-\end{subprove}
-
-\item Find the least non-negative residue of $2(100!) \pmod{103}$.
-\begin{subanswer}
-We use the result from part (a) with $p = 103$.
-
-By part (a), we have $2(103-3)! = 2(100!) \equiv -1 \pmod{103}$.
-
-Since $-1 \equiv 102 \pmod{103}$, the least non-negative residue of $2(100!) \pmod{103}$ is $102$.
-\end{subanswer}
+\begin{enumerate}
+  \item Prove that if $p$ is an odd prime number, then $2(p-3)! \equiv -1 \pmod{p}$.
+  \begin{subprove}
+    By \nameref{thm:2.11} and properties of factorials modulo primes, 
+    $(p-1)!\equiv -1\pmod{p}$. Also, 
+    $(p-1)!=(p-1)(p-2)(p-3)!\equiv (-1)(-2)(p-3)!\equiv 2(p-3)!\pmod{p}$. 
+    Hence, $2(p-3)!\equiv -1\pmod{p}$.\vspace*{10px}\\
+    Therefore, by \nameref{thm:2.11}, $2(p-3)!\equiv -1\pmod{p}$ for odd primes $p$.
+  \end{subprove}
+  \item Find the least non-negative residue of $2(100!) \pmod{103}$.
+  \begin{subanswer}
+    By \nameref{thm:2.11} with $p=103$, $2(103-3)!=2(100!)\equiv -1\pmod{103}$. 
+    Since $-1\equiv 102\pmod{103}$, the least non-negative residue is $102$.\vspace*{10px}\\
+    Therefore, $2(100!)\equiv 102\pmod{103}$.
+  \end{subanswer}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage 
 \item Exercise Set 2.4, \#48.
 Let $p$ be an odd prime number. Prove that 
 \begin{equation*}
 1^2 3^2 5^2 \cdots (p-4)^2 (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}.
 \end{equation*}
+% \begin{define}{Fermat's Little Theorem}[thm:2.13][redcolor]
+% Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
+% \[
+% a^{p-1}\equiv 1\pmod{p}.
+% \]
+% \end{define}
 \begin{subprove}
-We use Wilson's Theorem and properties of quadratic residues.
-\begin{define}{Wilson's Theorem (recall)}[thm:wilson-2][redcolor]
-See \nameref{thm:2.11}: if $p$ is prime, then $(p-1)!\equiv -1\pmod p$.
-\end{define}
-
-By Wilson's Theorem, we have $(p-1)! \equiv -1 \pmod{p}$.
-
-Now, $(p-1)! = 1 \cdot 2 \cdot 3 \cdot 4 \cdots (p-2) \cdot (p-1)$.
-
-Since $p$ is odd, we can pair the terms as follows:
-\[
-(p-1)! = [1 \cdot (p-1)] \cdot [2 \cdot (p-2)] \cdot [3 \cdot (p-3)] \cdots \left[\frac{p-1}{2} \cdot \frac{p+1}{2}\right]
-\]
-
-For each pair $k \cdot (p-k)$ where $1 \leq k \leq \frac{p-1}{2}$, we have:
-\[
-k \cdot (p-k) \equiv k \cdot (-k) \equiv -k^2 \pmod{p}
-\]
-
-Therefore:
-\[
-(p-1)! \equiv (-1^2) \cdot (-3^2) \cdot (-5^2) \cdots (-(p-2)^2) \pmod{p}
-\]
-
-Since there are $\frac{p-1}{2}$ pairs, we have:
-\[
-(p-1)! \equiv (-1)^{(p-1)/2} \cdot 1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \pmod{p}
-\]
-
-Since $(p-1)! \equiv -1 \pmod{p}$, we have:
-\[
--1 \equiv (-1)^{(p-1)/2} \cdot 1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \pmod{p}
-\]
-
-Multiplying both sides by $(-1)^{(p-1)/2}$:
-\[
-(-1)^{(p-1)/2} \cdot (-1) \equiv 1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \pmod{p}
-\]
-
-Since $(-1)^{(p-1)/2} \cdot (-1) = (-1)^{(p+1)/2}$, we have:
-\[
-1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}
-\]
+  By \nameref{thm:2.11}, $(p-1)!\equiv -1\pmod{p}$. Moreover, the seperation of odd and even integers has been done as follows.
+  \[
+  (p-1)! = (1 \cdot 3 \cdot 5 \cdots (p-2)) \cdot (2 \cdot 4 \cdot 6 \cdots (p-1)).
+  \]
+  The product of the $\frac{p-1}{2}$ even terms can be related to the product of the odd terms. Since 
+  $2 \equiv -(p-2) \pmod{p}$, $4 \equiv -(p-4) \pmod{p}$, and so on up to $p-1 \equiv -1 \pmod{p}$,
+  \[
+  2 \cdot 4 \cdots (p-1) \equiv (-1)^{(p-1)/2} (1 \cdot 3 \cdots (p-2)) \pmod{p}.
+  \]
+  Substituting this back into the expression for $(p-1)!$ gives
+  \[
+  (p-1)! \equiv (-1)^{(p-1)/2} (1 \cdot 3 \cdot 5 \cdots (p-2))^2 \pmod{p}.
+  \]
+  As $(p-1)! \equiv -1 \pmod{p}$, this implies $-1 \equiv (-1)^{(p-1)/2} \cdot 1^2 \cdot 3^2 \cdots (p-2)^2 \pmod{p}$. 
+  Multiplying both sides by $(-1)^{(p-1)/2}$ yields
+  \[
+  (-1)^{(p-1)/2} \cdot (-1) \equiv ((-1)^{(p-1)/2})^2 \cdot 1^2 \cdot 3^2 \cdots (p-2)^2 \pmod{p}.
+  \]
+  The right side simplifies to $1^2 \cdot 3^2 \cdots (p-2)^2$ because $p-1$ is even. The left side becomes $(-1)^{(p+1)/2}$. Thus,
+  \[
+  1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}.
+  \]
 \end{subprove}
 
 \end{enumerate}
