@@ -8,12 +8,101 @@
 \usepackage{stmaryrd}
 \usepackage{bbold}
 
-\begin{document}
-$$
-\angle 5
-$$
 
-1
+\usepackage{mdframed}
+\usepackage{xcolor}
+\definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
+\definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
+\definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
+\definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
+\definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
+\definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
+\definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
+\definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
+\definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
+\usepackage{ifthen}
+
+
+% ------------------------------------------------------------------------------
+% \begin{define}{<title>}[<label>][<color>] … \end{define}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a framed definition or theorem with colored background
+%   and border. It provides a visually distinct way to present important concepts.
+%
+% FEATURES:
+%   - Colored frame and background (10% opacity)
+%   - Section symbol (§) followed by title
+%   - Configurable colors for customization
+%   - Proper spacing and typography
+%   - Optional cross-reference label support
+%
+% PARAMETERS:
+%   {<title>}    Title of the definition/theorem (required)
+%   [<label>]    Label for cross-referencing (optional, e.g. "def:continuity").
+%                If provided, enables \nameref{<label>} and \pageref{<label>}.
+%   [<color>]    Background and border color (optional, defaults to graycolor)
+%
+% DEPENDENCIES:
+%   \usepackage{mdframed}
+%   \usepackage{xcolor}
+%   \usepackage{ifthen}
+%
+% USAGE EXAMPLES:
+%   % Case 1: With cross-reference label but default color
+%   \begin{define}{Fundamental Theorem of Calculus}[thm:fundamental]
+%     If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$, then
+%     $\int_a^b f(x) \, dx = F(b) - F(a)$.
+%   \end{define}
+%
+%   % Case 2: Referencing the labeled definitions
+%   As we saw in \nameref{thm:fundamental}, integration and differentiation 
+%   are inverse operations. The beautiful \nameref{eq:euler} connects 
+%   five fundamental mathematical constants.
+% ------------------------------------------------------------------------------
+\makeatletter % "ENABLE" internal \@... macros
+\NewDocumentEnvironment{define}{ m O{} O{graycolor} }
+  {
+  \vspace{2pt}
+  \begin{mdframed}[backgroundcolor=#3!10, linecolor=#3]
+  \color{#3}
+  % Create cross-reference if label is provided
+  \ifthenelse{\equal{#2}{}}{}{%
+    \phantomsection
+    \def\@currentlabelname{#1}%
+    \label{#2}%
+  }%
+  \textbf{\S~#1}\hspace{6pt}  % Start symbol for definition/theorem with a title
+  \vspace{4pt}
+  }
+{
+  \end{mdframed}
+}
+\makeatother % "DISABLE" internal \@... macros
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Prefix	Indexed Object Type	    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cha:    Chapter (\chapter)
+% sec:    Section (\section)
+% subsec: Subsection (\subsection)
+% prob:	  Problem/Exercise (\item)
+% fig:    Figure (figure)
+% tab:    Table (table)
+% eq:     Equation (equation)
+% app:	  Appendix (\appendix)
+% algo:   Algorithm (algorithm)
+% def:	  Definition (definition)
+% prop:   Proposition (proposition)
+% thm:    Theorem (theorem)
+% lem:	  Lemma (lemma)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+\begin{document}
 
 L5: Divichlet's Theorem and applications of the FTA\\
 Theorem 1.21 (Dirichlet's Theorem on primes in AP): Let $a, b \in \mathbb{Z}$ with $a, b>0$ and $(a, b)=1$. Then the arithmetic progression (AP)\\
@@ -158,6 +247,5 @@ $m \mid c(a-b)$, and that $m \mid c-d$ implies that (11) $m \mid b(c-d)$. Thus $
 $$
 a c \equiv b d(\bmod m) .
 $$
-
 
 \end{document}

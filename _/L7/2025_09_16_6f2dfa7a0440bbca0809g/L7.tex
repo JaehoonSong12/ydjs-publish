@@ -8,10 +8,125 @@
 \usepackage{stmaryrd}
 \usepackage{bbold}
 
+
+
+
+
+\usepackage{mdframed}
+\usepackage{xcolor}
+\definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
+\definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
+\definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
+\definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
+\definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
+\definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
+\definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
+\definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
+\definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
+\usepackage{ifthen}
+
+
+% ------------------------------------------------------------------------------
+% \begin{define}{<title>}[<label>][<color>] … \end{define}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This environment creates a framed definition or theorem with colored background
+%   and border. It provides a visually distinct way to present important concepts.
+%
+% FEATURES:
+%   - Colored frame and background (10% opacity)
+%   - Section symbol (§) followed by title
+%   - Configurable colors for customization
+%   - Proper spacing and typography
+%   - Optional cross-reference label support
+%
+% PARAMETERS:
+%   {<title>}    Title of the definition/theorem (required)
+%   [<label>]    Label for cross-referencing (optional, e.g. "def:continuity").
+%                If provided, enables \nameref{<label>} and \pageref{<label>}.
+%   [<color>]    Background and border color (optional, defaults to graycolor)
+%
+% DEPENDENCIES:
+%   \usepackage{mdframed}
+%   \usepackage{xcolor}
+%   \usepackage{ifthen}
+%
+% USAGE EXAMPLES:
+%   % Case 1: Basic usage - only title, default gray color, no cross-reference
+%   \begin{define}{Definition of Continuity}
+%     A function $f$ is continuous at a point $a$ if for every $\varepsilon > 0$, 
+%     there exists a $\delta > 0$ such that $|f(x) - f(a)| < \varepsilon$ whenever $|x - a| < \delta$.
+%   \end{define}
+%
+%   % Case 2: With cross-reference label but default color
+%   \begin{define}{Fundamental Theorem of Calculus}[thm:fundamental]
+%     If $f$ is continuous on $[a,b]$ and $F$ is an antiderivative of $f$, then
+%     $\int_a^b f(x) \, dx = F(b) - F(a)$.
+%   \end{define}
+%
+%   % Case 3: With both cross-reference label and custom color
+%   \begin{define}{Euler's Identity}[eq:euler][blue]
+%     $e^{i\pi} + 1 = 0$, where $e$ is Euler's number, $i$ is the imaginary unit, 
+%     and $\pi$ is the ratio of a circle's circumference to its diameter.
+%   \end{define}
+%
+%   % Case 4: With custom color but no cross-reference
+%   \begin{define}{Pythagorean Theorem}[][green]
+%     In a right triangle, the square of the hypotenuse equals the sum 
+%     of squares of the other two sides: $a^2 + b^2 = c^2$.
+%   \end{define}
+%
+%   % Case 5: Referencing the labeled definitions
+%   As we saw in \nameref{thm:fundamental}, integration and differentiation 
+%   are inverse operations. The beautiful \nameref{eq:euler} connects 
+%   five fundamental mathematical constants.
+% ------------------------------------------------------------------------------
+\makeatletter % "ENABLE" internal \@... macros
+\NewDocumentEnvironment{define}{ m O{} O{graycolor} }
+  {
+  \vspace{2pt}
+  \begin{mdframed}[backgroundcolor=#3!10, linecolor=#3]
+  \color{#3}
+  % Create cross-reference if label is provided
+  \ifthenelse{\equal{#2}{}}{}{%
+    \phantomsection
+    \def\@currentlabelname{#1}%
+    \label{#2}%
+  }%
+  \textbf{\S~#1}\hspace{6pt}  % Start symbol for definition/theorem with a title
+  \vspace{4pt}
+  }
+{
+  \end{mdframed}
+}
+\makeatother % "DISABLE" internal \@... macros
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Prefix	Indexed Object Type	    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% cha:    Chapter (\chapter)
+% sec:    Section (\section)
+% subsec: Subsection (\subsection)
+% prob:	  Problem/Exercise (\item)
+% fig:    Figure (figure)
+% tab:    Table (table)
+% eq:     Equation (equation)
+% app:	  Appendix (\appendix)
+% algo:   Algorithm (algorithm)
+% def:	  Definition (definition)
+% prop:   Proposition (proposition)
+% thm:    Theorem (theorem)
+% lem:	  Lemma (lemma)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
 \begin{document}
-$$
-L 7
-$$
 
 \section*{L7: The Chinese Remainder Theorem}
 Example:- Find a positive integer having a remainder of 2 when divided by 3, a remainder of 1 when divided by 4 , and a remainder of 3 when divided by 5 .\\
