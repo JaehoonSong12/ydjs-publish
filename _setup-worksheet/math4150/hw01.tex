@@ -15,7 +15,7 @@
     \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
     \begin{subprove}
       ($\Rightarrow$) Assume $a\divides b$. 
-      \begin{define}[redcolor]{Divisibility}
+      \begin{define}{Divisibility}[def:divisibility][redcolor]
       Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
       integer $c\in\Z$ such that
       \[
@@ -60,7 +60,7 @@
   \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \begin{subprove}
     ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
-    \begin{define}[redcolor]{Division Algorithm}
+    \begin{define}{Division Algorithm}[algo:div-algo][redcolor]
     Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
     \[
     a = b q + r \qquad\text{and}\qquad 0\le r < b.
@@ -144,7 +144,7 @@
 
   \newpage
 
-  \begin{define}[redcolor]{Claim}
+  \begin{define}{Claim}[][redcolor]
   Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
     \begin{subprove}
     Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
@@ -199,7 +199,7 @@
     \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
     \begin{subprove}
       Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
-      \begin{define}[redcolor]{Euclid's Lemma}
+      \begin{define}{Euclid's Lemma}[eq:euclid-lemma][redcolor]
       Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
       \end{define}
       by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
@@ -231,7 +231,7 @@
     ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
     $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
     Principle Lemma.
-    \begin{define}[redcolor]{Well-Ordering Principle Lemma}
+    \begin{define}{Well-Ordering Principle Lemma}[eq:well-ordering-princ][redcolor]
     Every integer $n>1$ has at least one prime divisor.
     \end{define}
     Thus, by the transitive property of divisibility,
@@ -239,10 +239,7 @@
     p \divides(a+b) \quad \text { and } \quad p \divides a b
     $$
     since $p \divides d$, $d \divides \group{a+b}$, and $d \divides \group{a\cdot b}$.
-    \begin{define}[redcolor]{Euclid's Lemma}
-    Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
-    \end{define}
-    Then, by Euclid's Lemma, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
+    Then, by \nameref{eq:euclid-lemma}, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
     Without loss of generality and by the definition of divisibility, there exists $i\in\setZ$ such that 
     $$
     a = p i.
