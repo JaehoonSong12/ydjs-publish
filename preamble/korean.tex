@@ -6,15 +6,17 @@
 % It automatically detects the LaTeX engine and loads appropriate packages.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% % ------------------------------------------------------------------------------
-% % Required Packages for Korean Language Support
-% % ------------------------------------------------------------------------------
-% \makeatletter
-% % Engine detection and Korean language support
+% ------------------------------------------------------------------------------
+% Required Packages for Korean Language Support
+% ------------------------------------------------------------------------------
+\makeatletter
+% Engine detection and Korean language support
 % \@ifpackageloaded{iftex}{}{\usepackage{iftex}}        % Engine detection
 % \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}  % Font specification (XeLaTeX/LuaLaTeX)
 % \@ifpackageloaded{xeCJK}{}{\usepackage{xeCJK}}        % CJK support for XeLaTeX/LuaLaTeX
-% \makeatother
+\@ifpackageloaded{kotex}{}{\usepackage{kotex}}        % korean language encoding setup
+
+\makeatother
 
 
 % ------------------------------------------------------------------------------
