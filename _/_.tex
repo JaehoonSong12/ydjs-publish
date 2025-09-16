@@ -917,6 +917,35 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1118,6 +1147,252 @@ Add these divisibilities to get $m\mid c(a-b)+b(c-d)=ac-bd$, so $ac\equiv bd\pmo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section*{L6: Congruences}
+
+\begin{define}{Remark (Proposition \nameref{prop:2.4} in class terms)}[rem:prop2.4classes]
+Recall that \nameref{prop:2.4} from the previous lecture can be expressed in terms of
+equivalence classes modulo $m$: for residue classes $[a],[c]\in\mathbb{Z}_m$,
+\[
+[a]+[c]=[a+c]\qquad\text{and}\qquad [a][c]=[ac].
+\]
+\end{define}
+
+This viewpoint allows construction of addition and multiplication tables for residue classes
+(modulo~$m$) using any complete residue system.
+
+\subsection*{Examples: tables for $\mathbb{Z}_4$ and $\mathbb{Z}_5$}
+% Addition table modulo 4
+\[
+  \begin{array}{c|cccc}
+    + & \left[0\right]_4 & \left[1\right]_4 & \left[2\right]_4 & \left[3\right]_4\\\hline
+    \left[0\right]_4 & \left[0\right]_4 & \left[1\right]_4 & \left[2\right]_4 & \left[3\right]_4\\
+    \left[1\right]_4 & \left[1\right]_4 & \left[2\right]_4 & \left[3\right]_4 & \left[0\right]_4\\
+    \left[2\right]_4 & \left[2\right]_4 & \left[3\right]_4 & \left[0\right]_4 & \left[1\right]_4\\
+    \left[3\right]_4 & \left[3\right]_4 & \left[0\right]_4 & \left[1\right]_4 & \left[2\right]_4
+  \end{array}
+  \qquad
+  \begin{array}{c|cccc}
+    \cdot & \left[0\right]_4 & \left[1\right]_4 & \left[2\right]_4 & \left[3\right]_4\\\hline
+    \left[0\right]_4 & \left[0\right]_4 & \left[0\right]_4 & \left[0\right]_4 & \left[0\right]_4\\
+    \left[1\right]_4 & \left[0\right]_4 & \left[1\right]_4 & \left[2\right]_4 & \left[3\right]_4\\
+    \left[2\right]_4 & \left[0\right]_4 & \left[2\right]_4 & \left[0\right]_4 & \left[2\right]_4\\
+    \left[3\right]_4 & \left[0\right]_4 & \left[3\right]_4 & \left[2\right]_4 & \left[1\right]_4
+  \end{array}
+\]
+
+\begin{define}{Remark (structure of $\mathbb{Z}_4$)}[rem:Z4]
+  Set $\mathbb{Z}_4:=\{\left[0\right]_4,\left[1\right]_4,\left[2\right]_4,\left[3\right]_4\}$. With the above addition and multiplication
+  it is a ring, but not a field: not every nonzero element has a multiplicative inverse
+  (e.g., $\left[2\right]_4$ is a zero divisor).
+\end{define}
+
+% Tables modulo 5
+\[
+  \begin{array}{c|ccccc}
+    + & \left[0\right]_5 & \left[1\right]_5 & \left[2\right]_5 & \left[3\right]_5 & \left[4\right]_5\\\hline
+    \left[0\right]_5 & \left[0\right]_5 & \left[1\right]_5 & \left[2\right]_5 & \left[3\right]_5 & \left[4\right]_5\\
+    \left[1\right]_5 & \left[1\right]_5 & \left[2\right]_5 & \left[3\right]_5 & \left[4\right]_5 & \left[0\right]_5\\
+    \left[2\right]_5 & \left[2\right]_5 & \left[3\right]_5 & \left[4\right]_5 & \left[0\right]_5 & \left[1\right]_5\\
+    \left[3\right]_5 & \left[3\right]_5 & \left[4\right]_5 & \left[0\right]_5 & \left[1\right]_5 & \left[2\right]_5\\
+    \left[4\right]_5 & \left[4\right]_5 & \left[0\right]_5 & \left[1\right]_5 & \left[2\right]_5 & \left[3\right]_5
+  \end{array}
+  \qquad
+  \begin{array}{c|ccccc}
+    \cdot & \left[0\right]_5 & \left[1\right]_5 & \left[2\right]_5 & \left[3\right]_5 & \left[4\right]_5\\\hline
+    \left[0\right]_5 & \left[0\right]_5 & \left[0\right]_5 & \left[0\right]_5 & \left[0\right]_5 & \left[0\right]_5\\
+    \left[1\right]_5 & \left[0\right]_5 & \left[1\right]_5 & \left[2\right]_5 & \left[3\right]_5 & \left[4\right]_5\\
+    \left[2\right]_5 & \left[0\right]_5 & \left[2\right]_5 & \left[4\right]_5 & \left[1\right]_5 & \left[3\right]_5\\
+    \left[3\right]_5 & \left[0\right]_5 & \left[3\right]_5 & \left[1\right]_5 & \left[4\right]_5 & \left[2\right]_5\\
+    \left[4\right]_5 & \left[0\right]_5 & \left[4\right]_5 & \left[3\right]_5 & \left[2\right]_5 & \left[1\right]_5
+  \end{array}
+\]
+\begin{define}{Remark (structure of $\mathbb{Z}_5$)}[rem:Z5]
+Let $\mathbb{Z}_5:=\{[0]_5,[1]_5,[2]_5,[3]_5,[4]_5\}$. Because $5$ is prime every nonzero
+class has a multiplicative inverse, so $\mathbb{Z}_5$ is a field.
+\end{define}
+
+\begin{define}{Question (why extra structure?)}[q:whyfield]
+Why does $\mathbb{Z}_5$ have more structure (a field) than $\mathbb{Z}_4$ (only a ring)?
+\end{define}
+
+\begin{define}{Answer (primality of modulus)}[ans:whyfield]
+Essentially: $\mathbb{Z}_m$ is a field if and only if $m$ is prime. If $m$ is composite,
+then some nonzero classes are zero divisors (no inverses). If $m=p$ is prime, then
+every nonzero class has an inverse (standard proof via Bezout's identity).
+\end{define}
+
+\subsection*{Cancellation and a useful proposition}
+
+\begin{define}{Proposition 2.5 (Cancellation in congruences)}[prop:2.5]
+Let $a,b,c,m\in\mathbb{Z}$ with $m>0$, and let $d=\gcd(c,m)$. Then
+\[
+ca\equiv cb\pmod{m}\quad\Longleftrightarrow\quad a\equiv b\pmod{m/d}.
+\]
+\end{define}
+
+\begin{proof}
+Suppose $ca\equiv cb\pmod{m}$, i.e. $m\mid c(a-b)$. Let $d=\gcd(c,m)$. Write $c=d\cdot c'$
+and $m=d\cdot m'$ so that $\gcd(c',m')=1$. From $m\mid c(a-b)$ we get $d m'\mid d c'(a-b)$,
+hence $m'\mid c'(a-b)$. Since $\gcd(c',m')=1$, it follows that $m'\mid (a-b)$, i.e.
+$a\equiv b\pmod{m'}$, which is $a\equiv b\pmod{m/d}$.
+
+Conversely, if $a\equiv b\pmod{m/d}$ then $m/d\mid (a-b)$, so $m/d\cdot d = m \mid d(a-b)$.
+But $d\mid c$, so $c(a-b)$ is a multiple of $d(a-b)$, hence $m\mid c(a-b)$ and
+$ca\equiv cb\pmod{m}$. This proves the equivalence.
+\end{proof}
+
+\subsection*{Linear congruences in one variable}
+
+\begin{define}{Definition (linear congruence)}[def:linearcong]
+A congruence of the form
+\[
+ax\equiv b\pmod{m},
+\]
+with unknown $x\in\mathbb{Z}$ and given integers $a,b,m$ with $m>0$, is called a
+\emph{linear congruence} in the variable $x$.
+\end{define}
+
+\begin{define}{Examples (small checks)}[ex:linearchecks]
+\begin{itemize}
+  \item $2x\equiv 3\pmod{4}$ has no solution: checking $x\equiv0,1,2,3\pmod{4}$ yields no solution.
+  \item $2x\equiv 3\pmod{5}$ has the unique solution $x\equiv 4\pmod{5}$.
+  \item $2x\equiv 4\pmod{6}$ has two incongruent solutions modulo $6$: $x\equiv 2,5\pmod{6}$.
+  \item $3x\equiv 9\pmod{6}$ has three incongruent solutions modulo $6$: $x\equiv 1,3,5\pmod{6}$.
+\end{itemize}
+\end{define}
+
+\begin{define}{Theorem 2.6 (Solvability and number of solutions of linear congruences)}[thm:2.6]
+Let $a,b,m\in\mathbb{Z}$ with $m>0$ and let $d=\gcd(a,m)$. Then:
+\begin{enumerate}
+  \item The congruence $ax\equiv b\pmod{m}$ has a solution iff $d\mid b$.
+  \item If $d\mid b$ then there are exactly $d$ incongruent solutions modulo $m$. Concretely,
+    if $x_0$ is one solution, then all solutions are
+    \[
+    x = x_0 + \frac{m}{d}n,\qquad n\in\mathbb{Z},
+    \]
+    and the classes $x_0+\frac{m}{d}n$ for $n=0,1,\dots,d-1$ give a complete set of
+    incongruent solutions modulo $m$.
+\end{enumerate}
+\end{define}
+
+\begin{proof}
+We use the standard equivalence between the congruence and a linear Diophantine equation.
+The congruence $ax\equiv b\pmod{m}$ is equivalent to the existence of an integer $y$
+such that
+\[
+ax - my = b. \tag{*}
+\]
+Thus solvability of the congruence is equivalent to solvability of the linear Diophantine
+equation $(*)$.
+
+(1) If $(*)$ has an integer solution, then $d=\gcd(a,m)$ divides the left-hand side
+$a x - my$ and hence divides $b$. Conversely, if $d\mid b$, write $b=d e$ for some
+$e\in\mathbb{Z}$. By Bezout's identity (see \nameref{prop:1.11} or the standard result),
+there exist integers $r,s$ with $ar+ms=d$. Multiply both sides by $e$ to obtain
+$ar e + ms e = de = b$. Then $x_0 = re$ and $y_0 = -se$ solve $(*)$, so a solution exists.
+
+(2) Fix any solution $x_0$ of $ax\equiv b\pmod{m}$. For any integer $n$ consider
+\[
+x = x_0 + \frac{m}{d}n.
+\]
+Then
+\[
+a x = a x_0 + a\frac{m}{d}n = a x_0 + \frac{a}{d}mn \equiv a x_0 \equiv b \pmod{m},
+\]
+so each such $x$ is a solution. Thus there are infinitely many integer solutions, all
+congruent modulo $\frac{m}{d}$ shifts.
+
+Now suppose $x$ is any solution. Then subtracting the equation for $x_0$ from the equation
+for $x$ yields
+\[
+a(x-x_0) \equiv 0\pmod{m},
+\]
+i.e. $m\mid a(x-x_0)$. Write $a=d a'$ and $m=d m'$, with $\gcd(a',m')=1$. Then
+$m'd \mid d a'(x-x_0)$, so $m'\mid a'(x-x_0)$. Since $\gcd(a',m')=1$ we deduce $m'\mid (x-x_0)$,
+hence $x-x_0 = m' n = \frac{m}{d} n$ for some $n\in\mathbb{Z}$. This shows every solution
+has the stated form. Two such solutions
+\[
+x_0 + \frac{m}{d}n_1 \quad\text{and}\quad x_0+\frac{m}{d}n_2
+\]
+are congruent modulo $m$ iff
+\[
+\frac{m}{d}(n_1-n_2)\equiv 0\pmod{m} \iff m\mid \frac{m}{d}(n_1-n_2).
+\]
+Dividing both sides by $m/d$ yields $d\mid (n_1-n_2)$, so $n_1\equiv n_2\pmod{d}$. Therefore
+choosing $n=0,1,\dots,d-1$ produces exactly $d$ incongruent solutions modulo $m$.
+\end{proof}
+
+\begin{define}{Corollary 2.7 (Explicit solution set)}[cor:2.7]
+Under the hypotheses of Theorem \nameref{thm:2.6}, if $d=\gcd(a,m)$ and $d\mid b$, then
+the $d$ incongruent solutions modulo $m$ are
+\[
+x_0 + \frac{m}{d}n,\qquad n=0,1,\dots,d-1,
+\]
+where $x_0$ is any particular solution.
+\end{define}
+
+\subsection*{Worked example}
+
+\begin{define}{Example (solve $16x\equiv 8\pmod{28}$)}[ex:16x]
+We solve $16x\equiv 8\pmod{28}$. Compute $d=\gcd(16,28)$.
+
+Euclidean algorithm:
+\[
+28 = 1\cdot 16 + 12,\qquad 16 = 1\cdot 12 + 4,\qquad 12 = 3\cdot 4 + 0,
+\]
+so $d=4$. Since $4\mid 8$, the congruence has $d=4$ incongruent solutions modulo $28$
+by Theorem \nameref{thm:2.6}.
+
+One method: divide the congruence by $d=4$ to get (working modulo $28/4=7$)
+\[
+4x \equiv 2 \pmod{7}.
+\]
+Since $4^{-1}\equiv 2\pmod{7}$ (because $4\cdot 2=8\equiv1\pmod{7}$), multiply both sides by $2$:
+\[
+x\equiv 4\pmod{7}.
+\]
+Thus the solutions modulo $28$ are
+\[
+x\equiv 4+7n,\qquad n=0,1,2,3,
+\]
+which gives the incongruent solutions $x\equiv 4,11,18,25\pmod{28}$.
+
+(Alternatively, one can find an explicit $x_0$ via the extended Euclidean computation:
+from $4=2\cdot 16 -1\cdot 28$ we get $8=4\cdot 16 -2\cdot 28$, so $x_0=4$ is a
+particular solution, yielding the same solution set.)
+\end{define}
+
+\subsection*{Multiplicative inverses}
+
+\begin{define}{Definition (multiplicative inverse modulo $m$)}[def:multinv]
+If $a\in\mathbb{Z}$ and there exists $x\in\mathbb{Z}$ with $ax\equiv 1\pmod{m}$,
+then $x$ is called a \emph{multiplicative inverse} of $a$ modulo $m$ (often denoted
+$a^{-1}\pmod{m}$).
+\end{define}
+
+\begin{define}{Corollary 2.8 (When inverses exist)}[cor:2.8]
+The congruence $ax\equiv 1\pmod{m}$ has a solution iff $\gcd(a,m)=1$. In that case
+the inverse is unique modulo $m$.
+\end{define}
+
+\begin{proof}
+Apply Theorem \nameref{thm:2.6} with $b=1$. If $d=\gcd(a,m)>1$ then $d\nmid 1$ so there is
+no solution. If $d=1$ then there is exactly one solution modulo $m$.
+\end{proof}
+
+\begin{define}{Example (solve $5x\equiv 12\pmod{16}$)}[ex:5x]
+Since $\gcd(5,16)=1$, the congruence has a unique solution modulo $16$ by
+Corollary \nameref{cor:2.8}. One checks that $5^{-1}\pmod{16}=13$ because $5\cdot 13=65\equiv 1\pmod{16}$.
+Multiplying by $13$ gives
+\[
+x\equiv 13\cdot 12 \pmod{16}.
+\]
+Compute $13\cdot 12 =156 \equiv 12 \pmod{16}$ (since $156-144=12$), so $x\equiv 12\pmod{16}$.
+\end{define}
+
+
+
+
 
 
 
@@ -1134,6 +1409,168 @@ Add these divisibilities to get $m\mid c(a-b)+b(c-d)=ac-bd$, so $ac\equiv bd\pmo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\section*{L7: The Chinese Remainder Theorem, Wilson's Theorem, Fermat's Little Theorem}
+
+% -----------------------
+% Chinese Remainder Theorem
+% -----------------------
+
+\paragraph{Example (motivation).}
+Find a positive integer $x$ with
+\[
+x\equiv 2\pmod{3},\qquad x\equiv 1\pmod{4},\qquad x\equiv 3\pmod{5}.
+\]
+This is a system of linear congruences in one variable.
+
+\begin{define}{Theorem 2.9 (Chinese Remainder Theorem)}[thm:2.9]
+Let $m_1,m_2,\dots,m_n$ be pairwise relatively prime positive integers, and let
+$b_1,\dots,b_n$ be arbitrary integers. Then the system
+\[
+x\equiv b_i\pmod{m_i}\qquad(i=1,\dots,n)
+\]
+has a solution, and any two solutions are congruent modulo $M:=m_1m_2\cdots m_n$.
+Hence the solution is unique modulo $M$.
+\end{define}
+
+\begin{proof}
+Let $M:=\prod_{i=1}^n m_i$ and define $M_i:=M/m_i$. Since $(M_i,m_i)=1$ by the pairwise
+coprimality hypothesis, by \nameref{cor:2.8} (existence of inverses when gcd is 1) there
+exists $x_i$ with
+\[
+M_i x_i\equiv 1\pmod{m_i}.
+\]
+Put
+\[
+x:=\sum_{i=1}^n b_i M_i x_i.
+\]
+For a fixed index $i$, reduce modulo $m_i$: every term $b_jM_jx_j$ with $j\neq i$ is a multiple
+of $m_i$ (since $m_i\mid M_j$ for $j\neq i$), while $M_i x_i\equiv 1\pmod{m_i}$ by construction.
+Thus $x\equiv b_i\pmod{m_i}$ for each $i$, so $x$ is a solution.
+
+If $x'$ is another solution, then $m_i\mid (x-x')$ for every $i$, and since the $m_i$ are
+pairwise coprime it follows that $M\mid (x-x')$. Hence $x\equiv x'\pmod M$, proving uniqueness
+modulo $M$.
+\end{proof}
+
+\paragraph{Example (continued).}
+Here $m_1=3,m_2=4,m_3=5$, so $M=60$ and
+\[
+M_1=60/3=20,\qquad M_2=60/4=15,\qquad M_3=60/5=12.
+\]
+Solve $M_i x_i\equiv 1\pmod{m_i}$:
+
+\[
+20x_1\equiv 1\pmod{3}\ \Longrightarrow\ 2x_1\equiv 1\pmod{3}\ \Longrightarrow\ x_1\equiv 2\pmod{3},
+\]
+so choose $x_1=2$.
+
+\[
+15x_2\equiv 1\pmod{4}\ \Longrightarrow\ 3x_2\equiv 1\pmod{4}\ \Longrightarrow\ x_2\equiv 3\pmod{4},
+\]
+so choose $x_2=3$.
+
+\[
+12x_3\equiv 1\pmod{5}\ \Longrightarrow\ 2x_3\equiv 1\pmod{5}\ \Longrightarrow\ x_3\equiv 3\pmod{5},
+\]
+so choose $x_3=3$.
+
+Now
+\[
+x = b_1M_1x_1 + b_2M_2x_2 + b_3M_3x_3
+= 2\cdot 20\cdot 2 + 1\cdot 15\cdot 3 + 3\cdot 12\cdot 3 = 80 + 45 + 108 = 233.
+\]
+Hence $x\equiv 233\equiv 53\pmod{60}$, and the least positive solution is $53$.
+
+% -----------------------
+% Wilson's Theorem
+% -----------------------
+
+\begin{define}{Lemma 2.10 (Self-inverse modulo a prime)}[lem:2.10]
+Let $p$ be a prime and $a\in\mathbb{Z}$. Then $a$ is its own inverse modulo $p$
+(i.e. $a^2\equiv 1\pmod{p}$) if and only if $a\equiv \pm 1\pmod{p}$.
+\end{define}
+
+\begin{proof}
+If $a^2\equiv 1\pmod{p}$ then $p\mid(a-1)(a+1)$. Since $p$ is prime, $p\mid(a-1)$ or $p\mid(a+1)$,
+so $a\equiv 1$ or $a\equiv -1\pmod{p}$. The converse is immediate.
+\end{proof}
+
+\begin{define}{Theorem 2.11 (Wilson's Theorem)}[thm:2.11]
+Let $p$ be a prime. Then
+\[
+(p-1)!\equiv -1\pmod{p}.
+\]
+\end{define}
+
+\begin{proof}
+The result is trivial for $p=2,3$, so assume $p\ge 5$. The integers $1,2,\dots,p-1$ can be
+paired into multiplicative inverses modulo $p$. By Lemma \ref{lem:2.10}, the only elements
+that are their own inverses are $1$ and $p-1$. Thus, aside from $1$ and $p-1$, the remaining
+$p-3$ elements pair off, and each pair multiplies to $1$ modulo $p$. Therefore
+\[
+(p-1)! \equiv 1\cdot ( \text{product of inverse-pairs} ) \cdot (p-1) \equiv 1\cdot 1\cdots 1 \cdot (-1)
+\equiv -1\pmod{p},
+\]
+as required.
+\end{proof}
+
+\begin{define}{Remark (converse)}[rem:wilsonconverse]
+The converse is also true: if $n>1$ and $(n-1)!\equiv -1\pmod{n}$ then $n$ must be prime.
+\end{define}
+
+\begin{define}{Proposition 2.12 (Converse to Wilson's Theorem)}[prop:2.12]
+Let $n>1$ be an integer. If $(n-1)!\equiv -1\pmod{n}$ then $n$ is prime.
+\end{define}
+
+\begin{proof}
+Suppose $n$ is composite, so $n=ab$ with $1<a\le b<n$. Then $a\mid (n-1)!$ because $(n-1)!$
+contains the factor $a$, and hence $(n-1)!\equiv 0\pmod{a}$. The hypothesis $(n-1)!\equiv -1\pmod{n}$
+implies $(n-1)!\equiv -1\pmod{a}$ (since $a\mid n$), so $-1\equiv 0\pmod{a}$, which is impossible.
+Therefore no such nontrivial factor $a$ exists and $n$ must be prime.
+\end{proof}
+
+\begin{define}{Remark (Wilson primes)}[rem:wilsonprimes]
+A prime $p$ is called a \emph{Wilson prime} if $(p-1)!\equiv -1\pmod{p^2}$. Only three Wilson primes
+are known: $5,13,563$. It is unknown whether infinitely many (or only finitely many) Wilson primes exist.
+\end{define}
+
+% -----------------------
+% Fermat's Little Theorem
+% -----------------------
+
+\begin{define}{Theorem 2.13 (Fermat's Little Theorem)}[thm:2.13]
+Let $p$ be a prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
+\[
+a^{p-1}\equiv 1\pmod{p}.
+\]
+\end{define}
+
+\begin{proof}
+Consider the $p-1$ integers $a,2a,\dots,(p-1)a$. None of these is congruent to $0\pmod{p}$
+(since $p\nmid a$), and no two are congruent modulo $p$ (if $ia\equiv ja\pmod p$ with
+$1\le i<j\le p-1$, multiply by the inverse of $a$ modulo $p$, which exists by
+\nameref{cor:2.8}, to deduce $i\equiv j\pmod p$, impossible). Hence the residues of
+$a,2a,\dots,(p-1)a$ modulo $p$ are a permutation of $1,2,\dots,p-1$. Multiplying all these
+congruences yields
+\[
+a^{p-1}(p-1)! \equiv (p-1)!\pmod{p}.
+\]
+Since $p\nmid (p-1)!$ (true for prime $p$), we may cancel $(p-1)!$ from both sides to obtain
+$a^{p-1}\equiv 1\pmod{p}$. (Note: this cancellation step uses only that $\gcd((p-1)!,p)=1$;
+Wilson's Theorem is not required.)
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \newpage
@@ -1143,6 +1580,207 @@ Add these divisibilities to get $m\mid c(a-b)+b(c-d)=ac-bd$, so $ac\equiv bd\pmo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L8
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section*{L8: Corollaries to Fermat's Little Theorem, Pseudoprimes, Euler's Theorem, Arithmetic Functions}
+
+% -----------------------
+% Corollaries to Fermat's Little Theorem
+% -----------------------
+
+\begin{define}{Corollary 2.14 (Inverse modulo a prime)}[cor:2.14]
+Let $p$ be a prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then $a^{p-2}$ is the multiplicative
+inverse of $a$ modulo $p$; that is,
+\[
+a\cdot a^{p-2}\equiv 1\pmod{p}.
+\]
+\end{define}
+
+\begin{proof}
+By Fermat's Little Theorem (Theorem \ref{thm:2.13}), $a^{p-1}\equiv 1\pmod{p}$. Multiply both sides
+by $a^{-1}$ if you like, or simply rewrite $a^{p-1}=a\cdot a^{p-2}$ to get $a\cdot a^{p-2}\equiv 1\pmod{p}$.
+Thus $a^{p-2}$ is an inverse of $a$ modulo $p$.
+\end{proof}
+
+\begin{define}{Remark (application of Corollary \nameref{cor:2.14})}[rem:usecor2.14]
+Corollary \nameref{cor:2.14} is useful for solving linear congruences $ax\equiv b\pmod p$
+when $p$ is prime and $p\nmid a$: multiply both sides by $a^{p-2}$ to obtain the solution.
+\end{define}
+
+\begin{define}{Corollary 2.15 (Fresh form of Fermat)}[cor:2.15]
+Let $p$ be prime and $a\in\mathbb{Z}$. Then
+\[
+a^p\equiv a\pmod{p}.
+\]
+\end{define}
+
+\begin{proof}
+If $p\mid a$ the congruence is trivial. If $p\nmid a$, multiply Fermat's Little Theorem
+$a^{p-1}\equiv 1\pmod p$ by $a$ to get $a^p\equiv a\pmod p$.
+\end{proof}
+
+\begin{define}{Corollary 2.16 (case $a=2$)}[cor:2.16]
+For every prime $p$,
+\[
+2^p\equiv 2\pmod p.
+\]
+\end{define}
+
+\begin{proof}
+Take $a=2$ in Corollary \nameref{cor:2.15}.
+\end{proof}
+
+\begin{define}{Question (converse for base 2)}[q:conversebase2]
+Is the converse of Corollary \nameref{cor:2.16} true? That is, if $n>1$ and
+$2^n\equiv 2\pmod n$, must $n$ be prime?
+\end{define}
+
+\begin{define}{Answer and counterexample (341)}[ex:341]
+No. Example: $n=341=11\cdot 31$ is composite but satisfies $2^{341}\equiv 2\pmod{341}$.
+Since $(11,31)=1$, it suffices to check modulo $11$ and $31$.
+
+By Fermat's Little Theorem,
+\[
+2^{10}\equiv 1\pmod{11}\quad\Rightarrow\quad 2^{341} \equiv (2^{10})^{34}\cdot 2 \equiv 1^{34}\cdot 2 \equiv 2\pmod{11},
+\]
+and
+\[
+2^{30}\equiv 1\pmod{31}\quad\Rightarrow\quad 2^{341} \equiv (2^{30})^{11}\cdot 2^{11} \equiv 1^{11}\cdot 2^{11}\pmod{31}.
+\]
+Since $2^{5}\equiv -1\pmod{31}$ (or compute directly), we have $2^{11}\equiv 2\pmod{31}$,
+so $2^{341}\equiv 2\pmod{31}$. Hence $2^{341}\equiv 2\pmod{341}$ although $341$ is composite.
+\end{define}
+
+\begin{define}{Definition (pseudoprime to base 2)}[def:pseudoprime]
+A composite integer $n>1$ is called a \emph{(base-2) pseudoprime} if
+\[
+2^n\equiv 2\pmod n.
+\]
+\end{define}
+
+\begin{define}{Remark (pseudoprimes)}[rem:pseudoprimes]
+341 is the smallest base-2 pseudoprime. There are infinitely many pseudoprimes and they
+arise for different bases; pseudoprimes show that the naive converse of Fermat's Little
+Theorem is false.
+\end{define}
+
+% -----------------------
+% Euler's Theorem and phi-function
+% -----------------------
+
+\begin{define}{Definition (Euler's phi-function)}[def:phi]
+For $n\in\mathbb{Z}_{>0}$ the Euler totient function $\phi(n)$ is the number of integers
+$1\le x\le n$ with $\gcd(x,n)=1$; equivalently,
+\[
+\phi(n):=\#\{x\in\{1,2,\dots,n\}:\gcd(x,n)=1\}.
+\]
+\end{define}
+
+\begin{define}{Examples (values of $\phi$)}[ex:phi]
+\[
+\phi(12)=4\quad(\text{the classes }1,5,7,11),\qquad
+\phi(14)=6\quad(\text{the classes }1,3,5,9,11,13),
+\]
+and for a prime $p$, $\phi(p)=p-1$ (classes $1,2,\dots,p-1$).
+\end{define}
+
+\begin{define}{Theorem 2.17 (Euler's Theorem)}[thm:2.17]
+Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. Then
+\[
+a^{\phi(m)}\equiv 1\pmod m.
+\]
+\end{define}
+
+\begin{proof}
+Let $r_1,r_2,\dots,r_{\phi(m)}$ be the positive integers $\le m$ that are relatively prime to $m$.
+Since $\gcd(a,m)=1$, multiplication by $a$ permutes this reduced residue system: the numbers
+$a r_1,\dots,a r_{\phi(m)}$ are all distinct modulo $m$ and each is relatively prime to $m$
+(see Lemma 1.5 and Lemma 1.14 referenced earlier). Hence the set $\{a r_i\bmod m\}$ is the same
+set of residues as $\{r_i\}$. Multiplying all residues yields
+\[
+a^{\phi(m)} \prod_{i=1}^{\phi(m)} r_i \equiv \prod_{i=1}^{\phi(m)} r_i \pmod m.
+\]
+Since $\gcd\big(\prod_i r_i,\, m\big)=1$, we may cancel the product to obtain
+$a^{\phi(m)}\equiv 1\pmod m$.
+\end{proof}
+
+\begin{define}{Remark (special case)}[rem:EulerFermat]
+Fermat's Little Theorem is the special case $m=p$ prime, since $\phi(p)=p-1$.
+\end{define}
+
+\begin{define}{Definition (reduced residue system)}[def:reducedRS]
+A set of $\phi(m)$ integers each relatively prime to $m$ and pairwise incongruent modulo $m$
+is called a \emph{reduced residue system} modulo $m$.
+\end{define}
+
+\begin{define}{Example (reduced residue systems)}[ex:reduced12]
+$\{1,5,7,11\}$ is a reduced residue system modulo $12$. If $a$ is coprime to $m$, then
+$\{ar_1,\dots,ar_{\phi(m)}\}$ is also a reduced residue system modulo $m$ (this was the idea
+used in the proof of Euler's Theorem).
+\end{define}
+
+\begin{define}{Corollary 2.19 (inverse via Euler)}[cor:2.19]
+Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. Then $a^{\phi(m)-1}$ is the multiplicative
+inverse of $a$ modulo $m$.
+\end{define}
+
+\begin{proof}
+From $a^{\phi(m)}\equiv 1\pmod m$ multiply by $a^{-1}$ (or rewrite as $a\cdot a^{\phi(m)-1}\equiv 1$)
+to see $a^{\phi(m)-1}$ is an inverse of $a$ modulo $m$.
+\end{proof}
+
+\begin{define}{Remark (use of Corollary \nameref{cor:2.19})}[rem:usecor2.19]
+Corollary \nameref{cor:2.19} helps solve linear congruences $ax\equiv b\pmod m$ when
+$\gcd(a,m)=1$: multiply both sides by $a^{\phi(m)-1}$ to obtain the solution.
+\end{define}
+
+% -----------------------
+% Arithmetic functions and multiplicativity
+% -----------------------
+
+\begin{define}{Definition (arithmetic function)}[def:arithfunc]
+An \emph{arithmetic function} is a function $f:\mathbb{Z}_{>0}\to\mathbb{C}$ (or $\mathbb{R}$,
+or $\mathbb{Z}$). Examples: the Euler $\phi$-function, the divisor-counting function
+$d(n)$, the sum-of-divisors function $\sigma(n)$, etc.
+\end{define}
+
+\begin{define}{Definition (multiplicative vs completely multiplicative)}[def:multprops]
+An arithmetic function $f$ is \emph{multiplicative} if $f(mn)=f(m)f(n)$ whenever
+$\gcd(m,n)=1$. It is \emph{completely multiplicative} if $f(mn)=f(m)f(n)$ for all
+positive integers $m,n$ (no coprimality required).
+\end{define}
+
+\begin{define}{Proposition (values determined by prime powers)}[prop:primepow]
+If $f$ is multiplicative and
+\[
+n = p_1^{a_1}p_2^{a_2}\cdots p_r^{a_r}
+\]
+is the prime factorization of $n$, then
+\[
+f(n)=\prod_{i=1}^r f\big(p_i^{a_i}\big).
+\]
+If $f$ is completely multiplicative, then
+\[
+f(n)=\prod_{i=1}^r f(p_i)^{a_i}.
+\]
+\end{define}
+
+\begin{proof}
+Write $n$ as a product of relatively prime prime-power factors and apply multiplicativity repeatedly.
+\end{proof}
+
+\begin{define}{Remark (implication)}[rem:multdeterm]
+Thus knowing a multiplicative arithmetic function on prime powers (or a completely multiplicative
+function on primes) determines it everywhere.
+\end{define}
+
+
+
+
+
+
+
+
 
 
 
