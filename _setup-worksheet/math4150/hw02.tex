@@ -423,7 +423,7 @@ is solvable if and only if $(m_i,m_j) \mid b_i-b_j$ for all pairs $i,j$ with $i 
   \end{subprove}
   \item Find the least non-negative residue of $2(100!) \pmod{103}$.
   \begin{subanswer}
-    By \nameref{thm:2.11} with $p=103$, $2(103-3)!=2(100!)\equiv -1\pmod{103}$. 
+    By \nameref{thm:2.11} with $p=103$ and the part (a), $2(103-3)!=2(100!)\equiv -1\pmod{103}$. 
     Since $-1\equiv 102\pmod{103}$, the least non-negative residue is $102$.\vspace*{10px}\\
     Therefore, $2(100!)\equiv 102\pmod{103}$.
   \end{subanswer}
@@ -463,5 +463,27 @@ Let $p$ be an odd prime number. Prove that
   1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}.
   \]
 \end{subprove}
+
+\newpage
+\begin{define}{Least Non-Negative Residue}
+  Let $a$ and $n$ be integers with $n > 0$. The \textbf{least non-negative residue} of $a$ 
+  modulo $n$ is defined as the unique integer $r$ that satisfies the following two conditions:
+  \begin{enumerate}
+    \item $a \equiv r \pmod{n}$
+    \item $0 \le r < n$
+  \end{enumerate}
+  This integer $r$ is the \textbf{remainder} obtained when $a$ is divided by $n$, as described by the 
+  Division Algorithm. The algorithm states that for any integer $a$ and any positive integer 
+  $n$, there exist unique integers $q$ (the quotient) and $r$ (the remainder) such that 
+  $a = qn + r$, where $0 \le r < n$.
+\end{define}
+\noindent\textbf{Example:}
+Let the problem be to find the least non-negative residue of $-15$ modulo $4$.
+\begin{itemize}
+  \item We can write $-15 = (-4) \cdot 4 + 1$.
+  \item Here, the remainder is $r=1$.
+  \item The conditions are satisfied: $-15 \equiv 1 \pmod{4}$ and $0 \le 1 < 4$.
+\end{itemize}
+Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
 
 \end{enumerate}
