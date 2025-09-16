@@ -1,0 +1,166 @@
+% This LaTeX document needs to be compiled with XeLaTeX.
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+\usepackage[fallback]{xeCJK}
+\usepackage{polyglossia}
+\usepackage{fontspec}
+\IfFontExistsTF{Noto Serif CJK TC}
+{\setCJKmainfont{Noto Serif CJK TC}}
+{\IfFontExistsTF{STSong}
+  {\setCJKmainfont{STSong}}
+  {\IfFontExistsTF{Droid Sans Fallback}
+    {\setCJKmainfont{Droid Sans Fallback}}
+    {\setCJKmainfont{SimSun}}
+}}
+
+\setmainlanguage{english}
+\IfFontExistsTF{CMU Serif}
+{\setmainfont{CMU Serif}}
+{\IfFontExistsTF{DejaVu Sans}
+  {\setmainfont{DejaVu Sans}}
+  {\setmainfont{Georgia}}
+}
+
+\begin{document}
+$L 8$
+
+L8: Corollaries to Fermat's Little Theorem and Psendoprime numbers\\
+Corollary 2.14: Let $p$ be a prime and let $a \in \mathbb{Z}$. If $p+a$, then $a^{p-2}$ is the inverse of $a$ modulo $p$.\\
+Proof: By Fermat's Little Theorem, we have that $a^{p-1} \equiv 1(\bmod p)$. Consequently, $a a^{p-2} \equiv(\bmod p)$, and so $a^{p-}$\\
+as desired. as desired.\\
+Remark: Corollary 2.14 is useful in solving linear congruences in one variable of the form $a x \equiv b(\bmod p)$ where $p$ is a prime and $p+a$ i.e. multiply both sides by $a^{p-2}$ to solve. Corollary 2.15: Let $p$ be a prime and let $a \in \mathbb{Z}$. Then $a^{p} \equiv a(\bmod p)$.\\
+Proof: If pta, then the Corollary follows from Fermat's Little Theorem on multiplication of both sides of $a^{p-1} \equiv 1(\bmod p)$ by $a$.
+
+Corollary 2.16: Let $p$ be a prime. Then $2^{P} \equiv 2(\bmod p)$.\\
+Proof: Put $a=2$ in the statement of Corollary 2.15.
+
+\begin{itemize}
+  \item Is the converse of Corollary 2.16 true?\\
+i.e. If $n \in \mathbb{Z}, n>1$ and $2^{n} \equiv 2(\bmod n)$, then is $n$ necessarily a prime? If so, this would give a necessary and sufficient condition for an integer $n>1$ to be prime (similar to Wilson's Theorem and its converse). Chinese mathematicians more than 2000 years ago claimed such a characterization. Unfortunately, the following counter example disproves their claim.\\
+Example: Consider $n=341$. Observe that $n=341 =11.31$, so not a prime. To prove that $2^{341} \equiv 2(\bmod 341)$, it suffices to prove that $2^{341} \equiv 2(\bmod 11)$ and $2^{341} \equiv 2(\bmod 31)$, since\\
+$(11,31)=1$. We have that
+\end{itemize}
+
+$$
+\begin{aligned}
+2^{341} & \equiv\left(2^{10}\right)^{34} \cdot 2(\bmod 11) \\
+& \equiv 1^{34} \cdot 2(\bmod 11) \text { by Fermat Little Thm } \\
+& \equiv 2(\bmod 11),
+\end{aligned}
+$$
+
+and
+
+$$
+\begin{aligned}
+2^{341} & \equiv\left(2^{30}\right)^{11} \cdot 2^{11}(\bmod 31) \\
+& \equiv 1^{11} \cdot 2^{11}(\bmod 31) \text { by Fermat Little Thm } \\
+& \equiv\left(2^{5}\right)^{2} \cdot 2(\bmod 31) \\
+& \equiv 1^{2} \cdot 2 \\
+& \equiv 2(\bmod 31)
+\end{aligned}
+$$
+
+Thus $2^{341} \equiv 2(\bmod 341)$, but 341 is not prime.
+
+Definition: Let $n$ be a composite integer. If $2^{n} \equiv 2(\bmod n)$, then $n$ is said to be a psendoprime.
+
+\begin{itemize}
+  \item 341 is the first psendoprime, followed by 561 and 645. There are both infinitely many\\
+even and odd pseudoprime numbers.
+\end{itemize}
+
+\section*{Euler's Theorem}
+\begin{itemize}
+  \item Enler's Theorem generalizes Fermat's Little Theorem: if $m$ is any positive integer and $a$ is an integer such that $(a, m)=1$, then Euler's Theorem tells you a particular power of a that is guaranteed to be congruent to 1 modulo m.
+\end{itemize}
+
+Definition: Let $n \in \mathbb{Z}$ with $n>0$. The Euler $\phi$ - function, denoted $\phi(n)$, is defined by $\phi(n):=\mid\{x \in \mathbb{Z}: \mid \leqslant x \leq n$ and $(x, n)=1\} \mid$.\\
+Thus $\phi(n)$ counts the number of positive integers less than or equal to $n$ that are relatively prime to $n$.
+
+$$
+\begin{array}{rlrl}
+\text { Example: } & \cdot & \phi(12)=4 & \\
+\cdot & \phi(14)=6 & & (1,5,7,11) \\
+\cdot & \phi(p)=p-1 & \text { for } p \text { a prime. } \\
+& & (1,2, \ldots, p-1) .
+\end{array}
+$$
+
+\section*{Theorem 2.17 (Euler's Theorem)}
+Let $a, m \in \mathbb{Z}$ with $m>0$. If $(a, m)=1$, then
+
+$$
+a^{\phi(m)} \equiv 1(\bmod m) .
+$$
+
+Remark: Fermat's Little Theorem is a special case of Euler's Theorem i.e. take $m=p$, a prime number, and then we have $\phi(p)=p-1$. The Statement then becomes $a^{p-1} \equiv 1(\bmod p)$.\\
+Proof (of Euler's Theorem): Let $r_{1}, r_{2}, \ldots, r_{\phi(m)}$ be the $\phi(m)$ distinct positive integers not exceeding $m$ such that $\left(r_{i}, m\right)=1, i=1,2, \ldots, \phi(m)$. Consider the $\phi(m)$ integers given by $r_{1} a, r_{2} a, \ldots$, $r_{\phi(m)} a$. Note that $\left(r_{i} a, m\right)=1$ for $i=1,2, \ldots, \phi(m)$ Otherwise, if $(r i a, m)>1$ for some $i$, then there is a prime divisor $p$ of ( $r_{i} a, m$ ) by Lemma 1.5 from which $p \mid r i a$ and $p \mid m$. Now, $p$ |ria implies that $p$ |ri or $p l a$ by Lemma 1.14; so either we have $P / r_{i}$ and p/m or p/a and p/m. Both of these\\
+cases are impossible since $(r i, m)=1$\\
+and $(a, m)=1$ respectively. Also note that no two of the $r_{1}, r_{2}, \ldots, r_{\phi(m)} a$ are congruent modulo $m$. Since $(a, m)=1$, the inverse of a modulo $m$, say $a^{\prime}$, exists by Corollary 2.8. Hence if $r_{i} a \equiv r_{j} a(\bmod m)$ with $i \neq j$, then $r_{i} a q^{\prime} \equiv r_{j} a q^{\prime}(\bmod m)$, and So $r_{i} \equiv r_{j}(\bmod m)$, which is impossible. Thus the least non-negative vesidues modulo $m$ of $r_{1}, a, r_{2} a, \ldots, r_{\phi(m)} a$, taken in some order, must be $r_{1}, r_{2}, \cdots, r_{\phi(m)}$. Then\\
+$\left(r_{1} a\right)\left(r_{2} a\right) \cdots\left(r_{\phi(m)} a\right) \equiv r_{1} r_{2} \cdots r_{\phi \mid m}(\bmod m)$,\\
+or equivalently,
+
+$$
+a^{\phi(m)} r_{1} r_{2} \cdots r_{\phi(m)} \equiv r_{1} r_{2} \cdots r_{\phi(m)}(\bmod m)
+$$
+
+Now $m \mid a^{\phi(m)} r_{1} r_{2} \cdots r_{\phi(m)}-r_{1} r_{2} \cdots r_{\phi(m)}$ implies that $m \mid r_{1} r_{2} \cdots r_{\phi(m)}\left(a^{\phi(m)}-1\right)$. Since $\left(r_{1} r_{2} \cdots r_{\phi(m)}, m\right)=1$, we have $m \mid a^{\phi(m)}-1$, and $a^{\phi(m)} \equiv 1(\bmod m)$, as desired.
+
+Definition: Let $m$ be a positive integer. A set of $\phi(m)$ integers such that each element of the set is relatively prime to $m$, and no two elements of the set are congruent modulo $m$ is said to be a reduced residue system modulo $m$.\\
+Example: $\{1,5,7,11\}$ is a reduced residue system modulo 12
+
+\begin{itemize}
+  \item $\{1,3,5,9,11,13\}$ is a reduced vesidue system modulo 14
+  \item $\{1,2, \ldots, p-1\}$ is a reduced residne System modulo $p$.\\
+Idea 2.18: Let $m$ be a positive integer and let $\left\{v_{1}, r_{2}, \ldots, r_{\phi(m)}\right\}$ be a reduced vesidue system modulo $m$. If $a$ is an integer with $(a, m)=1$, then the set $\left\{a r_{1}, a r_{2}, \ldots, a r_{\phi(m)}\right\}$ is a reduced residue system modulo $m$.
+  \item Idea 2.18 was the key to proving Euler's Theorem.
+\end{itemize}
+
+Example: $\{1,5,7,11\}$ reduced vesidue
+
+\section*{(8)}
+system modulo 12. Since $(5,12)=1$, the set $\{1.5,5.5,7.5,11.5\}=\{5,25,35,55\}$ is also a reduced residue system modulo 12.
+
+Corollary 2.19 (to Euler's Theorem): Let $a, m \in \mathbb{Z}$ with $m>0$. If $(a, m)=1$, then $a^{\phi(m)-1}$ is the inverse of a modulo $m$.\\
+Proof: By Euler's Theorem, we have that $a^{\phi(m)} \equiv 1(\bmod m)$. Hence $a a^{\phi(m)-1} \equiv 1(\bmod m)$, and $a^{\phi(m)-1}$ is the inverse of a modulo $m$, as desired.
+
+Remark: Corollary 2.19 is useful in solving linear congruences in one variable of the form $a x \equiv b(\bmod m)$ where $(a, m)=1$ i.e. multiply both sides by $a^{\phi(m)-1}$ to solve. Arithmetic Functions and muttiplicativity\\
+Definition: An arithmetic function is a function\\
+whose domain is the set of positive integers.\\
+Example: - Enler $\phi$-function $\phi(n)$ is an orithmetic function.
+
+\begin{itemize}
+  \item Let $V(n)$ denote the number of positive divisors of $n$. This is an arithmetic function.
+  \item Let $o(n)$ denote the sum of positive divisors of $n$. This is an arithmetic function.
+\end{itemize}
+
+Definition : An arithmetic function $f$ is said to be multiplicative if $f(m n)=f(m) f(n)$ whenever $m$ and $n$ are relatively prime positive integers. An arithmetic function $f$ is said to be completely multiplicative if $f(m n)=f(m) f(n)$ for all positive integers $m$ and $n$.
+
+\begin{itemize}
+  \item Let $f$ be a multiplicative arithmedic function. If $n$ is a positive integer, then
+\end{itemize}
+
+
+\begin{equation*}
+n=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{r}^{a_{r}} \tag{10}
+\end{equation*}
+
+
+with $p_{1}, \ldots, p_{r}$ distinct prime numbers and $a_{1}, \ldots, a_{r}$ non-negative integers. Since $\left(p_{i}^{a_{i}}, p_{j}^{a_{j}}\right)=1$ if $i \neq j$, we have\\
+(米)\\
+$f(n)=f\left(p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{r}^{a_{r}}\right)=f\left(p_{1}^{a_{1}}\right) f\left(p_{2}^{a_{2}}\right) \cdots f\left(p_{r}^{a_{n}}\right)$.\\
+Multiplicative orithmetic functions are determined by its values at prime powers?\\
+Question: What happens for completely multiplicative arithmetic functions $f$ ?\\
+Then (*) becomes\\
+$f(n)=f\left(p_{1}\right)^{a_{1}} f\left(p_{2}\right)^{a_{2}} \cdots f\left(p_{r}\right)^{a_{n}}$.\\
+Completely multiplicative arithmetic functions are determined by its values at primes!
+
+
+\end{document}
