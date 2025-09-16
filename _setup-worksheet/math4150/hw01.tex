@@ -60,7 +60,7 @@
   \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \begin{subprove}
     ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
-    \begin{define}{Division Algorithm}[algo:div-algo][redcolor]
+    \begin{define}{Division Algorithm}[algo:division][redcolor]
     Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
     \[
     a = b q + r \qquad\text{and}\qquad 0\le r < b.
@@ -144,7 +144,7 @@
 
   \newpage
 
-  \begin{define}{Claim}[][redcolor]
+  \begin{claim}
   Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
     \begin{subprove}
     Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
@@ -154,7 +154,7 @@
     \]
     Thus, $n^{2}+1$ is even where $n^{2}+1 \ge 5$ by the assumption, not a prime. Therefore, by contradiction, If $n^{2}+1$ is prime then $n$ is even.
     \end{subprove}
-  \end{define}
+  \end{claim}
 
   \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that 
   if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
@@ -199,7 +199,7 @@
     \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
     \begin{subprove}
       Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
-      \begin{define}{Euclid's Lemma}[eq:euclid-lemma][redcolor]
+      \begin{define}{Euclid's Lemma}[lem:euclid-lemma][redcolor]
       Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
       \end{define}
       by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
@@ -231,7 +231,7 @@
     ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
     $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
     Principle Lemma.
-    \begin{define}{Well-Ordering Principle Lemma}[eq:well-ordering-princ][redcolor]
+    \begin{define}{Well-Ordering Principle Lemma}[thm:well-ordering-princ][redcolor]
     Every integer $n>1$ has at least one prime divisor.
     \end{define}
     Thus, by the transitive property of divisibility,
@@ -239,7 +239,7 @@
     p \divides(a+b) \quad \text { and } \quad p \divides a b
     $$
     since $p \divides d$, $d \divides \group{a+b}$, and $d \divides \group{a\cdot b}$.
-    Then, by \nameref{eq:euclid-lemma}, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
+    Then, by \nameref{lem:euclid-lemma}, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
     Without loss of generality and by the definition of divisibility, there exists $i\in\setZ$ such that 
     $$
     a = p i.
