@@ -11,11 +11,11 @@ Variables also let us describe real life. If you earn \$10 for every hour you wo
 to keep writing “10 times the number of hours.” You can just write \(10h\). When \(h = 5\), 
 that becomes 50. This is the power of algebra: turning words into symbols we can calculate
 
-\blockquote{A variable is a letter that represents a number.}
-\kr{변수(variable)는 숫자를 대신하는 문자이다.}
+\blockquote{A variable is a symbol, usually a letter, that can stand for a number.}
+\kr{변수(x,y,z 등)는 보통 문자로 표현되며, 어떤 수를 대신하여 나타낸다. 예: x=8일 때 7x=56.}
 
 \blockquote{An expression is a mix of numbers, variables, and operations.}
-\kr{식(expression)은 숫자, 변수, 연산 기호의 조합이다.}
+\kr{식(expression)은 숫자, 문자(변수), 그리고 연산(\(+,-,\times,\div\))이 섞여 있는 수학적 표현이다}
 
 Examples:
 \[
@@ -55,7 +55,7 @@ Each expression can change depending on the value of the variable.
 
 \newpage
 % concept02.tex
-\section{Simplifying Expressions / \kr{식 단순화하기}}
+\section{Simplifying Expressions / \kr{식 약분하기}}
 
 Expressions can look messy, but we can simplify them. Simplifying means combining 
 like terms and applying the distributive property.
@@ -63,19 +63,35 @@ like terms and applying the distributive property.
 Like terms are terms that share the same variable. \(2x + 3x\) is really \(5x\). The distributive property is another tool: \(3(x + 4)\) is the same as \(3x + 12\). These two ideas—combining and distributing—make expressions shorter and easier to handle.  
 
 
-\blockquote{Simplifying makes math clearer.}
-\kr{식 단순화는 수학을 더 명확하게 만든다.}
+\blockquote{Like terms are terms that share the same variable.}
+\kr{동류항(like terms)은 같은 문자를 포함하는 항이다.}
 
-Examples:
+\textbf{Example / 예시}:  
+\[
+2x, \ 3x \ \text{는 동류항이며, 합쳐서 } 5x \ \text{가 된다.}
+\]
+
+\blockquote{The distributive property is another tool: 3(x + 4) is the same as 3x + 12.”}
+\kr{분배법칙(distributive property)은 괄호를 풀 때 사용된다.}
+
+\textbf{Example / 예시}:  
+\[
+3(x + 4) = 3x + 12
+\]
+
+\subsection{What does it mean to Simplify? / 약분이란?}
+To simplify an expression, you:
+\begin{enumerate}
+\item Combine like terms (same variable and power).  \kr{동류항을 정리한다.}
+\item Use distribution to remove parentheses. \kr{분배법칙을 적용한다.}
+\end{enumerate}
+
+\textbf{Example / 예시}:  
 \[
 2x + 3x = 5x, \quad 4(y+2) = 4y+8
 \]
 
-\subsection{What does it mean to Simplify? / \kr{단순화란?}}
-\begin{enumerate}
-  \item Combine like terms. \kr{동류항을 정리한다.}
-  \item Apply distribution. \kr{분배법칙을 적용한다.}
-\end{enumerate}
+Simplifying makes expressions clear and prepares them for solving equations.
 
 
 
@@ -112,56 +128,31 @@ Examples:
 
 \newpage
 % concept03.tex
-\section{Solving One-Step Equations}
-\kr{(1단계 방정식)}
+\section{Solving One-Step Equations / \kr{일차반정식 풀기}}
 
-\blockquote{Use inverse operations to isolate the variable. Do the same to both sides.}
+Equations are like balances. Whatever you do to one side, you must do to the other. One-step equations are the simplest kind. You undo the operation and find the value of the variable. 
+
+If \(x + 4 = 9\), subtract 4 from both sides. \(x = 5\).  
+If \(5x = 20\), divide both sides by 5. \(x = 4\). 
+
+These may look small, but they show the heart of algebra: solving for the unknown.  
 
 \blockquote{Equations are like balances. Whatever you do to one side, you must do to the other.}
+\kr{방정식(equation))은 저울과 같다. 한쪽에 연산을 하면, 반대쪽도 똑같이 해야 균형이 유지된다.}
 
-\kr{equation(방정식)은 balance(저울)과 같습니다. 한쪽에 한 연산을 하면, 반대쪽도 똑같이 해야 균형이 유지됨}
+\subsection{WWhat are One-Step Equations? / \kr{일차방정식이란?}}
+A one-step equation is solved with just one move—addition, subtraction, multiplication, or division.  
 
-\subsection{What You'll Learn}
-\begin{itemize}
-    \item Solve equations in one step
-    \item Understand inverse operations
-\end{itemize}
+\blockquote{A one-step equation is solved with just one move—addition, subtraction, multiplication, or division.}
+\kr{one-step equation(1차 방정식)은 한 번의 연산으로 해결되는 식이다.}
 
-\subsection{Key Ideas}
-\begin{itemize}
-    \item Use \textbf{inverse operations} to isolate the variable.
-    \item Do the same thing to both sides of the equation.
-\end{itemize}
-
-\blockquote{A one-step equation is solved with just one move—addition, 
-subtraction, multiplication, or division.}
-
-\kr{one-step equation(1단계 방정식)은 한 번의 연산으로 해결되는 식 예시: x + 7 = 12 → x = 5}
-
-
-\textbf{Examples:}
+\textbf{Example / 예시}:  
 \[
-x + 4 = 9 \Rightarrow x = 5
-\]
-\[
-5x = 20 \Rightarrow x = 4
+x + 7 = 12 -> x = 5, 
+9y = 27 -> y = 3
 \]
 
-\subsection{Real-World Example}
-If \$20 is 5 times the cost of one notebook:
-\[
-5x = 20 \Rightarrow x = 4
-\]
-
-\subsection{Did You Know?}
-Solving equations is like solving a riddle or puzzle.
-
-\subsection{Tips for Students}
-\begin{itemize}
-    \item Ask: “What's happening to the variable?” Then do the opposite.
-    \item Keep both sides equal.
-    \item Plug your answer back in to check.
-\end{itemize}
+Always check by plugging your answer back into the equation
 
 
 
@@ -189,52 +180,43 @@ Solving equations is like solving a riddle or puzzle.
 
 \newpage
 % concept04.tex
-\section{Solving Multi-Step Equations}
-\kr{(여러 단계 방정식)}
+\section{Solving Multi-Step Equations / \kr{다단계 방정식}}
 
-\blockquote{First, simplify both sides. Then, isolate the variable step by step.}
+Not all equations are simple. Some take more than one step. To solve them, we clean each side first, then isolate the variable step by step.  
+
+\begin{enumerate}
+    \item Take \(2(x + 3) = 14\).
+    \item First, distribute: \(2x + 6 = 14\).  
+    \item Then subtract 6: \(2x = 8\).  
+    \item Finally, divide by 2: \(x = 4\).
+\end{enumerate}
+
 
 \blockquote{Not all equations are simple. Some take more than one step.}
 
-\kr{모든 방정식이 쉽지는 않음. 어떤 것은 여러 단계를 거쳐야만 풀수 있음}
+\kr{모든 방정식이 쉽게 풀리지는 않는다. 일차 이상의 방정식은 여러 단계를 거쳐야만 풀수 있다.}
 
-\subsection{What You'll Learn}
-\begin{itemize}
-    \item Solve equations with more than one operation
-    \item Use combining like terms and distribution
-\end{itemize}
+Step by step, the problem shrinks until the answer appears.  
 
-\subsection{Key Ideas}
-\begin{itemize}
-    \item First, simplify both sides.
-    \item Then, isolate the variable step by step.
-\end{itemize}
+\subsection{What are Multi-Step Equations? / \kr{다단계 방정식이란?}}
+
+A multi-step equation needs distribution, combining like terms, or more than one operation. You keep simplifying until the variable is alone.  
 
 \blockquote{A multi-step equation needs distribution, combining like terms, or more than one operation.}
 
-\kr{multi-step equation(여러 단계 방정식)은 분배법칙, 동류항 정리, 또는 여러 연산을 차례대로 사용해야 풀림 예시: -3x-4(4x-8) = 3(-8x-1) → -3x-16x+32 = -24x-3 → -19x+32 = -24x-3 → -19x+24x+32 = -24x+24x-3 → 5x+32 = -3 → 5x+32-32 = -3-32 → 5x = -35 → 5x/5 = -35/5 → x = -7}
+\kr{다단계 방정식(multi-step equation)은 분배법칙, 동류항 정리, 또는 여러 연산을 차례대로 적용하여 풀 수 있는 방정식이다.}
 
 
 \textbf{Example:}
-\begin{align*}
-2(x + 3) &= 14 \\
-2x + 6 &= 14 \\
-2x &= 8 \\
-x &= 4
-\end{align*}
+\begin{enumerate}
+    \item \(2(x + 3) = 14\)
+    \item \(2x + 6 = 14\) 
+    \item \(2x = 8\) 
+    \item \(x = 4\)
+\end{enumerate}
 
-\subsection{How This Helps}
-Solving multi-step equations builds confidence and logical thinking.
+This process teaches patience and logic.  
 
-\subsection{Did You Know?}
-Multi-step equations are used in budgeting, engineering, and cooking.
-
-\subsection{Tips for Students}
-\begin{itemize}
-    \item Don't rush—write each step clearly.
-    \item Simplify both sides before solving.
-    \item Check your solution.
-\end{itemize}
 
 
 
@@ -257,62 +239,146 @@ Multi-step equations are used in budgeting, engineering, and cooking.
 
 \newpage
 % concept05.tex
-\section{Inequalities}
-\kr{(부등식)}
+\section{Inequalitie / \kr{부등식}}
+Equations tell us one exact value. Inequalities tell us ranges. Instead of saying \(x = 5\), we might say \(x > 5\). Inequalities are rules. They set boundaries.  
 
-\blockquote{If you multiply or divide by a negative number, flip the inequality sign.}
+The signs are:
+\begin{itemize}
+  \item \(>\): greater than
+  \item \(<\): less than
+  \item \(\geq\): greater than or equal to
+  \item \(\leq\): less than or equal to
+\end{itemize}
+
+
 
 \blockquote{Inequalities tell us ranges. Instead of saying x = 5, we might say x > 5.}
 
-\kr{inequality(부등식)은 값의 범위를 나타냄 예시: x = 5 대신 x > 5라고 하면, x는 5보다 큰 모든 값을 가질 수 있음}
+\kr{inequality(부등식)은 값의 범위를 나타낸다. 예: x = 5 대신 x > 5라고 하면, x는 5보다 큰 모든 값을 가질 수 있다.}
 
-\subsection{What You'll Learn}
-\begin{itemize}
-    \item Solve basic inequalities
-    \item Graph answers on a number line
-\end{itemize}
-
-\subsection{Key Ideas}
-\begin{itemize}
-    \item Inequality signs:
-    \begin{itemize}
-        \item $>$ greater than
-        \item $<$ less than
-        \item $\geq$ greater than or equal to
-        \item $\leq$ less than or equal to
-    \end{itemize}
-    \item If you multiply or divide by a negative number, \textbf{flip the inequality sign}.
-\end{itemize}
+Solving inequalities is almost the same as solving equations—except for one key rule: if you multiply or divide by a negative number, you flip the sign.  
 
 \blockquote{If you multiply or divide by a negative number, you flip the sign.}
-
-\kr{부등식에서 음수로 곱하거나 나눌 때는 부등호 방향을 바꿔야 함 예: −2x < 6 → x > −3}
-
+\kr{부등식에서 음수로 곱하거나 나눌 때는 부등호의 방향을 바꾸어야 한다.}
 
 \textbf{Examples:}
-\[
-x - 3 > 2 \Rightarrow x > 5
-\]
-\[
--2x < 6 \Rightarrow x > -3
-\]
-
-\subsection{Everyday Example}
-A sign says: “You must be under 18 to enter.” That means:
-\[
-x < 18
-\]
-
-\subsection{Did You Know?}
-Inequalities are used in business, programming, and transportation.
-
-\subsection{Tips for Students}
 \begin{itemize}
-    \item Treat inequalities like equations—unless multiplying/dividing by a negative.
-    \item Graph solutions:
-    \begin{itemize}
-        \item Open circles ($\circ$) for $<$ or $>$
-        \item Closed circles ($\bullet$) for $\leq$ or $\geq$
-    \end{itemize}
-    \item Test a number to check your solution.
+  \item \(x - 3 > 2 \quad \Rightarrow \quad x > 5\)
+  \item \(-2x < 6 \quad \Rightarrow \quad \text{divide by } -2,\ \text{flip} \quad \Rightarrow \quad x > -3\)
+\end{itemize}
+
+\subsection{What are Inequalities? / \kr{부등식이란?}}
+An inequality shows that values can be greater, smaller, or equal within a range.  
+
+For example, if a rule says “under 18,” we write \(x < 18\). This describes everyone younger than 18.  
+
+Inequalities help us model rules, limits, and real-life conditions.  
+
+
+\newpage
+\section{Tips for Students / \kr{유용한 팁}}
+Algebra is like learning a new language. At first the symbols look strange, but each step has meaning. Focus on variables, practice simplifying, and learn to solve equations patiently. These tools are not just for school—they’re used everywhere in science, business, and everyday problem-solving.
+
+\subsection{Interesting Facts / 흥미로운 사실}
+\begin{itemize}
+  \item The word \textbf{algebra} comes from Arabic \textit{al-jabr}, meaning ``reunion of broken parts.''  
+        \kr{algebra(대수학)라는 단어는 아랍어 \textit{al-jabr}에서 유래되었으며, ``부서진 부분의 재결합''이라는 뜻이다.}
+  \item The balance scale is one of the oldest symbols of equations. Ancient mathematicians used it to explain equality.  
+        \kr{저울은 방정식을 나타내는 가장 오래된 상징 중 하나로, 고대 수학자들은 이를 사용해 등식을 설명하였다.}
+  \item Inequalities appear in everything from sports scores to computer code.  
+        \kr{부등식은 스포츠 점수부터 컴퓨터 코드까지 다양한 곳에서 나타난다.}
+\end{itemize}
+
+\cleardoublepage
+
+% additional.tex
+\section{Additional Concepts / \kr{추가 개념}}
+This section covers essential vocabulary and techniques that will help you master algebra. These tools complement the main concepts and provide strategies for solving equations and inequalities.
+
+\subsection{PEMDAS / \kr{연산 순서}}
+PEMDAS = Parentheses, Exponents, Multiplication/Division, Addition/Subtraction.  
+\kr{계산 순서를 외울 때 사용하는 영어 약어이다.}  
+\blockquote{\kr{미국에서는 괄호 → 지수 → 곱셈/나눗셈 → 덧셈/뺄셈 순서로 계산한다. 한국에서도 동일한 순서를 가르친다.}}
+
+\blockquote{\kr{예: $2+3 \times 4 = 14$ (곱셈 먼저). 만약 괄호가 있다면 $(2+3)\times 4 = 20$.}}
+
+\newpage
+\subsection{Transposition / 이항}
+Moving a term across the equals sign changes its sign. \\
+
+\textbf{Examples:}
+\begin{enumerate}
+    \item 3x+7=-3x-5 \quad
+    \item 12=-6x \quad
+    \item x=-2
+\end{enumerate}
+
+\blockquote{\kr{이항할 때는 부호가 바뀐다. 곱셈과 나눗셈도 이항할 수 있다.}}
+
+\textbf{Examples:}
+\begin{enumerate}
+    \item $\frac{3x}{7} = 6$
+    \item $3x = 42$
+    \item $x = 14$
+\end{enumerate}
+
+
+\newpage
+\subsection{Steps Order / 풀이 순서}
+\kr{한국식: 괄호 풀기 → 동류항 정리 → 이항 → 계수 나누기.}  
+\kr{미국식: 식을 단순화(simplify) → 변수를 고립(isolate)한다.}  
+\blockquote{\kr{좌변(왼쪽)과 우변(오른쪽)이라는 용어는 한국 수학에서 자주 사용된다.}}
+
+\textbf{Examples:}
+\begin{enumerate}
+    \item 2(x+3)+4=18 \quad
+    \item 2x+6+4=18
+    \item 2x+10=18 
+    \item 2x=8 
+    \item x=4
+\end{enumerate}
+
+\newpage
+\subsection{Graphing Inequalities / 부등식 그래프}
+\textbf{When graphing inequalities on a number line:}
+\begin{itemize}
+    \item Open circle = not included (\(<, >\))  
+    \item Closed circle = included (\(\leq, \geq\))  
+\end{itemize}
+
+\blockquote{\kr{부등식을 수직선에 나타낼 때는 점과 화살표로 범위를 표시한다. 열린 원은 포함하지 않고, 닫힌 원은 포함한다.}}
+
+In two variables, inequalities shade one side of the boundary line.  
+
+\textbf{Example:}
+\begin{itemize}
+    \item y > 2x+1 means shade above the line y = 2x+1.
+\end{itemize}
+
+\blockquote{kr{2차원에서는 직선을 경계로 하여 한쪽 영역을 음영 처리한다.}}
+
+\newpage
+\subsection{Properties of Equality / \kr{등식의 성질}}
+Equations are like a balance. If you change one side, you must do the same to the other.  
+\kr{등식은 저울과 같아서, 한쪽을 바꾸면 다른 쪽도 똑같이 바꿔야 한다.}
+
+\begin{itemize}
+  \item If $a=b$, then $a+c=b+c$. \kr{양변에 같은 수를 더한다.}
+  \item If $a=b$, then $a-c=b-c$. \kr{양변에 같은 수를 뺀다.}
+  \item If $a=b$, then $ac=bc$. \kr{양변에 같은 수를 곱한다.}
+  \item If $a=b$, then $a/c=b/c$. ($c \neq 0$) \kr{양변을 같은 수로 나눈다.}
+\end{itemize}
+
+\subsection{Checking Solutions / \kr{해 검증하기}}
+After solving, plug the value back into the equation to check.  
+\kr{방정식의 해를 구한 후, 원래 식에 대입하여 맞는지 확인한다.}
+
+Example: $2x+3=11 \ \Rightarrow \ x=4$.  
+Check: $2(4)+3=11 \ (\text{True}).$  
+
+\subsection{Common Mistakes / \kr{자주 하는 실수}}
+\begin{itemize}
+  \item $3x+2y \neq 5xy$ (\kr{동류항이 아니므로 합칠 수 없다})  
+  \item Forgetting to flip inequality when dividing by negatives (\kr{음수로 나눌 때는 부등호를 반드시 바꿔야 한다})  
+  \item Dropping negative signs (\kr{계산 과정에서 부호를 잃어버리는 경우})  
 \end{itemize}
