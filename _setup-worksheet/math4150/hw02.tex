@@ -7,6 +7,37 @@
 \input{reference.tex}
 \newpage
 
+% Recalls from lecture notes (for cross-reference via \nameref)
+\begin{define}{Definition (Congruence modulo $m$)}[def:congruence][redcolor]
+Let $a,b,m\in\mathbb{Z}$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$}, and write
+\[
+ a\equiv b\pmod{m},
+\]
+if $m\mid (a-b)$. The integer $m$ is called the \emph{modulus} of the congruence.
+\end{define}
+
+\begin{define}{Proposition 2.4 (Arithmetic with congruences)}[prop:2.4][redcolor]
+Let $a,b,c,d\in\mathbb{Z}$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
+\begin{enumerate}
+  \item $a+c\equiv b+d\pmod{m}$,
+  \item $ac\equiv bd\pmod{m}$.
+\end{enumerate}
+\end{define}
+
+\begin{define}{Corollary 2.8 (When inverses exist)}[cor:2.8][redcolor]
+The congruence $ax\equiv 1\pmod{m}$ has a solution if and only if $\gcd(a,m)=1$. In that case the
+inverse is unique modulo $m$.
+\end{define}
+
+\begin{define}{Theorem 2.9 (Chinese Remainder Theorem)}[thm:2.9][redcolor]
+Let $m_1,\dots,m_n$ be pairwise relatively prime positive integers and let $b_1,\dots,b_n\in\mathbb{Z}$.
+Then the system $x\equiv b_i\pmod{m_i}$ for $i=1,\dots,n$ has a solution, unique modulo $M:=m_1\cdots m_n$.
+\end{define}
+
+\begin{define}{Theorem 2.11 (Wilson's Theorem)}[thm:2.11][redcolor]
+Let $p$ be prime. Then $(p-1)!\equiv -1\pmod{p}$.
+\end{define}
+
 \begin{enumerate}
 \item Exercise Set 1.5, \#61.
 Find the greatest common divisor and the least common multiple of each pair of integers below.
@@ -14,11 +45,12 @@ Find the greatest common divisor and the least common multiple of each pair of i
 \item $2^2 \cdot 3^3 \cdot 5 \cdot 7$, \quad $2^2 \cdot 3^2 \cdot 5 \cdot 7^2$
 \begin{subanswer}
 Let $a = 2^2 \cdot 3^3 \cdot 5 \cdot 7$ and $b = 2^2 \cdot 3^2 \cdot 5 \cdot 7^2$.
-\begin{define}{Greatest Common Divisor}[def:gcd][redcolor]
-Let $a,b\in\Z$ with $a,b\neq 0$. The \emph{greatest common divisor} of $a$ and $b$, denoted $\gcd(a,b)$ or $(a,b)$, is the largest positive integer $d$ such that $d\mid a$ and $d\mid b$.
-\end{define}
-\begin{define}{Least Common Multiple}[def:lcm][redcolor]
-Let $a,b\in\Z$ with $a,b\neq 0$. The \emph{least common multiple} of $a$ and $b$, denoted $\lcm(a,b)$ or $[a,b]$, is the smallest positive integer $m$ such that $a\mid m$ and $b\mid m$.
+\begin{define}{Definition (gcd and lcm)}[def:gcdlcm][redcolor]
+For nonzero integers $a,b$, the greatest common divisor $(a,b)$ and least common multiple $[a,b]$ are defined in the usual way. One has the prime-power rules
+\[
+ (a,b)=\prod p^{\min(\alpha_p,\beta_p)},\qquad [a,b]=\prod p^{\max(\alpha_p,\beta_p)},
+\]
+when $a=\prod p^{\alpha_p}$ and $b=\prod p^{\beta_p}$ are prime factorizations.
 \end{define}
 By the prime factorization method:
 \begin{align*}
@@ -29,7 +61,7 @@ By the prime factorization method:
 \begin{align*}
 \lcm(a,b) &= 2^{\max(2,2)} \cdot 3^{\max(3,2)} \cdot 5^{\max(1,1)} \cdot 7^{\max(1,2)} \\
 &= 2^2 \cdot 3^3 \cdot 5^1 \cdot 7^2 \\
-&= 4 \cdot 27 \cdot 5 \cdot 49 = 26,460
+&= 4 \cdot 27 \cdot 5 \cdot 49 \qquad(\text{value not expanded})
 \end{align*}
 \end{subanswer}
 
@@ -79,11 +111,7 @@ Prove or disprove the following statements.
 \begin{enumerate}
 \item If $a,b \in \mathbb{Z}$, $a,b>0$, and $a^2 \mid b^3$, then $a \mid b$.
 \begin{subprove}
-This statement is \textbf{false}. We provide a counterexample.
-Let $a = 8$ and $b = 4$. Then $a^2 = 64$ and $b^3 = 64$.
-Since $64 = 64 \cdot 1$, we have $a^2 \mid b^3$.
-However, $a = 8$ does not divide $b = 4$ since there is no integer $k$ such that $4 = 8k$.
-Therefore, the statement is false.
+This statement is \textbf{false}. Take $a=8$, $b=4$. Then $a^2=64$ and $b^3=64$, so $a^2\mid b^3$ but $a\nmid b$.
 \end{subprove}
 
 \item If $a,b \in \mathbb{Z}$, $a,b>0$, and $a^2 \mid b^2$, then $a \mid b$.
@@ -197,8 +225,8 @@ Therefore, $ab$ is expressible in the form $6n+1$.
 \item Prove that there are infinitely many prime numbers of the form $6n+5$, where $n$ is an integer. (Hint: Parallel the proof of Proposition 1.22 that uses proof by contradiction).
 \begin{subprove}
 We prove this by contradiction, following the approach of Proposition 1.22.
-\begin{define}{Proposition 1.22}[prop:inf-primes][redcolor]
-There are infinitely many prime numbers.
+\begin{define}{Proposition 1.22 (Infinitely many primes $\equiv 3\ (4)$)}[prop:1.22][redcolor]
+There are infinitely many primes of the form $4n+3$. See \nameref{prop:1.22} in the notes.
 \end{define}
 
 Suppose there are only finitely many primes of the form $6n+5$. Let them be $p_1, p_2, \ldots, p_k$.
@@ -404,8 +432,8 @@ Find the inverse modulo $m$ of each integer $n$ below.
 \item $n=8$, $m=35$.
 \begin{subanswer}
 We need to find an integer $x$ such that $8x \equiv 1 \pmod{35}$.
-\begin{define}{Modular Inverse}[def:mod-inverse][redcolor]
-Let $a,m\in\Z$ with $m>0$. The \emph{modular inverse} of $a$ modulo $m$ is an integer $x$ such that $ax \equiv 1 \pmod{m}$.
+\begin{define}{Corollary 2.8 (When inverses exist)}[cor:2.8][redcolor]
+If $\gcd(a,m)=1$ then there exists $x$ with $ax\equiv 1\pmod m$, unique modulo $m$; otherwise no inverse exists. (See \nameref{cor:2.8}.)
 \end{define}
 
 We use the Extended Euclidean Algorithm to find $\gcd(8,35)$ and express it as a linear combination:
@@ -777,8 +805,8 @@ Therefore, $x_1 \equiv x_2 \pmod{[m_1, m_2, \ldots, m_n]}$.
 \item Prove that if $p$ is an odd prime number, then $2(p-3)! \equiv -1 \pmod{p}$.
 \begin{subprove}
 We use Wilson's Theorem and properties of factorials modulo primes.
-\begin{define}{Wilson's Theorem}[thm:wilson][redcolor]
-If $p$ is a prime number, then $(p-1)! \equiv -1 \pmod{p}$.
+\begin{define}{Wilson's Theorem (recall)}[thm:wilson][redcolor]
+See \nameref{thm:2.11}: if $p$ is prime, then $(p-1)!\equiv -1\pmod p$.
 \end{define}
 
 By Wilson's Theorem, we have $(p-1)! \equiv -1 \pmod{p}$.
@@ -832,8 +860,8 @@ Let $p$ be an odd prime number. Prove that
 \end{equation*}
 \begin{subprove}
 We use Wilson's Theorem and properties of quadratic residues.
-\begin{define}{Wilson's Theorem}[thm:wilson-2][redcolor]
-If $p$ is a prime number, then $(p-1)! \equiv -1 \pmod{p}$.
+\begin{define}{Wilson's Theorem (recall)}[thm:wilson-2][redcolor]
+See \nameref{thm:2.11}: if $p$ is prime, then $(p-1)!\equiv -1\pmod p$.
 \end{define}
 
 By Wilson's Theorem, we have $(p-1)! \equiv -1 \pmod{p}$.
