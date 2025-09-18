@@ -1,0 +1,195 @@
+% \documentclass[12pt]{article}
+\documentclass[12pt]{book}
+\input{../preamble/font.tex}
+\input{../preamble/font-korean.tex}
+\input{../preamble/layout-letter.tex}
+\input{../preamble/reference-bibliography.tex}
+\input{../preamble/reference-index.tex}
+
+
+
+
+% page# location change to bottom like << articles >>
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\thepage}
+
+
+
+
+
+
+
+\begin{document}
+  % Table of contents
+  \tableofcontents
+  \clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  \mainmatter
+
+
+
+  \onesidedpaper % Start with the one-sided layout
+  \chapter{Part 1: Simulated One-Sided Layout}
+  \lettrine{L}{orem ipsum} dolor sit amet, consectetur adipiscing elit. 
+  This section visually appears as a one-sided document because the inner and 
+  outer margins are equal on every page. s
+  \lipsum[1-2]
+
+  \lettrine{L}{orem ipsum} dolor sit amet \lipsum[1-2]
+
+
+
+
+  \twosidedpaper % Switch to the two-sided layout
+  \section*{Example - Line on this page only}
+  \sidenote[2pt]{Note in margin dsa 
+  dsad dsa dsa dsadsa dsad sadsadsadjkbsak dhsakjldskladb s sadsad.}
+
+  \lettrine[lines=3]{L}{orem ipsum} dolor sit amet, consectetur adipiscing elit. 
+  Praesent vel risus in nunc gravida venenatis. Curabitur euismod.
+  \lipsum[1-2]
+
+
+  Here is some normal text with a margin note.\sidenote{여기에는 한글 설명이 들어가야하는 자리입니다.}
+
+  \section{Inside a float}
+
+  \begin{figure}[ht]
+    \centering
+    \rule{3cm}{2cm}
+    \caption{A box figure}
+    Here is a figure caption. \sidenote{Margin note inside float.}
+  \end{figure}
+
+  \section{Inside a footnote}
+
+  Some text with a footnote\footnote{여기 또한 마찬가지, 한글이 들어가야하는 자리입니다. 영어 단어나 문장 해석을 목적으로 제공되는 공간입니다.
+  \lipsum[1] sad sad \sidenote[-10pt]{Margin note inside footnote.}} continuing the paragraph.
+
+
+
+
+
+
+  \newpage
+  \section*{Example - Line on this page only}
+
+  \lipsum[1-2]
+  \section{Inside a footnote}
+
+  Some text with a footnote\footnote{Footnote text. 
+  dsadsadsad 
+  sadsad sadsad sadsad sad sad sadsad \lipsum[1-2] sad sad \sidenote{Margin note inside footnote.}} continuing the paragraph.
+
+
+
+  Here is some normal text with a margin note.\sidenote{Note in margin dsa 
+  dsad dsa dsa dsadsa dsad sadsadsadjkbsak dhsakjldskladb s sadsad.}
+
+
+
+
+
+
+  \newpage
+  \section*{Example - Line on this page only}
+  \lipsum[1-2]
+
+
+
+  \newpage
+  \section*{Example - Line on this page only}
+  \lipsum[1-2]
+
+
+
+
+
+
+  \onesidedpaper % Start with the one-sided layout
+  \section*{Part 1: Simulated One-Sided Layout}
+  This section visually appears as a one-sided document because the inner and 
+  outer margins are equal on every page. s
+  \lipsum[1-2]
+
+  \newpage
+  \section*{Part 2: True Two-Sided Layout}
+  The page layout has now switched to a true two-sided style. The margins on even and odd pages will be different.
+  \lipsum[3-4]
+
+
+
+
+
+    
+  \section{Number theory example}
+  Let $q$ be any prime divisor of \(N\). We make two observations:
+  \index{prime divisor}
+  \index{$q$@\texttt{$q$}} % put q in index (show as verbatim-like text)
+
+  This is English text using the Latin font set by pdfLaTeX.
+  \index{English text}
+
+  \section{Korean examples}
+  안녕하세요. 이것은 \texttt{kotex}로 컴파일된 한글입니다.
+  \index{kotex}
+
+  \subsection{Nanum family examples}
+  안녕하세요! 이것은 나눔명조체입니다.
+  \index{나눔명조}
+
+  \textit{이것은 나눔손글씨입니다.}
+  \index{나눔손글씨}
+
+  \textbf{이것은 나눔바른고딕입니다.}
+  \index{나눔바른고딕}
+
+  \textbf{\textit{이것은 나눔손글씨입니다.}}
+  \index{나눔손글씨!강조}
+
+  \section{More sample entries}
+  You can add hierarchical (sub) entries, e.g., Fonts!Nanum:
+  \index{Fonts!Nanum Myeongjo}
+  \index{Fonts!Nanum Gothic}
+
+
+  Cite an authoritative book on algorithms: \textcite{noauthor_help_2010} shows a number of classic results.
+  Also see \parencite{kim_ssat-sat_2003} for document preparation practices.
+
+  
+
+
+
+
+
+
+
+
+
+  
+  \backmatter
+  \clearpage
+  \printbibliography[
+    heading=bibintoc,   % unnumbered entry in TOC
+  %   title={References}
+  ]
+  \clearpage
+  \printindex                  % unnumbered, title from imakeidx
+\end{document}

@@ -7,13 +7,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % ------------------------------------------------------------------------------
-% Required Packages for Korean Language Support
+% Required Packages for font-korean.tex
 % ------------------------------------------------------------------------------
 \makeatletter
 % Engine detection and Korean language support
 % \@ifpackageloaded{iftex}{}{\usepackage{iftex}}        % Engine detection
 % \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}  % Font specification (XeLaTeX/LuaLaTeX)
 % \@ifpackageloaded{xeCJK}{}{\usepackage{xeCJK}}        % CJK support for XeLaTeX/LuaLaTeX
+\@ifpackageloaded{inputenc}{}{\usepackage[utf8]{inputenc}}   % characters from various languages and special symbols 
+\@ifpackageloaded{kotex}{}{\usepackage{kotex}}        % korean language encoding setup
+
 \@ifpackageloaded{kotex}{}{\usepackage{kotex}}        % korean language encoding setup
 
 \makeatother

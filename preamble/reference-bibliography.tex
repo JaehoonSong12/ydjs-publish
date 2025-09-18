@@ -1,0 +1,38 @@
+% ------------------------------------------------------------------------------
+% Required Packages for preamble/reference-bibliography.tex
+% ------------------------------------------------------------------------------
+% Load packages conditionally
+\makeatletter
+\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}} % helpful for TOC/citations/links
+\makeatother
+
+% Bibliography: biblatex with biber backend (works with pdflatex + biber)
+\usepackage[
+  backend=biber,           % use biber for processing
+  style=numeric,           % bibliography style
+  citestyle=authoryear,    % in-text citations
+  sorting=ynt,             % year-name_of_auther–title order
+  % maxcitenames=2,          % limit authors in citations
+  % bibencoding=utf8         % if your .bib is UTF-8
+]{biblatex}
+\addbibresource{references.bib}
+
+% ------------------------------------------------------------------------------
+% USAGE
+% ------------------------------------------------------------------------------
+% Add citations in your document:
+%   % \cite{key}   \parencite{key}   \textcite{key}
+%   % Multiple: \parencites{key1}{key2}
+%
+% Print the bibliography (choose one of the styles):
+%   % \clearpage
+%   % \printbibliography[
+%   %   heading=bibintoc,   % unnumbered entry in TOC
+%   % %   title={References}
+%   % ]
+%
+%   % \clearpage
+%   % \printbibliography[
+%   %   heading=bibnumbered,   % numbered entry in TOC
+%   % %   title={References}
+%   % ]
