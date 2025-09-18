@@ -1,0 +1,21 @@
+\documentclass{article}
+\usepackage{kotex}
+\usepackage{fontspec}
+
+% This command overrides the default font settings from kotex
+\setmainfont[
+    UprightFont=*{나눔고딕},
+    ItalicFont=*{나눔손글씨},
+    BoldFont=*{나눔바른고딕},
+    BoldItalicFont=*{나눔손글씨},
+]{나눔명조, Nanum Myeongjo}
+
+\begin{document}
+안녕하세요! 이것은 나눔명조체입니다.
+
+\textit{이것은 나눔손글씨입니다.}
+
+\textbf{이것은 나눔바른고딕입니다.}
+
+\textbf{\textit{이것은 나눔손글씨입니다.}}
+\end{document}
