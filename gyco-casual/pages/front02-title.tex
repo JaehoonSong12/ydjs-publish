@@ -1,0 +1,34 @@
+% Title page  
+%================ Metadata ======================
+\newcommand{\BookTitle}{Math Made Clear}
+\newcommand{\BookSubtitle}{Optional Subtitle}
+\newcommand{\BookAuthor}{Jueon Kim, Yeoeun Kim}
+\newcommand{\BookEditor}{Jaehoon Song}
+\newcommand{\BookInstitution}{Greater Youth Collaborative Opus (GYCO)}
+\newcommand{\PublicationYear}{\the\year}
+%================ Assets ======================
+\newcommand{\BookEmblem}{./emblems/emblem.png} % Path to emblem image file
+\begin{titlepage}
+  \centering
+  % Top fill for vertical centering
+  \vspace*{\fill}
+  % Main title block
+  {\bfseries\Huge\BookTitle\par}
+  \vspace{0.5em}
+  % {\Large\BookSubtitle\par}
+  \vfill
+  \vspace{2em}
+  % Author and editor
+  {\Large Author: \BookAuthor\par}
+  % {\Large Editor: \BookEditor\par}
+  \vspace{2em}
+  % Optional logo at bottom (uncomment to use)
+  \includegraphics[width=0.65\textwidth]{\BookEmblem}
+  {\normalsize \par}
+  \vspace{2em}
+  % Publisher and year
+  {\normalsize \copyright\ \PublicationYear\ \BookInstitution\par}
+  {\normalsize All rights reserved.\par}
+  % Bottom fill for vertical centering
+  \vspace*{\fill}
+\end{titlepage}

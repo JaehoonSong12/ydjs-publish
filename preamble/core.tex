@@ -23,12 +23,6 @@
 \@ifpackageloaded{datetime2}{}{\usepackage{datetime2}}   % date/time formatting
 \@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}     % hyperlinks in PDF
 \@ifpackageloaded{enumitem}{}{\usepackage{enumitem}}     % custom enumerate/itemize labels
-\@ifpackageloaded{dirtytalk}{}{\usepackage[
-    left = “,% 
-    right = ”,% 
-    leftsub = ‘,% 
-    rightsub = ’ %
-]{dirtytalk}}                                               % \say{} quotations
 \@ifpackageloaded{fancyhdr}{}{\usepackage{fancyhdr}}     % custom headers/footers
 \@ifpackageloaded{microtype}{}{\usepackage{microtype}}   % improved typography
 \@ifpackageloaded{lipsum}{}{\usepackage{lipsum}}         % dummy text for examples
@@ -62,24 +56,6 @@
 
 
 
-% ------------------------------------------------------------------------------
-% \inlinequote{<text>}
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   This command formats text as an inline quote using smart quotes.
-%   It provides a quick way to add quoted text within a paragraph.
-%
-% PARAMETERS:
-%   <text>    The text to be quoted (required)
-%
-% DEPENDENCIES:
-%   \usepackage{dirtytalk}
-%
-% USAGE EXAMPLES:
-%   \inlinequote{This is a quoted text}
-%   The author said \inlinequote{this is important}.
-% ------------------------------------------------------------------------------
-\newcommand{\inlinequote}[1]{\say{#1}}
 
 % ------------------------------------------------------------------------------
 % \blockquote{<text>}
@@ -452,38 +428,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grouping Shortcuts for VS Code (`View` > `Command Palette` > `Preferences: Open Keyboard Shortcuts (JSON)`)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% {
-%   "key": "ctrl+b",
-%   "command": "editor.action.insertSnippet",
-%   "when": "editorLangId == 'latex'",
-%   "args": {
-%     "snippet": "\\textbf{${TM_SELECTED_TEXT}}"
-%   }
-% },
-% {
-%   "key": "ctrl+i",
-%   "command": "editor.action.insertSnippet",
-%   "when": "editorLangId == 'latex'",
-%   "args": {
-%     "snippet": "\\textit{${TM_SELECTED_TEXT}}"
-%   }
-% },
-% {
-%   "key": "ctrl+u",
-%   "command": "editor.action.insertSnippet",
-%   "when": "editorLangId == 'latex'",
-%   "args": {
-%     "snippet": "\\underbar{${TM_SELECTED_TEXT}}"
-%   }
-% },
-% {
-%   "key": "ctrl+q",
-%   "command": "editor.action.insertSnippet",
-%   "when": "editorLangId == 'latex'",
-%   "args": {
-%     "snippet": "\\inlinequote{${TM_SELECTED_TEXT}}"
-%   }
-% },
 % {
 %   "key": "ctrl+shift+q",
 %   "command": "editor.action.insertSnippet",

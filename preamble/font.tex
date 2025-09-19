@@ -7,9 +7,18 @@
 \@ifpackageloaded{fontenc}{}{\usepackage[T1]{fontenc}}   % better font encoding
 \@ifpackageloaded{lmodern}{}{\usepackage{lmodern}}       % Latin Modern — scalable replacement for CM
 
+
+
 % Typography helpers
 \@ifpackageloaded{lettrine}{}{\usepackage{lettrine}}      % dropped capitals
 \@ifpackageloaded{lipsum}{}{\usepackage{lipsum}}          % dummy text (testing)
+\@ifpackageloaded{dirtytalk}{}{\usepackage[
+    left = “,% 
+    right = ”,% 
+    leftsub = ‘,% 
+    rightsub = ’ %
+]{dirtytalk}}                                               % \say{} quotations
+
 \makeatother
 
 % ------------------------------------------------------------------------------
@@ -56,3 +65,70 @@
 %   - Use \par after a lettrine paragraph if spacing looks off in complex layouts.
 %   - Pair lettrine with a serif body font for best aesthetics.
 
+
+
+
+
+
+% ------------------------------------------------------------------------------
+% \inlinequote{<text>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command formats text as an inline quote using smart quotes.
+%   It provides a quick way to add quoted text within a paragraph.
+%
+% PARAMETERS:
+%   <text>    The text to be quoted (required)
+%
+% DEPENDENCIES:
+%   \usepackage{dirtytalk}
+%
+% USAGE EXAMPLES:
+%   \inlinequote{This is a quoted text}
+%   The author said \inlinequote{this is important}.
+% ------------------------------------------------------------------------------
+\newcommand{\inlinequote}[1]{\say{#1}}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grouping Shortcuts for VS Code (`View` > `Command Palette` > `Preferences: Open Keyboard Shortcuts (JSON)`)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% {
+%   "key": "ctrl+b",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\textbf{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+i",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\textit{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+u",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\underbar{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+q",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\inlinequote{${TM_SELECTED_TEXT}}"
+%   }
+% },
