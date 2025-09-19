@@ -1,100 +1,125 @@
 The following definitions and axioms are presented from standard mathematical sources (\textbf{Number Theory}) together with the author's own (or the student, myself, Jaehoon Song) clarifications and labels where applicable.
 
-\begin{define}{Number Sets}
-  \label{def:number-sets}
-  \begin{enumerate}
-    \item $\setZ$: the set of all integers
-    \item $\setQ$: the set of all rational numbers
-    \item $\setR$: the set of all real numbers
-    \item $\setN$ or $\setZ_{>0}$: the set of all natural numbers which are the set of positive integers (not including $0$)
-    \item $\setR_{>0}$: the set of all positive real numbers
-    \item $\setR_{\geq 0}$: the set of all non-negative real numbers
-  \end{enumerate}
+\begin{define}{Integers}[def:integers][red]
+  $\setZ$: the set of all integers
 \end{define}
+
+\begin{define}{Rational Numbers}[def:rational-numbers][red]
+  $\setQ$: the set of all rational numbers
+\end{define}
+
+\begin{define}{Real Numbers}[def:real-numbers][red]
+  $\setR$: the set of all real numbers
+\end{define}
+
+\begin{define}{Natural Numbers}[def:natural-numbers][red]
+  $\setN$ or $\setZ_{>0}$: the set of all natural numbers which are the set of positive integers (not including $0$)
+\end{define}
+
+\begin{define}{Positive Real Numbers}[def:positive-real-numbers][red]
+  $\setR_{>0}$: the set of all positive real numbers
+\end{define}
+
+\begin{define}{Non-negative Real Numbers}[def:non-negative-real-numbers][red]
+  $\setR_{\geq 0}$: the set of all non-negative real numbers
+\end{define}
+
+
+\newpage
 
 The following definitions and claims extend the understanding of integers.
 
 Here are the ICA2 Definitions and Axioms as follows.
-\begin{define}{ICA2 Definitions and Axioms}
-  \label{def:ica2-axioms}
-  \begin{enumerate}
-    \item \textbf{Definition:} An integer $n$ is \underbar{even} if there exists 
-    (existential quantification logic $\exists$) an integer $k$ such that
-    \[
-    n = 2k.
-    \]
-    \item \textbf{Definition:} An integer $n$ is \underbar{odd} if 
-    there exists some integer $k$ such that
-    \[
-    n = 2k + 1.
-    \]
-    \item \textbf{Axiom 1:} The sum of two integers is again an 
-    integer. (Closure under addition)
-    \item \textbf{Axiom 2:} The product of two integers is again 
-    an integer. (Closure under multiplication)
-    \item \textbf{Axiom 3:} An integer is odd if and only if it 
-    is not even.
-  \end{enumerate}
+
+\begin{define}{Even Integer}[def:even-integer][red]
+  An integer $n$ is \underbar{even} if there exists 
+  (existential quantification logic $\exists$) an integer $k$ such that
+  \[
+  n = 2k.
+  \]
+\end{define}
+
+\begin{define}{Odd Integer}[def:odd-integer][red]
+  An integer $n$ is \underbar{odd} if 
+  there exists some integer $k$ such that
+  \[
+  n = 2k + 1.
+  \]
+\end{define}
+
+\begin{define}{Closure under Addition}[def:closure-addition][red]
+  The sum of two integers is again an 
+  integer. (Closure under addition)
+\end{define}
+
+\begin{define}{Closure under Multiplication}[def:closure-multiplication][red]
+  The product of two integers is again 
+  an integer. (Closure under multiplication)
+\end{define}
+
+\begin{define}{Odd if and only if Not Even}[def:odd-iff-not-even][red]
+  An integer is odd if and only if it 
+  is not even.
 \end{define}
 
 Here are the ICA3 Definitions and Axioms as follows.
-\begin{define}{ICA3 Definitions and Axioms}
-  \label{def:ica3-axioms}
-  \begin{enumerate}
-    \item \textbf{Axiom 1:} The sum of two integers (Universal quantification for all, for every, for each) is again an integer. (Closure under addition)
-    \item \textbf{Axiom 2:} The product of two integers (Universal quantification for all, for every, for each) is again an integer. (Closure under multiplication)
-    \item \textbf{Axiom 3:} An integer $n$ is even if and only if $n^2$ is even.
-  \end{enumerate}
+
+\begin{define}{Universal Closure under Addition}[def:universal-closure-addition][red]
+  The sum of two integers (Universal quantification for all, for every, for each) is again an integer. (Closure under addition)
+\end{define}
+
+\begin{define}{Universal Closure under Multiplication}[def:universal-closure-multiplication][red]
+  The product of two integers (Universal quantification for all, for every, for each) is again an integer. (Closure under multiplication)
+\end{define}
+
+\begin{define}{Even Integer Square}[def:even-integer-square][red]
+  An integer $n$ is even if and only if $n^2$ is even.
 \end{define}
 
 \newpage
 
 The following claims are given in the reference as well.
 
-\begin{claim}{Sum of Even Integers}
-  \label{claim:sum-even-integers}
+\begin{define}{Sum of Even Integers}[claim:sum-even-integers][red]
   The sum of two even integers is again an even integer.
-  \begin{subprove}[bluecolor]
+  \begin{subprove}[red]
     Let $x$ be an integer and $y$ be an integer ($\forall x,y \in \setZ$). 
-    Suppose $x$ is even and $y$ is even. Then, by Definition~\ref{def:ica2-axioms}, there exists an integer 
+    Suppose $x$ is even and $y$ is even. Then, by \nameref{def:even-integer}, there exists an integer 
     $k$ and an integer $j$ such that $x=2k$ and $y=2j$. Then, 
-    $x+y=\left(2k\right)+\left(2j\right)=2\left(k+j\right)$. By Axiom 1 of Definition~\ref{def:ica2-axioms}, since $k$ and 
+    $x+y=\left(2k\right)+\left(2j\right)=2\left(k+j\right)$. By \nameref{def:closure-addition}, since $k$ and 
     $j$ are integers, then so is $\left(k+j\right)$. Hence, by definition, $x+y$ is an 
     even integer.
   \end{subprove}
-\end{claim}
+\end{define}
 
 The following definitions extend the understanding of integers including divisibility.
 
-\begin{define}{Divisibility}
-  \label{def:divisibility}
+\begin{define}{Divisibility}[def:divisibility][red]
   An integer $n$ divides an integer $m$, denoted $n \LDIV m$, if there 
   exists an integer $k$ such that $m=n k$. Otherwise, $n \nmid m$.
 \end{define}
 
 The following definitions extend the classification of real numbers into rational and irrational numbers.
 
-\begin{define}{Rational Number}
-  \label{def:rational-number}
+\begin{define}{Rational Number}[def:rational-number][red]
   A real number $x$ is \underbar{rational} if there exist integers $a$ and $b$ with $b \neq 0$ such that $bx = a$.
   Otherwise, $x$ is \underbar{irrational}.
 
-  \textbf{Note}: Compare the rational number definition with the even/odd axiom \inlinequote{odd iff not even} from Definition~\ref{def:ica2-axioms}.
+  \textbf{Note}: Compare the rational number definition with the even/odd axiom \inlinequote{odd iff not even} from \nameref{def:odd-iff-not-even}.
 \end{define}
 
 The following claims are given in the reference as well.
 
-\begin{claim}{Irrationality}
-  \label{claim:sqrt2-irrational}
+\begin{define}{Irrationality of $\sqrt{2}$}[claim:sqrt2-irrational][red]
   $\sqrt{2}$ is irrational.
-  \begin{subprove}[bluecolor]
-    Suppose $\sqrt{2}$ is rational. Then, by Definition~\ref{def:rational-number}, there exists $a,b\in \setZ$ 
+  \begin{subprove}[red]
+    Suppose $\sqrt{2}$ is rational. Then, by \nameref{def:rational-number}, there exists $a,b\in \setZ$ 
     with $b\ne 0$ such that $b\cdot\sqrt{2}=a$. We may further assume that any factors 
     common to $a$ and $b$ have already been removed.\\
 
     Then, squaring both sides, this yields $2\cdot b^2 = a^2$.
-    Since products of integers are again integers by Axiom 2 of Definition~\ref{def:ica2-axioms}, we have that $a^2,b^2\in \setZ$.
-    Thus, by definition, $a^2$ is even. Therefore, by Axiom 3 of Definition~\ref{def:ica3-axioms}, $a$ is even. 
+    Since products of integers are again integers by \nameref{def:closure-multiplication}, we have that $a^2,b^2\in \setZ$.
+    Thus, by definition, $a^2$ is even. Therefore, by \nameref{def:even-integer-square}, $a$ is even. 
     Thus, there exists $c\in\setZ$ such that $a=2c$. Then
     $$
     2b^2=a^2={2c}^2=4c^2
@@ -103,4 +128,16 @@ The following claims are given in the reference as well.
     However, $a$ and $b$ both being even contradicts the fact that any factors 
     common to $a$ and $b$ have already been removed.
   \end{subprove}
-\end{claim}
+\end{define}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%% New style (refactor model)
+\begin{define}{Relatively Prime Integers (Coprime)}[def:relatively-prime][red]
+  Let $x,y \in \mathbb{Z}$. The integers $x$ and $y$ are said to be
+  \textbf{relatively prime} if and only if
+  $\gcd(x,y) = 1$.
+\end{define}

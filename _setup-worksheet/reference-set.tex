@@ -2,47 +2,55 @@
 The following definitions are presented from standard mathematical sources (\textbf{Sets}).
 Clarifications and labels have been added where applicable.
 
-\begin{define}{Basic Set Concepts}\phantomsection\label{def:basic-set-concepts} % \hyperref[def:basic-set-concepts]{YOUR_CONTEXT}
-  \begin{enumerate}
-    \item \textbf{Universal Set:} A universal set $\setUNIV$ is a
-    set that contains all objects under consideration in a particular context or problem.
-    \item \textbf{Empty Set:} The empty set, denoted $\setNULL$,
-    is the unique set that contains no elements.
-    \item \textbf{Subset:} Let $A$ and $B$ be sets. $A$ is a
-    subset of $B$ ($A \subseteq B$) if (and only if)
-    for all $x \in A$, $x \in B$.
-    \item \textbf{Set Equality:} Let $A$ and $B$ be sets. The sets $A$ and $B$ are
-    equal ($A = B$) if $A \subseteq B$ and $B \subseteq A$.
-    \item \textbf{Power Set:} Let $A$ be a set. The power set of $A$, denoted $\sPOWER{A}$ or $2^A$,
-    is the set of all subsets of $A$. That is, $\mathcal{P}(A) = \{S\in\setUNIV : S \subseteq A\}$.
-  \end{enumerate}
+\begin{define}{Universal Set}[def:universal-set][red]
+  A universal set $\setUNIV$ is a set that contains all objects under consideration in a particular context or problem.
+\end{define}
+
+\begin{define}{Empty Set}[def:empty-set][red]
+  The empty set, denoted $\setNULL$, is the unique set that contains no elements.
+\end{define}
+
+\begin{define}{Subset}[def:subset][red]
+  Let $A$ and $B$ be sets. $A$ is a subset of $B$ ($A \subseteq B$) if (and only if) for all $x \in A$, $x \in B$.
+\end{define}
+
+\begin{define}{Set Equality}[def:set-equality][red]
+  Let $A$ and $B$ be sets. The sets $A$ and $B$ are equal ($A = B$) if $A \subseteq B$ and $B \subseteq A$.
+\end{define}
+
+\begin{define}{Power Set}[def:power-set][red]
+  Let $A$ be a set. The power set of $A$, denoted $\sPOWER{A}$ or $2^A$, is the set of all subsets of $A$. That is, $\mathcal{P}(A) = \{S\in\setUNIV : S \subseteq A\}$.
 \end{define}
 The following definitions extend the understanding of set operations
 and properties.
 
 
-\begin{define}{Set Operations}\phantomsection\label{def:set-operations} % \hyperref[def:set-operations]{YOUR_CONTEXT}
-  \begin{enumerate}
-    \item \textbf{Complementary Set:} Let $A$ be a subset of the universal set $\setUNIV$.
-    The complement of $A$, denoted $A^c$ or $\overline{A}$, is the set of all elements
-    in $\setUNIV$ that are not in $A$. That is, $A^c = \{x \in \setUNIV : x \notin A\}$.
-    \item \textbf{Union:} Let $A$ and $B$ be sets. The union of $A$ and $B$,
-    denoted $A \cup B$, is the set of all elements that are in $A$, or in $B$, or in both.
-    That is, $A \cup B = \{x : x \in A \lor x \in B\}$.
-    \item \textbf{Intersection:} Let $A$ and $B$ be sets. The intersection of $A$ and $B$,
-    denoted $A \cap B$, is the set of all elements that are in both $A$ and $B$.
-    That is, $A \cap B = \{x : x \in A \land x \in B\}$.
-    \item \textbf{Set Difference:} Let $A$, $B$ be subsets of a universal set $\setUNIV$.
-    The set difference $A \sMINUS B$ is defined to be the set
-    $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \vspace*{10px}\\
-    \textit{It is sometimes called the relative complement of $B$ in $A$,
-    and denoted in the textbook as $A - B$.}
-    \item \textbf{Cartesian Product:} Let $A$ and $B$ be sets. The Cartesian product of
-    $A$ and $B$, denoted $A \sTIMES B$, is the set consisting of all ordered pairs:
-    \[
-    A \sTIMES B = \{(a, b) \LDIV a \in A, b \in B\}.
-    \]
-  \end{enumerate}
+\begin{define}{Complementary Set}[def:complementary-set][red]
+  Let $A$ be a subset of the universal set $\setUNIV$. The complement of $A$, denoted $A^c$ or $\overline{A}$, is the set of all elements in $\setUNIV$ that are not in $A$. That is, $A^c = \{x \in \setUNIV : x \notin A\}$.
+\end{define}
+
+\begin{define}{Union}[def:union][red]
+  Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \cup B$, is the set of all elements that are in $A$, or in $B$, or in both. That is, $A \cup B = \{x : x \in A \lor x \in B\}$.
+\end{define}
+
+\begin{define}{Intersection}[def:intersection][red]
+  Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \cap B$, is the set of all elements that are in both $A$ and $B$. That is, $A \cap B = \{x : x \in A \land x \in B\}$.
+\end{define}
+
+\begin{define}{Set Difference}[def:set-difference][red]
+  Let $A$, $B$ be subsets of a universal set $\setUNIV$. The set difference $A \sMINUS B$ is defined to be the set $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \vspace*{10px}\\
+  \textit{It is sometimes called the relative complement of $B$ in $A$, and denoted in the textbook as $A - B$.}
+\end{define}
+
+\begin{define}{Cartesian Product}[def:cartesian-product][red]
+  Let $A$ and $B$ be sets. The Cartesian product of $A$ and $B$, denoted $A \sTIMES B$, is the set consisting of all ordered pairs:
+  \[
+  A \sTIMES B = \{(a, b) \LDIV a \in A, b \in B\}.
+  \]
+\end{define}
+
+\begin{define}{Pairwise Disjoint Sets}[def:pairwise-disjoint][red]
+  Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \cap A_j = \emptyset$.
 \end{define}
 
 
@@ -51,26 +59,26 @@ and properties.
 The following claims are given in the reference as well. Let $A,B\in U$, a universal set.
 
 
-\begin{claim}{Subset of Union: $A \subseteq \sOR{A}{B}$}\phantomsection\label{claim:subset-union} % \hyperref[claim:subset-union]{YOUR_CONTEXT}
-  \begin{subprove}[bluecolor]
+\begin{define}{Subset of Union: $A \subseteq \sOR{A}{B}$}[claim:subset-union][red]
+  \begin{subprove}[red]
       Let $x\in U$, assume $x\in A$. Then the statement \inlinequote{$x\in A$ or $x\in B$} is true.
       Hence, by the definition, $\sOR{A}{B}=\{x\in U\LDIV x\in A$ or $x\in B\}$, $x\in \sOR{A}{B}$.
       Thus, $A \subseteq \sOR{A}{B}$.
   \end{subprove}
-\end{claim}
+\end{define}
 
-\begin{claim}{Empty Subset: $\setNULL \subseteq A$}\phantomsection\label{claim:empty-subset} % \hyperref[claim:empty-subset]{YOUR_CONTEXT}
-  \begin{subprove}[bluecolor]
+\begin{define}{Empty Subset: $\setNULL \subseteq A$}[claim:empty-subset][red]
+  \begin{subprove}[red]
       Let $x\in U$, assume $x\in \setNULL$. But there are no elements in $\setNULL$, so
       $x\in \setNULL$ is false. Since the premise is false, the implication if $x\in \setNULL$,
-      then $x\in A$ is true. Thus, $\setNULL \subseteq A$ by definition of \hyperref[def:basic-set-concepts]{subsets}.
+      then $x\in A$ is true. Thus, $\setNULL \subseteq A$ by definition of \nameref{def:subset}.
   \end{subprove}
-\end{claim}
+\end{define}
 
-\begin{claim}{Subset as Equality: $\sOR{A}{B}=A$ if and only if $B\subseteq A$}\phantomsection\label{claim:subset-equality} % \hyperref[claim:subset-equality]{YOUR_CONTEXT}
-  \begin{subprove}[bluecolor]
+\begin{define}{Subset as Equality: $\sOR{A}{B}=A$ if and only if $B\subseteq A$}[claim:subset-equality][red]
+  \begin{subprove}[red]
       Let $x\in U$, first, we assume $B\subseteq A$, we have already shown
-      $A \subseteq \sOR{A}{B}$ by the claim, \hyperref[claim:subset-union]{Subset of Union}. 
+      $A \subseteq \sOR{A}{B}$ by \nameref{claim:subset-union}.
       To show $\sOR{A}{B} \subseteq A$, assume $x\in \sOR{A}{B}$.
       By definition, $x\in A$ or $x\in B$. Considering $x\in B$ and assumption
       $B \subseteq A$, $x\in B$ implies $x\in A$. Thus, $\sOR{A}{B} \subseteq A$.
@@ -78,26 +86,18 @@ The following claims are given in the reference as well. Let $A,B\in U$, a unive
       Now, we assume $\sOR{A}{B}=A$. To show $B\subseteq A$, we now assume $x\in B$. Since $x\in B$, by definition
       of union, $x\in \sOR{A}{B} = A$. Therefore, $B\subseteq A$.
   \end{subprove}
-\end{claim}
+\end{define}
 
 
-%%%%%%%%%%%%%%%%%%% 9/8/25
-
-Let $\setUNIV$ be a set. 
-\begin{claim}{ICA6}\phantomsection\label{claim:ica6} % \hyperref[claim:ica6]{YOUR_CONTEXT}
-  For all $A,B\in\setUNIV$, $$A\sTIMES B =\setNULL\THEN \group{A=\setNULL\OR B=\setNULL}$$
-  \begin{subprove}[bluecolor]
+%%%%%%%%%%%%%%%%%%% New style (refactor model)
+\begin{define}{ICA6}[claim:ica6][red]
+  Let $\setUNIV$ be a universal set. For all $A,B\in\setUNIV$, $$A\sTIMES B =\setNULL\text{ only if } A=\setNULL\text{ or } B=\setNULL$$
+  \begin{subprove}[red]
     Let $A,B\in\setUNIV$. We prove $A\sTIMES B=\setNULL$. Assume it is not the case that 
     $A=\setNULL$ or $B=\setNULL$. Thus, we have $A=\setNULL$ and $B=\setNULL$. 
     Since $A\ne\setNULL$ by assumption, there exists an element $a\in A$. Likewise, there 
     is some $b\in B$ since $B\ne\setNULL$. Thus, $\group{a,b}\in\sBUILD{(x,y)}{x\in A,y\in B}$ 
     by definition. But then, $A\sTIMES B\ne\setNULL$ by definition. Hence, the claim holds. 
   \end{subprove}
-\end{claim}
-
-
-\begin{define}{Relatively Prime Integers (Coprime)}\phantomsection\label{def:relatively-prime} % \hyperref[def:relatively-prime]{YOUR_CONTEXT}
-  Let $x,y \in \mathbb{Z}$. The integers $x$ and $y$ are said to be
-  \textbf{relatively prime} if and only if
-  $\gcd(x,y) = 1$.
 \end{define}
+
