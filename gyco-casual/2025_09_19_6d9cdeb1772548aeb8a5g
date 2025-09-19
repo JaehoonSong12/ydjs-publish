@@ -1,0 +1,318 @@
+
+
+
+\section*{Subtraction of Fractions / 분수의 뺄셈}
+Keep the denominator, subtract the numerators.
+
+\section*{분모가 같은 경우, 분모는 그대로 두고 분자끼리 뺍니다.}
+\section*{Example:}
+$\frac{8}{21}-\frac{5}{21}=\frac{3}{21}$
+
+When subtracting a fraction from a whole number, rewrite the whole number as an improper fraction with the same denominator, then subtract.
+
+자연수에서 분수를 뺄 때는, 자연수를 가분수로 바꾼 뒤 계산합니다.
+
+\section*{Example:}
+$3-\frac{1}{4}=\frac{12}{4}-\frac{1}{4}=\frac{11}{4}=2 \frac{3}{4}$
+
+Try it yourself / 직접 해보세요:\\
+$5-\frac{2}{3}=$\\
+$2-\frac{3}{8}=$
+
+\section*{Addition of Decimals / 소수의 덧셈}
+When adding decimals:
+
+\begin{itemize}
+  \item Line up decimal points.
+  \item Add like whole numbers.
+  \item Place the decimal in the sum.
+  \item Drop trailing zeros.
+\end{itemize}
+
+소수의 덧셈은:
+
+\begin{itemize}
+  \item 소수점을 맞추고 계산하면 자연수의 덧셈과 같습니다.
+  \item 끝자리 (0)은 생략할 수 있습니다.
+\end{itemize}
+
+\section*{Examples:}
+$0.3+0.5=0.8(3+5=8)$\\
+$0.24+0.5=0.74(24+50=74)$\\
+$23.6+19.4=43(236+194=430)$
+
+Try it yourself / 직접 해보세요:\\
+$0.7+0.25=$\\
+$12.3+8.45=$
+
+\section*{Subtraction of Decimals / 소수의 뺄셈}
+When subtracting decimals:
+
+\begin{itemize}
+  \item Align decimal points.
+  \item Subtract like whole numbers.
+  \item Add zeros to match lengths if needed.
+\end{itemize}
+
+\section*{소수의 뺄셈은:}
+\begin{itemize}
+  \item 소수점을 맞춥니다.
+  \item 자연수의 뺄셈과 같이 뺍니다.
+  \item 자릿수가 다르면 (0)을 채워 계산합니다.
+\end{itemize}
+
+\section*{Examples:}
+$0.7-0.2=0.5(7-2=5)$\\
+$0.48-0.15=0.33(48-15=33)$\\
+$4.6-2.18=2.42(460-218=242)$
+
+Try it yourself / 직접 해보세요:\\
+$2.5-1.75=$\\
+$10.04-3.8=$
+
+\section*{Multiplication of Fractions / 분수의 곱셈}
+Multiply unit fractions: multiply denominators, numerator stays (1). Multiply proper fractions: numerator $\times$ numerator, denominator $\times$ denominator.
+
+단위분수(분자가 (1)인 분수)끼리는 분모를 곱합니다. 진분수끼리는 분자끼리, 분모끼리 곱하고 필요하면 약분합니다.
+
+Examples:\\
+$\frac{1}{4} \times \frac{1}{8}=\frac{1}{32}$\\
+$\frac{4}{3} \times \frac{1}{6}=\frac{3}{24}=\frac{1}{4}$
+
+With mixed numbers: convert to improper fractions, multiply, then convert back.\\
+대분수는 먼저 가분수로 바꾼 뒤 곱하고, 결과가 가분수라면 다시 대분수로 바꿉니다.
+
+\section*{Examples:}
+$\frac{2}{3} \times 1 \frac{2}{4}=\frac{2}{3} \times \frac{6}{4}=\frac{12}{12}=1$\\
+$\frac{9}{7} \times 1 \frac{3}{4}=\frac{9}{7} \times \frac{7}{4}=\frac{63}{28}=2 \frac{1}{4}$
+
+Try it yourself / 직접 해보세요:\\
+$\frac{1}{2} \times \frac{2}{5}=$
+
+$$
+1 \frac{1}{2} \times \frac{2}{3}=
+$$
+
+\section*{Division of Fractions / 분수의 나눗셈}
+To divide fractions:
+
+\begin{itemize}
+  \item Flip the second fraction (reciprocal).
+  \item Multiply as usual.
+\end{itemize}
+
+\section*{분수를 나눌 때는, 두 번째 분수를 뒤집어 곱하면 됩니다. 이것을 '곱셈으로 바꾼다'라고 합니다.}
+\section*{Examples:}
+$\frac{2}{3} \div \frac{4}{5}=\frac{2}{3} \times \frac{5}{4}=\frac{10}{12}=\frac{5}{6}$\\
+$\frac{7}{8} \div \frac{1}{4}=\frac{7}{8} \times \frac{4}{1}=\frac{28}{8}=3 \frac{1}{2}$
+
+Try it yourself / 직접 해보세요:\\
+$\frac{3}{5} \div \frac{2}{3}=$\\
+$\frac{9}{10} \div \frac{3}{5}=$
+
+\section*{Multiplication of Decimals / 소수의 곱셈}
+When multiplying decimals:
+
+\begin{itemize}
+  \item Ignore decimal points, multiply like whole numbers.
+  \item Count total decimal places from both numbers.
+  \item Place the decimal in the answer.
+\end{itemize}
+
+소수끼리 곱할 때는, 소수점을 무시하고 자연수처럼 곱한 뒤, 곱한 소수 자릿수만큼 다시 소수점을 찍습니다.
+
+Examples:\\
+$0.2 \times 0.3=0.06(2 \times 3=6)$\\
+$1.5 \times 0.4=0.60=0.6(15 \times 4=60)$\\
+$2.35 \times 0.2=0.470=0.47(235 \times 2=470)$
+
+Try it yourself / 직접 해보세요:\\
+$0.6 \times 0.7=$\\
+$3.2 \times 0.5=$
+
+\section*{Division of Decimals / 소수의 나눗셈}
+When dividing decimals:
+
+\begin{itemize}
+  \item Move the decimal point in the divisor until it's a whole number.
+  \item Move the decimal point in the dividend the same number of places.
+  \item Divide as usual.
+\end{itemize}
+
+소수끼리 나눌 때는, 나누는 수의 소수점을 옮겨 자연수로 만들고, 나누어지는 수의 소수점도 같은 만큼 옮긴 후 계산합니다.
+
+\section*{Examples:}
+$0.8 \div 0.2=(8 \div 2=4)$\\
+$2.4 \div 0.6=(24 \div 6=4)$\\
+$5.25 \div 0.15=(525 \div 15=35)$
+
+Try it yourself / 직접 해보세요:\\
+$0.9 \div 0.3=$\\
+$3.6 \div 0.12=$
+
+\section*{Unit 2.}
+\section*{Factors and Multiples / 약수와 배수}
+Numbers connect in patterns. Some divide evenly, while others leave remainders. To understand these patterns, we look at factors and multiples. A factor is a number that divides another without a remainder. A multiple is what you get by multiplying a number by $1,2,3$, and so on. These two ideas allow us to break numbers apart and build them back up.
+
+수들은 서로 일정한 규칙으로 연결됩니다. 어떤 수는 나누어 떨어지지만, 어떤 수는 나머지를 남깁니다. 이 규칙을 이해하기 위해 우리는 약수와 배수를 봅니다. 약수는 나누었을 때 나머지 없이 나누어지는 수이고, 배수는 곱했을 때 얻는 수입니다. 이 두 개념은 수를 쪼개고 다시 합치는 기초가 됩니다. 약수는 어떤 수를 나누었을 때 나누어 떨어지게 하는 수입니다. 배수는 어떤 수에 ( $1,2,3 \ldots$ )을 곱해 만든 수입니다.
+
+\section*{Factors and Multiples / 약수와 배수}
+A factor divides evenly. A multiple is what you get when you multiply. 약수는 나누어떨어지는 수입니다. 배수는 곱해서 얻는 수입니다.
+
+\section*{Examples:}
+\begin{itemize}
+  \item Factors of $12 \rightarrow 1,2,3,4,6,12$
+  \item Multiples of $5 \rightarrow 5,10,15,20 \ldots$
+\end{itemize}
+
+Try it yourself / 직접 해보세요:
+
+List all factors of 15 .
+
+List the first 5 multiples of 7 .
+
+\section*{GCF and LCM / 최대공약수와 최소공배수}
+The greatest common factor (GCF) is the largest shared factor. The least common multiple (LCM) is the smallest shared multiple.
+
+최대공약수(GCF)는 두 수의 공통된 약수 중 가장 큰 수입니다.\\
+최소공배수(LCM)는 두 수의 공통된 배수 중 가장 작은 수입니다.
+
+\section*{Examples:}
+\begin{itemize}
+  \item Factors of $12 \rightarrow 1,2,3,4,6,12$
+  \item Factors of $18 \rightarrow 1,2,3,6,9,18$
+  \item Common factors $=1,2,3,6 \rightarrow \mathrm{GCF}=6$
+  \item Multiples of $4 \rightarrow 4,8,12,16,20 \ldots$
+  \item Multiples of $6 \rightarrow 6,12,18,24 \ldots$
+  \item Common multiples $=12,24,36 \ldots \rightarrow$ LCM $=12$
+\end{itemize}
+
+Try it yourself / 직접 해보세요:
+
+Find the GCF of 20 and 30.
+
+Find the LCM of 8 and 12.
+
+\section*{Prime Factorization / 소인수분해}
+Prime factorization is breaking a number into prime factors. It helps in finding GCF and LCM.
+
+소인수분해는 어떤 수를 소수의 곱으로 나누는 과정입니다. 최대공약수(GCF)와 최소공배수(LCM)를 구하는 데 자주 사용됩니다.
+
+\section*{Examples:}
+\begin{itemize}
+  \item $18=2 \times 3 \times 3$
+  \item $27=3 \times 3 \times 3$
+  \item Common product $=3 \times 3=9 \rightarrow$ GCF
+  \item All primes combined $=2 \times 3 \times 3 \times 3=54 \rightarrow$ LCM
+\end{itemize}
+
+Try it yourself / 직접 해보세요:
+
+Prime factorize (24).
+
+Prime factorize (36).
+
+\section*{Unit. 3}
+\section*{Fractions in Depth / 분수 심화}
+Fractions can look very different, but often they mean the same thing. Simplifying reduces fractions to their cleanest form. Finding common denominators rewrites fractions so they can be compared or added. These tools make fractions easier to handle and reveal deeper relationships between numbers.
+
+분수는 겉보기에는 달라 보여도 같은 값을 가질 수 있습니다. 약분은 분수를 가장 간단한 꼴로 줄여 줍니다. 통분은 분모를 같게 만들어 분수들을 비교하거나 더할 수 있게 합니다. 이 도구들은 분수를 다루기 쉽게 만들고 수 사이의 관계를 더 잘 드러내 줍니다.
+
+\section*{Simplifying Fractions / 약분}
+Fractions can be simplified by dividing numerator and denominator by the same number.
+
+분수는 복잡해 보일 수 있지만, 분자와 분모를 같은 수로 나누면 간단해집니다.
+
+Example:\\
+$\frac{9}{81}=\frac{1}{9}$ (분자 분모를 9 로 나눕니다)\\
+$\frac{8}{12}=\frac{2}{3}$ (분자 분모를 4 로 나눕니다)
+
+Try it yourself / 직접 해보세요:
+
+Simplify $\frac{12}{18}$.
+
+Simplify $\frac{50}{100}$
+
+\section*{Common Denominator / 통분}
+To compare or add fractions, make denominators the same.
+
+\section*{분수끼리 비교하거나 더하려면 분모를 최소공배수 같게 만들어야 합니다. 이것을 통분이라고 합니다.}
+\section*{Example:}
+$\frac{1}{2}$ and $\frac{1}{3} \rightarrow \frac{3}{6}$ and $\frac{2}{6}$\\
+$\frac{4}{9}$ and $\frac{5}{6} \rightarrow \frac{8}{18}$ and $\frac{15}{18}$
+
+Try it yourself / 직접 해보세요:
+
+Find a common denominator for $\frac{2}{5}$ and $\frac{3}{10}$.
+
+Find a common denominator for $\frac{7}{8}$ and $\frac{5}{12}$.
+
+\section*{Unit 4.}
+\section*{Ratios and Proportions / 비와 비례식}
+Math is not only about numbers. It's also about relationships. Ratios compare two amounts, showing balance between them. Proportions take this further by showing when two ratios are equal. These ideas appear everywhere: in recipes, sports teams, maps, and even science experiments. Ratios and proportions turn comparisons into precise statements.
+
+수학은 단순히 숫자를 다루는 것뿐 아니라, 수 사이의 관계를 이해하는 것이기도 합니다. 비는 두 양을 비교하여 균형을 보여줍니다. 비례식은 한 걸음 더 나아가 두 비율이 같음을 나타냅니다. 이런 개념은 요리, 스포츠팀, 지도, 과학 실험 등 어디에서나 나타납니다. 비와 비례식은 비교를 정확한 수학적 표현으로 바꿔 줍니다.
+
+\section*{Ratios / 비}
+A ratio compares two quantities. Written "a:b" and read "a to b." 비는 두 수의 크기를 비교하는 것입니다. 기호 ':'를 사용합니다.
+
+Example:\\
+$(2$ apples $: 3$ oranges $)=(2: 3)=\frac{2}{3}$
+
+Try it yourself / 직접 해보세요:
+
+Write the ratio of 8 girls to 12 total students.
+
+\section*{Proportions / 비례식}
+A proportion shows equality between two ratios.
+
+\section*{비례식은 두 비율이 같음을 나타냅니다.}
+Example:\\
+$\frac{1}{2}=\frac{2}{4}$
+
+Try it yourself / 직접 해보세요:
+
+Is $\frac{3}{5}=\frac{6}{10}$ true or false?
+
+\section*{Property of Proportions / 비례식의 성질}
+In a proportion $\mathrm{a}: \mathrm{b}=\mathrm{c}: \mathrm{d}$, cross products are equal ( $\mathrm{a} \times \mathrm{d}=\mathrm{b} \times \mathrm{c}$ ).\\
+비례식에서는 외항의 곱이 내항의 곱과 같습니다.
+
+Example: $(2: 3=4: 6 \rightarrow 2 \times 6=3 \times 4=12)$
+
+Try it yourself / 직접 해보세요:
+
+Check if $(5: 7=15: 21)$ is a proportion.
+
+\section*{Ratio Division / 비례배분}
+To divide a total in ratio $\mathrm{m}: \mathrm{n}$, use $(\mathrm{m} /(\mathrm{m}+\mathrm{n}))$ and $(\mathrm{n} /(\mathrm{m}+\mathrm{n}))$.\\
+전체를 $m: n$ 의 비로 나누려면, $(m /(m+n))$ 과 $(n /(m+n))$ 을 사용합니다.
+
+Example:\\
+45 in $(2: 3) \rightarrow 45 \times \frac{2}{5}=18,45 \times \frac{3}{5}=27$\\
+28 in $(3: 4) \rightarrow 28 \times \frac{3}{7}=12,28 \times \frac{4}{7}=16$
+
+Try it yourself / 직접 해보세요:
+
+Divide 60 in ratio (5:7).
+
+Divide 48 in ratio (2:3).
+
+\section*{Final Words / 맺음말}
+Congratulations on completing this book!
+
+You've worked through fractions, decimals, ratios, and more. That's not easy-especially while learning in two languages.
+
+Remember, math is like a language. The more you practice, the more fluent you become. Mistakes are part of learning, so don't be discouraged.
+
+\section*{이 책을 끝까지 마친 여러분을 축하합니다!}
+이 책에서 우리는 분수, 소수, 비율 등 다양한 개념을 공부했습니다. 영어와 한국어로 수학용어와 내용을 배우는 일은 쉽지 않지만, 여러분은 해냈고 앞으로 더욱 성장할 것입니다.
+
+수학은 하나의 언어와 같습니다. 연습할수록 더 유창해집니다. 두가지 언어로 수학을 다 이해할 수 있는 여러분은 정말 대단한 능력을 갖고 있는 것입니다. 이 과정에서 생기는 실수는 배움의 과정이니 절대 낙심하지 마세요.
+
+\section*{A Personal Note / 개인적인 메시지}
+We wrote this book because we once struggled too. If you ever feel stuck, remember that you are not alone. Step by step, you'll grow stronger in both math and English. One day, you'll be the one helping others.
+
+저희도 같은 어려움을 겪었기에 이 책을 만들었습니다. 힘들 때가 있어도 혼자가 아님을 기억하세요. 차근차근 연습하다 보면 수학과 영어 모두에서 성장할 것입니다. 언젠가는 여러분이 다른 사람을 도와줄 차례가 올 것입니다.
+
+Thank you for learning with us. Don't give up and keep going-you've got this! 끝까지 함께해 주셔서 감사합니다. 포기하지 말고 계속 앞으로 나아가세요—여러분은 할 수 있습니다!

@@ -96,6 +96,36 @@
 
 
 
+% ------------------------------------------------------------------------------
+% \blockquote{<text>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command creates a block quote with proper spacing and formatting.
+%   It centers the quoted text and adds vertical spacing above and below.
+%
+% FEATURES:
+%   - Adds 2.5em spacing above and below the quote
+%   - Centers the quoted text
+%   - Uses smart quotes for proper typography
+%
+% PARAMETERS:
+%   <text>    The text to be quoted (required)
+%
+% DEPENDENCIES:
+%   \usepackage{dirtytalk}
+%
+% USAGE EXAMPLES:
+%   \blockquote{This is a longer quote that deserves to be set apart}
+%   \blockquote{Another important quote}
+% ------------------------------------------------------------------------------
+\newcommand{\blockquote}[1]{%
+  \vspace{2.5em}%
+  \begin{quote}%
+    \say{#1}%
+  \end{quote}%
+  \vspace{2.5em}%
+}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grouping Shortcuts for VS Code (`View` > `Command Palette` > `Preferences: Open Keyboard Shortcuts (JSON)`)
@@ -130,5 +160,21 @@
 %   "when": "editorLangId == 'latex'",
 %   "args": {
 %     "snippet": "\\inlinequote{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+shift+q",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\blockquote{${TM_SELECTED_TEXT}}"
+%   }
+% },
+% {
+%   "key": "ctrl+shift+f",
+%   "command": "editor.action.insertSnippet",
+%   "when": "editorLangId == 'latex'",
+%   "args": {
+%     "snippet": "\\footnote{${TM_SELECTED_TEXT}}"
 %   }
 % },
