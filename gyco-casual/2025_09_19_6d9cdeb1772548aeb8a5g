@@ -1,154 +1,16 @@
 
 
 
-\section*{Subtraction of Fractions / 분수의 뺄셈}
-Keep the denominator, subtract the numerators.
 
-\section*{분모가 같은 경우, 분모는 그대로 두고 분자끼리 뺍니다.}
-\section*{Example:}
-$\frac{8}{21}-\frac{5}{21}=\frac{3}{21}$
 
-When subtracting a fraction from a whole number, rewrite the whole number as an improper fraction with the same denominator, then subtract.
 
-자연수에서 분수를 뺄 때는, 자연수를 가분수로 바꾼 뒤 계산합니다.
 
-\section*{Example:}
-$3-\frac{1}{4}=\frac{12}{4}-\frac{1}{4}=\frac{11}{4}=2 \frac{3}{4}$
 
-Try it yourself / 직접 해보세요:\\
-$5-\frac{2}{3}=$\\
-$2-\frac{3}{8}=$
 
-\section*{Addition of Decimals / 소수의 덧셈}
-When adding decimals:
 
-\begin{itemize}
-  \item Line up decimal points.
-  \item Add like whole numbers.
-  \item Place the decimal in the sum.
-  \item Drop trailing zeros.
-\end{itemize}
 
-소수의 덧셈은:
 
-\begin{itemize}
-  \item 소수점을 맞추고 계산하면 자연수의 덧셈과 같습니다.
-  \item 끝자리 (0)은 생략할 수 있습니다.
-\end{itemize}
 
-\section*{Examples:}
-$0.3+0.5=0.8(3+5=8)$\\
-$0.24+0.5=0.74(24+50=74)$\\
-$23.6+19.4=43(236+194=430)$
-
-Try it yourself / 직접 해보세요:\\
-$0.7+0.25=$\\
-$12.3+8.45=$
-
-\section*{Subtraction of Decimals / 소수의 뺄셈}
-When subtracting decimals:
-
-\begin{itemize}
-  \item Align decimal points.
-  \item Subtract like whole numbers.
-  \item Add zeros to match lengths if needed.
-\end{itemize}
-
-\section*{소수의 뺄셈은:}
-\begin{itemize}
-  \item 소수점을 맞춥니다.
-  \item 자연수의 뺄셈과 같이 뺍니다.
-  \item 자릿수가 다르면 (0)을 채워 계산합니다.
-\end{itemize}
-
-\section*{Examples:}
-$0.7-0.2=0.5(7-2=5)$\\
-$0.48-0.15=0.33(48-15=33)$\\
-$4.6-2.18=2.42(460-218=242)$
-
-Try it yourself / 직접 해보세요:\\
-$2.5-1.75=$\\
-$10.04-3.8=$
-
-\section*{Multiplication of Fractions / 분수의 곱셈}
-Multiply unit fractions: multiply denominators, numerator stays (1). Multiply proper fractions: numerator $\times$ numerator, denominator $\times$ denominator.
-
-단위분수(분자가 (1)인 분수)끼리는 분모를 곱합니다. 진분수끼리는 분자끼리, 분모끼리 곱하고 필요하면 약분합니다.
-
-Examples:\\
-$\frac{1}{4} \times \frac{1}{8}=\frac{1}{32}$\\
-$\frac{4}{3} \times \frac{1}{6}=\frac{3}{24}=\frac{1}{4}$
-
-With mixed numbers: convert to improper fractions, multiply, then convert back.\\
-대분수는 먼저 가분수로 바꾼 뒤 곱하고, 결과가 가분수라면 다시 대분수로 바꿉니다.
-
-\section*{Examples:}
-$\frac{2}{3} \times 1 \frac{2}{4}=\frac{2}{3} \times \frac{6}{4}=\frac{12}{12}=1$\\
-$\frac{9}{7} \times 1 \frac{3}{4}=\frac{9}{7} \times \frac{7}{4}=\frac{63}{28}=2 \frac{1}{4}$
-
-Try it yourself / 직접 해보세요:\\
-$\frac{1}{2} \times \frac{2}{5}=$
-
-$$
-1 \frac{1}{2} \times \frac{2}{3}=
-$$
-
-\section*{Division of Fractions / 분수의 나눗셈}
-To divide fractions:
-
-\begin{itemize}
-  \item Flip the second fraction (reciprocal).
-  \item Multiply as usual.
-\end{itemize}
-
-\section*{분수를 나눌 때는, 두 번째 분수를 뒤집어 곱하면 됩니다. 이것을 '곱셈으로 바꾼다'라고 합니다.}
-\section*{Examples:}
-$\frac{2}{3} \div \frac{4}{5}=\frac{2}{3} \times \frac{5}{4}=\frac{10}{12}=\frac{5}{6}$\\
-$\frac{7}{8} \div \frac{1}{4}=\frac{7}{8} \times \frac{4}{1}=\frac{28}{8}=3 \frac{1}{2}$
-
-Try it yourself / 직접 해보세요:\\
-$\frac{3}{5} \div \frac{2}{3}=$\\
-$\frac{9}{10} \div \frac{3}{5}=$
-
-\section*{Multiplication of Decimals / 소수의 곱셈}
-When multiplying decimals:
-
-\begin{itemize}
-  \item Ignore decimal points, multiply like whole numbers.
-  \item Count total decimal places from both numbers.
-  \item Place the decimal in the answer.
-\end{itemize}
-
-소수끼리 곱할 때는, 소수점을 무시하고 자연수처럼 곱한 뒤, 곱한 소수 자릿수만큼 다시 소수점을 찍습니다.
-
-Examples:\\
-$0.2 \times 0.3=0.06(2 \times 3=6)$\\
-$1.5 \times 0.4=0.60=0.6(15 \times 4=60)$\\
-$2.35 \times 0.2=0.470=0.47(235 \times 2=470)$
-
-Try it yourself / 직접 해보세요:\\
-$0.6 \times 0.7=$\\
-$3.2 \times 0.5=$
-
-\section*{Division of Decimals / 소수의 나눗셈}
-When dividing decimals:
-
-\begin{itemize}
-  \item Move the decimal point in the divisor until it's a whole number.
-  \item Move the decimal point in the dividend the same number of places.
-  \item Divide as usual.
-\end{itemize}
-
-소수끼리 나눌 때는, 나누는 수의 소수점을 옮겨 자연수로 만들고, 나누어지는 수의 소수점도 같은 만큼 옮긴 후 계산합니다.
-
-\section*{Examples:}
-$0.8 \div 0.2=(8 \div 2=4)$\\
-$2.4 \div 0.6=(24 \div 6=4)$\\
-$5.25 \div 0.15=(525 \div 15=35)$
-
-Try it yourself / 직접 해보세요:\\
-$0.9 \div 0.3=$\\
-$3.6 \div 0.12=$
 
 \section*{Unit 2.}
 \section*{Factors and Multiples / 약수와 배수}
@@ -297,6 +159,16 @@ Try it yourself / 직접 해보세요:
 Divide 60 in ratio (5:7).
 
 Divide 48 in ratio (2:3).
+
+
+
+
+
+
+
+
+
+
 
 \section*{Final Words / 맺음말}
 Congratulations on completing this book!
