@@ -3,24 +3,23 @@
 \hbadness=10000                       % Suppress Warnings (Horizontal)
 \vbadness=10000                       % Suppress Warnings (Vertical)
 
+%% reference system (2)
+\input{../preamble/reference-index.tex}
+\input{../preamble/reference-bibliography.tex}
+
+%% font and sytle system (3)
 \input{../preamble/font.tex}
 \input{../preamble/font-korean.tex}
 \input{../preamble/layout-letter.tex}
 
-
+%% STEM writing system (3)
 \input{../preamble/math.tex}
 
-
-\input{../preamble/reference-bibliography.tex}
-\input{../preamble/reference-index.tex}
-
-\usepackage[indent]{parskip}
-
-
-
-
+%% Asset System (4)
 \usepackage{graphicx}
 
+%% Document Indentation setup (5)
+\usepackage{parskip} % Default style is no indent (\parindent = 0pt)
 \newcommand{\VF}{\vspace*{\fill}}
 \newcommand{\HF}{\hspace*{\fill}}
 \newcommand{\tab}{\hspace*{2em}}
@@ -28,6 +27,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%% custom commands %%%%%%%%%%%%%%%%%%%%%%
 
 
 % It is important to load the 'tcolorbox' package with the 'most' library
@@ -86,11 +102,6 @@
 
 
 
-
-
-
-
-
 \begin{document}
   %===========================================%
   %== Front Matter (Chicago Manual of Style)==% 
@@ -128,6 +139,8 @@
   %==========================================%
   \mainmatter
   \let\cleardoublepage\oldcleardoublepage % revert redefines
+  \setlength{\parindent}{1.5em} % Indent (book style)
+
 
 
 
@@ -482,14 +495,17 @@
   \onesidedpaper\chapter{Factors and Multiples}
   \lettrine{N}{umbers} connect in patterns. Some divide evenly, while others leave 
   remainders. To understand these patterns, we look at factors and 
-  multiples. A factor is a number that divides another without a 
-  remainder. A multiple is what you get by multiplying a number by 
-  $1,2,3$, and so on. These two ideas allow us to break numbers apart 
-  and build them back up.
+  multiples. 
+  
+  A factor is a number that divides another without a 
+  remainder. On the other hand, a multiple is what you get by 
+  multiplying a number by $1,2,3$, and so on. These two ideas 
+  allow us to break numbers apart and build them back up.
   
   \section*{약수와 배수}
   수들은 서로 일정한 규칙으로 연결됩니다. 어떤 수는 나누어 떨어지지만, 어떤 
   수는 나머지를 남깁니다. 이 규칙을 이해하기 위해 우리는 약수와 배수를 봅니다. 
+  
   약수는 나누었을 때 나머지 없이 나누어지는 수이고, 배수는 곱했을 때 얻는 
   수입니다. 이 두 개념은 수를 쪼개고 다시 합치는 기초가 됩니다. 약수는 어떤 
   수를 나누었을 때 나누어 떨어지게 하는 수입니다. 배수는 어떤 수에 ( 
@@ -976,6 +992,7 @@ If the optional color argument is omitted, the default value specified in the de
   %== Back Matter (Chicago Manual of Style)==% 
   %==========================================%  
   \backmatter
+  \setlength{\parindent}{0pt} % No indent (revert)
   \input{pages/back01-appendix.tex}
   \printbibliography[
     heading=bibintoc,   % unnumbered entry in TOC
