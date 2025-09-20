@@ -1,0 +1,820 @@
+% \documentclass[12pt]{article}
+\documentclass[12pt]{book}
+\hbadness=10000                       % Suppress Warnings (Horizontal)
+\vbadness=10000                       % Suppress Warnings (Vertical)
+
+\input{../preamble/font.tex}
+\input{../preamble/font-korean.tex}
+\input{../preamble/layout-letter.tex}
+
+
+\input{../preamble/math.tex}
+
+
+\input{../preamble/reference-bibliography.tex}
+\input{../preamble/reference-index.tex}
+
+\usepackage[indent]{parskip}
+
+
+
+
+\usepackage{graphicx}
+
+\newcommand{\VF}{\vspace*{\fill}}
+\newcommand{\HF}{\hspace*{\fill}}
+\newcommand{\tab}{\hspace*{2em}}
+
+
+
+
+
+
+% It is important to load the 'tcolorbox' package with the 'most' library
+% to ensure that features like 'breakable' are available.
+\usepackage[most]{tcolorbox}
+
+% A base style, 'tcbbase', is defined using \tcbset. This is a recommended
+% practice to group common settings and avoid redundancy.
+\tcbset{tcbbase/.style={
+  enhanced,
+  breakable,
+  left=4pt,
+  right=4pt,
+  top=3pt,
+  bottom=3pt,
+  fonttitle=\bfseries,
+}}
+
+% The new environment 'sidebarbox' is created using \newtcolorbox.
+% Syntax: \newtcolorbox{<name>}[<number of args>][<default for arg 1>]{<options>}
+% Here, [1][] specifies one optional argument with an empty default value.
+\newtcolorbox{sidebarbox}[1][]{
+  tcbbase, % Applies the base style.
+  colback=gray!10,
+  colframe=gray!60,
+  title={#1} % Crucially, the first optional argument (#1) is assigned to the 'title' key.
+}
+
+% The 'flexbox' environment is now defined using \DeclareTColorBox. This
+% command facilitates a custom argument order of {mandatory}[optional].
+%
+% Argument Specification: 'm O{gray}'
+%   'm'       - Defines the first argument as mandatory (used for the title).
+%   'O{gray}' - Defines the second argument as optional with a default value
+%               of 'gray' (used for the base color).
+%
+\DeclareTColorBox{flexbox}{ m O{gray} }{
+  tcbbase,
+  title={#1},      % The first argument (mandatory, #1) is assigned to the title.
+  colback=#2!10,   % The second argument (optional, #2) sets the background color.
+  colframe=#2!60,  % The second argument also sets the frame color.
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+  %=======================================%
+  %== Front Matter (roman page numbers) ==%
+  %=======================================%
+  \frontmatter
+  \let\oldcleardoublepage\cleardoublepage
+  \let\cleardoublepage\clearpage % redefines frontmatter's \cleardoublepage to a simple \clearpage
+  
+  
+  \onesidedpaper
+  \input{pages/front01-blank.tex}\pagestyle{empty}
+  \input{pages/front02-title.tex}
+  \input{pages/front03-endorsement.tex}
+  \input{pages/front04-copyright.tex}
+  \tableofcontents\pagestyle{plain}     % front 05 
+  % \listoffigures                      % front 06
+  % \listoftables                       % front 07
+  \input{pages/front08-preface.tex}
+  \input{pages/front09-acknowledgment.tex}
+  \input{pages/front10-introduction.tex}
+  
+
+
+
+
+
+
+
+
+
+  
+  %=======================================%
+  %== Main Matter (arabic page numbers) ==%
+  %=======================================%
+  \mainmatter
+  \let\cleardoublepage\oldcleardoublepage % revert redefines
+
+
+
+
+
+
+
+
+  \onesidedpaper\chapter{Fractions and Decimals}
+  \lettrine{N}{umbers} are not always whole. Sometimes we need to describe 
+  parts: half of a sandwich, a third of a mile, or seventy-five hundredths 
+  of a dollar. Fractions and decimals give us two different ways to 
+  express the same idea-less than one.
+  
+  Fractions use numerators and denominators. Decimals use place value. 
+  Both represent parts of a whole and can be converted back and forth. 
+  Mastering this skill makes comparing, calculating, and understanding 
+  numbers much easier.
+  
+  \section*{분수와 소수}
+  분수와 소수는 1 보다 작은 수를 나타내는 대표적인 수의 표현 방식이며 일상생활에서 
+  자주 사용되고 있습니다. 예를 들어 "샌드위치의 $\dfrac{1}{2}$ 을 먹고, $\dfrac{1}{3}$ 
+  마일의 거리를 걸어가서, 2.75 달러의 음료수를 마셨다." 라는 문장에서 우리는 많을 
+  분수와 소수의 사용을 볼 수 있습니다.
+  
+  분수는 분자와 분모를 사용하고, 소수는 자리값을 사용하여 전체중 일부를 나타내는 
+  표현방식이고, 서로 변환할 수 있습니다. 이 능력을 익히면 수를 비교하고 계산하는데 
+  큰 도움이 됩니다.
+  
+
+
+
+
+
+
+  \twosidedpaper\section{Fractions}
+  Fractions include proper fractions, improper fractions, and mixed numbers.
+  \begin{itemize}
+    \item Proper fraction: numerator smaller than denominator $\rightarrow \dfrac{1}{4}, \dfrac{2}{4}, \dfrac{3}{4}$
+    \item Improper fraction: numerator equal to or greater than denominator $\rightarrow \dfrac{4}{4}, \dfrac{5}{4}$
+    \item Mixed number: whole number + proper fraction $\rightarrow 1 \dfrac{1}{4}, 2 \dfrac{3}{4}$
+  \end{itemize}
+  \subsection*{분수}
+  분수에는 진분수, 가분수, 대분수가 있습니다.
+  \begin{itemize}
+    \item 진분수: 분자가 분모보다 작은 분수 $\rightarrow \dfrac{1}{4}, \dfrac{2}{4}, \dfrac{3}{4}$
+    \item 가분수: 분자가 분모와 같거나 큰 분수 $\rightarrow \dfrac{4}{4}, \dfrac{5}{4}$
+    \item 대분수: 자연수와 진분수가 함께 있는 분수 $\rightarrow 1 \dfrac{1}{4}, 2 \dfrac{3}{4}$
+  \end{itemize}
+
+  \subsubsection*{Examples (예시):}
+  \begin{itemize}
+    \item Mixed number $1 \dfrac{1}{4}$ written as improper fraction is $\dfrac{5}{4}$.
+    \item Improper fraction $\dfrac{9}{4}$ written as mixed number is $2 \dfrac{1}{4}$.
+  \end{itemize}
+  \begin{itemize}
+    \item 대분수 $1 \dfrac{1}{4} \rightarrow$ 가분수 $\dfrac{5}{4}$ 가 됩니다.
+    \item 가분수 $\dfrac{9}{4} \rightarrow$ 대분수 $2 \dfrac{1}{4}$ 가 됩니다.
+  \end{itemize}
+
+  
+
+
+
+
+
+
+  \twosidedpaper\subsection{Addition of Fractions}
+  When adding proper fractions with the same denominator:
+  \begin{itemize}
+    \item Keep the denominator.
+    \item Add the numerators.
+    \item If the result is improper, write it as a mixed number.
+  \end{itemize}
+  \subsubsection*{분수의 덧셈}
+  분모가 같은 진분수를 더할 때는:
+  \begin{itemize}
+    \item 분모는 그대로 둡니다.
+    \item 분자만 더합니다.
+    \item 결과가 가분수가 되면 대분수로 바꿉니다.
+  \end{itemize}
+
+  \subsubsection*{Examples:}
+  $$ \dfrac{2}{4}+\dfrac{3}{4}=\dfrac{2+3}{4}=\dfrac{5}{4}=1 \dfrac{1}{4} $$
+  $$ \dfrac{3}{8}+\dfrac{4}{8}=\dfrac{3+4}{8}=\dfrac{7}{8} $$
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $\dfrac{5}{6}+\dfrac{2}{6}=$
+    \item $\dfrac{1}{5}+\dfrac{3}{5}=$
+  \end{enumerate}
+
+
+
+
+
+
+
+
+  \twosidedpaper\subsection{Addition of Mixed Numbers}
+  To add mixed numbers:
+  \begin{itemize}
+    \item Add whole numbers.
+    \item Add fractions.
+    \item If the fractions form an improper fraction, convert and carry over (1).
+  \end{itemize}
+  \subsubsection*{대분수의 덧셈}
+  대분수를 더할 때는:
+  \begin{itemize}
+    \item 자연수끼리 더합니다.
+    \item 분수끼리 더합니다.
+    \item 분수 부분이 가분수가 되면 대분수로 바꾸고 (1)을 올려줍니다.
+    \item 다른 방법으로는 대분수를 가분수로 바꾼 뒤 계산하고 다시 대분수로 바꿀 수 있습니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  $$1 \dfrac{4}{5}+1 \dfrac{3}{5}=2+\dfrac{7}{5}=2+1 \dfrac{2}{5}=3 \dfrac{2}{5}$$
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $2 \dfrac{3}{4}+1 \dfrac{2}{4}=$
+    \item $3 \dfrac{5}{6}+2 \dfrac{1}{6}=$
+  \end{enumerate}
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+  \twosidedpaper\subsection{Subtraction of Fractions}
+  To subtract fractions:
+  \begin{itemize}
+    \item When denominators are the same, keep the denominator and subtract the numerators.
+    \item When subtracting from a whole number, rewrite the whole number as an improper fraction, then subtract.
+  \end{itemize}
+  \subsubsection*{분수의 뺄셈}
+  분수를 뺄 때는:
+  \begin{itemize}
+    \item 분모가 같은 경우, 분모는 그대로 두고 분자끼리 뺍니다.
+    \item 자연수에서 분수를 뺄 때는, 자연수를 가분수로 바꾼 뒤 계산합니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ \frac{8}{21}-\frac{5}{21}=\frac{3}{21}=\frac{1}{7} \]
+  \[ 3-\frac{1}{4}=\frac{12}{4}-\frac{1}{4}=\frac{11}{4}=2 \frac{3}{4} \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $5-\frac{2}{3}=$
+    \item $2-\frac{3}{8}=$
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+  \twosidedpaper\subsection{Multiplication of Fractions}
+  \subsubsection*{분수의 곱셈}
+  To multiply fractions:
+  \begin{itemize}
+    \item \textbf{Unit fractions:} Multiply the denominators. The numerator is 1.
+    \item \textbf{Proper fractions:} Multiply the numerators together and the denominators together.
+    \item \textbf{Mixed numbers:} Convert to improper fractions first, multiply, then convert the result back to a mixed number if needed.
+  \end{itemize}
+  분수를 곱할 때는:
+  \begin{itemize}
+    \item \textbf{단위분수} (분자가 1인 분수)끼리는 분모끼리 곱합니다.
+    \item \textbf{진분수}는 분자끼리, 분모끼리 곱하고 필요하면 약분합니다.
+    \item \textbf{대분수}는 먼저 가분수로 바꾼 뒤 곱하고, 결과가 가분수라면 다시 대분수로 바꿉니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ \frac{1}{4} \times \frac{1}{8} = \frac{1}{32} \]
+  \[ \frac{4}{3} \times \frac{1}{6} = \frac{4}{18} = \frac{2}{9} \]
+  \[ \frac{2}{3} \times 1 \frac{2}{4} = \frac{2}{3} \times \frac{6}{4} = \frac{12}{12} = 1 \]
+  \[ \frac{9}{7} \times 1 \frac{3}{4} = \frac{9}{7} \times \frac{7}{4} = \frac{63}{28} = \frac{9}{4} = 2 \frac{1}{4} \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $\frac{1}{2} \times \frac{2}{5} =$
+    \item $1 \frac{1}{2} \times \frac{2}{3} =$
+  \end{enumerate}
+
+
+  \twosidedpaper\subsection{Division of Fractions}
+  To divide fractions:
+  \begin{itemize}
+    \item Flip the second fraction to get its \textbf{reciprocal}.
+    \item Change the division sign to multiplication.
+    \item Multiply the fractions as usual.
+  \end{itemize}
+  \subsubsection*{분수의 나눗셈}
+  분수를 나눌 때는:
+  \begin{itemize}
+    \item 나누는 분수(두 번째 분수)의 분자와 분모를 뒤집어 \textbf{역수}로 만듭니다.
+    \item 나눗셈을 곱셈으로 바꾼 뒤 계산합니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ \frac{2}{3} \div \frac{4}{5} = \frac{2}{3} \times \frac{5}{4} = \frac{10}{12} = \frac{5}{6} \]
+  \[ \frac{7}{8} \div \frac{1}{4} = \frac{7}{8} \times \frac{4}{1} = \frac{28}{8} = \frac{7}{2} = 3 \frac{1}{2} \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $\frac{3}{5} \div \frac{2}{3} =$
+    \item $\frac{9}{10} \div \frac{3}{5} =$
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \twosidedpaper\section{Decimals}
+  Decimals are numbers that include a decimal point to represent parts of a whole number.
+  \begin{itemize}
+    \item Decimal point: separates the whole number part from the fractional part $\rightarrow 3.14, 0.5, 12.75$
+    \item Place values: tenths, hundredths, thousandths, etc. $\rightarrow 0.1, 0.01, 0.001$
+    \item Reading decimals: "three point one four" for $3.14$, "zero point five" for $0.5$
+  \end{itemize}
+  \subsection*{소수}
+  소수는 자연수에 소수점을 찍어서 나타낸 수입니다.
+  \begin{itemize}
+    \item 소수점: 자연수 부분과 소수 부분을 구분하는 점 $\rightarrow 3.14, 0.5, 12.75$
+    \item 자릿값: 소수 첫째 자리, 소수 둘째 자리, 소수 셋째 자리 등 $\rightarrow 0.1, 0.01, 0.001$
+    \item 소수 읽기: $3.14$는 "삼점일사", $0.5$는 "영점오"
+  \end{itemize}
+
+  \subsubsection*{Examples (예시):}
+  \begin{itemize}
+    \item Decimal $0.25$ represents $\dfrac{25}{100} = \dfrac{1}{4}$.
+    \item Decimal $1.5$ represents $1 + \dfrac{5}{10} = 1 + \dfrac{1}{2}$.
+  \end{itemize}
+  \begin{itemize}
+    \item 소수 $0.25$는 $\dfrac{25}{100} = \dfrac{1}{4}$를 나타냅니다.
+    \item 소수 $1.5$는 $1 + \dfrac{5}{10} = 1 + \dfrac{1}{2}$를 나타냅니다.
+  \end{itemize}
+
+
+
+
+
+
+  \twosidedpaper\subsection{Addition of Decimals}
+  To add decimals:
+  \begin{itemize}
+    \item \textbf{Line up} the decimal points vertically.
+    \item Add the numbers as if they were whole numbers.
+    \item Place the decimal point in the sum directly below the other decimal points.
+  \end{itemize}
+  \subsubsection*{소수의 덧셈}
+  소수의 덧셈은:
+  \begin{itemize}
+    \item 소수점을 맞추어 계산하면 자연수의 덧셈과 같습니다.
+    \item 계산 결과에서 끝자리 0은 생략할 수 있습니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ 0.3 + 0.5 = 0.8 \quad (3 + 5 = 8) \]
+  \[ 0.24 + 0.5 = 0.74 \quad (24 + 50 = 74) \]
+  \[ 23.6 + 19.4 = 43.0 = 43 \quad (236 + 194 = 430) \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $0.7 + 0.25 =$
+    \item $12.3 + 8.45 =$
+  \end{enumerate}
+
+
+  \twosidedpaper\subsection{Subtraction of Decimals}
+  To subtract decimals:
+  \begin{itemize}
+    \item \textbf{Align} the decimal points.
+    \item Add trailing \textbf{zeros} to the number with fewer decimal places to match lengths.
+    \item Subtract as you would with whole numbers.
+  \end{itemize}
+  \subsubsection*{소수의 뺄셈}
+  소수의 뺄셈은:
+  \begin{itemize}
+    \item 덧셈과 같이 소수점을 맞춥니다.
+    \item 자연수의 뺄셈과 같은 방법으로 뺍니다.
+    \item 두 수의 자릿수가 다르면, 빈자리에 0을 채워 계산합니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ 0.7 - 0.2 = 0.5 \quad (7 - 2 = 5) \]
+  \[ 0.48 - 0.15 = 0.33 \quad (48 - 15 = 33) \]
+  \[ 4.6 - 2.18 = 2.42 \quad (460 - 218 = 242) \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $2.5 - 1.75 =$
+    \item $10.04 - 3.8 =$
+  \end{enumerate}
+  
+  
+
+
+
+  \twosidedpaper\subsection{Multiplication of Decimals}
+  To multiply decimals:
+  \begin{itemize}
+    \item Multiply the numbers as if they were whole numbers, \textbf{ignoring} the decimal points for now.
+    \item \textbf{Count} the total number of decimal places in both original numbers.
+    \item Place the decimal point in the product so it has the same number of decimal places as the total you counted.
+  \end{itemize}
+  \subsubsection*{소수의 곱셈}
+  소수를 곱할 때는:
+  \begin{itemize}
+    \item 소수점을 무시하고 자연수처럼 곱한 뒤, 두 소수의 전체 자릿수 합만큼 결과에 소수점을 찍습니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ 0.2 \times 0.3 = 0.06 \quad (2 \times 3 = 6) \]
+  \[ 1.5 \times 0.4 = 0.60 = 0.6 \quad (15 \times 4 = 60) \]
+  \[ 2.35 \times 0.2 = 0.470 = 0.47 \quad (235 \times 2 = 470) \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $0.6 \times 0.7 =$
+    \item $3.2 \times 0.5 =$
+  \end{enumerate}
+
+
+
+
+
+    
+  \twosidedpaper\subsection{Division of Decimals}
+  To divide decimals:
+  \begin{itemize}
+    \item Move the decimal point in the \textbf{divisor} to the right until it is a whole number.
+    \item Move the decimal point in the \textbf{dividend} the same number of places to the right.
+    \item Divide as you would with whole numbers.
+  \end{itemize}
+  \subsubsection*{소수의 나눗셈}
+  소수를 나눌 때는:
+  \begin{itemize}
+    \item 나누는 수(divisor)의 소수점을 옮겨 자연수로 만들고, 나누어지는 수(dividend)의 소수점도 똑같이 옮긴 후 계산합니다.
+  \end{itemize}
+
+  \subsubsection*{Example:}
+  \[ 0.8 \div 0.2 \rightarrow 8 \div 2 = 4 \]
+  \[ 2.4 \div 0.6 \rightarrow 24 \div 6 = 4 \]
+  \[ 5.25 \div 0.15 \rightarrow 525 \div 15 = 35 \]
+
+  \subsubsection*{Try it yourself (직접 해보세요):}
+  \begin{enumerate}
+    \item $0.9 \div 0.3 =$
+    \item $3.6 \div 0.12 =$
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \chapter{testing boxes}
+  
+% ---------------------- Usage of the Original 'sidebarbox' ----------------------
+\section*{Demonstration of the Original \texttt{sidebarbox}}
+
+The provided definition is observed to function as intended. The optional argument is passed directly to the \texttt{title} key.
+
+\subsection*{Example 1: Without an Optional Argument}
+When the \texttt{sidebarbox} environment is used without an optional argument, the title remains empty, consistent with its default value \texttt{[]}.
+
+\begin{sidebarbox}
+  This is the content of the sidebar box. \lipsum[1][1-3]
+\end{sidebarbox}
+
+
+\subsection*{Example 2: With an Optional Argument}
+When a value is provided in the optional argument, it is rendered as the title of the box.
+
+\begin{sidebarbox}[This is the Title]
+  \lipsum[2][1-3]
+\end{sidebarbox}
+
+\subsection*{Clarification on Customization}
+A point of clarification is offered regarding the comment 
+\inlinequote{xcolor if needed}. With the current 
+\texttt{sidebarbox} definition, providing a color name 
+(e.g., \texttt{[blue]}) will set the literal string 
+\inlinequote{blue} 
+as the title; it will not alter the box's color.
+
+\begin{sidebarbox}[blue]
+  This box's title is the word ``blue''. The colors of the box itself are unchanged from the definition.
+\end{sidebarbox}
+
+\vspace{1cm}
+
+% ---------------------- Usage of the Flexible 'flexbox' -----------------------
+
+\section*{Demonstration of the Redefined \texttt{flexbox}}
+
+The \texttt{flexbox} environment has been redefined to accept a mandatory argument for its title, followed by an optional argument for its base color.
+
+\subsection*{Example 1: Specifying a Custom Color}
+The mandatory title is provided in curly braces \texttt{\{\}}, and the optional color is provided in square brackets \texttt{[]}.
+
+% Desired usage: \begin{flexbox}{<title>}[<color>]
+\begin{flexbox}{A Custom Title}[blue]
+  \lipsum[3][1-3]
+\end{flexbox}
+
+\begin{flexbox}{Another Title}[red]
+  \lipsum[4][1-3]
+\end{flexbox}
+
+
+\subsection*{Example 2: Using the Default Color}
+If the optional color argument is omitted, the default value specified in the definition (\texttt{gray}) is automatically applied.
+
+% Usage without the optional color: \begin{flexbox}{<title>}
+\begin{flexbox}{A Title with Default Color}
+  \lipsum[5][1-3]
+\end{flexbox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  \chapter{Simulated One-Sided Layout}
+  \lettrine{L}{orem ipsum} dolor sit amet, consectetur adipiscing elit. 
+  This section visually appears as a one-sided document because the inner and 
+  outer margins are equal on every page. s
+  \lipsum[1-2]
+
+  \lettrine{L}{orem ipsum} dolor sit amet \lipsum[1-2]
+
+
+
+  \section*{Example - Line on this page only}
+  \sidenote[2pt]{Note in margin dsa 
+  dsad dsa dsa dsadsa dsad sadsadsadjkbsak dhsakjldskladb s sadsad.}
+
+  \lettrine[lines=3]{L}{orem ipsum} dolor sit amet, consectetur adipiscing elit. 
+  Praesent vel risus in nunc gravida venenatis. Curabitur euismod.
+  \lipsum[1-2]
+
+
+  Here is some normal text with a margin note.\sidenote{여기에는 한글 설명이 들어가야하는 자리입니다.}
+
+  \section{Inside a float}
+
+  \begin{figure}[ht]
+    \centering
+    \rule{3cm}{2cm}
+    \caption{A box figure}
+    Here is a figure caption. \sidenote{Margin note inside float.}
+  \end{figure}
+
+  \section{Inside a footnote}
+
+  Some text with a footnote\footnote{여기 또한 마찬가지, 한글이 들어가야하는 자리입니다. 영어 단어나 문장 해석을 목적으로 제공되는 공간입니다.
+  \lipsum[1] sad sad \sidenote[-10pt]{Margin note inside footnote.}} continuing the paragraph.
+
+
+
+
+
+
+  \newpage
+  \section*{Example - Line on this page only}
+
+  \lipsum[1-2]
+  \begin{table}[h!]
+    \centering
+    \caption{Sample Table of Student Scores} % Appears in List of Tables
+    \begin{tabular}{|c|c|c|}
+      \hline
+      Student & Subject & Score \\
+      \hline
+      Alice   & Math    & 95    \\
+      Bob     & Physics & 88    \\
+      Carol   & English & 92    \\
+      \hline
+    \end{tabular}
+    \label{tab:scores} % useful for referencing
+  \end{table}
+
+  \section{Inside a footnote}
+
+  Some text with a footnote\footnote{Footnote text. 
+  dsadsadsad 
+  sadsad sadsad sadsad sad sad sadsad \lipsum[1-2] sad sad \sidenote{Margin note inside footnote.}} continuing the paragraph.
+
+
+
+  Here is some normal text with a margin note.\sidenote{Note in margin dsa 
+  dsad dsa dsa dsadsa dsad sadsadsadjkbsak dhsakjldskladb s sadsad.}
+
+
+
+
+
+
+  \newpage
+  \section*{Example - Line on this page only}
+  \lipsum[1-2]
+
+
+
+  \newpage
+  \section*{Example - Line on this page only}
+  \lipsum[1-2]
+
+
+
+
+
+
+  \onesidedpaper % Start with the one-sided layout
+  \section*{Part 1: Simulated One-Sided Layout}
+  This section visually appears as a one-sided document because the inner and 
+  outer margins are equal on every page. s
+  \lipsum[1-2]
+
+  \newpage
+  \section*{Part 2: True Two-Sided Layout}
+  The page layout has now switched to a true two-sided style. The margins on even and odd pages will be different.
+  \lipsum[3-4]
+
+
+
+
+
+    
+  \section{Number theory example}
+  Let $q$ be any prime divisor of \(N\). We make two observations:
+  \index{prime divisor}
+  \index{$q$@\texttt{$q$}} % put q in index (show as verbatim-like text)
+
+  This is English text using the Latin font set by pdfLaTeX.
+  \index{English text}
+
+  \section{Korean examples}
+  안녕하세요. 이것은 \texttt{kotex}로 컴파일된 한글입니다.
+  \index{kotex}
+
+  \subsection{Nanum family examples}
+  안녕하세요! 이것은 나눔명조체입니다.
+  \index{나눔명조}
+
+  \textit{이것은 나눔손글씨입니다.}
+  \index{나눔손글씨}
+
+  \textbf{이것은 나눔바른고딕입니다.}
+  \index{나눔바른고딕}
+
+  \textbf{\textit{이것은 나눔손글씨입니다.}}
+  \index{나눔손글씨!강조}
+
+  \section{More sample entries}
+  You can add hierarchical (sub) entries, e.g., Fonts!Nanum:
+  \index{Fonts!Nanum Myeongjo}
+  \index{Fonts!Nanum Gothic}
+
+
+  Cite an authoritative book on algorithms: \textcite{noauthor_help_2010} shows a number of classic results.
+  Also see \parencite{kim_ssat-sat_2003} for document preparation practices.
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  %=======================================%
+  %== Back Matter ==%
+  %=======================================%  
+  \backmatter
+  \input{pages/back01-appendix.tex}
+  \printbibliography[
+    heading=bibintoc,   % unnumbered entry in TOC
+    title={References}
+  ]
+  \printindex                  % unnumbered, title from imakeidx
+  \input{pages/back04-about_author.tex}
+
+
+
+
+\end{document}
