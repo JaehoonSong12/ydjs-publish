@@ -618,13 +618,23 @@
 
   \subsection*{Algorithm: Sieve of Eratosthenes}
 
-  The following tables demonstrate how the sieve works. Composite numbers are 
-  progressively crossed out. The process begins with a grid of numbers from 1 to 100, 
-  with 1 crossed out from the start as it is not a prime number.
+  The following tables demonstrate\footnote{
+    \textbf{Demonstrate}, v. \textbf{1} 보여주다. \textbf{2} 어떤 과정이나 원리를 시각적으로 설명하는 것.
+    \textbf{예} 이 그림은 물이 어떻게 순환하는지를 잘 보여줍니다.
+  } how the sieve works. Composite numbers are progressively\footnote{
+    \textbf{Progressively}, adv. \textbf{1} 점차적으로. \textbf{2} 시간지나면서. \textbf{예} 연습을 통해 실력이 점차적으로 향상되었습니다.
+  } crossed out. The process begins with a grid\footnote{
+    \textbf{Grid}, n. \textbf{1} 격자. \textbf{2} 바둑판 모양의 표. \textbf{예} 모눈종이에는 계산을 돕는 격자가 그려져 있습니다.
+  } of numbers from 1 to 100, with 1 crossed out from the start as it is not a prime number.
+
+
+  The process begins by crossing out 1. This is because, by definition, a prime number must be a 
+  natural number greater than 1 with exactly two distinct positive divisors, 1 and itself. 
+  Since the number 1 has only a single divisor, it is not a prime number.
 
   \subsubsection*{Crossing out multiples of 2}
 
-  The first prime number is \textbf{2}. All of its multiples are now crossed out.
+  The first prime number is \textbf{2}. All of its multiples are now \underbar{crossed out}.
 
   \begin{center}
   \renewcommand{\arraystretch}{1.15}
@@ -652,7 +662,7 @@
     \hline 
   \end{tabular}
   \end{center}
-  \sidenote[-4em]{
+  \sidenote[-10em]{
     \textbf{cross out} 이라는 표현은 숫자 위에 
     선을 그어 목록에서 제외하는 것을 의미합니다. 풀이 과정에, 
     \inlinequote{필요 없는 부분을 지워 나간다} 정도의 표현으로 이해하면 됩니다.
@@ -732,7 +742,7 @@
   \begin{flexbox}{Questions}
     \begin{enumerate}
       \item Get the next prime number after 100.\vspace*{20pt}
-      \item Find the largest prime number that is less than 200.\vspace*{20pt}
+      \item Find the largest prime number that is \underbar{less than} 200.\vspace*{20pt}
       \item Determine if the number 257 is prime or composite.\vspace*{20pt}
       % \item What is the prime factorization of the number 840?
     \end{enumerate}
