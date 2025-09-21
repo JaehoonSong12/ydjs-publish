@@ -94,6 +94,8 @@ This repository contains a LaTeX document class (`book`) configuration optimized
 Compile the `main.tex` (or whatever the `.tex` file is named) with your LaTeX engine:
 
 ```bash
+cd gyco-casual # only one-time
+###############
 pdflatex main.tex
 bibtex main        # if you have bibliography entries
 pdflatex main.tex  # run twice for TOC and references
