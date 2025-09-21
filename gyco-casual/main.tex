@@ -595,18 +595,20 @@
   \twosidedpaper\section{Sieve of Eratosthenes}
   The sieve of Eratosthenes is an ancient \underbar{algorithm} for finding all 
   prime numbers up to any given limit \parencite{noauthor_sieve_2025}.
-  \sidenote[-2em]{
+  \sidenote[-3em]{
     \textbf{알고리즘} (\textbf{algorithm})은 \inlinequote{어떤 문제를 해결하기 
     위한 구체적인 방법이나 절차}를 의미합니다. 이론이 아닌, 정해진 순서대로 따라가는 설명서에 더 가깝습니다.
   }
   It works by iteratively\footnote{
-    \textbf{Iteratively} means to repeat a process over and over again to achieve a final result.
-  } marking as \underbar{composite} the multiples of each prime.
-  \sidenote[2em]{
+    \textbf{Iteratively}, adv. \textbf{1} 반복적으로. \textbf{2} 어떤 
+    목표나 결과에 도달하기 위해, 특정 과정을 되풀이하는 방식으로.
+    \textbf{예} 같은 단어를 반복적으로 말해야, 외울 수 있습니다.
+  } marking the multiples of each prime as \underbar{composite number}. 
+  \sidenote[12em]{
     \textbf{합성수} (\textbf{composite number})는 소수 (prime number)의 반대 개념입니다.
     즉, 1과 자기 자신 이외에 다른 약수를 가지는 수를 의미합니다.
   }
-  \subsection*{The Process Step-by-Step}
+  \subsection*{Algorithm: Sieve of Eratosthenes}
   The following tables demonstrate how the sieve works. Composite numbers are 
   progressively crossed out. The process begins with a grid of numbers from 1 to 100, 
   with 1 crossed out from the start as it is not a prime number.
@@ -632,8 +634,9 @@
   \subsubsection*{Step 2: Crossing out multiples of 3}
   The next unmarked number is \textbf{3}. Its multiples are now also crossed out.
   \sidenote[0em]{
-    여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
-    다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
+    \textbf{cross out} 이라는 표현은 숫자 위에 
+    선을 그어 목록에서 제외하는 것을 의미합니다. 풀이 과정에, 
+    \inlinequote{필요 없는 부분을 지워 나간다} 정도의 표현으로 이해하면 됩니다.
   }
   \begin{center}
   \renewcommand{\arraystretch}{1.15}
