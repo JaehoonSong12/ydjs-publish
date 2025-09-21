@@ -50,6 +50,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{caption} % For table captions
 
+\usepackage[table]{xcolor} % For advanced color options, table option improves handling
+\usepackage{colortbl}      % For coloring table cells, rows, and columns
+
 
 % Custom command to cross out numbers in red
 % \sout{} provides the strikethrough
@@ -608,94 +611,135 @@
     \textbf{합성수} (\textbf{composite number})는 소수 (prime number)의 반대 개념입니다.
     즉, 1과 자기 자신 이외에 다른 약수를 가지는 수를 의미합니다.
   }
+  \begin{flexbox}{에라토스테네스의 체}[red]
+    에라토스테네스의 체는 특정 숫자까지의 모든 소수(prime number)를 찾는 간단한 고대 알고리즘입니다. 
+    각 소수의 배수들을 차례대로 그리고 반복해 원하는 크기의 숫자 테이블을 지워나가는 방식으로 작동합니다.
+  \end{flexbox}
+
   \subsection*{Algorithm: Sieve of Eratosthenes}
+
   The following tables demonstrate how the sieve works. Composite numbers are 
   progressively crossed out. The process begins with a grid of numbers from 1 to 100, 
   with 1 crossed out from the start as it is not a prime number.
 
-  \subsubsection*{Step 1: Crossing out multiples of 2}
+  \subsubsection*{Crossing out multiples of 2}
+
   The first prime number is \textbf{2}. All of its multiples are now crossed out.
+
   \begin{center}
   \renewcommand{\arraystretch}{1.15}
-  \begin{tabular}{*{10}{r}}
-    \crossout{1}   & \(\mathbf{2}\) & 3 & \crossout{4} & 5 & \crossout{6} & 7 & \crossout{8} & 9 & \crossout{10} \\
+  \begin{tabular}{|*{10}{r|}}
+    \hline 
+    \cellcolor{gray!25}\crossout{1}   & \(\mathbf{2}\) & 3 & \crossout{4} & 5 & \crossout{6} & 7 & \crossout{8} & 9 & \crossout{10} \\
+    \hline 
     11 & \crossout{12} & 13 & \crossout{14} & 15 & \crossout{16} & 17 & \crossout{18} & 19 & \crossout{20} \\
+    \hline 
     21 & \crossout{22} & 23 & \crossout{24} & 25 & \crossout{26} & 27 & \crossout{28} & 29 & \crossout{30} \\
+    \hline 
     31 & \crossout{32} & 33 & \crossout{34} & 35 & \crossout{36} & 37 & \crossout{38} & 39 & \crossout{40} \\
+    \hline 
     41 & \crossout{42} & 43 & \crossout{44} & 45 & \crossout{46} & 47 & \crossout{48} & 49 & \crossout{50} \\
+    \hline 
     51 & \crossout{52} & 53 & \crossout{54} & 55 & \crossout{56} & 57 & \crossout{58} & 59 & \crossout{60} \\
+    \hline 
     61 & \crossout{62} & 63 & \crossout{64} & 65 & \crossout{66} & 67 & \crossout{68} & 69 & \crossout{70} \\
+    \hline 
     71 & \crossout{72} & 73 & \crossout{74} & 75 & \crossout{76} & 77 & \crossout{78} & 79 & \crossout{80} \\
+    \hline 
     81 & \crossout{82} & 83 & \crossout{84} & 85 & \crossout{86} & 87 & \crossout{88} & 89 & \crossout{90} \\
+    \hline 
     91 & \crossout{92} & 93 & \crossout{94} & 95 & \crossout{96} & 97 & \crossout{98} & 99 & \crossout{100} \\
+    \hline 
   \end{tabular}
   \end{center}
-  
-  \subsubsection*{Step 2: Crossing out multiples of 3}
-  The next unmarked number is \textbf{3}. Its multiples are now also crossed out.
-  \sidenote[0em]{
+  \sidenote[-4em]{
     \textbf{cross out} 이라는 표현은 숫자 위에 
     선을 그어 목록에서 제외하는 것을 의미합니다. 풀이 과정에, 
     \inlinequote{필요 없는 부분을 지워 나간다} 정도의 표현으로 이해하면 됩니다.
   }
+  \newpage
+  \subsubsection*{Crossing out multiples of 3}
+  The next unmarked number is \textbf{3}. Its multiples are now also crossed out.
   \begin{center}
   \renewcommand{\arraystretch}{1.15}
-  \begin{tabular}{*{10}{r}}
-    \crossout{1}   & \(\mathbf{2}\) & \(\mathbf{3}\) & \crossout{4} & 5 & \crossout{6} & 7 & \crossout{8} & \crossout{9} & \crossout{10} \\
+  \begin{tabular}{|*{10}{r|}}
+    \hline 
+    \cellcolor{gray!25}\crossout{1}   & \(\mathbf{2}\) & \(\mathbf{3}\) & \crossout{4} & 5 & \crossout{6} & 7 & \crossout{8} & \crossout{9} & \crossout{10} \\
+    \hline 
     11 & \crossout{12} & 13 & \crossout{14} & \crossout{15} & \crossout{16} & 17 & \crossout{18} & 19 & \crossout{20} \\
+    \hline 
     \crossout{21} & \crossout{22} & 23 & \crossout{24} & 25 & \crossout{26} & \crossout{27} & \crossout{28} & 29 & \crossout{30} \\
+    \hline 
     31 & \crossout{32} & \crossout{33} & \crossout{34} & 35 & \crossout{36} & 37 & \crossout{38} & \crossout{39} & \crossout{40} \\
+    \hline 
     41 & \crossout{42} & 43 & \crossout{44} & \crossout{45} & \crossout{46} & 47 & \crossout{48} & 49 & \crossout{50} \\
+    \hline 
     \crossout{51} & \crossout{52} & 53 & \crossout{54} & 55 & \crossout{56} & \crossout{57} & \crossout{58} & 59 & \crossout{60} \\
+    \hline 
     61 & \crossout{62} & \crossout{63} & \crossout{64} & 65 & \crossout{66} & 67 & \crossout{68} & \crossout{69} & \crossout{70} \\
+    \hline 
     71 & \crossout{72} & 73 & \crossout{74} & \crossout{75} & \crossout{76} & 77 & \crossout{78} & 79 & \crossout{80} \\
+    \hline 
     \crossout{81} & \crossout{82} & 83 & \crossout{84} & 85 & \crossout{86} & \crossout{87} & \crossout{88} & 89 & \crossout{90} \\
+    \hline 
     91 & \crossout{92} & \crossout{93} & \crossout{94} & 95 & \crossout{96} & 97 & \crossout{98} & \crossout{99} & \crossout{100} \\
+    \hline 
   \end{tabular}
   \end{center}
-  \sidenote[0em]{
-    여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
-    다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
-  }
 
   After continuing the process for all primes until you cannot find the next, the numbers 
-  that remain unmarked are the prime numbers. \footnote{
-    여기 또한 마찬가지, 한글이 들어가야하는 자리입니다. 영어 단어나 문장 해석을 목적으로 제공되는 공간입니다.
-  }
+  that remain unmarked are the prime numbers.
   \begin{table}[h!]
     \centering
     \renewcommand{\arraystretch}{1.15}
     \label{tab:sieve_result}
-    \begin{tabular}{*{10}{r}}
-      \crossout{1} & 2 & 3 & \crossout{4} & 5 & \crossout{6} & 7 & \crossout{8} & \crossout{9} & \crossout{10} \\
-      11 & \crossout{12} & 13 & \crossout{14} & \crossout{15} & \crossout{16} & 17 & \crossout{18} & 19 & \crossout{20} \\
-      \crossout{21} & \crossout{22} & 23 & \crossout{24} & \crossout{25} & \crossout{26} & \crossout{27} & \crossout{28} & 29 & \crossout{30} \\
-      31 & \crossout{32} & \crossout{33} & \crossout{34} & \crossout{35} & \crossout{36} & 37 & \crossout{38} & \crossout{39} & \crossout{40} \\
-      41 & \crossout{42} & 43 & \crossout{44} & \crossout{45} & \crossout{46} & 47 & \crossout{48} & \crossout{49} & \crossout{50} \\
-      \crossout{51} & \crossout{52} & 53 & \crossout{54} & \crossout{55} & \crossout{56} & \crossout{57} & \crossout{58} & 59 & \crossout{60} \\
-      61 & \crossout{62} & \crossout{63} & \crossout{64} & \crossout{65} & \crossout{66} & 67 & \crossout{68} & \crossout{69} & \crossout{70} \\
-      71 & \crossout{72} & 73 & \crossout{74} & \crossout{75} & \crossout{76} & \crossout{77} & \crossout{78} & 79 & \crossout{80} \\
-      \crossout{81} & \crossout{82} & 83 & \crossout{84} & \crossout{85} & \crossout{86} & \crossout{87} & \crossout{88} & 89 & \crossout{90} \\
-      \crossout{91} & \crossout{92} & \crossout{93} & \crossout{94} & \crossout{95} & \crossout{96} & 97 & \crossout{98} & \crossout{99} & \crossout{100} \\
-    \end{tabular}
-    \caption{Prime Numbers up to 100 by Sieve of Eratosthenes.}
+  \begin{tabular}{|*{10}{r|}}
+    \hline 
+    \cellcolor{gray!25}\crossout{1} & 2 & 3 & \crossout{4} & 5 & \crossout{6} & 7 & \crossout{8} & \crossout{9} & \crossout{10} \\
+    \hline 
+    11 & \crossout{12} & 13 & \crossout{14} & \crossout{15} & \crossout{16} & 17 & \crossout{18} & 19 & \crossout{20} \\
+    \hline 
+    \crossout{21} & \crossout{22} & 23 & \crossout{24} & \crossout{25} & \crossout{26} & \crossout{27} & \crossout{28} & 29 & \crossout{30} \\
+    \hline 
+    31 & \crossout{32} & \crossout{33} & \crossout{34} & \crossout{35} & \crossout{36} & 37 & \crossout{38} & \crossout{39} & \crossout{40} \\
+    \hline 
+    41 & \crossout{42} & 43 & \crossout{44} & \crossout{45} & \crossout{46} & 47 & \crossout{48} & \crossout{49} & \crossout{50} \\
+    \hline 
+    \crossout{51} & \crossout{52} & 53 & \crossout{54} & \crossout{55} & \crossout{56} & \crossout{57} & \crossout{58} & 59 & \crossout{60} \\
+    \hline 
+    61 & \crossout{62} & \crossout{63} & \crossout{64} & \crossout{65} & \crossout{66} & 67 & \crossout{68} & \crossout{69} & \crossout{70} \\
+    \hline 
+    71 & \crossout{72} & 73 & \crossout{74} & \crossout{75} & \crossout{76} & \crossout{77} & \crossout{78} & 79 & \crossout{80} \\
+    \hline 
+    \crossout{81} & \crossout{82} & 83 & \crossout{84} & \crossout{85} & \crossout{86} & \crossout{87} & \crossout{88} & 89 & \crossout{90} \\
+    \hline 
+    \crossout{91} & \crossout{92} & \crossout{93} & \crossout{94} & \crossout{95} & \crossout{96} & 97 & \crossout{98} & \crossout{99} & \crossout{100} \\
+    \hline 
+  \end{tabular}
+  \caption{Prime Numbers up to 100 by Sieve of Eratosthenes.}
   \end{table}
-
-  \sidenote[0em]{
-    여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
-    다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
+  \sidenote[6em]{
+    \textbf{less than}라는 표현은 주어진 숫자보다 작은 수, 즉, \inlinequote{미만}을 
+    의미하며, 그 숫자 자체는 포함하지 않습니다. 그 숫자까지 포함하는 \inlinequote{이하}라는 단어는 
+    영어에서는 더 직관적으로 \textbf{less than or equal to}로 표현됩니다.
   }
-  
+
   Thus, the primes up to 100 are: \textbf{2}, \textbf{3}, \textbf{5}, 
   \textbf{7}, \textbf{11}, \textbf{13}, \textbf{17}, \textbf{19}, \textbf{23}, 
   \textbf{29}, \textbf{31}, \textbf{37}, \textbf{41}, \textbf{43}, \textbf{47}, 
   \textbf{53}, \textbf{59}, \textbf{61}, \textbf{67}, \textbf{71}, \textbf{73}, 
   \textbf{79}, \textbf{83}, \textbf{89}, and \textbf{97}.
-
-  \begin{flexbox}{에라토스테네스의 체}[red]
-    에라토스테네스의 체는 특정 숫자까지의 모든 소수(prime number)를 찾는 간단한 고대 알고리즘입니다. 
-    각 소수의 배수들을 차례대로 그리고 반복해 원하는 크기의 숫자 테이블을 지워나가는 방식으로 작동합니다.
+  \begin{flexbox}{Questions}
+    \begin{enumerate}
+      \item Get the next prime number after 100.\vspace*{20pt}
+      \item Find the largest prime number that is less than 200.\vspace*{20pt}
+      \item Determine if the number 257 is prime or composite.\vspace*{20pt}
+      % \item What is the prime factorization of the number 840?
+    \end{enumerate}
   \end{flexbox}
+
+
+
 
 
 
