@@ -45,6 +45,11 @@
 
 
 
+% The TikZ package is imported for drawing.
+\usepackage{tikz}
+
+% The arrows.meta library provides more advanced arrow tip styles.
+\usetikzlibrary{arrows.meta}
 
 
 \begin{document}
@@ -52,6 +57,52 @@
 
 
 
+% The tikzpicture environment is where the drawing is defined.
+\begin{tikzpicture}[
+  % A global style is defined for all nodes.
+  % They will be circles, drawn with a black line, and have a minimum size.
+  every node/.style={circle, draw, minimum size=0.8cm},
+  % A global style is defined for all arrows.
+  % The arrow tip is set to a standard size and shape.
+  >=Stealth
+]
+
+  % Node placement for the equivalence class {2, 3, 6}
+  % These nodes are arranged in a triangle.
+  \node (2) at (0, 2) {2};
+  \node (3) at (-1.73, -1) {3};
+  \node (6) at (1.73, -1) {6};
+
+  % Node placement for the equivalence class {1, 5}
+  % These nodes are placed to the right of the first class.
+  \node (1) at (5, 1.5) {1};
+  \node (5) at (5, -1.5) {5};
+  
+  % Node placement for the singleton equivalence class {4}
+  % This node is placed below the others.
+  \node (4) at (0, -3.5) {4};
+
+  % Edges are drawn using the \path command. The 'edge' operation creates lines.
+  % The relation is symmetric, so bidirectional arrows (<->) are used
+  % to represent pairs like (2,3) and (3,2) with a single line.
+  \path[<->]
+    (2) edge (3)
+    (2) edge (6)
+    (3) edge (6)
+    (1) edge (5);
+
+  % Reflexive loops are added for each element.
+  % The 'loop' option creates an edge from a node back to itself.
+  % The position of the loop (e.g., above, left) is specified to avoid overlaps.
+  \path[->]
+    (1) edge [loop right] ()
+    (2) edge [loop above] ()
+    (3) edge [loop left] ()
+    (4) edge [loop below] ()
+    (5) edge [loop right] ()
+    (6) edge [loop right] ();
+    
+\end{tikzpicture}
 
 
 

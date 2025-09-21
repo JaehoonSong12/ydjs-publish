@@ -593,17 +593,19 @@
 
 
   \twosidedpaper\section{Sieve of Eratosthenes}
-  The Sieve of Eratosthenes is a simple and ancient algorithm\sidenote[-1em]{
-    An \textbf{algorithm} is a set of step-by-step instructions used to solve a problem, much like a recipe.
-  } for finding all prime numbers up 
-  to a specified integer. It works by iteratively\footnote{
+  The sieve of Eratosthenes is an ancient \underbar{algorithm} for finding all 
+  prime numbers up to any given limit \parencite{noauthor_sieve_2025}.
+  \sidenote[-2em]{
+    \textbf{알고리즘} (\textbf{algorithm})은 \inlinequote{어떤 문제를 해결하기 
+    위한 구체적인 방법이나 절차}를 의미합니다. 이론이 아닌, 정해진 순서대로 따라가는 설명서에 더 가깝습니다.
+  }
+  It works by iteratively\footnote{
     \textbf{Iteratively} means to repeat a process over and over again to achieve a final result.
-  } marking as \underbar{composite}\sidenote[3em]{
-    A \textbf{composite} number is the opposite of a prime number. 
-    It can be formed by multiplying two smaller integers. For example, 
-    6 is a composite number because it can be made by \(2 \times 3\).
-  } the multiples of each prime.
-  
+  } marking as \underbar{composite} the multiples of each prime.
+  \sidenote[2em]{
+    \textbf{합성수} (\textbf{composite number})는 소수 (prime number)의 반대 개념입니다.
+    즉, 1과 자기 자신 이외에 다른 약수를 가지는 수를 의미합니다.
+  }
   \subsection*{The Process Step-by-Step}
   The following tables demonstrate how the sieve works. Composite numbers are 
   progressively crossed out. The process begins with a grid of numbers from 1 to 100, 
@@ -629,7 +631,7 @@
   
   \subsubsection*{Step 2: Crossing out multiples of 3}
   The next unmarked number is \textbf{3}. Its multiples are now also crossed out.
-  \sidenote{
+  \sidenote[0em]{
     여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
     다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
   }
@@ -648,30 +650,7 @@
     91 & \crossout{92} & \crossout{93} & \crossout{94} & 95 & \crossout{96} & 97 & \crossout{98} & \crossout{99} & \crossout{100} \\
   \end{tabular}
   \end{center}
-  
-  \subsubsection*{Step 3: Crossing out multiples of 5}
-  The next prime is \textbf{5}. Any of its multiples that are still unmarked are now crossed out.
-  \sidenote{
-    여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
-    다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
-  }
-  \begin{center}
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabular}{*{10}{r}}
-    \crossout{1}   & \(\mathbf{2}\) & \(\mathbf{3}\) & \crossout{4} & \(\mathbf{5}\) & \crossout{6} & 7 & \crossout{8} & \crossout{9} & \crossout{10} \\
-    11 & \crossout{12} & 13 & \crossout{14} & \crossout{15} & \crossout{16} & 17 & \crossout{18} & 19 & \crossout{20} \\
-    \crossout{21} & \crossout{22} & 23 & \crossout{24} & \crossout{25} & \crossout{26} & \crossout{27} & \crossout{28} & 29 & \crossout{30} \\
-    31 & \crossout{32} & \crossout{33} & \crossout{34} & \crossout{35} & \crossout{36} & 37 & \crossout{38} & \crossout{39} & \crossout{40} \\
-    41 & \crossout{42} & 43 & \crossout{44} & \crossout{45} & \crossout{46} & 47 & \crossout{48} & 49 & \crossout{50} \\
-    \crossout{51} & \crossout{52} & 53 & \crossout{54} & \crossout{55} & \crossout{56} & \crossout{57} & \crossout{58} & 59 & \crossout{60} \\
-    61 & \crossout{62} & \crossout{63} & \crossout{64} & \crossout{65} & \crossout{66} & 67 & \crossout{68} & \crossout{69} & \crossout{70} \\
-    71 & \crossout{72} & 73 & \crossout{74} & \crossout{75} & \crossout{76} & 77 & \crossout{78} & 79 & \crossout{80} \\
-    \crossout{81} & \crossout{82} & 83 & \crossout{84} & \crossout{85} & \crossout{86} & \crossout{87} & \crossout{88} & 89 & \crossout{90} \\
-    91 & \crossout{92} & \crossout{93} & \crossout{94} & \crossout{95} & \crossout{96} & 97 & \crossout{98} & \crossout{99} & \crossout{100} \\
-  \end{tabular}
-  \end{center}
-  
-  \sidenote{
+  \sidenote[0em]{
     여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
     다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
   }
@@ -699,7 +678,7 @@
     \caption{Prime Numbers up to 100 by Sieve of Eratosthenes.}
   \end{table}
 
-  \sidenote{
+  \sidenote[0em]{
     여기는 한글 설명이 들어가야하는 자리입니다. 영어와 한글사이 직역이 불가능한 
     다른 방식의 표현을 설명하는 목적으로 제공되는 공간입니다.
   }
@@ -984,7 +963,7 @@ If the optional color argument is omitted, the default value specified in the de
   \lipsum[1-2]
 
 
-  Here is some normal text with a margin note.\sidenote{여기에는 한글 설명이 들어가야하는 자리입니다.}
+  Here is some normal text with a margin note.\sidenote[0em]{여기에는 한글 설명이 들어가야하는 자리입니다.}
 
   \section{Inside a float}
 
@@ -992,7 +971,7 @@ If the optional color argument is omitted, the default value specified in the de
     \centering
     \rule{3cm}{2cm}
     \caption{A box figure}
-    Here is a figure caption. \sidenote{Margin note inside float.}
+    Here is a figure caption. \sidenote[0em]{Margin note inside float.}
   \end{figure}
 
   \section{Inside a footnote}
@@ -1029,11 +1008,11 @@ If the optional color argument is omitted, the default value specified in the de
 
   Some text with a footnote\footnote{Footnote text. 
   dsadsadsad 
-  sadsad sadsad sadsad sad sad sadsad \lipsum[1-2] sad sad \sidenote{Margin note inside footnote.}} continuing the paragraph.
+  sadsad sadsad sadsad sad sad sadsad \lipsum[1-2] sad sad \sidenote[0em]{Margin note inside footnote.}} continuing the paragraph.
 
 
 
-  Here is some normal text with a margin note.\sidenote{Note in margin dsa 
+  Here is some normal text with a margin note.\sidenote[0em]{Note in margin dsa 
   dsad dsa dsa dsadsa dsad sadsadsadjkbsak dhsakjldskladb s sadsad.}
 
 
