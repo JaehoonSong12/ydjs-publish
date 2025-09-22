@@ -486,4 +486,104 @@ Let the problem be to find the least non-negative residue of $-15$ modulo $4$.
 \end{itemize}
 Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
 
+
+
+
+
+
+
+\newpage
+\item \textbf{Euler's Theorem.}
+\begin{define}{Euler's Theorem}[thm:euler][redcolor]
+  Let $n \in \setN$ and $a \in \setZ$ with $\gcd(a,n) = 1$. Then
+  \[
+    a^{\phi(n)} \equiv 1 \pmod{n}
+  \]
+  where $\varphi(n)$ is Euler's totient function, defined by
+  \[
+    \varphi(n) = \abs{\sBUILD{1 \leq k \leq n}{\group{k,n} = 1}}.
+  \]
+\end{define}
+\begin{subprove}
+  Let $R = \{ r_1, r_2, \dots, r_{\phi(n)} \}$ be the reduced residue system modulo $n$.
+  Since $\gcd(a,n) = 1$, the products $a r_1, a r_2, \dots, a r_{\phi(n)}$ form another reduced residue system modulo $n$.
+  Thus,
+  \[
+    a r_1 \cdot a r_2 \cdots a r_{\phi(n)} \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+  \]
+  That is,
+  \[
+    a^{\phi(n)} (r_1 r_2 \cdots r_{\phi(n)}) \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+  \]
+  Since $r_1 r_2 \cdots r_{\phi(n)}$ is relatively prime to $n$, it may be canceled from both sides.
+  Therefore,
+  \[
+    a^{\phi(n)} \equiv 1 \pmod{n}.
+  \]
+  \hfill $\square$
+\end{subprove}
+
+\begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][redcolor]
+  If $p$ is prime and $\gcd(a,p)=1$, then
+  \[
+    a^{p-1} \equiv 1 \pmod{p}.
+  \]
+\end{define}
+
+\noindent\textbf{Example:}
+If $n$ is prime, then
+\[
+  \phi(n) = n-1.
+\]
+
+
+
+
+
+
+
+
+
+\newpage
+\item \textbf{Dirichlet's Theorem.}
+\begin{define}{Dirichlet's Theorem}[thm:dirichlet][redcolor]
+  If $\gcd(a,q) = 1$, then there exist infinitely many primes $p$ such that
+  \[
+    p \equiv a \pmod{q}.
+  \]
+\end{define}
+
+\begin{define}{Special Case}[cor:dirichlet-special][redcolor]
+  There are infinitely many primes of the form $4k+3$.
+\end{define}
+
+\begin{subprove}
+  Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.
+  List them as $3, p_1, p_2, \dots, p_k$.
+  Define
+  \[
+    Q = 4p_1 p_2 \cdots p_k + 3.
+  \]
+  Then $Q \equiv 3 \pmod{4}$.
+  Moreover, $\gcd(Q, p_i) = 1$ for each $i$, and $\gcd(Q,3) = 1$.
+  Thus $Q$ has a prime factor not among $\{3, p_1, \dots, p_k\}$.
+
+  Any prime factor of $Q$ must be congruent to $1 \pmod{4}$ or $3 \pmod{4}$.
+  If all prime factors of $Q$ were congruent to $1 \pmod{4}$, then their product would also be congruent to $1 \pmod{4}$.
+  However,
+  \[
+    Q \equiv 3 \pmod{4}.
+  \]
+  This is a contradiction.
+
+  Therefore $Q$ has a prime factor congruent to $3 \pmod{4}$ not in the original list.
+  Hence there are infinitely many primes of the form $4k+3$.
+  \hfill $\square$
+\end{subprove}
+
+
+
+
+
+
 \end{enumerate}
