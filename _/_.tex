@@ -78,6 +78,8 @@
 \usepackage{xparse}
 \usepackage{xstring} % Needed for \IfStrEqCase in \xyLoop macro
 
+\NewDocumentCommand{\xyArc}{O{}}{\ar@{->}[#1]}
+\NewDocumentCommand{\xyEdge}{O{}}{\ar@{-}[#1]}
 \NewDocumentCommand{\xyLoop}{O{u}}{%
   \IfStrEq{#1}{r}{\ar@(dr,ur)[]}{%
   \IfStrEq{#1}{ru}{\ar@(r,ur)[]}{%
@@ -95,8 +97,6 @@
       {Valid directions: r, ur (ru), u, ul (lu), l, dl (ld), d, dr (rd).}%
   }}}}}}}}}}}}
 }%
-\NewDocumentCommand{\xyArc}{O{}}{\ar@{->}[#1]}
-\NewDocumentCommand{\xyEdge}{O{}}{\ar@{-}[#1]}
 
 
 
