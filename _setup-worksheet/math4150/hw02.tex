@@ -464,6 +464,172 @@ Let $p$ be an odd prime number. Prove that
   \]
 \end{subprove}
 
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 3}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 30th September}
+{Math 4150: HW3}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+\newpage
+\item Exercise Set 2.5, \#58.
+Let $a$ and $b$ be integers not divisible by the prime number $p$.
+\begin{enumerate}
+  \item If $a^p \equiv b^p \pmod{p}$, prove that $a \equiv b \pmod{p}$.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+  \item If $a^p \equiv b^p \pmod{p}$, prove that $a^p \equiv b^p \pmod{p^2}$.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+\end{enumerate}
+
+\item Exercise Set 2.5, \#62.
+The following exercise proves that there are infinitely many odd pseudoprime numbers.
+\begin{enumerate}
+  \item Let $a$ and $b$ be positive integers such that $a \mid b$. 
+  Prove that $2^a-1 \mid 2^b-1$.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+  \item Suppose that $n$ is composite. Prove that $n$ is an odd pseudoprime number 
+  if and only if $2^{n-1} \equiv 1 \pmod{n}$.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+  \item Prove that if $n$ is an odd pseudoprime number, 
+  then $m=2^n-1$ is an odd pseudoprime number. 
+  [\textbf{Hint}: Use parts (a) and (b)]
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+  \item Prove that there are infinitely many odd pseudoprime numbers.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+\end{enumerate}
+
+\item Exercise Set 2.6, \#68 (a),(d).
+Using Euler's Theorem, find the least nonnegative residue modulo $m$ of each integer $n$ below.
+\begin{enumerate}
+  \item $n=29^{198}$, $m=20$
+  \begin{subanswer}
+    Your answer here.
+  \end{subanswer}
+  \item $n=99^{999999}$, $m=26$
+  \begin{subanswer}
+    Your answer here.
+  \end{subanswer}
+\end{enumerate}
+
+\item Exercise Set 2.6, \#75.
+Let $m$ be a positive integer with $m \neq 2$. If $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$, prove that
+\[
+r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
+\]
+\begin{subprove}
+  Your answer here.
+\end{subprove}
+
+\item Exercise Set 3.1, \#7.
+
+\begin{define}{Liouville $\lambda$-function}[def:liouville][redcolor]
+  Let $n \in \setZ$ with $n>0$. The Liouville $\lambda$-function, 
+  denoted $\lambda(n)$, is defined by
+  $$
+  \lambda(n):= 
+  \begin{cases}1 & \text { if } n=1 \\ 
+    (-1)^k & \text { if } n=p_1 p_2 \cdots p_k \quad \text { where } \quad p_1, \ldots, p_k \text { are not necessarily distinct prime numbers. }
+  \end{cases}
+  $$
+\end{define}
+\begin{enumerate}
+  \item Prove that $\lambda$ is a completely multiplicative arithmetic function.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+  \item Let $F(n):=\sum_{d \mid n, d>0} \lambda(d)$. Prove that
+  \[
+  F(n)= \begin{cases}1 & \text{if } n \text{ is a perfect square} \\ 0 & \text{otherwise}\end{cases}
+  \]
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+\end{enumerate}
+
+\item Exercise Set 3.2, \#12. Let $n \in \mathbb{Z}$ with $n>1$. If $n$ has prime 
+factorisation $p_1^{a_1} p_2^{a_2} \cdots p_m^{a_m}$, prove that
+
+$$
+\phi(n)=p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m\left(p_i-1\right) .
+$$
+\begin{subprove}
+  Your answer here.
+\end{subprove}
+
+\item Exercise Set 3.2, \#15.
+Let $k \in \setZ$ with $k>0$. Prove that the equation $\phi(n)=k$ has 
+at most finitely many solutions. 
+[\textbf{Hint}: Use Question 6]
+\begin{subprove}
+  Your answer here.
+\end{subprove}
+
+\item Exercise Set 3.2, \#16.
+Let $n$ be a positive integer.
+[\textbf{Hint}: Use Question 1 for part (a) and Theorem 3.4 for part (b)]
+\begin{enumerate}
+  \item Prove that $\sqrt{n} / 2 \leq \phi(n) \leq n$.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+  \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
+  \begin{subprove}
+    Your answer here.
+  \end{subprove}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 \begin{define}{Least Non-Negative Residue}
   Let $a$ and $n$ be integers with $n > 0$. The \textbf{least non-negative residue} of $a$ 
@@ -503,25 +669,25 @@ Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
   \[
     \varphi(n) = \abs{\sBUILD{1 \leq k \leq n}{\group{k,n} = 1}}.
   \]
+  \textbf{Note:} If $n$ is prime, then $\phi(n) = n-1$.
+  \begin{subprove}
+    Let $R = \{ r_1, r_2, \dots, r_{\phi(n)} \}$ be the reduced residue system modulo $n$.
+    Since $\gcd(a,n) = 1$, the products $a r_1, a r_2, \dots, a r_{\phi(n)}$ form another reduced residue system modulo $n$.
+    Thus,
+    \[
+      a r_1 \cdot a r_2 \cdots a r_{\phi(n)} \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+    \]
+    That is,
+    \[
+      a^{\phi(n)} (r_1 r_2 \cdots r_{\phi(n)}) \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+    \]
+    Since $r_1 r_2 \cdots r_{\phi(n)}$ is relatively prime to $n$, it may be canceled from both sides.
+    Therefore,
+    \[
+      a^{\phi(n)} \equiv 1 \pmod{n}.
+    \]
+  \end{subprove}
 \end{define}
-\begin{subprove}
-  Let $R = \{ r_1, r_2, \dots, r_{\phi(n)} \}$ be the reduced residue system modulo $n$.
-  Since $\gcd(a,n) = 1$, the products $a r_1, a r_2, \dots, a r_{\phi(n)}$ form another reduced residue system modulo $n$.
-  Thus,
-  \[
-    a r_1 \cdot a r_2 \cdots a r_{\phi(n)} \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
-  \]
-  That is,
-  \[
-    a^{\phi(n)} (r_1 r_2 \cdots r_{\phi(n)}) \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
-  \]
-  Since $r_1 r_2 \cdots r_{\phi(n)}$ is relatively prime to $n$, it may be canceled from both sides.
-  Therefore,
-  \[
-    a^{\phi(n)} \equiv 1 \pmod{n}.
-  \]
-  \hfill $\square$
-\end{subprove}
 
 \begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][redcolor]
   If $p$ is prime and $\gcd(a,p)=1$, then
@@ -530,11 +696,7 @@ Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
   \]
 \end{define}
 
-\noindent\textbf{Example:}
-If $n$ is prime, then
-\[
-  \phi(n) = n-1.
-\]
+
 
 
 
@@ -553,33 +715,32 @@ If $n$ is prime, then
   \]
 \end{define}
 
-\begin{define}{Special Case}[cor:dirichlet-special][redcolor]
+\begin{define}{Special Case: Dirichlet's Theorem}[cor:dirichlet-special][redcolor]
   There are infinitely many primes of the form $4k+3$.
+  \begin{subprove}
+    Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.
+    List them as $3, p_1, p_2, \dots, p_k$.
+    Define
+    \[
+      Q = 4p_1 p_2 \cdots p_k + 3.
+    \]
+    Then $Q \equiv 3 \pmod{4}$.
+    Moreover, $\gcd(Q, p_i) = 1$ for each $i$, and $\gcd(Q,3) = 1$.
+    Thus $Q$ has a prime factor not among $\{3, p_1, \dots, p_k\}$.
+  
+    Any prime factor of $Q$ must be congruent to $1 \pmod{4}$ or $3 \pmod{4}$.
+    If all prime factors of $Q$ were congruent to $1 \pmod{4}$, then their product would also be congruent to $1 \pmod{4}$.
+    However,
+    \[
+      Q \equiv 3 \pmod{4}.
+    \]
+    This is a contradiction.
+  
+    Therefore $Q$ has a prime factor congruent to $3 \pmod{4}$ not in the original list.
+    Hence there are infinitely many primes of the form $4k+3$.
+    \hfill $\square$
+  \end{subprove}
 \end{define}
-
-\begin{subprove}
-  Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.
-  List them as $3, p_1, p_2, \dots, p_k$.
-  Define
-  \[
-    Q = 4p_1 p_2 \cdots p_k + 3.
-  \]
-  Then $Q \equiv 3 \pmod{4}$.
-  Moreover, $\gcd(Q, p_i) = 1$ for each $i$, and $\gcd(Q,3) = 1$.
-  Thus $Q$ has a prime factor not among $\{3, p_1, \dots, p_k\}$.
-
-  Any prime factor of $Q$ must be congruent to $1 \pmod{4}$ or $3 \pmod{4}$.
-  If all prime factors of $Q$ were congruent to $1 \pmod{4}$, then their product would also be congruent to $1 \pmod{4}$.
-  However,
-  \[
-    Q \equiv 3 \pmod{4}.
-  \]
-  This is a contradiction.
-
-  Therefore $Q$ has a prime factor congruent to $3 \pmod{4}$ not in the original list.
-  Hence there are infinitely many primes of the form $4k+3$.
-  \hfill $\square$
-\end{subprove}
 
 
 
