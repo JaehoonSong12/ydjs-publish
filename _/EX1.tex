@@ -1,0 +1,218 @@
+% linear_congruences_solutions.tex
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=1in}
+\title{Problems on Linear Congruences and Reduced Residue Systems}
+
+
+\input{../preamble/math.tex}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{Theorems (from Strayer)}
+\begin{enumerate}
+  \item \textbf{Linear congruence solvability.} The congruence $ax\equiv b\pmod n$ has a solution iff $d=\gcd(a,n)\mid b$. If $d\mid b$ then dividing through by $d$ yields $(a/d)x\equiv (b/d)\pmod{n/d}$, which has a unique solution modulo $n/d$, and the original congruence has $d$ distinct solutions modulo $n$.
+  \item \textbf{Multiplicative inverse.} $a$ has an inverse modulo $n$ iff $\gcd(a,n)=1$.
+  \item \textbf{Chinese Remainder Theorem (pair).} The system $x\equiv a\pmod m$, $x\equiv b\pmod n$ has a solution iff $a\equiv b\pmod{\gcd(m,n)}$. If $\gcd(m,n)=1$ the solution is unique modulo $mn$.
+\end{enumerate}
+
+\section*{Definition}
+\textbf{Reduced residue system modulo $n$:} A set $R=\{r_1,\dots,r_{\varphi(n)}\}$ is a reduced residue system modulo $n$ iff
+\[\gcd(r_i,n)=1\quad\text{for all }i,\text{ where } r_i\pmod n\text{ is unique residue.}\]
+
+\section*{Problems and concise solutions}
+\begin{enumerate}
+\item $84x\equiv5\pmod{49}$.\\
+$\gcd(84,49)=7$. Since $7\nmid5$, by theorem 1 there is \textbf{no solution}.
+
+\item $12x\equiv16\pmod{32}$.\\
+$\gcd(12,32)=4$ and $4\mid16$. Divide by $4$: $3x\equiv4\pmod8$. Since $\gcd(3,8)=1$ and $3^{-1}\equiv3\pmod8$, we get $x\equiv3\cdot4=12\equiv4\pmod8$. The least positive solution is \boxed{4}. (All solutions mod $32$: $4,12,20,28$.)
+
+\item $7x\equiv1\pmod{24}$ (inverse of $7$ mod $24$).\\
+$\gcd(7,24)=1$. Extended Euclid gives $7\cdot7-2\cdot24=1$, so $7^{-1}\equiv7\pmod{24}$. Least positive solution: \boxed{7}.
+
+\item System $x\equiv3\pmod7$, $x\equiv4\pmod6$.\\
+$\gcd(7,6)=1$. Let $x=3+7k$. Then $3+7k\equiv4\pmod6\Rightarrow7k\equiv1\pmod6$. Since $7\equiv1\pmod6$, $k\equiv1\pmod6$. Take $k=1$ gives $x=10$. Hence $x\equiv10\pmod{42}$. Least positive: \boxed{10}.
+
+\item Integers $a,b$ with $\gcd(a,b)=3$ and $a+b=65$.\\
+If $\gcd(a,b)=3$, then $3\mid a$ and $3\mid b$, so $3\mid(a+b)$. But $3\nmid65$. Contradiction. \textbf{No such integers.}
+
+\item Reduced residue system modulo $18$.\\
+$\varphi(18)=6$. Units mod $18$ (least positive representatives): \boxed{\{1,5,7,11,13,17\}}.
+
+\item Is $\{-15,66,-75,11\}$ a reduced residue system modulo $8$?\\
+Reduce mod $8$: $-15\equiv1$, $66\equiv2$, $-75\equiv5$, $11\equiv3$. Residues $\{1,2,5,3\}$. But $2$ is not coprime to $8$ (gcd $=2$). Thus the set is \textbf{not} a reduced residue system modulo $8$.
+
+\item Reduced residue system modulo $7$ consisting only of odd integers.\\
+One choice: \boxed{\{1,3,5,9,11,13\}}. Modulo $7$ these reduce to $\{1,3,5,2,4,6\}$, i.e. all units.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+\section*{Definitions}
+\begin{itemize}
+\item A function $f:\mathbb{Z}_{>0}\to\mathbb{C}$ is \emph{multiplicative} iff for all $m,n$ with $\gcd(m,n)=1$,
+\[f(mn)=f(m)f(n).
+\]
+\item $f$ is \emph{completely multiplicative} iff for all positive integers $m,n$ (no gcd condition),
+\[f(mn)=f(m)f(n).
+\]
+\end{itemize}
+
+
+\section*{Theorems used}
+\begin{enumerate}
+\item \textbf{Chinese Remainder Theorem (pair):} If $\gcd(m,n)=1$, then
+\[(\mathbb{Z}/mn\mathbb{Z})^\times\cong(\mathbb{Z}/m\mathbb{Z})^\times\times(\mathbb{Z}/n\mathbb{Z})^\times.
+\]
+Taking cardinalities gives multiplicativity of $\varphi$ on coprime arguments.
+\item \textbf{Wilson's theorem:} For prime $p$, $(p-1)!\equiv-1\pmod p$.
+\item \textbf{Euler's theorem:} If $\gcd(a,m)=1$ then $a^{\varphi(m)}\equiv1\pmod m$.\\
+\textbf{[Fermat's little theorem]:} If $\gcd(a,p)=1$ and \underbar{$p$ is prime} then $a^{p-1}\equiv1\pmod p$.
+\item \textbf{Multiplicativity of $\varphi$:} If $\gcd(m,n)=1$ then $\varphi(mn)=\varphi(m)\varphi(n)$.
+\end{enumerate}
+
+
+\section*{Problems and concise solutions}
+
+
+\subsection*{(A) $\varphi$ is multiplicative but not completely multiplicative}
+\textbf{Prime-power formula:} For prime $p$, $\varphi(p^k)=p^k-p^{k-1}=p^{k-1}(p-1)$.\\
+\textbf{Multiplicativity:} If $\gcd(m,n)=1$ then by CRT
+\[| (\mathbb{Z}/mn\mathbb{Z})^\times|=|(\mathbb{Z}/m\mathbb{Z})^\times|\cdot|(\mathbb{Z}/n\mathbb{Z})^\times|,
+\]
+so $\varphi(mn)=\varphi(m)\varphi(n)$. (Cited: CRT.)\\
+\textbf{Not completely multiplicative:} Example: $\varphi(4)=2$ but $\varphi(2)\varphi(2)=1\cdot1=1\neq2$. Thus $\varphi$ is not completely multiplicative.
+
+
+\subsection*{(B) Euclidean algorithm: $(831,402)$}
+Compute:
+\begin{align*}
+831&=2\cdot402+27,\\
+402&=14\cdot27+24,\\
+27&=1\cdot24+3,\\
+24&=8\cdot3+0.
+\end{align*}
+Hence $\gcd(831,402)=3$. Back-substitute:
+\begin{align*}
+3&=27-1\cdot24\\
+&=27-1(402-14\cdot27)=15\cdot27-1\cdot402\\
+&=15(831-2\cdot402)-1\cdot402=15\cdot831-31\cdot402.
+\end{align*}
+So $3=15\cdot831-31\cdot402$.
+
+
+\subsection*{(C) For odd prime $p$: $2(p-3)!\equiv-1\pmod p$}
+Using Wilson's theorem,
+\[(p-1)!=(p-1)(p-2)(p-3)!\equiv(-1)(-2)(p-3)!\equiv2(p-3)!\equiv-1\pmod p.
+\]
+By Wilson, $(p-1)!$, hence $2(p-3)!\equiv-1\pmod p$.
+
+
+
+
+\begin{enumerate}
+  \item If $\gcd(a,m)=1$, show $a^{\varphi(m)-1}$ is the inverse of $a$ modulo $m$
+  \begin{subprove}
+    By Euler's theorem $a^{\varphi(m)}\equiv1\pmod m$. Multiply both sides by $a^{-1}$ (or rearrange):
+    \[a\cdot a^{\varphi(m)-1}\equiv a^{\varphi(m)}\equiv1\pmod m,
+    \]
+    so $a^{\varphi(m)-1}$ is an inverse of $a$ modulo $m$. (Cited: Euler's theorem.)
+  \end{subprove}
+  \item Find the least positive solution $x$ to the congruence $x \equiv 20^{110}(\bmod 17)$. 
+    \begin{subprove}
+      $x\equiv20^{110}\pmod{17}$. Reduce base: $20\equiv3\pmod{17}$. Since $17$ is prime, by Fermat, $3^{16}\equiv1\pmod{17}$, and $110\equiv14\pmod{16}$. Thus
+      \[3^{110}\equiv3^{14}=(3^8)(3^4)(3^2)\equiv16\cdot13\cdot9\equiv4\cdot9\equiv36\equiv2\pmod{17}.
+      \]
+      So least positive solution: $\boxed{2}$.
+    \end{subprove}
+  \item For $x \equiv 38^{110}(\bmod 21)$.
+    \begin{subprove}
+      $x\equiv38^{110}\pmod{21}$. Reduce base: $38\equiv17\pmod{21}$. 
+      By Euler theorem and Multiplicativity of $\varphi$, $\varphi(21)=\varphi(3)\varphi(7)=2\cdot6=12$, 
+      $$17^{\varphi(21)}\equiv17^{12}\equiv1\pmod{21}.$$
+      Thus,
+      \[38^{110}\equiv17^{110}\equiv17^2\equiv289\equiv16\pmod{21}.
+      \]
+      So least positive solution: $\boxed{16}$.
+    \end{subprove}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+\section*{Problems and concise proofs}
+All proofs are written concisely in LaTeX math mode and reference standard results where used.
+
+
+\begin{enumerate}
+\item Let $m>1$ and let $\{r_1,\dots,r_{\varphi(m)}\}$ be a reduced residue system modulo $m$. Characterize integers $j$ for which $\{jr_1,\dots,jr_{\varphi(m)}\}$ is also a reduced residue system modulo $m$.\\
+\textbf{Answer.} Exactly those $j$ with $\gcd(j,m)=1$.\\
+\textbf{Proof.} If $\gcd(j,m)=1$ then multiplication by $j$ is a bijection on $(\mathbb Z/m\mathbb Z)^\times$, so the set $\{jr_i\}$ consists of distinct residues all coprime to $m$, hence is a reduced residue system. Conversely, if $\gcd(j,m)>1$ then any $r_i$ with $\gcd(r_i,m)=1$ yields $\gcd(jr_i,m)>1$, so the image contains nonunits and cannot be a reduced residue system.\\
+
+
+\item If $a,b\in\mathbb Z$, $a\ge b>0$, and $a=bq+r$ (with $0\le r<b$), show $(a,b)=(b,r)$.\\
+\textbf{Proof.} Any common divisor of $a$ and $b$ divides $a-bq=r$, so $\gcd(a,b)\mid\gcd(b,r)$. Conversely any common divisor of $b$ and $r$ divides $bq+r=a$, so $\gcd(b,r)\mid\gcd(a,b)$. Thus equality holds. (This is the Euclidean algorithm step.)\\
+
+
+\item If $a,b\in\mathbb Z$ and $(a,b)=[a,b]$, what can you say about $a,b$?\\
+\textbf{Answer.} $a=\pm b$.\\
+\textbf{Proof.} Let $d=\gcd(a,b)$ and write $a=d x$, $b=d y$ with $\gcd(x,y)=1$. Then $\operatorname{lcm}(a,b)=dxy$. If $d=\operatorname{lcm}(a,b)$ then $d=dxy$, so $xy=1$, hence $x=y=\pm1$. Thus $|a|=|b|=d$, so $a=\pm b$.\\
+
+
+\item Let $a,b\in\mathbb Z$ and $p$ prime. If $p\mid ab$ then $p\mid a$ or $p\mid b$.\\
+\textbf{Proof.} (Euclid's lemma.) If $p\nmid a$ then $\gcd(a,p)=1$ so $a$ has an inverse modulo $p$. From $ab\equiv0\pmod p$ multiply by $a^{-1}$ to get $b\equiv0\pmod p$. Hence $p\mid b$.\\
+
+
+\item Let $p$ be prime and $p\nmid a$. Show there is a unique solution to $ax\equiv1\pmod p$.\\
+\textbf{Proof.} Since $\gcd(a,p)=1$, $a$ is a unit in $\mathbb Z/p\mathbb Z$ so an inverse $x$ exists. If $x_1,x_2$ are both inverses then $a(x_1-x_2)\equiv0\pmod p$. As $p\nmid a$, we get $p\mid(x_1-x_2)$, so $x_1\equiv x_2\pmod p$. Thus the inverse is unique modulo $p$.\\
+
+
+\item Let $a,b,c,m\in\mathbb Z$ with $m,c\ge1$. If $a\equiv b\pmod m$ then $ac\equiv bc\pmod{mc}$.\\
+\textbf{Proof.} $a\equiv b\pmod m$ implies $m\mid(a-b)$, so $mc\mid c(a-b)=ac-bc$. Therefore $ac\equiv bc\pmod{mc}$.\\
+
+
+\item Let $a,b,c,d\in\mathbb Z$ with $b,d\neq0$ and $(a,b)=(c,d)=1$. If $\dfrac{a}{b}+\dfrac{c}{d}$ is an integer, show $b=\pm d$.\\
+\textbf{Proof.} Suppose $\dfrac{a}{b}+\dfrac{c}{d}=k\in\mathbb Z$. Clearing denominators gives
+\[ad+bc=kbd\quad\Rightarrow\quad ad=b(kd-c).\]
+Thus $b\mid ad$. Since $\gcd(a,b)=1$, we conclude $b\mid d$. Symmetrically $d\mid b$. Hence $|b|=|d|$, so $b=\pm d$.\\
+
+
+\end{enumerate}
+
+
+\vfill
+\noindent\textit{Remarks:} The starred items are direct instances of standard results (Euclidean algorithm step, Euclid's lemma, units mod $p$). The proofs above are intentionally concise and in math mode.
+
+
+
+
+
+\end{document}
