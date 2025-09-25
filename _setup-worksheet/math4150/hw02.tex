@@ -1,5 +1,314 @@
 \newpage\handout[true]
 {\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 1}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 2nd September}
+{Math 4150: HW1}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+% https://people.math.binghamton.edu/mazur/teach/40718/40718.html
+
+\begin{enumerate}
+  \item Exercise Set 1.1, \#6.
+  \begin{enumerate}
+    \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
+    \begin{subprove}
+      ($\Rightarrow$) Assume $a\divides b$. 
+      \begin{define}{Divisibility}[def:divisibility][redcolor]
+      Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
+      integer $c\in\Z$ such that
+      \[
+      b = a c.
+      \]
+      If no such integer $c$ exists we write $a\nmid b$.
+      \end{define}
+      By definition of divisibility, there exists $k\in\mathbb{Z}$ such that
+      \[
+        b = a k
+      \]
+      that is,
+      \[
+        bc = (a k)c = (ac)k.
+      \]
+      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\divides bc$. 
+      Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
+      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\mathbb{Z}$ with
+      \[
+        bc = (ac)t = at\cdot c
+      \]
+      that is, by division,
+      \[
+        b = a t
+      \]
+      since $c\neq 0$.
+      Thus $a\divides b$. Hence, $a\divides b$ if $ac \divides bc$.\vspace*{10px}\\
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a\divides b$ if and only if $ac \divides bc$ for $c\neq 0$.
+    \end{subprove}
+
+    \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
+    \begin{subanswer}
+      Take $a=2, b=1, c=0$. Then $ac = 0$ and $bc=0$, so $ac\divides bc$ is true by 
+      multiplicative identity, $0=0\cdot k$ for every integer $k$.
+      However,  $a\divides b$ is false, $a\nmid b$, since there is no integer $k$ such that $1=2k$. 
+      Thus, the conclusion above does not hold if $c = 0$.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \begin{subprove}
+    ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
+    \begin{define}{Division Algorithm}[algo:division][redcolor]
+    Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
+    \[
+    a = b q + r \qquad\text{and}\qquad 0\le r < b.
+    \]
+    Here $q$ is called the \emph{quotient} and $r$ the \emph{remainder}.
+    \end{define}
+    there exist integers $q\ge 0$ and $r$ with $0\le r<m$ such that
+    \[
+      n = qm + r.
+    \]
+    Then, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{qm+r}-1 = a^{r}\bigl({a^{m}}^{q}-1\bigr) + \bigl(a^{r}-1\bigr)= a^{r}(a^{m}-1)\bigl(1+a^{m}+\cdots+a^{m(q-1)}\bigr) + \bigl(a^{r}-1\bigr).
+    \]
+    It follows that the remainder upon division of $a^{n}-1$ by $a^{m}-1$ is $a^{r}-1$ where $a^{r}-1 < a^{m}-1$. 
+    By hypothesis 
+    $a^{m}-1\divides a^{n}-1$, $a^{r}-1=0$. 
+    Thus, $r=0$ since $a>1$. Moreover, $n=qm$, so $m\divides n$.
+    Thus, $a^{m}-1 \divides a^{n}-1$ only if $m\divides n$.\vspace*{10px}\\
+    ($\Leftarrow$) Assume $m\divides n$. Then there exists $k\in\setZ_{>0}$ such that
+    \[
+      n = m k.
+    \]
+    where the integer $k\ge 2$, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{mk}-1 = \bigl(a^{m}\bigr)^{k}-1
+        = (a^{m}-1)\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr).
+    \]
+    By the Closure Property of Integers, $\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr)\in\setZ$, 
+    hence $a^{m}-1\divides a^{n}-1$. 
+    Thus, $a^{m}-1 \divides a^{n}-1$ if $m\divides n$.\vspace*{10px}\\
+    Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \end{subprove}
+
+
+  \newpage
+
+  \item Exercise Set 1.1, \#10. Let $n\in \Z$.
+  \begin{enumerate}
+    \item Prove that $3\divides n^{3}-n$.
+    \begin{subprove}
+      By algebra,
+      \[
+        n^{3}-n = (n-1)(n)(n+1).
+      \]
+      By the Division Algorithm with divisor $3$, there exist integers $q\in\setZ$ and $r$ with $0\le r<3$ such that
+      \[
+        n = 3q + r.
+      \] 
+      This only includes $n = 3q$, $n = 3q + 1$, and $n = 3q + 2$.
+      Without loss of generality, 
+      \[
+        n^{3}-n = (n-1)(n)(n+1)=(3q-1)(3q)(3q+1)=3(3q-1)(q)(3q+1).
+      \]
+      It shows at least one of the three consecutive integers has $3$ as its factor.
+      Thus, $3\divides n^{3}-n$.
+    \end{subprove}
+    \item Prove that $5\divides n^{5}-n$.
+    \begin{subprove}
+      By algebra,
+      \[
+      n^{5}-n = (n-1)(n)(n+1)(n^{2}+1).
+      \]
+      By the Division Algorithm with divisor $5$, there exist integers $q\in\mathbb{Z}$ and $r$ with $0\le r<5$ such that
+      \[
+      n = 5q + r.
+      \]
+      Thus, for each $r\in\{0,1,2,3,4\}$, \\
+      If $r=0$ then $5\mid n$, so $5\mid n^{5}-n$.\\
+      If $r=1$ then $5\mid n-1$, so $5\mid n^{5}-n$.\\
+      If $r=2$ then $n^{2}+1=(5q+2)^{2}+1=5(5q^{2}+4q+1)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=3$ then $n^{2}+1=(5q+3)^{2}+1=5(5q^{2}+6q+2)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=4$ then $n+1=5q+5=5(q+1)$, so $5\mid n+1$ and hence $5\mid n^{5}-n$.\\
+      In every condition, the conclusion, $5\mid n^{5}-n$, has been consistent. Therefore, $5\mid n^{5}-n$.
+    \end{subprove}
+    \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
+    \begin{subanswer}
+      Take $n=2$. $4 \nmid \group{n^{4}-n}$ since $n^{4}-n=16-2=14$ and $4\nmid14$. This is a counterexample. (false)
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \begin{claim}
+  Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
+    \begin{subprove}
+    Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
+    odd. Then, $n=2k+1$ for some $k\in\mathbb{Z}$. That is,
+    \[
+    n^{2}+1=(2k+1)^{2}+1=4k^{2}+4k+2=2\bigl(2k^{2}+2k+1\bigr).
+    \]
+    Thus, $n^{2}+1$ is even where $n^{2}+1 \ge 5$ by the assumption, not a prime. Therefore, by contradiction, If $n^{2}+1$ is prime then $n$ is even.
+    \end{subprove}
+  \end{claim}
+
+  \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that 
+  if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \begin{subprove}
+    Assume $a^{n}+1$ is prime, then $n$ is even by the claim above. Suppose, for 
+    the sake of contradiction, $n$ is not a power of $2$. 
+    Let $n=2^{t}u$ where $t\ge 0$ and a relative prime (or odd integer) $u>2$, 
+    which does not follow the defintion of a power of $2$. Then,
+    \[
+    a^{n}+1 = \group{a^{2^{t}}}^u+1
+    = \bigl(a^{2^{t}}+1\bigr)\bigl(a^{2^{t}(u-1)}-a^{2^{t}(u-2)}+\cdots - a^{2^{t}}+1\bigr),
+    \]
+    so $a^{n}+1$ is composite, which contradicts the assumption, $a^{n}+1$ is prime. 
+    Therefore, by contradiction, if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \end{subprove}
+
+  \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then 
+  $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
+  \begin{subprove}
+    Suppose, for the sake of direct proof, $n^{2} + 1$ is a prime number. By the claim above, $n$ is even. 
+    Then, by the definition of even, $n=2t$ for some $t\in\Z$. Then $n^{2}=4t^{2}$ and
+    \[
+      n^{2}+1 = 4t^{2}+1 = 4\,(t^{2}) + 1.
+    \]
+    Let $k=t^{2}\in\Z$. Then, $k$ is an integer by Closure Property of Integers. Thus, 
+    $n^{2}+1$ has the form $4k+1$.
+  \end{subprove}
+
+
+
+
+
+  \newpage
+
+
+
+
+
+
+  \item Exercise Set 1.3, \#43.
+  \begin{enumerate}
+    \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
+    \begin{subprove}
+      Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
+      \begin{define}{Euclid's Lemma}[lem:euclid-lemma][redcolor]
+      Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
+      \end{define}
+      by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
+    \end{subprove}
+    \item Provide a counterexample to show why the statement in (a) cannot hold if $(a,b)>1$.
+    \begin{subanswer}
+      Take $a=b=2$ and $c=2$. Then $a\divides c$ and $b\divides c$, but $ab=4\nmid 2$. 
+      This is a counterexample. (false)
+    \end{subanswer}
+    \item Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers. Prove that if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \begin{subprove}
+      It is trivial to say \inlinequote{$a \divides c$, then $a \divides c$} since it is a 
+      tautology, for the sake of inductive proof, base step is true. (base step)\vspace*{10px}\\
+      Suppose, for the sake of inductive proof (inductive step), the statement holds for $n-1$ 
+      pairwise relatively prime integers.
+      Let $b=a_1\cdots a_{n-1}$ satisfying the $n-1$ relative primes and $c=b\cdot a_n = a_1\cdots a_{n}$ assuming $a_n$ is another 
+      pairwise prime with $b$, for the sake of direct proof. 
+      Then, by the definition of pairwise prime numbers, we have $(b,a_n)=1$, and by all the 
+      assumptions, $b\divides c$ and $a_n\divides c$. This satisfies the condition of part (a). 
+      Thus, by the part (a), $b a_n\divides c$. In other words, $a_1\cdots a_{n}\divides c$.\vspace*{10px}\\
+      Thus, by (base step) and (inductive step), for all $n\in\setZ$, if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.3, \#48. Let $a,b\in \Z$. Show that $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \begin{subprove}
+    ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
+    $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
+    Principle Lemma.
+    \begin{define}{Well-Ordering Principle Lemma}[thm:well-ordering-princ][redcolor]
+    Every integer $n>1$ has at least one prime divisor.
+    \end{define}
+    Thus, by the transitive property of divisibility,
+    $$
+    p \divides(a+b) \quad \text { and } \quad p \divides a b
+    $$
+    since $p \divides d$, $d \divides \group{a+b}$, and $d \divides \group{a\cdot b}$.
+    Then, by \nameref{lem:euclid-lemma}, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
+    Without loss of generality and by the definition of divisibility, there exists $i\in\setZ$ such that 
+    $$
+    a = p i.
+    $$
+    Also, by assumption of $p\divides(a+b)$, there exists $j\in\setZ$ such that $a+b = pj$. Thus,
+    $$
+    b = pj - pi = p(j-i),
+    $$
+    so $p\divides b$ as well since it is trivial that $j-i\in\setZ$ by the Closure Property of Integers, 
+    which means $p$ is a common prime divisor of $a$ and $b$.
+    It contradicts the assumption $(a,b) = p \ne 1$.
+    Therefore, $(a,b)=1$ only if $(a+b,ab) = 1$.\vspace*{10px}\\
+    ($\Leftarrow$) Assume $(a+b, a b)=1$. Suppose, for the sake of contradiction, 
+    that $(a, b)=g>1$. By the Well-Ordering Principle Lemma, there exists a prime 
+    $p$ with $p \divides g$. 
+    Since $g=(a, b)$ divides both $a$ and $b$, by transitivity of divisibility,
+    $$
+    p\divides a \text { and } p \divides b .
+    $$
+    Hence, trivially, $p \divides a b$ and $p \divides(a+b)$, which means $p$ is a common 
+    prime divisor of $a b$ and $a+b$. It contradicts the assumption $(a+b, a b) = p \ne1$.
+    Therefore, $(a,b)=1$ if $(a+b,ab) = 1$.\vspace*{10px}\\
+    Thus, by ($\Rightarrow$) and ($\Leftarrow$), $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \end{subprove}
+
+  \newpage
+
+  \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the 
+  gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
+  \begin{subanswer}
+    By Euclidean algorithm,
+    \[
+      \begin{aligned}
+        1155 &= 441\cdot 2 + 273,\\
+        441 &= 273\cdot 1 + 168,\\
+        273 &= 168\cdot 1 + 105,\\
+        168 &= 105\cdot 1 + 63,\\
+        105 &= 63\cdot 1 + 42,\\
+        63  &= 42\cdot 1 + 21,\\
+        42  &= 21\cdot 2 + 0.
+      \end{aligned}
+    \]
+    Hence $\gcd(441,1155)=21$. Then, by back-substitution,
+    \[
+      21 = 21\cdot 441 - 8\cdot 1155.
+    \]
+    Thus $21 = (21)\,441 + (-8)\,1155$, which is a linear combination with Bézout coefficients.
+  \end{subanswer}
+
+
+  \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose 
+  sum is $\frac{7}{143}$.
+  \begin{subanswer}
+    Let $x,y\in\setZ$ be arbitrary, for the sake of definition of rational numbers, then construct 
+    the following equation,
+    $$\dfrac{x}{11}+\dfrac{y}{13}=\dfrac{7}{143}.$$
+    Then, since $13\times11=143$, it is equivalent to 
+    $$13x+11y=7.$$ 
+    Take $x=9$, $y=-10$ since $117-110=7$. Hence, the two such rational numbers are as follows.
+    \[
+      \group{\frac{9}{11}}+\group{-\frac{10}{13}}=\frac{7}{143}.
+    \]
+  \end{subanswer}
+\end{enumerate}
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
 {Homework 2}
 {\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 16th September}
 {Math 4150: HW2}
@@ -250,7 +559,7 @@ Find the inverse modulo $m$ of each integer $n$ below.
   \begin{subanswer}
     By \nameref{cor:2.8}, since $\gcd(8,35)=1$, an inverse exists. From the extended Euclidean algorithm,
     \[
-      1=35\cdot 3-8\cdot 13,
+      1=35\cdot 3+8\cdot (-13),
     \]
     so $8\cdot(-13)\equiv 1\pmod{35}$. As $-13\equiv 22\pmod{35}$, the inverse is $22$.\vspace*{10px}\\
     Therefore, by the extended Euclidean algorithm, $8^{-1}\equiv 22\pmod{35}$.
