@@ -3,9 +3,13 @@
 \usepackage[T1]{fontenc}
 \input{macros.tex}
 
+
+\input{../preamble/font.tex}
+
 \input{../preamble/operator.tex} 
 \input{../preamble/symbol.tex} 
-\input{../preamble/math.tex} 
+\input{../preamble/math.tex}  
+\input{../preamble/group.tex} 
 
 
 \usepackage{amsmath}
@@ -110,112 +114,547 @@
 
 
 
-\begin{center}
-  \textbf{Equivalence Classes and Relation Graph}
-\end{center}
 
-\[\xymatrix@R=2em@C=2em{
-  % ----------------------------------------------------------------------
-  {} & {} & {} & {} & {} & {} & {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  *++[o][F]{2} \xyEdge[r]\xyEdge[d] \xyLoop[ul] & 
-  *++[o][F]{3} \xyEdge[l]\xyEdge[ld] \xyLoop[u] & 
-  {} & 
-  *++[o][F]{5} \xyEdge[r] \xyLoop[l] & 
-  *++[o][F]{1} \xyLoop[r] & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  *++[o][F]{6} \xyEdge[u]\xyEdge[ur] \xyLoop[l] & 
-  {} & 
-  *++[o][F]{4} \xyLoop[u] & 
-  {} & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  {} & 
-  {} & 
-  *++[o][F]{2} \xyEdge[r] \xyEdge[ld] \xyLoop[u] & 
-  *++[o][F]{6} \xyLoop[r] & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  {} & 
-  *++[o][F]{3} \xyEdge[ur] \xyArc[rr] \xyLoop[l] & 
-  {} & 
-  *++[o][F]{1} \xyEdge[d] \xyLoop[ur] & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  {} & 
-  {} & 
-  *++[o][F]{4} \xyArc[uur] \xyLoop[ld] \xyLoop[dr] & 
-  *++[o][F]{5} \xyArc[l] \xyLoop[r] & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & {} & {} & {} & {} & {} & {} \\
-}\]
-
-\begin{center}
-  \textbf{Equivalence Classes and Relation Graph}
-\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
+Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
+\begin{define}{Set Equality}[def:set-equality][red]
+  Let $A$ and $B$ be sets. The sets $A$ and $B$ are equal ($A = B$) iff $A \subseteq B$ and $B \subseteq A$.
+\end{define}
+\begin{define}{Subset Relation}[def:subset][red]
+  Let $A$ and $B$ be sets. $A$ is a subset of $B$ ($A \subseteq B$) iff for all $x \in A$ only if $x \in B$.
+\end{define}  
+\begin{define}{Union of Sets}[def:union][red]
+  Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \cup B$, is the 
+  set of all elements that are in $A$, or in $B$, or in both. 
+  That is, $A \cup B = \{x : x \in A \text{ or } x \in B\}$.
+\end{define}
+\begin{define}{Intersection of Sets}[def:intersection][red]
+  Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \cap B$, is the 
+  set of all elements that are in both $A$ and $B$. That is, $A \cap B = \{x : x \in A \text{ and } x \in B\}$.
+\end{define}
+\begin{define}{Set Difference}[def:set-difference][red]
+  Let $A$, $B$ be subsets of a universal set $\setUNIV$. The set difference $A \sMINUS B$ is defined to be the set $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \vspace*{5px}\\
+  \textit{It is sometimes called the relative complement of $B$ in $A$, and denoted in the textbook as $A - B$.}
+\end{define}
+\begin{define}{Power Set}[def:power-set][red]
+  Let $A$ be a set. The power set of $A$, denoted $\sPOWER{A}$ or $2^{\abs{A}}$, is the set of all subsets of $A$. That is, $\sPOWER{A} = \{S\in\setUNIV : S \subseteq A\}$.
+\end{define}
+\begin{define}{Complementary Set}[def:complementary-set][red]
+  Let $A$ be a subset of the universal set $\setUNIV$. The complement of $A$, 
+  denoted $A^c$ or $\sNOT{A}$, is the set of all elements in $\setUNIV$ that are not in $A$. 
+  That is, $\sNOT{A} = \{x \in \setUNIV : x \notin A\}$.
+\end{define}
+\begin{define}{Cartesian Product}[def:cartesian-product][red]
+  Let $A$ and $B$ be sets. The Cartesian product of $A$ and $B$, denoted $A \sTIMES B$, is the set consisting of all ordered pairs:
+  \[
+  A \sTIMES B = \{(a, b) \LDIV a \in A, b \in B\}.
+  \]
+\end{define}
+\begin{define}{Pairwise Disjoint Sets}[def:pairwise-disjoint][red]
+  Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \cap A_j = \emptyset$.
+\end{define}
 
 
+% Functions
+\newpage
+
+\begin{define}{Function}[def:function][red]
+  Let $A$ and $B$ be nonempty sets. A \textbf{function} $f$ from $A$ to $B$, denoted $f : A \to B$, 
+  is a relation, $f\in A\sTIMES B$ such that 
+  \begin{enumerate}
+    \item For every $a \in A$, there exists a $b \in B$ such that $f(a) = b$.
+    \item For every $a \in A$ and for all $b, c \in B$, if $f(a) = b$ and $f(a) = c$, then $b = c$.
+    \item The set $A$ is called the \textbf{domain} of $f$, 
+    and the set $B$ is called the \textbf{codomain} of $f$.
+    \item If $f(a)=b$, then $b$ is called the \textbf{image} of $a$ under $f$.
+    \item The function maps $a$ to $b$, and $f$ is often called a mapping.
+  \end{enumerate}
+\end{define}
+
+\begin{define}{Domain and Codomain}[def:domain-codomain][red]
+  If $f : A \to B$ is a function, then $A$ is called the \textbf{domain} of $f$, and $B$ is called the \textbf{codomain} of $f$.
+\end{define}
+
+\begin{define}{Image and Inverse Image}[def:image][red]
+  Let $f : A \to B$ be a function, $C\subseteq A$, and $D\subseteq B$. 
+  The \textbf{image} $f(C)$ is the set $\{f(c) \in B : c \in C\} \subseteq B$.
+  The \textbf{inverse image} $f^{-1}(D)$ is the set $\{a \in A : f(a) \in D\} \subseteq A$.
+\end{define}
+
+\begin{define}{Injective, Surjective, Bijective Functions}[def:injectivity-surjectivity-bijective][red]
+  Let $f : A \to B$ be a function.
+  \begin{itemize}
+    \item $f$ is \textbf{injective} (one-to-one) iff for all $a_1, a_2 \in A$, if $f(a_1) = f(a_2)$, then $a_1 = a_2$.
+    \item $f$ is \textbf{surjective} (onto) iff for every $b \in B$, there exists $a \in A$ such that $f(a) = b$.
+    \item $f$ is \textbf{bijective} iff it is both injective and surjective.
+  \end{itemize}
+\end{define}
 
 
-
-
-% The tikzpicture environment is where the drawing is defined.
-\begin{tikzpicture}[
-  % A global style is defined for all nodes.
-  % They will be circles, drawn with a black line, and have a minimum size.
-  every node/.style={circle, draw, minimum size=0.8cm},
-  % A global style is defined for all arrows.
-  % The arrow tip is set to a standard size and shape.
-  >=Stealth
-]
-
-  % Node placement for the equivalence class {2, 3, 6}
-  % These nodes are arranged in a triangle.
-  \node (2) at (0, 2) {2};
-  \node (3) at (-1.73, -1) {3};
-  \node (6) at (1.73, -1) {6};
-
-  % Node placement for the equivalence class {1, 5}
-  % These nodes are placed to the right of the first class.
-  \node (1) at (5, 1.5) {1};
-  \node (5) at (5, -1.5) {5};
-  
-  % Node placement for the singleton equivalence class {4}
-  % This node is placed below the others.
-  \node (4) at (0, -3.5) {4};
-
-  % Edges are drawn using the \path command. The 'edge' operation creates lines.
-  % The relation is symmetric, so bidirectional arrows (<->) are used
-  % to represent pairs like (2,3) and (3,2) with a single line.
-  \path[<->]
-    (2) edge (3)
-    (2) edge (6)
-    (3) edge (6)
-    (1) edge (5);
-
-  % Reflexive loops are added for each element.
-  % The 'loop' option creates an edge from a node back to itself.
-  % The position of the loop (e.g., above, left) is specified to avoid overlaps.
-  \path[->]
-    (1) edge [loop right] ()
-    (2) edge [loop above] ()
-    (3) edge [loop left] ()
-    (4) edge [loop below] ()
-    (5) edge [loop right] ()
-    (6) edge [loop right] ();
+\begin{define}{Theorem}[def:bijective][red]
+  The inverse relation $f^{-1}$ is a function if and only if $f$ is both injective and surjective.
+  % \begin{subprove}
+  %   ($\Rightarrow$) Assume $f^{-1}$ is a function. To show $f$ is injective, let $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$. 
+  %   Then, $(a_1, f(a_1)) \in f$ and $(a_2, f(a_2)) \in f$. Since $f^{-1}$ is a function, $(f(a_1), a_1) \in f^{-1}$ and $(f(a_2), a_2) \in f^{-1}$. 
+  %   By the definition of a function, $a_1 = a_2$. Thus, $f$ is injective.
     
-\end{tikzpicture}
+  %   To show $f$ is surjective, let $b \in B$. Since $f^{-1}$ is a function, there exists an $a \in A$ such that $(b, a) \in f^{-1}$. 
+  %   By the definition of inverse relation, $(a, b) \in f$, so $f(a) = b$. Thus, $f$ is surjective.
+    
+  %   ($\Leftarrow$) Assume $f$ is both injective and surjective. To show $f^{-1}$ is a function, let $(b, a_1), (b, a_2) \in f^{-1}$. 
+  %   Then, $(a_1, b), (a_2, b) \in f$. Since $f$ is injective, it follows that $a_1 = a_2$. Thus, $f^{-1}$ satisfies the definition of a function.
+  % \end{subprove}
+
+  \begin{subprove}
+    We consider the inverse relation $f^{-1} \subseteq B \times A$ for the function 
+    \[
+    f : A \to B \quad \text{on nonempty sets $A,B$.}
+    \]
+    Assume $f$ is a bijection, i.e., both one-to-one and onto. Let $b \in B$. Since $f$ is onto, by definition, there exists $a \in A$ with $f(a) = b$. So $(a,b) \in f$ and $(b,a) \in f^{-1}$. Hence for all $b \in B$ there exists $a \in A$ such that $(b,a) \in f^{-1}$. 
+
+    Now let $a, a' \in A$. Suppose $(b,a) \in f^{-1}$ and $(b,a') \in f^{-1}$. Then $(a,b), (a',b) \in f$, so $f(a) = b$ and $f(a') = b$. But $f$ is one-to-one by assumption, and so $a = a'$. Hence we have shown that each $b \in B$ has at least one image under the inverse relation $f^{-1}$ and no more than one. Thus the inverse relation is a function whenever $f$ is a bijection.
+
+    \medskip
+    Conversely, \dots
+  \end{subprove}
+\end{define}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate} 
+  \newpage
+  \item Let $A$, $B$, $C$, and $D$ be subsets of a universal set $\setUNIV$. 
+  Prove the following propositions.~\footnote{
+    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
+    However, the Gradescope PDF view might not support clickable hyperlinks.
+  }\\
+  \textit{This proves that the three subsets are a partition of $(A \sOR B)$. Partitions will be very important to understanding equivalence relations.}
+  \begin{enumerate}
+    \item $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.~\footnote{
+      I intentionally avoided repetitive or excessive cross-references for better readability.
+    }
+    \begin{subprove}
+      By definition of \nameref{def:set-equality}, $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$ 
+      requires showing both directions of \nameref{def:subset}s, as follows.\vspace*{5px}\\
+      ($\subseteq$) Let $x \in A \sOR B$ be arbitrary. Then, $x \in A$ or $x \in B$ 
+      by definition of \nameref{def:union}. Consider the following cases.
+      \begin{itemize}
+        \item If $x \in A$ and $x \in B$, then $x \in A \sAND B$ by definition of \nameref{def:intersection}.
+        \item If $x \in A$ and $x \notin B$, then $x \in A \sMINUS B$ by definition of \nameref{def:set-difference}.
+        \item If $x \notin A$ and $x \in B$, then $x \in B \sMINUS A$ by definition.
+      \end{itemize}
+      In all cases, $x \in (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$. 
+      Hence, proof by cases, $(A \sOR B) \subseteq (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.\vspace*{5px}\\
+      ($\supseteq$) Let $x \in (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$ be arbitrary. 
+      Then, $x \in A \sAND B$ or $x \in A \sMINUS B$ or $x \in B \sMINUS A$. Consider the following cases.
+      \begin{itemize}
+        \item If $x \in A \sAND B$, then $x \in A$ and $x \in B$ by definition, so $x \in A \sOR B$.
+        \item If $x \in A \sMINUS B$, then $x \in A$ by definition, so $x \in A \sOR B$ by definition.
+        \item If $x \in B \sMINUS A$, then $x \in B$ by definition, so $x \in A \sOR B$ by definition.
+      \end{itemize}
+      Hence, proof by cases, $(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A) \subseteq A \sOR B$.\vspace*{5px}\\
+      Therefore, by ($\subseteq$) and ($\supseteq$), 
+      $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.
+    \end{subprove}
+
+    \item $(A \sAND B)$, $(A \sMINUS B)$, and $(B \sMINUS A)$ are all pairwise disjoint.
+    \begin{subprove}
+      It is required to show that any two of these sets have empty intersection,
+      \begin{itemize}
+        \item To claim $(A \sAND B) \sAND (A \sMINUS B) = \setNULL$,
+        assume there exists $x \in (A \sAND B) \sAND (A \sMINUS B)$ for 
+        the sake of contradiction. Then, $x \in A \sAND B$ and $x \in A \sMINUS B$. 
+        Since $x \in A \sAND B$, it follows that $x \in A$ and $x \in B$ by definition of \nameref{def:intersection}. 
+        Since $x \in A \sMINUS B$, it follows that $x \in A$ and $x \notin B$ by definition of \nameref{def:set-difference}, 
+        which contradicts $x \in B$. Therefore, $(A \sAND B) \sAND (A \sMINUS B) = \setNULL$.
+        \item To claim $(A \sAND B) \sAND (B \sMINUS A) = \setNULL$, without loss of generality, 
+        it is symmetrical to the previous case, with the roles of sets $A$ and $B$ swapped.
+        Hence, trivially, $(A \sAND B) \sAND (B \sMINUS A) = \setNULL$.
+        \item To claim $(A \sMINUS B) \sAND (B \sMINUS A) = \setNULL$,
+        assume there exists $x \in (A \sMINUS B) \sAND (B \sMINUS A)$ for 
+        the sake of contradiction. Then, $x \in A \sMINUS B$ and $x \in B \sMINUS A$. 
+        Since $x \in A \sMINUS B$, it follows that $x \in A$ and $x \notin B$ by definition of \nameref{def:set-difference}. 
+        Since $x \in B \sMINUS A$, it follows that $x \in B$ and $x \notin A$ by definition of \nameref{def:set-difference}, 
+        which contradicts both $x \notin B$ and $x \in A$ at the same time. 
+        Therefore, $(A \sMINUS B) \sAND (B \sMINUS A) = \setNULL$.
+      \end{itemize}
+      Therefore, $(A \sAND B)$, $(A \sMINUS B)$, and $(B \sMINUS A)$ are all pairwise disjoint by definition of \nameref{def:pairwise-disjoint}.
+    \end{subprove}
+  \end{enumerate}
+  
+
+
+
+
+  \newpage
+  \item Let $A$, $B$, $C$, and $D$ be subsets of a universal set $\setUNIV$. 
+  Prove or disprove the following propositions.~\footnote{
+    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
+    However, the Gradescope PDF view might not support clickable hyperlinks.
+  }\\
+  \textit{Likewise, Cartesian product of sets (above) and the power set of a set (below) will be very important in the next part of the course.}
+  \begin{enumerate}
+    \item $(A \sTIMES B) \sAND(C \sTIMES D) \subseteq(A \sAND C) \sTIMES(B \sAND D)$.
+    \begin{subprove}
+      Let $(x,y) \in (A \sTIMES B) \sAND(C \sTIMES D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $(x,y) \in A \sTIMES B$ and $(x,y) \in C \sTIMES D$. 
+      Since $(x,y) \in A \sTIMES B$, it follows that $x \in A$ 
+      and $y \in B$ by definition of \nameref{def:cartesian-product}. Since $(x,y) \in C \sTIMES D$, it follows 
+      that $x \in C$ and $y \in D$ as well.
+      Thus, $x \in A \sAND C$ 
+      and $y \in B \sAND D$ by definition of \nameref{def:intersection}, 
+      so $(x,y) \in (A \sAND C) \sTIMES(B \sAND D)$.
+      Hence, $(A \sTIMES B) \sAND(C \sTIMES D) \subseteq(A \sAND C) \sTIMES(B \sAND D)$.
+    \end{subprove}
+
+    \item $(A \sAND C) \sTIMES(B \sAND D) \subseteq(A \sTIMES B) \sAND(C \sTIMES D)$.
+    \begin{subprove}
+      Let $(x,y) \in (A \sAND C) \sTIMES(B \sAND D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $x \in A \sAND C$ and $y \in B \sAND D$ by definition of \nameref{def:cartesian-product}. 
+      Since $x \in A \sAND C$, it follows that $x \in A$ and $x \in C$ by definition of \nameref{def:intersection}. 
+      Since $y \in B \sAND D$, it follows that $y \in B$ and $y \in D$.
+      Therefore, $(x,y) \in A \sTIMES B$ and $(x,y) \in C \sTIMES D$ since logical AND (\AND) is commutative.
+      Thus, $(x,y) \in (A \sTIMES B) \sAND(C \sTIMES D)$.
+      Hence, $(A \sAND C) \sTIMES(B \sAND D) \subseteq(A \sTIMES B) \sAND(C \sTIMES D)$.
+    \end{subprove}
+
+    \item $(A \sTIMES B) \sOR(C \sTIMES D) \subseteq(A \sOR C) \sTIMES(B \sOR D)$.
+    \begin{subprove}
+      Let $(x,y) \in (A \sTIMES B) \sOR(C \sTIMES D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $(x,y) \in A \sTIMES B$ or $(x,y) \in C \sTIMES D$ by definition of \nameref{def:union}. 
+      \begin{itemize}
+        \item If $(x,y) \in A \sTIMES B$, then $x \in A$ and $y \in B$ by definition of \nameref{def:cartesian-product}. \label{prob:proof-2}
+        Since $x \in A$, it follows that $x \in A \sOR C$ by definition of \nameref{def:union}. 
+        Since $y \in B$, it follows that $y \in B \sOR D$ by definition of \nameref{def:union}. 
+        Therefore, $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$.
+        \item If $(x,y) \in C \sTIMES D$, without loss of generality, it is symmetrical to the previous case.
+        Therefore, it trivially implies $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$.
+      \end{itemize}
+      In both cases, $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$. 
+      Hence, proof by cases, $(A \sTIMES B) \sOR(C \sTIMES D) \subseteq(A \sOR C) \sTIMES(B \sOR D)$.
+    \end{subprove}
+
+    \item $(A \sOR C) \sTIMES(B \sOR D) \subseteq(A \sTIMES B) \sOR(C \sTIMES D)$.
+    \begin{subdisprove}
+      Let $A=\{1\}, B=\{2\}, C=\{3\}, D=\{4\}$ be subsets of a universal set $\setUNIV$ 
+      for the sake of counterexample. 
+      Then, $(A \sOR C) \sTIMES(B \sOR D)=\{1,3\} \sTIMES \{2,4\}=\{(1,2),(1,4),(3,2),(3,4)\}$ 
+      and $(A \sTIMES B) \sOR(C \sTIMES D)=\{(1,2)\} \sOR \{(3,4)\}=\{(1,2),(3,4)\}$. 
+      Since $(1,4) \in (A \sOR C) \sTIMES(B \sOR D)$ but $(1,4) \notin (A \sTIMES B) \sOR(C \sTIMES D)$, 
+      it follows that $(A \sOR C) \sTIMES(B \sOR D) \not\subseteq (A \sTIMES B) \sOR(C \sTIMES D)$. 
+      Therefore, by counterexample, the statement is \textbf{false}.
+    \end{subdisprove}
+  \end{enumerate}
+
+
+
+
+
+  \newpage
+  \item Let $A$, $B$ be subsets of a universal set $\setUNIV$. 
+  Prove or disprove the following propositions.~\footnote{
+    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
+    However, the Gradescope PDF view might not support clickable hyperlinks.
+  }
+  \begin{enumerate}
+    \item $\sPOWER(A \sAND B) \subseteq \sPOWER{A} \sAND \sPOWER{B}$.
+    \begin{subprove}
+      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER(A \sAND B)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $X \subseteq A \sAND B$ by definition of \nameref{def:power-set}. 
+      Since $X \subseteq A \sAND B$, it follows that 
+      $X \subseteq A$ and $X \subseteq B$ by definition of \nameref{def:intersection}. Therefore, $X \in \sPOWER{A}$ 
+      and $X \in \sPOWER{B}$, so $X \in \sPOWER{A} \sAND \sPOWER{B}$.
+      Hence, $\sPOWER(A \sAND B) \subseteq \sPOWER{A} \sAND \sPOWER{B}$.
+    \end{subprove}
+    
+    \item $\sPOWER{A} \sAND \sPOWER{B} \subseteq \sPOWER(A \sAND B)$.
+    \begin{subprove}
+      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER{A} \sAND \sPOWER{B}$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $X \in \sPOWER{A}$ and $X \in \sPOWER{B}$ by definition of \nameref{def:intersection}. 
+      Since $X \in \sPOWER{A}$, it follows that $X \subseteq A$ by definition of \nameref{def:power-set}. 
+      Without loss of generality, (trivial) $X \subseteq B$.
+      Since $X \subseteq A$ and $X \subseteq B$, it follows that $X \subseteq A \sAND B$.
+      Therefore, $X \in \sPOWER(A \sAND B)$.
+      Hence, $\sPOWER{A} \sAND \sPOWER{B} \subseteq \sPOWER(A \sAND B)$.
+    \end{subprove}
+
+    \item $\sPOWER(A \sOR B) \subseteq \sPOWER{A} \sOR \sPOWER{B}$.
+    \begin{subdisprove}
+      Let $A=\{1\}, B=\{2\}$ be subsets of a universal set $\setUNIV$ 
+      for the sake of counterexample. 
+      Then, $\sPOWER(A \sOR B)=\sPOWER(\{1,2\})=\{\setNULL,\{1\},\{2\},\{1,2\}\}$ by definition of \nameref{def:power-set}
+      and $\sPOWER{A} \sOR \sPOWER{B}=\{\setNULL,\{1\}\} \sOR \{\setNULL,\{2\}\}=\{\setNULL,\{1\},\{2\}\}$. 
+      Since $\{1,2\} \in \sPOWER(A \sOR B)$ but $\{1,2\} \notin \sPOWER{A} \sOR \sPOWER{B}$, 
+      it follows that $\sPOWER(A \sOR B) \not\subseteq \sPOWER{A} \sOR \sPOWER{B}$. 
+      Therefore, by the counterexample, the statement is \textbf{false}.
+    \end{subdisprove}
+
+    \item $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
+    \begin{subprove}
+      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER{A} \sOR \sPOWER{B}$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $X \in \sPOWER{A}$ or $X \in \sPOWER{B}$ by definition of \nameref{def:union}. 
+      \begin{define}{Subset of Union: $A \subseteq \sOR{A}{B}$}[claim:subset-union][red]
+        \begin{subprove}[red]
+            Let $x\in U$, assume $x\in A$. Then the statement \inlinequote{$x\in A$ or $x\in B$} is true.
+            Hence, by definition of \nameref{def:union}, $\sOR{A}{B}=\{x\in U\LDIV x\in A$ or $x\in B\}$, $x\in \sOR{A}{B}$.
+            Thus, $A \subseteq \sOR{A}{B}$.
+        \end{subprove}
+      \end{define}
+      If $X \in \sPOWER{A}$, then $X \subseteq A \subseteq A \sOR B$ by definition of \nameref{def:power-set} and the short claim above, \nameref{claim:subset-union}, 
+      so $X \in \sPOWER(A \sOR B)$.
+      Without loss of generality, the case of $X \in \sPOWER{B}$ trivially implies $X \in \sPOWER(A \sOR B)$ as well. 
+      In both cases, $X \in \sPOWER(A \sOR B)$. 
+      Hence, proof by cases, $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  \newpage
+  \item Let $R$ be a relation on a nonempty set $A$.
+  \begin{enumerate}
+    \item Prove that if $R$ is an equivalence relation on $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
+    \begin{subprove}
+      To show $R^{-1}$ is an equivalence relation, we check reflexivity, symmetry, and transitivity.
+      \begin{itemize}
+        \item \textbf{Reflexive:} Since $R$ is reflexive, for all $a \in A$, $(a,a) \in R$. Thus, $(a,a) \in R^{-1}$.
+        \item \textbf{Symmetric:} If $(a,b) \in R^{-1}$, then $(b,a) \in R$. Since $R$ is symmetric, $(a,b) \in R$. Thus, $(b,a) \in R^{-1}$.
+        \item \textbf{Transitive:} If $(a,b), (b,c) \in R^{-1}$, then $(b,a), (c,b) \in R$. Since $R$ is transitive, $(c,a) \in R$, so $(a,c) \in R^{-1}$.
+      \end{itemize}
+      Therefore, $R^{-1}$ is an equivalence relation.
+    \end{subprove}
+
+    \item Suppose $R$ and $S$ are equivalence relations on $A$. Prove or disprove:
+    \begin{enumerate}
+      \item The set $R \sOR S$ is an equivalence relation.
+        \begin{subdisprove}
+          Let $A = \{1,2,3\}$, $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$, 
+          $S = \{(2,2),(3,3),(2,3),(3,2)\}$. Then, 
+          $(1,2) \in R \sOR S$, $(2,3) \in R \sOR S$, but $(1,3) \notin R \sOR S$. 
+          Thus, $R \sOR S$ is not always an equivalence relation.
+        \end{subdisprove}
+      \item The set $R \sAND S$ is an equivalence relation.
+        \begin{subprove}
+          $R \sAND S$ is reflexive, symmetric, and transitive since both $R$ and $S$ are equivalence relations and intersection preserves these properties.
+        \end{subprove}
+    \end{enumerate}
+  \end{enumerate}
+
+  \newpage
+  \item Let $R$ be a relation from a set $A$ to a set $B$.
+  \begin{enumerate}
+    \item Prove that $R$ is symmetric iff $R = R^{-1}$.
+      \begin{subprove}
+        ($\Rightarrow$) If $R$ is symmetric, then for all $(a,b) \in R$, $(b,a) \in R$, so $R = R^{-1}$.
+        ($\Leftarrow$) If $R = R^{-1}$, then for all $(a,b) \in R$, $(b,a) \in R$, so $R$ is symmetric.
+      \end{subprove}
+    \item Prove that $R$ is antisymmetric iff $R \sAND R^{-1} \subseteq \Delta = \{(a,a) \mid a \in A\}$.
+      \begin{subprove}
+        ($\Rightarrow$) If $R$ is antisymmetric, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $(a,b) \in \Delta$.
+        ($\Leftarrow$) If $R \sAND R^{-1} \subseteq \Delta$, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $R$ is antisymmetric.
+      \end{subprove}
+  \end{enumerate}
+
+  \newpage
+  \item Let $R$ be a relation on the nonempty set $A$. Then $R$ is irreflexive iff for every $a \in A$, $(a,a) \notin R$. Prove or disprove:
+  \begin{enumerate}
+    \item The relation $R$ could be neither reflexive nor irreflexive.
+      \begin{subprove}
+        True. For example, $A = \{1,2\}$, $R = \{(1,1)\}$. $(1,1) \in R$ but $(2,2) \notin R$, so $R$ is neither reflexive nor irreflexive.
+      \end{subprove}
+    \item $R$ is reflexive iff $\sNOT{R}$ is irreflexive.
+      \begin{subprove}
+        If $R$ is reflexive, then for all $a \in A$, $(a,a) \in R$, so $(a,a) \notin \sNOT{R}$, so $\sNOT{R}$ is irreflexive. Conversely, if $\sNOT{R}$ is irreflexive, then for all $a \in A$, $(a,a) \notin \sNOT{R}$, so $(a,a) \in R$, so $R$ is reflexive.
+      \end{subprove}
+    \item If $R$ is irreflexive, then so is $R^2 = R \circ R$.
+      \begin{subdisprove}
+        False. Let $A = \{1,2\}$, $R = \{(1,2),(2,1)\}$, which is irreflexive. But $R^2 = \{(1,1),(2,2)\}$, which is not irreflexive.
+      \end{subdisprove}
+  \end{enumerate}
+
+  \newpage
+  \item Let $R$, $S$, and $T$ be relations on $\mathbb{Z}$ defined as:
+  \begin{itemize}
+    \item $a R b$ iff $a \equiv b \pmod{2}$,
+    \item $a S b$ iff $a \equiv b \pmod{3}$,
+    \item $a T b$ iff $a \equiv b \pmod{6}$.
+  \end{itemize}
+  \begin{enumerate}
+    \item List the equivalence classes for $R$, $S$, and $T$.
+      \begin{subanswer}
+        $R$: $\{[0]_2, [1]_2\}$, where $[0]_2 = \{\ldots,-2,0,2,\ldots\}$, $[1]_2 = \{\ldots,-1,1,3,\ldots\}$\\
+        $S$: $\{[0]_3, [1]_3, [2]_3\}$\\
+        $T$: $\{[0]_6, [1]_6, [2]_6, [3]_6, [4]_6, [5]_6\}$
+      \end{subanswer}
+    \item Find the equivalence classes of $R \sAND S$.
+      \begin{subanswer}
+        $R \sAND S$ is congruence mod $6$, so the equivalence classes are $[0]_6, [1]_6, [2]_6, [3]_6, [4]_6, [5]_6$.
+      \end{subanswer}
+    \item Prove the partition resulting from $T$ is a refinement of the partition resulting from $S$.
+      \begin{subprove}
+        Each $[k]_6$ is contained in some $[j]_3$ since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{3}$. Thus, every $[k]_6 \subseteq [j]_3$ for some $j$.
+      \end{subprove}
+    \item What is the relationship between the partition resulting from $T$ and the partition resulting from $R$? Justify your answer.
+      \begin{subanswer}
+        Each $[k]_6$ is contained in either $[0]_2$ or $[1]_2$ since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{2}$. So $T$'s partition refines $R$'s partition.
+      \end{subanswer}
+    \item What is the relationship between $S$ and $T$? Between $R$ and $T$? Justify your answers.\\
+    \textit{Hint: remember that a relation is just a set, and that common relations between sets 
+    are \inlinequote{is a subset of}, \inlinequote{is a proper subset of}, and 
+    \inlinequote{is equal to."}}
+      \begin{subanswer}
+        $T \subseteq S$ and $T \subseteq R$ since congruence mod $6$ implies congruence mod $3$ and mod $2$.
+      \end{subanswer}
+    \item Is there any relationship between $R$ and $S$? Justify your answers.
+      \begin{subanswer}
+        $R$ and $S$ are not subsets of each other and are not equal; they are independent equivalence relations.
+      \end{subanswer}
+  \end{enumerate}
+
+
+
+
+
+\end{enumerate}
+
+
+
+% \begin{center}
+%   \textbf{Equivalence Classes and Relation Graph}
+% \end{center}
+
+% \[\xymatrix@R=2em@C=2em{
+%   % ----------------------------------------------------------------------
+%   {} & {} & {} & {} & {} & {} & {} \\
+%   % ----------------------------------------------------------------------
+%   {} & 
+%   *++[o][F]{2} \xyEdge[r]\xyEdge[d] \xyLoop[ul] & 
+%   *++[o][F]{3} \xyEdge[l]\xyEdge[ld] \xyLoop[u] & 
+%   {} & 
+%   *++[o][F]{5} \xyEdge[r] \xyLoop[l] & 
+%   *++[o][F]{1} \xyLoop[r] & 
+%   {} \\
+%   % ----------------------------------------------------------------------
+%   {} & 
+%   *++[o][F]{6} \xyEdge[u]\xyEdge[ur] \xyLoop[l] & 
+%   {} & 
+%   *++[o][F]{4} \xyLoop[u] & 
+%   {} & 
+%   {} & 
+%   {} \\
+%   % ----------------------------------------------------------------------
+%   {} & 
+%   {} & 
+%   {} & 
+%   *++[o][F]{2} \xyEdge[r] \xyEdge[ld] \xyLoop[u] & 
+%   *++[o][F]{6} \xyLoop[r] & 
+%   {} & 
+%   {} \\
+%   % ----------------------------------------------------------------------
+%   {} & 
+%   {} & 
+%   *++[o][F]{3} \xyEdge[ur] \xyArc[rr] \xyLoop[l] & 
+%   {} & 
+%   *++[o][F]{1} \xyEdge[d] \xyLoop[ur] & 
+%   {} & 
+%   {} \\
+%   % ----------------------------------------------------------------------
+%   {} & 
+%   {} & 
+%   {} & 
+%   *++[o][F]{4} \xyArc[uur] \xyLoop[ld] \xyLoop[dr] & 
+%   *++[o][F]{5} \xyArc[l] \xyLoop[r] & 
+%   {} & 
+%   {} \\
+%   % ----------------------------------------------------------------------
+%   {} & {} & {} & {} & {} & {} & {} \\
+% }\]
+
+% \begin{center}
+%   \textbf{Equivalence Classes and Relation Graph}
+% \end{center}
+
+
+
+
+
+
+% % The tikzpicture environment is where the drawing is defined.
+% \begin{tikzpicture}[
+%   % A global style is defined for all nodes.
+%   % They will be circles, drawn with a black line, and have a minimum size.
+%   every node/.style={circle, draw, minimum size=0.8cm},
+%   % A global style is defined for all arrows.
+%   % The arrow tip is set to a standard size and shape.
+%   >=Stealth
+% ]
+
+%   % Node placement for the equivalence class {2, 3, 6}
+%   % These nodes are arranged in a triangle.
+%   \node (2) at (0, 2) {2};
+%   \node (3) at (-1.73, -1) {3};
+%   \node (6) at (1.73, -1) {6};
+
+%   % Node placement for the equivalence class {1, 5}
+%   % These nodes are placed to the right of the first class.
+%   \node (1) at (5, 1.5) {1};
+%   \node (5) at (5, -1.5) {5};
+  
+%   % Node placement for the singleton equivalence class {4}
+%   % This node is placed below the others.
+%   \node (4) at (0, -3.5) {4};
+
+%   % Edges are drawn using the \path command. The 'edge' operation creates lines.
+%   % The relation is symmetric, so bidirectional arrows (<->) are used
+%   % to represent pairs like (2,3) and (3,2) with a single line.
+%   \path[<->]
+%     (2) edge (3)
+%     (2) edge (6)
+%     (3) edge (6)
+%     (1) edge (5);
+
+%   % Reflexive loops are added for each element.
+%   % The 'loop' option creates an edge from a node back to itself.
+%   % The position of the loop (e.g., above, left) is specified to avoid overlaps.
+%   \path[->]
+%     (1) edge [loop right] ()
+%     (2) edge [loop above] ()
+%     (3) edge [loop left] ()
+%     (4) edge [loop below] ()
+%     (5) edge [loop right] ()
+%     (6) edge [loop right] ();
+    
+% \end{tikzpicture}
 
 
 
