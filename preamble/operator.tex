@@ -9,6 +9,7 @@
 % \@ifpackageloaded{mathtools}{}{\usepackage{mathtools}}  % enhanced math tools
 % \@ifpackageloaded{dsfont}{}{\usepackage{dsfont}}        % \mathds{...}
 \@ifpackageloaded{xspace}{}{\usepackage{xspace}}        % text-usable macros
+\@ifpackageloaded{centernot}{}{\usepackage{centernot}}   % \centernot for prettier negated symbols
 % \@ifpackageloaded{xparse}{}{\usepackage{xparse}}        % define flexible macros (\NewDocumentCommand)
 % \@ifpackageloaded{ifthen}{}{\usepackage{ifthen}}        % basic conditional logic (\ifthenelse)
 % \@ifpackageloaded{mdframed}{}{\usepackage{mdframed}}    % framed / boxed environments
@@ -264,7 +265,7 @@
 
 
 
-
+%%%
 
 
 
@@ -349,6 +350,58 @@
 \newcommand{\GCD@twowith}[2]{\ensuremath{\operatorname{gcd}({#1},{#2})}\xspace}
 \newcommand{\GCD@singleerror}[1]{%
   \@latex@error{`\string\GCD' expects either no arguments or two braced arguments. Use `\string\GCD{a}{b}'}\@ehc
+}
+
+\makeatother % "DISABLE" internal \@... macros
+
+% ------------------------------------------------------------------------------
+% Relation Operators
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Commands for mathematical relations and their negations.
+%   All commands are text-usable with \ensuremath and \xspace.
+%   These commands require exactly 2 braced arguments.
+%
+% FEATURES:
+%   - Standard relation notation
+%   - Safe to use in text mode
+%   - Automatically adds proper spacing
+%   - Requires exactly 2 arguments (error if wrong number)
+%
+% DEPENDENCIES:
+%   \usepackage{xspace}
+%
+% USAGE EXAMPLES:
+%   The relation $\relation{a}{b}$ means a is related to b by R.
+%   The negation $\nrelation{a}{b}$ means a is not related to b by R.
+%   \relation{a}{b} \nrelation{c}{d}
+% ------------------------------------------------------------------------------
+\makeatletter % "ENABLE" internal \@... macros
+
+% BINARY operator: exactly 2 braced arguments (error if wrong number)
+\newcommand{\relation}{\@ifnextchar\bgroup{\relation@with}{\relation@noargerror}}
+\newcommand{\relation@with}[1]{%
+  \@ifnextchar\bgroup{\relation@twowith{#1}}{\relation@singleerror{#1}}%
+}
+\newcommand{\relation@twowith}[2]{\ensuremath{{#1}\mathrel{R}{#2}}\xspace}
+\newcommand{\relation@noargerror}{%
+  \@latex@error{`\string\relation' requires exactly two braced arguments. Use `\string\relation{a}{b}'}\@ehc
+}
+\newcommand{\relation@singleerror}[1]{%
+  \@latex@error{`\string\relation' requires exactly two braced arguments. Use `\string\relation{a}{b}'}\@ehc
+}
+
+% BINARY operator: exactly 2 braced arguments (error if wrong number)
+\newcommand{\nrelation}{\@ifnextchar\bgroup{\nrelation@with}{\nrelation@noargerror}}
+\newcommand{\nrelation@with}[1]{%
+  \@ifnextchar\bgroup{\nrelation@twowith{#1}}{\nrelation@singleerror{#1}}%
+}
+\newcommand{\nrelation@twowith}[2]{\ensuremath{{#1}\mathrel{\centernot{R}}{#2}}\xspace}
+\newcommand{\nrelation@noargerror}{%
+  \@latex@error{`\string\nrelation' requires exactly two braced arguments. Use `\string\nrelation{a}{b}'}\@ehc
+}
+\newcommand{\nrelation@singleerror}[1]{%
+  \@latex@error{`\string\nrelation' requires exactly two braced arguments. Use `\string\nrelation{a}{b}'}\@ehc
 }
 
 \makeatother % "DISABLE" internal \@... macros

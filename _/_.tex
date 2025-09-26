@@ -414,11 +414,117 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 % References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
-Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
-\begin{define}{Set Equality}[def:...][red]
-  ...
+Wbwk, Hmwk assignments, and contents of the textbook.
+
+
+\begin{define}{Binary Relation}[def:binary-relation][red]
+  Let $A$ and $B$ be sets. A binary relation $R$ from $A$ to $B$ is a subset of $A \times B$. 
+  If (and only if) $$(a, b) \in R \subseteq A \times B$$, then we say 
+  that $a$ is related to $b$ and write $\relation{a}{b}$. Otherwise, $\nrelation{a}{b}$.
 \end{define}
 
+
+
+
+\begin{define}{Digraph}[def:digraph][red]
+  A digraph (or directed graph) is a set of vertices $V$ together with a set of edges $E \subseteq V \times V$.
+\end{define}
+
+\begin{define}{Bipartite Digraph}[def:bipartite-digraph][red]
+  A digraph is bipartite if (and only if) there exist subsets $A, B \subseteq V$ such that 
+  \begin{enumerate}
+    \item $V=A \cup B$ where $A \cap B=\emptyset$ and $A, B \neq \emptyset$.
+    \item for every $e \in E, e=(a, b)$ for some $a \in A, b \in B$.
+  \end{enumerate}
+\end{define}
+
+\textbf{Example}: Let $A=\{0,1,2\}$ and $B=\{a, b\}$. Then $R=\{(0, a),(0, b),(1, a),(2, b)\}$ is a relation from $A$ to $B$. Binary relations on finite sets like this can be visualized as a bipartite digraph:
+
+\begin{figure}[h!]
+  \centering
+  \[
+  \xymatrix@R=1.5em@C=2.5em{ % Adjusted spacing to match the image
+    *++[o][F-]{0} \xyArc[r]\xyArc[ddr]  & *++[o][F-]{a} 
+    \\
+    *++[o][F-]{1} \xyArc[ur]            & 
+    \\
+    *++[o][F-]{2} \xyArc[r]             & *++[o][F-]{b}
+  }
+  \]
+  \caption{A bipartite graph example}
+  \label{fig:bipartite-graph}
+\end{figure}
+
+
+
+
+
+
+\begin{define}{Inverse Relation}[def:inverse-relation][red]
+  Let $A$ and $B$ be sets. Let $R$ be a relation from $A$ to $B$. The inverse relation $R^{-1}$ from $B$ to $A$ is the set of ordered pairs $\{(b, a) \mid(a, b) \in R\}$.
+\end{define}
+
+
+
+
+
+\begin{define}{Relation on a Set}[def:relation-on-set][red]
+  A relation on a set $\boldsymbol{A}$ is a relation from $A$ to $A$.
+\end{define}
+\begin{define}{Relation Properties}[def:relation-properties][red]
+  Let $A$ be a set and $R$ a relation on $A$. Relations on a set are classified by their properties. The most important properties are:
+  \begin{enumerate}
+    \item \textbf{Reflexive}: The relation $R$ is reflexive if (and only if) for all $x \in A$, $(x, x) \in R$.
+    \item \textbf{Symmetric}: The relation $R$ is symmetric if (and only if) for all $x, y \in A$, $(x, y) \in R$ implies $(y, x) \in R$.
+    \item \textbf{Antisymmetric}: The relation $R$ is antisymmetric if (and only if) for all $x, y \in A$, $(x, y) \in R$ and $(y, x) \in R$ only if $x=y$.
+    \item \textbf{Asymmetric}: The relation $R$ is asymmetric if (and only if) for all $x, y \in A$, if $(x, y) \in R$, then $(y, x) \notin R$.
+    \item \textbf{Transitive}: The relation $R$ is transitive if (and only if) for all $x, y, z \in A$, if $(x, y) \in R$ and $(y, z) \in R$, then $(x, z) \in R$.
+  \end{enumerate}
+\end{define}
+
+
+
+
+\begin{define}{Equivalence Classes Form Partition}[thm:equiv-classes-partition][red]
+  Let $R$ be an equivalence relation on a nonempty set $A$. Then $P=\left\{[a]_R \mid a \in A\right\}$, the set of equivalence classes resulting from $R$, is a partition of $A$.
+\end{define}
+\begin{define}{Partition Induces Equivalence Relation}[thm:partition-equiv-relation][red]
+  Let $A$ be a nonempty set and $P=\left\{S_i \mid i \in I\right\}$ a partition of $A$. Then there exists an equivalence relation $R$ which has the sets $S_i, i \in I$, as its equivalence classes.
+\end{define}
+
+\textbf{Remark}: Note that the set $I$ above is an arbitrary index set. It is not necessarily finite, countable, etc!
+
+
+\begin{define}{Modulo Operation}[def:modulo][red]
+  Let $a, m \in \mathbb{Z}$ with $m$ positive. The remainder when $a$ is divided by $m$ is denoted $\boldsymbol{a} \bmod \boldsymbol{m}$.
+\end{define}
+\begin{define}{Congruence Modulo}[def:congruence-modulo][red]
+  Let $a, b, m \in \mathbb{Z}$ with $m$ positive. If $m \mid(a-b)$ then we say that 
+  $\boldsymbol{a}$ is congruent to $\boldsymbol{b}$ modulo $\boldsymbol{m}$ and 
+  write $\boldsymbol{a} \equiv \boldsymbol{b}(\bmod \boldsymbol{m})$.
+\end{define}
+
+
+
+
+
+
+\textbf{Example}: Let $R$ be an equivalence relation on the set $\{1,2,3,4,5,6,7\}$ such that $1 R 3,3 R 4,4 R 7$, and $2 R 6$. Suppose that $R$ has three equivalence classes.
+
+
+
+\textbf{Example}: Let $S$ be another equivalence relation on the set $\{1,2,3,4,5,6\}$. Suppose the equivalence classes of $S$ are $\{1,4,5\},\{2,6\}$, and $\{3\}$.
+
+\textbf{Example}: Let $[a]_n$ denote the congruence class of $a \in \mathbb{Z}$ modulo $n$ (that is, the equivalence class of $a$ under the relation congruence modulo $n$ ) for integers $n \geq 2$. Are the following propositions true or false?
+
+
+
+
+
+
+
+
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problems
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
