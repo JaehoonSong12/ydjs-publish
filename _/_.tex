@@ -9,6 +9,7 @@
 \input{../preamble/operator.tex} 
 \input{../preamble/symbol.tex} 
 \input{../preamble/math.tex}  
+\input{../preamble/math-graph.tex}
 \input{../preamble/group.tex} 
 
 
@@ -78,39 +79,9 @@
 
 
 
-\usepackage[all]{xy}
-\usepackage{xparse}
-\usepackage{xstring} % Needed for \IfStrEqCase in \xyLoop macro
-
-\NewDocumentCommand{\xyArc}{O{}}{\ar@{->}[#1]}
-\NewDocumentCommand{\xyEdge}{O{}}{\ar@{-}[#1]}
-\NewDocumentCommand{\xyLoop}{O{u}}{%
-  \IfStrEq{#1}{r}{\ar@(dr,ur)[]}{%
-  \IfStrEq{#1}{ru}{\ar@(r,ur)[]}{%
-  \IfStrEq{#1}{ur}{\ar@(r,ur)[]}{%
-  \IfStrEq{#1}{u}{\ar@(ur,ul)[]}{%
-  \IfStrEq{#1}{ul}{\ar@(u,ul)[]}{%
-  \IfStrEq{#1}{lu}{\ar@(u,ul)[]}{%
-  \IfStrEq{#1}{l}{\ar@(ul,dl)[]}{%
-  \IfStrEq{#1}{dl}{\ar@(l,dl)[]}{%
-  \IfStrEq{#1}{ld}{\ar@(l,dl)[]}{%
-  \IfStrEq{#1}{d}{\ar@(dl,dr)[]}{%
-  \IfStrEq{#1}{dr}{\ar@(d,dr)[]}{%
-  \IfStrEq{#1}{rd}{\ar@(d,dr)[]}{%
-    \PackageError{xyLoop}{Invalid loop direction: #1}%
-      {Valid directions: r, ur (ru), u, ul (lu), l, dl (ld), d, dr (rd).}%
-  }}}}}}}}}}}}
-}%
-
-
-
-
 
 
 \begin{document}
-
-
-
 
 
 
@@ -416,7 +387,7 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
       Hence, proof by cases, $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
     \end{subprove}
   \end{enumerate}
-
+\end{enumerate}
 
 
 
@@ -438,13 +409,21 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 
 
   
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
+Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
+\begin{define}{Set Equality}[def:...][red]
+  ...
+\end{define}
 
-
-  \newpage
-
-  \item \,[Notice] Each equivalence class should be written exactly once and in set builder notation. For instance, let $R$ be the relation on $\setR$ given by $a R b$ if and only if $a-b \in \setZ$. Then the equivalence classes of $R$ are $[a]=\{k+a \mid k \in \setZ\}$ for all $a$ with $0 \leq a<1$. Note that writing $[a]=\{x \in \setR \mid x R a\}$ is unilluminating, and hence not a correct answer.
-  
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[Notice] Each equivalence class should be written exactly once and in set builder notation. For instance, let $R$ be the relation on $\setR$ given by $a R b$ if and only if $a-b \in \setZ$. Then the equivalence classes of $R$ are $[a]=\{k+a \mid k \in \setZ\}$ for all $a$ with $0 \leq a<1$. Note that writing $[a]=\{x \in \setR \mid x R a\}$ is unilluminating, and hence not a correct answer.
+\begin{enumerate}
   \item Prove that if $R$ is an equivalence relation on a nonempty set $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
   \begin{subprove}
     Let $R$ be a relation on a nonempty set $A$.
@@ -553,68 +532,6 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 \end{enumerate}
 
 
-
-
-
-
-
-\newpage
-
-\begin{center}
-  \textbf{Equivalence Classes and Relation Graph}
-\end{center}
-\[
-\xymatrix@R=2em@C=2em{
-  % ----------------------------------------------------------------------
-  {} & {} & {} & {} & {} & {} & {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  *++[o][F]{2} \xyEdge[r]\xyEdge[d] \xyLoop[ul] & 
-  *++[o][F]{3} \xyEdge[l]\xyEdge[ld] \xyLoop[u] & 
-  {} & 
-  *++[o][F]{5} \xyEdge[r] \xyLoop[l] & 
-  *++[o][F]{1} \xyLoop[r] & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  *++[o][F]{6} \xyEdge[u]\xyEdge[ur] \xyLoop[l] & 
-  {} & 
-  *++[o][F]{4} \xyLoop[u] & 
-  {} & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  {} & 
-  {} & 
-  *++[o][F]{2} \xyEdge[r] \xyEdge[ld] \xyLoop[u] & 
-  *++[o][F]{6} \xyLoop[r] & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  {} & 
-  *++[o][F]{3} \xyEdge[ur] \xyArc[rr] \xyLoop[l] & 
-  {} & 
-  *++[o][F]{1} \xyEdge[d] \xyLoop[ur] & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & 
-  {} & 
-  {} & 
-  *++[o][F]{4} \xyArc[uur] \xyLoop[ld] \xyLoop[dr] & 
-  *++[o][F]{5} \xyArc[l] \xyLoop[r] & 
-  {} & 
-  {} \\
-  % ----------------------------------------------------------------------
-  {} & {} & {} & {} & {} & {} & {} \\
-}
-\]
-
-\begin{center}
-  \textbf{Equivalence Classes and Relation Graph}
-\end{center}
 
 
 
