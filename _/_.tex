@@ -441,36 +441,34 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 
 
   \newpage
-  \item Let $R$ be a relation on a nonempty set $A$.
-  \begin{enumerate}
-    \item Prove that if $R$ is an equivalence relation on $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
-    \begin{subprove}
-      To show $R^{-1}$ is an equivalence relation, we check reflexivity, symmetry, and transitivity.
-      \begin{itemize}
-        \item \textbf{Reflexive:} Since $R$ is reflexive, for all $a \in A$, $(a,a) \in R$. Thus, $(a,a) \in R^{-1}$.
-        \item \textbf{Symmetric:} If $(a,b) \in R^{-1}$, then $(b,a) \in R$. Since $R$ is symmetric, $(a,b) \in R$. Thus, $(b,a) \in R^{-1}$.
-        \item \textbf{Transitive:} If $(a,b), (b,c) \in R^{-1}$, then $(b,a), (c,b) \in R$. Since $R$ is transitive, $(c,a) \in R$, so $(a,c) \in R^{-1}$.
-      \end{itemize}
-      Therefore, $R^{-1}$ is an equivalence relation.
-    \end{subprove}
+  
+  \item Prove that if $R$ is an equivalence relation on $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
+  \begin{subprove}
+    Let $R$ be a relation on a nonempty set $A$.
+    To show $R^{-1}$ is an equivalence relation, we check reflexivity, symmetry, and transitivity.
+    \begin{itemize}
+      \item \textbf{Reflexive:} Since $R$ is reflexive, for all $a \in A$, $(a,a) \in R$. Thus, $(a,a) \in R^{-1}$.
+      \item \textbf{Symmetric:} If $(a,b) \in R^{-1}$, then $(b,a) \in R$. Since $R$ is symmetric, $(a,b) \in R$. Thus, $(b,a) \in R^{-1}$.
+      \item \textbf{Transitive:} If $(a,b), (b,c) \in R^{-1}$, then $(b,a), (c,b) \in R$. Since $R$ is transitive, $(c,a) \in R$, so $(a,c) \in R^{-1}$.
+    \end{itemize}
+    Therefore, $R^{-1}$ is an equivalence relation.
+  \end{subprove}
 
-    \item Suppose $R$ and $S$ are equivalence relations on $A$. Prove or disprove:
-    \begin{enumerate}
-      \item The set $R \sOR S$ is an equivalence relation.
-        \begin{subdisprove}
-          Let $A = \{1,2,3\}$, $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$, 
-          $S = \{(2,2),(3,3),(2,3),(3,2)\}$. Then, 
-          $(1,2) \in R \sOR S$, $(2,3) \in R \sOR S$, but $(1,3) \notin R \sOR S$. 
-          Thus, $R \sOR S$ is not always an equivalence relation.
-        \end{subdisprove}
-      \item The set $R \sAND S$ is an equivalence relation.
-        \begin{subprove}
-          $R \sAND S$ is reflexive, symmetric, and transitive since both $R$ and $S$ are equivalence relations and intersection preserves these properties.
-        \end{subprove}
-    \end{enumerate}
+  \item Suppose $R$ and $S$ are equivalence relations on $A$. Prove or disprove:
+  \begin{enumerate}
+    \item The set $R \sOR S$ is an equivalence relation.
+      \begin{subdisprove}
+        Let $A = \{1,2,3\}$, $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$, 
+        $S = \{(2,2),(3,3),(2,3),(3,2)\}$. Then, 
+        $(1,2) \in R \sOR S$, $(2,3) \in R \sOR S$, but $(1,3) \notin R \sOR S$. 
+        Thus, $R \sOR S$ is not always an equivalence relation.
+      \end{subdisprove}
+    \item The set $R \sAND S$ is an equivalence relation.
+      \begin{subprove}
+        $R \sAND S$ is reflexive, symmetric, and transitive since both $R$ and $S$ are equivalence relations and intersection preserves these properties.
+      \end{subprove}
   \end{enumerate}
 
-  \newpage
   \item Let $R$ be a relation from a set $A$ to a set $B$.
   \begin{enumerate}
     \item Prove that $R$ is symmetric iff $R = R^{-1}$.
@@ -484,6 +482,7 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
         ($\Leftarrow$) If $R \sAND R^{-1} \subseteq \Delta$, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $R$ is antisymmetric.
       \end{subprove}
   \end{enumerate}
+
 
   \newpage
   \item Let $R$ be a relation on the nonempty set $A$. Then $R$ is irreflexive iff for every $a \in A$, $(a,a) \notin R$. Prove or disprove:
