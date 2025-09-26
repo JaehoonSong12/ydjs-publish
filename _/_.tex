@@ -127,9 +127,9 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
   Let $A$ and $B$ be sets. $A$ is a subset of $B$ ($A \subseteq B$) iff for all $x \in A$ only if $x \in B$.
 \end{define}  
 \begin{define}{Union of Sets}[def:union][red]
-  Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \cup B$, is the 
+  Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \sOR B$, is the 
   set of all elements that are in $A$, or in $B$, or in both. 
-  That is, $A \cup B = \{x : x \in A \text{ or } x \in B\}$.
+  That is, $A \sOR B = \{x : x \in A \text{ or } x \in B\}$.
 \end{define}
 \begin{define}{Intersection of Sets}[def:intersection][red]
   Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \cap B$, is the 
@@ -442,9 +442,10 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 
   \newpage
 
-  \item \,[Notice] Each equivalence class should be written exactly once and in set builder notation. For instance, let $R$ be the relation on $\mathbb{R}$ given by $a R b$ if and only if $a-b \in \mathbb{Z}$. Then the equivalence classes of $R$ are $[a]=\{k+a \mid k \in \mathbb{Z}\}$ for all $a$ with $0 \leq a<1$. Note that writing $[a]=\{x \in \mathbb{R} \mid x R a\}$ is unilluminating, and hence not a correct answer.
+  \item \,[Notice] Each equivalence class should be written exactly once and in set builder notation. For instance, let $R$ be the relation on $\setR$ given by $a R b$ if and only if $a-b \in \setZ$. Then the equivalence classes of $R$ are $[a]=\{k+a \mid k \in \setZ\}$ for all $a$ with $0 \leq a<1$. Note that writing $[a]=\{x \in \setR \mid x R a\}$ is unilluminating, and hence not a correct answer.
   
-  \item Prove that if $R$ is an equivalence relation on $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
+
+  \item Prove that if $R$ is an equivalence relation on a nonempty set $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
   \begin{subprove}
     Let $R$ be a relation on a nonempty set $A$.
     To show $R^{-1}$ is an equivalence relation, we check reflexivity, symmetry, and transitivity.
@@ -456,13 +457,14 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
     Therefore, $R^{-1}$ is an equivalence relation.
   \end{subprove}
 
-  \item Suppose $R$ and $S$ are equivalence relations on $A$. Prove or disprove:
+  \item Suppose that $R$ and $S$ are equivalence relations on the nonempty set $A$. Prove or disprove:
   \begin{enumerate}
     \item The set $R \sOR S$ is an equivalence relation.
       \begin{subdisprove}
-        Let $A = \{1,2,3\}$, $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$, 
-        $S = \{(2,2),(3,3),(2,3),(3,2)\}$. Then, 
-        $(1,2) \in R \sOR S$, $(2,3) \in R \sOR S$, but $(1,3) \notin R \sOR S$. 
+        Let $A = \{1,2,3\}$, $R, S$ be a relation on $A$ where
+        $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$ and
+        $S = \{(2,2),(3,3),(2,3),(3,2)\}$. Then,
+        $(1,2) \in R \sOR S$, $(2,3) \in R \sOR S$, but $(1,3) \notin R \sOR S$.
         Thus, $R \sOR S$ is not always an equivalence relation.
       \end{subdisprove}
     \item The set $R \sAND S$ is an equivalence relation.
@@ -473,12 +475,12 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 
   \item Let $R$ be a relation from a set $A$ to a set $B$.
   \begin{enumerate}
-    \item Prove that $R$ is symmetric iff $R = R^{-1}$.
+    \item Prove that a relation $R$ on a set $A$ is symmetric if and only if $R=R^{-1}$.
       \begin{subprove}
         ($\Rightarrow$) If $R$ is symmetric, then for all $(a,b) \in R$, $(b,a) \in R$, so $R = R^{-1}$.
         ($\Leftarrow$) If $R = R^{-1}$, then for all $(a,b) \in R$, $(b,a) \in R$, so $R$ is symmetric.
       \end{subprove}
-    \item Prove that $R$ is antisymmetric iff $R \sAND R^{-1} \subseteq \Delta = \{(a,a) \mid a \in A\}$.
+    \item Prove that a relation $R$ on a set $A$ is antisymmetric if and only if $R \cap R^{-1}$ is a subset of the diagonal relation $\Delta=\{(a, a) \mid a \in A\}$.
       \begin{subprove}
         ($\Rightarrow$) If $R$ is antisymmetric, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $(a,b) \in \Delta$.
         ($\Leftarrow$) If $R \sAND R^{-1} \subseteq \Delta$, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $R$ is antisymmetric.
@@ -487,24 +489,25 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 
 
   \newpage
-  \item Let $R$ be a relation on the nonempty set $A$. Then $R$ is irreflexive iff for every $a \in A$, $(a,a) \notin R$. Prove or disprove:
+  \item Let $R$ be a relation on the nonempty set $A$. Then $R$ is \textit{irreflexive} 
+  iff for every $a \in A$, $(a,a) \notin R$. Prove or disprove:
   \begin{enumerate}
     \item The relation $R$ could be neither reflexive nor irreflexive.
       \begin{subprove}
         True. For example, $A = \{1,2\}$, $R = \{(1,1)\}$. $(1,1) \in R$ but $(2,2) \notin R$, so $R$ is neither reflexive nor irreflexive.
       \end{subprove}
-    \item $R$ is reflexive iff $\sNOT{R}$ is irreflexive.
+    \item The relation $R$ is reflexive if and only if $\sNOT{R}$ is irreflexive. 
       \begin{subprove}
         If $R$ is reflexive, then for all $a \in A$, $(a,a) \in R$, so $(a,a) \notin \sNOT{R}$, so $\sNOT{R}$ is irreflexive. Conversely, if $\sNOT{R}$ is irreflexive, then for all $a \in A$, $(a,a) \notin \sNOT{R}$, so $(a,a) \in R$, so $R$ is reflexive.
       \end{subprove}
-    \item If $R$ is irreflexive, then so is $R^2 = R \circ R$.
+    \item If $R$ is irreflexive, then so is $R^2=R \circ R$.
       \begin{subdisprove}
         False. Let $A = \{1,2\}$, $R = \{(1,2),(2,1)\}$, which is irreflexive. But $R^2 = \{(1,1),(2,2)\}$, which is not irreflexive.
       \end{subdisprove}
   \end{enumerate}
 
   \newpage
-  \item Let $R$, $S$, and $T$ be relations on $\mathbb{Z}$ defined as:
+  \item Let $R$, $S$, and $T$ be relations on $\setZ$ defined as:
   \begin{itemize}
     \item $a R b$ iff $a \equiv b \pmod{2}$,
     \item $a S b$ iff $a \equiv b \pmod{3}$,
@@ -522,6 +525,7 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
         $R \sAND S$ is congruence mod $6$, so the equivalence classes are $[0]_6, [1]_6, [2]_6, [3]_6, [4]_6, [5]_6$.
       \end{subanswer}
     \item Prove the partition resulting from $T$ is a refinement of the partition resulting from $S$.
+    \textit{Definition: A partition $P_1$ is a refinement of the partition $P_2$ if every set in $P_1$ is a subset of one of the sets in $P_2$.}
       \begin{subprove}
         Each $[k]_6$ is contained in some $[j]_3$ since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{3}$. Thus, every $[k]_6 \subseteq [j]_3$ for some $j$.
       \end{subprove}
@@ -550,60 +554,67 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 
 
 
-% \begin{center}
-%   \textbf{Equivalence Classes and Relation Graph}
-% \end{center}
 
-% \[\xymatrix@R=2em@C=2em{
-%   % ----------------------------------------------------------------------
-%   {} & {} & {} & {} & {} & {} & {} \\
-%   % ----------------------------------------------------------------------
-%   {} & 
-%   *++[o][F]{2} \xyEdge[r]\xyEdge[d] \xyLoop[ul] & 
-%   *++[o][F]{3} \xyEdge[l]\xyEdge[ld] \xyLoop[u] & 
-%   {} & 
-%   *++[o][F]{5} \xyEdge[r] \xyLoop[l] & 
-%   *++[o][F]{1} \xyLoop[r] & 
-%   {} \\
-%   % ----------------------------------------------------------------------
-%   {} & 
-%   *++[o][F]{6} \xyEdge[u]\xyEdge[ur] \xyLoop[l] & 
-%   {} & 
-%   *++[o][F]{4} \xyLoop[u] & 
-%   {} & 
-%   {} & 
-%   {} \\
-%   % ----------------------------------------------------------------------
-%   {} & 
-%   {} & 
-%   {} & 
-%   *++[o][F]{2} \xyEdge[r] \xyEdge[ld] \xyLoop[u] & 
-%   *++[o][F]{6} \xyLoop[r] & 
-%   {} & 
-%   {} \\
-%   % ----------------------------------------------------------------------
-%   {} & 
-%   {} & 
-%   *++[o][F]{3} \xyEdge[ur] \xyArc[rr] \xyLoop[l] & 
-%   {} & 
-%   *++[o][F]{1} \xyEdge[d] \xyLoop[ur] & 
-%   {} & 
-%   {} \\
-%   % ----------------------------------------------------------------------
-%   {} & 
-%   {} & 
-%   {} & 
-%   *++[o][F]{4} \xyArc[uur] \xyLoop[ld] \xyLoop[dr] & 
-%   *++[o][F]{5} \xyArc[l] \xyLoop[r] & 
-%   {} & 
-%   {} \\
-%   % ----------------------------------------------------------------------
-%   {} & {} & {} & {} & {} & {} & {} \\
-% }\]
 
-% \begin{center}
-%   \textbf{Equivalence Classes and Relation Graph}
-% \end{center}
+
+
+\newpage
+
+\begin{center}
+  \textbf{Equivalence Classes and Relation Graph}
+\end{center}
+\[
+\xymatrix@R=2em@C=2em{
+  % ----------------------------------------------------------------------
+  {} & {} & {} & {} & {} & {} & {} \\
+  % ----------------------------------------------------------------------
+  {} & 
+  *++[o][F]{2} \xyEdge[r]\xyEdge[d] \xyLoop[ul] & 
+  *++[o][F]{3} \xyEdge[l]\xyEdge[ld] \xyLoop[u] & 
+  {} & 
+  *++[o][F]{5} \xyEdge[r] \xyLoop[l] & 
+  *++[o][F]{1} \xyLoop[r] & 
+  {} \\
+  % ----------------------------------------------------------------------
+  {} & 
+  *++[o][F]{6} \xyEdge[u]\xyEdge[ur] \xyLoop[l] & 
+  {} & 
+  *++[o][F]{4} \xyLoop[u] & 
+  {} & 
+  {} & 
+  {} \\
+  % ----------------------------------------------------------------------
+  {} & 
+  {} & 
+  {} & 
+  *++[o][F]{2} \xyEdge[r] \xyEdge[ld] \xyLoop[u] & 
+  *++[o][F]{6} \xyLoop[r] & 
+  {} & 
+  {} \\
+  % ----------------------------------------------------------------------
+  {} & 
+  {} & 
+  *++[o][F]{3} \xyEdge[ur] \xyArc[rr] \xyLoop[l] & 
+  {} & 
+  *++[o][F]{1} \xyEdge[d] \xyLoop[ur] & 
+  {} & 
+  {} \\
+  % ----------------------------------------------------------------------
+  {} & 
+  {} & 
+  {} & 
+  *++[o][F]{4} \xyArc[uur] \xyLoop[ld] \xyLoop[dr] & 
+  *++[o][F]{5} \xyArc[l] \xyLoop[r] & 
+  {} & 
+  {} \\
+  % ----------------------------------------------------------------------
+  {} & {} & {} & {} & {} & {} & {} \\
+}
+\]
+
+\begin{center}
+  \textbf{Equivalence Classes and Relation Graph}
+\end{center}
 
 
 
@@ -1208,7 +1219,7 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 % \[
 % r = a-dq = a - q(m'a+n'b) = (1-qm')a + (-qn')b,
 % \]
-% so $r\in S\cup\{0\}$. Since $0\le r<d$ and $d$ is the least positive element of $S$, we 
+% so $r\in S\sOR\{0\}$. Since $0\le r<d$ and $d$ is the least positive element of $S$, we 
 % must have $r=0$. Thus $dldiv a$. Similarly $dldiv b$.
 
 % Finally, if $c$ is any common divisor of $a$ and $b$, then $cldiv(ma+nb)$ for any integers 
@@ -1560,7 +1571,7 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
 \section*{Lecture 5: Dirichlet's Theorem and applications of the FTA}
 
 \begin{define}{Theorem 1.21 (Dirichlet's theorem on primes in arithmetic progressions)}[thm:1.21]
-Let $a,b\in\mathbb{Z}$ with $b>0$ and $\gcd(a,b)=1$. Then the arithmetic progression
+Let $a,b\in\setZ$ with $b>0$ and $\gcd(a,b)=1$. Then the arithmetic progression
 \[
 a,\ a+b,\ a+2b,\ a+3b,\ \ldots
 \]
@@ -1578,11 +1589,11 @@ There are infinitely many primes of the form $4n+3$, where $n$ is a nonnegative 
 \end{define}
 
 \begin{define}{Lemma 1.23 (Product of numbers congruent to $1$ modulo $4$)}[lem:1.23]
-Let $a,b\in\mathbb{Z}$. If $a\equiv 1\pmod{4}$ and $b\equiv 1\pmod{4}$, then $ab\equiv 1\pmod{4}$.
+Let $a,b\in\setZ$. If $a\equiv 1\pmod{4}$ and $b\equiv 1\pmod{4}$, then $ab\equiv 1\pmod{4}$.
 \end{define}
 
 \begin{proof}
-Write $a=4n_1+1$ and $b=4n_2+1$ with $n_1,n_2\in\mathbb{Z}$. Then
+Write $a=4n_1+1$ and $b=4n_2+1$ with $n_1,n_2\in\setZ$. Then
 \[
 ab=(4n_1+1)(4n_2+1)=16n_1n_2+4n_1+4n_2+1=4(4n_1n_2+n_1+n_2)+1,
 \]
@@ -1632,7 +1643,7 @@ of congruences and unified many isolated results in number theory.
 \end{define}
 
 \begin{define}{Definition (Congruence modulo $m$)}[def:congruence]
-Let $a,b,m\in\mathbb{Z}$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$},
+Let $a,b,m\in\setZ$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$},
 and write
 \[
 a\equiv b\pmod{m},
@@ -1646,12 +1657,12 @@ to be positive; we will assume $m>0$ in the sequel.
 \end{define}
 
 \begin{define}{Proposition 2.1 (Congruence modulo $m$ is an equivalence relation)}[prop:2.1]
-Congruence modulo $m$ is reflexive, symmetric, and transitive on $\mathbb{Z}$; hence it is
+Congruence modulo $m$ is reflexive, symmetric, and transitive on $\setZ$; hence it is
 an equivalence relation.
 \end{define}
 
 \begin{proof}
-\emph{Reflexive:} For any $a\in\mathbb{Z}$, $a-a=0$ and $m\mid 0$, so $a\equiv a\pmod{m}$.
+\emph{Reflexive:} For any $a\in\setZ$, $a-a=0$ and $m\mid 0$, so $a\equiv a\pmod{m}$.
 
 \emph{Symmetric:} If $a\equiv b\pmod{m}$ then $m\mid (a-b)$, hence $m\mid -(a-b)=(b-a)$, so
 $b\equiv a\pmod{m}$.
@@ -1661,14 +1672,14 @@ $m\mid (b-c)$, therefore $m\mid (a-b)+(b-c)=a-c$, so $a\equiv c\pmod{m}$.
 \end{proof}
 
 \begin{define}{Consequence 2.2 (Partition into residue classes)}[cor:2.2]
-The set $\mathbb{Z}$ is partitioned into equivalence classes under congruence modulo $m$.
+The set $\setZ$ is partitioned into equivalence classes under congruence modulo $m$.
 \end{define}
 
 \begin{define}{Definition (Notation for residue class)}[def:resclass]
-For $x\in\mathbb{Z}$, write $[x]_m$ (or simply $[x]$ when $m$ is understood) for the
+For $x\in\setZ$, write $[x]_m$ (or simply $[x]$ when $m$ is understood) for the
 equivalence class of $x$ modulo $m$:
 \[
-[x]_m=\{y\in\mathbb{Z}: y\equiv x\pmod{m}\}.
+[x]_m=\{y\in\setZ: y\equiv x\pmod{m}\}.
 \]
 (Do not confuse $[x]_m$ with the floor function.)
 \end{define}
@@ -1677,18 +1688,18 @@ equivalence class of $x$ modulo $m$:
 
 \[
 \begin{aligned}
-[0]_4 &=\{x\in\mathbb{Z}: x\equiv 0\pmod{4}\}=\{4n: n\in\mathbb{Z}\}=\{\dots,-8,-4,0,4,8,\dots\},\\
-[1]_4 &=\{x: x=4n+1,\ n\in\mathbb{Z}\}=\{\dots,-7,-3,1,5,9,\dots\},\\
-[2]_4 &=\{x: x=4n+2,\ n\in\mathbb{Z}\}=\{\dots,-6,-2,2,6,10,\dots\},\\
-[3]_4 &=\{x: x=4n+3,\ n\in\mathbb{Z}\}=\{\dots,-5,-1,3,7,11,\dots\}.
+[0]_4 &=\{x\in\setZ: x\equiv 0\pmod{4}\}=\{4n: n\in\setZ\}=\{\dots,-8,-4,0,4,8,\dots\},\\
+[1]_4 &=\{x: x=4n+1,\ n\in\setZ\}=\{\dots,-7,-3,1,5,9,\dots\},\\
+[2]_4 &=\{x: x=4n+2,\ n\in\setZ\}=\{\dots,-6,-2,2,6,10,\dots\},\\
+[3]_4 &=\{x: x=4n+3,\ n\in\setZ\}=\{\dots,-5,-1,3,7,11,\dots\}.
 \end{aligned}
 \]
 
-Thus $\mathbb{Z}$ is partitioned into four residue classes modulo $4$, and every integer is
+Thus $\setZ$ is partitioned into four residue classes modulo $4$, and every integer is
 congruent to exactly one of $0,1,2,3$ modulo $4$.
 
 \begin{define}{Definition (Complete residue system modulo $m$)}[def:completeRS]
-A set $R\subset\mathbb{Z}$ is a \emph{complete residue system modulo $m$} if every integer
+A set $R\subset\setZ$ is a \emph{complete residue system modulo $m$} if every integer
 is congruent modulo $m$ to exactly one element of $R$.
 \end{define}
 
@@ -1703,7 +1714,7 @@ The set $\{0,1,2,\dots,m-1\}$ is a complete residue system modulo $m$.
 \end{define}
 
 \begin{proof}
-Let $a\in\mathbb{Z}$. By the Division Algorithm there exist unique $q,r\in\mathbb{Z}$
+Let $a\in\setZ$. By the Division Algorithm there exist unique $q,r\in\setZ$
 with $0\le r<m$ such that $a=mq+r$. Then $a-r=mq$, so $m\mid(a-r)$ and $a\equiv r\pmod{m}$,
 with $r\in\{0,1,\dots,m-1\}$. This shows every integer is congruent to at least one element
 of $\{0,1,\dots,m-1\}$.
@@ -1715,7 +1726,7 @@ element of $\{0,1,\dots,m-1\}$.
 \end{proof}
 
 \begin{define}{Proposition 2.4 (Arithmetic with congruences)}[prop:2.4]
-Let $a,b,c,d\in\mathbb{Z}$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
+Let $a,b,c,d\in\setZ$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
 \begin{enumerate}
   \item $a+c\equiv b+d\pmod{m}$,
   \item $ac\equiv bd\pmod{m}$.
@@ -1755,7 +1766,7 @@ Add these divisibilities to get $m\mid c(a-b)+b(c-d)=ac-bd$, so $ac\equiv bd\pmo
 
 \begin{define}{Remark (Proposition \nameref{prop:2.4} in class terms)}[rem:prop2.4classes]
 Recall that \nameref{prop:2.4} from the previous lecture can be expressed in terms of
-equivalence classes modulo $m$: for residue classes $[a],[c]\in\mathbb{Z}_m$,
+equivalence classes modulo $m$: for residue classes $[a],[c]\in\setZ_m$,
 \[
 [a]+[c]=[a+c]\qquad\text{and}\qquad [a][c]=[ac].
 \]
@@ -1764,7 +1775,7 @@ equivalence classes modulo $m$: for residue classes $[a],[c]\in\mathbb{Z}_m$,
 This viewpoint allows construction of addition and multiplication tables for residue classes
 (modulo~$m$) using any complete residue system.
 
-\subsection*{Examples: tables for $\mathbb{Z}_4$ and $\mathbb{Z}_5$}
+\subsection*{Examples: tables for $\setZ_4$ and $\setZ_5$}
 % Addition table modulo 4
 \[
   \begin{array}{c|cccc}
@@ -1784,8 +1795,8 @@ This viewpoint allows construction of addition and multiplication tables for res
   \end{array}
 \]
 
-\begin{define}{Remark (structure of $\mathbb{Z}_4$)}[rem:Z4]
-  Set $\mathbb{Z}_4:=\{\left[0\right]_4,\left[1\right]_4,\left[2\right]_4,\left[3\right]_4\}$. With the above addition and multiplication
+\begin{define}{Remark (structure of $\setZ_4$)}[rem:Z4]
+  Set $\setZ_4:=\{\left[0\right]_4,\left[1\right]_4,\left[2\right]_4,\left[3\right]_4\}$. With the above addition and multiplication
   it is a ring, but not a field: not every nonzero element has a multiplicative inverse
   (e.g., $\left[2\right]_4$ is a zero divisor).
 \end{define}
@@ -1810,17 +1821,17 @@ This viewpoint allows construction of addition and multiplication tables for res
     \left[4\right]_5 & \left[0\right]_5 & \left[4\right]_5 & \left[3\right]_5 & \left[2\right]_5 & \left[1\right]_5
   \end{array}
 \]
-\begin{define}{Remark (structure of $\mathbb{Z}_5$)}[rem:Z5]
-Let $\mathbb{Z}_5:=\{[0]_5,[1]_5,[2]_5,[3]_5,[4]_5\}$. Because $5$ is prime every nonzero
-class has a multiplicative inverse, so $\mathbb{Z}_5$ is a field.
+\begin{define}{Remark (structure of $\setZ_5$)}[rem:Z5]
+Let $\setZ_5:=\{[0]_5,[1]_5,[2]_5,[3]_5,[4]_5\}$. Because $5$ is prime every nonzero
+class has a multiplicative inverse, so $\setZ_5$ is a field.
 \end{define}
 
 \begin{define}{Question (why extra structure?)}[q:whyfield]
-Why does $\mathbb{Z}_5$ have more structure (a field) than $\mathbb{Z}_4$ (only a ring)?
+Why does $\setZ_5$ have more structure (a field) than $\setZ_4$ (only a ring)?
 \end{define}
 
 \begin{define}{Answer (primality of modulus)}[ans:whyfield]
-Essentially: $\mathbb{Z}_m$ is a field if and only if $m$ is prime. If $m$ is composite,
+Essentially: $\setZ_m$ is a field if and only if $m$ is prime. If $m$ is composite,
 then some nonzero classes are zero divisors (no inverses). If $m=p$ is prime, then
 every nonzero class has an inverse (standard proof via Bezout's identity).
 \end{define}
@@ -1828,7 +1839,7 @@ every nonzero class has an inverse (standard proof via Bezout's identity).
 \subsection*{Cancellation and a useful proposition}
 
 \begin{define}{Proposition 2.5 (Cancellation in congruences)}[prop:2.5]
-Let $a,b,c,m\in\mathbb{Z}$ with $m>0$, and let $d=\gcd(c,m)$. Then
+Let $a,b,c,m\in\setZ$ with $m>0$, and let $d=\gcd(c,m)$. Then
 \[
 ca\equiv cb\pmod{m}\quad\Longleftrightarrow\quad a\equiv b\pmod{m/d}.
 \]
@@ -1852,7 +1863,7 @@ A congruence of the form
 \[
 ax\equiv b\pmod{m},
 \]
-with unknown $x\in\mathbb{Z}$ and given integers $a,b,m$ with $m>0$, is called a
+with unknown $x\in\setZ$ and given integers $a,b,m$ with $m>0$, is called a
 \emph{linear congruence} in the variable $x$.
 \end{define}
 
@@ -1866,13 +1877,13 @@ with unknown $x\in\mathbb{Z}$ and given integers $a,b,m$ with $m>0$, is called a
 \end{define}
 
 \begin{define}{Theorem 2.6 (Solvability and number of solutions of linear congruences)}[thm:2.6]
-Let $a,b,m\in\mathbb{Z}$ with $m>0$ and let $d=\gcd(a,m)$. Then:
+Let $a,b,m\in\setZ$ with $m>0$ and let $d=\gcd(a,m)$. Then:
 \begin{enumerate}
   \item The congruence $ax\equiv b\pmod{m}$ has a solution iff $d\mid b$.
   \item If $d\mid b$ then there are exactly $d$ incongruent solutions modulo $m$. Concretely,
     if $x_0$ is one solution, then all solutions are
     \[
-    x = x_0 + \frac{m}{d}n,\qquad n\in\mathbb{Z},
+    x = x_0 + \frac{m}{d}n,\qquad n\in\setZ,
     \]
     and the classes $x_0+\frac{m}{d}n$ for $n=0,1,\dots,d-1$ give a complete set of
     incongruent solutions modulo $m$.
@@ -1891,7 +1902,7 @@ equation $(*)$.
 
 (1) If $(*)$ has an integer solution, then $d=\gcd(a,m)$ divides the left-hand side
 $a x - my$ and hence divides $b$. Conversely, if $d\mid b$, write $b=d e$ for some
-$e\in\mathbb{Z}$. By Bezout's identity (see \nameref{prop:1.11} or the standard result),
+$e\in\setZ$. By Bezout's identity (see \nameref{prop:1.11} or the standard result),
 there exist integers $r,s$ with $ar+ms=d$. Multiply both sides by $e$ to obtain
 $ar e + ms e = de = b$. Then $x_0 = re$ and $y_0 = -se$ solve $(*)$, so a solution exists.
 
@@ -1913,7 +1924,7 @@ a(x-x_0) \equiv 0\pmod{m},
 \]
 i.e. $m\mid a(x-x_0)$. Write $a=d a'$ and $m=d m'$, with $\gcd(a',m')=1$. Then
 $m'd \mid d a'(x-x_0)$, so $m'\mid a'(x-x_0)$. Since $\gcd(a',m')=1$ we deduce $m'\mid (x-x_0)$,
-hence $x-x_0 = m' n = \frac{m}{d} n$ for some $n\in\mathbb{Z}$. This shows every solution
+hence $x-x_0 = m' n = \frac{m}{d} n$ for some $n\in\setZ$. This shows every solution
 has the stated form. Two such solutions
 \[
 x_0 + \frac{m}{d}n_1 \quad\text{and}\quad x_0+\frac{m}{d}n_2
@@ -1969,7 +1980,7 @@ particular solution, yielding the same solution set.)
 \subsection*{Multiplicative inverses}
 
 \begin{define}{Definition (multiplicative inverse modulo $m$)}[def:multinv]
-If $a\in\mathbb{Z}$ and there exists $x\in\mathbb{Z}$ with $ax\equiv 1\pmod{m}$,
+If $a\in\setZ$ and there exists $x\in\setZ$ with $ax\equiv 1\pmod{m}$,
 then $x$ is called a \emph{multiplicative inverse} of $a$ modulo $m$ (often denoted
 $a^{-1}\pmod{m}$).
 \end{define}
@@ -2090,7 +2101,7 @@ Hence $x\equiv 233\equiv 53\pmod{60}$, and the least positive solution is $53$.
 % -----------------------
 
 \begin{define}{Lemma 2.10 (Self-inverse modulo a prime)}[lem:2.10]
-Let $p$ be a prime and $a\in\mathbb{Z}$. Then $a$ is its own inverse modulo $p$
+Let $p$ be a prime and $a\in\setZ$. Then $a$ is its own inverse modulo $p$
 (i.e. $a^2\equiv 1\pmod{p}$) if and only if $a\equiv \pm 1\pmod{p}$.
 \end{define}
 
@@ -2143,7 +2154,7 @@ are known: $5,13,563$. It is unknown whether infinitely many (or only finitely m
 % -----------------------
 
 \begin{define}{Theorem 2.13 (Fermat's Little Theorem)}[thm:2.13]
-Let $p$ be a prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
+Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
 \[
 a^{p-1}\equiv 1\pmod{p}.
 \]
@@ -2193,7 +2204,7 @@ Wilson's Theorem is not required.)
 % -----------------------
 
 \begin{define}{Corollary 2.14 (Inverse modulo a prime)}[cor:2.14]
-Let $p$ be a prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then $a^{p-2}$ is the multiplicative
+Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then $a^{p-2}$ is the multiplicative
 inverse of $a$ modulo $p$; that is,
 \[
 a\cdot a^{p-2}\equiv 1\pmod{p}.
@@ -2212,7 +2223,7 @@ when $p$ is prime and $p\nmid a$: multiply both sides by $a^{p-2}$ to obtain the
 \end{define}
 
 \begin{define}{Corollary 2.15 (Fresh form of Fermat)}[cor:2.15]
-Let $p$ be prime and $a\in\mathbb{Z}$. Then
+Let $p$ be prime and $a\in\setZ$. Then
 \[
 a^p\equiv a\pmod{p}.
 \]
@@ -2273,7 +2284,7 @@ Theorem is false.
 % -----------------------
 
 \begin{define}{Definition (Euler's phi-function)}[def:phi]
-For $n\in\mathbb{Z}_{>0}$ the Euler totient function $\phi(n)$ is the number of integers
+For $n\in\setZ_{>0}$ the Euler totient function $\phi(n)$ is the number of integers
 $1\le x\le n$ with $\gcd(x,n)=1$; equivalently,
 \[
 \phi(n):=\#\{x\in\{1,2,\dots,n\}:\gcd(x,n)=1\}.
@@ -2289,7 +2300,7 @@ and for a prime $p$, $\phi(p)=p-1$ (classes $1,2,\dots,p-1$).
 \end{define}
 
 \begin{define}{Theorem 2.17 (Euler's Theorem)}[thm:2.17]
-Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. Then
+Let $m>0$ and $a\in\setZ$ with $\gcd(a,m)=1$. Then
 \[
 a^{\phi(m)}\equiv 1\pmod m.
 \]
@@ -2324,7 +2335,7 @@ used in the proof of Euler's Theorem).
 \end{define}
 
 \begin{define}{Corollary 2.19 (inverse via Euler)}[cor:2.19]
-Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. Then $a^{\phi(m)-1}$ is the multiplicative
+Let $m>0$ and $a\in\setZ$ with $\gcd(a,m)=1$. Then $a^{\phi(m)-1}$ is the multiplicative
 inverse of $a$ modulo $m$.
 \end{define}
 
@@ -2343,8 +2354,8 @@ $\gcd(a,m)=1$: multiply both sides by $a^{\phi(m)-1}$ to obtain the solution.
 % -----------------------
 
 \begin{define}{Definition (arithmetic function)}[def:arithfunc]
-An \emph{arithmetic function} is a function $f:\mathbb{Z}_{>0}\to\mathbb{C}$ (or $\mathbb{R}$,
-or $\mathbb{Z}$). Examples: the Euler $\phi$-function, the divisor-counting function
+An \emph{arithmetic function} is a function $f:\setZ_{>0}\to\mathbb{C}$ (or $\setR$,
+or $\setZ$). Examples: the Euler $\phi$-function, the divisor-counting function
 $d(n)$, the sum-of-divisors function $\sigma(n)$, etc.
 \end{define}
 
