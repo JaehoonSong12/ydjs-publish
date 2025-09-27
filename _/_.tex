@@ -525,109 +525,251 @@ Wbwk, Hmwk assignments, and contents of the textbook.
 
 
 \newpage
+\begin{define}{Equivalence Relation}[def:equivalence-relation][red]
+  Let $A$ be a nonempty set. A relation $R$ on $A$ is an equivalence relation if and only if $R$ is reflexive, symmetric, and transitive.
+\end{define}
+
+\begin{define}{Partition}[def:partition][red]
+  Let $A$ be a nonempty set. A partition of $A$ is a collection of nonempty, pairwise disjoint subsets of $A$ whose union is $A$.
+\end{define}
+
+\begin{define}{Partition Refinement}[def:partition-refinement][red]
+  Let $A$ be a nonempty set. A partition $P_1$ of $A$ is a refinement of a partition $P_2$ of $A$ if and only if every set in $P_1$ is a subset of some set in $P_2$.
+\end{define}
+
+\begin{define}{Equivalence Class}[def:equivalence-class][red]
+  Let $A$ be a nonempty set and $R$ an equivalence relation on $A$. For each $a \in A$, the equivalence class of $a$ with respect to $R$ is the set $[a]_R = \{b \in A \mid a R b\}$.
+\end{define}
+
+\begin{define}{Irreflexive Relation}[def:irreflexive-relation][red]
+  Let $A$ be a nonempty set. A relation $R$ on $A$ is irreflexive if and only if for every $a \in A$, $(a,a) \notin R$.
+\end{define}
+
+\begin{define}{Diagonal Relation}[def:diagonal-relation][red]
+  Let $A$ be a nonempty set. The diagonal relation on $A$ is the set $\Delta = \{(a,a) \mid a \in A\}$.
+\end{define}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problems
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[Notice] Each equivalence class should be written exactly once and in set builder notation. For instance, let $R$ be the relation on $\setR$ given by $a R b$ if and only if $a-b \in \setZ$. Then the equivalence classes of $R$ are $[a]=\{k+a \mid k \in \setZ\}$ for all $a$ with $0 \leq a<1$. Note that writing $[a]=\{x \in \setR \mid x R a\}$ is unilluminating, and hence not a correct answer.
 \begin{enumerate}
   \item Prove that if $R$ is an equivalence relation on a nonempty set $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
   \begin{subprove}
-    Let $R$ be a relation on a nonempty set $A$.
-    To show $R^{-1}$ is an equivalence relation, we check reflexivity, symmetry, and transitivity.
+    Let $R$ be an equivalence relation on a nonempty set $A$. 
+    To show that $R^{-1}$ is an equivalence relation, it is required to verify that $R^{-1}$ satisfies reflexivity, symmetry, and transitivity by definition of \nameref{def:equivalence-relation}.
     \begin{itemize}
-      \item \textbf{Reflexive:} Since $R$ is reflexive, for all $a \in A$, $(a,a) \in R$. Thus, $(a,a) \in R^{-1}$.
-      \item \textbf{Symmetric:} If $(a,b) \in R^{-1}$, then $(b,a) \in R$. Since $R$ is symmetric, $(a,b) \in R$. Thus, $(b,a) \in R^{-1}$.
-      \item \textbf{Transitive:} If $(a,b), (b,c) \in R^{-1}$, then $(b,a), (c,b) \in R$. Since $R$ is transitive, $(c,a) \in R$, so $(a,c) \in R^{-1}$.
+      \item \textbf{Reflexive:} Since $R$ is reflexive by definition of \nameref{def:relation-properties}, for all $a \in A$, $(a,a) \in R$. 
+      Since $(a,a) \in R$, it follows that $(a,a) \in R^{-1}$ by definition of \nameref{def:inverse-relation}.
+      \item \textbf{Symmetric:} Let $(a,b) \in R^{-1}$ be arbitrary. Then $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
+      Since $R$ is symmetric by definition of \nameref{def:relation-properties}, it follows that $(a,b) \in R$. 
+      Therefore, $(b,a) \in R^{-1}$ by definition of \nameref{def:inverse-relation}.
+      \item \textbf{Transitive:} Let $(a,b), (b,c) \in R^{-1}$ be arbitrary. Then $(b,a), (c,b) \in R$ by definition of \nameref{def:inverse-relation}. 
+      Since $R$ is transitive by definition of \nameref{def:relation-properties}, it follows that $(c,a) \in R$. 
+      Therefore, $(a,c) \in R^{-1}$ by definition of \nameref{def:inverse-relation}.
     \end{itemize}
-    Therefore, $R^{-1}$ is an equivalence relation.
+    Therefore, $R^{-1}$ is an equivalence relation by definition of \nameref{def:equivalence-relation}.
   \end{subprove}
 
   \item Suppose that $R$ and $S$ are equivalence relations on the nonempty set $A$. Prove or disprove:
   \begin{enumerate}
     \item The set $R \sOR S$ is an equivalence relation.
       \begin{subdisprove}
-        Let $A = \{1,2,3\}$, $R, S$ be a relation on $A$ where
+        Let $A = \{1,2,3\}$ be a nonempty set. Let $R$ and $S$ be relations on $A$ where
         $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$ and
-        $S = \{(2,2),(3,3),(2,3),(3,2)\}$. Then,
-        $(1,2) \in R \sOR S$, $(2,3) \in R \sOR S$, but $(1,3) \notin R \sOR S$.
-        Thus, $R \sOR S$ is not always an equivalence relation.
+        $S = \{(2,2),(3,3),(2,3),(3,2)\}$. 
+        Then $(1,2) \in R \sOR S$ and $(2,3) \in R \sOR S$ by definition of \nameref{def:union}, 
+        but $(1,3) \notin R \sOR S$. 
+        Since $(1,2), (2,3) \in R \sOR S$ but $(1,3) \notin R \sOR S$, 
+        it follows that $R \sOR S$ is not transitive by definition of \nameref{def:relation-properties}.
+        Therefore, $R \sOR S$ is not an equivalence relation by definition of \nameref{def:equivalence-relation}.
       \end{subdisprove}
     \item The set $R \sAND S$ is an equivalence relation.
       \begin{subprove}
-        $R \sAND S$ is reflexive, symmetric, and transitive since both $R$ and $S$ are equivalence relations and intersection preserves these properties.
+        Let $R$ and $S$ be equivalence relations on a nonempty set $A$. 
+        To show that $R \sAND S$ is an equivalence relation, it is required to verify that $R \sAND S$ satisfies reflexivity, symmetry, and transitivity by definition of \nameref{def:equivalence-relation}.
+        \begin{itemize}
+          \item \textbf{Reflexive:} Since $R$ and $S$ are reflexive by definition of \nameref{def:relation-properties}, 
+          for all $a \in A$, $(a,a) \in R$ and $(a,a) \in S$. 
+          Therefore, $(a,a) \in R \sAND S$ by definition of \nameref{def:intersection}.
+          \item \textbf{Symmetric:} Let $(a,b) \in R \sAND S$ be arbitrary. Then $(a,b) \in R$ and $(a,b) \in S$ by definition of \nameref{def:intersection}. 
+          Since $R$ and $S$ are symmetric by definition of \nameref{def:relation-properties}, it follows that $(b,a) \in R$ and $(b,a) \in S$. 
+          Therefore, $(b,a) \in R \sAND S$ by definition of \nameref{def:intersection}.
+          \item \textbf{Transitive:} Let $(a,b), (b,c) \in R \sAND S$ be arbitrary. Then $(a,b), (b,c) \in R$ and $(a,b), (b,c) \in S$ by definition of \nameref{def:intersection}. 
+          Since $R$ and $S$ are transitive by definition of \nameref{def:relation-properties}, it follows that $(a,c) \in R$ and $(a,c) \in S$. 
+          Therefore, $(a,c) \in R \sAND S$ by definition of \nameref{def:intersection}.
+        \end{itemize}
+        Therefore, $R \sAND S$ is an equivalence relation by definition of \nameref{def:equivalence-relation}.
       \end{subprove}
   \end{enumerate}
 
-  \item Let $R$ be a relation from a set $A$ to a set $B$.
+  \item Let $R$ be a relation on a nonempty set $A$.
   \begin{enumerate}
     \item Prove that a relation $R$ on a set $A$ is symmetric if and only if $R=R^{-1}$.
       \begin{subprove}
-        ($\Rightarrow$) If $R$ is symmetric, then for all $(a,b) \in R$, $(b,a) \in R$, so $R = R^{-1}$.
-        ($\Leftarrow$) If $R = R^{-1}$, then for all $(a,b) \in R$, $(b,a) \in R$, so $R$ is symmetric.
+        Let $R$ be a relation on a nonempty set $A$. 
+        The proof is by showing both directions of the biconditional.
+        \begin{itemize}
+          \item ($\Rightarrow$) Assume $R$ is symmetric. Let $(a,b) \in R$ be arbitrary. 
+          Since $R$ is symmetric by definition of \nameref{def:relation-properties}, it follows that $(b,a) \in R$. 
+          Therefore, $(a,b) \in R^{-1}$ by definition of \nameref{def:inverse-relation}. 
+          Since $(a,b) \in R$ implies $(a,b) \in R^{-1}$, it follows that $R \subseteq R^{-1}$ by definition of \nameref{def:subset}.
+          Conversely, let $(a,b) \in R^{-1}$ be arbitrary. Then $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
+          Since $R$ is symmetric, it follows that $(a,b) \in R$. 
+          Since $(a,b) \in R^{-1}$ implies $(a,b) \in R$, it follows that $R^{-1} \subseteq R$ by definition of \nameref{def:subset}.
+          Therefore, $R = R^{-1}$ by definition of \nameref{def:set-equality}.
+          \item ($\Leftarrow$) Assume $R = R^{-1}$. Let $(a,b) \in R$ be arbitrary. 
+          Since $R = R^{-1}$, it follows that $(a,b) \in R^{-1}$. 
+          Therefore, $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
+          Since $(a,b) \in R$ implies $(b,a) \in R$, it follows that $R$ is symmetric by definition of \nameref{def:relation-properties}.
+        \end{itemize}
+        Therefore, $R$ is symmetric if and only if $R = R^{-1}$.
       \end{subprove}
-    \item Prove that a relation $R$ on a set $A$ is antisymmetric if and only if $R \cap R^{-1}$ is a subset of the diagonal relation $\Delta=\{(a, a) \mid a \in A\}$.
+    \item Prove that a relation $R$ on a set $A$ is antisymmetric if and only if $R \sAND R^{-1} \subseteq \Delta$.
       \begin{subprove}
-        ($\Rightarrow$) If $R$ is antisymmetric, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $(a,b) \in \Delta$.
-        ($\Leftarrow$) If $R \sAND R^{-1} \subseteq \Delta$, then $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, so $R$ is antisymmetric.
+        Let $R$ be a relation on a nonempty set $A$ and let $\Delta$ be the diagonal relation on $A$ by definition of \nameref{def:diagonal-relation}.
+        The proof is by showing both directions of the biconditional.
+        \begin{itemize}
+          \item ($\Rightarrow$) Assume $R$ is antisymmetric. Let $(a,b) \in R \sAND R^{-1}$ be arbitrary. 
+          Then $(a,b) \in R$ and $(a,b) \in R^{-1}$ by definition of \nameref{def:intersection}. 
+          Since $(a,b) \in R^{-1}$, it follows that $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
+          Since $(a,b) \in R$ and $(b,a) \in R$, and $R$ is antisymmetric by definition of \nameref{def:relation-properties}, 
+          it follows that $a = b$. Therefore, $(a,b) = (a,a) \in \Delta$ by definition of \nameref{def:diagonal-relation}.
+          Since $(a,b) \in R \sAND R^{-1}$ implies $(a,b) \in \Delta$, it follows that $R \sAND R^{-1} \subseteq \Delta$ by definition of \nameref{def:subset}.
+          \item ($\Leftarrow$) Assume $R \sAND R^{-1} \subseteq \Delta$. Let $(a,b) \in R$ and $(b,a) \in R$ be arbitrary. 
+          Since $(b,a) \in R$, it follows that $(a,b) \in R^{-1}$ by definition of \nameref{def:inverse-relation}. 
+          Since $(a,b) \in R$ and $(a,b) \in R^{-1}$, it follows that $(a,b) \in R \sAND R^{-1}$ by definition of \nameref{def:intersection}. 
+          Since $R \sAND R^{-1} \subseteq \Delta$, it follows that $(a,b) \in \Delta$ by definition of \nameref{def:subset}. 
+          Therefore, $a = b$ by definition of \nameref{def:diagonal-relation}. 
+          Since $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, it follows that $R$ is antisymmetric by definition of \nameref{def:relation-properties}.
+        \end{itemize}
+        Therefore, $R$ is antisymmetric if and only if $R \sAND R^{-1} \subseteq \Delta$.
       \end{subprove}
   \end{enumerate}
 
 
   \newpage
-  \item Let $R$ be a relation on the nonempty set $A$. Then $R$ is \textit{irreflexive} 
-  iff for every $a \in A$, $(a,a) \notin R$. Prove or disprove:
+  \item Let $R$ be a relation on the nonempty set $A$. Prove or disprove:
   \begin{enumerate}
     \item The relation $R$ could be neither reflexive nor irreflexive.
       \begin{subprove}
-        True. For example, $A = \{1,2\}$, $R = \{(1,1)\}$. $(1,1) \in R$ but $(2,2) \notin R$, so $R$ is neither reflexive nor irreflexive.
+        Let $A = \{1,2\}$ be a nonempty set. Let $R = \{(1,1)\}$ be a relation on $A$. 
+        Since $(1,1) \in R$ but $(2,2) \notin R$, it follows that $R$ is not reflexive by definition of \nameref{def:relation-properties}. 
+        Since $(1,1) \in R$, it follows that $R$ is not irreflexive by definition of \nameref{def:irreflexive-relation}. 
+        Therefore, $R$ is neither reflexive nor irreflexive.
       \end{subprove}
     \item The relation $R$ is reflexive if and only if $\sNOT{R}$ is irreflexive. 
       \begin{subprove}
-        If $R$ is reflexive, then for all $a \in A$, $(a,a) \in R$, so $(a,a) \notin \sNOT{R}$, so $\sNOT{R}$ is irreflexive. Conversely, if $\sNOT{R}$ is irreflexive, then for all $a \in A$, $(a,a) \notin \sNOT{R}$, so $(a,a) \in R$, so $R$ is reflexive.
+        Let $R$ be a relation on a nonempty set $A$. 
+        The proof is by showing both directions of the biconditional.
+        \begin{itemize}
+          \item ($\Rightarrow$) Assume $R$ is reflexive. Let $a \in A$ be arbitrary. 
+          Since $R$ is reflexive by definition of \nameref{def:relation-properties}, it follows that $(a,a) \in R$. 
+          Therefore, $(a,a) \notin \sNOT{R}$ by definition of \nameref{def:complementary-set}. 
+          Since for all $a \in A$, $(a,a) \notin \sNOT{R}$, it follows that $\sNOT{R}$ is irreflexive by definition of \nameref{def:irreflexive-relation}.
+          \item ($\Leftarrow$) Assume $\sNOT{R}$ is irreflexive. Let $a \in A$ be arbitrary. 
+          Since $\sNOT{R}$ is irreflexive by definition of \nameref{def:irreflexive-relation}, it follows that $(a,a) \notin \sNOT{R}$. 
+          Therefore, $(a,a) \in R$ by definition of \nameref{def:complementary-set}. 
+          Since for all $a \in A$, $(a,a) \in R$, it follows that $R$ is reflexive by definition of \nameref{def:relation-properties}.
+        \end{itemize}
+        Therefore, $R$ is reflexive if and only if $\sNOT{R}$ is irreflexive.
       \end{subprove}
     \item If $R$ is irreflexive, then so is $R^2=R \circ R$.
       \begin{subdisprove}
-        False. Let $A = \{1,2\}$, $R = \{(1,2),(2,1)\}$, which is irreflexive. But $R^2 = \{(1,1),(2,2)\}$, which is not irreflexive.
+        Let $A = \{1,2\}$ be a nonempty set. Let $R = \{(1,2),(2,1)\}$ be a relation on $A$. 
+        Since $(1,1) \notin R$ and $(2,2) \notin R$, it follows that $R$ is irreflexive by definition of \nameref{def:irreflexive-relation}. 
+        However, $R^2 = R \circ R = \{(1,1),(2,2)\}$ by definition of composition. 
+        Since $(1,1) \in R^2$ and $(2,2) \in R^2$, it follows that $R^2$ is not irreflexive by definition of \nameref{def:irreflexive-relation}. 
+        Therefore, the statement is false by counterexample.
       \end{subdisprove}
   \end{enumerate}
 
   \newpage
   \item Let $R$, $S$, and $T$ be relations on $\setZ$ defined as:
   \begin{itemize}
-    \item $a R b$ iff $a \equiv b \pmod{2}$,
-    \item $a S b$ iff $a \equiv b \pmod{3}$,
-    \item $a T b$ iff $a \equiv b \pmod{6}$.
+    \item $a R b$ if and only if $a \equiv b \pmod{2}$,
+    \item $a S b$ if and only if $a \equiv b \pmod{3}$,
+    \item $a T b$ if and only if $a \equiv b \pmod{6}$.
   \end{itemize}
   \begin{enumerate}
     \item List the equivalence classes for $R$, $S$, and $T$.
       \begin{subanswer}
-        $R$: $\{[0]_2, [1]_2\}$, where $[0]_2 = \{\ldots,-2,0,2,\ldots\}$, $[1]_2 = \{\ldots,-1,1,3,\ldots\}$\\
-        $S$: $\{[0]_3, [1]_3, [2]_3\}$\\
-        $T$: $\{[0]_6, [1]_6, [2]_6, [3]_6, [4]_6, [5]_6\}$
+        Let $R$, $S$, and $T$ be the relations on $\setZ$ as defined above.
+        \begin{itemize}
+          \item The equivalence classes of $R$ are:
+          \begin{itemize}
+            \item $[0]_R = \{2k \mid k \in \setZ\}$
+            \item $[1]_R = \{2k+1 \mid k \in \setZ\}$
+          \end{itemize}
+          \item The equivalence classes of $S$ are:
+          \begin{itemize}
+            \item $[0]_S = \{3k \mid k \in \setZ\}$
+            \item $[1]_S = \{3k+1 \mid k \in \setZ\}$
+            \item $[2]_S = \{3k+2 \mid k \in \setZ\}$
+          \end{itemize}
+          \item The equivalence classes of $T$ are:
+          \begin{itemize}
+            \item $[0]_T = \{6k \mid k \in \setZ\}$
+            \item $[1]_T = \{6k+1 \mid k \in \setZ\}$
+            \item $[2]_T = \{6k+2 \mid k \in \setZ\}$
+            \item $[3]_T = \{6k+3 \mid k \in \setZ\}$
+            \item $[4]_T = \{6k+4 \mid k \in \setZ\}$
+            \item $[5]_T = \{6k+5 \mid k \in \setZ\}$
+          \end{itemize}
+        \end{itemize}
       \end{subanswer}
     \item Find the equivalence classes of $R \sAND S$.
       \begin{subanswer}
-        $R \sAND S$ is congruence mod $6$, so the equivalence classes are $[0]_6, [1]_6, [2]_6, [3]_6, [4]_6, [5]_6$.
+        Let $R$ and $S$ be the relations on $\setZ$ as defined above. 
+        Since $R \sAND S$ is the relation where $a (R \sAND S) b$ if and only if $a \equiv b \pmod{2}$ and $a \equiv b \pmod{3}$, 
+        it follows that $R \sAND S$ is congruence modulo $6$ by the Chinese Remainder Theorem. 
+        Therefore, the equivalence classes of $R \sAND S$ are:
+        \begin{itemize}
+          \item $[0]_{R \sAND S} = \{6k \mid k \in \setZ\}$
+          \item $[1]_{R \sAND S} = \{6k+1 \mid k \in \setZ\}$
+          \item $[2]_{R \sAND S} = \{6k+2 \mid k \in \setZ\}$
+          \item $[3]_{R \sAND S} = \{6k+3 \mid k \in \setZ\}$
+          \item $[4]_{R \sAND S} = \{6k+4 \mid k \in \setZ\}$
+          \item $[5]_{R \sAND S} = \{6k+5 \mid k \in \setZ\}$
+        \end{itemize}
       \end{subanswer}
     \item Prove the partition resulting from $T$ is a refinement of the partition resulting from $S$.
-    \textit{Definition: A partition $P_1$ is a refinement of the partition $P_2$ if every set in $P_1$ is a subset of one of the sets in $P_2$.}
       \begin{subprove}
-        Each $[k]_6$ is contained in some $[j]_3$ since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{3}$. Thus, every $[k]_6 \subseteq [j]_3$ for some $j$.
+        Let $T$ and $S$ be the relations on $\setZ$ as defined above. 
+        To show that the partition resulting from $T$ is a refinement of the partition resulting from $S$, 
+        it is required to show that every equivalence class of $T$ is contained in some equivalence class of $S$ by definition of \nameref{def:partition-refinement}.
+        Let $[k]_T$ be an arbitrary equivalence class of $T$ where $0 \leq k < 6$. 
+        Since $a \in [k]_T$ if and only if $a \equiv k \pmod{6}$ by definition of \nameref{def:equivalence-class}, 
+        and since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{3}$ by definition of \nameref{def:congruence-modulo}, 
+        it follows that $a \in [k \bmod 3]_S$ by definition of \nameref{def:equivalence-class}. 
+        Therefore, $[k]_T \subseteq [k \bmod 3]_S$ by definition of \nameref{def:subset}. 
+        Since this holds for all equivalence classes of $T$, it follows that the partition resulting from $T$ is a refinement of the partition resulting from $S$ by definition of \nameref{def:partition-refinement}.
       \end{subprove}
     \item What is the relationship between the partition resulting from $T$ and the partition resulting from $R$? Justify your answer.
       \begin{subanswer}
-        Each $[k]_6$ is contained in either $[0]_2$ or $[1]_2$ since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{2}$. So $T$'s partition refines $R$'s partition.
+        Let $T$ and $R$ be the relations on $\setZ$ as defined above. 
+        The partition resulting from $T$ is a refinement of the partition resulting from $R$. 
+        This is because for each equivalence class $[k]_T$ of $T$ where $0 \leq k < 6$, 
+        since $a \in [k]_T$ if and only if $a \equiv k \pmod{6}$ by definition of \nameref{def:equivalence-class}, 
+        and since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{2}$ by definition of \nameref{def:congruence-modulo}, 
+        it follows that $a \in [k \bmod 2]_R$ by definition of \nameref{def:equivalence-class}. 
+        Therefore, $[k]_T \subseteq [k \bmod 2]_R$ by definition of \nameref{def:subset}, 
+        and the partition resulting from $T$ is a refinement of the partition resulting from $R$ by definition of \nameref{def:partition-refinement}.
       \end{subanswer}
-    \item What is the relationship between $S$ and $T$? Between $R$ and $T$? Justify your answers.\\
-    \textit{Hint: remember that a relation is just a set, and that common relations between sets 
-    are \inlinequote{is a subset of}, \inlinequote{is a proper subset of}, and 
-    \inlinequote{is equal to."}}
+    \item What is the relationship between $S$ and $T$? Between $R$ and $T$? Justify your answers.
       \begin{subanswer}
-        $T \subseteq S$ and $T \subseteq R$ since congruence mod $6$ implies congruence mod $3$ and mod $2$.
+        Let $R$, $S$, and $T$ be the relations on $\setZ$ as defined above. 
+        Since congruence modulo $6$ implies congruence modulo $3$ and congruence modulo $2$ by definition of \nameref{def:congruence-modulo}, 
+        it follows that $T \subseteq S$ and $T \subseteq R$ by definition of \nameref{def:subset}. 
+        However, $S \not\subseteq T$ and $R \not\subseteq T$ since congruence modulo $3$ does not imply congruence modulo $6$, 
+        and congruence modulo $2$ does not imply congruence modulo $6$.
       \end{subanswer}
     \item Is there any relationship between $R$ and $S$? Justify your answers.
       \begin{subanswer}
-        $R$ and $S$ are not subsets of each other and are not equal; they are independent equivalence relations.
+        Let $R$ and $S$ be the relations on $\setZ$ as defined above. 
+        Since congruence modulo $2$ does not imply congruence modulo $3$ and congruence modulo $3$ does not imply congruence modulo $2$, 
+        it follows that $R \not\subseteq S$ and $S \not\subseteq R$ by definition of \nameref{def:subset}. 
+        Since $R \neq S$ (they have different equivalence classes), 
+        it follows that $R$ and $S$ are independent equivalence relations with no subset relationship between them.
       \end{subanswer}
   \end{enumerate}
 
