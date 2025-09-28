@@ -84,52 +84,59 @@
 \begin{document}
 
 
-
-
-\begin{define}{Principle of Inclusion-Exclusion}[def:pie][blue]
-  For a finite collection of finite sets $A_1, A_2, \ldots, A_n$, the cardinality of their union is given by the formula:
+\begin{define}{Principle of Inclusion-Exclusion (PIE)}[def:pie][red]
+  Let $\setUNIV$ be a universal set for a counting problem. 
+  Let $C_1, C_2, \ldots, C_n$ be a finite collection of finite sets where each $C_i \subseteq \setUNIV$.
+  The intersection of all $C_i$ defines a condition set for the cardinality, $C$, as follows.
   $$
-    \left| \bigcup_{i=1}^{n} A_i \right| = \sum_{\emptyset \neq I \subseteq \{1, \ldots, n\}} (-1)^{|I|-1} \left| \bigcap_{i \in I} A_i \right|
+  C=\bigcap_{i \in [n]} C_i=C_1 \sAND C_2 \sAND \ldots \sAND C_n
   $$
-  A complementary form of the principle is often used to count the number of elements that are in none of the specified sets. Let $U$ be the universal set containing all $A_i$. The number of elements in $U$ but in none of the $A_i$ is given by:
-  $$
-    \left| U \setminus \bigcup_{i=1}^{n} A_i \right| = |U| - \left| \bigcup_{i=1}^{n} A_i \right| = \sum_{I \subseteq \{1, \ldots, n\}} (-1)^{|I|} \left| \bigcap_{i \in I} A_i \right|
-  $$
-  where the intersection over an empty index set, $\bigcap_{i \in \emptyset} A_i$, is defined as the universal set $U$.
+  and the complementary sets $\sNOT{C_i}=\setUNIV \sMINUS C_i$ for $i \in [n] = \{1, 2, \ldots, n\}$ define the sets 
+  of elements that do not satisfy the collection of conditions, $C$. Then, 
+  the number of elements in $\setUNIV$ that satisfy all the conditions in $C$ is given as follows.
+  \begin{align*}
+    |C| 
+      &= \left| \bigcap_{i=1}^{n} C_i \right| 
+      = |U| - \left| \bigcup_{i=1}^{n} \sNOT{C_i} \right| 
+      = \sum_{I \subseteq [n]} (-1)^{|I|} \left| \bigcap_{i \in I} \sNOT{C_i} \right| \\
+      &= |U| - \sum_{i=1}^{n} |\sNOT{C_i}| 
+         + \sum_{1 \leq i < j \leq n} |\sNOT{C_i} \sAND \sNOT{C_j}| 
+         - \ldots 
+         + (-1)^n |\sNOT{C_1} \sAND \sNOT{C_2} \sAND \ldots \sAND \sNOT{C_n}|
+  \end{align*}
+  where the intersection over an empty index set, $\bigcap_{i \in \emptyset} \sNOT{C_i}$, is defined as the universal set $U$.
 \end{define}
 
 
-\begin{thm}{Cardinality of Surjective Functions}[thm:surjective-cardinality][blue]
-  The number of surjective functions from a set $[k] = \{1, 2, \ldots, k\}$ to a set $[n] = \{1, 2, \ldots, n\}$ is given by the formula:
+\begin{define}{Cardinality of Surjective Functions}[thm:surjective-cardinality][red]
+  The number of surjective functions from a set $[k] = \{1, 2, \ldots, k\}$ to a set 
+  $[n] = \{1, 2, \ldots, n\}$ is given by the formula:
   $$
-    \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
+    \opS\group{k,n}=\sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
   $$
-\end{thm}
-
-\begin{subprove}
-  The proof is constructed using the Principle of Inclusion-Exclusion.
-
-  Let $U$ be the set of all possible functions from $[k]$ to $[n]$. The total number of such functions is $|U| = n^k$, as each of the $k$ elements in the domain can be independently mapped to any of the $n$ elements in the codomain.
-
-  A function is surjective if every element in the codomain $[n]$ is in the image of the function. The number of surjective functions can be found by taking the total number of functions and subtracting the number of functions that are \textit{not} surjective.
-
-  For each $j \in [n]$, let $A_j$ be the set of functions from $[k]$ to $[n]$ for which the element $j$ is \textit{not} in the image. The set of all non-surjective functions is the union $\bigcup_{j=1}^{n} A_j$. The number of surjective functions is therefore $|U| - \left| \bigcup_{j=1}^{n} A_j \right|$.
-
-  By the complementary form of the Principle of Inclusion-Exclusion, this quantity is equivalent to:
-  $$
-    \sum_{I \subseteq [n]} (-1)^{|I|} \left| \bigcap_{j \in I} A_j \right|
-  $$
-
-  The term $\left| \bigcap_{j \in I} A_j \right|$ where $|I| = i$ must be evaluated. This term represents the number of functions for which none of the $i$ elements in the set $I$ are in the image. For such a function, the $k$ elements of the domain must all map to the codomain's remaining $n-i$ elements. The number of ways for this to occur is $(n-i)^k$.
-
-  The sum in the inclusion-exclusion formula is taken over all possible subsets $I \subseteq [n]$. For any given size $i$ (where $0 \le i \le n$), there exist $\binom{n}{i}$ subsets $I$ of that size. For each such subset, the cardinality of the intersection is $(n-i)^k$.
-
-  Therefore, the total count of surjective functions is obtained by summing over all possible sizes $i$ for the set of excluded elements:
-  $$
-    \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
-  $$
-  For $i=0$, the term is $(-1)^0 \binom{n}{0}(n-0)^k = n^k$, which corresponds to $|U|$. For $i=1$, the term is $(-1)^1 \binom{n}{1}(n-1)^k$, which subtracts the functions that miss one element, and so on, thereby completing the proof.
-\end{subprove}
+  \begin{subprove}
+    By the definition of surjective functions, a function $f: [k] \to [n]$ is surjective if and only if
+    for every $i \in [n]$, there exists at least one $j \in [k]$ such that $f(j) = i$.
+    Let $C_i$ be defined as follows.
+    \[
+    \xymatrix@R=1.5em@C=2.5em{
+      % Domain nodes [k]
+      *++[o][F-]{1} \xyArc[r]         & *++[o][F-]{1}         & {C_1\text{: there exists a value in $[k]$ that maps to $1$ in $[x]$}}\\
+      *++[o][F-]{2} \xyArc[ddr]       & *++[o][F-]{2}         & {C_2\text{: there exists a value in $[k]$ that maps to $2$ in $[x]$}}\\
+      *++[o][F-]{\vdots} \xyArc[ur]   & *++[o][F-]{\vdots}    & {C_i\text{: there exists a value in $[k]$ that maps to $i$ in $[x]$}}\\
+      *++[o][F-]{k} \xyArc[r]         & *++[o][F-]{n}         
+    }
+    \]
+    Then, $|C|$ is the number of surjective functions by definition. Then, 
+    by the Principle of Inclusion-Exclusion (PIE), the number of surjective functions is given as follows.
+    \begin{align*}
+      |C| &= n^k - \binom{n}{1}(n-1)^k + \binom{n}{2}(n-2)^k - \ldots + (-1)^n \binom{n}{n}(n-n)^k \\
+          &= \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
+    \end{align*}
+    since $\sum_{i=1}^{n} |\sNOT{C_i}|$ is the number of functions from $[k]$ to $[n]$ such that 
+    a single value, $i$, is not in the range for each $i \in [n]$, which is given by $\binom{n}{1}(n-1)^k$.
+  \end{subprove}
+\end{define}
 
 
 
@@ -165,8 +172,8 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
   That is, $A \sOR B = \{x : x \in A \text{ or } x \in B\}$.
 \end{define}
 \begin{define}{Intersection of Sets}[def:intersection][red]
-  Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \cap B$, is the 
-  set of all elements that are in both $A$ and $B$. That is, $A \cap B = \{x : x \in A \text{ and } x \in B\}$.
+  Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \sAND B$, is the 
+  set of all elements that are in both $A$ and $B$. That is, $A \sAND B = \{x : x \in A \text{ and } x \in B\}$.
 \end{define}
 \begin{define}{Set Difference}[def:set-difference][red]
   Let $A$, $B$ be subsets of a universal set $\setUNIV$. The set difference $A \sMINUS B$ is defined to be the set $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \vspace*{5px}\\
@@ -187,7 +194,7 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
   \]
 \end{define}
 \begin{define}{Pairwise Disjoint Sets}[def:pairwise-disjoint][red]
-  Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \cap A_j = \emptyset$.
+  Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \sAND A_j = \emptyset$.
 \end{define}
 
 
@@ -235,7 +242,7 @@ Wbwk, Hmwk assignments, and contents of the textbook.
 \begin{define}{Bipartite Digraph}[def:bipartite-digraph][red]
   A digraph is bipartite if (and only if) there exist subsets $A, B \subseteq V$ such that 
   \begin{enumerate}
-    \item $V=A \cup B$ where $A \cap B=\emptyset$ and $A, B \neq \emptyset$.
+    \item $V=A \cup B$ where $A \sAND B=\emptyset$ and $A, B \neq \emptyset$.
     \item for every $e \in E, e=(a, b)$ for some $a \in A, b \in B$.
   \end{enumerate}
 \end{define}
