@@ -128,13 +128,16 @@
     }
     \]
     Then, $|C|$ is the number of surjective functions by definition. Then, 
-    by the Principle of Inclusion-Exclusion (PIE), the number of surjective functions is given as follows.
+    by \nameref{def:pie}, the number of surjective functions is given as follows.
     \begin{align*}
       |C| &= n^k - \binom{n}{1}(n-1)^k + \binom{n}{2}(n-2)^k - \ldots + (-1)^n \binom{n}{n}(n-n)^k \\
           &= \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
     \end{align*}
     since $\sum_{i=1}^{n} |\sNOT{C_i}|$ is the number of functions from $[k]$ to $[n]$ such that 
-    a single value, $i$, is not in the range for each $i \in [n]$, which is given by $\binom{n}{1}(n-1)^k$.
+    a single value, $i$, is not in the range for each $i \in [n]$, which is given by 
+    $\binom{n}{1}(n-1)^k$. With similar reasoning, 
+    $\sum_{1 \leq i < j \leq n} |\sNOT{C_i} \sAND \sNOT{C_j}| = \binom{n}{2}(n-2)^k$
+    and so on.
   \end{subprove}
 \end{define}
 
