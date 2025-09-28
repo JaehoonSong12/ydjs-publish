@@ -86,6 +86,68 @@
 
 
 
+\begin{define}{Principle of Inclusion-Exclusion}[def:pie][blue]
+  For a finite collection of finite sets $A_1, A_2, \ldots, A_n$, the cardinality of their union is given by the formula:
+  $$
+    \left| \bigcup_{i=1}^{n} A_i \right| = \sum_{\emptyset \neq I \subseteq \{1, \ldots, n\}} (-1)^{|I|-1} \left| \bigcap_{i \in I} A_i \right|
+  $$
+  A complementary form of the principle is often used to count the number of elements that are in none of the specified sets. Let $U$ be the universal set containing all $A_i$. The number of elements in $U$ but in none of the $A_i$ is given by:
+  $$
+    \left| U \setminus \bigcup_{i=1}^{n} A_i \right| = |U| - \left| \bigcup_{i=1}^{n} A_i \right| = \sum_{I \subseteq \{1, \ldots, n\}} (-1)^{|I|} \left| \bigcap_{i \in I} A_i \right|
+  $$
+  where the intersection over an empty index set, $\bigcap_{i \in \emptyset} A_i$, is defined as the universal set $U$.
+\end{define}
+
+
+\begin{thm}{Cardinality of Surjective Functions}[thm:surjective-cardinality][blue]
+  The number of surjective functions from a set $[k] = \{1, 2, \ldots, k\}$ to a set $[n] = \{1, 2, \ldots, n\}$ is given by the formula:
+  $$
+    \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
+  $$
+\end{thm}
+
+\begin{subprove}
+  The proof is constructed using the Principle of Inclusion-Exclusion.
+
+  Let $U$ be the set of all possible functions from $[k]$ to $[n]$. The total number of such functions is $|U| = n^k$, as each of the $k$ elements in the domain can be independently mapped to any of the $n$ elements in the codomain.
+
+  A function is surjective if every element in the codomain $[n]$ is in the image of the function. The number of surjective functions can be found by taking the total number of functions and subtracting the number of functions that are \textit{not} surjective.
+
+  For each $j \in [n]$, let $A_j$ be the set of functions from $[k]$ to $[n]$ for which the element $j$ is \textit{not} in the image. The set of all non-surjective functions is the union $\bigcup_{j=1}^{n} A_j$. The number of surjective functions is therefore $|U| - \left| \bigcup_{j=1}^{n} A_j \right|$.
+
+  By the complementary form of the Principle of Inclusion-Exclusion, this quantity is equivalent to:
+  $$
+    \sum_{I \subseteq [n]} (-1)^{|I|} \left| \bigcap_{j \in I} A_j \right|
+  $$
+
+  The term $\left| \bigcap_{j \in I} A_j \right|$ where $|I| = i$ must be evaluated. This term represents the number of functions for which none of the $i$ elements in the set $I$ are in the image. For such a function, the $k$ elements of the domain must all map to the codomain's remaining $n-i$ elements. The number of ways for this to occur is $(n-i)^k$.
+
+  The sum in the inclusion-exclusion formula is taken over all possible subsets $I \subseteq [n]$. For any given size $i$ (where $0 \le i \le n$), there exist $\binom{n}{i}$ subsets $I$ of that size. For each such subset, the cardinality of the intersection is $(n-i)^k$.
+
+  Therefore, the total count of surjective functions is obtained by summing over all possible sizes $i$ for the set of excluded elements:
+  $$
+    \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
+  $$
+  For $i=0$, the term is $(-1)^0 \binom{n}{0}(n-0)^k = n^k$, which corresponds to $|U|$. For $i=1$, the term is $(-1)^1 \binom{n}{1}(n-1)^k$, which subtracts the functions that miss one element, and so on, thereby completing the proof.
+\end{subprove}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,266 +190,6 @@ Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
   Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \cap A_j = \emptyset$.
 \end{define}
 
-
-% Functions
-\newpage
-
-\begin{define}{Function}[def:function][red]
-  Let $A$ and $B$ be nonempty sets. A \textbf{function} $f$ from $A$ to $B$, denoted $f : A \to B$, 
-  is a relation, $f\in A\sTIMES B$ such that 
-  \begin{enumerate}
-    \item For every $a \in A$, there exists a $b \in B$ such that $f(a) = b$.
-    \item For every $a \in A$ and for all $b, c \in B$, if $f(a) = b$ and $f(a) = c$, then $b = c$.
-    \item The set $A$ is called the \textbf{domain} of $f$, 
-    and the set $B$ is called the \textbf{codomain} of $f$.
-    \item If $f(a)=b$, then $b$ is called the \textbf{image} of $a$ under $f$.
-    \item The function maps $a$ to $b$, and $f$ is often called a mapping.
-  \end{enumerate}
-\end{define}
-
-\begin{define}{Domain and Codomain}[def:domain-codomain][red]
-  If $f : A \to B$ is a function, then $A$ is called the \textbf{domain} of $f$, and $B$ is called the \textbf{codomain} of $f$.
-\end{define}
-
-\begin{define}{Image and Inverse Image}[def:image][red]
-  Let $f : A \to B$ be a function, $C\subseteq A$, and $D\subseteq B$. 
-  The \textbf{image} $f(C)$ is the set $\{f(c) \in B : c \in C\} \subseteq B$.
-  The \textbf{inverse image} $f^{-1}(D)$ is the set $\{a \in A : f(a) \in D\} \subseteq A$.
-\end{define}
-
-\begin{define}{Injective, Surjective, Bijective Functions}[def:injectivity-surjectivity-bijective][red]
-  Let $f : A \to B$ be a function.
-  \begin{itemize}
-    \item $f$ is \textbf{injective} (one-to-one) iff for all $a_1, a_2 \in A$, if $f(a_1) = f(a_2)$, then $a_1 = a_2$.
-    \item $f$ is \textbf{surjective} (onto) iff for every $b \in B$, there exists $a \in A$ such that $f(a) = b$.
-    \item $f$ is \textbf{bijective} iff it is both injective and surjective.
-  \end{itemize}
-\end{define}
-
-
-\begin{define}{Theorem}[def:bijective][red]
-  The inverse relation $f^{-1}$ is a function if and only if $f$ is both injective and surjective.
-  % \begin{subprove}
-  %   ($\Rightarrow$) Assume $f^{-1}$ is a function. To show $f$ is injective, let $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$. 
-  %   Then, $(a_1, f(a_1)) \in f$ and $(a_2, f(a_2)) \in f$. Since $f^{-1}$ is a function, $(f(a_1), a_1) \in f^{-1}$ and $(f(a_2), a_2) \in f^{-1}$. 
-  %   By the definition of a function, $a_1 = a_2$. Thus, $f$ is injective.
-    
-  %   To show $f$ is surjective, let $b \in B$. Since $f^{-1}$ is a function, there exists an $a \in A$ such that $(b, a) \in f^{-1}$. 
-  %   By the definition of inverse relation, $(a, b) \in f$, so $f(a) = b$. Thus, $f$ is surjective.
-    
-  %   ($\Leftarrow$) Assume $f$ is both injective and surjective. To show $f^{-1}$ is a function, let $(b, a_1), (b, a_2) \in f^{-1}$. 
-  %   Then, $(a_1, b), (a_2, b) \in f$. Since $f$ is injective, it follows that $a_1 = a_2$. Thus, $f^{-1}$ satisfies the definition of a function.
-  % \end{subprove}
-
-  \begin{subprove}
-    We consider the inverse relation $f^{-1} \subseteq B \times A$ for the function 
-    \[
-    f : A \to B \quad \text{on nonempty sets $A,B$.}
-    \]
-    Assume $f$ is a bijection, i.e., both one-to-one and onto. Let $b \in B$. Since $f$ is onto, by definition, there exists $a \in A$ with $f(a) = b$. So $(a,b) \in f$ and $(b,a) \in f^{-1}$. Hence for all $b \in B$ there exists $a \in A$ such that $(b,a) \in f^{-1}$. 
-
-    Now let $a, a' \in A$. Suppose $(b,a) \in f^{-1}$ and $(b,a') \in f^{-1}$. Then $(a,b), (a',b) \in f$, so $f(a) = b$ and $f(a') = b$. But $f$ is one-to-one by assumption, and so $a = a'$. Hence we have shown that each $b \in B$ has at least one image under the inverse relation $f^{-1}$ and no more than one. Thus the inverse relation is a function whenever $f$ is a bijection.
-
-    \medskip
-    Conversely, \dots
-  \end{subprove}
-\end{define}
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Problems
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{enumerate} 
-  \newpage
-  \item Let $A$, $B$, $C$, and $D$ be subsets of a universal set $\setUNIV$. 
-  Prove the following propositions.~\footnote{
-    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
-    However, the Gradescope PDF view might not support clickable hyperlinks.
-  }\\
-  \textit{This proves that the three subsets are a partition of $(A \sOR B)$. Partitions will be very important to understanding equivalence relations.}
-  \begin{enumerate}
-    \item $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.~\footnote{
-      I intentionally avoided repetitive or excessive cross-references for better readability.
-    }
-    \begin{subprove}
-      By definition of \nameref{def:set-equality}, $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$ 
-      requires showing both directions of \nameref{def:subset}s, as follows.\vspace*{5px}\\
-      ($\subseteq$) Let $x \in A \sOR B$ be arbitrary. Then, $x \in A$ or $x \in B$ 
-      by definition of \nameref{def:union}. Consider the following cases.
-      \begin{itemize}
-        \item If $x \in A$ and $x \in B$, then $x \in A \sAND B$ by definition of \nameref{def:intersection}.
-        \item If $x \in A$ and $x \notin B$, then $x \in A \sMINUS B$ by definition of \nameref{def:set-difference}.
-        \item If $x \notin A$ and $x \in B$, then $x \in B \sMINUS A$ by definition.
-      \end{itemize}
-      In all cases, $x \in (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$. 
-      Hence, proof by cases, $(A \sOR B) \subseteq (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.\vspace*{5px}\\
-      ($\supseteq$) Let $x \in (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$ be arbitrary. 
-      Then, $x \in A \sAND B$ or $x \in A \sMINUS B$ or $x \in B \sMINUS A$. Consider the following cases.
-      \begin{itemize}
-        \item If $x \in A \sAND B$, then $x \in A$ and $x \in B$ by definition, so $x \in A \sOR B$.
-        \item If $x \in A \sMINUS B$, then $x \in A$ by definition, so $x \in A \sOR B$ by definition.
-        \item If $x \in B \sMINUS A$, then $x \in B$ by definition, so $x \in A \sOR B$ by definition.
-      \end{itemize}
-      Hence, proof by cases, $(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A) \subseteq A \sOR B$.\vspace*{5px}\\
-      Therefore, by ($\subseteq$) and ($\supseteq$), 
-      $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.
-    \end{subprove}
-
-    \item $(A \sAND B)$, $(A \sMINUS B)$, and $(B \sMINUS A)$ are all pairwise disjoint.
-    \begin{subprove}
-      It is required to show that any two of these sets have empty intersection,
-      \begin{itemize}
-        \item To claim $(A \sAND B) \sAND (A \sMINUS B) = \setNULL$,
-        assume there exists $x \in (A \sAND B) \sAND (A \sMINUS B)$ for 
-        the sake of contradiction. Then, $x \in A \sAND B$ and $x \in A \sMINUS B$. 
-        Since $x \in A \sAND B$, it follows that $x \in A$ and $x \in B$ by definition of \nameref{def:intersection}. 
-        Since $x \in A \sMINUS B$, it follows that $x \in A$ and $x \notin B$ by definition of \nameref{def:set-difference}, 
-        which contradicts $x \in B$. Therefore, $(A \sAND B) \sAND (A \sMINUS B) = \setNULL$.
-        \item To claim $(A \sAND B) \sAND (B \sMINUS A) = \setNULL$, without loss of generality, 
-        it is symmetrical to the previous case, with the roles of sets $A$ and $B$ swapped.
-        Hence, trivially, $(A \sAND B) \sAND (B \sMINUS A) = \setNULL$.
-        \item To claim $(A \sMINUS B) \sAND (B \sMINUS A) = \setNULL$,
-        assume there exists $x \in (A \sMINUS B) \sAND (B \sMINUS A)$ for 
-        the sake of contradiction. Then, $x \in A \sMINUS B$ and $x \in B \sMINUS A$. 
-        Since $x \in A \sMINUS B$, it follows that $x \in A$ and $x \notin B$ by definition of \nameref{def:set-difference}. 
-        Since $x \in B \sMINUS A$, it follows that $x \in B$ and $x \notin A$ by definition of \nameref{def:set-difference}, 
-        which contradicts both $x \notin B$ and $x \in A$ at the same time. 
-        Therefore, $(A \sMINUS B) \sAND (B \sMINUS A) = \setNULL$.
-      \end{itemize}
-      Therefore, $(A \sAND B)$, $(A \sMINUS B)$, and $(B \sMINUS A)$ are all pairwise disjoint by definition of \nameref{def:pairwise-disjoint}.
-    \end{subprove}
-  \end{enumerate}
-  
-
-
-
-
-  \newpage
-  \item Let $A$, $B$, $C$, and $D$ be subsets of a universal set $\setUNIV$. 
-  Prove or disprove the following propositions.~\footnote{
-    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
-    However, the Gradescope PDF view might not support clickable hyperlinks.
-  }\\
-  \textit{Likewise, Cartesian product of sets (above) and the power set of a set (below) will be very important in the next part of the course.}
-  \begin{enumerate}
-    \item $(A \sTIMES B) \sAND(C \sTIMES D) \subseteq(A \sAND C) \sTIMES(B \sAND D)$.
-    \begin{subprove}
-      Let $(x,y) \in (A \sTIMES B) \sAND(C \sTIMES D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
-      Then, $(x,y) \in A \sTIMES B$ and $(x,y) \in C \sTIMES D$. 
-      Since $(x,y) \in A \sTIMES B$, it follows that $x \in A$ 
-      and $y \in B$ by definition of \nameref{def:cartesian-product}. Since $(x,y) \in C \sTIMES D$, it follows 
-      that $x \in C$ and $y \in D$ as well.
-      Thus, $x \in A \sAND C$ 
-      and $y \in B \sAND D$ by definition of \nameref{def:intersection}, 
-      so $(x,y) \in (A \sAND C) \sTIMES(B \sAND D)$.
-      Hence, $(A \sTIMES B) \sAND(C \sTIMES D) \subseteq(A \sAND C) \sTIMES(B \sAND D)$.
-    \end{subprove}
-
-    \item $(A \sAND C) \sTIMES(B \sAND D) \subseteq(A \sTIMES B) \sAND(C \sTIMES D)$.
-    \begin{subprove}
-      Let $(x,y) \in (A \sAND C) \sTIMES(B \sAND D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
-      Then, $x \in A \sAND C$ and $y \in B \sAND D$ by definition of \nameref{def:cartesian-product}. 
-      Since $x \in A \sAND C$, it follows that $x \in A$ and $x \in C$ by definition of \nameref{def:intersection}. 
-      Since $y \in B \sAND D$, it follows that $y \in B$ and $y \in D$.
-      Therefore, $(x,y) \in A \sTIMES B$ and $(x,y) \in C \sTIMES D$ since logical AND (\AND) is commutative.
-      Thus, $(x,y) \in (A \sTIMES B) \sAND(C \sTIMES D)$.
-      Hence, $(A \sAND C) \sTIMES(B \sAND D) \subseteq(A \sTIMES B) \sAND(C \sTIMES D)$.
-    \end{subprove}
-
-    \item $(A \sTIMES B) \sOR(C \sTIMES D) \subseteq(A \sOR C) \sTIMES(B \sOR D)$.
-    \begin{subprove}
-      Let $(x,y) \in (A \sTIMES B) \sOR(C \sTIMES D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
-      Then, $(x,y) \in A \sTIMES B$ or $(x,y) \in C \sTIMES D$ by definition of \nameref{def:union}. 
-      \begin{itemize}
-        \item If $(x,y) \in A \sTIMES B$, then $x \in A$ and $y \in B$ by definition of \nameref{def:cartesian-product}. \label{prob:proof-2}
-        Since $x \in A$, it follows that $x \in A \sOR C$ by definition of \nameref{def:union}. 
-        Since $y \in B$, it follows that $y \in B \sOR D$ by definition of \nameref{def:union}. 
-        Therefore, $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$.
-        \item If $(x,y) \in C \sTIMES D$, without loss of generality, it is symmetrical to the previous case.
-        Therefore, it trivially implies $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$.
-      \end{itemize}
-      In both cases, $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$. 
-      Hence, proof by cases, $(A \sTIMES B) \sOR(C \sTIMES D) \subseteq(A \sOR C) \sTIMES(B \sOR D)$.
-    \end{subprove}
-
-    \item $(A \sOR C) \sTIMES(B \sOR D) \subseteq(A \sTIMES B) \sOR(C \sTIMES D)$.
-    \begin{subdisprove}
-      Let $A=\{1\}, B=\{2\}, C=\{3\}, D=\{4\}$ be subsets of a universal set $\setUNIV$ 
-      for the sake of counterexample. 
-      Then, $(A \sOR C) \sTIMES(B \sOR D)=\{1,3\} \sTIMES \{2,4\}=\{(1,2),(1,4),(3,2),(3,4)\}$ 
-      and $(A \sTIMES B) \sOR(C \sTIMES D)=\{(1,2)\} \sOR \{(3,4)\}=\{(1,2),(3,4)\}$. 
-      Since $(1,4) \in (A \sOR C) \sTIMES(B \sOR D)$ but $(1,4) \notin (A \sTIMES B) \sOR(C \sTIMES D)$, 
-      it follows that $(A \sOR C) \sTIMES(B \sOR D) \not\subseteq (A \sTIMES B) \sOR(C \sTIMES D)$. 
-      Therefore, by counterexample, the statement is \textbf{false}.
-    \end{subdisprove}
-  \end{enumerate}
-
-
-
-
-
-  \newpage
-  \item Let $A$, $B$ be subsets of a universal set $\setUNIV$. 
-  Prove or disprove the following propositions.~\footnote{
-    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
-    However, the Gradescope PDF view might not support clickable hyperlinks.
-  }
-  \begin{enumerate}
-    \item $\sPOWER(A \sAND B) \subseteq \sPOWER{A} \sAND \sPOWER{B}$.
-    \begin{subprove}
-      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER(A \sAND B)$ be arbitrary for the sake of directly showing ($\subseteq$). 
-      Then, $X \subseteq A \sAND B$ by definition of \nameref{def:power-set}. 
-      Since $X \subseteq A \sAND B$, it follows that 
-      $X \subseteq A$ and $X \subseteq B$ by definition of \nameref{def:intersection}. Therefore, $X \in \sPOWER{A}$ 
-      and $X \in \sPOWER{B}$, so $X \in \sPOWER{A} \sAND \sPOWER{B}$.
-      Hence, $\sPOWER(A \sAND B) \subseteq \sPOWER{A} \sAND \sPOWER{B}$.
-    \end{subprove}
-    
-    \item $\sPOWER{A} \sAND \sPOWER{B} \subseteq \sPOWER(A \sAND B)$.
-    \begin{subprove}
-      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER{A} \sAND \sPOWER{B}$ be arbitrary for the sake of directly showing ($\subseteq$). 
-      Then, $X \in \sPOWER{A}$ and $X \in \sPOWER{B}$ by definition of \nameref{def:intersection}. 
-      Since $X \in \sPOWER{A}$, it follows that $X \subseteq A$ by definition of \nameref{def:power-set}. 
-      Without loss of generality, (trivial) $X \subseteq B$.
-      Since $X \subseteq A$ and $X \subseteq B$, it follows that $X \subseteq A \sAND B$.
-      Therefore, $X \in \sPOWER(A \sAND B)$.
-      Hence, $\sPOWER{A} \sAND \sPOWER{B} \subseteq \sPOWER(A \sAND B)$.
-    \end{subprove}
-
-    \item $\sPOWER(A \sOR B) \subseteq \sPOWER{A} \sOR \sPOWER{B}$.
-    \begin{subdisprove}
-      Let $A=\{1\}, B=\{2\}$ be subsets of a universal set $\setUNIV$ 
-      for the sake of counterexample. 
-      Then, $\sPOWER(A \sOR B)=\sPOWER(\{1,2\})=\{\setNULL,\{1\},\{2\},\{1,2\}\}$ by definition of \nameref{def:power-set}
-      and $\sPOWER{A} \sOR \sPOWER{B}=\{\setNULL,\{1\}\} \sOR \{\setNULL,\{2\}\}=\{\setNULL,\{1\},\{2\}\}$. 
-      Since $\{1,2\} \in \sPOWER(A \sOR B)$ but $\{1,2\} \notin \sPOWER{A} \sOR \sPOWER{B}$, 
-      it follows that $\sPOWER(A \sOR B) \not\subseteq \sPOWER{A} \sOR \sPOWER{B}$. 
-      Therefore, by the counterexample, the statement is \textbf{false}.
-    \end{subdisprove}
-
-    \item $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
-    \begin{subprove}
-      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER{A} \sOR \sPOWER{B}$ be arbitrary for the sake of directly showing ($\subseteq$). 
-      Then, $X \in \sPOWER{A}$ or $X \in \sPOWER{B}$ by definition of \nameref{def:union}. 
-      \begin{define}{Subset of Union: $A \subseteq \sOR{A}{B}$}[claim:subset-union][red]
-        \begin{subprove}[red]
-            Let $x\in U$, assume $x\in A$. Then the statement \inlinequote{$x\in A$ or $x\in B$} is true.
-            Hence, by definition of \nameref{def:union}, $\sOR{A}{B}=\{x\in U\LDIV x\in A$ or $x\in B\}$, $x\in \sOR{A}{B}$.
-            Thus, $A \subseteq \sOR{A}{B}$.
-        \end{subprove}
-      \end{define}
-      If $X \in \sPOWER{A}$, then $X \subseteq A \subseteq A \sOR B$ by definition of \nameref{def:power-set} and the short claim above, \nameref{claim:subset-union}, 
-      so $X \in \sPOWER(A \sOR B)$.
-      Without loss of generality, the case of $X \in \sPOWER{B}$ trivially implies $X \in \sPOWER(A \sOR B)$ as well. 
-      In both cases, $X \in \sPOWER(A \sOR B)$. 
-      Hence, proof by cases, $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
-    \end{subprove}
-  \end{enumerate}
-\end{enumerate}
 
 
 
@@ -549,235 +351,6 @@ Wbwk, Hmwk assignments, and contents of the textbook.
   Let $A$ be a nonempty set. The diagonal relation on $A$ is the set $\Delta = \{(a,a) \mid a \in A\}$.
 \end{define}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Problems
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{enumerate}
-  \item Prove that if $R$ is an equivalence relation on a nonempty set $A$, then the inverse relation $R^{-1}$ is also an equivalence relation on $A$.
-  \begin{subprove}
-    Let $R$ be an equivalence relation on a nonempty set $A$. 
-    To show that $R^{-1}$ is an equivalence relation, it is required to verify that $R^{-1}$ satisfies reflexivity, symmetry, and transitivity by definition of \nameref{def:equivalence-relation}.
-    \begin{itemize}
-      \item \textbf{Reflexive:} Since $R$ is reflexive by definition of \nameref{def:relation-properties}, for all $a \in A$, $(a,a) \in R$. 
-      Since $(a,a) \in R$, it follows that $(a,a) \in R^{-1}$ by definition of \nameref{def:inverse-relation}.
-      \item \textbf{Symmetric:} Let $(a,b) \in R^{-1}$ be arbitrary. Then $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
-      Since $R$ is symmetric by definition of \nameref{def:relation-properties}, it follows that $(a,b) \in R$. 
-      Therefore, $(b,a) \in R^{-1}$ by definition of \nameref{def:inverse-relation}.
-      \item \textbf{Transitive:} Let $(a,b), (b,c) \in R^{-1}$ be arbitrary. Then $(b,a), (c,b) \in R$ by definition of \nameref{def:inverse-relation}. 
-      Since $R$ is transitive by definition of \nameref{def:relation-properties}, it follows that $(c,a) \in R$. 
-      Therefore, $(a,c) \in R^{-1}$ by definition of \nameref{def:inverse-relation}.
-    \end{itemize}
-    Therefore, $R^{-1}$ is an equivalence relation by definition of \nameref{def:equivalence-relation}.
-  \end{subprove}
-
-  \item Suppose that $R$ and $S$ are equivalence relations on the nonempty set $A$. Prove or disprove:
-  \begin{enumerate}
-    \item The set $R \sOR S$ is an equivalence relation.
-      \begin{subdisprove}
-        Let $A = \{1,2,3\}$ be a nonempty set. Let $R$ and $S$ be relations on $A$ where
-        $R = \{(1,1),(2,2),(3,3),(1,2),(2,1)\}$ and
-        $S = \{(2,2),(3,3),(2,3),(3,2)\}$. 
-        Then $(1,2) \in R \sOR S$ and $(2,3) \in R \sOR S$ by definition of \nameref{def:union}, 
-        but $(1,3) \notin R \sOR S$. 
-        Since $(1,2), (2,3) \in R \sOR S$ but $(1,3) \notin R \sOR S$, 
-        it follows that $R \sOR S$ is not transitive by definition of \nameref{def:relation-properties}.
-        Therefore, $R \sOR S$ is not an equivalence relation by definition of \nameref{def:equivalence-relation}.
-      \end{subdisprove}
-    \item The set $R \sAND S$ is an equivalence relation.
-      \begin{subprove}
-        Let $R$ and $S$ be equivalence relations on a nonempty set $A$. 
-        To show that $R \sAND S$ is an equivalence relation, it is required to verify that $R \sAND S$ satisfies reflexivity, symmetry, and transitivity by definition of \nameref{def:equivalence-relation}.
-        \begin{itemize}
-          \item \textbf{Reflexive:} Since $R$ and $S$ are reflexive by definition of \nameref{def:relation-properties}, 
-          for all $a \in A$, $(a,a) \in R$ and $(a,a) \in S$. 
-          Therefore, $(a,a) \in R \sAND S$ by definition of \nameref{def:intersection}.
-          \item \textbf{Symmetric:} Let $(a,b) \in R \sAND S$ be arbitrary. Then $(a,b) \in R$ and $(a,b) \in S$ by definition of \nameref{def:intersection}. 
-          Since $R$ and $S$ are symmetric by definition of \nameref{def:relation-properties}, it follows that $(b,a) \in R$ and $(b,a) \in S$. 
-          Therefore, $(b,a) \in R \sAND S$ by definition of \nameref{def:intersection}.
-          \item \textbf{Transitive:} Let $(a,b), (b,c) \in R \sAND S$ be arbitrary. Then $(a,b), (b,c) \in R$ and $(a,b), (b,c) \in S$ by definition of \nameref{def:intersection}. 
-          Since $R$ and $S$ are transitive by definition of \nameref{def:relation-properties}, it follows that $(a,c) \in R$ and $(a,c) \in S$. 
-          Therefore, $(a,c) \in R \sAND S$ by definition of \nameref{def:intersection}.
-        \end{itemize}
-        Therefore, $R \sAND S$ is an equivalence relation by definition of \nameref{def:equivalence-relation}.
-      \end{subprove}
-  \end{enumerate}
-
-  \item Let $R$ be a relation on a nonempty set $A$.
-  \begin{enumerate}
-    \item Prove that a relation $R$ on a set $A$ is symmetric if and only if $R=R^{-1}$.
-      \begin{subprove}
-        Let $R$ be a relation on a nonempty set $A$. 
-        The proof is by showing both directions of the biconditional.
-        \begin{itemize}
-          \item ($\Rightarrow$) Assume $R$ is symmetric. Let $(a,b) \in R$ be arbitrary. 
-          Since $R$ is symmetric by definition of \nameref{def:relation-properties}, it follows that $(b,a) \in R$. 
-          Therefore, $(a,b) \in R^{-1}$ by definition of \nameref{def:inverse-relation}. 
-          Since $(a,b) \in R$ implies $(a,b) \in R^{-1}$, it follows that $R \subseteq R^{-1}$ by definition of \nameref{def:subset}.
-          Conversely, let $(a,b) \in R^{-1}$ be arbitrary. Then $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
-          Since $R$ is symmetric, it follows that $(a,b) \in R$. 
-          Since $(a,b) \in R^{-1}$ implies $(a,b) \in R$, it follows that $R^{-1} \subseteq R$ by definition of \nameref{def:subset}.
-          Therefore, $R = R^{-1}$ by definition of \nameref{def:set-equality}.
-          \item ($\Leftarrow$) Assume $R = R^{-1}$. Let $(a,b) \in R$ be arbitrary. 
-          Since $R = R^{-1}$, it follows that $(a,b) \in R^{-1}$. 
-          Therefore, $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
-          Since $(a,b) \in R$ implies $(b,a) \in R$, it follows that $R$ is symmetric by definition of \nameref{def:relation-properties}.
-        \end{itemize}
-        Therefore, $R$ is symmetric if and only if $R = R^{-1}$.
-      \end{subprove}
-    \item Prove that a relation $R$ on a set $A$ is antisymmetric if and only if $R \sAND R^{-1} \subseteq \Delta$.
-      \begin{subprove}
-        Let $R$ be a relation on a nonempty set $A$ and let $\Delta$ be the diagonal relation on $A$ by definition of \nameref{def:diagonal-relation}.
-        The proof is by showing both directions of the biconditional.
-        \begin{itemize}
-          \item ($\Rightarrow$) Assume $R$ is antisymmetric. Let $(a,b) \in R \sAND R^{-1}$ be arbitrary. 
-          Then $(a,b) \in R$ and $(a,b) \in R^{-1}$ by definition of \nameref{def:intersection}. 
-          Since $(a,b) \in R^{-1}$, it follows that $(b,a) \in R$ by definition of \nameref{def:inverse-relation}. 
-          Since $(a,b) \in R$ and $(b,a) \in R$, and $R$ is antisymmetric by definition of \nameref{def:relation-properties}, 
-          it follows that $a = b$. Therefore, $(a,b) = (a,a) \in \Delta$ by definition of \nameref{def:diagonal-relation}.
-          Since $(a,b) \in R \sAND R^{-1}$ implies $(a,b) \in \Delta$, it follows that $R \sAND R^{-1} \subseteq \Delta$ by definition of \nameref{def:subset}.
-          \item ($\Leftarrow$) Assume $R \sAND R^{-1} \subseteq \Delta$. Let $(a,b) \in R$ and $(b,a) \in R$ be arbitrary. 
-          Since $(b,a) \in R$, it follows that $(a,b) \in R^{-1}$ by definition of \nameref{def:inverse-relation}. 
-          Since $(a,b) \in R$ and $(a,b) \in R^{-1}$, it follows that $(a,b) \in R \sAND R^{-1}$ by definition of \nameref{def:intersection}. 
-          Since $R \sAND R^{-1} \subseteq \Delta$, it follows that $(a,b) \in \Delta$ by definition of \nameref{def:subset}. 
-          Therefore, $a = b$ by definition of \nameref{def:diagonal-relation}. 
-          Since $(a,b) \in R$ and $(b,a) \in R$ implies $a = b$, it follows that $R$ is antisymmetric by definition of \nameref{def:relation-properties}.
-        \end{itemize}
-        Therefore, $R$ is antisymmetric if and only if $R \sAND R^{-1} \subseteq \Delta$.
-      \end{subprove}
-  \end{enumerate}
-
-
-  \newpage
-  \item Let $R$ be a relation on the nonempty set $A$. Prove or disprove:
-  \begin{enumerate}
-    \item The relation $R$ could be neither reflexive nor irreflexive.
-      \begin{subprove}
-        Let $A = \{1,2\}$ be a nonempty set. Let $R = \{(1,1)\}$ be a relation on $A$. 
-        Since $(1,1) \in R$ but $(2,2) \notin R$, it follows that $R$ is not reflexive by definition of \nameref{def:relation-properties}. 
-        Since $(1,1) \in R$, it follows that $R$ is not irreflexive by definition of \nameref{def:irreflexive-relation}. 
-        Therefore, $R$ is neither reflexive nor irreflexive.
-      \end{subprove}
-    \item The relation $R$ is reflexive if and only if $\sNOT{R}$ is irreflexive. 
-      \begin{subprove}
-        Let $R$ be a relation on a nonempty set $A$. 
-        The proof is by showing both directions of the biconditional.
-        \begin{itemize}
-          \item ($\Rightarrow$) Assume $R$ is reflexive. Let $a \in A$ be arbitrary. 
-          Since $R$ is reflexive by definition of \nameref{def:relation-properties}, it follows that $(a,a) \in R$. 
-          Therefore, $(a,a) \notin \sNOT{R}$ by definition of \nameref{def:complementary-set}. 
-          Since for all $a \in A$, $(a,a) \notin \sNOT{R}$, it follows that $\sNOT{R}$ is irreflexive by definition of \nameref{def:irreflexive-relation}.
-          \item ($\Leftarrow$) Assume $\sNOT{R}$ is irreflexive. Let $a \in A$ be arbitrary. 
-          Since $\sNOT{R}$ is irreflexive by definition of \nameref{def:irreflexive-relation}, it follows that $(a,a) \notin \sNOT{R}$. 
-          Therefore, $(a,a) \in R$ by definition of \nameref{def:complementary-set}. 
-          Since for all $a \in A$, $(a,a) \in R$, it follows that $R$ is reflexive by definition of \nameref{def:relation-properties}.
-        \end{itemize}
-        Therefore, $R$ is reflexive if and only if $\sNOT{R}$ is irreflexive.
-      \end{subprove}
-    \item If $R$ is irreflexive, then so is $R^2=R \circ R$.
-      \begin{subdisprove}
-        Let $A = \{1,2\}$ be a nonempty set. Let $R = \{(1,2),(2,1)\}$ be a relation on $A$. 
-        Since $(1,1) \notin R$ and $(2,2) \notin R$, it follows that $R$ is irreflexive by definition of \nameref{def:irreflexive-relation}. 
-        However, $R^2 = R \circ R = \{(1,1),(2,2)\}$ by definition of composition. 
-        Since $(1,1) \in R^2$ and $(2,2) \in R^2$, it follows that $R^2$ is not irreflexive by definition of \nameref{def:irreflexive-relation}. 
-        Therefore, the statement is false by counterexample.
-      \end{subdisprove}
-  \end{enumerate}
-
-  \newpage
-  \item Let $R$, $S$, and $T$ be relations on $\setZ$ defined as:
-  \begin{itemize}
-    \item $a R b$ if and only if $a \equiv b \pmod{2}$,
-    \item $a S b$ if and only if $a \equiv b \pmod{3}$,
-    \item $a T b$ if and only if $a \equiv b \pmod{6}$.
-  \end{itemize}
-  \begin{enumerate}
-    \item List the equivalence classes for $R$, $S$, and $T$.
-      \begin{subanswer}
-        Let $R$, $S$, and $T$ be the relations on $\setZ$ as defined above.
-        \begin{itemize}
-          \item The equivalence classes of $R$ are:
-          \begin{itemize}
-            \item $[0]_R = \{2k \mid k \in \setZ\}$
-            \item $[1]_R = \{2k+1 \mid k \in \setZ\}$
-          \end{itemize}
-          \item The equivalence classes of $S$ are:
-          \begin{itemize}
-            \item $[0]_S = \{3k \mid k \in \setZ\}$
-            \item $[1]_S = \{3k+1 \mid k \in \setZ\}$
-            \item $[2]_S = \{3k+2 \mid k \in \setZ\}$
-          \end{itemize}
-          \item The equivalence classes of $T$ are:
-          \begin{itemize}
-            \item $[0]_T = \{6k \mid k \in \setZ\}$
-            \item $[1]_T = \{6k+1 \mid k \in \setZ\}$
-            \item $[2]_T = \{6k+2 \mid k \in \setZ\}$
-            \item $[3]_T = \{6k+3 \mid k \in \setZ\}$
-            \item $[4]_T = \{6k+4 \mid k \in \setZ\}$
-            \item $[5]_T = \{6k+5 \mid k \in \setZ\}$
-          \end{itemize}
-        \end{itemize}
-      \end{subanswer}
-    \item Find the equivalence classes of $R \sAND S$.
-      \begin{subanswer}
-        Let $R$ and $S$ be the relations on $\setZ$ as defined above. 
-        Since $R \sAND S$ is the relation where $a (R \sAND S) b$ if and only if $a \equiv b \pmod{2}$ and $a \equiv b \pmod{3}$, 
-        it follows that $R \sAND S$ is congruence modulo $6$ by the Chinese Remainder Theorem. 
-        Therefore, the equivalence classes of $R \sAND S$ are:
-        \begin{itemize}
-          \item $[0]_{R \sAND S} = \{6k \mid k \in \setZ\}$
-          \item $[1]_{R \sAND S} = \{6k+1 \mid k \in \setZ\}$
-          \item $[2]_{R \sAND S} = \{6k+2 \mid k \in \setZ\}$
-          \item $[3]_{R \sAND S} = \{6k+3 \mid k \in \setZ\}$
-          \item $[4]_{R \sAND S} = \{6k+4 \mid k \in \setZ\}$
-          \item $[5]_{R \sAND S} = \{6k+5 \mid k \in \setZ\}$
-        \end{itemize}
-      \end{subanswer}
-    \item Prove the partition resulting from $T$ is a refinement of the partition resulting from $S$.
-      \begin{subprove}
-        Let $T$ and $S$ be the relations on $\setZ$ as defined above. 
-        To show that the partition resulting from $T$ is a refinement of the partition resulting from $S$, 
-        it is required to show that every equivalence class of $T$ is contained in some equivalence class of $S$ by definition of \nameref{def:partition-refinement}.
-        Let $[k]_T$ be an arbitrary equivalence class of $T$ where $0 \leq k < 6$. 
-        Since $a \in [k]_T$ if and only if $a \equiv k \pmod{6}$ by definition of \nameref{def:equivalence-class}, 
-        and since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{3}$ by definition of \nameref{def:congruence-modulo}, 
-        it follows that $a \in [k \bmod 3]_S$ by definition of \nameref{def:equivalence-class}. 
-        Therefore, $[k]_T \subseteq [k \bmod 3]_S$ by definition of \nameref{def:subset}. 
-        Since this holds for all equivalence classes of $T$, it follows that the partition resulting from $T$ is a refinement of the partition resulting from $S$ by definition of \nameref{def:partition-refinement}.
-      \end{subprove}
-    \item What is the relationship between the partition resulting from $T$ and the partition resulting from $R$? Justify your answer.
-      \begin{subanswer}
-        Let $T$ and $R$ be the relations on $\setZ$ as defined above. 
-        The partition resulting from $T$ is a refinement of the partition resulting from $R$. 
-        This is because for each equivalence class $[k]_T$ of $T$ where $0 \leq k < 6$, 
-        since $a \in [k]_T$ if and only if $a \equiv k \pmod{6}$ by definition of \nameref{def:equivalence-class}, 
-        and since $a \equiv k \pmod{6}$ implies $a \equiv k \pmod{2}$ by definition of \nameref{def:congruence-modulo}, 
-        it follows that $a \in [k \bmod 2]_R$ by definition of \nameref{def:equivalence-class}. 
-        Therefore, $[k]_T \subseteq [k \bmod 2]_R$ by definition of \nameref{def:subset}, 
-        and the partition resulting from $T$ is a refinement of the partition resulting from $R$ by definition of \nameref{def:partition-refinement}.
-      \end{subanswer}
-    \item What is the relationship between $S$ and $T$? Between $R$ and $T$? Justify your answers.
-      \begin{subanswer}
-        Let $R$, $S$, and $T$ be the relations on $\setZ$ as defined above. 
-        Since congruence modulo $6$ implies congruence modulo $3$ and congruence modulo $2$ by definition of \nameref{def:congruence-modulo}, 
-        it follows that $T \subseteq S$ and $T \subseteq R$ by definition of \nameref{def:subset}. 
-        However, $S \not\subseteq T$ and $R \not\subseteq T$ since congruence modulo $3$ does not imply congruence modulo $6$, 
-        and congruence modulo $2$ does not imply congruence modulo $6$.
-      \end{subanswer}
-    \item Is there any relationship between $R$ and $S$? Justify your answers.
-      \begin{subanswer}
-        Let $R$ and $S$ be the relations on $\setZ$ as defined above. 
-        Since congruence modulo $2$ does not imply congruence modulo $3$ and congruence modulo $3$ does not imply congruence modulo $2$, 
-        it follows that $R \not\subseteq S$ and $S \not\subseteq R$ by definition of \nameref{def:subset}. 
-        Since $R \neq S$ (they have different equivalence classes), 
-        it follows that $R$ and $S$ are independent equivalence relations with no subset relationship between them.
-      \end{subanswer}
-  \end{enumerate}
-
-
-
-
-
-\end{enumerate}
 
 
 
