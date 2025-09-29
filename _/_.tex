@@ -109,13 +109,13 @@ The truth values for the following propositions are determined.
   \textbf{True}. For any two subsets $X, Y \subseteq A$, their least upper bound (LUB) is their union ($X \cup Y$) and their greatest lower bound (GLB) is their intersection ($X \cap Y$).
 
   \item There exist an infinite lattice which has a least but not a greatest element. \\
-  \textbf{True}. The set of positive integers with the divisibility relation, $(\mathbb{Z}^{+}, \mid)$, is an infinite lattice. It has a least element (1) but no greatest element.
+  \textbf{True}. The set of positive integers with the divisibility relation, $(\setZ^{+}, \mid)$, is an infinite lattice. It has a least element (1) but no greatest element.
 
   \item If a poset is a lattice, then it is a chain. \\
   \textbf{False}. A lattice does not require every pair of elements to be comparable. For example, in the lattice $(\mathcal{P}(\{a, b\}), \subseteq)$, the elements $\{a\}$ and $\{b\}$ are incomparable.
 
   \item There exist an infinite lattice which has a greatest but not a least element. \\
-  \textbf{True}. The set of negative integers with the divisibility relation, $(\mathbb{Z}^{-}, \mid)$, is a lattice with a greatest element (-1) but no least element.
+  \textbf{True}. The set of negative integers with the divisibility relation, $(\setZ^{-}, \mid)$, is a lattice with a greatest element (-1) but no least element.
 
   \item Every finite lattice has a greatest element. \\
   \textbf{True}. This is the dual to proposition 1. By repeatedly taking the least upper bound (LUB) of elements, one can find a greatest element for the entire finite set.
@@ -138,7 +138,7 @@ The truth values for the following propositions are determined.
   \textbf{True}. This property can be proven by induction on the size of the subset, repeatedly applying the pairwise GLB operation which is guaranteed to exist in a lattice.
 
   \item There exist an infinite lattice which has neither a least nor a greatest element. \\
-  \textbf{True}. The set of integers with the standard order, $(\mathbb{Z}, \leq)$, is a chain (and therefore a lattice) with no least and no greatest element.
+  \textbf{True}. The set of integers with the standard order, $(\setZ, \leq)$, is a chain (and therefore a lattice) with no least and no greatest element.
 
 
 
@@ -154,7 +154,7 @@ The truth values for the following propositions are determined.
   \item The poset $(\{1,2,3,4,5\}, \mid)$ is a lattice. \\
   \textbf{False}. A lattice requires a LUB for every pair to exist \emph{within the set}. The pair $\{2, 3\}$ has a least common multiple of 6, which is not in the set.
   
-  \item The poset $(\mathbb{Z}^{+}, \mid)$ is a lattice. \\
+  \item The poset $(\setZ^{+}, \mid)$ is a lattice. \\
   \textbf{True}. For any two positive integers $a, b$, their GLB is their greatest common divisor ($\text{gcd}(a,b)$) and their LUB is their least common multiple ($\text{lcm}(a,b)$), both of which always exist.
 
   \item There exist an infinite lattice which has both a least and a greatest element. \\
@@ -511,55 +511,55 @@ The truth values for the following propositions concerning partially ordered set
   \item If $a, b \in \mathbb{R}$, then $a$ and $b$ are comparable in the poset $(\mathbb{R}, \leq)$. \\
   \textbf{True}. For any two real numbers $a$ and $b$, it is always true that either $a \leq b$ or $b \leq a$. This is the definition of a total order.
 
-  \item The elements 7 and 12 are comparable in the poset $(\mathbb{Z}^{+}, \mid)$. \\
+  \item The elements 7 and 12 are comparable in the poset $(\setZ^{+}, \mid)$. \\
   \textbf{False}. Neither $7 \mid 12$ nor $12 \mid 7$ is true. Since neither element divides the other, they are incomparable.
 
-  \item The elements 10 and 5 are comparable in the poset $(\mathbb{Z}^{+}, \mid)$. \\
+  \item The elements 10 and 5 are comparable in the poset $(\setZ^{+}, \mid)$. \\
   \textbf{True}. While $10 \nmid 5$, it is true that $5 \mid 10$. Since one of the relations holds, they are comparable.
 
-  \item The sets $\{1,2,3\}$ and $\{2,3,4\}$ are comparable in the poset $(\mathcal{P}(\mathbb{Z}), \subseteq)$. \\
+  \item The sets $\{1,2,3\}$ and $\{2,3,4\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
   \textbf{False}. Neither set is a subset of the other, so they are incomparable.
 
-  \item The dual poset of $(\mathbb{Z}, \mid)$ is $(\mathbb{Z}, \nmid)$. \\
+  \item The dual poset of $(\setZ, \mid)$ is $(\setZ, \nmid)$. \\
   \textbf{False}. The dual of the relation $a \mid b$ is $b \mid a$. The symbol $\nmid$ denotes the negation of the relation, not its dual.
 
-  \item The sets $\{1,2\}$ and $\{1,2,3,4,5\}$ are comparable in the poset $(\mathcal{P}(\mathbb{Z}), \subseteq)$. \\
+  \item The sets $\{1,2\}$ and $\{1,2,3,4,5\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
   \textbf{True}. The set $\{1, 2\}$ is a subset of $\{1, 2, 3, 4, 5\}$, so they are comparable.
 
-  \item The dual poset of $(\mathbb{Z}, \leq)$ is $(\mathbb{Z},>)$. \\
+  \item The dual poset of $(\setZ, \leq)$ is $(\setZ,>)$. \\
   \textbf{False}. The dual of the relation $\leq$ is $\geq$. The relation $>$ is not a partial order because it is not reflexive.
 
-  \item The sets $\{1,3,5\}$ and $\{2,4\}$ are comparable in the poset $(\mathcal{P}(\mathbb{Z}), \subseteq)$. \\
+  \item The sets $\{1,3,5\}$ and $\{2,4\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
   \textbf{False}. The sets are disjoint, so neither is a subset of the other. They are incomparable.
 
-  \item The relation $\neq$ is a partial ordering of $\mathbb{Z}$. \\
+  \item The relation $\neq$ is a partial ordering of $\setZ$. \\
   \textbf{False}. A partial order must be reflexive, but $a \neq a$ is always false.
 
-  \item The set $\emptyset$ is comparable to every element in the poset $(\mathcal{P}(\mathbb{Z}), \subseteq)$. \\
+  \item The set $\emptyset$ is comparable to every element in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
   \textbf{True}. The empty set is a subset of every set, so $\emptyset \subseteq A$ is true for any set $A$, making them comparable.
 
-  \item The elements 13 and 39 are comparable in the poset $(\mathbb{Z}^{+}, \mid)$. \\
+  \item The elements 13 and 39 are comparable in the poset $(\setZ^{+}, \mid)$. \\
   \textbf{True}. Since $13 \mid 39$, the elements are comparable.
 
-  \item The sets $\{3,5,7\}$ and $\{7\}$ are comparable in the poset $(\mathcal{P}(\mathbb{Z}), \subseteq)$. \\
+  \item The sets $\{3,5,7\}$ and $\{7\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
   \textbf{True}. The set $\{7\}$ is a subset of $\{3, 5, 7\}$, so they are comparable.
 
-  \item The element 1 is comparable to all other elements in the poset $(\mathbb{Z}^{+}, \mid)$. \\
-  \textbf{True}. The number 1 divides every positive integer ($1 \mid k$ for all $k \in \mathbb{Z}^{+}$), making it comparable to all other elements.
+  \item The element 1 is comparable to all other elements in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{True}. The number 1 divides every positive integer ($1 \mid k$ for all $k \in \setZ^{+}$), making it comparable to all other elements.
 
   \item The relation $=$ is both a partial order and an equivalence relation on $\mathbb{R}$. \\
   \textbf{True}. It is reflexive, antisymmetric, and transitive (a partial order). It is also reflexive, symmetric, and transitive (an equivalence relation).
 
-  \item The set $\mathbb{Z}$ is comparable to every element in the poset $(\mathcal{P}(\mathbb{Z}), \subseteq)$. \\
-  \textbf{True}. Every set $A \in \mathcal{P}(\mathbb{Z})$ is by definition a subset of $\mathbb{Z}$, so $A \subseteq \mathbb{Z}$ is always true.
+  \item The set $\setZ$ is comparable to every element in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{True}. Every set $A \in \mathcal{P}(\setZ)$ is by definition a subset of $\setZ$, so $A \subseteq \setZ$ is always true.
 
   \item The dual poset of $(\mathcal{P}(\{0,1,2\}), \subseteq)$ is $(\mathcal{P}(\{0,1,2\}), \supseteq)$. \\
   \textbf{True}. The dual of the relation $A \subseteq B$ is $B \subseteq A$, which is equivalent to $A \supseteq B$.
 
-  \item The elements 3 and 3 are comparable in the poset $(\mathbb{Z}^{+}, \mid)$. \\
+  \item The elements 3 and 3 are comparable in the poset $(\setZ^{+}, \mid)$. \\
   \textbf{True}. Because the divisibility relation is reflexive, $3 \mid 3$ is true, which makes them comparable.
 
-  \item The elements 6 and 9 are comparable in the poset $(\mathbb{Z}^{+}, \mid)$. \\
+  \item The elements 6 and 9 are comparable in the poset $(\setZ^{+}, \mid)$. \\
   \textbf{False}. Neither $6 \mid 9$ nor $9 \mid 6$ is true. They are incomparable.
 
 \end{enumerate}
@@ -628,12 +628,12 @@ Each permutation appears \textbf{exactly once} in each row and each column. This
 
 \newpage
 
-\section*{Cayley Tables and Properties for $\mathbb{Z}_n$}
+\section*{Cayley Tables and Properties for $\setZ_n$}
 
-The completed Cayley tables for addition and multiplication in $\mathbb{Z}_4$ and $\mathbb{Z}_5$ are provided, followed by an analysis of their properties.
+The completed Cayley tables for addition and multiplication in $\setZ_4$ and $\setZ_5$ are provided, followed by an analysis of their properties.
 
-\subsection*{Cayley Tables for $\mathbb{Z}_4$}
-The set of congruence classes is $\mathbb{Z}_4 = \{[0], [1], [2], [3]\}$.
+\subsection*{Cayley Tables for $\setZ_4$}
+The set of congruence classes is $\setZ_4 = \{[0], [1], [2], [3]\}$.
 
 \vspace{1em}
 \noindent
@@ -677,8 +677,8 @@ The set of congruence classes is $\mathbb{Z}_4 = \{[0], [1], [2], [3]\}$.
 \vspace{2em}
 
 
-\subsection*{Cayley Tables for $\mathbb{Z}_5$}
-The set of congruence classes is $\mathbb{Z}_5 = \{[0], [1], [2], [3], [4]\}$.
+\subsection*{Cayley Tables for $\setZ_5$}
+The set of congruence classes is $\setZ_5 = \{[0], [1], [2], [3], [4]\}$.
 
 \vspace{1em}
 \noindent
@@ -736,11 +736,11 @@ The following observations are made from the tables.
 
 \subsection*{Frequency of Classes in Rows/Columns}
 \begin{itemize}
-  \item \textbf{Addition}: For both $\mathbb{Z}_4$ and $\mathbb{Z}_5$, every congruence class appears \textbf{exactly once} in each row and each column. This property means the tables are \textbf{Latin squares}.
+  \item \textbf{Addition}: For both $\setZ_4$ and $\setZ_5$, every congruence class appears \textbf{exactly once} in each row and each column. This property means the tables are \textbf{Latin squares}.
   \item \textbf{Multiplication}: The pattern is more complex.
   \begin{itemize}
-    \item In $\mathbb{Z}_4$, the rows/columns for $[1]$ and $[3]$ (classes corresponding to integers relatively prime to 4) contain each class exactly once. However, the row/column for $[2]$ contains only $[0]$ and $[2]$, each appearing twice. This is because 2 is a \textbf{zero divisor} ($[2] \cdot [2] = [0]$).
-    \item In $\mathbb{Z}_5$, since 5 is a \textbf{prime number}, all non-zero elements are relatively prime to 5. Consequently, in every row and column corresponding to a non-zero element, each congruence class appears \textbf{exactly once}.
+    \item In $\setZ_4$, the rows/columns for $[1]$ and $[3]$ (classes corresponding to integers relatively prime to 4) contain each class exactly once. However, the row/column for $[2]$ contains only $[0]$ and $[2]$, each appearing twice. This is because 2 is a \textbf{zero divisor} ($[2] \cdot [2] = [0]$).
+    \item In $\setZ_5$, since 5 is a \textbf{prime number}, all non-zero elements are relatively prime to 5. Consequently, in every row and column corresponding to a non-zero element, each congruence class appears \textbf{exactly once}.
   \end{itemize}
 \end{itemize}
 
@@ -749,7 +749,7 @@ The following observations are made from the tables.
   \item \textbf{Commutativity}: \textbf{Yes}, both operations are commutative. This is visually confirmed by the symmetry of the tables and holds because addition and multiplication of integers are commutative:
   \[ [a] + [b] = [a+b] = [b+a] = [b] + [a] \]
   \[ [a] \cdot [b] = [ab] = [ba] = [b] \cdot [a] \]
-  \item \textbf{Associativity}: \textbf{Yes}, both operations are associative. This property is inherited from the associativity of operations in the integers ($\mathbb{Z}$):
+  \item \textbf{Associativity}: \textbf{Yes}, both operations are associative. This property is inherited from the associativity of operations in the integers ($\setZ$):
   \[ ([a] + [b]) + [c] = [(a+b)+c] = [a+(b+c)] = [a] + ([b] + [c]) \]
   \[ ([a] \cdot [b]) \cdot [c] = [(ab)c] = [a(bc)] = [a] \cdot ([b] \cdot [c]) \]
 \end{itemize}
@@ -1052,10 +1052,10 @@ Wbwk, Hmwk assignments, and contents of the textbook.
 
 
 \begin{define}{Modulo Operation}[def:modulo][red]
-  Let $a, m \in \mathbb{Z}$ with $m$ positive. The remainder when $a$ is divided by $m$ is denoted $\boldsymbol{a} \bmod \boldsymbol{m}$.
+  Let $a, m \in \setZ$ with $m$ positive. The remainder when $a$ is divided by $m$ is denoted $\boldsymbol{a} \bmod \boldsymbol{m}$.
 \end{define}
 \begin{define}{Congruence Modulo}[def:congruence-modulo][red]
-  Let $a, b, m \in \mathbb{Z}$ with $m$ positive. If $m \mid(a-b)$ then we say that 
+  Let $a, b, m \in \setZ$ with $m$ positive. If $m \mid(a-b)$ then we say that 
   $\boldsymbol{a}$ is congruent to $\boldsymbol{b}$ modulo $\boldsymbol{m}$ and 
   write $\boldsymbol{a} \equiv \boldsymbol{b}(\bmod \boldsymbol{m})$.
 \end{define}
@@ -1071,7 +1071,7 @@ Wbwk, Hmwk assignments, and contents of the textbook.
 
 \textbf{Example}: Let $S$ be another equivalence relation on the set $\{1,2,3,4,5,6\}$. Suppose the equivalence classes of $S$ are $\{1,4,5\},\{2,6\}$, and $\{3\}$.
 
-\textbf{Example}: Let $[a]_n$ denote the congruence class of $a \in \mathbb{Z}$ modulo $n$ (that is, the equivalence class of $a$ under the relation congruence modulo $n$ ) for integers $n \geq 2$. Are the following propositions true or false?
+\textbf{Example}: Let $[a]_n$ denote the congruence class of $a \in \setZ$ modulo $n$ (that is, the equivalence class of $a$ under the relation congruence modulo $n$ ) for integers $n \geq 2$. Are the following propositions true or false?
 
 
 
