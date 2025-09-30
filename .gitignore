@@ -6,7 +6,7 @@ blank.tex
 /macros.tex
 cli.pdf
 
-INST.tex
+INST.*
 *.exe
 *.docx
 *.txt
