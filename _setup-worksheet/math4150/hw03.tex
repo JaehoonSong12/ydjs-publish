@@ -164,10 +164,9 @@
   \end{enumerate}
   \end{define}
   \begin{subprove}
-    The statement requires $m > 2$. The cases $m=1$ and $m=2$ are excluded since 
-    the reduced residue system is $\{1\}$ by \nameref{def:reducedRS}. 
-    In both cases, the sum is $1 \not\equiv 0 \pmod m$.
-    Thus, $m > 2$ will be assumed instead of $m \neq 2$.
+    The case, $m=2$, has been excluded since 
+    the reduced residue system is $\{1\}$ by \nameref{def:reducedRS} where the sum is $1 \not\equiv 0 \pmod m$.
+    Thus, $m \neq 2$ will be assumed throughout the proof. Since $1 \equiv 0 \pmod 1$, $m=1$ is a trivial case.
     \begin{claim}[claim:additivePairing]
     For $m>2$, any reduced residue system $S$ modulo $m$ can be partitioned into $\phi(m)/2$ pairs of distinct elements $\{r, s\}$ such that
     \[
@@ -193,7 +192,7 @@
     \[
       r_1+r_2+\cdots+r_{\phi(m)} \equiv \sum_{\text{pairs}} (r_i+r_j) \equiv \sum_{\phi(m)/2 \text{ pairs}} 0 \equiv 0 \pmod{m}.
     \]
-    Therefore, $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$ only if
+    Therefore, if $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$, then
     \[
     r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
     \]
@@ -222,43 +221,17 @@
     \end{cases}
     $$
   \end{define}
-  \begin{define}{Arithmetic Function}[def:arithfunc][red]
-  An \underbar{arithmetic function} is a function $f:\setZ_{>0}\to\mathbb{C}$ (or $\setR$,
-  or $\setZ$). Examples: the Euler $\phi$-function, the divisor-counting function
-  $d(n)$, the sum-of-divisors function $\sigma(n)$, etc.
-  \end{define}
-
-  \begin{define}{Multiplicativity}[def:multprops][red]
-  An arithmetic function $f$ is \underbar{multiplicative} if $f(mn)=f(m)f(n)$ whenever
-  $\gcd(m,n)=1$. It is \underbar{completely multiplicative} if $f(mn)=f(m)f(n)$ for all
-  positive integers $m,n$ (no coprimality required).
-  \end{define}
-
-  \begin{define}{Summation over Divisors}[def:3.0][red]
-  By
-  \[
-  \sum_{d\mid n} f(d)
-  \]
-  we mean the sum of $f(d)$ over all \underbar{positive} divisors $d$ of $n$. For example,
-  \[
-  \sum_{\substack{d\mid 12}} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12).
-  \]
-  \end{define}
-
-  \begin{define}{Theorem 3.1 (Multiplicative Functions and Divisor Sums)}[thm:3.1][red]
-  Let $f$ be an arithmetic function and define, for $n\in\mathbb{Z}_{>0}$,
-  \[
-  F(n):=\sum_{d\mid n} f(d).
-  \]
-  If $f$ is multiplicative then $F$ is multiplicative.
-  \end{define}
-
   \begin{enumerate}
     \item Prove that $\lambda$ is a completely multiplicative arithmetic function.
+    \begin{define}{Multiplicativity}[def:multprops][red]
+    An arithmetic function $f:\setZ_{>0}\to\mathbb{C}$ is \underbar{multiplicative} if $f(mn)=f(m)f(n)$ whenever
+    $\gcd(m,n)=1$. It is \underbar{completely multiplicative} if $f(mn)=f(m)f(n)$ for all
+    positive integers $m,n$ (no coprimality required).
+    \end{define}
     \begin{subprove}
-      Let $m,n \in \setZ_{>0}$ with prime factorizations $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Let $m,n \in \setZ_{>0}$ with prime factorizations 
+      $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
       Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
-      
       By \nameref{def:liouville}, $\lambda(m) = (-1)^{a_1 + \cdots + a_k}$ and $\lambda(n) = (-1)^{b_1 + \cdots + b_\ell}$.
       Since $\lambda(mn) = (-1)^{a_1 + \cdots + a_k + b_1 + \cdots + b_\ell} = (-1)^{a_1 + \cdots + a_k} \cdot (-1)^{b_1 + \cdots + b_\ell} = \lambda(m)\lambda(n)$,
       the function $\lambda$ is completely multiplicative by \nameref{def:multprops}.
@@ -267,6 +240,14 @@
     \[
     F(n)= \begin{cases}1 & \text{if } n \text{ is a perfect square} \\ 0 & \text{otherwise}\end{cases}
     \]
+    \begin{define}{Theorem 3.1 (Multiplicative Functions and Divisor Sums)}[thm:3.1][red]
+    Let $f$ be an arithmetic function and define, for $n\in\mathbb{Z}_{>0}$,
+    \[
+    F(n):=\sum_{d\mid n} f(d).
+    \]
+    where $\sum_{d\mid n} f(d)$ is the sum of $f(d)$ over all \underbar{positive} divisors $d$ of $n$ (i.e., $\sum_{d\mid 12} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12)$).
+    If $f$ is multiplicative, then $F$ is multiplicative.
+    \end{define}
     \begin{subprove}
       Since $\lambda$ is completely multiplicative by part (a), by \nameref{thm:3.1}, $F$ is multiplicative.
       It suffices to evaluate $F$ at prime powers.
@@ -316,12 +297,12 @@
   Let $k \in \setZ$ with $k>0$. Prove that the equation $\phi(n)=k$ has 
   at most finitely many solutions. 
   [\textbf{Hint}: Use Question 6]
-  \begin{define}{Theorem 3.4 (Product formula for $\varphi(n)$)}[thm:3.4][red]
+  \begin{define}{Theorem 3.4 (Product Formula for $\varphi(n)$)}[thm:3.4][red]
   For $n\in\mathbb{Z}_{>0}$,
   \[
   \varphi(n)=n\prod_{p\mid n}\Big(1-\frac{1}{p}\Big),
   \]
-  where the product is taken over the distinct prime divisors $p$ of $n$.
+  where the product is taken over all primes $p$ with $p \mid n$.
   \end{define}
   \begin{subprove}
     By \nameref{thm:3.4}, $\phi(n) = n\prod_{p\mid n}(1-\frac{1}{p})$.
@@ -344,16 +325,33 @@
   \begin{enumerate}
     \item Prove that $\sqrt{n} / 2 \leq \phi(n) \leq n$.
     \begin{subprove}
-      The upper bound $\phi(n) \leq n$ is immediate from \nameref{def:phi} since $\phi(n)$ counts integers in $\{1,2,\ldots,n\}$.
+      The upper bound is established first. By the definition of the \nameref{def:phi},
+      $\phi(n)$ is the count of elements in a subset of $\{1, 2, \ldots, n\}$.
+      Therefore, it is immediate that $\phi(n) \leq n$.
+
+      For the lower bound, the case $n=1$ is verified directly: $\phi(1) = 1$ and $\sqrt{1}/2 = 1/2$, so the inequality $1 \ge 1/2$ holds.
+      For $n>1$, let the prime factorization of $n$ be $n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$.
+      The quotient $\phi(n)/\sqrt{n}$ is considered. It can be expressed as a product over the prime factors of $n$:
+      \[
+        \frac{\phi(n)}{\sqrt{n}} = \frac{\prod_{i=1}^k \phi(p_i^{a_i})}{\prod_{i=1}^k \sqrt{p_i^{a_i}}} = \prod_{i=1}^k \frac{p_i^{a_i-1}(p_i-1)}{p_i^{a_i/2}} = \prod_{i=1}^k p_i^{a_i/2 - 1}(p_i-1).
+      \]
+      Let the term for each prime power be denoted $f(p, a) = p^{a/2 - 1}(p-1)$. A lower bound for this term is sought.
+      For a fixed prime $p$, the function $f(p,a)$ is increasing for $a \ge 1$, since the ratio $f(p,a+1)/f(p,a) = \sqrt{p} > 1$.
+      Thus, the minimum value of $f(p,a)$ for a fixed $p$ occurs at $a=1$, which gives $f(p,1) = \sqrt{p} - 1/\sqrt{p}$.
+      This function, in turn, is increasing for $p \ge 2$.
       
-      For the lower bound, by \nameref{thm:3.4}, $\phi(n) = n\prod_{p\mid n}(1-\frac{1}{p})$.
-      Since $(1-\frac{1}{p}) \geq \frac{1}{2}$ for each prime $p \geq 2$, and there are at most $\log_2 n$ distinct prime divisors of $n$,
-      it follows that $\phi(n) \geq n \cdot (\frac{1}{2})^{\log_2 n} = n \cdot n^{-\log_2 2} = n \cdot n^{-1} = 1$.
+      It follows that the minimum value of any single term $f(p,a)$ occurs at the smallest prime ($p=2$) and smallest exponent ($a=1$), which is $f(2,1) = 1/\sqrt{2}$.
+      Any term in the product for an odd prime $p_i \ge 3$ satisfies $f(p_i, a_i) \ge f(3,1) = 2/\sqrt{3} > 1$.
+      Therefore, the product $\prod f(p_i, a_i)$ can only be less than $1$ if $n$ is divisible by $2$.
+      If $n$ is divisible by $2$, the overall product has a minimum value when only the factor for $p=2$ is present, as all other factors are greater than $1$.
+      The minimum possible value of the entire product is thus $1/\sqrt{2}$, which occurs when $n=2$.
       
-      A sharper bound: if $n$ has prime factorization $n = p_1^{a_1} \cdots p_k^{a_k}$, then
-      $\phi(n) = n \prod_{i=1}^k (1-\frac{1}{p_i}) \geq n \cdot \frac{1}{2^k} \geq \frac{n}{2^{\log_2 n}} = \frac{n}{n} = 1$.
-      Since $\phi(n) \geq 1$ and $n \geq 1$, it follows that $\phi(n) \geq \frac{\sqrt{n}}{2}$ when $n \geq 4$.
-      For $n = 1,2,3$, direct verification shows $\phi(n) \geq \frac{\sqrt{n}}{2}$.
+      Therefore, for any integer $n > 1$, the following inequality holds:
+      \[
+        \frac{\phi(n)}{\sqrt{n}} \ge \frac{1}{\sqrt{2}}.
+      \]
+      Since $1/\sqrt{2} > 1/2$, it is concluded that $\phi(n)/\sqrt{n} \ge 1/2$, which implies $\phi(n) \ge \sqrt{n}/2$.
+      This, combined with the check for $n=1$, proves the inequality for all positive integers $n$.
     \end{subprove}
     \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
     \begin{subprove}
@@ -382,8 +380,9 @@
 
 
 
+% is this correct?
 
-
+% can you actually give me the fixed answer in my style of proof and tone with 3rd person passible voice?
 
 
 
