@@ -1,0 +1,287 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\begin{document}
+$L 10$
+
+\section*{L10: The number of positive divisoss (1) function}
+Definition: Let $n \in \mathbb{Z}$ with $n>0$. The number of positive divisors function, denoted $V(n)$, is the function defined by
+
+$$
+V(n):=\mid\{d \in \mathbb{C}: d>0 \text { and } d \ln \} \mid .
+$$
+
+Theorem 3.6: The number of positive divisors function is multiplicative.\\
+Proof: Observe that
+
+$$
+V(n)=\sum_{d(n, d>0} 1
+$$
+
+Since the constant arithmetic function $f(d)=1$ is multiplicative (check this yourself), we have that $V(n)$ is multiplicative by Theorem 3.1.
+
+\begin{itemize}
+  \item Since $V(n)$ is multiplicative, it is determined by its values at powers of prime numbers.\\
+Theorem 3.7: Let $p$ be a prime number and let $a \in \mathbb{Z}$ with $a \geqslant 0$. Then $V\left(p^{a}\right)=a+1$.\\
+Proof: The positive divisors of $p^{a}$ are precisely\\
+$1, p, p^{2}, \ldots, p^{a-1}, p^{a}$. There are exactly $a+1$ (2) such divisors.\\
+Theorem 3.8: Let $n=p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{r}^{a_{r}}$ with $P_{1}, P_{2}, \ldots P_{r}$ distinct prime numbers and $a_{1}, a_{2}, \ldots, a_{r}$ nonnegative integers. Then
+\end{itemize}
+
+$$
+V(n)=\prod_{i=1}^{r}\left(a_{i}+1\right)
+$$
+
+Proof: We have
+
+$$
+\begin{aligned}
+V(n) & =V\left(p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{r}^{a_{n}}\right) \\
+& =V\left(p_{1}^{a_{1}}\right) V\left(p_{2}^{a_{2}}\right) \cdots V\left(p_{r}^{a_{r}}\right) \text { by Theorem } 3.6 \\
+& =\left(a_{1}+1\right)\left(a_{2}+1\right) \cdots\left(a_{r}+1\right) \text { by Theorem } 3.7 \\
+& =\prod_{i=1}^{r}\left(a_{i}+1\right) .
+\end{aligned}
+$$
+
+Example: Consider $504=2^{3} 3^{2} 7$. Then
+
+$$
+V(504)=(3+1)(2+1)(1+1)=24 .
+$$
+
+The sum of positive divisors function\\
+Definition : Let $n \in \mathbb{Z}$ with $n>0$. The sum of positive divisoss function, denoted $\sigma(n)$, is the function defined by
+
+$$
+\sigma(n):=\sum_{d \mid n, d>0} d .
+$$
+
+Theorem 3.9: The sum of positive divisors (3) function is multiplicative.\\
+Proof: Since the arithmetic function $f(d)=d$ is multiplicative (check this yourself), we have that $\sigma(n)$ is multiplicative by Theorem 3.1.
+
+Since $\sigma(n)$ is multiplicative, it is determined by its values at powers of prime numbers.\\
+Theorem 3.10: Let $p$ be a prime number and let $a \in \mathbb{Z}$ with $a \geqslant 0$. Then
+
+$$
+\sigma\left(p^{a}\right)=\frac{p^{a+1}-1}{p-1}
+$$
+
+Proof: The positive divisors of $p^{a}$ precisely $l, p, p^{2}, \ldots, p^{a-1}, p^{a}$. Using the geometric series formula we obtain,
+
+$$
+1+p+p^{2}+\cdots+p^{a}=\frac{p^{a+1}-1}{p-1}
+$$
+
+Theorem 3.11: Let $n=P_{1}^{a_{1}} P_{2}^{a_{2}} \cdots P_{r}^{a_{n}}$ with $P_{1}, P_{2}, \ldots, P_{r}$ distinct prime numbers and $a_{1}, a_{2}, \ldots, a_{r}$ non-negative integers. Then
+
+$$
+\sigma(n)=\prod_{i=1}^{r} \frac{p_{i}^{a_{i}+1}-1}{p_{i}-1} .
+$$
+
+Proof: We have
+
+$$
+\begin{aligned}
+\sigma(n) & =\sigma\left(p_{1}^{a_{1}} p_{2}^{a_{2}} \cdots p_{r}^{a_{r}}\right) \\
+& =\sigma\left(p_{1}^{a_{1}}\right) \sigma\left(p_{2}^{a_{2}}\right) \cdots \sigma\left(p_{r}^{a_{r}}\right) \text { by Theorem } 3.9 \\
+& =\left(\frac{p_{1}^{a_{1}+1}-1}{p_{1}-1}\right)\left(\frac{p^{a_{2}+1}-1}{p_{2}-1}\right) \cdots\left(\frac{p_{r}^{a_{r+1}}-1}{p_{r}-1}\right) \\
+& \left.=\prod_{i=1}^{r} \frac{p_{i}^{a_{i+1}}-1}{p_{i}-1}\right)
+\end{aligned}
+$$
+
+as required.\\
+Example: Consider $504=2^{3} 3^{2} 7$.\\
+Thus $\sigma(504)=\left(\frac{2^{4}-1}{2-1}\right)\left(\frac{3^{3}-1}{3-1}\right)\left(\frac{7^{2}-1}{7-1}\right)$
+
+$$
+=1560 .
+$$
+
+\section*{Perfect numbers}
+Definition: Let $n \in \mathbb{Z}$ with $n>0$. Then $n$ is said to be a perfect number if $\sigma(n)=2 n$.
+
+\begin{itemize}
+  \item If $n \in \mathbb{Z}$ with $n>0$, then $\theta(n)-n$ is the sum of all the positive divisors of $n$ other than $n$ itself. Thus we have the following equivalent definition of a perfect number.\\
+Definition: Let $n \in \mathbb{Z}$ with $n>0$. Then $n$ is said to be a perfect number if $\sigma(n)-n=n$, or equivalently, if the sum of all positive divisors of $n$ other than $n$ itself is equal to $n$.\\
+Example:- 6 is a perfect number since
+\end{itemize}
+
+$$
+\sigma(6)=1+2+3+6=12=2 \cdot 6
+$$
+
+\begin{itemize}
+  \item 28 is a perfect number since
+\end{itemize}
+
+$$
+v(28)=1+2+4+7+14+28=56=2 \cdot 28 .
+$$
+
+Theorem 3.12: Let $n \in \mathbb{Z}$ with $n>0$. Then $n$ is an even perfect number if and only if
+
+$$
+n=2^{p-1}\left(2^{p}-1\right)
+$$
+
+where $p$ is a prime, and $2^{p}-1$ is also a prime (i.e. $2^{p}-1$ is a Mersenne prime).
+
+\begin{itemize}
+  \item Theorem 3.12 gives a characterisation of\\
+even perfect numbers and a bijection between (b) Mersenne Primes and even perfect numbers? We don't know if there are infinitely many Mersenne primes or not. There are 38 known even perfect numbers, each corresponding to a Mersenne prime. The first five even perfect numbers correspond can be found using $P=2,3,5,7$ and 13 in Theorem 3.12.\\
+Conjecture: There are infinitely many even perfect numbers.
+\end{itemize}
+
+Conjecture: Every perfect number is even.\\
+Proof (of Theorem 3.12): ( $\Rightarrow$ dne to Euler). Assume that $n$ is an even perfect number. Write $n=2^{a} b$ with $a, b \in \mathbb{Z}$ with $a \geqslant 7$ and $b$ odd. Then,\\
+$\sigma(n)=\sigma\left(2^{a} b\right)=\sigma$\\
+by Theorem 3.9\\
+Since $n$ is perfect, we have
+
+$$
+v(n)=2 n=2\left(2^{a} b\right)=2^{a+1} b .
+$$
+
+Thus,
+
+
+\begin{equation*}
+\left(2^{a+1}-1\right) \sigma(b)=2^{a+1} b . \tag{1}
+\end{equation*}
+
+
+Now $2^{a+1} \mid\left(2^{a+1}-1\right) \sigma(b)$, and thus $2^{a+1} \mid v(b)$ since $\left(2^{a+1}, 2^{a+1}-1\right)=1$. Thus
+
+
+\begin{equation*}
+\sigma(b)=2^{a+1} c \tag{2}
+\end{equation*}
+
+
+for some $c \in \mathbb{Z}$. Substituting\\
+(2) into (1), we obtain
+
+$$
+\left(2^{a+1}-1\right) 2^{a+1} c=2^{a+1} b,
+$$
+
+or equivalently,
+
+
+\begin{equation*}
+\left(2^{a+1}-1\right) c=b . \tag{3}
+\end{equation*}
+
+
+We how prove that $c=1$. Assume, by way of contradictions that $c>1$. Then by (3), b has at least three distinct positive divisos: $1, b, c$ (we have $2^{a+1}-1>1$ since $a \geqslant 1$ ). Thus
+
+$$
+\sigma(b) \geqslant 1+b+c .
+$$
+
+But from (2) we have,
+
+$$
+\sigma(b)=2^{a+1} c=\left(2^{a+1}-1\right) c+c=b+c .
+$$
+
+This is a contradiction! Thus $c=1$, from which\\
+(3) gives $b=2^{a+1}-1$, and (2) gives\\
+$\sigma(b)=2^{a+1}=b+1$. The latter equation implies that $b$ is a prime number, from which
+
+$$
+n=2^{a b}=2^{a}\left(2^{a+1}-1\right),
+$$
+
+where $2^{a+1}-1$ is a prime number, and so at is also a prime (by the Homework).\\
+( $\Leftarrow$ direction, due to Euclid): Assume that $n=2^{p-1}\left(2^{p}-1\right)$ where $p$ and $2^{p}-1$ are prime numbers. Then
+
+$$
+\begin{aligned}
+\sigma(n) & =\sigma\left(2^{p-1}\left(2^{p}-1\right)\right) \\
+& =\sigma\left(2^{p-1}\right) \sigma\left(2^{p}-1\right) \text { by Theorem } 3.9 \\
+& =\left(\frac{2^{p}-1}{2-1}\right) 2^{p} \quad\left(\text { since } 2^{p}-1\right. \text { is prime } \\
+& =\left(2^{p}-1\right) 2^{p} \\
+& =2 \cdot 2^{p-1}\left(2^{p}-1\right) \\
+& =2 n)
+\end{aligned}
+$$
+
+as required.\\
+Möbins function
+
+Definition: Let $n \in \mathbb{Z}$ with $n>0$. The Möbius\\
+$y$-function, denoted $y(n)$, is given by
+
+$$
+\dot{M}(n)= \begin{cases}1, & \text { if } n=1 \\ 0, & \text { if } p^{2} \ln \text { with } p \text { prime } \\ (-1)^{r}, & \text { if } n=p_{1} p_{2} \cdots p_{r} \text { with } \\ & p_{1}, p_{2}, \cdots, p_{r} \text { distinct prime } \\ & \text { numbers. }\end{cases}
+$$
+
+Example: Since $504=2^{3} 3^{2} 7$, we have that $\mu(504)=0$.
+
+\begin{itemize}
+  \item Since $30=2 \cdot 3 \cdot 5$ we have $\mu(30)=-1$.
+\end{itemize}
+
+Theorem 3.13: The Möbius function $\mu(n)$ is multiplicative.\\
+Proof: Let $m$ and $n$ be relatively prime positive integers. We must show that $\varphi(m n)=\varphi(m) \varphi(n)$. If $m=1$ or $n=1$, the desired result is clear. Now, $m$ or $n$ is divisible by the square of $a$ prime if and only if $m n$ is divisible by the square of a prime number (since $(m, n)=1)$. In this case, both sides of the desired result reduce to $O$. Assume that $m=p_{1} p_{2} \ldots p_{r}$ and $n=q_{1} q_{2} \ldots q_{s}$\\
+with $p_{1}, p_{2}, \ldots, p_{r}, q_{1}, q_{2}, \ldots, q_{s}$ being distinct primes. Then
+
+$$
+\begin{aligned}
+\mu(m n) & =\mu\left(p_{1} p_{2} \cdots p_{r} q_{1} q_{2} \cdots q_{s}\right) \\
+& =(-1)^{r+s} \\
+& =(-1)^{r}(-1)^{s} \\
+& =\mu(m) \mu(n),
+\end{aligned}
+$$
+
+as required.\\
+Proposition 3.14: Let $n \in \mathbb{Z}$ with $n>0$. Then
+
+$$
+\sum_{d \mid n, d>0} \mu(d)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise } .\end{cases}
+$$
+
+Proof: The arithmetic function
+
+$$
+F(n)=\sum_{d \mid n, d>0} \mu(d)
+$$
+
+is multiplicative by Theorem 3.13 and Theorem 3.1. Thus $F$ is determined by its values at prime powers. Clearly, $F(1)=1$. If $p$ is a prime and $a \in \mathbb{Z}$ with $a>0$, then
+
+$$
+F\left(p^{q}\right)=\sum_{d \mid p^{a}, d>0} \mu(d)
+$$
+
+$$
+\begin{aligned}
+& =\mu(1)+\mu(p)+\mu\left(p^{2}\right)+\cdots+\mu\left(p^{a-1}\right)+\mu\left(p^{a}\right) \\
+& =1+(-1)+0+\cdots+0 \\
+& =0,
+\end{aligned}
+$$
+
+(11)\\
+as desived.
+
+Example: Let $n=12$. Then
+
+$$
+\begin{aligned}
+\sum_{d \| 2, d>0} \mu(d) & =\mu(1)+\mu(2)+\mu(3)+\mu(4)+\mu(6)+\mu(12) \\
+& =1+(-1)+(-1)+0+1+0 \\
+& =0 .
+\end{aligned}
+$$
+
+
+\end{document}

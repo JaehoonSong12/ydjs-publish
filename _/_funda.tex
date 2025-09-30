@@ -1,0 +1,1291 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\input{macros.tex}
+
+
+\input{../preamble/font.tex}
+
+\input{../preamble/operator.tex} 
+\input{../preamble/symbol.tex} 
+\input{../preamble/math.tex}  
+\input{../preamble/math-graph.tex}
+\input{../preamble/group.tex} 
+
+\usepackage{enumitem} % control lists
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{dsfont} % if you prefer \mathds for sets; otherwise use \mathds
+\usepackage{longdivision}
+
+
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+
+
+
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\numberwithin{equation}{section}
+
+
+
+
+
+
+
+\usepackage{tikz} % The TikZ package is imported for drawing.
+\usetikzlibrary{arrows.meta} % The arrows.meta library provides more advanced arrow tip styles.
+
+
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{graphs,quotes, shapes.geometric, positioning, fit, arrows.meta, shadows}
+
+
+
+% A document containing two TikZ diagrams for the specified posets.
+% Properties are annotated using colored nodes, labels, and surrounding boxes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+
+
+
+
+
+
+\section*{Overview}
+The announcement asks you to practice the \textbf{Goldilocks principle} in mathematical writing: give \emph{just the right amount} of explanation — not too little and not too much. These notes explain what that means, give short course-related examples, a checklist you can use in class or on exams, and practical tips for practicing the skill.
+
+\section{What the announcement means (short)}
+\begin{itemize}
+  \item \textbf{Too little:} You omit necessary steps or justification; the reader cannot follow or verify your reasoning.
+  \item \textbf{Too much:} You repeat or restate obvious facts, or include irrelevant digressions that bury the main point.
+  \item \textbf{Just right:} Provide the definitions you need, the logical steps that connect them, and a clear conclusion — compact, precise, and sufficient for the intended audience to verify the result.
+\end{itemize}
+
+\section{Why it matters beyond exams}
+\begin{itemize}
+  \item \emph{Homework \& assignments:} graders need enough to see you understood the idea — but not long-winded prose.
+  \item \emph{Research / papers:} reviewers want clear, rigorous proofs and concise motivation.
+  \item \emph{Coding / code review:} succinct comments and correct edge-case handling beat verbose, noisy comments.
+  \item \emph{Presentations / teaching:} clarity and economy keep the audience engaged.
+  \item \emph{Professional writing:} concise but sufficient detail (design docs, emails, bug reports) leads to faster, less-error-prone collaboration.
+\end{itemize}
+
+\section{Concrete course examples}
+Below are short ``too little / too much / just right'' style model answers for typical course problems.
+
+\subsection{Equivalence relation}
+\begin{example}[Relation defined by divisibility]
+Let \(R\) be a relation on \(\mathbb{Z}\) defined by
+\[
+a \,R\, b \iff 3 \mid (a-b).
+\]
+Show that \(R\) is an equivalence relation.
+\end{example}
+
+\paragraph{Just-right solution:}
+\begin{proof}
+\textbf{Reflexive.} For any \(a\in\mathbb{Z}\), \(a-a=0\) and \(3\mid 0\); thus \(aRa\).
+
+\textbf{Symmetric.} If \(3\mid (a-b)\) then \(3\mid (b-a)\), so \(aRb\Rightarrow bRa\).
+
+\textbf{Transitive.} If \(3\mid (a-b)\) and \(3\mid (b-c)\), then \(3\mid (a-c)\); hence \(aRb\) and \(bRc\Rightarrow aRc\).
+
+Therefore \(R\) is reflexive, symmetric, and transitive, i.e., an equivalence relation.
+\end{proof}
+
+\subsection{Function: bijectivity}
+\begin{example}
+Let \(f:\mathbb{Z}\to\mathbb{Z}\) be defined by \(f(n)=n+1\). Prove \(f\) is bijective.
+\end{example}
+
+\paragraph{Just-right solution:}
+\begin{proof}
+\textbf{Injective.} If \(f(a)=f(b)\) then \(a+1=b+1\), so \(a=b\).
+
+\textbf{Surjective.} For arbitrary \(y\in\mathbb{Z}\) choose \(x=y-1\). Then \(f(x)=x+1=y\).
+
+Thus \(f\) is both injective and surjective, hence bijective.
+\end{proof}
+
+\subsection{Partial order: subset relation}
+\begin{example}
+Show \((\mathcal{P}(X),\subseteq)\) is a partially ordered set.
+\end{example}
+
+\paragraph{Just-right solution:}
+\begin{proof}
+\textbf{Reflexive.} For any \(A\subseteq X\), \(A\subseteq A\).
+
+\textbf{Antisymmetric.} If \(A\subseteq B\) and \(B\subseteq A\), then \(A=B\).
+
+\textbf{Transitive.} If \(A\subseteq B\) and \(B\subseteq C\), then \(A\subseteq C\).
+
+Hence \(\subseteq\) satisfies reflexivity, antisymmetry, and transitivity, so it is a partial order.
+\end{proof}
+
+\section{A short checklist for ``Goldilocks'' answers}
+Before submitting or handing in a solution, run this mental checklist:
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{State what you are proving} in one crisp sentence.
+  \item \textbf{Give necessary definitions} (only those used in the argument).
+  \item \textbf{Outline the plan} if the proof is longer than a couple of lines.
+  \item \textbf{Do the steps:} each step should follow logically and be minimally justified.
+  \item \textbf{Address edge cases} when relevant (e.g., empty set, domain restrictions).
+  \item \textbf{Conclude clearly:} ``Hence ... is ...'' or similar.
+  \item \textbf{Edit for redundancy:} remove repeated or obvious statements.
+\end{enumerate}
+
+\section{Practical tips to practice this skill}
+\begin{itemize}
+  \item After writing a solution, \emph{try removing one sentence}. If the argument still works, that sentence was probably redundant; if it breaks, put it back.
+  \item Conversely, \emph{remove a justification line} — if the reader cannot fill the gap, restore the line.
+  \item When reviewing classmates' solutions, mark places that are unclear (too little) or repetitive (too much).
+  \item Time yourself: write a focused 5--7 line solution to a typical problem; this trains concise clarity.
+\end{itemize}
+
+\section*{One-line summary}
+Think like a careful editor: include everything the reader needs to verify your claim, and nothing they don’t.
+
+\medskip
+\noindent If you'd like, I can:
+\begin{itemize}
+  \item Convert this to a handout-ready two-column format,
+  \item Generate a short practice worksheet with three problems and model ``too little / too much / just right'' solutions, or
+  \item Rewrite one of your past solutions into the three-style format so you can compare.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section*{Propositions on Lattices and Chains}
+
+The truth values for the following propositions are determined.
+
+\begin{enumerate}
+  \item Every finite lattice has a least element. \\
+  \textbf{True}. By repeatedly taking the greatest lower bound (GLB) of pairs of elements in a finite lattice, one can find a single GLB for the entire set, which is the least element.
+
+  \item The poset $(\{1,2,4,8,16\}, \mid)$ is a lattice. \\
+  \textbf{True}. This poset is a chain (a totally ordered set), and every chain is a lattice. For any two elements $a,b$ where $a \mid b$, their LUB is $b$ and their GLB is $a$.
+
+  \item If $A$ is a set, the poset $(\mathcal{P}(A), \subseteq)$ is a lattice. \\
+  \textbf{True}. For any two subsets $X, Y \subseteq A$, their least upper bound (LUB) is their union ($X \cup Y$) and their greatest lower bound (GLB) is their intersection ($X \cap Y$).
+
+  \item There exist an infinite lattice which has a least but not a greatest element. \\
+  \textbf{True}. The set of positive integers with the divisibility relation, $(\setZ^{+}, \mid)$, is an infinite lattice. It has a least element (1) but no greatest element.
+
+  \item If a poset is a lattice, then it is a chain. \\
+  \textbf{False}. A lattice does not require every pair of elements to be comparable. For example, in the lattice $(\mathcal{P}(\{a, b\}), \subseteq)$, the elements $\{a\}$ and $\{b\}$ are incomparable.
+
+  \item There exist an infinite lattice which has a greatest but not a least element. \\
+  \textbf{True}. The set of negative integers with the divisibility relation, $(\setZ^{-}, \mid)$, is a lattice with a greatest element (-1) but no least element.
+
+  \item Every finite lattice has a greatest element. \\
+  \textbf{True}. This is the dual to proposition 1. By repeatedly taking the least upper bound (LUB) of elements, one can find a greatest element for the entire finite set.
+
+
+  \item
+
+
+  \item If a poset is a chain, then it is a lattice. \\
+  \textbf{True}. In a chain, any two elements are comparable. If $a \preceq b$, their LUB is $b$ and their GLB is $a$. Since a LUB and GLB exist for every pair, every chain is a lattice.
+  
+
+
+  \item
+
+  \item If a poset is a lattice, then its dual poset is also a lattice. \\
+  \textbf{True}. The LUB in a poset becomes the GLB in its dual, and vice-versa. If LUBs and GLBs exist for all pairs in a poset, they are guaranteed to exist in its dual.
+
+  \item Every nonempty finite subset of a lattice has a greatest lower bound. \\
+  \textbf{True}. This property can be proven by induction on the size of the subset, repeatedly applying the pairwise GLB operation which is guaranteed to exist in a lattice.
+
+  \item There exist an infinite lattice which has neither a least nor a greatest element. \\
+  \textbf{True}. The set of integers with the standard order, $(\setZ, \leq)$, is a chain (and therefore a lattice) with no least and no greatest element.
+
+
+
+
+
+  \item
+
+
+
+  \item Every nonempty finite subset of a lattice has a least upper bound. \\
+  \textbf{True}. This is the dual to proposition 12 and follows from the same inductive argument using the LUB operation.
+
+  \item The poset $(\{1,2,3,4,5\}, \mid)$ is a lattice. \\
+  \textbf{False}. A lattice requires a LUB for every pair to exist \emph{within the set}. The pair $\{2, 3\}$ has a least common multiple of 6, which is not in the set.
+  
+  \item The poset $(\setZ^{+}, \mid)$ is a lattice. \\
+  \textbf{True}. For any two positive integers $a, b$, their GLB is their greatest common divisor ($\text{gcd}(a,b)$) and their LUB is their least common multiple ($\text{lcm}(a,b)$), both of which always exist.
+
+  \item There exist an infinite lattice which has both a least and a greatest element. \\
+  \textbf{True}. The power set of the natural numbers, $(\mathcal{P}(\mathbb{N}), \subseteq)$, is an infinite lattice with a least element ($\emptyset$) and a greatest element ($\mathbb{N}$). Another example is the set of real numbers in $[0,1]$ under $\leq$.
+
+\end{enumerate}
+
+
+
+A \textbf{lattice} requires that every pair of elements has both:
+\begin{enumerate}
+  \item A \textbf{greatest lower bound} (meet, $\wedge$)
+  \item A \textbf{least upper bound} (join, $\vee$)
+\end{enumerate}
+
+Consider the poset with elements $a, b, c, d, e, f$ as shown in the diagram:
+\begin{itemize}
+  \item $a$ is the least element (bottom)
+  \item $f$ is the greatest element (top)
+  \item The middle layer consists of $\{b, c, d, e\}$
+\end{itemize}
+
+\textbf{Key Issue:} Take the pair $b$ and $c$:
+\begin{itemize}
+  \item Their common upper bounds are $\{d, e, f\}$
+  \item The least upper bound should be unique
+  \item However, both $d$ and $e$ are minimal upper bounds of $\{b, c\}$, and neither is below the other:
+  \[
+    d \nleq e \quad \text{and} \quad e \nleq d
+  \]
+\end{itemize}
+
+Thus, the pair $\{b, c\}$ has two minimal upper bounds instead of one. This violates the lattice property, which requires a unique least upper bound for every pair.
+
+\textbf{Conclusion:} The given poset is \textbf{not a lattice}.
+
+
+Consider the poset with elements $a, b, c, d, e, f$:
+
+\[
+\begin{tikzpicture}[scale=1.2, every node/.style={circle,draw,fill=black,inner sep=1.5pt}]
+% Nodes
+\node[label=below:$a$] (a) at (0,0) {};
+\node[label=left:$b$] (b) at (-1,1) {};
+\node[label=right:$c$] (c) at (1,1) {};
+\node[label=left:$d$] (d) at (-1,2) {};
+\node[label=right:$e$] (e) at (1,2) {};
+\node[label=above:$f$] (f) at (0,3) {};
+
+% Edges
+\draw (a)--(b)--(d)--(f);
+\draw (a)--(c)--(e)--(f);
+\draw (b)--(e);
+\draw (c)--(d);
+
+
+\end{tikzpicture}
+\]
+
+\subsection*{Key Observation}
+Take the pair of elements $b$ and $c$:
+\begin{itemize}
+\item Their upper bounds are ${d, e, f}$.
+\item The \textbf{least upper bound} should be unique.
+\item However, both $d$ and $e$ are minimal upper bounds, and neither is below the other:
+\[
+d \nleq e \quad \text{and} \quad e \nleq d.
+\]
+\end{itemize}
+
+Thus, the join $b \vee c$ is not well-defined.
+
+\subsection*{Conclusion}
+Since $b$ and $c$ do not have a unique least upper bound, this poset fails to satisfy the lattice property. Hence, the given poset is \textbf{not a lattice}.
+
+
+
+
+
+\newpage
+
+
+In the context of partially ordered sets (posets), a \textbf{chain} is a "perfectly orderly" poset where every element is comparable to every other, while a \textbf{lattice} is a "well-structured" poset where any two elements have a defined 'least common successor' and 'greatest common predecessor'.
+
+\section*{Chains: Total Order}
+
+A \textbf{chain} is a poset where every pair of elements is comparable. This means for any two elements $a$ and $b$, either $a \preceq b$ or $b \preceq a$. Because all elements can be placed in a single line of order, this structure is also known as a \textbf{totally ordered set}. The Hasse diagram for a chain is always a single vertical path.
+
+\subsection*{Example: Divisors of 16}
+The poset $(\{1, 2, 4, 8, 16\}, \mid)$ is a chain because for any two numbers in the set, one divides the other.
+
+\begin{center}
+  \begin{tikzpicture}
+    % Node style is defined for all elements
+    \tikzstyle{element} = [circle, draw=blue!50, fill=blue!10, thick, minimum size=25pt]
+
+    % Nodes are placed in a simple vertical stack
+    \node[element] (1) at (0,0) {1};
+    \node[element] (2) at (0,1.5) {2};
+    \node[element] (4) at (0,3) {4};
+    \node[element] (8) at (0,4.5) {8};
+    \node[element] (16) at (0,6) {16};
+    
+    % A title is added for clarity
+    \node[above=0.5cm of 16, font=\bfseries] {Chain: $(\{1, 2, 4, 8, 16\}, \mid)$};
+    
+    % Edges connect the nodes in a single line
+    \draw[thick, blue!70] (1) -- (2) -- (4) -- (8) -- (16);
+  \end{tikzpicture}
+\end{center}
+
+
+\section*{Lattices: Joins and Meets for All}
+
+A \textbf{lattice} is a poset where every pair of elements has both:
+\begin{enumerate}
+  \item A \textbf{Least Upper Bound (LUB)}, also called a \textbf{join}.
+  \item A \textbf{Greatest Lower Bound (GLB)}, also called a \textbf{meet}.
+\end{enumerate}
+This property guarantees a high degree of structure, ensuring that a unique 'lowest common ancestor' (the LUB) and 'highest common descendant' (the GLB) can be found for any two elements.
+
+\subsection*{Example: Power Set of $\{a, b\}$}
+The poset $(\mathcal{P}(\{a,b\}), \subseteq)$ is a classic example of a lattice. For any two subsets in this poset, their \textbf{union} is the LUB and their \textbf{intersection} is the GLB.
+
+\begin{center}
+  \begin{tikzpicture}
+    % A style is defined for the nodes
+    \tikzstyle{element} = [rectangle, rounded corners, draw=purple!60, fill=purple!10, thick, minimum size=25pt, drop shadow]
+
+    % Nodes are placed to form a diamond shape
+    \node[element] (empty) at (0,0) {$\emptyset$};
+    \node[element] (a) at (-1.5,2) {$\{a\}$};
+    \node[element] (b) at (1.5,2) {$\{b\}$};
+    \node[element] (ab) at (0,4) {$\{a,b\}$};
+
+    % A title is added for clarity
+    \node[above=0.5cm of ab, font=\bfseries] {Lattice: $(\mathcal{P}(\{a, b\}), \subseteq)$};
+
+    % Edges connect the nodes
+    \draw[thick, purple!70] (empty) -- (a) -- (ab);
+    \draw[thick, purple!70] (empty) -- (b) -- (ab);
+    
+    % LUB and GLB for {a} and {b} are annotated
+    \node[purple, right=0.2cm of ab] {LUB of $\{a\},\{b\}$};
+    \node[purple, right=0.2cm of empty] {GLB of $\{a\},\{b\}$};
+  \end{tikzpicture}
+\end{center}
+
+
+
+
+
+
+\newpage
+
+
+
+\section*{Solutions for Poset Questions}
+
+
+% --- Poset 1: ({3,5,9,15,24,45}, |) ---
+\begin{tikzpicture}
+  % Node styles are defined for different properties
+  \tikzstyle{element} = [circle, draw=black, thick, minimum size=25pt, drop shadow]
+  \tikzstyle{minimal} = [element, fill=green!20, label={[yshift=-1cm]Minimal}]
+  \tikzstyle{maximal} = [element, fill=red!20, label={[yshift=1cm]Maximal}]
+
+  % Nodes are placed manually to form the Hasse diagram
+  \node[minimal] (3) at (0,0) {3};
+  \node[minimal] (5) at (2,0) {5};
+  \node[element] (9) at (-1,2) {9};
+  \node[element, fill=cyan!20] (15) at (1,2) {15};
+  \node[maximal] (24) at (3,2) {24};
+  \node[maximal, fill=cyan!20] (45) at (0,4) {45};
+
+  % Edges are drawn to show the divisibility relation
+  \draw[thick] (3) -- (9);
+  \draw[thick] (3) -- (15);
+  \draw[thick] (3) -- (24);
+  \draw[thick] (5) -- (15);
+  \draw[thick] (5) -- (45);
+  \draw[thick] (9) -- (45);
+  \draw[thick] (15) -- (45);
+  
+  % --- Annotations for bounds ---
+  % Upper bounds of {3,5}
+  \node[draw, dashed, red, rounded corners, fit=(3) (5), inner sep=8pt] (s1) {};
+  \node[draw, dashed, red, rounded corners, fit=(15) (45), inner sep=10pt, label={[red]above:Upper Bounds of $\{3,5\}$}] (ub1) {};
+  \node[draw, thick, red, circle, fit=(15), inner sep=0pt, label={[red, xshift=1.1cm]LUB}] {};
+
+  % Lower bounds of {15,45}
+  \node[draw, dashed, blue, rounded corners, fit=(3) (5) (15), inner sep=10pt, label={[blue]below left:Lower Bounds of $\{15,45\}$}] (lb2) {};
+  \node[draw, thick, blue, circle, fit=(15), inner sep=0pt, label={[blue, xshift=-1.1cm]GLB}] {};
+
+  % Annotations for greatest/least elements
+  \node[align=left] at (6,3) {\textbf{Greatest Element:} \\ None exists};
+  \node[align=left] at (6,1) {\textbf{Least Element:} \\ None exists};
+\end{tikzpicture}
+
+\vspace{2cm}
+
+% --- Poset 2: (P(S), subseteq) ---
+\begin{tikzpicture}
+  % Node styles are defined for different properties
+  \tikzstyle{element} = [rectangle, rounded corners, draw=black, thick, minimum height=25pt, drop shadow]
+  \tikzstyle{minimal} = [element, fill=green!20, label={[yshift=-1cm]Minimal}]
+  \tikzstyle{maximal} = [element, fill=red!20, label={[yshift=1cm]Maximal}]
+
+  % Nodes are placed manually to form the Hasse diagram
+  \node[minimal] (1) at (-3,0) {\{1\}};
+  \node[minimal] (2) at (0,0) {\{2\}};
+  \node[minimal] (4) at (3,0) {\{4\}};
+  
+  \node[maximal] (12) at (-4,2) {\{1,2\}};
+  \node[element] (14) at (-1.5,2) {\{1,4\}};
+  \node[element, fill=cyan!20] (24) at (1.5,2) {\{2,4\}};
+  \node[element, fill=cyan!20] (34) at (4,2) {\{3,4\}};
+
+  \node[maximal] (134) at (0,4) {\{1,3,4\}};
+  \node[maximal, fill=cyan!20] (234) at (3,4) {\{2,3,4\}};
+
+  % Edges are drawn to show the subset relation
+  \draw[thick] (1) -- (12);
+  \draw[thick] (1) -- (14);
+  \draw[thick] (2) -- (12);
+  \draw[thick] (2) -- (24);
+  \draw[thick] (4) -- (14);
+  \draw[thick] (4) -- (24);
+  \draw[thick] (4) -- (34);
+  \draw[thick] (14) -- (134);
+  \draw[thick] (24) -- (234);
+  \draw[thick] (34) -- (134);
+  \draw[thick] (34) -- (234);
+
+  % --- Annotations for bounds ---
+  % Upper bounds of {{2},{4}}
+  \node[draw, dashed, red, rounded corners, fit=(2) (4), inner sep=8pt] (s1) {};
+  \node[draw, dashed, red, rounded corners, fit=(24) (234), inner sep=10pt, label={[red, xshift=1.5cm, yshift=.5cm]Upper Bounds of $\{\{2\},\{4\}\}$}] (ub1) {};
+  \node[draw, thick, red, ellipse, fit=(24), inner sep=2pt, label={[red, xshift=1.2cm]LUB}] {};
+
+  % Lower bounds of {{1,3,4},{2,3,4}}
+  \node[draw, dashed, blue, rounded corners, fit=(134) (234), inner sep=8pt] (s2) {};
+  \node[draw, dashed, blue, rounded corners, fit=(4) (34), inner sep=10pt, label={[blue, below, yshift=-1cm]Lower Bounds of sets above}] (lb2) {};
+  \node[draw, thick, blue, ellipse, fit=(34), inner sep=2pt, label={[blue, xshift=-1.2cm]GLB}] {};
+  
+  % Annotations for greatest/least elements
+  \node[align=left] at (8,3) {\textbf{Greatest Element:} \\ None exists};
+  \node[align=left] at (8,1) {\textbf{Least Element:} \\ None exists};
+\end{tikzpicture}
+
+
+
+
+\subsection*{Poset $(\{3,5,9,15,24,45\}, \mid)$}
+For this poset, where the relation is "divides", the following properties are first identified:
+\begin{itemize}
+  \item \textbf{Minimal Elements} (no other element divides them): $\{3, 5\}$
+  \item \textbf{Maximal Elements} (they do not divide any other element in the set): $\{24, 45\}$
+\end{itemize}
+
+\noindent\textbf{1. Select all maximal elements.} \\
+An element is maximal if no other element in the set is a multiple of it. \\
+\textit{Correct options}: \textbf{F. 24} and \textbf{E. 45}.
+
+\vspace{1em}
+\noindent\textbf{2. Select all minimal elements.} \\
+An element is minimal if it is not a multiple of any other element in the set. \\
+\textit{Correct options}: \textbf{B. 5} and \textbf{C. 3}.
+
+\vspace{1em}
+\noindent\textbf{3. Select the greatest element if one exists.} \\
+A greatest element must be a unique maximal element. As there are two maximal elements, no greatest element exists. \\
+\textit{Correct option}: \textbf{G. None of the above}.
+
+\vspace{1em}
+\noindent\textbf{4. Select the least element if one exists.} \\
+A least element must be a unique minimal element. As there are two minimal elements, no least element exists. \\
+\textit{Correct option}: \textbf{G. None of the above}.
+
+\vspace{1em}
+\noindent\textbf{5. Select all upper bounds of $\{3,5\}$.} \\
+An upper bound must be a multiple of both 3 and 5. The elements from the set that satisfy this are 15 and 45. \\
+\textit{Correct options}: \textbf{F. 15} and \textbf{E. 45}.
+
+\vspace{1em}
+\noindent\textbf{6. Select the least upper bound of $\{3,5\}$ if one exists.} \\
+The least upper bound is the minimum of the set of upper bounds $\{15, 45\}$. Since $15 \mid 45$, 15 is the minimum. \\
+\textit{Correct option}: \textbf{C. 15}.
+
+\vspace{1em}
+\noindent\textbf{7. Select all lower bounds of $\{15,45\}$.} \\
+A lower bound must divide both 15 and 45. The elements from the set that satisfy this are 3, 5, and 15. \\
+\textit{Correct options}: \textbf{B. 3}, \textbf{E. 5}, and \textbf{C. 15}.
+
+\vspace{1em}
+\noindent\textbf{8. Select the greatest lower bound of $\{15,45\}$ if one exists.} \\
+The greatest lower bound is the maximum of the set of lower bounds $\{3, 5, 15\}$. Since 3 and 5 both divide 15, 15 is the maximum. \\
+\textit{Correct option}: \textbf{A. 15}.
+
+\subsection*{Poset $(\{\{1\},\{2\},\{4\},\{1,2\},\{1,4\},\{2,4\},\{3,4\},\{1,3,4\},\{2,3,4\}\}, \subseteq)$}
+For this poset, where the relation is "is a subset of", the following properties are identified:
+\begin{itemize}
+  \item \textbf{Minimal Elements} (no proper subsets in the collection): $\{\{1\}, \{2\}, \{4\}\}$
+  \item \textbf{Maximal Elements} (not a proper subset of any other set): $\{\{1,2\}, \{1,3,4\}, \{2,3,4\}\}$
+\end{itemize}
+
+\noindent\textbf{1. Select all maximal elements.} \\
+\textit{Correct options}: \textbf{H. \{1,2\}}, \textbf{I. \{1,3,4\}}, and \textbf{B. \{2,3,4\}}.
+
+\vspace{1em}
+\noindent\textbf{2. Select all minimal elements.} \\
+\textit{Correct options}: \textbf{C. \{1\}}, \textbf{E. \{2\}}, and \textbf{B. \{4\}}.
+
+\vspace{1em}
+\noindent\textbf{3. Select the greatest element if one exists.} \\
+There are three maximal elements, not a unique one. Therefore, no greatest element exists. \\
+\textit{Correct option}: \textbf{J. None of the above}.
+
+\vspace{1em}
+\noindent\textbf{4. Select the least element if one exists.} \\
+There are three minimal elements, not a unique one. Therefore, no least element exists. \\
+\textit{Correct option}: \textbf{J. None of the above}.
+
+\vspace{1em}
+\noindent\textbf{5. Select all upper bounds of $\{\{2\},\{4\}\}$.} \\
+An upper bound must contain both 2 and 4. The sets from the collection that satisfy this are $\{2,4\}$ and $\{2,3,4\}$. \\
+\textit{Correct options}: \textbf{B. \{2,4\}} and \textbf{G. \{2,3,4\}}.
+
+\vspace{1em}
+\noindent\textbf{6. Select the least upper bound of $\{\{2\},\{4\}\}$ if one exists.} \\
+The least upper bound is the minimum of the upper bounds $\{\{2,4\}, \{2,3,4\}\}$. Since $\{2,4\} \subseteq \{2,3,4\}$, $\{2,4\}$ is the minimum. \\
+\textit{Correct option}: \textbf{D. \{2,4\}}.
+
+\vspace{1em}
+\noindent\textbf{7. Select all lower bounds of $\{\{1,3,4\},\{2,3,4\}\}$.} \\
+A lower bound must be a subset of the intersection, which is $\{3,4\}$. The sets from the collection that are subsets of $\{3,4\}$ are $\{4\}$ and $\{3,4\}$. \\
+\textit{Correct options}: \textbf{G. \{4\}} and \textbf{C. \{3,4\}}.
+
+\vspace{1em}
+\noindent\textbf{8. Select the greatest lower bound of $\{\{1,3,4\},\{2,3,4\}\}$ if one exists.} \\
+The greatest lower bound is the maximum of the lower bounds $\{\{4\}, \{3,4\}\}$. Since $\{4\} \subseteq \{3,4\}$, $\{3,4\}$ is the maximum. \\
+\textit{Correct option}: \textbf{D. \{3,4\}}.
+
+
+
+
+
+
+\newpage
+
+The truth values for the following propositions concerning partially ordered sets are determined. A pair of elements $a, b$ in a poset with relation $\preceq$ is considered \textbf{comparable} if either $a \preceq b$ or $b \preceq a$ holds true.
+
+\begin{enumerate}
+  \item If $a, b \in \mathbb{R}$, then $a$ and $b$ are comparable in the poset $(\mathbb{R}, \leq)$. \\
+  \textbf{True}. For any two real numbers $a$ and $b$, it is always true that either $a \leq b$ or $b \leq a$. This is the definition of a total order.
+
+  \item The elements 7 and 12 are comparable in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{False}. Neither $7 \mid 12$ nor $12 \mid 7$ is true. Since neither element divides the other, they are incomparable.
+
+  \item The elements 10 and 5 are comparable in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{True}. While $10 \nmid 5$, it is true that $5 \mid 10$. Since one of the relations holds, they are comparable.
+
+  \item The sets $\{1,2,3\}$ and $\{2,3,4\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{False}. Neither set is a subset of the other, so they are incomparable.
+
+  \item The dual poset of $(\setZ, \mid)$ is $(\setZ, \nmid)$. \\
+  \textbf{False}. The dual of the relation $a \mid b$ is $b \mid a$. The symbol $\nmid$ denotes the negation of the relation, not its dual.
+
+  \item The sets $\{1,2\}$ and $\{1,2,3,4,5\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{True}. The set $\{1, 2\}$ is a subset of $\{1, 2, 3, 4, 5\}$, so they are comparable.
+
+  \item The dual poset of $(\setZ, \leq)$ is $(\setZ,>)$. \\
+  \textbf{False}. The dual of the relation $\leq$ is $\geq$. The relation $>$ is not a partial order because it is not reflexive.
+
+  \item The sets $\{1,3,5\}$ and $\{2,4\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{False}. The sets are disjoint, so neither is a subset of the other. They are incomparable.
+
+  \item The relation $\neq$ is a partial ordering of $\setZ$. \\
+  \textbf{False}. A partial order must be reflexive, but $a \neq a$ is always false.
+
+  \item The set $\emptyset$ is comparable to every element in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{True}. The empty set is a subset of every set, so $\emptyset \subseteq A$ is true for any set $A$, making them comparable.
+
+  \item The elements 13 and 39 are comparable in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{True}. Since $13 \mid 39$, the elements are comparable.
+
+  \item The sets $\{3,5,7\}$ and $\{7\}$ are comparable in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{True}. The set $\{7\}$ is a subset of $\{3, 5, 7\}$, so they are comparable.
+
+  \item The element 1 is comparable to all other elements in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{True}. The number 1 divides every positive integer ($1 \mid k$ for all $k \in \setZ^{+}$), making it comparable to all other elements.
+
+  \item The relation $=$ is both a partial order and an equivalence relation on $\mathbb{R}$. \\
+  \textbf{True}. It is reflexive, antisymmetric, and transitive (a partial order). It is also reflexive, symmetric, and transitive (an equivalence relation).
+
+  \item The set $\setZ$ is comparable to every element in the poset $(\mathcal{P}(\setZ), \subseteq)$. \\
+  \textbf{True}. Every set $A \in \mathcal{P}(\setZ)$ is by definition a subset of $\setZ$, so $A \subseteq \setZ$ is always true.
+
+  \item The dual poset of $(\mathcal{P}(\{0,1,2\}), \subseteq)$ is $(\mathcal{P}(\{0,1,2\}), \supseteq)$. \\
+  \textbf{True}. The dual of the relation $A \subseteq B$ is $B \subseteq A$, which is equivalent to $A \supseteq B$.
+
+  \item The elements 3 and 3 are comparable in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{True}. Because the divisibility relation is reflexive, $3 \mid 3$ is true, which makes them comparable.
+
+  \item The elements 6 and 9 are comparable in the poset $(\setZ^{+}, \mid)$. \\
+  \textbf{False}. Neither $6 \mid 9$ nor $9 \mid 6$ is true. They are incomparable.
+
+\end{enumerate}
+
+
+
+
+\newpage
+
+
+First, the six permutations on the set $\{1, 2, 3\}$ are explicitly defined for clarity. The permutation $c$, which was not explicitly defined in the problem description, is the transposition of 1 and 3.
+
+\begin{itemize}
+  \item $e = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}$ (identity)
+  \item $a = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}$ (swaps 1 and 2)
+  \item $b = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}$ (swaps 2 and 3)
+  \item $c = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}$ (swaps 1 and 3)
+  \item $d = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}$ (cycle $1 \to 2 \to 3 \to 1$)
+  \item $f = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}$ (cycle $1 \to 3 \to 2 \to 1$)
+\end{itemize}
+
+\section*{Completed Product Table}
+The completed composition table is presented below. The operation is defined as $(row) \circ (column)$.
+
+\begin{center}
+  \begin{tabular}{|c||c|c|c|c|c|c|}
+    \hline
+    \textbf{$\circ$} & \textbf{$e$} & \textbf{$a$} & \textbf{$b$} & \textbf{$c$} & \textbf{$d$} & \textbf{$f$} \\
+    \hline\hline
+    \textbf{$e$} & $e$ & $a$ & $b$ & $c$ & $d$ & $f$ \\
+    \hline
+    \textbf{$a$} & $a$ & $e$ & $d$ & $f$ & $b$ & $c$ \\
+    \hline
+    \textbf{$b$} & $b$ & $f$ & $e$ & $d$ & $c$ & $a$ \\
+    \hline
+    \textbf{$c$} & $c$ & $d$ & $f$ & $e$ & $a$ & $b$ \\
+    \hline
+    \textbf{$d$} & $d$ & $c$ & $a$ & $b$ & $f$ & $e$ \\
+    \hline
+    \textbf{$f$} & $f$ & $b$ & $c$ & $a$ & $e$ & $d$ \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\section*{Analysis of the Table}
+
+\subsection*{What patterns are seen in this table?}
+\begin{itemize}
+  \item \textbf{Identity Element}: The first row and first column are identical to the headers. This shows that $e$ is the identity element, as $e \circ x = x \circ e = x$ for any permutation $x$.
+  \item \textbf{Not Commutative}: The table is not symmetric across its main diagonal. For example, $a \circ b = d$, but $b \circ a = f$. This confirms that the composition of permutations is not a commutative operation.
+  \item \textbf{Closure}: Every entry in the table is one of the six original permutations. This means the set is closed under the operation of composition.
+\end{itemize}
+
+\subsection*{How many times does a permutation appear in a given row or column?}
+Each permutation appears \textbf{exactly once} in each row and each column. This is known as the \textbf{Latin Square Property} and is a fundamental characteristic of a group's Cayley table.
+
+\subsection*{Does every permutation have an inverse?}
+\textbf{Yes}. For every permutation $x$, there exists a unique permutation $y$ (the inverse, $x^{-1}$) such that $x \circ y = e$ and $y \circ x = e$. These can be found by locating the identity element $e$ in each row and column.
+\begin{itemize}
+  \item The permutations $a, b,$ and $c$ are their own inverses: $a \circ a = e$, $b \circ b = e$, $c \circ c = e$.
+  \item The permutations $d$ and $f$ are inverses of each other: $d \circ f = e$ and $f \circ d = e$.
+  \item The identity $e$ is its own inverse: $e \circ e = e$.
+\end{itemize}
+
+
+
+\newpage
+
+\section*{Cayley Tables and Properties for $\setZ_n$}
+
+The completed Cayley tables for addition and multiplication in $\setZ_4$ and $\setZ_5$ are provided, followed by an analysis of their properties.
+
+\subsection*{Cayley Tables for $\setZ_4$}
+The set of congruence classes is $\setZ_4 = \{[0], [1], [2], [3]\}$.
+
+\vspace{1em}
+\noindent
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \textbf{Addition Modulo 4}
+  \vspace{0.5em}
+  \begin{tabular}{|c||c|c|c|c|}
+    \hline
+    $+$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ \\
+    \hline\hline
+    $[0]$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ \\
+    \hline
+    $[1]$ & $[1]$ & $[2]$ & $[3]$ & $[0]$ \\
+    \hline
+    $[2]$ & $[2]$ & $[3]$ & $[0]$ & $[1]$ \\
+    \hline
+    $[3]$ & $[3]$ & $[0]$ & $[1]$ & $[2]$ \\
+    \hline
+  \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \textbf{Multiplication Modulo 4}
+  \vspace{0.5em}
+  \begin{tabular}{|c||c|c|c|c|}
+    \hline
+    $\cdot$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ \\
+    \hline\hline
+    $[0]$ & $[0]$ & $[0]$ & $[0]$ & $[0]$ \\
+    \hline
+    $[1]$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ \\
+    \hline
+    $[2]$ & $[0]$ & $[2]$ & $[0]$ & $[2]$ \\
+    \hline
+    $[3]$ & $[0]$ & $[3]$ & $[2]$ & $[1]$ \\
+    \hline
+  \end{tabular}
+\end{minipage}
+\vspace{2em}
+
+
+\subsection*{Cayley Tables for $\setZ_5$}
+The set of congruence classes is $\setZ_5 = \{[0], [1], [2], [3], [4]\}$.
+
+\vspace{1em}
+\noindent
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \textbf{Addition Modulo 5}
+  \vspace{0.5em}
+  \begin{tabular}{|c||c|c|c|c|c|}
+    \hline
+    $+$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ & $[4]$ \\
+    \hline\hline
+    $[0]$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ & $[4]$ \\
+    \hline
+    $[1]$ & $[1]$ & $[2]$ & $[3]$ & $[4]$ & $[0]$ \\
+    \hline
+    $[2]$ & $[2]$ & $[3]$ & $[4]$ & $[0]$ & $[1]$ \\
+    \hline
+    $[3]$ & $[3]$ & $[4]$ & $[0]$ & $[1]$ & $[2]$ \\
+    \hline
+    $[4]$ & $[4]$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ \\
+    \hline
+  \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \textbf{Multiplication Modulo 5}
+  \vspace{0.5em}
+  \begin{tabular}{|c||c|c|c|c|c|}
+    \hline
+    $\cdot$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ & $[4]$ \\
+    \hline\hline
+    $[0]$ & $[0]$ & $[0]$ & $[0]$ & $[0]$ & $[0]$ \\
+    \hline
+    $[1]$ & $[0]$ & $[1]$ & $[2]$ & $[3]$ & $[4]$ \\
+    \hline
+    $[2]$ & $[0]$ & $[2]$ & $[4]$ & $[1]$ & $[3]$ \\
+    \hline
+    $[3]$ & $[0]$ & $[3]$ & $[1]$ & $[4]$ & $[2]$ \\
+    \hline
+    $[4]$ & $[0]$ & $[4]$ & $[3]$ & $[2]$ & $[1]$ \\
+    \hline
+  \end{tabular}
+\end{minipage}
+\vspace{2em}
+
+\section*{Patterns and Properties}
+The following observations are made from the tables.
+
+\subsection*{General Patterns}
+\begin{itemize}
+  \item \textbf{Identity Elements}: For addition, $[0]$ is the identity element. For multiplication, $[1]$ is the identity element.
+  \item \textbf{Symmetry}: All four tables are symmetric across the main diagonal.
+\end{itemize}
+
+\subsection*{Frequency of Classes in Rows/Columns}
+\begin{itemize}
+  \item \textbf{Addition}: For both $\setZ_4$ and $\setZ_5$, every congruence class appears \textbf{exactly once} in each row and each column. This property means the tables are \textbf{Latin squares}.
+  \item \textbf{Multiplication}: The pattern is more complex.
+  \begin{itemize}
+    \item In $\setZ_4$, the rows/columns for $[1]$ and $[3]$ (classes corresponding to integers relatively prime to 4) contain each class exactly once. However, the row/column for $[2]$ contains only $[0]$ and $[2]$, each appearing twice. This is because 2 is a \textbf{zero divisor} ($[2] \cdot [2] = [0]$).
+    \item In $\setZ_5$, since 5 is a \textbf{prime number}, all non-zero elements are relatively prime to 5. Consequently, in every row and column corresponding to a non-zero element, each congruence class appears \textbf{exactly once}.
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Commutativity and Associativity}
+\begin{itemize}
+  \item \textbf{Commutativity}: \textbf{Yes}, both operations are commutative. This is visually confirmed by the symmetry of the tables and holds because addition and multiplication of integers are commutative:
+  \[ [a] + [b] = [a+b] = [b+a] = [b] + [a] \]
+  \[ [a] \cdot [b] = [ab] = [ba] = [b] \cdot [a] \]
+  \item \textbf{Associativity}: \textbf{Yes}, both operations are associative. This property is inherited from the associativity of operations in the integers ($\setZ$):
+  \[ ([a] + [b]) + [c] = [(a+b)+c] = [a+(b+c)] = [a] + ([b] + [c]) \]
+  \[ ([a] \cdot [b]) \cdot [c] = [(ab)c] = [a(bc)] = [a] \cdot ([b] \cdot [c]) \]
+\end{itemize}
+
+\newpage
+
+
+The truth values for the following statements are determined. A statement is considered \textbf{true} if it holds for all functions and all subsets, while it is \textbf{false} if a single counterexample can be found. For the counterexamples provided, the function $f: \{1, 2, 3\} \to \{a, b, c\}$ defined by $f(1)=a$, $f(2)=b$, and $f(3)=a$ is used. This function is neither one-to-one nor onto.
+
+\begin{enumerate}
+  \item $f(A \cap B) \subseteq f(A) \cap f(B)$ \\
+  \textbf{True}. If an element $y \in f(A \cap B)$, then $y = f(x)$ for some $x \in A \cap B$. Since $x \in A$ and $x \in B$, it follows that $f(x) \in f(A)$ and $f(x) \in f(B)$. Thus, $y \in f(A) \cap f(B)$.
+
+  \item $f^{-1}(C \cup D) \subseteq f^{-1}(C) \cup f^{-1}(D)$ \\
+  \textbf{True}. If $x \in f^{-1}(C \cup D)$, its image $f(x)$ is in $C \cup D$. This means $f(x) \in C$ or $f(x) \in D$, which implies $x \in f^{-1}(C)$ or $x \in f^{-1}(D)$.
+
+  \item $f^{-1}(C) \cup f^{-1}(D) \subseteq f^{-1}(C \cup D)$ \\
+  \textbf{True}. If $x \in f^{-1}(C) \cup f^{-1}(D)$, then $x \in f^{-1}(C)$ or $x \in f^{-1}(D)$. This means $f(x) \in C$ or $f(x) \in D$. Therefore, $f(x) \in C \cup D$, which means $x \in f^{-1}(C \cup D)$.
+
+  \item $f(A) \cap f(B) \subseteq f(A \cap B)$ \\
+  \textbf{False}. This can fail if the function is not one-to-one. Let $A=\{1\}$ and $B=\{3\}$. Then $f(A)=\{a\}$ and $f(B)=\{a\}$, so $f(A) \cap f(B) = \{a\}$. However, $A \cap B = \emptyset$, so $f(A \cap B) = \emptyset$. The statement $\{a\} \subseteq \emptyset$ is false.
+
+  \item If $C \subseteq D$, then $f^{-1}(C) \subseteq f^{-1}(D)$. \\
+  \textbf{True}. If $C \subseteq D$, then any element $x$ whose image $f(x) \in C$ also has its image in $D$. By definition, any $x \in f^{-1}(C)$ must also be in $f^{-1}(D)$.
+
+  \item If $f^{-1}(C) \subseteq f^{-1}(D)$, then $C \subseteq D$. \\
+  \textbf{False}. This can fail if the function is not onto. Let $C=\{c\}$ and $D=\{a\}$. The premise $f^{-1}(C) \subseteq f^{-1}(D)$ is true because $f^{-1}(C) = \emptyset$ and $f^{-1}(D)=\{1,3\}$. However, the conclusion $C \subseteq D$ is false.
+
+  \item $f^{-1}(C) \cap f^{-1}(D) \subseteq f^{-1}(C \cap D)$ \\
+  \textbf{True}. If $x \in f^{-1}(C) \cap f^{-1}(D)$, its image $f(x)$ is in both $C$ and $D$. Therefore, $f(x) \in C \cap D$, which means $x \in f^{-1}(C \cap D)$.
+
+  \item $f\left(f^{-1}(C)\right) \subseteq C$ \\
+  \textbf{True}. The set $f^{-1}(C)$ contains only elements that map into $C$. Therefore, the image of this set must be a subset of $C$.
+
+  \item $f(A) \cup f(B) \subseteq f(A \cup B)$ \\
+  \textbf{True}. If $y \in f(A) \cup f(B)$, then $y$ is the image of an element in $A$ or in $B$. In either case, it is the image of an element from $A \cup B$.
+
+  \item $A \subseteq f^{-1}(f(A))$ \\
+  \textbf{True}. Every $x \in A$ maps to an element $f(x) \in f(A)$. By the definition of inverse image, $x$ must therefore belong to the set of all elements that map into $f(A)$.
+
+  \item $f(A \cup B) \subseteq f(A) \cup f(B)$ \\
+  \textbf{True}. If $y \in f(A \cup B)$, it is the image of some $x \in A \cup B$. If $x \in A$, then $y \in f(A)$. If $x \in B$, then $y \in f(B)$. So, $y$ must be in $f(A) \cup f(B)$.
+
+  \item $f^{-1}(C \cap D) \subseteq f^{-1}(C) \cap f^{-1}(D)$ \\
+  \textbf{True}. If $x \in f^{-1}(C \cap D)$, its image $f(x) \in C \cap D$. This means $f(x) \in C$ and $f(x) \in D$. Therefore, $x$ is in both $f^{-1}(C)$ and $f^{-1}(D)$.
+
+  \item $f^{-1}(f(A)) \subseteq A$ \\
+  \textbf{False}. This can fail if the function is not one-to-one. Let $A=\{1\}$. Then $f(A)=\{a\}$. The inverse image $f^{-1}(\{a\})$ is $\{1, 3\}$. The statement $\{1, 3\} \subseteq \{1\}$ is false.
+
+  \item If $f(A) \subseteq f(B)$, then $A \subseteq B$. \\
+  \textbf{False}. This can fail if the function is not one-to-one. Let $A=\{1\}$ and $B=\{3\}$. Then $f(A)=\{a\}$ and $f(B)=\{a\}$. The premise $f(A) \subseteq f(B)$ is true, but the conclusion $A \subseteq B$ is false.
+
+  \item $C \subseteq f\left(f^{-1}(C)\right)$ \\
+  \textbf{False}. This can fail if the function is not onto. Let $C=\{c\}$. The inverse image $f^{-1}(\{c\})$ is $\emptyset$. The image $f(\emptyset)$ is also $\emptyset$. The statement $\{c\} \subseteq \emptyset$ is false.
+
+  \item If $A \subseteq B$, then $f(A) \subseteq f(B)$. \\
+  \textbf{True}. If $A$ is a subset of $B$, any element in $A$ is also in $B$. Therefore, the image of any element from $A$ must also be an image of an element from $B$.
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+\begin{define}{Principle of Inclusion-Exclusion (PIE)}[def:pie][red]
+  Let $\setUNIV$ be a universal set for a counting problem. 
+  Let $C_1, C_2, \ldots, C_n$ be a finite collection of finite sets where each $C_i \subseteq \setUNIV$.
+  The intersection of all $C_i$ defines a condition set for the cardinality, $C$, as follows.
+  $$
+  C=\bigcap_{i \in [n]} C_i=C_1 \sAND C_2 \sAND \ldots \sAND C_n
+  $$
+  and the complementary sets $\sNOT{C_i}=\setUNIV \sMINUS C_i$ for $i \in [n] = \{1, 2, \ldots, n\}$ define the sets 
+  of elements that do not satisfy the collection of conditions, $C$. Then, 
+  the number of elements in $\setUNIV$ that satisfy all the conditions in $C$ is given as follows.
+  \begin{align*}
+    |C| 
+      &= \left| \bigcap_{i=1}^{n} C_i \right| 
+      = |U| - \left| \bigcup_{i=1}^{n} \sNOT{C_i} \right| 
+      = \sum_{I \subseteq [n]} (-1)^{|I|} \left| \bigcap_{i \in I} \sNOT{C_i} \right| \\
+      &= |U| - \sum_{i=1}^{n} |\sNOT{C_i}| 
+         + \sum_{1 \leq i < j \leq n} |\sNOT{C_i} \sAND \sNOT{C_j}| 
+         - \ldots 
+         + (-1)^n |\sNOT{C_1} \sAND \sNOT{C_2} \sAND \ldots \sAND \sNOT{C_n}|
+  \end{align*}
+  where the intersection over an empty index set, $\bigcap_{i \in \emptyset} \sNOT{C_i}$, is defined as the universal set $U$.
+\end{define}
+
+
+\begin{define}{Cardinality of Surjective Functions}[thm:surjective-cardinality][red]
+  The number of surjective functions from a set $[k] = \{1, 2, \ldots, k\}$ to a set 
+  $[n] = \{1, 2, \ldots, n\}$ is given by the formula:
+  $$
+    \opS\group{k,n}=\sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
+  $$
+  \begin{subprove}
+    By the definition of surjective functions, a function $f: [k] \to [n]$ is surjective if and only if
+    for every $i \in [n]$, there exists at least one $j \in [k]$ such that $f(j) = i$.
+    Let $C_i$ be defined as follows.
+    \[
+    \xymatrix@R=1.5em@C=2.5em{
+      % Domain nodes [k]
+      *++[o][F-]{1} \xyArc[r]         & *++[o][F-]{1}         & {C_1\text{: there exists a value in $[k]$ that maps to $1$ in $[x]$}}\\
+      *++[o][F-]{2} \xyArc[ddr]       & *++[o][F-]{2}         & {C_2\text{: there exists a value in $[k]$ that maps to $2$ in $[x]$}}\\
+      *++[o][F-]{\vdots} \xyArc[ur]   & *++[o][F-]{\vdots}    & {C_i\text{: there exists a value in $[k]$ that maps to $i$ in $[x]$}}\\
+      *++[o][F-]{k} \xyArc[r]         & *++[o][F-]{n}         
+    }
+    \]
+    Then, $|C|$ is the number of surjective functions by definition. Then, 
+    by \nameref{def:pie}, the number of surjective functions is given as follows.
+    \begin{align*}
+      |C| &= n^k - \binom{n}{1}(n-1)^k + \binom{n}{2}(n-2)^k - \ldots + (-1)^n \binom{n}{n}(n-n)^k \\
+          &= \sum_{i=0}^{n} (-1)^i \binom{n}{i} (n-i)^k
+    \end{align*}
+    since $\sum_{i=1}^{n} |\sNOT{C_i}|$ is the number of functions from $[k]$ to $[n]$ such that 
+    a single value, $i$, is not in the range for each $i \in [n]$, which is given by 
+    $\binom{n}{1}(n-1)^k$. With similar reasoning, 
+    $\sum_{1 \leq i < j \leq n} |\sNOT{C_i} \sAND \sNOT{C_j}| = \binom{n}{2}(n-2)^k$
+    and so on.
+  \end{subprove}
+\end{define}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
+Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
+\begin{define}{Set Equality}[def:set-equality][red]
+  Let $A$ and $B$ be sets. The sets $A$ and $B$ are equal ($A = B$) iff $A \subseteq B$ and $B \subseteq A$.
+\end{define}
+\begin{define}{Subset Relation}[def:subset][red]
+  Let $A$ and $B$ be sets. $A$ is a subset of $B$ ($A \subseteq B$) iff for all $x \in A$ only if $x \in B$.
+\end{define}  
+\begin{define}{Union of Sets}[def:union][red]
+  Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \sOR B$, is the 
+  set of all elements that are in $A$, or in $B$, or in both. 
+  That is, $A \sOR B = \{x : x \in A \text{ or } x \in B\}$.
+\end{define}
+\begin{define}{Intersection of Sets}[def:intersection][red]
+  Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \sAND B$, is the 
+  set of all elements that are in both $A$ and $B$. That is, $A \sAND B = \{x : x \in A \text{ and } x \in B\}$.
+\end{define}
+\begin{define}{Set Difference}[def:set-difference][red]
+  Let $A$, $B$ be subsets of a universal set $\setUNIV$. The set difference $A \sMINUS B$ is defined to be the set $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \vspace*{5px}\\
+  \textit{It is sometimes called the relative complement of $B$ in $A$, and denoted in the textbook as $A - B$.}
+\end{define}
+\begin{define}{Power Set}[def:power-set][red]
+  Let $A$ be a set. The power set of $A$, denoted $\sPOWER{A}$ or $2^{\abs{A}}$, is the set of all subsets of $A$. That is, $\sPOWER{A} = \{S\in\setUNIV : S \subseteq A\}$.
+\end{define}
+\begin{define}{Complementary Set}[def:complementary-set][red]
+  Let $A$ be a subset of the universal set $\setUNIV$. The complement of $A$, 
+  denoted $A^c$ or $\sNOT{A}$, is the set of all elements in $\setUNIV$ that are not in $A$. 
+  That is, $\sNOT{A} = \{x \in \setUNIV : x \notin A\}$.
+\end{define}
+\begin{define}{Cartesian Product}[def:cartesian-product][red]
+  Let $A$ and $B$ be sets. The Cartesian product of $A$ and $B$, denoted $A \sTIMES B$, is the set consisting of all ordered pairs:
+  \[
+  A \sTIMES B = \{(a, b) \LDIV a \in A, b \in B\}.
+  \]
+\end{define}
+\begin{define}{Pairwise Disjoint Sets}[def:pairwise-disjoint][red]
+  Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \sAND A_j = \emptyset$.
+\end{define}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
+Wbwk, Hmwk assignments, and contents of the textbook.
+
+
+\begin{define}{Binary Relation}[def:binary-relation][red]
+  Let $A$ and $B$ be sets. A binary relation $R$ from $A$ to $B$ is a subset of $A \times B$. 
+  If (and only if) $$(a, b) \in R \subseteq A \times B$$, then we say 
+  that $a$ is related to $b$ and write $\relation{a}{b}$. Otherwise, $\nrelation{a}{b}$.
+\end{define}
+
+
+
+
+\begin{define}{Digraph}[def:digraph][red]
+  A digraph (or directed graph) is a set of vertices $V$ together with a set of edges $E \subseteq V \times V$.
+\end{define}
+
+\begin{define}{Bipartite Digraph}[def:bipartite-digraph][red]
+  A digraph is bipartite if (and only if) there exist subsets $A, B \subseteq V$ such that 
+  \begin{enumerate}
+    \item $V=A \cup B$ where $A \sAND B=\emptyset$ and $A, B \neq \emptyset$.
+    \item for every $e \in E, e=(a, b)$ for some $a \in A, b \in B$.
+  \end{enumerate}
+\end{define}
+
+\textbf{Example}: Let $A=\{0,1,2\}$ and $B=\{a, b\}$. Then $R=\{(0, a),(0, b),(1, a),(2, b)\}$ is a relation from $A$ to $B$. Binary relations on finite sets like this can be visualized as a bipartite digraph:
+
+\begin{figure}[h!]
+  \centering
+  \[
+  \xymatrix@R=1.5em@C=2.5em{ % Adjusted spacing to match the image
+    *++[o][F-]{0} \xyArc[r]\xyArc[ddr]  & *++[o][F-]{a} 
+    \\
+    *++[o][F-]{1} \xyArc[ur]            & 
+    \\
+    *++[o][F-]{2} \xyArc[r]             & *++[o][F-]{b}
+  }
+  \]
+  \caption{A bipartite graph example}
+  \label{fig:bipartite-graph}
+\end{figure}
+
+
+
+
+
+
+\begin{define}{Inverse Relation}[def:inverse-relation][red]
+  Let $A$ and $B$ be sets. Let $R$ be a relation from $A$ to $B$. The inverse relation $R^{-1}$ from $B$ to $A$ is the set of ordered pairs $\{(b, a) \mid(a, b) \in R\}$.
+\end{define}
+
+
+
+
+
+\begin{define}{Relation on a Set}[def:relation-on-set][red]
+  A relation on a set $\boldsymbol{A}$ is a relation from $A$ to $A$.
+\end{define}
+\begin{define}{Relation Properties}[def:relation-properties][red]
+  Let $A$ be a set and $R$ a relation on $A$. Relations on a set are classified by their properties. The most important properties are:
+  \begin{enumerate}
+    \item \textbf{Reflexive}: The relation $R$ is reflexive if (and only if) for all $x \in A$, $(x, x) \in R$.
+    \item \textbf{Symmetric}: The relation $R$ is symmetric if (and only if) for all $x, y \in A$, $(x, y) \in R$ implies $(y, x) \in R$.
+    \item \textbf{Antisymmetric}: The relation $R$ is antisymmetric if (and only if) for all $x, y \in A$, $(x, y) \in R$ and $(y, x) \in R$ only if $x=y$.
+    \item \textbf{Asymmetric}: The relation $R$ is asymmetric if (and only if) for all $x, y \in A$, if $(x, y) \in R$, then $(y, x) \notin R$.
+    \item \textbf{Transitive}: The relation $R$ is transitive if (and only if) for all $x, y, z \in A$, if $(x, y) \in R$ and $(y, z) \in R$, then $(x, z) \in R$.
+  \end{enumerate}
+\end{define}
+
+
+
+
+\begin{define}{Equivalence Classes Form Partition}[thm:equiv-classes-partition][red]
+  Let $R$ be an equivalence relation on a nonempty set $A$. Then $P=\left\{[a]_R \mid a \in A\right\}$, the set of equivalence classes resulting from $R$, is a partition of $A$.
+\end{define}
+\begin{define}{Partition Induces Equivalence Relation}[thm:partition-equiv-relation][red]
+  Let $A$ be a nonempty set and $P=\left\{S_i \mid i \in I\right\}$ a partition of $A$. Then there exists an equivalence relation $R$ which has the sets $S_i, i \in I$, as its equivalence classes.
+\end{define}
+
+\textbf{Remark}: Note that the set $I$ above is an arbitrary index set. It is not necessarily finite, countable, etc!
+
+
+\begin{define}{Modulo Operation}[def:modulo][red]
+  Let $a, m \in \setZ$ with $m$ positive. The remainder when $a$ is divided by $m$ is denoted $\boldsymbol{a} \bmod \boldsymbol{m}$.
+\end{define}
+\begin{define}{Congruence Modulo}[def:congruence-modulo][red]
+  Let $a, b, m \in \setZ$ with $m$ positive. If $m \mid(a-b)$ then we say that 
+  $\boldsymbol{a}$ is congruent to $\boldsymbol{b}$ modulo $\boldsymbol{m}$ and 
+  write $\boldsymbol{a} \equiv \boldsymbol{b}(\bmod \boldsymbol{m})$.
+\end{define}
+
+
+
+
+
+
+\textbf{Example}: Let $R$ be an equivalence relation on the set $\{1,2,3,4,5,6,7\}$ such that $1 R 3,3 R 4,4 R 7$, and $2 R 6$. Suppose that $R$ has three equivalence classes.
+
+
+
+\textbf{Example}: Let $S$ be another equivalence relation on the set $\{1,2,3,4,5,6\}$. Suppose the equivalence classes of $S$ are $\{1,4,5\},\{2,6\}$, and $\{3\}$.
+
+\textbf{Example}: Let $[a]_n$ denote the congruence class of $a \in \setZ$ modulo $n$ (that is, the equivalence class of $a$ under the relation congruence modulo $n$ ) for integers $n \geq 2$. Are the following propositions true or false?
+
+
+
+
+
+
+
+
+\newpage
+\begin{define}{Equivalence Relation}[def:equivalence-relation][red]
+  Let $A$ be a nonempty set. A relation $R$ on $A$ is an equivalence relation if and only if $R$ is reflexive, symmetric, and transitive.
+\end{define}
+
+\begin{define}{Partition}[def:partition][red]
+  Let $A$ be a nonempty set. A partition of $A$ is a collection of nonempty, pairwise disjoint subsets of $A$ whose union is $A$.
+\end{define}
+
+\begin{define}{Partition Refinement}[def:partition-refinement][red]
+  Let $A$ be a nonempty set. A partition $P_1$ of $A$ is a refinement of a partition $P_2$ of $A$ if and only if every set in $P_1$ is a subset of some set in $P_2$.
+\end{define}
+
+\begin{define}{Equivalence Class}[def:equivalence-class][red]
+  Let $A$ be a nonempty set and $R$ an equivalence relation on $A$. For each $a \in A$, the equivalence class of $a$ with respect to $R$ is the set $[a]_R = \{b \in A \mid a R b\}$.
+\end{define}
+
+\begin{define}{Irreflexive Relation}[def:irreflexive-relation][red]
+  Let $A$ be a nonempty set. A relation $R$ on $A$ is irreflexive if and only if for every $a \in A$, $(a,a) \notin R$.
+\end{define}
+
+\begin{define}{Diagonal Relation}[def:diagonal-relation][red]
+  Let $A$ be a nonempty set. The diagonal relation on $A$ is the set $\Delta = \{(a,a) \mid a \in A\}$.
+\end{define}
+
+
+
+
+
+
+
+
+
+% % The tikzpicture environment is where the drawing is defined.
+% \begin{tikzpicture}[
+%   % A global style is defined for all nodes.
+%   % They will be circles, drawn with a black line, and have a minimum size.
+%   every node/.style={circle, draw, minimum size=0.8cm},
+%   % A global style is defined for all arrows.
+%   % The arrow tip is set to a standard size and shape.
+%   >=Stealth
+% ]
+
+%   % Node placement for the equivalence class {2, 3, 6}
+%   % These nodes are arranged in a triangle.
+%   \node (2) at (0, 2) {2};
+%   \node (3) at (-1.73, -1) {3};
+%   \node (6) at (1.73, -1) {6};
+
+%   % Node placement for the equivalence class {1, 5}
+%   % These nodes are placed to the right of the first class.
+%   \node (1) at (5, 1.5) {1};
+%   \node (5) at (5, -1.5) {5};
+  
+%   % Node placement for the singleton equivalence class {4}
+%   % This node is placed below the others.
+%   \node (4) at (0, -3.5) {4};
+
+%   % Edges are drawn using the \path command. The 'edge' operation creates lines.
+%   % The relation is symmetric, so bidirectional arrows (<->) are used
+%   % to represent pairs like (2,3) and (3,2) with a single line.
+%   \path[<->]
+%     (2) edge (3)
+%     (2) edge (6)
+%     (3) edge (6)
+%     (1) edge (5);
+
+%   % Reflexive loops are added for each element.
+%   % The 'loop' option creates an edge from a node back to itself.
+%   % The position of the loop (e.g., above, left) is specified to avoid overlaps.
+%   \path[->]
+%     (1) edge [loop right] ()
+%     (2) edge [loop above] ()
+%     (3) edge [loop left] ()
+%     (4) edge [loop below] ()
+%     (5) edge [loop right] ()
+%     (6) edge [loop right] ();
+    
+% \end{tikzpicture}
+
+
+
+
+
+
+
+
+
+
+\end{document}
