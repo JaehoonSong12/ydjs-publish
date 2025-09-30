@@ -1837,147 +1837,150 @@ function on primes) determines it everywhere.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L9
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% =========================================================================
-% L9: Arithmetic Functions and Multiplicativity -- corrected version
-% Changelog / notes:
-% - Fixed many typographical errors and grammatical issues in statements and proofs.
-% - Replaced informal "(m,n)" notation with "\gcd(m,n)".
-% - Replaced "modulon" / "modulon exists" with "mod n" and "inverse of m modulo n".
-% - Used \mathbb{Z}, \mid, \gcd, and consistent math-mode.
-% - Wrapped every Theorem/Proposition/Lemma/Corollary/Remark in the assumed
-%   \begin{define}{<Title>} ... \end{define} and applied labels:
-%     thm:3.1, thm:3.2, thm:3.3, thm:3.4, thm:3.5
-% - NOTE: The proof of Theorem 3.2 originally referenced "Proposition 1.2".
-%   I could not find Proposition 1.2 in the provided input.  I have replaced
-%   that fragment with a direct gcd/divisibility argument; please review and
-%   add \nameref{prop:1.2} if that proposition exists elsewhere in your source.
-% - Minor structural improvements and clearer Examples added for readability.
-% =========================================================================
+% === L9: Arithmetic Functions and Multiplicativity ===
+% Major edits / assumptions (changelog):
+% - Fixed many typos and non-math text (e.g., "velatively", "desived" -> "relatively", "as desired").
+% - Replaced incorrect symbols (e.g., \mathbb{C} -> \mathbb{Z}) and ensured proper math mode.
+% - Standardized notation: use \gcd, \mid, \varphi for Euler's function, \sum_{d\mid n} for divisor sums.
+% - Wrapped every Definition, Theorem, Example, Remark in the provided `define` environment and added explicit labels.
+% - Noted a missing cross-reference: Proposition 1.2 is cited below but not present in this fragment. See the % [MISSING REF] comment.
+% - Preserved mathematical meaning; improved clarity and rigor of proofs and examples.
 
 \section*{L9: Arithmetic Functions and Multiplicativity}
 
-\medskip
+\begin{define}{Summation over divisors: notation}[def:3.0]
+By
+\[
+\sum_{d\mid n} f(d)
+\]
+we mean the sum of $f(d)$ over all \emph{positive} divisors $d$ of $n$. For example,
+\[
+\sum_{\substack{d\mid 12}} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12).
+\]
+% Comment: Replaced the broken sentence "A comment about notation: $\sum f(d)$ means the $d(n, d>0$" with a clean definition.
+\end{define}
 
-\noindent\textbf{Notation.} For an arithmetic function $f$ and $n\in\mathbb{Z}_{>0}$ we write
+\begin{define}{Multiplicative functions and divisor sums}[thm:3.1]
+Let $f$ be an arithmetic function and define, for $n\in\mathbb{Z}_{>0}$,
 \[
-\sum_{d\mid n,\,d>0} f(d)
+F(n):=\sum_{d\mid n} f(d).
 \]
-for the summation of $f(d)$ over all positive divisors $d$ of $n$.  For example,
-\[
-\sum_{\substack{d\mid 12\\ d>0}} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12).
-\]
-
-% -------------------------------------------------------------------------
-\begin{define}{Theorem 3.1}\label{thm:3.1}
-% Title kept explicit per user request
-\emph{(Multiplicativity of divisor-sums).}
-Let $f$ be an arithmetic function, and for $n\in\mathbb{Z}_{>0}$ define
-\[
-F(n):=\sum_{d\mid n,\,d>0} f(d).
-\]
-If $f$ is multiplicative, then $F$ is multiplicative.
+If $f$ is multiplicative then $F$ is multiplicative.
 \end{define}
 
 \begin{proof}
-Let $m,n\in\mathbb{Z}_{>0}$ with $\gcd(m,n)=1$. We must show
+Let $m,n\in\mathbb{Z}_{>0}$ with $\gcd(m,n)=1$. We must show $F(mn)=F(m)\,F(n)$.
+
+Claim: Every positive divisor $d$ of $mn$ can be written uniquely as $d=d_1d_2$ with $d_1\mid m$, $d_2\mid n$ and $\gcd(d_1,d_2)=1$.
+
+Proof of claim: Write the prime factorizations
 \[
-F(mn)=F(m)F(n).
+m=\prod_{i=1}^r p_i^{a_i},\qquad n=\prod_{j=1}^s q_j^{b_j},
 \]
-Every positive divisor $d$ of $mn$ may be written uniquely as $d=d_1d_2$
-with $d_1\mid m$, $d_2\mid n$ and $\gcd(d_1,d_2)=1$. (Indeed, write
-$m=\prod p_i^{a_i}$ and $n=\prod q_j^{b_j}$ in their prime factorizations;
-since $\gcd(m,n)=1$ the primes $p_i$ and $q_j$ are distinct, and any divisor
-$d$ of $mn$ splits into the $p$-part and the $q$-part uniquely.) Thus
+where the primes $p_i$ and $q_j$ are distinct because $\gcd(m,n)=1$. Then any divisor $d$ of $mn$ has the form
 \[
-F(mn)=\sum_{\substack{d\mid mn\\ d>0}} f(d)
-=\sum_{\substack{d_1\mid m\\ d_2\mid n\\ d_1,d_2>0}} f(d_1d_2).
+d=\prod_{i=1}^r p_i^{e_i}\prod_{j=1}^s q_j^{f_j},
 \]
-Since $f$ is multiplicative and $\gcd(d_1,d_2)=1$, we have $f(d_1d_2)=f(d_1)f(d_2)$,
-so
+with $0\le e_i\le a_i$ and $0\le f_j\le b_j$. Set
 \[
-F(mn)=\sum_{\substack{d_1\mid m\\ d_2\mid n}} f(d_1)f(d_2)
-=\Big(\sum_{d_1\mid m} f(d_1)\Big)\Big(\sum_{d_2\mid n} f(d_2)\Big)
-=F(m)F(n),
+d_1=\prod_{i=1}^r p_i^{e_i},\qquad d_2=\prod_{j=1}^s q_j^{f_j}.
 \]
-as required.
+Clearly $d_1\mid m$, $d_2\mid n$, $\gcd(d_1,d_2)=1$, and $d=d_1d_2$. Uniqueness follows from uniqueness of prime factorization. $\square$
+
+Using the claim,
+\[
+\begin{aligned}
+F(mn)
+&= \sum_{d\mid mn} f(d)
+= \sum_{\substack{d_1\mid m\\ d_2\mid n}} f(d_1d_2).
+\end{aligned}
+\]
+Since $f$ is multiplicative and $\gcd(d_1,d_2)=1$ for every pair occurring in the sum, we have $f(d_1d_2)=f(d_1)f(d_2)$. Thus
+\[
+\begin{aligned}
+F(mn)
+&= \sum_{d_1\mid m}\sum_{d_2\mid n} f(d_1)f(d_2)
+= \Big(\sum_{d_1\mid m} f(d_1)\Big)\Big(\sum_{d_2\mid n} f(d_2)\Big)
+=F(m)F(n).
+\end{aligned}
+\]
+This proves that $F$ is multiplicative.
 \end{proof}
 
-% Example illustrating Theorem 3.1
-\begin{example}
-Let $m=3$ and $n=4$. Then $mn=12$, and
+\begin{define}{Example: verification for $m=3$, $n=4$}[ex:3.1]
+Let $m=3$ and $n=4$. The positive divisors are
 \[
-F(12)=\sum_{d\mid 12} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12).
+\{\,d_1\mid 3\,\}=\{1,3\},\qquad \{\,d_2\mid 4\,\}=\{1,2,4\}.
 \]
-Using the unique factorization of each divisor into a divisor of $3$ times
-a divisor of $4$, and multiplicativity of $f$, we group terms to obtain
+All divisors of $12$ are the products $d_1d_2$ with $d_1\in\{1,3\}$ and $d_2\in\{1,2,4\}$; hence
 \[
-F(12)=(f(1)+f(3))\cdot(f(1)+f(2)+f(4))=F(3)F(4).
+\sum_{d\mid 12} f(d)
+= \sum_{d_1\mid 3}\sum_{d_2\mid 4} f(d_1d_2)
+= \sum_{d_1\mid 3}\sum_{d_2\mid 4} f(d_1)f(d_2)
 \]
-\end{example}
+(using multiplicativity of $f$), so
+\[
+\sum_{d\mid 12} f(d)
+= \Big(\sum_{d_1\mid 3} f(d_1)\Big)\Big(\sum_{d_2\mid 4} f(d_2)\Big)
+=F(3)F(4).
+\]
+% Comment: Reworked the original messy example (which used dots and commas inconsistently).
+\end{define}
 
-% -------------------------------------------------------------------------
-\begin{define}{Theorem 3.2}\label{thm:3.2}
-\emph{The Euler $\varphi$-function is multiplicative.}
-That is, if $\gcd(m,n)=1$ then $\varphi(mn)=\varphi(m)\varphi(n)$.
+\bigskip
+
+\begin{define}{The Euler $\varphi$-function is multiplicative}[thm:3.2]
+The Euler totient function $\varphi(n)$ (the number of integers in $\{1,2,\dots,n\}$ relatively prime to $n$) is multiplicative: if $\gcd(m,n)=1$ then
+\[
+\varphi(mn)=\varphi(m)\,\varphi(n).
+\]
 \end{define}
 
 \begin{proof}
-Arrange the integers $1,2,\dots, mn$ in an $m\times n$ matrix whose
-$(i,k)$-entry is $i+(k-1)m$ for $i=1,\dots,m$ and $k=1,\dots,n$:
+List the integers $1,2,\dots,mn$ in an $m\times n$ array with rows indexed by $i=1,\dots,m$ and columns by $k=0,\dots,n-1$ as
 \[
 \begin{array}{ccccc}
-1 & m+1 & 2m+1 & \cdots & (n-1)m+1\\[4pt]
-2 & m+2 & 2m+2 & \cdots & (n-1)m+2\\[4pt]
-\vdots & \vdots & \vdots & & \vdots \\[4pt]
-m & 2m & 3m & \cdots & nm.
+1 & m+1 & 2m+1 & \cdots & (n-1)m+1\\
+2 & m+2 & 2m+2 & \cdots & (n-1)m+2\\
+\vdots & \vdots & \vdots & & \vdots\\
+m & m+m & 2m+m & \cdots & (n-1)m+m
 \end{array}
 \]
-Fix a row indexed by $i$ with $1\le i\le m$.  If $\gcd(i,m)>1$ then every
-entry of that row has a common divisor with $m$, hence is not coprime to
-$mn$. If $\gcd(i,m)=1$, then the $n$ entries of that row,
+Consider the $i$-th row
 \[
-i,\; m+i,\; 2m+i,\; \dots,\; (n-1)m+i,
+i,\ m+i,\ 2m+i,\ \dots,\ (n-1)m+i.
 \]
-are pairwise distinct modulo $n$ (because if $jm+i\equiv km+i\pmod n$
-then $(j-k)m\equiv 0\pmod n$, and since $\gcd(m,n)=1$ it follows $j\equiv k\pmod n$),
-so they form a complete residue system modulo $n$. Hence exactly $\varphi(n)$
-of those entries are coprime to $n$. Since they are already coprime to $m$,
-these $\varphi(n)$ entries are coprime to $mn$.
+If $\gcd(i,m)>1$ then every entry of that row shares a common factor with $m$, and hence cannot be relatively prime to $mn$. Thus only rows with $\gcd(i,m)=1$ can contain integers relatively prime to $mn$. There are precisely $\varphi(m)$ such rows.
 
-There are exactly $\varphi(m)$ row-indices $i$ with $\gcd(i,m)=1$, and each
-such row contributes exactly $\varphi(n)$ integers coprime to $mn$. Hence
+Fix a row with $\gcd(i,m)=1$. The $n$ entries of that row are distinct modulo $n$:
+if $jm+i\equiv km+i\pmod n$ with $0\le j,k\le n-1$, then $(j-k)m\equiv 0\pmod n$. Since $\gcd(m,n)=1$, $m$ has a multiplicative inverse modulo $n$, so $j\equiv k\pmod n$, hence $j=k$. Thus the row is a complete residue system modulo $n$, so exactly $\varphi(n)$ of its entries are relatively prime to $n$. Because those entries are relatively prime to both $m$ and $n$, they are relatively prime to $mn$.
+
+Therefore each of the $\varphi(m)$ admissible rows contains exactly $\varphi(n)$ integers relatively prime to $mn$. Thus
 \[
 \varphi(mn)=\varphi(m)\varphi(n).
 \]
 \end{proof}
 
-% short remark about consequence
-\begin{remark}
-Since $\varphi$ is multiplicative, it is determined by its values on prime
-powers.
-\end{remark}
-
-% -------------------------------------------------------------------------
-\begin{define}{Theorem 3.3}\label{thm:3.3}
-Let $p$ be a prime and $a\in\mathbb{Z}_{>0}$. Then
+\begin{define}{Values of $\varphi$ at prime powers}[thm:3.3]
+Let $p$ be prime and $a\in\mathbb{Z}_{>0}$. Then
 \[
 \varphi(p^a)=p^a-p^{a-1}=p^a\Big(1-\frac{1}{p}\Big).
 \]
 \end{define}
 
 \begin{proof}
-Among the integers $1,2,\dots,p^a$, precisely those that are multiples of
-$p$ are not coprime to $p^a$. The multiples of $p$ not exceeding $p^a$
-are $p,2p,\dots,p^{a-1}p$, so there are $p^{a-1}$ such multiples. Therefore
+Among the $p^a$ integers $1,2,\dots,p^a$, those not coprime to $p^a$ are exactly the multiples of $p$:
+\[
+p,2p,3p,\dots,p^{a-1}p,
+\]
+and there are $p^{a-1}$ such multiples. Hence
 \[
 \varphi(p^a)=p^a-p^{a-1}=p^a\Big(1-\frac{1}{p}\Big).
 \]
 \end{proof}
 
-% -------------------------------------------------------------------------
-\begin{define}{Theorem 3.4}\label{thm:3.4}
-Let $n\in\mathbb{Z}_{>0}$ with prime factorization
-$n=\prod_{i=1}^r p_i^{a_i}$. Then
+\begin{define}{Product formula for $\varphi(n)$}[thm:3.4]
+For $n\in\mathbb{Z}_{>0}$,
 \[
 \varphi(n)=n\prod_{p\mid n}\Big(1-\frac{1}{p}\Big),
 \]
@@ -1985,31 +1988,35 @@ where the product is taken over the distinct prime divisors $p$ of $n$.
 \end{define}
 
 \begin{proof}
-If $n=1$ the formula is trivial (empty product equals $1$). For
-$n=p_1^{a_1}\cdots p_r^{a_r}$, multiplicativity of $\varphi$ (Theorem
-\ref{thm:3.2}) and the prime-power formula (Theorem \ref{thm:3.3}) give
-\begin{align*}
-\varphi(n)
-&=\prod_{i=1}^r\varphi(p_i^{a_i})
-=\prod_{i=1}^r \big(p_i^{a_i}-p_i^{a_i-1}\big)
-=\prod_{i=1}^r p_i^{a_i}\Big(1-\frac{1}{p_i}\Big)\\
-&=n\prod_{i=1}^r\Big(1-\frac{1}{p_i}\Big)
-=n\prod_{p\mid n}\Big(1-\frac{1}{p}\Big),
-\end{align*}
-as required.
+If $n=1$ the result holds (empty product $=1$). For $n>1$, write the prime factorization
+\[
+n=\prod_{i=1}^r p_i^{a_i}.
+\]
+By Theorems \nameref{thm:3.2} and \nameref{thm:3.3},
+\[
+\varphi(n)=\prod_{i=1}^r \varphi(p_i^{a_i})
+=\prod_{i=1}^r p_i^{a_i}\Big(1-\frac{1}{p_i}\Big)
+= n\prod_{p\mid n}\Big(1-\frac{1}{p}\Big).
+\]
 \end{proof}
 
-\begin{example}
-Compute $\varphi(504)$. Since $504=2^3\cdot 3^2\cdot 7$, we have
+\begin{define}{Example: $\varphi(504)$}[ex:3.2]
+Since $504=2^3\cdot 3^2\cdot 7$, we get
 \[
-\varphi(504)=504\Big(1-\frac{1}{2}\Big)\Big(1-\frac{1}{3}\Big)\Big(1-\frac{1}{7}\Big)
-=504\cdot \tfrac12\cdot \tfrac23\cdot \tfrac67=144.
+\varphi(504)=504\Big(1-\frac{1}{2}\Big)\Big(1-\frac{1}{3}\Big)\Big(1-\frac{1}{7}\Big).
 \]
-\end{example}
+Compute:
+\[
+\Big(1-\frac{1}{2}\Big)\Big(1-\frac{1}{3}\Big)\Big(1-\frac{1}{7}\Big)
+=\frac12\cdot\frac23\cdot\frac67=\frac{2}{7},
+\]
+so $\varphi(504)=504\cdot\frac{2}{7}=144$.
+\end{define}
 
-% -------------------------------------------------------------------------
-\begin{define}{Theorem 3.5 (Gauss)}\label{thm:3.5}
-For every $n\in\mathbb{Z}_{>0}$,
+\bigskip
+
+\begin{define}{Gauss's identity for $\varphi$}[thm:3.5]
+For $n\in\mathbb{Z}_{>0}$,
 \[
 \sum_{d\mid n} \varphi(d)=n.
 \]
@@ -2018,34 +2025,45 @@ For every $n\in\mathbb{Z}_{>0}$,
 \begin{proof}
 For each positive divisor $d$ of $n$ define
 \[
-S_d:=\{m\in\mathbb{Z}:\ 1\le m\le n,\ \gcd(m,n)=d\}.
+S_d:=\{\,m\in\mathbb{Z} : 1\le m\le n,\ \gcd(m,n)=d\,\}.
 \]
-If $\gcd(m,n)=d$, write $m=d\cdot m'$ and $n=d\cdot n'$, then
-$\gcd(m',n')=1$ and $1\le m'\le n'$. Hence $|S_d|=\varphi(n')=\varphi(n/d)$.
-The sets $S_d$ (as $d$ runs over the positive divisors of $n$) partition
-$\{1,2,\dots,n\}$, so summing their sizes yields
+Note that $\gcd(m,n)=d$ if and only if $\gcd(m/d,n/d)=1$, so the number of integers in $S_d$ equals $\varphi(n/d)$. The sets $S_d$ (as $d$ runs over the positive divisors of $n$) partition the set $\{1,2,\dots,n\}$; hence
 \[
-n=\sum_{d\mid n} |S_d|=\sum_{d\mid n}\varphi\!\big(\tfrac{n}{d}\big).
+n=\sum_{d\mid n} |S_d| = \sum_{d\mid n} \varphi(n/d).
 \]
-Finally, as $d$ runs over the divisors of $n$, so does $n/d$, hence
+Reindexing the sum by replacing $d$ with $n/d$ shows
 \[
-n=\sum_{d\mid n}\varphi(d),
+n=\sum_{d\mid n} \varphi(d),
 \]
-which is the claimed identity.
+as claimed.
 \end{proof}
 
-\begin{example}
-Take $n=12$. The divisors of $12$ are $1,2,3,4,6,12$, and
+\begin{define}{Example: $n=12$}[ex:3.3]
+For $n=12$ the divisors and corresponding sets are
 \[
-\varphi(1)+\varphi(2)+\varphi(3)+\varphi(4)+\varphi(6)+\varphi(12)
-=1+1+2+2+2+4=12.
+\begin{array}{ll}
+S_1=\{1,5,7,11\}, & |S_1|=\varphi(12)=4,\\[4pt]
+S_2=\{2,10\}, & |S_2|=\varphi(6)=2,\\[4pt]
+S_3=\{3,9\}, & |S_3|=\varphi(4)=2,\\[4pt]
+S_4=\{4,8\}, & |S_4|=\varphi(3)=2,\\[4pt]
+S_6=\{6\}, & |S_6|=\varphi(2)=1,\\[4pt]
+S_{12}=\{12\}, & |S_{12}|=\varphi(1)=1.
+\end{array}
 \]
-(Here we used $\varphi(1)=1,\varphi(2)=1,\varphi(3)=2,\varphi(4)=2,\varphi(6)=2,\varphi(12)=4$.)
-\end{example}
+Summing gives
+\[
+\sum_{d\mid 12}\varphi(d)=4+2+2+2+1+1=12,
+\]
+confirming Gauss's identity.
+% Comment: Fixed the original broken listing (e.g., "S_{1}=\left\{1, S_{1}, 11\right\}" -> corrected set).
+\end{define}
 
-% =========================================================================
-% End of corrected section
-% =========================================================================
+% === Additional notes / MISSING REFERENCES ===
+% [MISSING REF] The proof of the multiplicativity of \varphi (above) 
+% refers in the original draft to "Proposition 1.2".
+% If Proposition 1.2 is needed elsewhere, please supply it; otherwise I removed the direct dependence and gave a self-contained argument.
+% End of L9 corrections.
+
 
 
 
