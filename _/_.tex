@@ -2094,262 +2094,255 @@ confirming Gauss's identity.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L10
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% =========================================================================
-% L10: The number of positive divisors, sigma, perfect numbers, Möbius
-% Changelog / notes (short):
-% - Fixed spelling/typographical errors (e.g., "divoss" -> "divisors", "ln" -> "\mid", etc.).
-% - Standardized arithmetic-function notation: \mathbb{Z}, \mid, \gcd, \sigma, \mu.
-% - Wrapped every Definition/Theorem/Proposition/Remark in the assumed
-%   \begin{define}{...} ... \end{define} with \label{...}.
-% - Kept original function name V(n) for divisor-count; remark included that
-%   it's often denoted \tau(n) or d(n) in other texts.
-% - Corrected and completed the proof of Theorem 3.12 (characterization of even perfect numbers).
-% - Noted that one earlier cross-reference "Proposition 1.2" (from previous lecture)
-%   is missing from provided input; verify if it exists elsewhere in your source.
-% =========================================================================
+% === L10: The number of positive divisors (τ or V) function ===
+% Major edits / changelog:
+% - Fixed many typos and broken math-mode fragments (e.g., "divisoss", "\mathbb{C}", "d ln", misplaced parentheses).
+% - Preserved the author's symbol V(n) for the divisor-count function, but added a comment that the standard notation is d(n) or \tau(n).
+% - Wrapped every Definition / Theorem / Example / Proposition / Remark in the provided `define` environment with explicit labels matching the original numbering (thm:3.6, thm:3.7, etc.).
+% - Rewrote proofs to be concise, correct, and Strayer-style. Removed extraneous or contradictory lines and fixed logical gaps.
+% - Noted and removed references to undefined symbols/claims when necessary (no missing external references found in this fragment).
+% - Standardized notation: use \mathbb{Z}_{>0}, \mid, \gcd, \varphi, \sigma, \mu, and clear math mode everywhere.
 
-\section*{L10: The number of positive divisors and related arithmetic functions}
+\section*{L10: The number of positive divisors function}
 
-% -------------------------------------------------------------------------
-\begin{define}{Definition}\label{def:V}
-\emph{(Number of positive divisors).}
-Let \(n\in\mathbb{Z}_{>0}\). The \emph{number of positive divisors function}, denoted \(V(n)\), is
+\begin{define}{The number of positive divisors function}[def:3.6]
+Let $n\in\mathbb{Z}_{>0}$. The number of positive divisors of $n$ (the divisor-count function) is the function
 \[
-V(n):=\big|\{d\in\mathbb{Z}:\ d>0\text{ and }d\mid n\}\big|.
+V(n):=\#\{\,d\in\mathbb{Z}_{>0} : d\mid n\,\}.
 \]
+% Comment: Author used $V(n)$. The standard notations are $d(n)$ or $\tau(n)$. I keep $V(n)$ here to match the source; tell me if you want to switch to $d(n)$ or \tau(n).
 \end{define}
 
-% Remark about notation
-\begin{define}{Remark}\label{rem:tau}
-Many authors denote the divisor-counting function by \(\tau(n)\) or \(d(n)\). Here we keep your notation \(V(n)\) for consistency with the provided notes.
-\end{define}
-
-% -------------------------------------------------------------------------
-\begin{define}{Theorem 3.6}\label{thm:3.6}
-\emph{(Multiplicativity of \(V\)).}
-The function \(V(n)\) is multiplicative: if \(\gcd(m,n)=1\) then
+\begin{define}{Multiplicativity of the divisor-count function}[thm:3.6]
+The function $V(n)$ is multiplicative: if $\gcd(m,n)=1$ then
 \[
-V(mn)=V(m)V(n).
+V(mn)=V(m)\,V(n).
 \]
 \end{define}
 
 \begin{proof}
-Note that
+Write
 \[
 V(n)=\sum_{d\mid n} 1,
 \]
-i.e. the sum over positive divisors of the constant arithmetic function \(f(d)\equiv1\).
-Since the constant function \(f(d)=1\) is multiplicative (check: \(1\cdot1=1\)),
-Theorem \ref{thm:3.1} implies that the divisor-sum \(V(n)\) is multiplicative.
+the sum of the constant arithmetic function $f(d)\equiv 1$ over positive divisors of $n$. The constant function $f(d)=1$ is multiplicative, so by Theorem \nameref{thm:3.1} (divisor-sum preserving multiplicativity) the divisor-sum $V(n)$ is multiplicative. 
+% Comment: The original argument contained a broken summation; this is the concise, standard justification.
 \end{proof}
 
-\begin{define}{Theorem 3.7}\label{thm:3.7}
-Let \(p\) be a prime and \(a\in\mathbb{Z}_{\ge0}\). Then
+\begin{define}{Values of $V$ at prime powers}[thm:3.7]
+Let $p$ be prime and $a\in\mathbb{Z}_{\ge 0}$. Then
 \[
-V(p^a)=a+1.
+V\big(p^{a}\big)=a+1.
 \]
 \end{define}
 
 \begin{proof}
-The positive divisors of \(p^a\) are \(1,p,p^2,\dots,p^a\); there are \(a+1\) of them.
+The positive divisors of $p^a$ are exactly
+\[
+1,p,p^2,\dots,p^a,
+\]
+so there are $a+1$ of them.
 \end{proof}
 
-\begin{define}{Theorem 3.8}\label{thm:3.8}
-Let \(n=\prod_{i=1}^r p_i^{a_i}\) be the prime factorization of \(n\) with distinct primes \(p_i\) and exponents \(a_i\ge0\). Then
+\begin{define}{Prime-power formula for $V(n)$}[thm:3.8]
+If
+\[
+n=\prod_{i=1}^r p_i^{a_i}
+\]
+is the prime factorization of $n$ (distinct primes $p_i$, exponents $a_i\ge0$), then
 \[
 V(n)=\prod_{i=1}^r (a_i+1).
 \]
 \end{define}
 
 \begin{proof}
-From multiplicativity (Theorem \ref{thm:3.6}) and the prime-power values (Theorem \ref{thm:3.7}) we obtain
+Since $V$ is multiplicative (Theorem \nameref{thm:3.6}), and each $V(p_i^{a_i})=a_i+1$ (Theorem \nameref{thm:3.7}), multiplicativity yields
 \[
 V(n)=\prod_{i=1}^r V(p_i^{a_i})=\prod_{i=1}^r (a_i+1).
 \]
 \end{proof}
 
-\begin{example}
-For \(504=2^3\cdot 3^2\cdot 7^1\) we have
+\begin{define}{Example: $V(504)$}[ex:3.4]
+If $504=2^3\cdot 3^2\cdot 7^1$ then
 \[
 V(504)=(3+1)(2+1)(1+1)=4\cdot 3\cdot 2=24.
 \]
-\end{example}
+\end{define}
 
-% -------------------------------------------------------------------------
-\begin{define}{Definition}\label{def:sigma}
-\emph{(Sum-of-divisors function).}
-For \(n\in\mathbb{Z}_{>0}\) define
+\bigskip
+
+\begin{define}{The sum-of-divisors function $\sigma$}[def:3.9]
+For $n\in\mathbb{Z}_{>0}$ define
 \[
 \sigma(n):=\sum_{d\mid n} d,
 \]
-the sum of the positive divisors of \(n\).
+the sum of the positive divisors of $n$.
 \end{define}
 
-\begin{define}{Theorem 3.9}\label{thm:3.9}
-\emph{(Multiplicativity of \(\sigma\)).}
-The function \(\sigma(n)\) is multiplicative.
-\end{define}
-
-\begin{proof}
-The arithmetic function \(f(d)=d\) is multiplicative (if \(\gcd(a,b)=1\) then \((ab)=a\cdot b\) and hence the function \(d\mapsto d\) satisfies \(f(ab)=f(a)f(b)\) when considered on coprime arguments). Thus by Theorem \ref{thm:3.1}, the divisor-sum \(\sigma(n)=\sum_{d\mid n} d\) is multiplicative.
-\end{proof}
-
-\begin{define}{Theorem 3.10}\label{thm:3.10}
-Let \(p\) be prime and \(a\in\mathbb{Z}_{\ge0}\). Then
+\begin{define}{Multiplicativity of $\sigma$}[thm:3.9]
+The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then
 \[
-\sigma(p^a)=1+p+\cdots+p^a=\frac{p^{a+1}-1}{p-1}.
+\sigma(mn)=\sigma(m)\,\sigma(n).
 \]
 \end{define}
 
 \begin{proof}
-Sum the geometric series \(1+p+\cdots+p^a\).
+This follows from Theorem \nameref{thm:3.1} by observing that the arithmetic function $f(d)=d$ is multiplicative: if $\gcd(a,b)=1$ then $(ab)=a\cdot b$ and summing multiplicatively gives the result. (Equivalently, check $f(ab)=ab=f(a)f(b)$ for coprime $a,b$.)
 \end{proof}
 
-\begin{define}{Theorem 3.11}\label{thm:3.11}
-If \(n=\prod_{i=1}^r p_i^{a_i}\) then
+\begin{define}{Values of $\sigma$ at prime powers}[thm:3.10]
+Let $p$ be prime and $a\in\mathbb{Z}_{\ge0}$. Then
+\[
+\sigma\big(p^{a}\big)=1+p+\cdots+p^{a}=\frac{p^{a+1}-1}{p-1}.
+\]
+\end{define}
+
+\begin{proof}
+The divisors of $p^a$ are $1,p,\dots,p^a$, so the sum is the finite geometric series $1+p+\dots+p^a=(p^{a+1}-1)/(p-1)$.
+\end{proof}
+
+\begin{define}{Prime-power product formula for $\sigma(n)$}[thm:3.11]
+If $n=\prod_{i=1}^r p_i^{a_i}$ then
 \[
 \sigma(n)=\prod_{i=1}^r \frac{p_i^{a_i+1}-1}{p_i-1}.
 \]
 \end{define}
 
 \begin{proof}
-Immediate from multiplicativity (Theorem \ref{thm:3.9}) and the prime-power formula (Theorem \ref{thm:3.10}).
+By multiplicativity (Theorem \nameref{thm:3.9}) and Theorem \nameref{thm:3.10} applied to each prime power factor.
 \end{proof}
 
-\begin{example}
-For \(504=2^3\cdot 3^2\cdot 7\),
+\begin{define}{Example: $\sigma(504)$}[ex:3.5]
+For $504=2^3\cdot 3^2\cdot 7$,
 \[
-\sigma(504)=\underbrace{\frac{2^{4}-1}{2-1}}_{=15}\cdot\underbrace{\frac{3^{3}-1}{3-1}}_{=13}\cdot\underbrace{\frac{7^{2}-1}{7-1}}_{=8}
-=15\cdot 13\cdot 8=1560.
+\sigma(504)=\Big(\frac{2^{4}-1}{2-1}\Big)\Big(\frac{3^{3}-1}{3-1}\Big)\Big(\frac{7^{2}-1}{7-1}\Big)
+=15\cdot 13\cdot 8 =1560.
 \]
-\end{example}
-
-% -------------------------------------------------------------------------
-\begin{define}{Definition}\label{def:perfect}
-\emph{(Perfect number).}
-An integer \(n>0\) is \emph{perfect} if \(\sigma(n)=2n\). Equivalently, the sum of proper divisors (divisors \(<n\)) equals \(n\).
 \end{define}
 
-\begin{example}
-\(\sigma(6)=1+2+3+6=12=2\cdot6\), so \(6\) is perfect.
-\quad
-\(\sigma(28)=1+2+4+7+14+28=56=2\cdot28\), so \(28\) is perfect.
-\end{example}
+\bigskip
 
-\begin{define}{Theorem 3.12}\label{thm:3.12}
-\emph{(Characterization of even perfect numbers — Euclid and Euler).}
-An integer \(n>0\) is an even perfect number if and only if
+\begin{define}{Perfect numbers (definition)}[def:3.12]
+A positive integer $n$ is \emph{perfect} if $\sigma(n)=2n$. Equivalently, the sum of the proper divisors of $n$ (i.e., divisors $<n$) equals $n$.
+\end{define}
+
+\begin{define}{Classical characterization of even perfect numbers}[thm:3.12]
+An integer $n>0$ is an even perfect number if and only if
 \[
-n=2^{p-1}(2^p-1),
+n=2^{p-1}\big(2^p-1\big),
 \]
-where \(p\) is prime and \(2^p-1\) is prime (a Mersenne prime).
+where $p$ is prime and $2^p-1$ is prime (a Mersenne prime).
 \end{define}
 
 \begin{proof}
-We give both directions.
+We give both directions (Euler $\Rightarrow$ and Euclid $\Leftarrow$).
 
-\emph{(Euler: if \(n\) is even and perfect then it has the stated form).}
-Let \(n\) be an even perfect number. Write \(n=2^{k-1}m\) with \(k\ge2\) and \(m\) odd. Then by multiplicativity,
+\medskip\noindent
+($\Leftarrow$) \textbf{(Euclid).} Suppose $p$ and $2^p-1$ are prime and set $n=2^{p-1}(2^p-1)$. Using multiplicativity of $\sigma$,
 \[
-\sigma(n)=\sigma(2^{k-1})\sigma(m)=(2^k-1)\sigma(m).
+\sigma(n)=\sigma\big(2^{p-1}\big)\sigma(2^p-1)
+=\frac{2^p-1}{2-1}\cdot (1+2^p-1)
+=(2^p-1)\cdot 2^p = 2n,
 \]
-Because \(n\) is perfect, \(\sigma(n)=2n=2^k m\). Therefore
-\[
-(2^k-1)\sigma(m)=2^k m.
-\]
-Hence \(2^k-1\) divides the right-hand side, and since \(\gcd(2^k-1,2^k)=1\) we have \(2^k-1\mid m\). Write \(m=(2^k-1)t\) for some integer \(t\ge1\). Substituting gives
-\[
-(2^k-1)\sigma(m)=2^k(2^k-1)t \quad\Longrightarrow\quad \sigma(m)=2^k t.
-\]
-But \(\sigma(m)\) is at least \(1+m\) (since it includes \(1\) and \(m\)), so
-\[
-2^k t=\sigma(m)\ge 1+m = 1+(2^k-1)t = 1 + (2^k-1)t.
-\]
-Rearranging,
-\[
-2^k t - (2^k-1)t \ge 1 \quad\Longrightarrow\quad t \ge 1,
-\]
-and this inequality becomes
-\[
-t \ge 1 + \frac{1}{2^k-1} > 1 \quad\text{if } t>1,
-\]
-which contradicts the equality of integers unless \(t=1\). (A cleaner integer argument: if \(t>1\) then the displayed inequality would give \(2^k t \ge m+1+t > m+t = \sigma(m)\), contradiction.) Thus \(t=1\), so \(m=2^k-1\). Then \(\sigma(m)=m+1=2^k\), so \(m\) must be prime. Putting \(p=k\) yields
-\[
-n=2^{p-1}(2^p-1),
-\]
-with \(2^p-1\) prime.
+since $\sigma(2^{p-1})=1+2+\cdots+2^{p-1}=(2^p-1)$ and $\sigma(2^p-1)=1+(2^p-1)=2^p$ (because $2^p-1$ is prime). Hence $n$ is perfect.
 
-\emph{(Euclid: if \(p\) and \(2^p-1\) are prime then \(n=2^{p-1}(2^p-1)\) is perfect).}
-Suppose \(p\) is prime and \(q:=2^p-1\) is prime. Then using multiplicativity and the geometric formula,
+\medskip\noindent
+($\Rightarrow$) \textbf{(Euler).} Let $n$ be an even perfect number. Write $n=2^r m$ with $r\ge1$ and $m$ odd. Then multiplicativity yields
 \[
-\sigma(n)=\sigma(2^{p-1})\sigma(q)=(2^p-1)(1+q)=(2^p-1)(1+2^p-1)=(2^p-1)2^p.
+\sigma(n)=\sigma(2^r)\sigma(m)=(2^{r+1}-1)\sigma(m).
 \]
-But \((2^p-1)2^p=2\cdot 2^{p-1}(2^p-1)=2n\), so \(\sigma(n)=2n\). Thus \(n\) is perfect.
+Since $n$ is perfect, $\sigma(n)=2n=2^{r+1}m$. Thus
+\[
+(2^{r+1}-1)\sigma(m)=2^{r+1}m.
+\]
+Because $\gcd(2^{r+1}-1,2^{r+1})=1$, it follows that $2^{r+1}\mid \sigma(m)$. Hence write $\sigma(m)=2^{r+1}c$ for some $c\in\mathbb{Z}_{>0}$, and substituting back gives
+\[
+(2^{r+1}-1)2^{r+1}c=2^{r+1}m \quad\Longrightarrow\quad m=(2^{r+1}-1)c.
+\]
+We now show $c=1$. If $c>1$ then $m$ has at least the divisors $1,c,m$ with $1<c<m$, so
+\[
+\sigma(m)\ge 1+c+m = 1+c+(2^{r+1}-1)c = 1 + (2^{r+1})c,
+\]
+whence $\sigma(m)\ge 1 + 2^{r+1}c$, contradicting $\sigma(m)=2^{r+1}c$. Thus $c=1$ and $m=2^{r+1}-1$. Then $\sigma(m)=m+1=2^{r+1}$, so $m$ is prime and $m=2^{r+1}-1$ is a Mersenne prime. Setting $p=r+1$ gives $n=2^{p-1}(2^p-1)$ with $p$ prime and $2^p-1$ prime, as required.
 \end{proof}
 
-\begin{define}{Remark}\label{rem:perfects}
-It is unknown whether there are infinitely many Mersenne primes, and hence unknown whether there are infinitely many even perfect numbers. It is also an open problem whether odd perfect numbers exist.
+\begin{define}{Remarks on perfect numbers}[rem:3.12]
+- This theorem establishes a bijection between Mersenne primes and even perfect numbers. It is unknown whether there are infinitely many Mersenne primes (hence unknown whether there are infinitely many even perfect numbers).  
+- It is also unknown whether any odd perfect numbers exist; the conjecture "every perfect number is even" remains open.
 \end{define}
 
-% -------------------------------------------------------------------------
-\begin{define}{Definition}\label{def:mobius}
-\emph{(Möbius function \(\mu\)).}
-For \(n\in\mathbb{Z}_{>0}\) define
+\bigskip
+
+\begin{define}{The Möbius function $\mu$}[def:3.13]
+The Möbius function $\mu:\mathbb{Z}_{>0}\to\{-1,0,1\}$ is defined by
 \[
 \mu(n)=
 \begin{cases}
-1, & n=1,\\[4pt]
-0, & \text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
-(-1)^r, & \text{if } n=\prod_{i=1}^r p_i \text{ is a product of } r \text{ distinct primes}.
+1,& n=1,\\[4pt]
+0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
+(-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
 \end{cases}
 \]
 \end{define}
 
-\begin{example}
-Since \(504=2^3\cdot 3^2\cdot 7\) contains the square \(3^2\), \(\mu(504)=0\).
-Since \(30=2\cdot3\cdot5\) is the product of three distinct primes, \(\mu(30)=(-1)^3=-1\).
-\end{example}
+\begin{define}{Examples for $\mu$}[ex:3.6]
+Since $504=2^3\cdot 3^2\cdot 7$ contains a squared prime factor, $\mu(504)=0$.  
+Since $30=2\cdot 3\cdot 5$ is a product of three distinct primes, $\mu(30)=(-1)^3=-1$.
+\end{define}
 
-\begin{define}{Theorem 3.13}\label{thm:3.13}
-The Möbius function \(\mu(n)\) is multiplicative.
+\begin{define}{Multiplicativity of $\mu$}[thm:3.13]
+The Möbius function $\mu(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\mu(mn)=\mu(m)\mu(n)$.
 \end{define}
 
 \begin{proof}
-Let \(\gcd(m,n)=1\). If either \(m\) or \(n\) is divisible by the square of a prime, then so is \(mn\), and both \(\mu(m)\mu(n)\) and \(\mu(mn)\) equal \(0\). Otherwise both \(m\) and \(n\) are squarefree, and if
-\(m=\prod_{i=1}^r p_i\) and \(n=\prod_{j=1}^s q_j\) with all primes distinct, then
-\(\mu(m)=(-1)^r\), \(\mu(n)=(-1)^s\), and
-\(\mu(mn)=(-1)^{r+s}=\mu(m)\mu(n)\).
+If either $m$ or $n$ is divisible by a square of a prime then so is $mn$, and both sides are $0$. Otherwise write $m=\prod_{i=1}^r p_i$ and $n=\prod_{j=1}^s q_j$ as products of distinct primes (with the two lists disjoint by coprimality). Then
+\[
+\mu(mn)=(-1)^{r+s}=(-1)^r(-1)^s=\mu(m)\mu(n).
+\]
 \end{proof}
 
-\begin{define}{Proposition 3.14}\label{prop:3.14}
-For \(n\in\mathbb{Z}_{>0}\),
+\begin{define}{Möbius summatory identity (Proposition)}[prop:3.14]
+For $n\in\mathbb{Z}_{>0}$,
 \[
 \sum_{d\mid n}\mu(d)=
 \begin{cases}
-1 & \text{if } n=1,\\[4pt]
-0 & \text{if } n>1.
+1,& n=1,\\[4pt]
+0,& n>1.
 \end{cases}
 \]
 \end{define}
 
 \begin{proof}
-Define \(F(n):=\sum_{d\mid n}\mu(d)\). Since \(\mu\) is multiplicative (Theorem \ref{thm:3.13}), Theorem \ref{thm:3.1} implies \(F\) is multiplicative, so it suffices to evaluate \(F\) on prime powers. Clearly \(F(1)=1\). For a prime \(p\) and \(a\ge1\),
+Define $F(n)=\sum_{d\mid n}\mu(d)$. The function $F$ is multiplicative since it is a divisor-sum of a multiplicative function $\mu$ (Theorems \nameref{thm:3.13} and \nameref{thm:3.1}). Thus $F$ is determined by its values on prime powers. Clearly $F(1)=1$. If $p$ is prime and $a\ge1$ then
 \[
-F(p^a)=\sum_{d\mid p^a}\mu(d)=\mu(1)+\mu(p)+\mu(p^2)+\cdots+\mu(p^a)=1+(-1)+0+\cdots+0=0.
+F(p^a)=\mu(1)+\mu(p)+\mu(p^2)+\cdots+\mu(p^a)=1+(-1)+0+\cdots+0=0.
 \]
-By multiplicativity this gives \(F(n)=0\) for every \(n>1\).
+Hence $F(n)=0$ for every $n>1$ (by multiplicativity and prime-power vanishing), proving the claim.
 \end{proof}
 
-\begin{example}
-For \(n=12\),
+\begin{define}{Example: $n=12$ (check)}[ex:3.7]
+For $n=12$ the divisors are $1,2,3,4,6,12$ and
 \[
-\sum_{d\mid 12}\mu(d)=\mu(1)+\mu(2)+\mu(3)+\mu(4)+\mu(6)+\mu(12)
-=1+(-1)+(-1)+0+1+0=0.
+\mu(1)+\mu(2)+\mu(3)+\mu(4)+\mu(6)+\mu(12)
+=1+(-1)+(-1)+0+1+0=0,
 \]
-\end{example}
+consistent with Proposition \nameref{prop:3.14}.
+\end{define}
 
-% =========================================================================
-% End of L10 corrected section
-% =========================================================================
+% === End of L10 corrections ===
+% Notes:
+% - All statements were preserved; ambiguous or incorrect fragments were rewritten for clarity and correctness.
+% - If you prefer the divisor-count function to be renamed to d(n) or \tau(n), I can globally replace V(n) and update labels accordingly.
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
