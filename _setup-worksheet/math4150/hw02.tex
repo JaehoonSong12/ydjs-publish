@@ -15,7 +15,7 @@
     \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
     \begin{subprove}
       ($\Rightarrow$) Assume $a\divides b$. 
-      \begin{define}{Divisibility}[def:divisibility][redcolor]
+      \begin{define}{Divisibility}[def:divisibility][red]
       Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
       integer $c\in\Z$ such that
       \[
@@ -60,7 +60,7 @@
   \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
   \begin{subprove}
     ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
-    \begin{define}{Division Algorithm}[algo:division][redcolor]
+    \begin{define}{Division Algorithm}[algo:division][red]
     Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
     \[
     a = b q + r \qquad\text{and}\qquad 0\le r < b.
@@ -199,7 +199,7 @@
     \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
     \begin{subprove}
       Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
-      \begin{define}{Euclid's Lemma}[lem:euclid-lemma][redcolor]
+      \begin{define}{Euclid's Lemma}[lem:euclid-lemma][red]
       Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
       \end{define}
       by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
@@ -231,7 +231,7 @@
     ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
     $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
     Principle Lemma.
-    \begin{define}{Well-Ordering Principle Lemma}[thm:well-ordering-princ][redcolor]
+    \begin{define}{Well-Ordering Principle Lemma}[thm:well-ordering-princ][red]
     Every integer $n>1$ has at least one prime divisor.
     \end{define}
     Thus, by the transitive property of divisibility,
@@ -323,7 +323,7 @@
 \begin{enumerate}
 \item Exercise Set 1.5, \#61.
 Find the greatest common divisor and the least common multiple of each pair of integers below.
-\begin{define}{GCD and LCM}[def:gcdlcm][redcolor]
+\begin{define}{GCD and LCM}[def:gcdlcm][red]
   For nonzero integers $a,b$, the greatest common divisor $(a,b)$ and least common 
   multiple $[a,b]$ are defined in the usual way. One has the prime-power rules
   \[
@@ -431,7 +431,7 @@ Prove that $H_n \not \in \setZ$.
 
 \newpage 
 \item Exercise Set 1.5, \#87.
-\begin{define}{Proposition 1.22}[prop:1.22][redcolor]
+\begin{define}{Proposition 1.22}[prop:1.22][red]
   There are infinitely many primes of the form $4n+3$, where $n$ is a nonnegative integer.
   In other words, Infinitely many primes congruent to $3$ modulo $4$.
 \end{define}
@@ -471,7 +471,7 @@ where $n$ is an integer, then $ab$ is also expressible in that form.
 \newpage 
 \item Exercise Set 2.1, \#12. 
 Let $a,b,c,d \in \setZ$ such that $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$. Prove or disprove the following statements.
-\begin{define}{Congruence modulo $m$}[def:congruence][redcolor]
+\begin{define}{Congruence modulo $m$}[def:congruence][red]
   Let $a,b,m\in\setZ$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$}, and write
   \[
   a\equiv b\pmod{m},
@@ -550,7 +550,7 @@ Let $a,b,c,d \in \setZ$ such that $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}
 \newpage 
 \item Exercise Set 2.2, \#29 (b),(d),(f).
 Find the inverse modulo $m$ of each integer $n$ below.
-\begin{define}{Corollary 2.8}[cor:2.8][redcolor]
+\begin{define}{Corollary 2.8}[cor:2.8][red]
   The congruence $ax\equiv 1\pmod{m}$ has a solution if and only if $\gcd(a,m)=1$. In that case the
   inverse is unique modulo $m$.
 \end{define}
@@ -586,11 +586,11 @@ Find the inverse modulo $m$ of each integer $n$ below.
 \newpage
 \item Exercise Set 2.3, \#33(a),(e), 34 (b) 
 Find the least non-negative solution of each system of congruences below.
-\begin{define}{Chinese Remainder Theorem}[thm:2.9][redcolor]
+\begin{define}{Chinese Remainder Theorem}[thm:2.9][red]
   Let $m_1,\dots,m_n$ be pairwise relatively prime positive integers and let $b_1,\dots,b_n\in\setZ$.
   Then the system $x\equiv b_i\pmod{m_i}$ for $i=1,\dots,n$ has a solution, unique modulo $M:=m_1\cdots m_n$.
 \end{define}
-% \begin{define}{Congruences Arithmetic}[prop:2.4][redcolor]
+% \begin{define}{Congruences Arithmetic}[prop:2.4][red]
 % Let $a,b,c,d\in\setZ$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
 % \begin{enumerate}
 %   \item $a+c\equiv b+d\pmod{m}$,
@@ -718,7 +718,7 @@ is solvable if and only if $(m_i,m_j) \mid b_i-b_j$ for all pairs $i,j$ with $i 
 
 \newpage
 \item Exercise Set 2.4, \#43.
-\begin{define}{Wilson's Theorem}[thm:2.11][redcolor]
+\begin{define}{Wilson's Theorem}[thm:2.11][red]
   Let $p$ be prime. Then $(p-1)!\equiv -1\pmod{p}$.
 \end{define}
 \begin{enumerate}
@@ -742,7 +742,7 @@ Let $p$ be an odd prime number. Prove that
 \begin{equation*}
 1^2 3^2 5^2 \cdots (p-4)^2 (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}.
 \end{equation*}
-% \begin{define}{Fermat's Little Theorem}[thm:2.13][redcolor]
+% \begin{define}{Fermat's Little Theorem}[thm:2.13][red]
 % Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
 % \[
 % a^{p-1}\equiv 1\pmod{p}.
@@ -773,286 +773,6 @@ Let $p$ be an odd prime number. Prove that
   \]
 \end{subprove}
 \end{enumerate}
-
-
-
-
-
-
-
-
-\newpage\handout[true]
-{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
-{Homework 3}
-{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 30th September}
-{Math 4150: HW3}
-\input{math4150/preface.tex}
-\input{reference.tex}
-\newpage
-
-
-
-\begin{enumerate}
-  \item Exercise Set 2.5, \#58.
-  Let $a$ and $b$ be integers not divisible by the prime number $p$.
-  \begin{define}{Theorem 2.13 (Fermat's Little Theorem)}[thm:2.13][red]
-  Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
-  \[
-  a^{p-1}\equiv 1\pmod{p}.
-  \]
-  \end{define}
-  \begin{enumerate}
-    \item If $a^p \equiv b^p \pmod{p}$, prove that $a \equiv b \pmod{p}$.
-    \begin{subprove}
-      Since $p \nmid a$ and $p \nmid b$, by \nameref{thm:2.13}, 
-      $a^{p-1} \equiv 1 \pmod{p}$ and $b^{p-1} \equiv 1 \pmod{p}$. 
-      Multiplying by $a$ and $b$ respectively gives $a^p \equiv a \pmod{p}$ and $b^p \equiv b \pmod{p}$.
-      Since $a^p \equiv b^p \pmod{p}$ by hypothesis, it follows that $a \equiv b \pmod{p}$.
-    \end{subprove}
-    \item If $a^p \equiv b^p \pmod{p}$, prove that $a^p \equiv b^p \pmod{p^2}$.
-    \begin{subprove}
-      By part (a), $a \equiv b \pmod{p}$, so $a = b + kp$ for some integer $k$. 
-      Then $a^p = (b + kp)^p = b^p + \binom{p}{1}b^{p-1}kp + \binom{p}{2}b^{p-2}(kp)^2 + \cdots + (kp)^p$.
-      Since $\binom{p}{i}$ is divisible by $p$ for $1 \leq i \leq p-1$, and $(kp)^2 = k^2p^2$ is divisible by $p^2$,
-      all terms except $b^p$ are divisible by $p^2$. Therefore, $a^p \equiv b^p \pmod{p^2}$.
-    \end{subprove}
-  \end{enumerate}
-
-  \newpage
-  \item Exercise Set 2.5, \#62.
-  The following exercise proves that there are infinitely many odd pseudoprime numbers.
-  \begin{define}{Definition (pseudoprime to base 2)}[def:pseudoprime][red]
-  A composite integer $n>1$ is called a \emph{(base-2) pseudoprime} if
-  \[
-  2^n\equiv 2\pmod n.
-  \]
-  \end{define}
-  \begin{enumerate}
-    \item Let $a$ and $b$ be positive integers such that $a \mid b$. 
-    Prove that $2^a-1 \mid 2^b-1$.
-    \begin{subprove}
-      Since $a \mid b$, there exists a positive integer $k$ such that $b = ak$. 
-      Then $2^b - 1 = 2^{ak} - 1 = (2^a)^k - 1$. 
-      By the geometric series formula, $(2^a)^k - 1 = (2^a - 1)(1 + 2^a + (2^a)^2 + \cdots + (2^a)^{k-1})$.
-      Since the second factor is an integer, $2^a - 1 \mid 2^b - 1$.
-    \end{subprove}
-    \item Suppose that $n$ is composite. Prove that $n$ is an odd pseudoprime number 
-    if and only if $2^{n-1} \equiv 1 \pmod{n}$.
-    \begin{subprove}
-      ($\Rightarrow$) If $n$ is an odd pseudoprime, then by \nameref{def:pseudoprime}, $2^n \equiv 2 \pmod{n}$. 
-      Since $n$ is odd, $\gcd(2,n) = 1$, so $2$ has a multiplicative inverse modulo $n$. 
-      Multiplying both sides by $2^{-1}$ gives $2^{n-1} \equiv 1 \pmod{n}$.\vspace*{10px}\\
-      ($\Leftarrow$) If $2^{n-1} \equiv 1 \pmod{n}$, then multiplying both sides by $2$ gives $2^n \equiv 2 \pmod{n}$. 
-      Since $n$ is composite and satisfies this condition, $n$ is a pseudoprime by definition.
-    \end{subprove}
-    \item Prove that if $n$ is an odd pseudoprime number, 
-    then $m=2^n-1$ is an odd pseudoprime number. 
-    [\textbf{Hint}: Use parts (a) and (b)]
-    \begin{subprove}
-      Since $n$ is an odd pseudoprime, by part (b), $2^{n-1} \equiv 1 \pmod{n}$. 
-      Since $n$ is composite, $m = 2^n - 1$ is also composite (as $n > 1$ implies $m > 2^n - 1 > 1$).
-      To show $m$ is a pseudoprime, it suffices to show $2^{m-1} \equiv 1 \pmod{m}$ by part (b).
-      Since $m = 2^n - 1$, it follows that $m-1 = 2^n - 2 = 2(2^{n-1} - 1)$. 
-      Since $2^{n-1} \equiv 1 \pmod{n}$, it follows that $2^{n-1} - 1 \equiv 0 \pmod{n}$, so $n \mid (2^{n-1} - 1)$.
-      By part (a), since $n \mid (2^{n-1} - 1)$, it follows that $2^n - 1 \mid 2^{2^{n-1}-1} - 1$.
-      Therefore, $2^{m-1} = 2^{2(2^{n-1}-1)} = (2^{2^{n-1}-1})^2 \equiv 1 \pmod{m}$.
-    \end{subprove}
-    \item Prove that there are infinitely many odd pseudoprime numbers.
-    \begin{subprove}
-      By the example in the lecture notes, $341 = 11 \cdot 31$ is an odd pseudoprime. 
-      By part (c), if $n$ is an odd pseudoprime, then $m = 2^n - 1$ is also an odd pseudoprime.
-      Starting with $n_1 = 341$, define $n_{k+1} = 2^{n_k} - 1$ for $k \geq 1$.
-      Then each $n_k$ is an odd pseudoprime by repeated application of part (c).
-      Since $n_1 < n_2 < n_3 < \cdots$ (as $2^n - 1 > n$ for $n > 1$), this produces infinitely many distinct odd pseudoprimes.
-    \end{subprove}
-  \end{enumerate}
-
-
-
-
-
-  \newpage
-  \item Exercise Set 2.6, \#68 (a),(d).
-  Using Euler's Theorem, find the least nonnegative residue modulo $m$ of each integer $n$ below.
-  \begin{define}{Definition (Euler's phi-function)}[def:phi][red]
-  For $n\in\setZ_{>0}$ the Euler totient function $\phi(n)$ is the number of integers
-  $1\le x\le n$ with $\gcd(x,n)=1$; equivalently,
-  \[
-  \phi(n):=\#\{x\in\{1,2,\dots,n\}:\gcd(x,n)=1\}.
-  \]
-  \end{define}
-  \begin{define}{Theorem 2.17 (Euler's Theorem)}[thm:2.17][red]
-  Let $m>0$ and $a\in\setZ$ with $\gcd(a,m)=1$. Then
-  \[
-  a^{\phi(m)}\equiv 1\pmod m.
-  \]
-  \end{define}
-  \begin{enumerate}
-    \item $n=29^{198}$, $m=20$
-    \begin{subanswer}
-      First, compute $\phi(20)$. Since $20 = 2^2 \cdot 5$, by the formula for Euler's phi-function,
-      \[
-      \phi(20) = 20 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{5}\right) = 20 \cdot \frac{1}{2} \cdot \frac{4}{5} = 8.
-      \]
-      Since $\gcd(29, 20) = 1$, by \nameref{thm:2.17} (Euler's Theorem), $29^8 \equiv 1 \pmod{20}$.
-      By the Division Algorithm, $198 = 8 \cdot 24 + 6$, so
-      \[
-      29^{198} = (29^8)^{24} \cdot 29^6 \equiv 1^{24} \cdot 29^6 \equiv 29^6 \pmod{20}.
-      \]
-      Now $29 \equiv 9 \pmod{20}$, so $29^6 \equiv 9^6 \pmod{20}$.
-      Since $9^2 = 81 \equiv 1 \pmod{20}$, it follows that $9^6 = (9^2)^3 \equiv 1^3 = 1 \pmod{20}$.
-      Therefore, $29^{198} \equiv 1 \pmod{20}$.
-    \end{subanswer}
-    \item $n=99^{999999}$, $m=26$
-    \begin{subanswer}
-      First, compute $\phi(26)$. Since $26 = 2 \cdot 13$, by the formula for Euler's phi-function,
-      \[
-      \phi(26) = 26 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{13}\right) = 26 \cdot \frac{1}{2} \cdot \frac{12}{13} = 12.
-      \]
-      Since $\gcd(99, 26) = 1$, by \nameref{thm:2.17} (Euler's Theorem), $99^{12} \equiv 1 \pmod{26}$.
-      By the Division Algorithm, $999999 = 12 \cdot 83333 + 3$, so
-      \[
-      99^{999999} = (99^{12})^{83333} \cdot 99^3 \equiv 1^{83333} \cdot 99^3 \equiv 99^3 \pmod{26}.
-      \]
-      Now $99 \equiv 21 \pmod{26}$, so $99^3 \equiv 21^3 \pmod{26}$.
-      Since $21^2 = 441 \equiv 441 - 17 \cdot 26 = 441 - 442 = -1 \pmod{26}$, it follows that 
-      \[
-      21^3 = 21^2 \cdot 21 \equiv (-1) \cdot 21 = -21 \equiv 5 \pmod{26}.
-      \]
-      Therefore, $99^{999999} \equiv 5 \pmod{26}$.
-    \end{subanswer}
-  \end{enumerate}
-
-
-  \newpage
-  \item Exercise Set 2.6, \#75.
-  Let $m$ be a positive integer with $m \neq 2$. If $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$, prove that
-  \[
-  r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
-  \]
-  \begin{define}{Definition (reduced residue system)}[def:reducedRS][red]
-  A set of $\phi(m)$ integers each relatively prime to $m$ and pairwise incongruent modulo $m$
-  is called a \emph{reduced residue system} modulo $m$.
-  \end{define}
-  \begin{subprove}
-    Since $m \neq 2$, it follows that $\phi(m) \geq 2$. For each $r_i$ in the reduced residue system, 
-    $-r_i$ is also relatively prime to $m$ and distinct from $r_i$ (since $m \neq 2$).
-    If $-r_i \equiv r_j \pmod{m}$ for some $j \neq i$, then $r_i + r_j \equiv 0 \pmod{m}$.
-    Since the reduced residue system has $\phi(m)$ elements and they can be paired up 
-    (with possibly one element being its own negative if $m$ is even), the sum 
-    $r_1 + r_2 + \cdots + r_{\phi(m)} \equiv 0 \pmod{m}$.
-  \end{subprove}
-
-
-
-
-  \newpage
-
-
-  
-
-
-
-
-  \item Exercise Set 3.1, \#7.
-
-  \begin{define}{Liouville $\lambda$-function}[def:liouville][redcolor]
-    Let $n \in \setZ$ with $n>0$. The Liouville $\lambda$-function, 
-    denoted $\lambda(n)$, is defined by
-    $$
-    \lambda(n):= 
-    \begin{cases}
-      1 & \text { if } n=1 \\ 
-      (-1)^k & \text { if } n=p_1 p_2 \cdots p_k \quad \text { where } \quad p_1, \ldots, p_k \text { are not necessarily distinct prime numbers. }
-    \end{cases}
-    $$
-  \end{define}
-  \begin{enumerate}
-    \item Prove that $\lambda$ is a completely multiplicative arithmetic function.
-    \begin{subprove}
-      Your answer here.
-    \end{subprove}
-    \item Let $F(n):=\sum_{d \mid n, d>0} \lambda(d)$. Prove that
-    \[
-    F(n)= \begin{cases}1 & \text{if } n \text{ is a perfect square} \\ 0 & \text{otherwise}\end{cases}
-    \]
-    \begin{subprove}
-      Your answer here.
-    \end{subprove}
-  \end{enumerate}
-
-  \item Exercise Set 3.2, \#12. Let $n \in \mathbb{Z}$ with $n>1$. If $n$ has prime 
-  factorisation $p_1^{a_1} p_2^{a_2} \cdots p_m^{a_m}$, prove that
-
-  $$
-  \phi(n)=p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m\left(p_i-1\right) .
-  $$
-  \begin{subprove}
-    Your answer here.
-  \end{subprove}
-
-  \item Exercise Set 3.2, \#15.
-  Let $k \in \setZ$ with $k>0$. Prove that the equation $\phi(n)=k$ has 
-  at most finitely many solutions. 
-  [\textbf{Hint}: Use Question 6]
-  \begin{subprove}
-    Your answer here.
-  \end{subprove}
-
-  \item Exercise Set 3.2, \#16.
-  Let $n$ be a positive integer.
-  [\textbf{Hint}: Use Question 1 for part (a) and Theorem 3.4 for part (b)]
-  \begin{enumerate}
-    \item Prove that $\sqrt{n} / 2 \leq \phi(n) \leq n$.
-    \begin{subprove}
-      Your answer here.
-    \end{subprove}
-    \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
-    \begin{subprove}
-      Your answer here.
-    \end{subprove}
-  \end{enumerate}
-\end{enumerate}
-
-
-
-
-
-  % Solve these questions in "hw02.tex" based on James K. Strayer's Elementary Number Theory contexts with the rules as follows.
-  % 1. place all the "define" envrionemt def(s), thm(s), ,... in "_*.tex" where needed and used in questions like existing contents over the document.
-
-
-
-  % 1. Use existing questions and answers to have consistency in proof style and phrasing (passive voice, 3rd-person excluding "the one", "we" ,...)
-  % 2. Bring references from the selected lines of "_.tex" when first used, then cross-reference with \nameref{}, but not too repetitive. Like existing questions and answers.
-  % 3. Remind "Goldilocks principle" along with the existing content: be concise but logically complete. Omit obvious steps, but show all crucial reasoning needed for verification. For example: "To show $f(n)=n+1$ is bijective: if $f(a)=f(b)$ then $a+1=b+1$ so $a=b$, and for any $y$ take $x=y-1$ so $f(x)=y$."
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1103,7 +823,7 @@ Let $p$ be an odd prime number. Prove that
   
   
 %   \item \textbf{Euler's Theorem.}
-%   \begin{define}{Euler's Theorem}[thm:euler][redcolor]
+%   \begin{define}{Euler's Theorem}[thm:euler][red]
 %     Let $n \in \setN$ and $a \in \setZ$ with $\gcd(a,n) = 1$. Then
 %     \[
 %       a^{\phi(n)} \equiv 1 \pmod{n}
@@ -1132,7 +852,7 @@ Let $p$ be an odd prime number. Prove that
 %     \end{subprove}
 %   \end{define}
   
-%   \begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][redcolor]
+%   \begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][red]
 %     If $p$ is prime and $\gcd(a,p)=1$, then
 %     \[
 %       a^{p-1} \equiv 1 \pmod{p}.
@@ -1151,14 +871,14 @@ Let $p$ be an odd prime number. Prove that
   
   
 %   \item \textbf{Dirichlet's Theorem.}
-%   \begin{define}{Dirichlet's Theorem}[thm:dirichlet][redcolor]
+%   \begin{define}{Dirichlet's Theorem}[thm:dirichlet][red]
 %     If $\gcd(a,q) = 1$, then there exist infinitely many primes $p$ such that
 %     \[
 %       p \equiv a \pmod{q}.
 %     \]
 %   \end{define}
   
-%   \begin{define}{Special Case: Dirichlet's Theorem}[cor:dirichlet-special][redcolor]
+%   \begin{define}{Special Case: Dirichlet's Theorem}[cor:dirichlet-special][red]
 %     There are infinitely many primes of the form $4k+3$.
 %     \begin{subprove}
 %       Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.

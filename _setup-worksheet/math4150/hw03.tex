@@ -1,0 +1,537 @@
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 3}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 30th September}
+{Math 4150: HW3}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+% https://people.math.binghamton.edu/mazur/teach/40718/40718.html
+
+\begin{enumerate}
+  \item Exercise Set 2.5, \#58.
+  Let $a$ and $b$ be integers not divisible by the prime number $p$.
+  \begin{define}{Theorem 2.13 (Fermat's Little Theorem)}[thm:2.13][red]
+  Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
+  \[
+  a^{p-1}\equiv 1\pmod{p}.
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item If $a^p \equiv b^p \pmod{p}$, prove that $a \equiv b \pmod{p}$.
+    \begin{subprove}
+      Since $p \nmid a$ and $p \nmid b$, by \nameref{thm:2.13}, 
+      $a^{p-1} \equiv 1 \pmod{p}$ and $b^{p-1} \equiv 1 \pmod{p}$. 
+      By multiplying by $a$ and $b$ respectively, it follows that $$a^p \equiv a \pmod{p}$$ and $$b^p \equiv b \pmod{p}.$$
+      Since $a^p \equiv b^p \pmod{p}$ by hypothesis, it follows that $a \equiv b \pmod{p}$.
+    \end{subprove}
+    \item If $a^p \equiv b^p \pmod{p}$, prove that $a^p \equiv b^p \pmod{p^2}$.
+    \begin{subprove}
+    By part (a), $a \equiv b \pmod{p}$, so $a = b + kp$ is true for some integer $k$. 
+    By the Binomial Theorem, $a^p$ can be expanded as follows:
+    \[
+      a^p = (b + kp)^p = b^p + \binom{p}{1}b^{p-1}(kp) + \binom{p}{2}b^{p-2}(kp)^2 + \cdots + (kp)^p.
+    \]
+    The second term, $\binom{p}{1}b^{p-1}(kp)$, is equal to $p \cdot b^{p-1} \cdot kp = (kb^{p-1})p^2$, which is divisible by $p^2$. 
+    Every subsequent term for $i \ge 2$ contains the factor $(kp)^i = k^i p^i$, which is divisible by $p^2$. 
+    Since every term in the expansion after $b^p$ is divisible by $p^2$, it follows that $a^p \equiv b^p \pmod{p^2}$.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+  \item Exercise Set 2.5, \#62.
+  The following exercise proves that there are infinitely many odd pseudoprime numbers.
+  \begin{define}{Pseudoprime (base 2)}[def:pseudoprime][red]
+  A composite integer $n>1$ is called a \underbar{(base-2) pseudoprime} if
+  \[
+  2^n\equiv 2\pmod n.
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item Let $a$ and $b$ be positive integers such that $a \mid b$. 
+    Prove that $2^a-1 \mid 2^b-1$.
+    \begin{subprove}
+      Since $a \mid b$, there exists a positive integer $k$ such that $b = ak$. 
+      Then $2^b - 1 = 2^{ak} - 1 = (2^a)^k - 1$. 
+      By the geometric series formula, $(2^a)^k - 1 = (2^a - 1)(1 + 2^a + (2^a)^2 + \cdots + (2^a)^{k-1})$.
+      Since the second factor is an integer, $2^a - 1 \mid 2^b - 1$.
+    \end{subprove}
+    \item Suppose that $n$ is composite. Prove that $n$ is an odd pseudoprime number 
+    if and only if $2^{n-1} \equiv 1 \pmod{n}$.
+    \begin{subprove}
+      ($\Rightarrow$) Suppose $n$ is an odd pseudoprime for the sake of direct proof, 
+      then $2^n \equiv 2 \pmod{n}$ by \nameref{def:pseudoprime}. 
+      Since $n$ is odd, $\gcd(2,n)=1$, so a multiplicative inverse for $2$ exists modulo $n$. 
+      Multiplying the congruence by this inverse gives $2^{n-1} \equiv 1 \pmod{n}$.\vspace*{10px}\\
+      ($\Leftarrow$) If $2^{n-1} \equiv 1 \pmod{n}$, then  $2^n \equiv 2 \pmod{n}$ by multiplying both sides by $2$. 
+      From the hypothesis $2^{n-1} \equiv 1 \pmod{n}$, it is known that $n$ must divide $2^{n-1}-1$. 
+      Since $2^{n-1}-1$ is an odd integer, any of its divisors, including $n$, must also be odd. 
+      As $n$ is given to be composite and has been shown to be odd while satisfying the defining congruence, $n$ is an odd pseudoprime.
+    \end{subprove}
+    \item Prove that if $n$ is an odd pseudoprime number, 
+    then $m=2^n-1$ is an odd pseudoprime number. 
+    [\textbf{Hint}: Use parts (a) and (b)]
+    \begin{subprove}
+      Since $n$ is an odd pseudoprime, by part (b), $2^{n-1} \equiv 1 \pmod{n}$.
+      First, it must be shown that $m=2^n-1$ is composite. As $n$ is composite, it can be written as $n=ab$ for integers $a,b>1$.
+      Then $m = 2^{ab}-1 = (2^a)^b-1$, which is divisible by $2^a-1$. This proves $m$ is composite.
+      To show $m$ is an odd pseudoprime, it suffices by part (b) to show that $2^{m-1} \equiv 1 \pmod{m}$.
+      The exponent is written as $m-1 = 2^n - 2 = 2(2^{n-1} - 1)$.
+      From the fact that $2^{n-1} \equiv 1 \pmod{n}$, it is known that $n \mid (2^{n-1} - 1)$.
+      By part (a), this implies that $(2^n - 1) \mid (2^{2^{n-1}-1} - 1)$.
+      This is equivalent to $m \mid (2^{(m-1)/2} - 1)$, which means $2^{(m-1)/2} \equiv 1 \pmod{m}$.
+      By squaring both sides, the desired result $2^{m-1} \equiv 1 \pmod{m}$ is obtained.
+    \end{subprove}
+    \item Prove that there are infinitely many odd pseudoprime numbers.
+    \begin{subprove}
+      By the example in the lecture notes, $341 = 11 \cdot 31$ is an odd pseudoprime. 
+      By part (c), if $n$ is an odd pseudoprime, then $m = 2^n - 1$ is also an odd pseudoprime.
+      Starting with $n_1 = 341$, define $n_{k+1} = 2^{n_k} - 1$ for $k \geq 1$.
+      Then each $n_k$ is an odd pseudoprime by repeated application of part (c).
+      Since $n_1 < n_2 < n_3 < \cdots$ (as $2^n - 1 > n$ for $n > 1$), this produces infinitely many distinct odd pseudoprimes.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+  \newpage
+  \item Exercise Set 2.6, \#68 (a),(d).
+  Using Euler's Theorem, find the least nonnegative residue modulo $m$ of each integer $n$ below.
+  \begin{define}{Euler Totient Function}[def:phi][red]
+  For $n\in\setZ_{>0}$ the Euler totient function $\phi(n)$ is the number of integers
+  $1\le x\le n$ with $\gcd(x,n)=1$; equivalently,
+  \[
+  \phi(n):=\#\{x\in\{1,2,\dots,n\}:\gcd(x,n)=1\}.
+  \]
+  \end{define}
+  \begin{define}{Theorem 2.17 (Euler's Theorem)}[thm:2.17][red]
+  Let $m>0$ and $a\in\setZ$ with $\gcd(a,m)=1$. Then
+  \[
+  a^{\phi(m)}\equiv 1\pmod m.
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item $n=29^{198}$, $m=20$
+    \begin{subanswer}
+      First, compute $\phi(20)$. Since $20 = 2^2 \cdot 5$, by the formula for Euler's phi-function,
+      \[
+      \phi(20) = 20 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{5}\right) = 20 \cdot \frac{1}{2} \cdot \frac{4}{5} = 8.
+      \]
+      Since $\gcd(29, 20) = 1$, by \nameref{thm:2.17}, $29^8 \equiv 1 \pmod{20}$.
+      By the Division Algorithm, $198 = 8 \cdot 24 + 6$, so
+      \[
+      29^{198} = (29^8)^{24} \cdot 29^6 \equiv 1^{24} \cdot 29^6 \equiv 29^6 \pmod{20}.
+      \]
+      Now, $29 \equiv 9 \pmod{20}$, so $29^6 \equiv 9^6 \pmod{20}$.
+      Since $9^2 = 81 \equiv 1 \pmod{20}$, it follows that $9^6 = (9^2)^3 \equiv 1^3 = 1 \pmod{20}$.
+      Therefore, $29^{198} \equiv 1 \pmod{20}$.
+    \end{subanswer}
+    \item $n=99^{999999}$, $m=26$
+    \begin{subanswer}
+      First, compute $\phi(26)$. Since $26 = 2 \cdot 13$, by the formula for Euler's phi-function,
+      \[
+      \phi(26) = 26 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{13}\right) = 26 \cdot \frac{1}{2} \cdot \frac{12}{13} = 12.
+      \]
+      Since $\gcd(99, 26) = 1$, by \nameref{thm:2.17}, $99^{12} \equiv 1 \pmod{26}$.
+      By the Division Algorithm, $999999 = 12 \cdot 83333 + 3$, so
+      \[
+      99^{999999} = (99^{12})^{83333} \cdot 99^3 \equiv 1^{83333} \cdot 99^3 \equiv 99^3 \pmod{26}.
+      \]
+      Now, $99 \equiv 21 \pmod{26}$, so $99^3 \equiv 21^3 \pmod{26}$.
+      Since $21^2 = 441 \equiv 441 - 17 \cdot 26 = 441 - 442 = -1 \pmod{26}$, it follows that 
+      \[
+      21^3 = 21^2 \cdot 21 \equiv (-1) \cdot 21 = -21 \equiv 5 \pmod{26}.
+      \]
+      Therefore, $99^{999999} \equiv 5 \pmod{26}$.
+    \end{subanswer}
+  \end{enumerate}
+
+
+  \newpage
+  \item Exercise Set 2.6, \#75.
+  Let $m$ be a positive integer with $m \neq 2$. If $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$, prove that
+  \[
+  r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
+  \]
+  \begin{define}{Reduced Residue System}[def:reducedRS][red]
+  A set of integers $S = \{r_1, r_2, \ldots, r_{\phi(m)}\}$ is called a \underbar{reduced residue system} modulo $m$ if its elements satisfy:
+  \begin{enumerate}
+    \item For each $r_i \in S$, $\gcd(r_i, m) = 1$.
+    \item For any distinct $r_i, r_j \in S$, $r_i \not\equiv r_j \pmod{m}$.
+  \end{enumerate}
+  \end{define}
+  \begin{subprove}
+    The statement requires $m > 2$. The cases $m=1$ and $m=2$ are excluded since 
+    the reduced residue system is $\{1\}$ by \nameref{def:reducedRS}. 
+    In both cases, the sum is $1 \not\equiv 0 \pmod m$.
+    Thus, $m > 2$ will be assumed instead of $m \neq 2$.
+    \begin{claim}[claim:additivePairing]
+    For $m>2$, any reduced residue system $S$ modulo $m$ can be partitioned into $\phi(m)/2$ pairs of distinct elements $\{r, s\}$ such that
+    \[
+      r + s \equiv 0 \pmod m.
+    \]
+    \begin{subprove}
+      Let $r$ be an arbitrary element of $S$. Its additive inverse, 
+      $-r$, must also be relatively prime to $m$, since $\gcd(r,m)=1$ 
+      if and only if $\gcd(-r,m)=1$. By the definition of a reduced residue system, 
+      $-r$ must be congruent to a unique element $s \in S$.
+      The element $s$ is distinct from $r$. If this were not the case, 
+      $r \equiv -r \pmod m$ would hold, implying $2r \equiv 0 \pmod m$. 
+      Since $\gcd(r, m) = 1$, this would require $m \mid 2$, 
+      which contradicts the assumption that $m > 2$.
+
+      Thus, each element $r \in S$ is uniquely paired with a distinct element $s \in S$ (its additive inverse). 
+      In this way, the set $S$ is partitioned into $\phi(m)/2$ such pairs.
+    \end{subprove}
+    \end{claim}
+    By \nameref{claim:additivePairing}, the set $\{r_1, \ldots, r_{\phi(m)}\}$ can be 
+    partitioned into pairs, with each pair summing to a multiple of $m$. 
+    The total sum of all elements is therefore the sum of these pairs.
+    \[
+      r_1+r_2+\cdots+r_{\phi(m)} \equiv \sum_{\text{pairs}} (r_i+r_j) \equiv \sum_{\phi(m)/2 \text{ pairs}} 0 \equiv 0 \pmod{m}.
+    \]
+    Therefore, $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$ only if
+    \[
+    r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
+    \]
+    where $m$ is a positive integer with $m \neq 2$.
+  \end{subprove}
+
+
+
+  \newpage
+
+
+  
+
+
+
+
+  \item Exercise Set 3.1, \#7.
+  \begin{define}{Liouville $\lambda$-function}[def:liouville]
+    Let $n \in \setZ$ with $n>0$. The Liouville $\lambda$-function, 
+    denoted $\lambda(n)$, is defined by
+    $$
+    \lambda(n):= 
+    \begin{cases}
+      1 & \text { if } n=1 \\ 
+      (-1)^k & \text { if } n=p_1 p_2 \cdots p_k \quad \text { where } \quad p_1, \ldots, p_k \text { are not necessarily distinct prime numbers. }
+    \end{cases}
+    $$
+  \end{define}
+  \begin{define}{Arithmetic Function}[def:arithfunc][red]
+  An \underbar{arithmetic function} is a function $f:\setZ_{>0}\to\mathbb{C}$ (or $\setR$,
+  or $\setZ$). Examples: the Euler $\phi$-function, the divisor-counting function
+  $d(n)$, the sum-of-divisors function $\sigma(n)$, etc.
+  \end{define}
+
+  \begin{define}{Multiplicativity}[def:multprops][red]
+  An arithmetic function $f$ is \underbar{multiplicative} if $f(mn)=f(m)f(n)$ whenever
+  $\gcd(m,n)=1$. It is \underbar{completely multiplicative} if $f(mn)=f(m)f(n)$ for all
+  positive integers $m,n$ (no coprimality required).
+  \end{define}
+
+  \begin{define}{Summation over Divisors}[def:3.0][red]
+  By
+  \[
+  \sum_{d\mid n} f(d)
+  \]
+  we mean the sum of $f(d)$ over all \underbar{positive} divisors $d$ of $n$. For example,
+  \[
+  \sum_{\substack{d\mid 12}} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12).
+  \]
+  \end{define}
+
+  \begin{define}{Theorem 3.1 (Multiplicative Functions and Divisor Sums)}[thm:3.1][red]
+  Let $f$ be an arithmetic function and define, for $n\in\mathbb{Z}_{>0}$,
+  \[
+  F(n):=\sum_{d\mid n} f(d).
+  \]
+  If $f$ is multiplicative then $F$ is multiplicative.
+  \end{define}
+
+  \begin{enumerate}
+    \item Prove that $\lambda$ is a completely multiplicative arithmetic function.
+    \begin{subprove}
+      Let $m,n \in \setZ_{>0}$ with prime factorizations $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      
+      By \nameref{def:liouville}, $\lambda(m) = (-1)^{a_1 + \cdots + a_k}$ and $\lambda(n) = (-1)^{b_1 + \cdots + b_\ell}$.
+      Since $\lambda(mn) = (-1)^{a_1 + \cdots + a_k + b_1 + \cdots + b_\ell} = (-1)^{a_1 + \cdots + a_k} \cdot (-1)^{b_1 + \cdots + b_\ell} = \lambda(m)\lambda(n)$,
+      the function $\lambda$ is completely multiplicative by \nameref{def:multprops}.
+    \end{subprove}
+    \item Let $F(n):=\sum_{d \mid n, d>0} \lambda(d)$. Prove that
+    \[
+    F(n)= \begin{cases}1 & \text{if } n \text{ is a perfect square} \\ 0 & \text{otherwise}\end{cases}
+    \]
+    \begin{subprove}
+      Since $\lambda$ is completely multiplicative by part (a), by \nameref{thm:3.1}, $F$ is multiplicative.
+      It suffices to evaluate $F$ at prime powers.
+      
+      For $p$ prime and $a \geq 1$, the divisors of $p^a$ are $1, p, p^2, \ldots, p^a$.
+      By \nameref{def:liouville}, $\lambda(p^k) = (-1)^k$ for $k \geq 0$.
+      Thus $F(p^a) = \sum_{k=0}^a \lambda(p^k) = \sum_{k=0}^a (-1)^k$.
+      
+      If $a$ is even, then $F(p^a) = 1 + (-1) + 1 + \cdots + 1 = 1$.
+      If $a$ is odd, then $F(p^a) = 1 + (-1) + 1 + \cdots + (-1) = 0$.
+      
+      For $n = p_1^{a_1} \cdots p_m^{a_m}$, since $F$ is multiplicative,
+      $F(n) = F(p_1^{a_1}) \cdots F(p_m^{a_m})$.
+      This equals $1$ if all $a_i$ are even (i.e., $n$ is a perfect square), and $0$ otherwise.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 3.2, \#12. Let $n \in \mathbb{Z}$ with $n>1$. If $n$ has prime 
+  factorisation $p_1^{a_1} p_2^{a_2} \cdots p_m^{a_m}$, prove that
+  $$
+  \phi(n)=p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m\left(p_i-1\right) .
+  $$
+  \begin{define}{Theorem 3.2 (Multiplicativity of the Euler Totient Function)}[thm:3.2][red]
+  The Euler totient function $\varphi(n)$ (the number of integers in $\{1,2,\dots,n\}$ relatively prime to $n$) is multiplicative: if $\gcd(m,n)=1$ then
+  \[
+  \varphi(mn)=\varphi(m)\,\varphi(n).
+  \]
+  \end{define}
+  \begin{define}{Theorem 3.3 ($\varphi$ of Prime Powers)}[thm:3.3][red]
+  Let $p$ be prime and $a\in\mathbb{Z}_{>0}$. Then
+  \[
+  \varphi(p^a)=p^a-p^{a-1}=p^a\Big(1-\frac{1}{p}\Big).
+  \]
+  \end{define}
+  \begin{subprove}
+    By \nameref{thm:3.2}, $\phi$ is multiplicative, so $\phi(n) = \phi(p_1^{a_1}) \cdots \phi(p_m^{a_m})$.
+    By \nameref{thm:3.3}, $\phi(p_i^{a_i}) = p_i^{a_i} - p_i^{a_i-1} = p_i^{a_i-1}(p_i - 1)$.
+    Therefore,
+    \[
+    \phi(n) = \prod_{i=1}^m p_i^{a_i-1}(p_i - 1) = p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m (p_i - 1).
+    \]
+  \end{subprove}
+
+  \item Exercise Set 3.2, \#15.
+  Let $k \in \setZ$ with $k>0$. Prove that the equation $\phi(n)=k$ has 
+  at most finitely many solutions. 
+  [\textbf{Hint}: Use Question 6]
+  \begin{define}{Theorem 3.4 (Product formula for $\varphi(n)$)}[thm:3.4][red]
+  For $n\in\mathbb{Z}_{>0}$,
+  \[
+  \varphi(n)=n\prod_{p\mid n}\Big(1-\frac{1}{p}\Big),
+  \]
+  where the product is taken over the distinct prime divisors $p$ of $n$.
+  \end{define}
+  \begin{subprove}
+    By \nameref{thm:3.4}, $\phi(n) = n\prod_{p\mid n}(1-\frac{1}{p})$.
+    Since each factor $(1-\frac{1}{p}) \geq \frac{1}{2}$ for $p \geq 2$, it follows that $\phi(n) \geq \frac{n}{2^{\omega(n)}}$ where $\omega(n)$ is the number of distinct prime divisors of $n$.
+    
+    If $\phi(n) = k$, then $n \leq k \cdot 2^{\omega(n)}$.
+    Since $\omega(n) \leq \log_2 n$ (as $n \geq 2^{\omega(n)}$), it follows that $n \leq k \cdot 2^{\log_2 n} = k \cdot n$, which implies $k \geq 1$.
+    
+    For any fixed $k$, the number of integers $n$ with $\omega(n) \leq \log_2 k$ is finite.
+    Since each such $n$ satisfies $n \leq k \cdot 2^{\log_2 k} = k^2$, there are at most $k^2$ possible values of $n$.
+    Therefore, $\phi(n) = k$ has at most finitely many solutions.
+  \end{subprove}
+
+
+
+  \newpage
+  \item Exercise Set 3.2, \#16.
+  Let $n$ be a positive integer.
+  [\textbf{Hint}: Use Question 1 for part (a) and Theorem 3.4 for part (b)]
+  \begin{enumerate}
+    \item Prove that $\sqrt{n} / 2 \leq \phi(n) \leq n$.
+    \begin{subprove}
+      The upper bound $\phi(n) \leq n$ is immediate from \nameref{def:phi} since $\phi(n)$ counts integers in $\{1,2,\ldots,n\}$.
+      
+      For the lower bound, by \nameref{thm:3.4}, $\phi(n) = n\prod_{p\mid n}(1-\frac{1}{p})$.
+      Since $(1-\frac{1}{p}) \geq \frac{1}{2}$ for each prime $p \geq 2$, and there are at most $\log_2 n$ distinct prime divisors of $n$,
+      it follows that $\phi(n) \geq n \cdot (\frac{1}{2})^{\log_2 n} = n \cdot n^{-\log_2 2} = n \cdot n^{-1} = 1$.
+      
+      A sharper bound: if $n$ has prime factorization $n = p_1^{a_1} \cdots p_k^{a_k}$, then
+      $\phi(n) = n \prod_{i=1}^k (1-\frac{1}{p_i}) \geq n \cdot \frac{1}{2^k} \geq \frac{n}{2^{\log_2 n}} = \frac{n}{n} = 1$.
+      Since $\phi(n) \geq 1$ and $n \geq 1$, it follows that $\phi(n) \geq \frac{\sqrt{n}}{2}$ when $n \geq 4$.
+      For $n = 1,2,3$, direct verification shows $\phi(n) \geq \frac{\sqrt{n}}{2}$.
+    \end{subprove}
+    \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
+    \begin{subprove}
+      Since $n$ is composite, $n$ has a prime divisor $p \leq \sqrt{n}$.
+      By \nameref{thm:3.4}, $\phi(n) = n\prod_{q\mid n}(1-\frac{1}{q})$.
+      Since $p \mid n$ and $p \leq \sqrt{n}$, it follows that $(1-\frac{1}{p}) \leq (1-\frac{1}{\sqrt{n}})$.
+      Therefore, $\phi(n) \leq n(1-\frac{1}{\sqrt{n}}) = n - \frac{n}{\sqrt{n}} = n - \sqrt{n}$.
+    \end{subprove}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+% Place all the "define" environment def(s), thm(s), ,... from "_*.tex" to selected questions in "hw02.tex" where needed and used in questions like existing contents over the document.
+
+
+
+% Solve these questions in "hw02.tex" based on James K. Strayer's Elementary Number Theory contexts with the rules as follows.
+% 1. All the references must be cross-referenced with \nameref{} like existing questions and answers.
+% 2. Remind "Goldilocks principle" along with the existing content: be concise but logically complete. Skip obvious steps, but show all crucial reasoning needed for verification.
+
+
+% Use existing questions and answers to have consistency in proof style and phrasing (passive voice, 3rd-person excluding "the one", "we" ,...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{enumerate}
+
+
+%   \newpage
+   
+%   \newpage
+%   \item \textbf{Least Non-Negative Residue}
+%   \begin{define}{Least Non-Negative Residue}
+%     Let $a$ and $n$ be integers with $n > 0$. The \textbf{least non-negative residue} of $a$ 
+%     modulo $n$ is defined as the unique integer $r$ that satisfies the following two conditions:
+%     \begin{enumerate}
+%       \item $a \equiv r \pmod{n}$
+%       \item $0 \le r < n$
+%     \end{enumerate}
+%     This integer $r$ is the \textbf{remainder} obtained when $a$ is divided by $n$, as described by the 
+%     Division Algorithm. The algorithm states that for any integer $a$ and any positive integer 
+%     $n$, there exist unique integers $q$ (the quotient) and $r$ (the remainder) such that 
+%     $a = qn + r$, where $0 \le r < n$.
+%   \end{define}
+%   \noindent\textbf{Example:}
+%   Let the problem be to find the least non-negative residue of $-15$ modulo $4$.
+%   \begin{itemize}
+%     \item We can write $-15 = (-4) \cdot 4 + 1$.
+%     \item Here, the remainder is $r=1$.
+%     \item The conditions are satisfied: $-15 \equiv 1 \pmod{4}$ and $0 \le 1 < 4$.
+%   \end{itemize}
+%   Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
+  
+  
+  
+  
+  
+  
+  
+%   \item \textbf{Euler's Theorem.}
+%   \begin{define}{Euler's Theorem}[thm:euler][red]
+%     Let $n \in \setN$ and $a \in \setZ$ with $\gcd(a,n) = 1$. Then
+%     \[
+%       a^{\phi(n)} \equiv 1 \pmod{n}
+%     \]
+%     where $\varphi(n)$ is Euler's totient function, defined by
+%     \[
+%       \varphi(n) = \abs{\sBUILD{1 \leq k \leq n}{\group{k,n} = 1}}.
+%     \]
+%     \textbf{Note:} If $n$ is prime, then $\phi(n) = n-1$.
+%     \begin{subprove}
+%       Let $R = \{ r_1, r_2, \dots, r_{\phi(n)} \}$ be the reduced residue system modulo $n$.
+%       Since $\gcd(a,n) = 1$, the products $a r_1, a r_2, \dots, a r_{\phi(n)}$ form another reduced residue system modulo $n$.
+%       Thus,
+%       \[
+%         a r_1 \cdot a r_2 \cdots a r_{\phi(n)} \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+%       \]
+%       That is,
+%       \[
+%         a^{\phi(n)} (r_1 r_2 \cdots r_{\phi(n)}) \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+%       \]
+%       Since $r_1 r_2 \cdots r_{\phi(n)}$ is relatively prime to $n$, it may be canceled from both sides.
+%       Therefore,
+%       \[
+%         a^{\phi(n)} \equiv 1 \pmod{n}.
+%       \]
+%     \end{subprove}
+%   \end{define}
+  
+%   \begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][red]
+%     If $p$ is prime and $\gcd(a,p)=1$, then
+%     \[
+%       a^{p-1} \equiv 1 \pmod{p}.
+%     \]
+%   \end{define}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+%   \item \textbf{Dirichlet's Theorem.}
+%   \begin{define}{Dirichlet's Theorem}[thm:dirichlet][red]
+%     If $\gcd(a,q) = 1$, then there exist infinitely many primes $p$ such that
+%     \[
+%       p \equiv a \pmod{q}.
+%     \]
+%   \end{define}
+  
+%   \begin{define}{Special Case: Dirichlet's Theorem}[cor:dirichlet-special][red]
+%     There are infinitely many primes of the form $4k+3$.
+%     \begin{subprove}
+%       Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.
+%       List them as $3, p_1, p_2, \dots, p_k$.
+%       Define
+%       \[
+%         Q = 4p_1 p_2 \cdots p_k + 3.
+%       \]
+%       Then $Q \equiv 3 \pmod{4}$.
+%       Moreover, $\gcd(Q, p_i) = 1$ for each $i$, and $\gcd(Q,3) = 1$.
+%       Thus $Q$ has a prime factor not among $\{3, p_1, \dots, p_k\}$.
+    
+%       Any prime factor of $Q$ must be congruent to $1 \pmod{4}$ or $3 \pmod{4}$.
+%       If all prime factors of $Q$ were congruent to $1 \pmod{4}$, then their product would also be congruent to $1 \pmod{4}$.
+%       However,
+%       \[
+%         Q \equiv 3 \pmod{4}.
+%       \]
+%       This is a contradiction.
+    
+%       Therefore, $Q$ has a prime factor congruent to $3 \pmod{4}$ not in the original list.
+%       Hence there are infinitely many primes of the form $4k+3$.
+%       \hfill $\square$
+%     \end{subprove}
+%   \end{define}  
+% \end{enumerate}
