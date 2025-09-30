@@ -5,6 +5,8 @@ auto.sh
 blank.tex
 /macros.tex
 cli.pdf
+
+INST.tex
 *.exe
 *.docx
 *.txt
