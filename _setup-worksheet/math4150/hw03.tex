@@ -19,7 +19,7 @@
   \]
   \end{define}
   \begin{enumerate}
-    \item If $a^p \equiv b^p \pmod{p}$, prove that $a \equiv b \pmod{p}$.
+    \item If $a^p \equiv b^p \pmod{p}$, prove that $a \equiv b \pmod{p}$. \label{prob:2.5.58a}
     \begin{subprove}
       Since $p \nmid a$ and $p \nmid b$, by \nameref{thm:2.13}, 
       $a^{p-1} \equiv 1 \pmod{p}$ and $b^{p-1} \equiv 1 \pmod{p}$. 
@@ -271,7 +271,8 @@
   factorisation $p_1^{a_1} p_2^{a_2} \cdots p_m^{a_m}$, prove that
   $$
   \phi(n)=p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m\left(p_i-1\right) .
-  $$
+  $$ 
+  \label{prob:3.2.12}
   \begin{define}{Theorem 3.2 (Multiplicativity of the Euler Totient Function)}[thm:3.2][red]
   The Euler totient function $\varphi(n)$ (the number of integers in $\{1,2,\dots,n\}$ relatively prime to $n$) is multiplicative: if $\gcd(m,n)=1$ then
   \[
@@ -297,23 +298,21 @@
   Let $k \in \setZ$ with $k>0$. Prove that the equation $\phi(n)=k$ has 
   at most finitely many solutions. 
   [\textbf{Hint}: Use Question 6]
-  \begin{define}{Theorem 3.4 (Product Formula for $\varphi(n)$)}[thm:3.4][red]
-  For $n\in\mathbb{Z}_{>0}$,
-  \[
-  \varphi(n)=n\prod_{p\mid n}\Big(1-\frac{1}{p}\Big),
-  \]
-  where the product is taken over all primes $p$ with $p \mid n$.
-  \end{define}
   \begin{subprove}
-    By \nameref{thm:3.4}, $\phi(n) = n\prod_{p\mid n}(1-\frac{1}{p})$.
-    Since each factor $(1-\frac{1}{p}) \geq \frac{1}{2}$ for $p \geq 2$, it follows that $\phi(n) \geq \frac{n}{2^{\omega(n)}}$ where $\omega(n)$ is the number of distinct prime divisors of $n$.
-    
-    If $\phi(n) = k$, then $n \leq k \cdot 2^{\omega(n)}$.
-    Since $\omega(n) \leq \log_2 n$ (as $n \geq 2^{\omega(n)}$), it follows that $n \leq k \cdot 2^{\log_2 n} = k \cdot n$, which implies $k \geq 1$.
-    
-    For any fixed $k$, the number of integers $n$ with $\omega(n) \leq \log_2 k$ is finite.
-    Since each such $n$ satisfies $n \leq k \cdot 2^{\log_2 k} = k^2$, there are at most $k^2$ possible values of $n$.
-    Therefore, $\phi(n) = k$ has at most finitely many solutions.
+    Let $n=\prod_{i=1}^m p_i^{a_i}$ and suppose $\phi(n)=k$. By problem \ref{prob:3.2.12},
+    \[
+      k=\phi(n)=\prod_{i=1}^m p_i^{a_i-1}(p_i-1).
+    \]
+    For each prime factor $p_i\mid n$, it follows that $(p_i-1)\mid k$. Hence $p_i\le k+1$ for all $i$,
+    so the set of possible primes dividing such an $n$ is contained in the finite set of primes $\le k+1$.
+
+    Moreover, for each such prime $p\le k+1$, the exponent $a$ is bounded: from $p^{a-1}\mid k$ it follows that
+    $a\le 1+\nu_p(k)$, where $\nu_p(k)$ is the exponent of $p$ in the prime factorization of $k$.
+    Thus, for fixed $k$, each allowable prime divisor $p$ can appear with only finitely many exponents $a$.
+
+    Since there are only finitely many allowable primes $p\le k+1$, and each has only finitely many allowable
+    exponents, only finitely many products $n=\prod p^{a}$ can satisfy $\phi(n)=k$. Therefore, the equation
+    $\phi(n)=k$ has at most finitely many solutions.
   \end{subprove}
 
 
@@ -325,35 +324,38 @@
   \begin{enumerate}
     \item Prove that $\sqrt{n} / 2 \leq \phi(n) \leq n$.
     \begin{subprove}
-      The upper bound is established first. By the definition of the \nameref{def:phi},
+      (\textbf{Upper Bound}) By the definition of the \nameref{def:phi},
       $\phi(n)$ is the count of elements in a subset of $\{1, 2, \ldots, n\}$.
-      Therefore, it is immediate that $\phi(n) \leq n$.
-
-      For the lower bound, the case $n=1$ is verified directly: $\phi(1) = 1$ and $\sqrt{1}/2 = 1/2$, so the inequality $1 \ge 1/2$ holds.
-      For $n>1$, let the prime factorization of $n$ be $n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$.
-      The quotient $\phi(n)/\sqrt{n}$ is considered. It can be expressed as a product over the prime factors of $n$:
+      Therefore, it is trivial that $\phi(n) \leq n$.\vspace*{10px}\\
+      (\textbf{Lower Bound}) The case $n=1$ is verified directly, as $\phi(1) = 1$ and $\sqrt{1}/2 = 1/2$,
+      satisfying the inequality. For $n>1$, let the prime factorization of $n$ be $n = p_1^{a_1} \cdots p_k^{a_k}$.
+      Then by problem \ref{prob:3.2.12},
       \[
-        \frac{\phi(n)}{\sqrt{n}} = \frac{\prod_{i=1}^k \phi(p_i^{a_i})}{\prod_{i=1}^k \sqrt{p_i^{a_i}}} = \prod_{i=1}^k \frac{p_i^{a_i-1}(p_i-1)}{p_i^{a_i/2}} = \prod_{i=1}^k p_i^{a_i/2 - 1}(p_i-1).
+        \frac{\phi(n)}{\sqrt{n}} = \frac{\prod_{i=1}^k p_i^{a_i-1}(p_i-1)}{\prod_{i=1}^k p_i^{a_i/2}} = \prod_{i=1}^k p_i^{a_i/2 - 1}(p_i-1).
       \]
-      Let the term for each prime power be denoted $f(p, a) = p^{a/2 - 1}(p-1)$. A lower bound for this term is sought.
-      For a fixed prime $p$, the function $f(p,a)$ is increasing for $a \ge 1$, since the ratio $f(p,a+1)/f(p,a) = \sqrt{p} > 1$.
-      Thus, the minimum value of $f(p,a)$ for a fixed $p$ occurs at $a=1$, which gives $f(p,1) = \sqrt{p} - 1/\sqrt{p}$.
-      This function, in turn, is increasing for $p \ge 2$.
-      
-      It follows that the minimum value of any single term $f(p,a)$ occurs at the smallest prime ($p=2$) and smallest exponent ($a=1$), which is $f(2,1) = 1/\sqrt{2}$.
-      Any term in the product for an odd prime $p_i \ge 3$ satisfies $f(p_i, a_i) \ge f(3,1) = 2/\sqrt{3} > 1$.
-      Therefore, the product $\prod f(p_i, a_i)$ can only be less than $1$ if $n$ is divisible by $2$.
-      If $n$ is divisible by $2$, the overall product has a minimum value when only the factor for $p=2$ is present, as all other factors are greater than $1$.
-      The minimum possible value of the entire product is thus $1/\sqrt{2}$, which occurs when $n=2$.
-      
-      Therefore, for any integer $n > 1$, the following inequality holds:
+      For any fixed prime $p\ge 2$, it is an increasing function by the nature of exponential functions with $a \ge 1$.
+      For any fixed exponent $a \ge 1$, it is also an increasing function for by the nature of power functions with base, $p \ge 2$.
+      Thus, for fixed $a \ge 1$ and $p \ge 2$, the function
       \[
-        \frac{\phi(n)}{\sqrt{n}} \ge \frac{1}{\sqrt{2}}.
+        f(p,a) = p^{a/2 - 1}(p - 1)
       \]
-      Since $1/\sqrt{2} > 1/2$, it is concluded that $\phi(n)/\sqrt{n} \ge 1/2$, which implies $\phi(n) \ge \sqrt{n}/2$.
-      This, combined with the check for $n=1$, proves the inequality for all positive integers $n$.
+      has an absolute minimum at $(p,a)=(2,1)$, that is, $f(2,1)=1/\sqrt{2}$. Otherwise, 
+      $f(p,a) > f(3,1) = 1.154\dots$ for all $p > 2$. Since the minimum value of the product
+      is the one only when $n=2$ and all the other values are greater than 1, it follows that, for all $n>1$,
+      \[
+        \frac{\phi(n)}{\sqrt{n}} \ge \frac{1}{\sqrt{2}} > \frac{1}{2}.
+      \]
+      Thus, it is trivial that $\phi(n) > \sqrt{n}/2$ for all $n>1$.\vspace*{10px}\\
+      By the upper and lower bounds, it follows that $\sqrt{n}/2 \leq \phi(n) \leq n$ for all $n \in \setZ_{>0}$.
     \end{subprove}
     \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
+    \begin{define}{Theorem 3.4 (Product Formula for $\varphi(n)$)}[thm:3.4][red]
+    For $n \in \mathbb{Z}_{>0}$,
+    \[
+    \varphi(n)=n \prod_{p \mid n}\left(1-\frac{1}{p}\right),
+    \]
+    where the product is taken over all primes $p$ with $p \mid n$.
+    \end{define}
     \begin{subprove}
       Since $n$ is composite, $n$ has a prime divisor $p \leq \sqrt{n}$.
       By \nameref{thm:3.4}, $\phi(n) = n\prod_{q\mid n}(1-\frac{1}{q})$.
@@ -362,6 +364,304 @@
     \end{subprove}
   \end{enumerate}
 \end{enumerate}
+
+
+
+
+
+
+
+
+% \newpage
+% \begin{define}{Converse to Wilson's Theorem}
+%   If $n$ is an integer such that $n > 1$ and $(n-1)! \equiv -1 \pmod{n}$, then $n$ is a prime number.
+% \end{define}
+
+% \begin{subprove}
+%   Let it be assumed that the hypothesis holds for an integer $n > 1$:
+%   $$
+%     (n-1)! \equiv -1 \quad(\bmod n) \quad (*)
+%   $$
+%   For the purpose of contradiction, let it also be assumed that $n$ is a composite number.
+
+%   Since $n$ is composite, by definition, there must exist an integer divisor $d$ of $n$ such that $1 < d < n$.
+
+%   From the initial hypothesis $(*)$, it is known that $n$ divides $(n-1)! + 1$. Since $d$ is a divisor of $n$, it must be that $d$ also divides $(n-1)! + 1$. This relationship can be expressed as a congruence:
+%   $$
+%     (n-1)! + 1 \equiv 0 \quad(\bmod d)
+%   $$
+%   This is equivalent to:
+%   $$
+%     (n-1)! \equiv -1 \quad(\bmod d) \quad (1)
+%   $$
+%   Furthermore, because $d$ is an integer satisfying the inequality $1 < d < n$, $d$ must be one of the factors in the product $(n-1)! = 1 \cdot 2 \cdot 3 \cdots d \cdots (n-1)$. Consequently, $d$ must divide $(n-1)!$. In modular arithmetic notation, this is written as:
+%   $$
+%     (n-1)! \equiv 0 \quad(\bmod d) \quad (2)
+%   $$
+%   By combining the congruences from (1) and (2), it is deduced that:
+%   $$
+%     0 \equiv -1 \quad(\bmod d)
+%   $$
+%   This congruence implies that $d$ must divide the difference $0 - (-1)$, which is $1$. The only positive integer that divides $1$ is $1$ itself. Therefore, it must be that $d = 1$.
+
+%   This result, $d = 1$, contradicts the condition established from the assumption that $n$ is composite, namely that $1 < d < n$. The assumption that $n$ is a composite number must therefore be false.
+
+%   Given that $n > 1$ and $n$ has been shown not to be composite, it is concluded that $n$ must be a prime number. This completes the proof.
+% \end{subprove}
+
+
+
+
+
+
+
+
+
+% \newpage
+
+
+% Dear Dr. Alexander Dunn and Teaching Assistant Mr.Mao Junzhe,
+
+% I hope you are having a good week!
+
+% I am writing to respectfully ask for some clarification on the feedback I received for Problem (4b): Dirichlet's theorem.
+% I completely understand and agree with the main part of the grading comment,
+% my final application of Dirichlet's theorem was somewhat abstract, 
+% not showing $q=10^{2026}$ and $10^{2026}n + \underbrace{11 \ldots 1}_{2025 \text { times }}.$
+
+% My main regrade request is about, ``Induction proof does not make sense.'' 
+% I wanted to briefly clarify my thought process, as the induction was not intended 
+% to be the final proof, but rather a formal step to justify a property of the 
+% number $a = \underbrace{11 \ldots 1}_{2025 \text{ times}}$.
+% \begin{enumerate}
+%     \item First, I wanted to analyze the properties of the number $a$.
+%     \item I knew that $a$ could be written as the sum $\sum_{k=0}^{2024} 10^k$.
+%     \item To analyze this sum modulo 3, I needed to first prove that every term $10^k$ is congruent to $1 \pmod 3$.
+%     \item I used the brief induction proof for showing this fact: $10^k \equiv 1 \pmod 3$ for all $k \ge 0$.
+%     \item This allowed me to correctly conclude that $a \equiv \sum_{k=0}^{2024} 1 \equiv 2025 \equiv 0 \pmod 3$.
+% \end{enumerate}
+
+% So, while my overall strategy for applying Dirichlet's theorem was being abstract (chose $b=4s$ 
+% and assumed s is being a good amount of prime so it works without details by well-ordering lemma), 
+% I believe the induction proof was a logically true to show that the number $a=3k$, a multiple of 3.
+
+% Given this clarification, would it be possible to reconsider the point deduction as like.. minor mistake? 
+% I believe my work shows a correct application of induction for the sub-problem, 
+% even though the main goal of the proof was not met.
+
+% Thank you for your time and consideration!!
+
+% With respect, Jaehoon Song
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+
+
+% Dear Dr. Alexander Dunn and Teaching Assistant Mr.Mao Junzhe,
+
+% I hope you are having a good week!
+
+% I am writing to respectfully request a partial regrade for 
+% my solution to the proof of the Converse of Wilson's Theorem (3c). 
+% I received a score of zero, and while I completely agree that 
+% my final argument did not successfully complete the proof, 
+% I believe my work was showing a valid proof structure up to the intermediate steps.
+
+% My critical error occurred at the very last step. 
+% Instead of simply equating the congruences to get 
+% the direct contradiction $0 \equiv-1 \pmod k$, 
+% I unfortunately stuck with an incorrect line of reasoning about parity. 
+% I fully understand that this was a major mistake that left the proof incomplete.
+
+% However, since I successfully started the proof's framework, I feel that a 
+% complete deduction of 20 points is somewhat harsh... 
+
+% Would it be possible for you to reconsider the grade rubric? Perhaps a 
+% deduction of 10(?) points would be more representative of the major error 
+% in the final step.
+
+
+% Thank you for your time and consideration!!
+
+% With respect, Jaehoon Song
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 4}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 14th October}
+{Math 4150: HW4}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+
+
+
+\begin{enumerate}
+  \item Exercise Set 3.3, \#40 (with some additional parts).
+  \begin{enumerate}
+    \item Let $a \in \mathbb{Z}$ with $a>0$. Use induction to prove that
+    $$
+    \sum_{m=1}^a m=\frac{a(a+1)}{2}
+    $$
+    and that
+    $$
+    \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
+    $$
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item Let $n \in \mathbb{Z}$ with $n>0$. Use the previous part to prove that
+    $$
+    \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
+    $$
+    [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+  \end{enumerate}
+
+  \item Exercise Set 3.4, \#48.
+  Let $n \in \mathbb{Z}$ with $n>0$. Prove that
+  $$
+  \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
+  $$
+  \begin{subprove}
+  % User answer here
+  \end{subprove}
+
+
+  \newpage
+
+  \item Exercise Set 3.5, \#58.
+  \begin{define}{k-perfect number}[def:kperfect]
+  Let $k, n \in \mathbb{Z}$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
+  \end{define}
+  \begin{enumerate}
+    \item Prove that $120$ is $3$-perfect.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item Let $n \in \mathbb{Z}$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+  \end{enumerate}
+
+  \item Exercise Set 3.6, \#65.
+  \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
+  Let $n \in \mathbb{Z}$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
+  \[
+  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \mathbb{Z} \\ 0 & \text { otherwise }\end{cases}
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item Prove that
+    \[
+    \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+    \]
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+  \end{enumerate}
+
+
+  \newpage
+
+  \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
+  \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
+  Let $n \in \mathbb{Z}$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
+  \[
+  (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. Prove that $(f \star g) \star h= f \star(g \star h)$.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item \textbf{Identity:} For $n \in \mathbb{Z}$ with $n>0$, let
+    \[
+    \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
+    \]
+    Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item \textbf{Inverses:} For $n \in \mathbb{Z}$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+
+    \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
+    [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
+    \begin{subprove}
+    % User answer here
+    \end{subprove}
+  \end{enumerate}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,141 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\begin{document}
+LII ,
+
+LII: Möbius Inversion Formula
+
+Theorem 3.15 (Möbius inversion): Let $f$ and $g$ be arithmetic functions. Then
+
+$$
+f(n)=\sum_{d \mid n, d>0} g(d),
+$$
+
+if and only if
+
+$$
+g(n)=\sum_{d \mid n, d>0} \mu(d) f(n / d)=\sum_{d \mid n, d>0} \mu(n / d) f(d) .
+$$
+
+Proof: $(\Rightarrow$ direction $)$ : Assume that
+
+$$
+f(n)=\sum_{d \mid n, d>0} g(d)
+$$
+
+Then $\sum \mu(d) f(n / d)=\sum \mu(d) \sum g(c)$
+
+\[
+\begin{array}{lll}
+d \mid n, d>0 & d \mid n, d>0 & c \mid n / d, c>0 \\
+= & \sum_{c \mid n, c>0}\left(g(c) \sum_{\substack{l \\
+d \mid n / c, d>0}} \mu(d)\right) & \text { (1) } \tag{1}
+\end{array}
+\]
+
+Now, by Proposition 3.14, the summation inside\\
+the parantheses in (1) is 0 unless $n / c=1$, (2) or equivalently, $c=n$. Thus (1) becomes $g(n)$, as desired. The second equality in (*) is clear since as $d$ vans through all positive divisors of $n$, so to does $n / d$.\\
+$(\Leftarrow$ direction $)$ : Assume that
+
+$$
+g(n)=\sum_{d \mid n, d>0} \mu(n / d) f(d) .
+$$
+
+Then $\sum g(d)=\sum\left(\sum \mu(d / c) f(c)\right)$
+
+$$
+\begin{aligned}
+d \ln , d>0 & \quad d \ln , d>0 \quad d \mid d, c>0 \\
+& =\sum_{c \ln , c>0}\left(f(c) \sum_{d=c m \mid n, d>0} \mu(d / c)\right) \\
+& =\sum_{c \ln , c>0}\left(f(c) \sum_{m / n / c, m>0} \mu(m)\right)(2)
+\end{aligned}
+$$
+
+By Roposition 3.14, the summation insible the parantheses in (2) is 0 unless $n / c=1$, or equivalently $x=n$. Thus (2) becomes $f(n)$, as vequired.
+
+Example: Let $n \in \mathbb{C}$ with $n>0$, and let\\
+(3) $f(n):=n$ for all such $n$. By Theorem 3.5 we have
+
+$$
+f(n):=n=\sum_{d \mid n, d>0} \phi(d) .
+$$
+
+In this example we have $g(d):=\phi(d)$ for all $d \in \mathbb{Z}$ with $d>0$. By the Möbins inversion formula, we obtain the identity
+
+$$
+\phi(n)=\sum_{d \mid n, d>0} \mu(d) n / d=\sum_{d \mid n, d>0} \mu(n / d) d .
+$$
+
+Example: Let $n \in \mathbb{Z}$ with $n>0$. We have
+
+$$
+f(n):=v(n)=\sum_{d \mid n, d>0} 1
+$$
+
+In this example we have $g(d):=1$ for all $d \in \mathbb{Z}$ with $d>0$. By Mi-bius inversion we have that
+
+$$
+I=\sum_{d(n, d>0} \mu(d) v(n / d)=\sum_{d \mid n, d>0} \mu(n / d) v(d) .
+$$
+
+Example: Let $n \in \mathbb{Z}$ with $n>0$. We have
+
+$$
+f(n):=\sigma(n)=\sum_{d \mid n, d>0} d .
+$$
+
+In this example we have $g(d):=d$ for all $d \in \mathbb{Z}$ with $d>0$. By Mobins inversion we have that
+
+$$
+n=\sum_{d \mid n, d>0} \mu(d) \sigma(n / d)=\sum_{d \mid n, d>0} \mu(n / d) \sigma(d) .
+$$
+
+Remark: The Möbius inversion formula has a natural interpretation in terms of convolutions. see Homework 4.
+
+\section*{Quudratic Residues:}
+\begin{itemize}
+  \item So far we have studied linear congruences $a x \equiv b(\bmod m)$.
+  \item Now we are interested in quadratic congruences $a x^{2}+b x$\\
+Gauss!
+  \item Will focus on the special case: $x^{2} \equiv a(\bmod p)$ where $p$ is an odd prime number.
+  \item Ponerful tool: Legendre symbol modulo p.
+\end{itemize}
+
+Definition: Let $a, m \in \mathbb{Z}$ with $m>0$ and $(a, m)=1$. Then $a$ is said to be a quadratic residue modulo $m$ if the quadratic congruence $x^{2} \equiv a(\bmod m)$ is solvable in $\mathbb{Z}$. Otherwise, a is said to be a quadratic non-residue modulo $m$.
+
+Example: Quadratic residues modulo II.\\
+$1^{2} \equiv 1(\bmod 11), 2^{2} \equiv 4(\bmod 11), 3^{2} \equiv 9(\bmod 11)$,\\
+$4^{2} \equiv 5(\bmod 11), 5^{2} \equiv 3(\bmod 11), 6^{2} \equiv 3(\bmod 11)$,\\
+$7^{2} \equiv 5(\bmod 11), 8^{2} \equiv 9(\bmod 11), 9^{2} \equiv 4(\bmod 11)$,\\
+$10^{2} \equiv 1(\bmod 11)$\\
+Quadratic vesidues $(\bmod 11): 1,3,4,5,9$\\
+Quadratic non-residues: $2,6,7,8,10$ (mod II)
+
+Proposition 4.1: Let $p$ be an odd prime number and let $a \in \mathbb{Z}$ with $p \times a$. Then $x^{2} \equiv a(\bmod p)$\\
+has either no solutions or exactly two incongruent Solutions modulo $P$.
+
+Proof: Assume that $x^{2} \equiv a(\bmod p)$ has a solution, say $x_{0}$. Clearly, $-x_{0}$ is also a solution. Claim: The solutions $x_{0}$ and $-x_{0}$ are incongruent modulo $p$. If $x_{0} \equiv-x_{0}(\bmod p)$, then $p / 2 x_{0}$, and so by Lemma 1.14 , we have that $p / 2$ or $p / x_{0}$. Since $p+2$, we have that $p / x_{0}$ and so $x_{0} \equiv 0(\bmod p)$. Thus $a \equiv x_{0}^{2} \equiv 0(\bmod p)$, contradiction! Thus $x^{2} \equiv a(\bmod p)$ has at least two in congrnent solutions modulo $p$ if it has a solution. It remains to show that it has at most two incongucient solutions modulo $P$. Let $x_{0}$ and $x_{1}$ be solutions to $x^{2} \equiv a(\bmod p)$. Then $x_{0}^{2} \equiv x_{1}^{2} \equiv a(\bmod p)$, and ne have that $p\left(x_{0}^{2}-x_{1}^{2}\right.$, or equivalently, $p \mid\left(x_{0}-x_{1}\right)\left(x_{0}+x_{1}\right)$. By Lemma 1.14 he have that $p \mid x_{0}-x_{1}$ or $p \mid x_{0}+x_{1}$. Thus $x_{0} \equiv x_{1}(\bmod p)$ os $x_{0} \equiv-x_{1}(\bmod p)$. Thus $x^{2} \equiv a(\bmod p)$ has at most two incongrnent Solutions modulo $P$.
+
+Corollary 4.2: Let $p$ be an odd prime and (7) let $a \in \mathbb{Z}$ with $p \nmid a$. If $x^{2} \equiv a(\bmod p)$ is soluable, with $x=x_{0}$, then the two incongrnent solutions modulo $p$ are $x_{0}$ and $p-x_{0}$.\\
+Proposition 4.3: Let $p$ be an odd prime. Then there are exactly $\frac{p-1}{2}$ incongruent quadratic residues modulo $p$ and exactly $\frac{p-1}{2}$ incongruent quadratic nonvesidues mod $p$. $P_{\text {roof: }}^{2}$ Consider the $p-1$ quadratic congunences given by $x^{2} \equiv 1(\bmod p)$
+
+$$
+x^{2} \equiv 2(\bmod p)
+$$
+
+$x^{2} \equiv p-1(\bmod p)$.\\
+Each reduced residue class (modp) satisfies at least one congruence above.\\
+Since each quadratic congruence has either zero or two incongruent solutions modulo $P$ by Proposition 4.1, and no one Solution Solves more than one of the congrnences,
+
+We must have that exactly half of the (8) $p-1$ congrnences ure solvable (each having two incongrnent solutions modulo $p$ ). So there are exactly $\frac{p-1}{2}$ incongruent quadratic residues modulo $p$ and exactly $\frac{p-1}{2}$ incongruent quadratic nonresidues modulo $P$.
+
+
+\end{document}
