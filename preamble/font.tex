@@ -127,6 +127,21 @@
 }
 
 
+% ------------------------------------------------------------------------------
+% \parenref{<label>}
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   This command produces a reference enclosed in parentheses, e.g., (1.2).
+%
+% PARAMETERS:
+%   <label>    The label to reference (required)
+%
+% USAGE EXAMPLES:
+%   See \parenref{sec:intro} for details.
+% ------------------------------------------------------------------------------
+\newcommand{\parenref}[1]{(\ref{#1})}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Grouping Shortcuts for VS Code (`View` > `Command Palette` > `Preferences: Open Keyboard Shortcuts (JSON)`)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
