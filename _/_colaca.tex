@@ -3,7 +3,15 @@
 \usepackage[T1]{fontenc}
 \input{macros.tex}
 
-\input{../preamble/math.tex}
+\input{../preamble/font.tex}
+
+\input{../preamble/operator.tex} 
+% \input{../preamble/symbol.tex} 
+\input{../preamble/math.tex}  
+\input{../preamble/math-graph.tex}
+% \input{../preamble/math-tikz.tex}
+\input{../preamble/group.tex} 
+
 
 
 
@@ -64,12 +72,493 @@
 
 
 
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% % =============================================================================
+% % SIMPLE UML FRAMEWORK
+% % =============================================================================
+
+% % Flowchart styles (your existing styles)
+% \tikzstyle{startstop} = [rectangle, rounded corners, text centered, draw=black, fill=blue!10, inner sep=1.5ex, text width=14em]
+% \tikzstyle{activity} = [rectangle, rounded corners, text centered, draw=black, fill=green!10, inner sep=1.5ex, text width=16em]
+% \tikzstyle{decision} = [diamond, aspect=1.5, text centered, draw=black, fill=red!10, inner sep=1ex, text width=15em]
+% \tikzstyle{arrow} = [thick, ->, >=Stealth]
+% \tikzstyle{startnode} = [circle, fill=black, minimum size=6pt, inner sep=0pt]
+% \tikzstyle{endnode} = [circle, draw, double, double distance=1.5pt, minimum size=6pt, inner sep=0pt]
+
+% % UML Class Diagram styles (using em units for font-relative sizing)
+% \tikzstyle{uml-class} = [rectangle, draw=black, fill=white, text width=8em, minimum height=3em, text centered, font=\small, inner sep=0.5em]
+% \tikzstyle{uml-interface} = [rectangle, draw=black, fill=yellow!20, text width=8em, minimum height=3em, text centered, font=\small, inner sep=0.5em]
+% \tikzstyle{uml-abstract} = [rectangle, draw=black, fill=blue!10, text width=8em, minimum height=3em, text centered, font=\small, inner sep=0.5em]
+
+% % UML Use Case styles
+% \tikzstyle{uml-use-case} = [ellipse, draw=black, fill=blue!20, text width=6em, minimum height=2em, text centered, font=\small, inner sep=0.3em]
+% \tikzstyle{uml-actor} = [rectangle, draw=black, fill=white, text width=4em, minimum height=1.5em, text centered, font=\small, inner sep=0.3em]
+
+% % UML Activity styles
+% \tikzstyle{uml-activity} = [rectangle, rounded corners, draw=black, fill=green!10, text width=6em, minimum height=1.5em, text centered, font=\small, inner sep=0.3em]
+% \tikzstyle{uml-decision} = [diamond, aspect=2, draw=black, fill=red!10, text width=5em, minimum height=1.5em, text centered, font=\small, inner sep=0.3em]
+
+% % UML Flow Diagram styles (for process flowcharts)
+% \tikzstyle{uml-startstop} = [rectangle, rounded corners, draw=black, fill=blue!10, text width=8em, minimum height=1.5em, text centered, font=\tiny, inner sep=0.3em]
+% \tikzstyle{uml-process} = [rectangle, rounded corners, draw=black, fill=green!10, text width=10em, minimum height=1.5em, text centered, font=\tiny, inner sep=0.3em]
+% \tikzstyle{uml-decision-flow} = [diamond, aspect=1.5, draw=black, fill=red!10, text width=8em, minimum height=1.5em, text centered, font=\tiny, inner sep=0.3em]
+% \tikzstyle{uml-start} = [circle, fill=black, minimum size=6pt, inner sep=0pt]
+% \tikzstyle{uml-end} = [circle, draw, double, double distance=1.5pt, minimum size=6pt, inner sep=0pt]
+
+% % Relationship arrows
+% \tikzstyle{uml-inheritance} = [thick, ->, >=Stealth, black]
+% \tikzstyle{uml-implementation} = [thick, ->, >=Stealth, dashed, black]
+% \tikzstyle{uml-association} = [thick, ->, >=Stealth, black]
+
+% % Simple UML commands
+% \newcommand{\umlclass}[3][]{\node[uml-class, #1] (#2) {\textbf{#3}};}
+% \newcommand{\umlinterface}[3][]{\node[uml-interface, #1] (#2) {\textbf{<<interface>>}\\\textbf{#3}};}
+% \newcommand{\umlabstract}[3][]{\node[uml-abstract, #1] (#2) {\textbf{#3}};}
+% \newcommand{\umlusecase}[3][]{\node[uml-use-case, #1] (#2) {#3};}
+% \newcommand{\umlactor}[3][]{\node[uml-actor, #1] (#2) {#3};}
+% \newcommand{\umlactivity}[3][]{\node[uml-activity, #1] (#2) {#3};}
+% \newcommand{\umldecision}[3][]{\node[uml-decision, #1] (#2) {#3};}
+
+% % Flow diagram commands
+% \newcommand{\umlstartstop}[3][]{\node[uml-startstop, #1] (#2) {#3};}
+% \newcommand{\umlprocess}[3][]{\node[uml-process, #1] (#2) {#3};}
+% \newcommand{\umldecisionflow}[3][]{\node[uml-decision-flow, #1] (#2) {#3};}
+% \newcommand{\umlstart}[3][]{\node[uml-start, #1] (#2) {};}
+% \newcommand{\umlend}[3][]{\node[uml-end, #1] (#2) {};}
+
+% % Relationship commands
+% \newcommand{\umlinheritance}[2]{\draw[uml-inheritance] (#1) -- (#2);}
+% \newcommand{\umlimplementation}[2]{\draw[uml-implementation] (#1) -- (#2);}
+% \newcommand{\umlassociation}[2]{\draw[uml-association] (#1) -- (#2);}
+
+% % Flow diagram arrows
+% \newcommand{\umlflow}[2]{\draw[arrow] (#1) -- (#2);}
+% \newcommand{\umlflowlabel}[3]{\draw[arrow] (#1) -- node[#3] {#2} (#2);}
+
+% % UML diagram environment with scaling
+% \newenvironment{umldiagram}[2][1.0]
+% {
+%     \begin{tikzpicture}[node distance=#2, transform shape, scale=#1]
+% }
+% {
+%     \end{tikzpicture}
+% }
+
+
+
+
+
+
+
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\tikzset{
+  startstop/.style={ellipse, draw, align=center, minimum width=2cm},
+  process/.style={rectangle, draw, align=center, minimum width=3cm},
+  decision/.style={diamond, draw, aspect=2, align=center},
+  arrow/.style={->, >=Stealth}
+}
+
+
+
+
+\usepackage{amsmath} % For math symbols like \lim
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode} % noend option removes "end if", "end for", etc.
+
+
+
+
+
+
+
+
+% Preamble: required packages
+\usepackage{multicol}  % balanced multi-column environment
+\usepackage{xparse}    % for flexible environment argument parsing
+
+% Multi-column block:
+% \begin{multicolblock}{<intro paragraph>}[<cols>]
+%   ... body in columns ...
+% \end{multicolblock}
+\NewDocumentEnvironment{multicolblock}{ m o }{%
+  % #1 = mandatory intro paragraph
+  % #2 = optional number of columns (if absent -> default 2)
+  % \par\medskip
+  % print the introductory paragraph (allow it to contain paragraphs)
+  \IfNoValueTF{#2}{\def\mccols{2}}{\def\mccols{#2}}% decide number of columns (default 2)
+  #1
+  \par\vspace{6pt}\noindent\hrule
+  \setlength{\columnsep}{1cm}% optional: adjust column separation here
+  \begin{multicols}{\mccols}\raggedcolumns% start multicol environment
+}{%
+  % end multicol environment and draw bottom rule
+  \end{multicols}
+  \noindent\hrule\par\vspace{9.5pt}
+}
+
+
+
+
 
 
 
 
 \begin{document}
-  we need to address this issue.
+
+
+
+\begin{algorithm}
+  \caption{Convergence Test of a Series $\sum a_n$}
+  \label{alg:convergence_test}
+  \begin{algorithmic}[1]
+    \Function{TestConvergence}{$\sum a_n$}
+      \If{$\group{\abs{\dfrac{a_n}{b_n}}\nrightarrow \infty}$}
+      \Comment{(1) Comparison Test}\State
+        \Return \Call{TestConvergence}{$\sum b_n$}
+      \ElsIf{$\group{a_n \nrightarrow 0}$} 
+      \Comment{(2) Divergence Test}\State
+        \Return \inlinequote{Divergent}
+      \ElsIf{$\group{\lim_{n \to \infty} \abs{\dfrac{a_{n+1}}{a_n}} < 1}$ 
+      \OR $\group{\lim_{n \to \infty} \sqrt[n]{\abs{a_n}} < 1}$} 
+      \Comment{(3) Ratio/Root Test}\State
+        \Return \inlinequote{Absolutely Convergent}
+      \ElsIf{$\group{\abs{a_n} = \dfrac{1}{n^p}}$
+      \AND $\group{p > 1}$}
+      \Comment{(4) $p$-Series Test}\State
+        \Return \inlinequote{Absolutely Convergent}
+      \ElsIf{$\group{\int_1^\infty \abs{a_x} \, dx \nrightarrow \infty}$}
+      \Comment{(5) Integral Test}\State
+        \Return \inlinequote{Absolutely Convergent}
+      \ElsIf{$\group{a_n = (-1)^n \abs{a_n}}$}
+        \Comment{(6) Alternating Series Test}\State
+        \Return \inlinequote{Conditionally Convergent}
+      \Else
+        \Comment{(7) Failure of Tests}\State
+        \Return \inlinequote{Divergent}
+      \EndIf
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
+
+
+\begin{multicolblock}{Some explanatory paragraph before the columns.}[3]
+  Item 1.
+
+  Item 2.
+
+  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+  Item 1.
+
+  Item 2.
+
+  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+  Item 1.
+
+  Item 2.
+
+  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+  Item 1.
+
+  Item 2.
+
+  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+
+  \begin{enumerate}
+    \item First item in a numbered list.
+    \item Second item in a numbered list.
+    \item Third item in a numbered list.
+    \item Fourth item in a numbered list.
+    \item Fifth item in a numbered list.
+    \item Sixth item in a numbered list.
+    \item   Seventh item in a numbered list.
+    \item Eighth item in a numbered list.
+    \item Ninth item in a numbered list.
+    \item Tenth item in a numbered list.
+    \item First item in a numbered list.
+    \item Second item in a numbered list.
+    \item Third item in a numbered list.
+    \item Fourth item in a numbered list.
+    \item Fifth item in a numbered list.
+    \item Sixth item in a numbered list.
+    \item   Seventh item in a numbered list.
+    \item Eighth item in a numbered list.
+    \item Ninth item in a numbered list.
+    \item Tenth item in a numbered list.
+    \item First item in a numbered list.
+    \item Second item in a numbered list.
+    \item Third item in a numbered list.
+    \item Fourth item in a numbered list.
+    \item Fifth item in a numbered list.
+    \item Sixth item in a numbered list.
+    \item   Seventh item in a numbered list.
+    \item Eighth item in a numbered list.
+    \item Ninth item in a numbered list.
+    \item Tenth item in a numbered list.
+    \item First item in a numbered list.
+    \item Second item in a numbered list.
+    \item Third item in a numbered list.
+    \item Fourth item in a numbered list.
+    \item Fifth item in a numbered list.
+    \item Sixth item in a numbered list.
+    \item   Seventh item in a numbered list.
+    \item Eighth item in a numbered list.
+    \item Ninth item in a numbered list.
+    \item Tenth item in a numbered list.
+  \end{enumerate}
+\end{multicolblock}
+
+
+
+% \begin{umldiagram}[1]{1em and 1em}
+  
+%   % Start node
+%   \umlstart[label=below:Start]{start}{}
+  
+%   % Process nodes (define in order)
+%   \umlprocess[below=of start, yshift=-0.5cm]{div_check}{Check the $n$-th Term Test: Calculate $\lim_{n \to \infty} a_n$}
+  
+%   % Decision nodes
+%   \umldecisionflow[below=of div_check]{div_decision}{Is $\lim_{n \to \infty} a_n = 0$?}
+%   \umldecisionflow[below=of div_decision, yshift=-1cm]{type_check}{Is it a special series? (Geometric, $p$-series)}
+%   \umldecisionflow[right=of type_check, xshift=3.5cm]{sign_check}{Does the series have all positive terms ($a_n > 0$)?}
+  
+%   % More process nodes
+%   \umlprocess[below=of type_check]{special_test}{Apply Geometric Series Test or $p$-Series Test}
+%   \umlprocess[below=of sign_check]{pos_tests}{Use tests for positive series: Integral, Direct Comparison, Limit Comparison}
+%   \umlprocess[left=of sign_check, xshift=-3.5cm]{alt_tests}{Use Alternating Series Test}
+%   \umlprocess[below=of sign_check, yshift=-4cm]{ratio_root}{As a last resort or for factorials/powers, use Ratio or Root Test}
+  
+%   % More decision nodes
+%   \umldecisionflow[below=of alt_tests]{alt_decision}{Does AST show convergence?}
+%   \umlprocess[below=of alt_decision]{abs_check}{Test for absolute convergence with $\sum |a_n|$}
+  
+%   % Start/Stop nodes
+%   \umlstartstop[right=of div_decision, xshift=3cm]{diverges}{Series DIVERGES}
+%   \umlstartstop[left=of abs_check, xshift=-2.5cm]{cond_conv}{Conditionally CONVERGENT}
+%   \umlstartstop[right=of abs_check, xshift=2.5cm]{abs_conv}{Absolutely CONVERGENT}
+  
+%   % End nodes
+%   \umlend[right=of diverges, xshift=1cm, label=below:End]{end1}{}
+%   \umlend[below=of special_test, yshift=-0.5cm, label=below:End]{end2}{}
+%   \umlend[below=of pos_tests, yshift=-0.5cm, label=below:End]{end3}{}
+%   \umlend[below=of cond_conv, yshift=-0.5cm, label=below:End]{end4}{}
+%   \umlend[below=of abs_conv, yshift=-0.5cm, label=below:End]{end5}{}
+%   \umlend[below=of ratio_root, yshift=-0.5cm, label=below:End]{end6}{}
+
+%   % Flow arrows
+%   \umlflow{start}{div_check}
+%   \umlflow{div_check}{div_decision}
+%   \draw[arrow] (div_decision) -- node[above] {No} (diverges);
+%   \umlflow{diverges}{end1}
+  
+%   \draw[arrow] (div_decision) -- node[left] {Yes} (type_check);
+  
+%   \draw[arrow] (type_check) -- node[left] {Yes} (special_test);
+%   \umlflow{special_test}{end2}
+  
+%   \draw[arrow] (type_check) -- node[above] {No} (sign_check);
+  
+%   \draw[arrow] (sign_check) -- node[above] {Yes} (pos_tests);
+%   \umlflow{pos_tests}{end3}
+%   \umlflow{pos_tests}{ratio_root}
+  
+%   \draw[arrow] (sign_check) -- node[above] {No} (alt_tests);
+%   \umlflow{alt_tests}{alt_decision}
+%   \draw[arrow] (alt_decision) -- node[right] {No $\implies$ Div.} (diverges);
+%   \draw[arrow] (alt_decision) -- node[left] {Yes} (abs_check);
+  
+%   \draw[arrow] (abs_check) -- node[above] {No} (cond_conv);
+%   \draw[arrow] (abs_check) -- node[above] {Yes} (abs_conv);
+%   \umlflow{cond_conv}{end4}
+%   \umlflow{abs_conv}{end5}
+
+%   \umlflow{ratio_root}{end6}
+  
+% \end{umldiagram}
+
+% \section{UML Diagram Environment Documentation}
+
+% The \texttt{umldiagram} environment provides a simple framework for creating UML diagrams with automatic scaling and positioning. This environment is built on top of TikZ and includes predefined styles for common UML elements.
+
+% \subsection{Environment Syntax}
+% \begin{verbatim}
+% \begin{umldiagram}[scale]{node_distance}
+%     % UML elements and relationships
+% \end{umldiagram}
+% \end{verbatim}
+
+% \subsubsection{Parameters}
+% \begin{itemize}
+%     \item \textbf{scale} (optional, default: 1.0): Scaling factor for the entire diagram
+%     \item \textbf{node\_distance}: Distance between nodes (e.g., "2cm and 2cm")
+% \end{itemize}
+
+% \subsection{Available UML Elements}
+
+% \subsubsection{Class Diagram Elements}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlclass[options]\{id\}\{name\}}: Regular class
+%     \item \texttt{\textbackslash umlinterface[options]\{id\}\{name\}}: Interface (yellow background)
+%     \item \texttt{\textbackslash umlabstract[options]\{id\}\{name\}}: Abstract class (blue background)
+% \end{itemize}
+
+% \subsubsection{Use Case Diagram Elements}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlactor[options]\{id\}\{name\}}: Actor (rectangular)
+%     \item \texttt{\textbackslash umlusecase[options]\{id\}\{name\}}: Use case (elliptical, blue background)
+% \end{itemize}
+
+% \subsubsection{Activity Diagram Elements}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlactivity[options]\{id\}\{name\}}: Activity (rounded rectangle, green background)
+%     \item \texttt{\textbackslash umldecision[options]\{id\}\{name\}}: Decision point (diamond, red background)
+% \end{itemize}
+
+% \subsection{Relationship Commands}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlinheritance\{from\}\{to\}}: Inheritance (solid arrow)
+%     \item \texttt{\textbackslash umlimplementation\{from\}\{to\}}: Implementation (dashed arrow)
+%     \item \texttt{\textbackslash umlassociation\{from\}\{to\}}: Association (solid arrow)
+% \end{itemize}
+
+% \subsection{Positioning Options}
+% All elements support standard TikZ positioning options:
+% \begin{itemize}
+%     \item \texttt{below=of node}: Position below another node
+%     \item \texttt{right=of node}: Position to the right of another node
+%     \item \texttt{above=of node}: Position above another node
+%     \item \texttt{left=of node}: Position to the left of another node
+%     \item \texttt{xshift=1cm}: Horizontal offset
+%     \item \texttt{yshift=1cm}: Vertical offset
+% \end{itemize}
+
+% \subsection{Scaling Features}
+% The environment includes \texttt{transform shape} which ensures that:
+% \begin{itemize}
+%     \item Text scales proportionally with the diagram
+%     \item Node shapes maintain their relative sizes
+%     \item All elements scale uniformly
+% \end{itemize}
+
+% \subsection{Complete Example}
+% Here's a complete example showing how to create a class diagram:
+
+% \begin{verbatim}
+% \begin{umldiagram}[0.8]{2cm and 2cm}
+%     % Define classes
+%     \umlclass{vehicle}{Vehicle}
+%     \umlclass[below=of vehicle]{car}{Car}
+%     \umlclass[right=of vehicle]{truck}{Truck}
+%     \umlinterface[below=of car]{drivable}{Drivable}
+    
+%     % Define relationships
+%     \umlinheritance{car}{vehicle}
+%     \umlinheritance{truck}{vehicle}
+%     \umlimplementation{car}{drivable}
+%     \umlimplementation{truck}{drivable}
+% \end{umldiagram}
+% \end{verbatim}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Use meaningful node IDs for easy reference
+%     \item Start with a central node and build outward
+%     \item Use consistent positioning patterns
+%     \item Test different scaling factors to find the best fit
+%     \item Group related elements together
+% \end{itemize}
+
+% \section{Simple UML Examples}
+
+% Here are examples using the UML framework with different scaling options:
+
+% \subsection{Normal Size (1.0x scale)}
+% \begin{figure}[h]
+% \centering
+% \begin{umldiagram}[1.0]{2cm and 2cm}
+%     % Define classes
+%     \umlclass{animal}{Animal}
+%     \umlclass[below=of animal]{dog}{Dog}
+%     \umlclass[right=of animal]{cat}{Cat}
+%     \umlinterface[below=of cat]{pet}{Pet}
+
+%     % Define relationships
+%     \umlinheritance{dog}{animal}
+%     \umlinheritance{cat}{animal}
+%     \umlimplementation{dog}{pet}
+%     \umlimplementation{cat}{pet}
+% \end{umldiagram}
+% \caption{Normal Size Animal Class Hierarchy}
+% \end{figure}
+
+% \subsection{Small Size (0.7x scale)}
+% \begin{figure}[h]
+% \centering
+% \begin{umldiagram}[0.7]{1.5cm and 1.5cm}
+%     % Define classes
+%     \umlclass{animal2}{Animal}
+%     \umlclass[below=of animal2]{dog2}{Dog}
+%     \umlclass[right=of animal2]{cat2}{Cat}
+%     \umlinterface[below=of cat2]{pet2}{Pet}
+    
+%     % Define relationships
+%     \umlinheritance{dog2}{animal2}
+%     \umlinheritance{cat2}{animal2}
+%     \umlimplementation{dog2}{pet2}
+%     \umlimplementation{cat2}{pet2}
+% \end{umldiagram}
+% \caption{Small Size Animal Class Hierarchy}
+% \end{figure}
+
+% \subsection{Use Case Diagram Example}
+% \begin{figure}[h]
+% \centering
+% \begin{umldiagram}[0.8]{2cm and 2cm}
+%     % Define actors and use cases
+%     \umlactor{user}{User}
+%     \umlactor[below=of user, yshift=-1cm]{admin}{Admin}
+    
+%     \umlusecase[right=of user, xshift=2cm]{login}{Login}
+%     \umlusecase[below=of login]{view}{View Data}
+%     \umlusecase[below=of view]{edit}{Edit Data}
+%     \umlusecase[right=of edit, xshift=1cm]{delete}{Delete Data}
+    
+%     % Define relationships
+%     \umlassociation{user}{login}
+%     \umlassociation{user}{view}
+%     \umlassociation{admin}{login}
+%     \umlassociation{admin}{view}
+%     \umlassociation{admin}{edit}
+%     \umlassociation{admin}{delete}
+% \end{umldiagram}
+% \caption{Use Case Diagram Example}
+% \end{figure}
+
+% \newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 % % \newpage
