@@ -3,6 +3,18 @@
 \geometry{margin=1in}
 \setlength{\parskip}{0.8em}
 
+
+\input{../preamble/font.tex}
+
+
+
+
+
+
+
+
+
+
 \begin{document}
 
 
@@ -21,13 +33,13 @@ To bring coins from Coinbase to a local wallet, you are \textbf{withdrawing cryp
 \subsection*{2. Access Coinbase}
 \begin{itemize}
     \item Log in to \href{https://www.coinbase.com}{Coinbase}.
-    \item On the dashboard, click \textbf{``Send \& Receive''}.
+    \item On the dashboard, click \textbf{\inlinequote{Send \& Receive}}.
     \item Under the \textbf{Send} tab, choose the cryptocurrency you want to withdraw.
 \end{itemize}
 
 \subsection*{3. Enter Your Wallet Address}
 \begin{itemize}
-    \item Paste your local wallet address into the ``To'' field.
+    \item Paste your local wallet address into the \inlinequote{To} field.
     \item Enter the amount you want to send.
     \item Double-check the address and coin type.
 \end{itemize}
@@ -61,8 +73,8 @@ For tokens that exist on multiple networks (e.g., USDT on ERC20, TRC20, or Base)
 
 \section{Example: Sending ETH from Coinbase to MetaMask}
 \begin{enumerate}
-    \item Open MetaMask, click ``Account 1,'' and copy your Ethereum address (\texttt{0x...}).
-    \item On Coinbase, click ``Send \& Receive'' and select Ethereum.
+    \item Open MetaMask, click \inlinequote{Account 1}, and copy your Ethereum address (\texttt{0x...}).
+    \item On Coinbase, click \inlinequote{Send \& Receive} and select Ethereum.
     \item Paste your MetaMask address, enter the amount, and send.
     \item Wait a few minutes and check MetaMask after confirmation.
 \end{enumerate}
@@ -92,28 +104,31 @@ We also include how Ledger supports XRP (Ripple) as described on the Ledger XRP 
 
 \subsection*{Ledger (Hardware Wallet)}
 \begin{itemize}
-  \item A physical device (often USB, potentially Bluetooth) that stores **private keys** in secure hardware offline.  
+  \item A physical device (often USB, potentially Bluetooth) that stores \textbf{private keys} in secure hardware offline.  
   \item It signs transactions internally, so your keys never leave the device.  
-  \item According to the Ledger XRP wallet page, Ledger supports XRP by allowing users to add an XRP account in the Ledger Live app and manage XRP (send, receive, swap) while the private keys remain securely stored in hardware. \\
-  \(\quad\) It states: “Ledger hardware wallet stores your private keys and signs transactions offline, making them resistant to malicious attacks.” :contentReference[oaicite:0]{index=0} \\
-  \(\quad\) Also, Ledger Live (the software companion) acts as the interface to manage XRP and other assets. :contentReference[oaicite:1]{index=1}  
-  \item The XRP wallet feature is marketed by Ledger as “secure your XRP” with hardware-backed security. :contentReference[oaicite:2]{index=2}  
-  \item The Ledger page notes that XRP addresses begin with the letter “r” and are case-sensitive. :contentReference[oaicite:3]{index=3}  
+  \item According to the Ledger XRP wallet page, Ledger supports XRP by allowing users to 
+  add an XRP account in the Ledger Live app and manage XRP (send, receive, swap) 
+  while the private keys remain securely stored in hardware. \\
+  \(\quad\) It states: \inlinequote{Ledger hardware wallet stores your private keys and 
+  signs transactions offline, making them resistant to malicious attacks.}\\
+  \(\quad\) Also, Ledger Live (the software companion) acts as the interface to manage XRP and other assets.
+  \item The XRP wallet feature is marketed by Ledger as \inlinequote{secure your XRP with hardware-backed security.}
+  \item The Ledger page notes that XRP addresses begin with the letter \inlinequote{r} and are case-sensitive.
 \end{itemize}
 
 \subsection*{MetaMask (Software Wallet)}
 \begin{itemize}
   \item A software application (browser extension or mobile) which stores your private key (or seed phrase) locally (often encrypted) on your device.  
   \item It enables you to interact with Ethereum, EVM-compatible chains, and dApps.  
-  \item Because it is “hot” (connected or accessible by the device), it has greater exposure to software attacks compared to a hardware wallet.  
+  \item Because it is \inlinequote{hot} (connected or accessible by the device), it has greater exposure to software attacks compared to a hardware wallet.  
 \end{itemize}
 
 \subsection*{Normal SSD (Storage Device)}
 \begin{itemize}
   \item A solid-state drive is hardware for general data storage (files, programs, operating systems).  
   \item It is not designed for cryptographic key security by itself.  
-  \item If you store private keys (or wallet files) on an SSD, they are only as secure as your system’s protections (encryption, backups, malware defense).  
-  \item The SSD has no native concept of “signing transactions” or interfacing with blockchains — it is simply storage.
+  \item If you store private keys (or wallet files) on an SSD, they are only as secure as your system's protections (encryption, backups, malware defense).  
+  \item The SSD has no native concept of \inlinequote{signing transactions} or interfacing with blockchains — it is simply storage.
 \end{itemize}
 
 \section{Key Differences and Roles}
@@ -143,18 +158,18 @@ Supports XRP? & Yes (via Ledger + Ledger Live) & Only if wallet software support
 From the Ledger XRP wallet page:
 
 \begin{itemize}
-  \item Ledger offers an XRP wallet solution (hardware + Ledger Live) to store and manage XRP securely. :contentReference[oaicite:4]{index=4}  
-  \item Users can add an XRP account in Ledger Live and use it to send, receive, swap XRP, while private keys stay in hardware. :contentReference[oaicite:5]{index=5}  
-  \item XRP addresses are case-sensitive and begin with “r”. :contentReference[oaicite:6]{index=6}  
-  \item Ledger’s site emphasizes that hardware wallets keep private keys off connected systems, protecting them from many online threats. :contentReference[oaicite:7]{index=7}  
+  \item Ledger offers an XRP wallet solution (hardware + Ledger Live) to store and manage XRP securely.
+  \item Users can add an XRP account in Ledger Live and use it to send, receive, swap XRP, while private keys stay in hardware. 
+  \item XRP addresses are case-sensitive and begin with \inlinequote{r}.
+  \item Ledger's site emphasizes that hardware wallets keep private keys off connected systems, protecting them from many online threats. 
 \end{itemize}
 
 \section{Conclusion}
 
 \begin{itemize}
-  \item **Ledger** is a hardware wallet that gives you strong security by keeping keys offline, and Ledger supports XRP (Ripple) via its integrated wallet solution.  
-  \item **MetaMask** is a software (hot) wallet, convenient but more exposed.  
-  \item A **normal SSD** is a generic data storage device, not built with key security or blockchain functionality in mind.  
+  \item \textbf{Ledger} is a hardware wallet that gives you strong security by keeping keys offline, and Ledger supports XRP (Ripple) via its integrated wallet solution.  
+  \item \textbf{MetaMask} is a software (hot) wallet, convenient but more exposed.  
+  \item \textbf{Normal SSD} is a generic data storage device, not built with key security or blockchain functionality in mind.  
 \end{itemize}
 
 
