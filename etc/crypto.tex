@@ -348,4 +348,132 @@ Hardware Wallet (e.g., Ledger) & You & Very High \\
 
 
 
+
+
+\newpage
+
+
+\section*{1. Two Ways Blockchains Stay Secure}
+
+Most blockchain networks use one of two main systems to stay secure and agree on transactions:
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Type} & \textbf{Meaning} & \textbf{Example Coins} \\
+\midrule
+Proof of Work (PoW) & Computers use electricity to solve puzzles; winners add new blocks. & Bitcoin (BTC) \\
+Proof of Stake (PoS) & Users lock coins (\emph{stake}) to prove honesty; validators are chosen based on stake. & Ethereum (ETH), Cardano (ADA), Solana (SOL), Cosmos (ATOM) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+
+\noindent
+\textbf{Key point:} Bitcoin uses \textbf{Proof of Work}, so it cannot be staked.  
+Cosmos (ATOM) and other PoS coins can be staked because their networks reward users for helping to verify transactions.
+
+\bigskip
+
+\section*{2. What Staking Really Is}
+
+When you \textbf{stake} a Proof-of-Stake coin:
+\begin{itemize}
+  \item You \textbf{lock your coins} to help the network run.
+  \item Validators (computers) use your stake to confirm transactions.
+  \item In return, you \textbf{earn rewards} in the same coin (similar to earning interest).
+\end{itemize}
+
+On platforms like Coinbase, you do not need to run validator software yourself.  
+Coinbase stakes your coins on your behalf and shares the rewards with you.
+
+\bigskip
+
+\section*{3. Example: Staking Cosmos (ATOM)}
+
+Suppose you buy and stake \(10\) ATOM.
+
+\begin{itemize}
+  \item The Cosmos network pays a variable rate, around \(8\% \text{--} 10\%\) APY.
+  \item Coinbase takes a small commission (around \(25\%\) of the reward).
+  \item Rewards are added to your ATOM balance periodically.
+\end{itemize}
+
+\noindent
+If the APY is \(10\%\), and you stake \(10\) ATOM for one year, your reward (before fees) is approximately
+\[
+R = P \cdot r \cdot t = 10 \times 0.10 \times 1 = 1~\text{ATOM}.
+\]
+After Coinbase's fee, you might receive about \(0.75~\text{ATOM}\).
+
+\bigskip
+
+\section*{4. Why Bitcoin Cannot Be Staked}
+
+Bitcoin uses \textbf{Proof of Work (PoW)}:
+\begin{itemize}
+  \item Miners use powerful computers to solve mathematical puzzles.
+  \item Solving a block earns new BTC (called a block reward).
+  \item This requires expensive hardware and large amounts of electricity.
+\end{itemize}
+
+Because Bitcoin does not rely on staked coins to verify transactions,  
+there is no staking mechanism --- only mining.
+
+\bigskip
+
+\section*{5. How Coinbase Handles Staking}
+
+When you stake through Coinbase:
+\begin{itemize}
+  \item Coinbase locks your tokens in the blockchain network.
+  \item Validators run by Coinbase or partners perform the staking work.
+  \item Rewards are credited to your account daily or weekly.
+  \item You can usually \textbf{unstake} (withdraw), but some networks require a waiting period.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Action} & \textbf{What Happens on Coinbase} \\
+\midrule
+Buy PoS coin (e.g., ATOM) & Coinbase holds the coin in your account. \\
+Click ``Stake'' & Coinbase locks your coins on the network. \\
+Earn rewards & Network pays rewards, shared with you. \\
+Unstake & Coinbase unlocks and returns your coins (may take days). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section*{6. Quick Summary Table}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Concept} & \textbf{PoW (e.g., Bitcoin)} & \textbf{PoS (e.g., Cosmos, Ethereum)} \\
+\midrule
+How the network stays secure & Mining (computers compete) & Staking (coins locked) \\
+Can I stake it? & \textbf{No} & \textbf{Yes} \\
+How do I earn? & Mining or price gain & Staking rewards (APY) \\
+Energy use & Very high & Low \\
+Who does the work on Coinbase? & N/A & Coinbase validators \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section*{7. Key Takeaways}
+\begin{itemize}
+  \item Only \textbf{Proof-of-Stake} coins (like ATOM, ETH, SOL) can be staked.
+  \item \textbf{Bitcoin cannot be staked} because it uses Proof of Work instead.
+  \item Staking earns passive rewards but may involve network lock-up periods.
+  \item On Coinbase, staking is simplified --- the platform handles the technical side for you.
+\end{itemize}
+
+
+
 \end{document}
