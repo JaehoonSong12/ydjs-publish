@@ -210,6 +210,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{document}
 
 
@@ -545,6 +575,98 @@
 % \newpage
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% % \newpage
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% comb with gen func
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{abstract}
+  This document explains how generating functions use the concept of linear independence in the vector space of polynomials to count combinatorial objects. Key terms are defined and a concrete example is provided.
+\end{abstract}
+
+\section{Key Terminology}
+
+\begin{itemize}
+  \item \textbf{Generating function}: A formal power series $G(x) = \sum_{n=0}^\infty a_n x^n$ encoding a sequence $(a_n)$.
+  \item \textbf{Monomial}: A term $x^n$ in a polynomial or power series.
+  \item \textbf{Basis}: A set of vectors (here, monomials $\{1, x, x^2, \dots\}$) such that every element of the space is a unique linear combination of them.
+  \item \textbf{Linear independence}: No nontrivial linear combination of basis elements equals zero; i.e., $\sum c_n x^n = 0$ implies all $c_n = 0$.
+  \item \textbf{Coefficient}: The number multiplying $x^n$ in a power series, often representing the count of objects of size $n$.
+\end{itemize}
+
+\section{Core Relationship}
+
+Generating functions work because the monomials $\{1, x, x^2, \dots\}$ are linearly independent. Each coefficient $a_n$ in $G(x)$ uniquely counts objects of size $n$. Linear independence ensures that collecting like terms (powers of $x$) is valid and unambiguous.
+
+\section{Example Problem}
+
+Find the number of non-negative integer solutions to $a + b + c = 10$ with:
+\begin{itemize}
+  \item $a \in \{2, 3, 4\}$
+  \item $b$ even ($b \in \{0, 2, 4, \dots\}$)
+  \item $c$ odd ($c \in \{1, 3, 5, \dots\}$)
+\end{itemize}
+
+\section{Encoding Constraints}
+
+Each variable's allowed values are encoded as a generating function:
+\begin{align*}
+  A(x) &= x^2 + x^3 + x^4 \\
+  B(x) &= 1 + x^2 + x^4 + \dots = \frac{1}{1-x^2} \\
+  C(x) &= x + x^3 + x^5 + \dots = \frac{x}{1-x^2}
+\end{align*}
+
+\section{Combining by Multiplication}
+
+The total generating function is $G(x) = A(x)B(x)C(x)$. Multiplying corresponds to summing exponents: selecting $x^a$, $x^b$, $x^c$ gives $x^{a+b+c}$. The coefficient of $x^{10}$ in $G(x)$ counts the solutions.
+
+\section{Why Linear Independence Matters}
+
+Because monomials are linearly independent, each power $x^n$ in $G(x)$ has a unique coefficient. This guarantees that the coefficient of $x^{10}$ counts only the desired combinations, with no overlap or ambiguity.
+
+\section{Solution}
+
+Expand:
+\begin{align*}
+  G(x) &= (x^2 + x^3 + x^4) \cdot \frac{1}{1-x^2} \cdot \frac{x}{1-x^2} \\
+       &= \frac{x^3 + x^4 + x^5}{(1-x^2)^2}
+\end{align*}
+Expand the denominator:
+\[
+  \frac{1}{(1-x^2)^2} = \sum_{j=0}^\infty (j+1)x^{2j}
+\]
+To get $x^{10}$, use:
+\begin{itemize}
+  \item $x^3$ needs $x^7$ from denominator: not possible (only even powers).
+  \item $x^4$ needs $x^6$: $j=3$, coefficient $4$.
+  \item $x^5$ needs $x^5$: not possible.
+\end{itemize}
+Total: $0 + 4 + 0 = 4$.
+
+\textbf{Answer:} There are 4 solutions.
 
 
 
