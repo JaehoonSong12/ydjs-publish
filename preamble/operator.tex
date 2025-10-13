@@ -72,6 +72,16 @@
   \@latex@error{`\string\AND' expects either no arguments or two braced arguments. Use `\string\AND{p}{q}'}\@ehc
 }
 
+\newcommand{\MEET}{\@ifnextchar\bgroup{\MEET@with}{\MEET@noarg}}
+\newcommand{\MEET@noarg}{\ensuremath{\mathbin{\wedge}}\xspace}
+\newcommand{\MEET@with}[1]{%
+  \@ifnextchar\bgroup{\MEET@twowith{#1}}{\MEET@singleerror{#1}}%
+}
+\newcommand{\MEET@twowith}[2]{\ensuremath{{#1}\mathbin{\wedge}{#2}}\xspace}
+\newcommand{\MEET@singleerror}[1]{%
+  \@latex@error{`\string\MEET' expects either no arguments or two braced arguments. Use `\string\MEET{A}{B}'}\@ehc
+}
+
 % BINARY operator: none or 2 braced arguments (error if exactly 1)
 \newcommand{\OR}{\@ifnextchar\bgroup{\OR@with}{\OR@noarg}}
 \newcommand{\OR@noarg}{\ensuremath{\mathbin{\lor}}\xspace}
@@ -82,6 +92,21 @@
 \newcommand{\OR@singleerror}[1]{%
   \@latex@error{`\string\OR' expects either no arguments or two braced arguments. Use `\string\OR{p}{q}'}\@ehc
 }
+
+\newcommand{\JOIN}{\@ifnextchar\bgroup{\JOIN@with}{\JOIN@noarg}}
+\newcommand{\JOIN@noarg}{\ensuremath{\mathbin{\vee}}\xspace}
+\newcommand{\JOIN@with}[1]{%
+  \@ifnextchar\bgroup{\JOIN@twowith{#1}}{\JOIN@singleerror{#1}}%
+}
+\newcommand{\JOIN@twowith}[2]{\ensuremath{{#1}\mathbin{\vee}{#2}}\xspace}
+\newcommand{\JOIN@singleerror}[1]{%
+  \@latex@error{`\string\JOIN' expects either no arguments or two braced arguments. Use `\string\JOIN{A}{B}'}\@ehc
+}
+
+
+
+
+
 
 % BINARY operator: none or 2 braced arguments (error if exactly 1)
 \newcommand{\THEN}{\@ifnextchar\bgroup{\THEN@with}{\THEN@noarg}}
@@ -163,6 +188,10 @@
 \newcommand{\sAND@singleerror}[1]{%
   \@latex@error{`\string\sAND' expects either no arguments or two braced arguments. Use `\string\sAND{A}{B}'}\@ehc
 }
+
+
+
+
 
 % BINARY operator: none or 2 braced arguments (error if exactly 1)
 \newcommand{\sMINUS}{\@ifnextchar\bgroup{\sMINUS@with}{\sMINUS@noarg}}
@@ -403,5 +432,22 @@
 \newcommand{\nrelation@singleerror}[1]{%
   \@latex@error{`\string\nrelation' requires exactly two braced arguments. Use `\string\nrelation{a}{b}'}\@ehc
 }
+
+
+
+% relationinv
+\newcommand{\relationinv}{\@ifnextchar\bgroup{\relationinv@with}{\relationinv@noargerror}}
+\newcommand{\relationinv@with}[1]{%
+  \@ifnextchar\bgroup{\relationinv@twowith{#1}}{\relationinv@singleerror{#1}}%
+}
+\newcommand{\relationinv@twowith}[2]{\ensuremath{{#1}\mathrel{R^{-1}}{#2}}\xspace}
+\newcommand{\relationinv@noargerror}{%
+  \@latex@error{`\string\relationinv' requires exactly two braced arguments. Use `\string\relationinv{a}{b}'}\@ehc
+}
+\newcommand{\relationinv@singleerror}[1]{%
+  \@latex@error{`\string\relationinv' requires exactly two braced arguments. Use `\string\relationinv{a}{b}'}\@ehc
+}
+
+
 
 \makeatother % "DISABLE" internal \@... macros
