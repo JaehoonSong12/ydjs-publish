@@ -6,6 +6,8 @@ blank.tex
 /macros.tex
 cli.pdf
 resume_refs/
+.vscode/
+
 
 INST.*
 *.exe
