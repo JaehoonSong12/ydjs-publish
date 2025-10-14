@@ -24,7 +24,7 @@
       \]
       If no such integer $c$ exists we write $a\nmid b$.
       \end{define}
-      By definition of divisibility, there exists $k\in\mathbb{Z}$ such that
+      By definition of divisibility, there exists $k\in\setZ$ such that
       \[
         b = a k
       \]
@@ -32,9 +32,9 @@
       \[
         bc = (a k)c = (ac)k.
       \]
-      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\divides bc$. 
+      Since $k\in\setZ$, by definition of divisibility, $ac\divides bc$. 
       Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
-      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\mathbb{Z}$ with
+      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\setZ$ with
       \[
         bc = (ac)t = at\cdot c
       \]
@@ -125,7 +125,7 @@
       \[
       n^{5}-n = (n-1)(n)(n+1)(n^{2}+1).
       \]
-      By the Division Algorithm with divisor $5$, there exist integers $q\in\mathbb{Z}$ and $r$ with $0\le r<5$ such that
+      By the Division Algorithm with divisor $5$, there exist integers $q\in\setZ$ and $r$ with $0\le r<5$ such that
       \[
       n = 5q + r.
       \]
@@ -149,7 +149,7 @@
   Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
     \begin{subprove}
     Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
-    odd. Then, $n=2k+1$ for some $k\in\mathbb{Z}$. That is,
+    odd. Then, $n=2k+1$ for some $k\in\setZ$. That is,
     \[
     n^{2}+1=(2k+1)^{2}+1=4k^{2}+4k+2=2\bigl(2k^{2}+2k+1\bigr).
     \]
@@ -339,7 +339,7 @@
       \]
       If no such integer $c$ exists we write $a\nmid b$.
       \end{define}
-      By definition of divisibility, there exists $k\in\mathbb{Z}$ such that
+      By definition of divisibility, there exists $k\in\setZ$ such that
       \[
         b = a k
       \]
@@ -347,9 +347,9 @@
       \[
         bc = (a k)c = (ac)k.
       \]
-      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\divides bc$. 
+      Since $k\in\setZ$, by definition of divisibility, $ac\divides bc$. 
       Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
-      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\mathbb{Z}$ with
+      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\setZ$ with
       \[
         bc = (ac)t = at\cdot c
       \]
@@ -440,7 +440,7 @@
       \[
       n^{5}-n = (n-1)(n)(n+1)(n^{2}+1).
       \]
-      By the Division Algorithm with divisor $5$, there exist integers $q\in\mathbb{Z}$ and $r$ with $0\le r<5$ such that
+      By the Division Algorithm with divisor $5$, there exist integers $q\in\setZ$ and $r$ with $0\le r<5$ such that
       \[
       n = 5q + r.
       \]
@@ -464,7 +464,7 @@
   Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
     \begin{subprove}
     Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
-    odd. Then, $n=2k+1$ for some $k\in\mathbb{Z}$. That is,
+    odd. Then, $n=2k+1$ for some $k\in\setZ$. That is,
     \[
     n^{2}+1=(2k+1)^{2}+1=4k^{2}+4k+2=2\bigl(2k^{2}+2k+1\bigr).
     \]
@@ -1468,7 +1468,7 @@ Let $p$ be an odd prime number. Prove that
     F(n)= \begin{cases}1 & \text{if } n \text{ is a perfect square} \\ 0 & \text{otherwise}\end{cases}
     \]
     \begin{define}{Theorem 3.1 (Multiplicative Functions and Divisor Sums)}[thm:3.1][red]
-    Let $f$ be an arithmetic function and define, for $n\in\mathbb{Z}_{>0}$,
+    Let $f$ be an arithmetic function and define, for $n\in\setZ_{>0}$,
     \[
     F(n):=\sum_{d\mid n} f(d).
     \]
@@ -1494,7 +1494,7 @@ Let $p$ be an odd prime number. Prove that
 
   \newpage
 
-  \item Exercise Set 3.2, \#12. Let $n \in \mathbb{Z}$ with $n>1$. If $n$ has prime 
+  \item Exercise Set 3.2, \#12. Let $n \in \setZ$ with $n>1$. If $n$ has prime 
   factorisation $p_1^{a_1} p_2^{a_2} \cdots p_m^{a_m}$, prove that
   $$
   \phi(n)=p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m\left(p_i-1\right) .
@@ -1507,7 +1507,7 @@ Let $p$ be an odd prime number. Prove that
   \]
   \end{define}
   \begin{define}{Theorem 3.3 ($\varphi$ of Prime Powers)}[thm:3.3][red]
-  Let $p$ be prime and $a\in\mathbb{Z}_{>0}$. Then
+  Let $p$ be prime and $a\in\setZ_{>0}$. Then
   \[
   \varphi(p^a)=p^a-p^{a-1}=p^a\Big(1-\frac{1}{p}\Big).
   \]
@@ -1577,7 +1577,7 @@ Let $p$ be an odd prime number. Prove that
     \end{subprove}
     \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
     \begin{define}{Theorem 3.4 (Product Formula for $\varphi(n)$)}[thm:3.4][red]
-    For $n \in \mathbb{Z}_{>0}$,
+    For $n \in \setZ_{>0}$,
     \[
     \varphi(n)=n \prod_{p \mid n}\left(1-\frac{1}{p}\right),
     \]
@@ -1612,7 +1612,7 @@ Let $p$ be an odd prime number. Prove that
 \begin{enumerate}
   \item Exercise Set 3.3, \#40 (with some additional parts).
   \begin{enumerate}
-    \item Let $a \in \mathbb{Z}$ with $a>0$. Use induction to prove that
+    \item Let $a \in \setZ$ with $a>0$. Use induction to prove that
     $$
     \sum_{m=1}^a m=\frac{a(a+1)}{2}
     $$
@@ -1620,89 +1620,148 @@ Let $p$ be an odd prime number. Prove that
     $$
     \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
     $$
+    \label{prob:3.3.40-a}
     \begin{subprove}
-      For the sake of induction proof, 
-      (\textbf{First formula}) For the base case $a=1$, it is verified that $\sum_{m=1}^1 m = 1 = \frac{1(1+1)}{2}$.
-      For the inductive step, assume that $\sum_{m=1}^k m = \frac{k(k+1)}{2}$ for some $k \geq 1$.
-      Then $\sum_{m=1}^{k+1} m = \sum_{m=1}^k m + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}$.
-      Therefore, by mathematical induction, the formula holds for all positive integers $a$.\vspace*{10px}\\
-      
-      (\textbf{Second formula}) For the base case $a=1$, it is verified that $\sum_{m=1}^1 m^3 = 1 = \left(\frac{1(1+1)}{2}\right)^2$.
-      For the inductive step, assume that $\sum_{m=1}^k m^3 = \left(\frac{k(k+1)}{2}\right)^2$ for some $k \geq 1$.
-      Then $\sum_{m=1}^{k+1} m^3 = \sum_{m=1}^k m^3 + (k+1)^3 = \left(\frac{k(k+1)}{2}\right)^2 + (k+1)^3$.
-      This equals $\frac{k^2(k+1)^2}{4} + (k+1)^3 = \frac{k^2(k+1)^2 + 4(k+1)^3}{4} = \frac{(k+1)^2(k^2 + 4(k+1))}{4}$.
-      Since $k^2 + 4(k+1) = k^2 + 4k + 4 = (k+2)^2$, it follows that $\sum_{m=1}^{k+1} m^3 = \frac{(k+1)^2(k+2)^2}{4} = \left(\frac{(k+1)(k+2)}{2}\right)^2$.
-      Therefore, by mathematical induction, the formula holds for all positive integers $a$.
+      For the sake of induction proof, let $a=1$ for the base case.
+      It is trivial that
+      \[
+      \sum_{m=1}^1 m = 1 = \frac{1(1+1)}{2} \text{ and } \sum_{m=1}^1 m^3 = 1 = \left(\frac{1(1+1)}{2}\right)^2.
+      \]
+      Let $a=k\in\setZ$ where $k \geq 1$. Then, suppose that both formulas hold for the induction hypothesis.
+      That is,
+      \[
+      \sum_{m=1}^k m = \frac{k(k+1)}{2} \text{ and } \sum_{m=1}^k m^3 = \left(\frac{k(k+1)}{2}\right)^2 \text{ for some } k \geq 1.
+      \]
+      Then, 
+      \[
+      \sum_{m=1}^{k+1} m = \sum_{m=1}^k m + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}.
+      \]
+      \[
+      \sum_{m=1}^{k+1} m^3 = \sum_{m=1}^k m^3 + (k+1)^3 = \frac{k^2(k+1)^2}{4} + (k+1)^3 = \frac{(k+1)^2(k^2 + 4k+4)}{4} = \frac{(k+1)^2(k+2)^2}{4}.
+      \]
+      Therefore, by mathematical induction (base case and inductive step), the formula has been proven for all positive integers $a$.
     \end{subprove}
 
-    \item Let $n \in \mathbb{Z}$ with $n>0$. Use the previous part to prove that
+    \newpage
+
+    \item Let $n \in \setZ$ with $n>0$. Use the previous part to prove that
     $$
     \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
     $$
     [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
     \begin{define}{The divisor-count function $v(n)$}[def:vfunction][red]
-    For $n\in\mathbb{Z}_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
+    For $n\in\setZ_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
     \[
-    v(n):=\#\{d\in\mathbb{Z}_{>0}:d\mid n\}.
+    v(n):=\#\{d\in\setZ_{>0}:d\mid n\}.
     \]
     \end{define}
     \begin{define}{Multiplicativity of $v(n)$}[thm:vmult][red]
     The function $v(n)$ is multiplicative: if $\gcd(m,n)=1$ then $v(mn)=v(m)v(n)$.
+    \begin{subprove}
+      Let $m,n \in \setZ_{>0}$ with $\gcd(m,n)=1$ and prime factorizations 
+      $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      By \nameref{def:vfunction}, $v(m) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)$ and 
+      $v(n) = (b_1 + 1)(b_2 + 1) \cdots (b_\ell + 1)$.
+      Since $v(mn) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)(b_1 + 1)(b_2 + 1) \cdots (b_\ell + 1) = v(m)v(n)$,
+      the function $v$ is multiplicative by \nameref{def:multprops}.
+    \end{subprove}
     \end{define}
     \begin{subprove}
-      Since $v$ is multiplicative by \nameref{thm:vmult}, it suffices to prove the identity for prime powers.
-      Let $n=p^a$ where $p$ is prime and $a\geq 0$. The divisors of $p^a$ are $1,p,p^2,\ldots,p^a$, so $v(p^k)=k+1$ for $0\leq k\leq a$.
-      Therefore, $\sum_{d\mid p^a} v(d) = \sum_{k=0}^a v(p^k) = \sum_{k=0}^a (k+1) = \sum_{m=1}^{a+1} m = \frac{(a+1)(a+2)}{2}$ by part (a).
-      Similarly, $\sum_{d\mid p^a} (v(d))^3 = \sum_{k=0}^a (v(p^k))^3 = \sum_{k=0}^a (k+1)^3 = \sum_{m=1}^{a+1} m^3 = \left(\frac{(a+1)(a+2)}{2}\right)^2$ by part (a).
-      Since $\left(\sum_{d\mid p^a} v(d)\right)^2 = \left(\frac{(a+1)(a+2)}{2}\right)^2 = \sum_{d\mid p^a} (v(d))^3$, the identity holds for prime powers.
-      By multiplicativity, the identity extends to all positive integers $n$.
+      Since $v$ is multiplicative by \nameref{thm:vmult}, it is sufficient to 
+      prove the identity for powers of prime numbers.\vspace*{10px}\\
+      Let $n=p^a$ where $p$ is prime and $a\geq 0$. The divisors of $p^a$ are $\set{1,p,p^2,\ldots,p^a}$, 
+      so 
+      \[
+      v(p^k)=k+1 \text{ for } 0\leq k\leq a.
+      \]
+      Thus, by problem \parenref{prob:3.3.40-a},
+      \[
+      \sum_{d\mid p^a} v(d) = \sum_{k=0}^a v(p^k) = \sum_{k=0}^a (k+1) = \sum_{m=1}^{a+1} m = \frac{(a+1)(a+2)}{2}
+      \]
+      and
+      \[
+      \sum_{d\mid p^a} (v(d))^3 = \sum_{k=0}^a (v(p^k))^3 = \sum_{k=0}^a (k+1)^3 
+      = \sum_{m=1}^{a+1} m^3 = \left(\frac{(a+1)(a+2)}{2}\right)^2.
+      \]
+      Thus, it has been proved that 
+      \[
+      \left(\sum_{d\mid p^a} v(d)\right)^2 = \left(\frac{(a+1)(a+2)}{2}\right)^2 = \sum_{d\mid p^a} (v(d))^3.
+      \]
+      By \nameref{thm:vmult}, it is trivial that powers of prime numbers can be generalized to all positive integers $n$.
+      Therefore, it is trivial that 
+      \[
+      \left(\sum_{d\mid n} v(d)\right)^2 = \sum_{d\mid n} (v(d))^3
+      \]
+      for all positive integers $n$.
     \end{subprove}
   \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   \newpage
 
   \item Exercise Set 3.4, \#48.
-  Let $n \in \mathbb{Z}$ with $n>0$. Prove that
+  Let $n \in \setZ$ with $n>0$. Prove that
   $$
   \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
   $$
   \begin{define}{The sum-of-divisors function $\sigma$}[def:sigma][red]
-  For $n\in\mathbb{Z}_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
+  For $n\in\setZ_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
   \[
   \sigma(n):=\sum_{d\mid n} d.
   \]
   \end{define}
-  \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
-  The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
-  \end{define}
   \begin{subprove}
-    Since $n! = 1 \cdot 2 \cdot 3 \cdots n$, each integer $i$ with $1 \leq i \leq n$ divides $n!$.
-    Therefore, $\{1, 2, \ldots, n\}$ is a subset of the positive divisors of $n!$.
-    Since $\sigma(n!)$ is the sum of all positive divisors of $n!$, it follows that
+    For any integer $i$ where $1 \le i \le n$, it is trivial that the number $i$ is a factor 
+    of $n!$ by definition as follows.
     \[
-    \sigma(n!) \geq \sum_{i=1}^n i.
+    n! = 1 \cdot 2 \cdot 3 \cdots n = i \cdot (1 \cdot 2 \cdots (i-1) \cdot (i+1) \cdots n).
     \]
-    Dividing both sides by $n!$ gives
+
+    Thus, for each integer $i$ where $1 \le i \le n$, the expression $\dfrac{n!}{i}$ is a 
+    positive divisor of $n!$ by definition. Let $D$ be the set of such divisors and a 
+    subset of the universal set, $\setUNIV = \sBUILD{x}{x\text{ is a positive divisor of }n!}$, as follows.
     \[
-    \frac{\sigma(n!)}{n!} \geq \frac{\sum_{i=1}^n i}{n!}.
+      D = \left\{ \frac{n!}{1}, \frac{n!}{2}, \frac{n!}{3}, \ldots, \frac{n!}{n} \right\}
     \]
-    Since $\frac{\sum_{i=1}^n i}{n!} = \sum_{i=1}^n \frac{i}{n!}$ and $\frac{i}{n!} \geq \frac{1}{n!}$ for each $1 \leq i \leq n$, it follows that
+    Thus, by \nameref{def:sigma}, it is trivial that
     \[
-    \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{i}{n!} \geq \sum_{i=1}^n \frac{1}{n!} = \frac{n}{n!}.
+      \sum_{d \in D} d = \sum_{i=1}^n \frac{n!}{i} \leq \sum_{d \in \setUNIV} d = \sum_{d\mid n!, d>0} d =\sigma(n!)\text{ where }D \subseteq \setUNIV.
     \]
-    Since $\frac{n}{n!} = \frac{1}{(n-1)!} \geq \frac{1}{n}$ for $n \geq 1$, and $\frac{1}{n} \geq \frac{1}{i}$ for each $1 \leq i \leq n$, it follows that
+    Therefore, by the property of inequality (division by positive integer), it has been proven that
     \[
-    \frac{\sigma(n!)}{n!} \geq \frac{n}{n!} \geq \sum_{i=1}^n \frac{1}{i}.
+    \frac{\sigma(n!)}{n!} 
+    \geq \frac{1}{n!} \left( \sum_{i=1}^n \frac{n!}{i} \right) 
+    = \sum_{i=1}^n \left( \frac{1}{n!} \cdot \frac{n!}{i} \right) 
+    = \sum_{i=1}^n \frac{1}{i}
     \]
+    for $n \in \setZ$ with $n>0$.
   \end{subprove}
+
+
+
 
 
   \newpage
 
   \item Exercise Set 3.5, \#58.
   \begin{define}{k-perfect number}[def:kperfect]
-  Let $k, n \in \mathbb{Z}$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
+  Let $k, n \in \setZ$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
   \end{define}
   \begin{enumerate}
     \item Prove that $120$ is $3$-perfect.
@@ -1715,6 +1774,23 @@ Let $p$ be an odd prime number. Prove that
     \end{subprove}
 
     \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
+    \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
+    The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
+    \begin{subprove}
+      Let $m,n \in \setZ_{>0}$ with $\gcd(m,n)=1$ and prime factorizations 
+      $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      By \nameref{def:sigma}, 
+      \[
+      \sigma(m) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \text{ and } \sigma(n) = \prod_{j=1}^\ell \frac{q_j^{b_j+1}-1}{q_j-1}.
+      \]
+      Since 
+      \[
+      \sigma(mn) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \cdot \prod_{j=1}^\ell \frac{q_j^{b_j+1}-1}{q_j-1} = \sigma(m)\sigma(n),
+      \]
+      the function $\sigma$ is multiplicative by \nameref{def:multprops}.
+    \end{subprove}
+    \end{define}
     \begin{subprove}
       Let $n = 2^k \cdot 3 \cdot p$ where $p$ is an odd prime and $p \neq 3$. By \nameref{thm:sigmamult}, since the factors are pairwise coprime,
       \[
@@ -1731,7 +1807,7 @@ Let $p$ be an odd prime number. Prove that
       Therefore, the only $3$-perfect number of the form $2^k \cdot 3 \cdot p$ is $120 = 2^3 \cdot 3 \cdot 5$.
     \end{subprove}
 
-    \item Let $n \in \mathbb{Z}$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
+    \item Let $n \in \setZ$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
     \begin{subprove}
       Since $n$ is $p$-perfect, by \nameref{def:kperfect}, $\sigma(n) = pn$.
       Since $p \nmid n$, it follows that $\gcd(p, n) = 1$. By \nameref{thm:sigmamult},
@@ -1747,9 +1823,9 @@ Let $p$ be an odd prime number. Prove that
 
   \item Exercise Set 3.6, \#65.
   \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
-  Let $n \in \mathbb{Z}$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
+  Let $n \in \setZ$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
   \[
-  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \mathbb{Z} \\ 0 & \text { otherwise }\end{cases}
+  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \setZ \\ 0 & \text { otherwise }\end{cases}
   \]
   \end{define}
   \begin{enumerate}
@@ -1758,7 +1834,7 @@ Let $p$ be an odd prime number. Prove that
     \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
     \]
     \begin{define}{The Möbius function $\mu$}[def:mobius][red]
-    The Möbius function $\mu:\mathbb{Z}_{>0}\to\{-1,0,1\}$ is defined by
+    The Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
     \[
     \mu(n)=
     \begin{cases}
@@ -1795,7 +1871,7 @@ Let $p$ be an odd prime number. Prove that
 
   \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
   \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
-  Let $n \in \mathbb{Z}$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
+  Let $n \in \setZ$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
   \[
   (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
   \]
@@ -1804,7 +1880,7 @@ Let $p$ be an odd prime number. Prove that
   \begin{enumerate}
     \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
     \begin{subprove}
-      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
       (f \star g)(n) = \sum_{d \mid n} f(d) g(n/d).
       \]
@@ -1817,7 +1893,7 @@ Let $p$ be an odd prime number. Prove that
 
     \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. Prove that $(f \star g) \star h= f \star(g \star h)$.
     \begin{subprove}
-      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
       ((f \star g) \star h)(n) = \sum_{d \mid n} (f \star g)(d) h(n/d) = \sum_{d \mid n} \left(\sum_{c \mid d} f(c) g(d/c)\right) h(n/d).
       \]
@@ -1832,13 +1908,13 @@ Let $p$ be an odd prime number. Prove that
       Therefore, $(f \star g) \star h = f \star (g \star h)$ for all arithmetic functions $f$, $g$, and $h$.
     \end{subprove}
 
-    \item \textbf{Identity:} For $n \in \mathbb{Z}$ with $n>0$, let
+    \item \textbf{Identity:} For $n \in \setZ$ with $n>0$, let
     \[
     \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
     \]
     Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
     \begin{subprove}
-      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
       (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d).
       \]
@@ -1849,9 +1925,9 @@ Let $p$ be an odd prime number. Prove that
       By commutativity (part (a)), $\delta \star f = f \star \delta = f$. Therefore, $f \star \delta = \delta \star f = f$.
     \end{subprove}
 
-    \item \textbf{Inverses:} For $n \in \mathbb{Z}$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \item \textbf{Inverses:} For $n \in \setZ$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
     \begin{subprove}
-      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
       (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) = \sum_{d \mid n} \mu(d).
       \]
