@@ -1470,9 +1470,9 @@ Let $p$ be an odd prime number. Prove that
     \begin{define}{Theorem 3.1 (Multiplicative Functions and Divisor Sums)}[thm:3.1][red]
     Let $f$ be an arithmetic function and define, for $n\in\setZ_{>0}$,
     \[
-    F(n):=\sum_{d\mid n} f(d).
+    F(n):=\sum_{d\mid n, d>0} f(d).
     \]
-    where $\sum_{d\mid n} f(d)$ is the sum of $f(d)$ over all \underbar{positive} divisors $d$ of $n$ (i.e., $\sum_{d\mid 12} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12)$).
+    where $\sum_{d\mid n, d>0} f(d)$ is the sum of $f(d)$ over all \underbar{positive} divisors $d$ of $n$ (i.e., $\sum_{d\mid 12} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12)$).
     If $f$ is multiplicative, then $F$ is multiplicative.
     \end{define}
     \begin{subprove}
@@ -1725,6 +1725,10 @@ Let $p$ be an odd prime number. Prove that
   \[
   \sigma(n):=\sum_{d\mid n} d.
   \]
+  For powers of prime numbers, the sum of divisors formula is defined as follows.
+  \[
+  \sigma(n) =\sum_{d\mid p^k} d = 1 + p + p^2 + \cdots + p^k = \frac{p^{k+1}-1}{p-1} \text{ for some prime } p \text{ and } k\geq 0.
+  \]
   \end{define}
   \begin{subprove}
     For any integer $i$ where $1 \le i \le n$, it is trivial that the number $i$ is a factor 
@@ -1760,20 +1764,11 @@ Let $p$ be an odd prime number. Prove that
   \newpage
 
   \item Exercise Set 3.5, \#58.
-  \begin{define}{k-perfect number}[def:kperfect]
+  \begin{define}{$k$-perfect number}[def:kperfect]
   Let $k, n \in \setZ$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
   \end{define}
   \begin{enumerate}
     \item Prove that $120$ is $3$-perfect.
-    \begin{subprove}
-      The prime factorization of $120$ is $120 = 2^3 \cdot 3 \cdot 5$. By \nameref{def:sigma}, the sum of divisors is computed using the formula:
-      \[
-      \sigma(120) = \sigma(2^3)\sigma(3)\sigma(5) = \frac{2^4-1}{2-1} \cdot \frac{3^2-1}{3-1} \cdot \frac{5^2-1}{5-1} = 15 \cdot 4 \cdot 6 = 360.
-      \]
-      Since $\sigma(120) = 360 = 3 \cdot 120$, it follows that $120$ is $3$-perfect by \nameref{def:kperfect}.
-    \end{subprove}
-
-    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
     \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
     The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
     \begin{subprove}
@@ -1792,79 +1787,165 @@ Let $p$ be an odd prime number. Prove that
     \end{subprove}
     \end{define}
     \begin{subprove}
-      Let $n = 2^k \cdot 3 \cdot p$ where $p$ is an odd prime and $p \neq 3$. By \nameref{thm:sigmamult}, since the factors are pairwise coprime,
+      The prime factorization of $120$ is $120 = 2^3 \cdot 3 \cdot 5$. 
+      By \nameref{thm:sigmamult}, 
       \[
-      \sigma(n) = \sigma(2^k) \sigma(3) \sigma(p) = \frac{2^{k+1}-1}{2-1} \cdot 4 \cdot (p+1) = (2^{k+1}-1) \cdot 4 \cdot (p+1).
+      \sigma(120) = \sigma(2^3)\sigma(3)\sigma(5) = \left(\frac{2^4-1}{2-1}\right) \left(\frac{3^2-1}{3-1}\right) \left(\frac{5^2-1}{5-1}\right) = 15 \cdot 4 \cdot 6 = 360.
       \]
-      For $n$ to be $3$-perfect, it is required that $\sigma(n) = 3n = 3 \cdot 2^k \cdot 3 \cdot p = 9 \cdot 2^k \cdot p$.
-      Therefore, $(2^{k+1}-1) \cdot 4 \cdot (p+1) = 9 \cdot 2^k \cdot p$, which simplifies to
-      \[
-      (2^{k+1}-1)(p+1) = \frac{9 \cdot 2^k \cdot p}{4} = \frac{9 \cdot 2^{k-2} \cdot p}{1}.
-      \]
-      For $k=3$, this becomes $(16-1)(p+1) = 15(p+1) = 9 \cdot 2 \cdot p = 18p$, giving $15p + 15 = 18p$, so $15 = 3p$ and $p = 5$.
-      Verification: $n = 2^3 \cdot 3 \cdot 5 = 120$, which was shown to be $3$-perfect in part (a).
-      For other values of $k$, similar analysis shows no other odd primes $p$ satisfy the equation.
-      Therefore, the only $3$-perfect number of the form $2^k \cdot 3 \cdot p$ is $120 = 2^3 \cdot 3 \cdot 5$.
+      Since $\sigma(120) = 360 = 3 \cdot 120$, it follows that $120$ is $3$-perfect by \nameref{def:kperfect}.
     \end{subprove}
+
+    \newpage
+    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
+    \begin{subanswer}
+      Let $n = 2^k \cdot 3 \cdot p$ where all integers $k>0$ and odd primes $p$ such that 
+      $\sigma(n) = 3n$ where $n>1$. That is,
+      \[
+      \sigma(n) =\sigma(2^k \cdot 3 \cdot p) = 3 \cdot (2^k \cdot 3 \cdot p).
+      \]
+      By \nameref{def:sigma} and \nameref{thm:sigmamult}, the function \(\sigma(n)\) is defined as a
+      piecewise function as follows.
+      \[
+        \sigma(n) =
+        \begin{cases}
+          13(2^{k+1}-1) & \text{if } n = 2^k \cdot 3^2 \text{ for } p = 3\\
+          4(2^{k+1}-1)(p+1) & \text{if } n = 2^k \cdot 3 \cdot p \text{ for an odd prime } p \ne 3
+        \end{cases}
+      \]
+      Thus, consider the following equalities to find integer solutions.
+      \[
+        \sigma(n) =
+        \begin{cases}
+          13(2^{k+1}-1) = 27 \cdot 2^k & \text{if } n = 2^k \cdot 3^2 \text{ for } p = 3\\
+          4(2^{k+1}-1)(p+1) = 9 \cdot 2^k \cdot p & \text{if } n = 2^k \cdot 3 \cdot p \text{ for an odd prime } p \ne 3
+        \end{cases}
+      \]
+      \begin{enumerate}
+        \item If $p=3$, then $13(2^{k+1}-1) = 27 \cdot 2^k$, so $26\cdot 2^{k}-13 - 27 \cdot 2^k= 0$, 
+        that is $-13 = 2^k$, which has \textbf{no integer solutions} for $k \in \setZ$.
+        \item If $p$ is an odd prime and $p \neq 3$, then $4(2^{k+1}-1)(p+1) = 9 \cdot 2^k \cdot p$, 
+        so $4(2^{k+1}-1) = p(9 \cdot 2^k - 2^{k+3}+4)$, that is, $$p=\frac{8 \cdot 2^k - 4}{2^k + 4}= 8 - \frac{36}{2^k+4}.$$
+        \begin{itemize}
+          \item $k=0$: $2^0+4=5$. This is not a divisor of 36. (\textbf{Not a solution})
+          \item $k=1$: $2^1+4=6$. $p = 8 - \frac{36}{6} = 8-6=2$. This is not an odd prime. (\textbf{Not a solution})
+          \item $k=2$: $2^2+4=8$. This is not a divisor of 36. (\textbf{Not a solution})
+          \item $k=3$: $2^3+4=12$. $p = 8 - \frac{36}{12} = 8-3=5$. This is an odd prime. $n = 2^3 \cdot 3 \cdot 5 = 120$. (\textbf{Solution})
+          \item $k=4$: $2^4+4=20$. This is not a divisor of 36. (\textbf{Not a solution})
+          \item $k=5$: $2^5+4=36$. $p = 8 - \frac{36}{36} = 8-1=7$. This is an odd prime. $n = 2^5 \cdot 3 \cdot 7 = 672$. (\textbf{Solution})
+          \item $k>5$: $2^k+4 > 36$. This is not a divisor of 36. (\textbf{No solutions})
+        \end{itemize}
+      \end{enumerate}
+      Therefore, the two $3$-perfect numbers of the specified form are $120$ and $672$.
+    \end{subanswer}
 
     \item Let $n \in \setZ$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
     \begin{subprove}
-      Since $n$ is $p$-perfect, by \nameref{def:kperfect}, $\sigma(n) = pn$.
-      Since $p \nmid n$, it follows that $\gcd(p, n) = 1$. By \nameref{thm:sigmamult},
+      Suppose $n$ is $p$-perfect for the sake of direct proof, then $\sigma(n) = pn$.
+      Moreover, by the problem statement, it is given that $p$ is a prime that does not divide $n$, which implies that $\gcd(p, n) = 1$.
+      By \nameref{thm:sigmamult}, \nameref{def:sigma}, and the assumption, it follows that
       \[
-      \sigma(pn) = \sigma(p) \sigma(n) = (p+1) \cdot pn = (p+1)(pn).
+      \sigma(pn) = \sigma(p) \sigma(n) = (p+1) (pn).
       \]
-      Therefore, by \nameref{def:kperfect}, $pn$ is $(p+1)$-perfect.
+      Therefore, by \nameref{def:kperfect} where $k=p+1$, $pn$ is $(p+1)$-perfect.
     \end{subprove}
   \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   \newpage
 
 
-  \item Exercise Set 3.6, \#65.
+  \item Exercise Set 3.6, \#65. 
   \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
   Let $n \in \setZ$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
   \[
   \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \setZ \\ 0 & \text { otherwise }\end{cases}
   \]
   \end{define}
-  \begin{enumerate}
-    \item Prove that
+  Prove that
+  \[
+  \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+  \]
+  \begin{define}{The Möbius function $\mu$}[def:mobius][red]
+  The Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
+  \[
+  \mu(n)=
+  \begin{cases}
+  1,& n=1,\\[4pt]
+  0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
+  (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
+  \end{cases}
+  \]
+  where 
+  \[
+    \sum_{d \mid n, d>0} \mu(d) = 0 \text{ for } n>1 \text{ and } \sum_{d \mid 1, d>0} \mu(d) = 1.
+  \]
+  \end{define}
+  \begin{define}{Möbius Inversion Formula}[thm:mobiusinv][red]
+  Let $f$ and $g$ be arithmetic functions. Then, 
+  $f(n)=\sum_{d\mid n, d>0} g(d)$ for all $n\ge 1$ if and only if
+  \[
+  g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d)
+  \]
+  for all $n\ge 1$.
+  \end{define}
+  \begin{subprove}
+    Let \(n=\prod_{i=1}^r p_i^{a_i}\) be the prime factorization of \(n\ge1\).
+    Then, by \nameref{def:vonmangoldt},
     \[
-    \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+      \sum_{d\mid n, d>0}\Lambda(d)
+      =\sum_{i=1}^r\sum_{k=1}^{a_i}\Lambda(p_i^k)
+      =\sum_{i=1}^r\sum_{k=1}^{a_i}\ln p_i
+      =\sum_{i=1}^r a_i\ln p_i
+      =\ln\!\bigg(\prod_{i=1}^r p_i^{a_i}\bigg)
+      =\ln n.
     \]
-    \begin{define}{The Möbius function $\mu$}[def:mobius][red]
-    The Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
+    Let $f(n) = \ln n$ and $g(n) = \Lambda(n)$ for all \(n\ge1\). Then, by \nameref{thm:mobiusinv},
     \[
-    \mu(n)=
-    \begin{cases}
-    1,& n=1,\\[4pt]
-    0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
-    (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
-    \end{cases}
+      \Lambda(n)=\sum_{d\mid n, d>0}\mu(d)\ln\!\bigg(\frac{n}{d}\bigg).
     \]
-    \end{define}
-    \begin{define}{Möbius Inversion Formula}[thm:mobiusinv][red]
-    Let $f$ and $g$ be arithmetic functions. Then $f(n)=\sum_{d\mid n} g(d)$ for all $n\ge 1$ if and only if
-    $g(n)=\sum_{d\mid n}\mu(d)f(n/d)$ for all $n\ge 1$.
-    \end{define}
-    \begin{subprove}
-      Let $f(n) = \ln n$ for all $n \geq 1$. Then $f(n) = \sum_{d \mid n} \Lambda(d)$ by the well-known identity.
-      By \nameref{thm:mobiusinv}, it follows that
-      \[
-      \Lambda(n) = \sum_{d \mid n} \mu(d) f(n/d) = \sum_{d \mid n} \mu(d) \ln(n/d).
-      \]
-      Since $\ln(n/d) = \ln n - \ln d$, this becomes
-      \[
-      \Lambda(n) = \sum_{d \mid n} \mu(d) (\ln n - \ln d) = \ln n \sum_{d \mid n} \mu(d) - \sum_{d \mid n} \mu(d) \ln d.
-      \]
-      By the well-known identity $\sum_{d \mid n} \mu(d) = 0$ for $n > 1$ and $\sum_{d \mid 1} \mu(d) = 1$, it follows that
-      \[
-      \Lambda(n) = -\sum_{d \mid n} \mu(d) \ln d
-      \]
-      for all $n \geq 1$.
-    \end{subprove}
-  \end{enumerate}
+    Since \(\ln(n/d)=\ln n-\ln d\), we have
+    \[
+      \Lambda(n)
+      =\ln n\sum_{d\mid n, d>0}\mu(d)-\sum_{d\mid n, d>0}\mu(d)\ln d.
+    \]
+    By \nameref{def:mobius}, \(\sum_{d\mid n, d>0}\mu(d)=0\) for \(n>1\) and 
+    \(\ln(1)=0\). Therefore, for all \(n\ge1\),
+    \[
+      \Lambda(n)=-\sum_{d\mid n, d>0}\mu(d)\ln d.
+    \]
+  \end{subprove}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   \newpage
@@ -1875,95 +1956,106 @@ Let $p$ be an odd prime number. Prove that
   \[
   (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
   \]
-  where $f$ is 
   \end{define}
   \begin{enumerate}
     \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
+    \label{prob:3.6.69-a}
     \begin{subprove}
       By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
       (f \star g)(n) = \sum_{d \mid n} f(d) g(n/d).
       \]
-      Substituting $d' = n/d$, as $d$ runs over all divisors of $n$, so does $d'$. Therefore,
+      Since $d$ is a divisor of $n$, by definition, there exists a positive integer $d^\prime$ 
+      such that $n = d^\prime\cdot d$, that is $d^\prime = n/d$. Therefore,
       \[
       (f \star g)(n) = \sum_{d' \mid n} f(n/d') g(d') = \sum_{d' \mid n} g(d') f(n/d') = (g \star f)(n).
       \]
-      Thus, $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
+      Therefore, $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
     \end{subprove}
 
-    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. Prove that $(f \star g) \star h= f \star(g \star h)$.
+    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. 
+    Prove that $(f \star g) \star h= f \star(g \star h)$.
+    \label{prob:3.6.69-b}
     \begin{subprove}
       By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
-      ((f \star g) \star h)(n) = \sum_{d \mid n} (f \star g)(d) h(n/d) = \sum_{d \mid n} \left(\sum_{c \mid d} f(c) g(d/c)\right) h(n/d).
+      ((f\star g)\star h)(n)
+      = \sum_{d\mid n} (f\star g)(d)\,h\!\left(\frac{n}{d}\right)
+      = \sum_{d\mid n}\left(\sum_{c\mid d} f(c)\,g\!\left(\frac{d}{c}\right)\right)
+        h\!\left(\frac{n}{d}\right).
       \]
-      Rearranging the sum over pairs $(c,d)$ where $c \mid d \mid n$, this becomes
+      Since \(c\) is a divisor of \(d\) and \(d\) is a divisor of \(n\), it follows that \(c\) is a divisor of \(n\),
+      and there exists a positive integer \(x, y\) such that \(n = d\cdot x = c \cdot y \cdot x\).
+      Thus, 
       \[
-      \sum_{c \mid n} \sum_{\substack{d\\ c \mid d \mid n}} f(c) g(d/c) h(n/d) = \sum_{c \mid n} f(c) \sum_{e \mid (n/c)} g(e) h(n/(ce)),
+      \sum_{c\mid n} \sum_{y\mid (n/c)} f(c)\,g(y)\,h\!\left(\frac{n}{c y}\right)
+      = \sum_{c\mid n} f(c)\left(\sum_{y\mid (n/c)} g(y)\,h\!\left(\frac{(n/c)}{y}\right)\right)
+      = \sum_{c\mid n} f(c)(g \star h)\left(\frac{n}{c}\right)
+      = (f \star (g \star h))(n).
       \]
-      where $e = d/c$. Since $\sum_{e \mid (n/c)} g(e) h((n/c)/e) = (g \star h)(n/c)$, it follows that
-      \[
-      ((f \star g) \star h)(n) = \sum_{c \mid n} f(c) (g \star h)(n/c) = (f \star (g \star h))(n).
-      \]
-      Therefore, $(f \star g) \star h = f \star (g \star h)$ for all arithmetic functions $f$, $g$, and $h$.
+      Therefore, by both equalities above, 
+      \((f \star g) \star h = f \star (g \star h)\) for all arithmetic functions \(f\), \(g\), and \(h\).
     \end{subprove}
+
+    \newpage
 
     \item \textbf{Identity:} For $n \in \setZ$ with $n>0$, let
     \[
     \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
     \]
     Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
+    \label{prob:3.6.69-c}
     \begin{subprove}
       By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
       \[
-      (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d).
+      (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d) = f(n) \cdot 1 = f(n).
       \]
-      Since $\delta(n/d) = 1$ if and only if $n/d = 1$ (i.e., $d = n$), and $\delta(n/d) = 0$ otherwise, it follows that
+      since \(\delta(n/d) = 0\) for all \(n/d > 1\) and \(\delta(1) = 1\).
+      By commutativity proved from problem \parenref{prob:3.6.69-a},
       \[
-      (f \star \delta)(n) = f(n) \delta(1) = f(n) \cdot 1 = f(n).
+      \delta \star f = f \star \delta = f.
       \]
-      By commutativity (part (a)), $\delta \star f = f \star \delta = f$. Therefore, $f \star \delta = \delta \star f = f$.
     \end{subprove}
 
-    \item \textbf{Inverses:} For $n \in \setZ$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \item \textbf{Inverses:} For $n \in \setZ$ with $n>0$, let $\mathbf{1}(n)=1$. 
+    In other words, $\mathbf{1}$ is the arithmetic function mapping every positive 
+    integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \label{prob:3.6.69-d}
     \begin{subprove}
-      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
+      By \nameref{def:convolution} and \nameref{def:mobius}, for any $n \in \setZ_{>0}$,
       \[
-      (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) = \sum_{d \mid n} \mu(d).
+      (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) 
+      = \sum_{d \mid n} \mu(d)
+      = \delta(n)
+      =\begin{cases}
+        1 & \text { if } n=1 \\ 
+        0 & \text { if } n>1
+      \end{cases}.
       \]
-      By the well-known identity (Proposition 3.14 from the lecture notes), $\sum_{d \mid n} \mu(d) = 1$ if $n=1$ and $\sum_{d \mid n} \mu(d) = 0$ if $n>1$.
-      Therefore, $(\mu \star \mathbf{1})(n) = \delta(n)$ for all $n \geq 1$.
-      By commutativity (part (a)), $\mathbf{1} \star \mu = \mu \star \mathbf{1} = \delta$.
+      Therefore, $(\mu \star \mathbf{1})(n) = \delta(n)$ for all $n > 0$.
+      By commutativity proved from problem \parenref{prob:3.6.69-a},
+      \[
+      \mathbf{1} \star \mu = \mu \star \mathbf{1} = \delta.
+      \]
     \end{subprove}
 
     \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
     [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
     \begin{subprove}
-      ($\Rightarrow$) Suppose $f = g \star \mathbf{1}$. By associativity (part (b)),
+      ($\Rightarrow$) Suppose $f = g \star \mathbf{1}$ for the sake of direct proof. 
+      By problem \parenref{prob:3.6.69-a}, \parenref{prob:3.6.69-b}, \parenref{prob:3.6.69-c}, and \parenref{prob:3.6.69-d},
       \[
-      \mu \star f = \mu \star (g \star \mathbf{1}) = (\mu \star g) \star \mathbf{1} = g \star (\mu \star \mathbf{1}).
+      f \star \mu = \mu \star f = \mu \star (g \star \mathbf{1}) = (\mu \star g) \star \mathbf{1} = g \star (\mu \star \mathbf{1}) = g \star \delta = g.
       \]
-      By part (d), $\mu \star \mathbf{1} = \delta$, so $\mu \star f = g \star \delta = g$ by part (c). By commutativity (part (a)), $f \star \mu = \mu \star f = g$.
-      \vspace*{10px}\\
-      ($\Leftarrow$) Conversely, suppose $g = \mu \star f$. By associativity (part (b)),
+      ($\Leftarrow$) Suppose $g = \mu \star f$ for the sake of direct proof. Similarly,
       \[
-      g \star \mathbf{1} = (\mu \star f) \star \mathbf{1} = \mu \star (f \star \mathbf{1}) = (f \star \mathbf{1}) \star \mu = f \star (\mathbf{1} \star \mu).
+      g \star \mathbf{1} = \mathbf{1} \star g = (\mathbf{1} \star \mu) \star f = \delta \star f = f.
       \]
-      By part (d), $\mathbf{1} \star \mu = \delta$, so $g \star \mathbf{1} = f \star \delta = f$ by part (c).
-      \vspace*{10px}\\
-      Therefore, $f = g \star \mathbf{1}$ if and only if $g = \mu \star f = f \star \mu$, which is the Möbius Inversion Formula.
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $f = g \star \mathbf{1}$ if and only if $g = \mu \star f = f \star \mu$, which is \nameref{thm:mobiusinv}.
     \end{subprove}
   \end{enumerate}
 
 \end{enumerate}
-
-
-
-
-
-
-
-
 
 
 
