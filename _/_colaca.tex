@@ -244,106 +244,245 @@
 
 
 
-\begin{algorithm}
-  \caption{Convergence Test of a Series $\sum a_n$}
-  \label{alg:convergence_test}
-  \begin{algorithmic}[1]
-    \Function{TestConvergence}{$\sum a_n$}
-      \If{$\group{\abs{\dfrac{a_n}{b_n}}\nrightarrow \infty}$}
-      \Comment{(1) Comparison Test}\State
-        \Return \Call{TestConvergence}{$\sum b_n$}
-      \ElsIf{$\group{a_n \nrightarrow 0}$} 
-      \Comment{(2) Divergence Test}\State
-        \Return \inlinequote{Divergent}
-      \ElsIf{$\group{\lim_{n \to \infty} \abs{\dfrac{a_{n+1}}{a_n}} < 1}$ 
-      \OR $\group{\lim_{n \to \infty} \sqrt[n]{\abs{a_n}} < 1}$} 
-      \Comment{(3) Ratio/Root Test}\State
-        \Return \inlinequote{Absolutely Convergent}
-      \ElsIf{$\group{\abs{a_n} = \dfrac{1}{n^p}}$
-      \AND $\group{p > 1}$}
-      \Comment{(4) $p$-Series Test}\State
-        \Return \inlinequote{Absolutely Convergent}
-      \ElsIf{$\group{\int_1^\infty \abs{a_x} \, dx \nrightarrow \infty}$}
-      \Comment{(5) Integral Test}\State
-        \Return \inlinequote{Absolutely Convergent}
-      \ElsIf{$\group{a_n = (-1)^n \abs{a_n}}$}
-        \Comment{(6) Alternating Series Test}\State
-        \Return \inlinequote{Conditionally Convergent}
-      \Else
-        \Comment{(7) Failure of Tests}\State
-        \Return \inlinequote{Divergent}
-      \EndIf
-    \EndFunction
-  \end{algorithmic}
-\end{algorithm}
+% \begin{algorithm}
+%   \caption{Convergence Test of a Series $\sum a_n$}
+%   \label{alg:convergence_test}
+%   \begin{algorithmic}[1]
+%     \Function{TestConvergence}{$\sum a_n$}
+%       \If{$\group{\abs{\dfrac{a_n}{b_n}}\nrightarrow \infty}$}
+%       \Comment{(1) Comparison Test}\State
+%         \Return \Call{TestConvergence}{$\sum b_n$}
+%       \ElsIf{$\group{a_n \nrightarrow 0}$} 
+%       \Comment{(2) Divergence Test}\State
+%         \Return \inlinequote{Divergent}
+%       \ElsIf{$\group{\lim_{n \to \infty} \abs{\dfrac{a_{n+1}}{a_n}} < 1}$ 
+%       \OR $\group{\lim_{n \to \infty} \sqrt[n]{\abs{a_n}} < 1}$} 
+%       \Comment{(3) Ratio/Root Test}\State
+%         \Return \inlinequote{Absolutely Convergent}
+%       \ElsIf{$\group{\abs{a_n} = \dfrac{1}{n^p}}$
+%       \AND $\group{p > 1}$}
+%       \Comment{(4) $p$-Series Test}\State
+%         \Return \inlinequote{Absolutely Convergent}
+%       \ElsIf{$\group{\int_1^\infty \abs{a_x} \, dx \nrightarrow \infty}$}
+%       \Comment{(5) Integral Test}\State
+%         \Return \inlinequote{Absolutely Convergent}
+%       \ElsIf{$\group{a_n = (-1)^n \abs{a_n}}$}
+%         \Comment{(6) Alternating Series Test}\State
+%         \Return \inlinequote{Conditionally Convergent}
+%       \Else
+%         \Comment{(7) Failure of Tests}\State
+%         \Return \inlinequote{Divergent}
+%       \EndIf
+%     \EndFunction
+%   \end{algorithmic}
+% \end{algorithm}
 
 
 
-\begin{multicolblock}{Some explanatory paragraph before the columns.}[3]
-  Item 1.
+% \begin{multicolblock}{Some explanatory paragraph before the columns.}[3]
+%   Item 1.
 
-  Item 2.
+%   Item 2.
 
-  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-  Item 1.
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   Item 1.
 
-  Item 2.
+%   Item 2.
 
-  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-  Item 1.
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   Item 1.
 
-  Item 2.
+%   Item 2.
 
-  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-  Item 1.
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   Item 1.
 
-  Item 2.
+%   Item 2.
 
-  A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
 
+%   \begin{enumerate}
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%   \end{enumerate}
+% \end{multicolblock}
+
+
+
+
+
+
+\newpage
+
+\section*{Part 1}
+\begin{multicolblock}{Solve each equation.}
   \begin{enumerate}
-    \item First item in a numbered list.
-    \item Second item in a numbered list.
-    \item Third item in a numbered list.
-    \item Fourth item in a numbered list.
-    \item Fifth item in a numbered list.
-    \item Sixth item in a numbered list.
-    \item   Seventh item in a numbered list.
-    \item Eighth item in a numbered list.
-    \item Ninth item in a numbered list.
-    \item Tenth item in a numbered list.
-    \item First item in a numbered list.
-    \item Second item in a numbered list.
-    \item Third item in a numbered list.
-    \item Fourth item in a numbered list.
-    \item Fifth item in a numbered list.
-    \item Sixth item in a numbered list.
-    \item   Seventh item in a numbered list.
-    \item Eighth item in a numbered list.
-    \item Ninth item in a numbered list.
-    \item Tenth item in a numbered list.
-    \item First item in a numbered list.
-    \item Second item in a numbered list.
-    \item Third item in a numbered list.
-    \item Fourth item in a numbered list.
-    \item Fifth item in a numbered list.
-    \item Sixth item in a numbered list.
-    \item   Seventh item in a numbered list.
-    \item Eighth item in a numbered list.
-    \item Ninth item in a numbered list.
-    \item Tenth item in a numbered list.
-    \item First item in a numbered list.
-    \item Second item in a numbered list.
-    \item Third item in a numbered list.
-    \item Fourth item in a numbered list.
-    \item Fifth item in a numbered list.
-    \item Sixth item in a numbered list.
-    \item   Seventh item in a numbered list.
-    \item Eighth item in a numbered list.
-    \item Ninth item in a numbered list.
-    \item Tenth item in a numbered list.
+    \item $6 = \dfrac{a}{4} + 2$
+    \item $9x - 7 = -7$
+    \item $-4 = \dfrac{r}{20} - 5$
+    \item $-6 + \dfrac{x}{4} = -5$
+    \item $0 = 4 + \dfrac{n}{5}$
+    \item $-1 = \dfrac{5 + x}{6}$
+    \item $\dfrac{v + 9}{3} = 8$
+    \item $-9x + 1 = -80$
+    \item $-2 = 2 + \dfrac{v}{4}$
+    \item $2(n + 5) = -2$
+    \item $-6 = \dfrac{n}{2} - 10$
+    \item $144 = -12(x + 5)$
+    \item $8n + 7 = 31$
+    \item $\dfrac{n + 5}{-16} = -1$
+    \item $-10 = 10(k - 9)$
+    \item $-9x - 13 = -103$
+    \item $-10 = -10 + 7m$
+    \item $\dfrac{m}{9} - 1 = -2$
+    \item $-243=-9(10+x)$
+    \item $9+9 n=9$
+    \item $7(9+k)=84$
+    \item $8+\dfrac{b}{-4}=5$
   \end{enumerate}
 \end{multicolblock}
+
+
+\begin{subanswer}
+  \begin{multicolblock}{Here are the answers.}[3]
+  \begin{enumerate}
+    \item $a=16$
+    \item $x=0$
+    \item $r=20$
+    \item $x=4$
+    \item $n=-20$
+    \item $x=-11$
+    \item $v=15$
+    \item $x=7$
+    \item $v=-24$
+    \item $n=-6$
+    \item $n=8$
+    \item $x=-17$
+    \item $n=3$
+    \item $n=-21$
+    \item $k=8$
+    \item $x=-4$
+    \item $m=0$
+    \item $m=-9$
+    \item $x=-37$
+    \item $n=0$
+    \item $k=0$
+    \item $b=-12$
+  \end{enumerate}
+  \end{multicolblock}
+\end{subanswer}
+
+
+
+\newpage
+\section*{Part 2}
+
+\begin{multicolblock}{Solve each equation.}
+  \begin{enumerate}
+    \item $\dfrac{r}{10}+4=5$
+    \item $\dfrac{n}{2}+5=3$
+    \item $3p-2=-29$
+    \item $1-r=-5$
+    \item $\dfrac{k-10}{2}=-7$
+    \item $\dfrac{n-5}{2}=5$
+    \item $-9+\dfrac{n}{4}=-7$
+    \item $\dfrac{9+m}{3}=2$
+    \item $\dfrac{-5+x}{22}=-1$
+    \item $4n-9=-9$
+    \item $\dfrac{x+9}{2}=3$
+    \item $\dfrac{-12+x}{11}=-3$
+    \item $\dfrac{-4+x}{2}=6$
+    \item $-5+\dfrac{n}{3}=0$
+    \item $\dfrac{p}{4}+8=7$
+    \item $9+\dfrac{n}{4}=15$
+    \item $6+\dfrac{x}{2}=4$
+    \item $\dfrac{b+11}{3}=-2$
+    \item $\dfrac{a-10}{3}=-4$
+    \item $-12r+4=100$
+    \item $\dfrac{m}{16}-9=-8$
+    \item $-7+4r=-15$
+    \item $\dfrac{m-13}{2}=-8$
+    \item $-5x+13=-17$
+    \item $\dfrac{k+10}{-2}=5$
+    \item $\dfrac{p+8}{-2}=10$
+    \item $-14r-19=303$
+    \item $\dfrac{x}{-4}-5=-8$
+  \end{enumerate}
+\end{multicolblock}
+
+\begin{subanswer}
+  \begin{multicolblock}{Here are the answers.}[3]
+  \begin{enumerate}
+    \item $r=10$
+    \item $n=-4$
+    \item $p=-9$
+    \item $r=6$
+    \item $k=-4$
+    \item $n=15$
+    \item $n=8$
+    \item $m=-3$
+    \item $x=-27$
+    \item $n=0$
+    \item $x=-3$
+    \item $x=-21$
+    \item $x=16$
+    \item $n=15$
+    \item $p=-4$
+    \item $n=24$
+    \item $x=-4$
+    \item $b=-17$
+    \item $a=-2$
+    \item $r=-8$
+    \item $m=16$
+    \item $r=-2$
+    \item $m=-5$
+    \item $x=4$
+    \item $k=-28$
+    \item $p=-26$
+    \item $r=-22$
+    \item $x=12$
+  \end{enumerate}
+  \end{multicolblock}
+\end{subanswer}
+
 
 
 
@@ -595,78 +734,78 @@
 
 
 
-% % \newpage
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% comb with gen func
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % \newpage
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% comb with gen func
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\begin{abstract}
-  This document explains how generating functions use the concept of linear independence in the vector space of polynomials to count combinatorial objects. Key terms are defined and a concrete example is provided.
-\end{abstract}
+% \begin{abstract}
+%   This document explains how generating functions use the concept of linear independence in the vector space of polynomials to count combinatorial objects. Key terms are defined and a concrete example is provided.
+% \end{abstract}
 
-\section{Key Terminology}
+% \section{Key Terminology}
 
-\begin{itemize}
-  \item \textbf{Generating function}: A formal power series $G(x) = \sum_{n=0}^\infty a_n x^n$ encoding a sequence $(a_n)$.
-  \item \textbf{Monomial}: A term $x^n$ in a polynomial or power series.
-  \item \textbf{Basis}: A set of vectors (here, monomials $\{1, x, x^2, \dots\}$) such that every element of the space is a unique linear combination of them.
-  \item \textbf{Linear independence}: No nontrivial linear combination of basis elements equals zero; i.e., $\sum c_n x^n = 0$ implies all $c_n = 0$.
-  \item \textbf{Coefficient}: The number multiplying $x^n$ in a power series, often representing the count of objects of size $n$.
-\end{itemize}
+% \begin{itemize}
+%   \item \textbf{Generating function}: A formal power series $G(x) = \sum_{n=0}^\infty a_n x^n$ encoding a sequence $(a_n)$.
+%   \item \textbf{Monomial}: A term $x^n$ in a polynomial or power series.
+%   \item \textbf{Basis}: A set of vectors (here, monomials $\{1, x, x^2, \dots\}$) such that every element of the space is a unique linear combination of them.
+%   \item \textbf{Linear independence}: No nontrivial linear combination of basis elements equals zero; i.e., $\sum c_n x^n = 0$ implies all $c_n = 0$.
+%   \item \textbf{Coefficient}: The number multiplying $x^n$ in a power series, often representing the count of objects of size $n$.
+% \end{itemize}
 
-\section{Core Relationship}
+% \section{Core Relationship}
 
-Generating functions work because the monomials $\{1, x, x^2, \dots\}$ are linearly independent. Each coefficient $a_n$ in $G(x)$ uniquely counts objects of size $n$. Linear independence ensures that collecting like terms (powers of $x$) is valid and unambiguous.
+% Generating functions work because the monomials $\{1, x, x^2, \dots\}$ are linearly independent. Each coefficient $a_n$ in $G(x)$ uniquely counts objects of size $n$. Linear independence ensures that collecting like terms (powers of $x$) is valid and unambiguous.
 
-\section{Example Problem}
+% \section{Example Problem}
 
-Find the number of non-negative integer solutions to $a + b + c = 10$ with:
-\begin{itemize}
-  \item $a \in \{2, 3, 4\}$
-  \item $b$ even ($b \in \{0, 2, 4, \dots\}$)
-  \item $c$ odd ($c \in \{1, 3, 5, \dots\}$)
-\end{itemize}
+% Find the number of non-negative integer solutions to $a + b + c = 10$ with:
+% \begin{itemize}
+%   \item $a \in \{2, 3, 4\}$
+%   \item $b$ even ($b \in \{0, 2, 4, \dots\}$)
+%   \item $c$ odd ($c \in \{1, 3, 5, \dots\}$)
+% \end{itemize}
 
-\section{Encoding Constraints}
+% \section{Encoding Constraints}
 
-Each variable's allowed values are encoded as a generating function:
-\begin{align*}
-  A(x) &= x^2 + x^3 + x^4 \\
-  B(x) &= 1 + x^2 + x^4 + \dots = \frac{1}{1-x^2} \\
-  C(x) &= x + x^3 + x^5 + \dots = \frac{x}{1-x^2}
-\end{align*}
+% Each variable's allowed values are encoded as a generating function:
+% \begin{align*}
+%   A(x) &= x^2 + x^3 + x^4 \\
+%   B(x) &= 1 + x^2 + x^4 + \dots = \frac{1}{1-x^2} \\
+%   C(x) &= x + x^3 + x^5 + \dots = \frac{x}{1-x^2}
+% \end{align*}
 
-\section{Combining by Multiplication}
+% \section{Combining by Multiplication}
 
-The total generating function is $G(x) = A(x)B(x)C(x)$. Multiplying corresponds to summing exponents: selecting $x^a$, $x^b$, $x^c$ gives $x^{a+b+c}$. The coefficient of $x^{10}$ in $G(x)$ counts the solutions.
+% The total generating function is $G(x) = A(x)B(x)C(x)$. Multiplying corresponds to summing exponents: selecting $x^a$, $x^b$, $x^c$ gives $x^{a+b+c}$. The coefficient of $x^{10}$ in $G(x)$ counts the solutions.
 
-\section{Why Linear Independence Matters}
+% \section{Why Linear Independence Matters}
 
-Because monomials are linearly independent, each power $x^n$ in $G(x)$ has a unique coefficient. This guarantees that the coefficient of $x^{10}$ counts only the desired combinations, with no overlap or ambiguity.
+% Because monomials are linearly independent, each power $x^n$ in $G(x)$ has a unique coefficient. This guarantees that the coefficient of $x^{10}$ counts only the desired combinations, with no overlap or ambiguity.
 
-\section{Solution}
+% \section{Solution}
 
-Expand:
-\begin{align*}
-  G(x) &= (x^2 + x^3 + x^4) \cdot \frac{1}{1-x^2} \cdot \frac{x}{1-x^2} \\
-       &= \frac{x^3 + x^4 + x^5}{(1-x^2)^2}
-\end{align*}
-Expand the denominator:
-\[
-  \frac{1}{(1-x^2)^2} = \sum_{j=0}^\infty (j+1)x^{2j}
-\]
-To get $x^{10}$, use:
-\begin{itemize}
-  \item $x^3$ needs $x^7$ from denominator: not possible (only even powers).
-  \item $x^4$ needs $x^6$: $j=3$, coefficient $4$.
-  \item $x^5$ needs $x^5$: not possible.
-\end{itemize}
-Total: $0 + 4 + 0 = 4$.
+% Expand:
+% \begin{align*}
+%   G(x) &= (x^2 + x^3 + x^4) \cdot \frac{1}{1-x^2} \cdot \frac{x}{1-x^2} \\
+%        &= \frac{x^3 + x^4 + x^5}{(1-x^2)^2}
+% \end{align*}
+% Expand the denominator:
+% \[
+%   \frac{1}{(1-x^2)^2} = \sum_{j=0}^\infty (j+1)x^{2j}
+% \]
+% To get $x^{10}$, use:
+% \begin{itemize}
+%   \item $x^3$ needs $x^7$ from denominator: not possible (only even powers).
+%   \item $x^4$ needs $x^6$: $j=3$, coefficient $4$.
+%   \item $x^5$ needs $x^5$: not possible.
+% \end{itemize}
+% Total: $0 + 4 + 0 = 4$.
 
-\textbf{Answer:} There are 4 solutions.
+% \textbf{Answer:} There are 4 solutions.
 
 
 
