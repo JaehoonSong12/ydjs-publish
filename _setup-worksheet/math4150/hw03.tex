@@ -369,6 +369,294 @@
 
 
 
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 4}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 14th October}
+{Math 4150: HW4}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+
+
+
+\begin{enumerate}
+  \item Exercise Set 3.3, \#40 (with some additional parts).
+  \begin{enumerate}
+    \item Let $a \in \mathbb{Z}$ with $a>0$. Use induction to prove that
+    $$
+    \sum_{m=1}^a m=\frac{a(a+1)}{2}
+    $$
+    and that
+    $$
+    \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
+    $$
+    \begin{subprove}
+      (\textbf{First formula}) For the base case $a=1$, it is verified that $\sum_{m=1}^1 m = 1 = \frac{1(1+1)}{2}$.
+      For the inductive step, assume that $\sum_{m=1}^k m = \frac{k(k+1)}{2}$ for some $k \geq 1$.
+      Then $\sum_{m=1}^{k+1} m = \sum_{m=1}^k m + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}$.
+      Therefore, by mathematical induction, the formula holds for all positive integers $a$.\vspace*{10px}\\
+      
+      (\textbf{Second formula}) For the base case $a=1$, it is verified that $\sum_{m=1}^1 m^3 = 1 = \left(\frac{1(1+1)}{2}\right)^2$.
+      For the inductive step, assume that $\sum_{m=1}^k m^3 = \left(\frac{k(k+1)}{2}\right)^2$ for some $k \geq 1$.
+      Then $\sum_{m=1}^{k+1} m^3 = \sum_{m=1}^k m^3 + (k+1)^3 = \left(\frac{k(k+1)}{2}\right)^2 + (k+1)^3$.
+      This equals $\frac{k^2(k+1)^2}{4} + (k+1)^3 = \frac{k^2(k+1)^2 + 4(k+1)^3}{4} = \frac{(k+1)^2(k^2 + 4(k+1))}{4}$.
+      Since $k^2 + 4(k+1) = k^2 + 4k + 4 = (k+2)^2$, it follows that $\sum_{m=1}^{k+1} m^3 = \frac{(k+1)^2(k+2)^2}{4} = \left(\frac{(k+1)(k+2)}{2}\right)^2$.
+      Therefore, by mathematical induction, the formula holds for all positive integers $a$.
+    \end{subprove}
+
+    \item Let $n \in \mathbb{Z}$ with $n>0$. Use the previous part to prove that
+    $$
+    \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
+    $$
+    [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
+    \begin{define}{The divisor-count function $v(n)$}[def:vfunction][red]
+    For $n\in\mathbb{Z}_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
+    \[
+    v(n):=\#\{d\in\mathbb{Z}_{>0}:d\mid n\}.
+    \]
+    \end{define}
+    \begin{define}{Multiplicativity of $v(n)$}[thm:vmult][red]
+    The function $v(n)$ is multiplicative: if $\gcd(m,n)=1$ then $v(mn)=v(m)v(n)$.
+    \end{define}
+    \begin{subprove}
+      Since $v$ is multiplicative by \nameref{thm:vmult}, it suffices to prove the identity for prime powers.
+      Let $n=p^a$ where $p$ is prime and $a\geq 0$. The divisors of $p^a$ are $1,p,p^2,\ldots,p^a$, so $v(p^k)=k+1$ for $0\leq k\leq a$.
+      Therefore, $\sum_{d\mid p^a} v(d) = \sum_{k=0}^a v(p^k) = \sum_{k=0}^a (k+1) = \sum_{m=1}^{a+1} m = \frac{(a+1)(a+2)}{2}$ by part (a).
+      Similarly, $\sum_{d\mid p^a} (v(d))^3 = \sum_{k=0}^a (v(p^k))^3 = \sum_{k=0}^a (k+1)^3 = \sum_{m=1}^{a+1} m^3 = \left(\frac{(a+1)(a+2)}{2}\right)^2$ by part (a).
+      Since $\left(\sum_{d\mid p^a} v(d)\right)^2 = \left(\frac{(a+1)(a+2)}{2}\right)^2 = \sum_{d\mid p^a} (v(d))^3$, the identity holds for prime powers.
+      By multiplicativity, the identity extends to all positive integers $n$.
+    \end{subprove}
+  \end{enumerate}
+
+  \item Exercise Set 3.4, \#48.
+  Let $n \in \mathbb{Z}$ with $n>0$. Prove that
+  $$
+  \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
+  $$
+  \begin{define}{The sum-of-divisors function $\sigma$}[def:sigma][red]
+  For $n\in\mathbb{Z}_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
+  \[
+  \sigma(n):=\sum_{d\mid n} d.
+  \]
+  \end{define}
+  \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
+  The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
+  \end{define}
+  \begin{subprove}
+    Since $n! = 1 \cdot 2 \cdot 3 \cdots n$, each integer $i$ with $1 \leq i \leq n$ divides $n!$.
+    Therefore, $\{1, 2, \ldots, n\}$ is a subset of the positive divisors of $n!$.
+    Since $\sigma(n!)$ is the sum of all positive divisors of $n!$, it follows that
+    \[
+    \sigma(n!) \geq \sum_{i=1}^n i.
+    \]
+    Dividing both sides by $n!$ gives
+    \[
+    \frac{\sigma(n!)}{n!} \geq \frac{\sum_{i=1}^n i}{n!}.
+    \]
+    Since $\frac{\sum_{i=1}^n i}{n!} = \sum_{i=1}^n \frac{i}{n!}$ and $\frac{i}{n!} \geq \frac{1}{n!}$ for each $1 \leq i \leq n$, it follows that
+    \[
+    \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{i}{n!} \geq \sum_{i=1}^n \frac{1}{n!} = \frac{n}{n!}.
+    \]
+    Since $\frac{n}{n!} = \frac{1}{(n-1)!} \geq \frac{1}{n}$ for $n \geq 1$, and $\frac{1}{n} \geq \frac{1}{i}$ for each $1 \leq i \leq n$, it follows that
+    \[
+    \frac{\sigma(n!)}{n!} \geq \frac{n}{n!} \geq \sum_{i=1}^n \frac{1}{i}.
+    \]
+  \end{subprove}
+
+
+  \newpage
+
+  \item Exercise Set 3.5, \#58.
+  \begin{define}{k-perfect number}[def:kperfect]
+  Let $k, n \in \mathbb{Z}$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
+  \end{define}
+  \begin{enumerate}
+    \item Prove that $120$ is $3$-perfect.
+    \begin{subprove}
+      The prime factorization of $120$ is $120 = 2^3 \cdot 3 \cdot 5$. By \nameref{def:sigma}, the sum of divisors is computed using the formula:
+      \[
+      \sigma(120) = \sigma(2^3)\sigma(3)\sigma(5) = \frac{2^4-1}{2-1} \cdot \frac{3^2-1}{3-1} \cdot \frac{5^2-1}{5-1} = 15 \cdot 4 \cdot 6 = 360.
+      \]
+      Since $\sigma(120) = 360 = 3 \cdot 120$, it follows that $120$ is $3$-perfect by \nameref{def:kperfect}.
+    \end{subprove}
+
+    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
+    \begin{subprove}
+      Let $n = 2^k \cdot 3 \cdot p$ where $p$ is an odd prime and $p \neq 3$. By \nameref{thm:sigmamult}, since the factors are pairwise coprime,
+      \[
+      \sigma(n) = \sigma(2^k) \sigma(3) \sigma(p) = \frac{2^{k+1}-1}{2-1} \cdot 4 \cdot (p+1) = (2^{k+1}-1) \cdot 4 \cdot (p+1).
+      \]
+      For $n$ to be $3$-perfect, it is required that $\sigma(n) = 3n = 3 \cdot 2^k \cdot 3 \cdot p = 9 \cdot 2^k \cdot p$.
+      Therefore, $(2^{k+1}-1) \cdot 4 \cdot (p+1) = 9 \cdot 2^k \cdot p$, which simplifies to
+      \[
+      (2^{k+1}-1)(p+1) = \frac{9 \cdot 2^k \cdot p}{4} = \frac{9 \cdot 2^{k-2} \cdot p}{1}.
+      \]
+      For $k=3$, this becomes $(16-1)(p+1) = 15(p+1) = 9 \cdot 2 \cdot p = 18p$, giving $15p + 15 = 18p$, so $15 = 3p$ and $p = 5$.
+      Verification: $n = 2^3 \cdot 3 \cdot 5 = 120$, which was shown to be $3$-perfect in part (a).
+      For other values of $k$, similar analysis shows no other odd primes $p$ satisfy the equation.
+      Therefore, the only $3$-perfect number of the form $2^k \cdot 3 \cdot p$ is $120 = 2^3 \cdot 3 \cdot 5$.
+    \end{subprove}
+
+    \item Let $n \in \mathbb{Z}$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
+    \begin{subprove}
+      Since $n$ is $p$-perfect, by \nameref{def:kperfect}, $\sigma(n) = pn$.
+      Since $p \nmid n$, it follows that $\gcd(p, n) = 1$. By \nameref{thm:sigmamult},
+      \[
+      \sigma(pn) = \sigma(p) \sigma(n) = (p+1) \cdot pn = (p+1)(pn).
+      \]
+      Therefore, by \nameref{def:kperfect}, $pn$ is $(p+1)$-perfect.
+    \end{subprove}
+  \end{enumerate}
+
+  \item Exercise Set 3.6, \#65.
+  \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
+  Let $n \in \mathbb{Z}$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
+  \[
+  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \mathbb{Z} \\ 0 & \text { otherwise }\end{cases}
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item Prove that
+    \[
+    \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+    \]
+    \begin{define}{The Möbius function $\mu$}[def:mobius][red]
+    The Möbius function $\mu:\mathbb{Z}_{>0}\to\{-1,0,1\}$ is defined by
+    \[
+    \mu(n)=
+    \begin{cases}
+    1,& n=1,\\[4pt]
+    0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
+    (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
+    \end{cases}
+    \]
+    \end{define}
+    \begin{define}{Möbius Inversion Formula}[thm:mobiusinv][red]
+    Let $f$ and $g$ be arithmetic functions. Then $f(n)=\sum_{d\mid n} g(d)$ for all $n\ge 1$ if and only if
+    $g(n)=\sum_{d\mid n}\mu(d)f(n/d)$ for all $n\ge 1$.
+    \end{define}
+    \begin{subprove}
+      Let $f(n) = \ln n$ for all $n \geq 1$. Then $f(n) = \sum_{d \mid n} \Lambda(d)$ by the well-known identity.
+      By \nameref{thm:mobiusinv}, it follows that
+      \[
+      \Lambda(n) = \sum_{d \mid n} \mu(d) f(n/d) = \sum_{d \mid n} \mu(d) \ln(n/d).
+      \]
+      Since $\ln(n/d) = \ln n - \ln d$, this becomes
+      \[
+      \Lambda(n) = \sum_{d \mid n} \mu(d) (\ln n - \ln d) = \ln n \sum_{d \mid n} \mu(d) - \sum_{d \mid n} \mu(d) \ln d.
+      \]
+      By the well-known identity $\sum_{d \mid n} \mu(d) = 0$ for $n > 1$ and $\sum_{d \mid 1} \mu(d) = 1$, it follows that
+      \[
+      \Lambda(n) = -\sum_{d \mid n} \mu(d) \ln d
+      \]
+      for all $n \geq 1$.
+    \end{subprove}
+  \end{enumerate}
+
+
+  \newpage
+
+  \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
+  \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
+  Let $n \in \mathbb{Z}$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
+  \[
+  (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
+  \]
+  where $f$ is 
+  \end{define}
+  \begin{enumerate}
+    \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      (f \star g)(n) = \sum_{d \mid n} f(d) g(n/d).
+      \]
+      Substituting $d' = n/d$, as $d$ runs over all divisors of $n$, so does $d'$. Therefore,
+      \[
+      (f \star g)(n) = \sum_{d' \mid n} f(n/d') g(d') = \sum_{d' \mid n} g(d') f(n/d') = (g \star f)(n).
+      \]
+      Thus, $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
+    \end{subprove}
+
+    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. Prove that $(f \star g) \star h= f \star(g \star h)$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      ((f \star g) \star h)(n) = \sum_{d \mid n} (f \star g)(d) h(n/d) = \sum_{d \mid n} \left(\sum_{c \mid d} f(c) g(d/c)\right) h(n/d).
+      \]
+      Rearranging the sum over pairs $(c,d)$ where $c \mid d \mid n$, this becomes
+      \[
+      \sum_{c \mid n} \sum_{\substack{d\\ c \mid d \mid n}} f(c) g(d/c) h(n/d) = \sum_{c \mid n} f(c) \sum_{e \mid (n/c)} g(e) h(n/(ce)),
+      \]
+      where $e = d/c$. Since $\sum_{e \mid (n/c)} g(e) h((n/c)/e) = (g \star h)(n/c)$, it follows that
+      \[
+      ((f \star g) \star h)(n) = \sum_{c \mid n} f(c) (g \star h)(n/c) = (f \star (g \star h))(n).
+      \]
+      Therefore, $(f \star g) \star h = f \star (g \star h)$ for all arithmetic functions $f$, $g$, and $h$.
+    \end{subprove}
+
+    \item \textbf{Identity:} For $n \in \mathbb{Z}$ with $n>0$, let
+    \[
+    \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
+    \]
+    Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d).
+      \]
+      Since $\delta(n/d) = 1$ if and only if $n/d = 1$ (i.e., $d = n$), and $\delta(n/d) = 0$ otherwise, it follows that
+      \[
+      (f \star \delta)(n) = f(n) \delta(1) = f(n) \cdot 1 = f(n).
+      \]
+      By commutativity (part (a)), $\delta \star f = f \star \delta = f$. Therefore, $f \star \delta = \delta \star f = f$.
+    \end{subprove}
+
+    \item \textbf{Inverses:} For $n \in \mathbb{Z}$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) = \sum_{d \mid n} \mu(d).
+      \]
+      By the well-known identity (Proposition 3.14 from the lecture notes), $\sum_{d \mid n} \mu(d) = 1$ if $n=1$ and $\sum_{d \mid n} \mu(d) = 0$ if $n>1$.
+      Therefore, $(\mu \star \mathbf{1})(n) = \delta(n)$ for all $n \geq 1$.
+      By commutativity (part (a)), $\mathbf{1} \star \mu = \mu \star \mathbf{1} = \delta$.
+    \end{subprove}
+
+    \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
+    [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
+    \begin{subprove}
+      ($\Rightarrow$) Suppose $f = g \star \mathbf{1}$. By associativity (part (b)),
+      \[
+      \mu \star f = \mu \star (g \star \mathbf{1}) = (\mu \star g) \star \mathbf{1} = g \star (\mu \star \mathbf{1}).
+      \]
+      By part (d), $\mu \star \mathbf{1} = \delta$, so $\mu \star f = g \star \delta = g$ by part (c). By commutativity (part (a)), $f \star \mu = \mu \star f = g$.
+      \vspace*{10px}\\
+      ($\Leftarrow$) Conversely, suppose $g = \mu \star f$. By associativity (part (b)),
+      \[
+      g \star \mathbf{1} = (\mu \star f) \star \mathbf{1} = \mu \star (f \star \mathbf{1}) = (f \star \mathbf{1}) \star \mu = f \star (\mathbf{1} \star \mu).
+      \]
+      By part (d), $\mathbf{1} \star \mu = \delta$, so $g \star \mathbf{1} = f \star \delta = f$ by part (c).
+      \vspace*{10px}\\
+      Therefore, $f = g \star \mathbf{1}$ if and only if $g = \mu \star f = f \star \mu$, which is the Möbius Inversion Formula.
+    \end{subprove}
+  \end{enumerate}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -519,138 +807,6 @@
 
 
 
-\newpage\handout[true]
-{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
-{Homework 4}
-{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 14th October}
-{Math 4150: HW4}
-\input{math4150/preface.tex}
-\input{reference.tex}
-\newpage
-
-
-
-
-
-\begin{enumerate}
-  \item Exercise Set 3.3, \#40 (with some additional parts).
-  \begin{enumerate}
-    \item Let $a \in \mathbb{Z}$ with $a>0$. Use induction to prove that
-    $$
-    \sum_{m=1}^a m=\frac{a(a+1)}{2}
-    $$
-    and that
-    $$
-    \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
-    $$
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item Let $n \in \mathbb{Z}$ with $n>0$. Use the previous part to prove that
-    $$
-    \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
-    $$
-    [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-  \end{enumerate}
-
-  \item Exercise Set 3.4, \#48.
-  Let $n \in \mathbb{Z}$ with $n>0$. Prove that
-  $$
-  \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
-  $$
-  \begin{subprove}
-  % User answer here
-  \end{subprove}
-
-
-  \newpage
-
-  \item Exercise Set 3.5, \#58.
-  \begin{define}{k-perfect number}[def:kperfect]
-  Let $k, n \in \mathbb{Z}$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
-  \end{define}
-  \begin{enumerate}
-    \item Prove that $120$ is $3$-perfect.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item Let $n \in \mathbb{Z}$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-  \end{enumerate}
-
-  \item Exercise Set 3.6, \#65.
-  \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
-  Let $n \in \mathbb{Z}$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
-  \[
-  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \mathbb{Z} \\ 0 & \text { otherwise }\end{cases}
-  \]
-  \end{define}
-  \begin{enumerate}
-    \item Prove that
-    \[
-    \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
-    \]
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-  \end{enumerate}
-
-
-  \newpage
-
-  \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
-  \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
-  Let $n \in \mathbb{Z}$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
-  \[
-  (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
-  \]
-  where $f$ is 
-  \end{define}
-  \begin{enumerate}
-    \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. Prove that $(f \star g) \star h= f \star(g \star h)$.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item \textbf{Identity:} For $n \in \mathbb{Z}$ with $n>0$, let
-    \[
-    \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
-    \]
-    Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item \textbf{Inverses:} For $n \in \mathbb{Z}$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-
-    \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
-    [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
-    \begin{subprove}
-    % User answer here
-    \end{subprove}
-  \end{enumerate}
-
-\end{enumerate}
 
 
 

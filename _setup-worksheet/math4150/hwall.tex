@@ -1,0 +1,2227 @@
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 1}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 2nd September}
+{Math 4150: HW1}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+% https://people.math.binghamton.edu/mazur/teach/40718/40718.html
+
+\begin{enumerate}
+  \item Exercise Set 1.1, \#6.
+  \begin{enumerate}
+    \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
+    \begin{subprove}
+      ($\Rightarrow$) Assume $a\divides b$. 
+      \begin{define}{Divisibility}[def:divisibility][redcolor]
+      Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
+      integer $c\in\Z$ such that
+      \[
+      b = a c.
+      \]
+      If no such integer $c$ exists we write $a\nmid b$.
+      \end{define}
+      By definition of divisibility, there exists $k\in\mathbb{Z}$ such that
+      \[
+        b = a k
+      \]
+      that is,
+      \[
+        bc = (a k)c = (ac)k.
+      \]
+      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\divides bc$. 
+      Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
+      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\mathbb{Z}$ with
+      \[
+        bc = (ac)t = at\cdot c
+      \]
+      that is, by division,
+      \[
+        b = a t
+      \]
+      since $c\neq 0$.
+      Thus $a\divides b$. Hence, $a\divides b$ if $ac \divides bc$.\vspace*{10px}\\
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a\divides b$ if and only if $ac \divides bc$ for $c\neq 0$.
+    \end{subprove}
+
+    \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
+    \begin{subanswer}
+      Take $a=2, b=1, c=0$. Then $ac = 0$ and $bc=0$, so $ac\divides bc$ is true by 
+      multiplicative identity, $0=0\cdot k$ for every integer $k$.
+      However,  $a\divides b$ is false, $a\nmid b$, since there is no integer $k$ such that $1=2k$. 
+      Thus, the conclusion above does not hold if $c = 0$.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \begin{subprove}
+    ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
+    \begin{define}{Division Algorithm}[algo:division][redcolor]
+    Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
+    \[
+    a = b q + r \qquad\text{and}\qquad 0\le r < b.
+    \]
+    Here $q$ is called the \emph{quotient} and $r$ the \emph{remainder}.
+    \end{define}
+    there exist integers $q\ge 0$ and $r$ with $0\le r<m$ such that
+    \[
+      n = qm + r.
+    \]
+    Then, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{qm+r}-1 = a^{r}\bigl({a^{m}}^{q}-1\bigr) + \bigl(a^{r}-1\bigr)= a^{r}(a^{m}-1)\bigl(1+a^{m}+\cdots+a^{m(q-1)}\bigr) + \bigl(a^{r}-1\bigr).
+    \]
+    It follows that the remainder upon division of $a^{n}-1$ by $a^{m}-1$ is $a^{r}-1$ where $a^{r}-1 < a^{m}-1$. 
+    By hypothesis 
+    $a^{m}-1\divides a^{n}-1$, $a^{r}-1=0$. 
+    Thus, $r=0$ since $a>1$. Moreover, $n=qm$, so $m\divides n$.
+    Thus, $a^{m}-1 \divides a^{n}-1$ only if $m\divides n$.\vspace*{10px}\\
+    ($\Leftarrow$) Assume $m\divides n$. Then there exists $k\in\setZ_{>0}$ such that
+    \[
+      n = m k.
+    \]
+    where the integer $k\ge 2$, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{mk}-1 = \bigl(a^{m}\bigr)^{k}-1
+        = (a^{m}-1)\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr).
+    \]
+    By the Closure Property of Integers, $\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr)\in\setZ$, 
+    hence $a^{m}-1\divides a^{n}-1$. 
+    Thus, $a^{m}-1 \divides a^{n}-1$ if $m\divides n$.\vspace*{10px}\\
+    Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \end{subprove}
+
+
+  \newpage
+
+  \item Exercise Set 1.1, \#10. Let $n\in \Z$.
+  \begin{enumerate}
+    \item Prove that $3\divides n^{3}-n$.
+    \begin{subprove}
+      By algebra,
+      \[
+        n^{3}-n = (n-1)(n)(n+1).
+      \]
+      By the Division Algorithm with divisor $3$, there exist integers $q\in\setZ$ and $r$ with $0\le r<3$ such that
+      \[
+        n = 3q + r.
+      \] 
+      This only includes $n = 3q$, $n = 3q + 1$, and $n = 3q + 2$.
+      Without loss of generality, 
+      \[
+        n^{3}-n = (n-1)(n)(n+1)=(3q-1)(3q)(3q+1)=3(3q-1)(q)(3q+1).
+      \]
+      It shows at least one of the three consecutive integers has $3$ as its factor.
+      Thus, $3\divides n^{3}-n$.
+    \end{subprove}
+    \item Prove that $5\divides n^{5}-n$.
+    \begin{subprove}
+      By algebra,
+      \[
+      n^{5}-n = (n-1)(n)(n+1)(n^{2}+1).
+      \]
+      By the Division Algorithm with divisor $5$, there exist integers $q\in\mathbb{Z}$ and $r$ with $0\le r<5$ such that
+      \[
+      n = 5q + r.
+      \]
+      Thus, for each $r\in\{0,1,2,3,4\}$, \\
+      If $r=0$ then $5\mid n$, so $5\mid n^{5}-n$.\\
+      If $r=1$ then $5\mid n-1$, so $5\mid n^{5}-n$.\\
+      If $r=2$ then $n^{2}+1=(5q+2)^{2}+1=5(5q^{2}+4q+1)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=3$ then $n^{2}+1=(5q+3)^{2}+1=5(5q^{2}+6q+2)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=4$ then $n+1=5q+5=5(q+1)$, so $5\mid n+1$ and hence $5\mid n^{5}-n$.\\
+      In every condition, the conclusion, $5\mid n^{5}-n$, has been consistent. Therefore, $5\mid n^{5}-n$.
+    \end{subprove}
+    \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
+    \begin{subanswer}
+      Take $n=2$. $4 \nmid \group{n^{4}-n}$ since $n^{4}-n=16-2=14$ and $4\nmid14$. This is a counterexample. (false)
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \begin{claim}
+  Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
+    \begin{subprove}
+    Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
+    odd. Then, $n=2k+1$ for some $k\in\mathbb{Z}$. That is,
+    \[
+    n^{2}+1=(2k+1)^{2}+1=4k^{2}+4k+2=2\bigl(2k^{2}+2k+1\bigr).
+    \]
+    Thus, $n^{2}+1$ is even where $n^{2}+1 \ge 5$ by the assumption, not a prime. Therefore, by contradiction, If $n^{2}+1$ is prime then $n$ is even.
+    \end{subprove}
+  \end{claim}
+
+  \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that 
+  if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \begin{subprove}
+    Assume $a^{n}+1$ is prime, then $n$ is even by the claim above. Suppose, for 
+    the sake of contradiction, $n$ is not a power of $2$. 
+    Let $n=2^{t}u$ where $t\ge 0$ and a relative prime (or odd integer) $u>2$, 
+    which does not follow the defintion of a power of $2$. Then,
+    \[
+    a^{n}+1 = \group{a^{2^{t}}}^u+1
+    = \bigl(a^{2^{t}}+1\bigr)\bigl(a^{2^{t}(u-1)}-a^{2^{t}(u-2)}+\cdots - a^{2^{t}}+1\bigr),
+    \]
+    so $a^{n}+1$ is composite, which contradicts the assumption, $a^{n}+1$ is prime. 
+    Therefore, by contradiction, if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \end{subprove}
+
+  \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then 
+  $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
+  \begin{subprove}
+    Suppose, for the sake of direct proof, $n^{2} + 1$ is a prime number. By the claim above, $n$ is even. 
+    Then, by the definition of even, $n=2t$ for some $t\in\Z$. Then $n^{2}=4t^{2}$ and
+    \[
+      n^{2}+1 = 4t^{2}+1 = 4\,(t^{2}) + 1.
+    \]
+    Let $k=t^{2}\in\Z$. Then, $k$ is an integer by Closure Property of Integers. Thus, 
+    $n^{2}+1$ has the form $4k+1$.
+  \end{subprove}
+
+
+
+
+
+  \newpage
+
+
+
+
+
+
+  \item Exercise Set 1.3, \#43.
+  \begin{enumerate}
+    \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
+    \begin{subprove}
+      Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
+      \begin{define}{Euclid's Lemma}[lem:euclid-lemma][redcolor]
+      Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
+      \end{define}
+      by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
+    \end{subprove}
+    \item Provide a counterexample to show why the statement in (a) cannot hold if $(a,b)>1$.
+    \begin{subanswer}
+      Take $a=b=2$ and $c=2$. Then $a\divides c$ and $b\divides c$, but $ab=4\nmid 2$. 
+      This is a counterexample. (false)
+    \end{subanswer}
+    \item Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers. Prove that if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \begin{subprove}
+      It is trivial to say \inlinequote{$a \divides c$, then $a \divides c$} since it is a 
+      tautology, for the sake of inductive proof, base step is true. (base step)\vspace*{10px}\\
+      Suppose, for the sake of inductive proof (inductive step), the statement holds for $n-1$ 
+      pairwise relatively prime integers.
+      Let $b=a_1\cdots a_{n-1}$ satisfying the $n-1$ relative primes and $c=b\cdot a_n = a_1\cdots a_{n}$ assuming $a_n$ is another 
+      pairwise prime with $b$, for the sake of direct proof. 
+      Then, by the definition of pairwise prime numbers, we have $(b,a_n)=1$, and by all the 
+      assumptions, $b\divides c$ and $a_n\divides c$. This satisfies the condition of part (a). 
+      Thus, by the part (a), $b a_n\divides c$. In other words, $a_1\cdots a_{n}\divides c$.\vspace*{10px}\\
+      Thus, by (base step) and (inductive step), for all $n\in\setZ$, if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.3, \#48. Let $a,b\in \Z$. Show that $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \begin{subprove}
+    ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
+    $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
+    Principle Lemma.
+    \begin{define}{Well-Ordering Principle Lemma}[thm:well-ordering-princ][redcolor]
+    Every integer $n>1$ has at least one prime divisor.
+    \end{define}
+    Thus, by the transitive property of divisibility,
+    $$
+    p \divides(a+b) \quad \text { and } \quad p \divides a b
+    $$
+    since $p \divides d$, $d \divides \group{a+b}$, and $d \divides \group{a\cdot b}$.
+    Then, by \nameref{lem:euclid-lemma}, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
+    Without loss of generality and by the definition of divisibility, there exists $i\in\setZ$ such that 
+    $$
+    a = p i.
+    $$
+    Also, by assumption of $p\divides(a+b)$, there exists $j\in\setZ$ such that $a+b = pj$. Thus,
+    $$
+    b = pj - pi = p(j-i),
+    $$
+    so $p\divides b$ as well since it is trivial that $j-i\in\setZ$ by the Closure Property of Integers, 
+    which means $p$ is a common prime divisor of $a$ and $b$.
+    It contradicts the assumption $(a,b) = p \ne 1$.
+    Therefore, $(a,b)=1$ only if $(a+b,ab) = 1$.\vspace*{10px}\\
+    ($\Leftarrow$) Assume $(a+b, a b)=1$. Suppose, for the sake of contradiction, 
+    that $(a, b)=g>1$. By the Well-Ordering Principle Lemma, there exists a prime 
+    $p$ with $p \divides g$. 
+    Since $g=(a, b)$ divides both $a$ and $b$, by transitivity of divisibility,
+    $$
+    p\divides a \text { and } p \divides b .
+    $$
+    Hence, trivially, $p \divides a b$ and $p \divides(a+b)$, which means $p$ is a common 
+    prime divisor of $a b$ and $a+b$. It contradicts the assumption $(a+b, a b) = p \ne1$.
+    Therefore, $(a,b)=1$ if $(a+b,ab) = 1$.\vspace*{10px}\\
+    Thus, by ($\Rightarrow$) and ($\Leftarrow$), $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \end{subprove}
+
+  \newpage
+
+  \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the 
+  gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
+  \begin{subanswer}
+    By Euclidean algorithm,
+    \[
+      \begin{aligned}
+        1155 &= 441\cdot 2 + 273,\\
+        441 &= 273\cdot 1 + 168,\\
+        273 &= 168\cdot 1 + 105,\\
+        168 &= 105\cdot 1 + 63,\\
+        105 &= 63\cdot 1 + 42,\\
+        63  &= 42\cdot 1 + 21,\\
+        42  &= 21\cdot 2 + 0.
+      \end{aligned}
+    \]
+    Hence $\gcd(441,1155)=21$. Then, by back-substitution,
+    \[
+      21 = 21\cdot 441 - 8\cdot 1155.
+    \]
+    Thus $21 = (21)\,441 + (-8)\,1155$, which is a linear combination with Bézout coefficients.
+  \end{subanswer}
+
+
+  \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose 
+  sum is $\frac{7}{143}$.
+  \begin{subanswer}
+    Let $x,y\in\setZ$ be arbitrary, for the sake of definition of rational numbers, then construct 
+    the following equation,
+    $$\dfrac{x}{11}+\dfrac{y}{13}=\dfrac{7}{143}.$$
+    Then, since $13\times11=143$, it is equivalent to 
+    $$13x+11y=7.$$ 
+    Take $x=9$, $y=-10$ since $117-110=7$. Hence, the two such rational numbers are as follows.
+    \[
+      \group{\frac{9}{11}}+\group{-\frac{10}{13}}=\frac{7}{143}.
+    \]
+  \end{subanswer}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 1}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 2nd September}
+{Math 4150: HW1}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+% https://people.math.binghamton.edu/mazur/teach/40718/40718.html
+
+\begin{enumerate}
+  \item Exercise Set 1.1, \#6.
+  \begin{enumerate}
+    \item Let $a,b, c\in \Z$ with $c\neq 0$. Show that $a\divides b$ if and only if $ac \divides bc$.
+    \begin{subprove}
+      ($\Rightarrow$) Assume $a\divides b$. 
+      \begin{define}{Divisibility}[def:divisibility][red]
+      Let $a,b\in\Z$. We say \emph{$a$ divides $b$}, and write $a\divides b$, if there exists an 
+      integer $c\in\Z$ such that
+      \[
+      b = a c.
+      \]
+      If no such integer $c$ exists we write $a\nmid b$.
+      \end{define}
+      By definition of divisibility, there exists $k\in\mathbb{Z}$ such that
+      \[
+        b = a k
+      \]
+      that is,
+      \[
+        bc = (a k)c = (ac)k.
+      \]
+      Since $k\in\mathbb{Z}$, by definition of divisibility, $ac\divides bc$. 
+      Hence, $a\divides b$ only if $ac \divides bc$\vspace*{10px}\\
+      ($\Leftarrow$) Assume $ac\divides bc$. Then there exists $t\in\mathbb{Z}$ with
+      \[
+        bc = (ac)t = at\cdot c
+      \]
+      that is, by division,
+      \[
+        b = a t
+      \]
+      since $c\neq 0$.
+      Thus $a\divides b$. Hence, $a\divides b$ if $ac \divides bc$.\vspace*{10px}\\
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a\divides b$ if and only if $ac \divides bc$ for $c\neq 0$.
+    \end{subprove}
+
+    \item Provide a counterexample showing that the conclusion above does not hold if $c = 0$.
+    \begin{subanswer}
+      Take $a=2, b=1, c=0$. Then $ac = 0$ and $bc=0$, so $ac\divides bc$ is true by 
+      multiplicative identity, $0=0\cdot k$ for every integer $k$.
+      However,  $a\divides b$ is false, $a\nmid b$, since there is no integer $k$ such that $1=2k$. 
+      Thus, the conclusion above does not hold if $c = 0$.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.1, \#9. Let $a, m, n$ be positive integers, with $a > 1$. Show that $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \begin{subprove}
+    ($\Rightarrow$) Assume $a^{m}-1\divides a^{n}-1$. By the Division Algorithm,
+    \begin{define}{Division Algorithm}[algo:division][red]
+    Let $a,b\in\Z$ with $b>0$. Then there exist unique integers $q$ and $r$ such that
+    \[
+    a = b q + r \qquad\text{and}\qquad 0\le r < b.
+    \]
+    Here $q$ is called the \emph{quotient} and $r$ the \emph{remainder}.
+    \end{define}
+    there exist integers $q\ge 0$ and $r$ with $0\le r<m$ such that
+    \[
+      n = qm + r.
+    \]
+    Then, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{qm+r}-1 = a^{r}\bigl({a^{m}}^{q}-1\bigr) + \bigl(a^{r}-1\bigr)= a^{r}(a^{m}-1)\bigl(1+a^{m}+\cdots+a^{m(q-1)}\bigr) + \bigl(a^{r}-1\bigr).
+    \]
+    It follows that the remainder upon division of $a^{n}-1$ by $a^{m}-1$ is $a^{r}-1$ where $a^{r}-1 < a^{m}-1$. 
+    By hypothesis 
+    $a^{m}-1\divides a^{n}-1$, $a^{r}-1=0$. 
+    Thus, $r=0$ since $a>1$. Moreover, $n=qm$, so $m\divides n$.
+    Thus, $a^{m}-1 \divides a^{n}-1$ only if $m\divides n$.\vspace*{10px}\\
+    ($\Leftarrow$) Assume $m\divides n$. Then there exists $k\in\setZ_{>0}$ such that
+    \[
+      n = m k.
+    \]
+    where the integer $k\ge 2$, by the geometric series (trivial algebra),
+    \[
+      a^{n}-1 = a^{mk}-1 = \bigl(a^{m}\bigr)^{k}-1
+        = (a^{m}-1)\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr).
+    \]
+    By the Closure Property of Integers, $\bigl(a^{m(k-1)}+a^{m(k-2)}+\cdots + a^{m(1)}+a^{m(0)}\bigr)\in\setZ$, 
+    hence $a^{m}-1\divides a^{n}-1$. 
+    Thus, $a^{m}-1 \divides a^{n}-1$ if $m\divides n$.\vspace*{10px}\\
+    Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $a^{m}-1 \divides a^{n}-1$ if and only if $m\divides n$.
+  \end{subprove}
+
+
+  \newpage
+
+  \item Exercise Set 1.1, \#10. Let $n\in \Z$.
+  \begin{enumerate}
+    \item Prove that $3\divides n^{3}-n$.
+    \begin{subprove}
+      By algebra,
+      \[
+        n^{3}-n = (n-1)(n)(n+1).
+      \]
+      By the Division Algorithm with divisor $3$, there exist integers $q\in\setZ$ and $r$ with $0\le r<3$ such that
+      \[
+        n = 3q + r.
+      \] 
+      This only includes $n = 3q$, $n = 3q + 1$, and $n = 3q + 2$.
+      Without loss of generality, 
+      \[
+        n^{3}-n = (n-1)(n)(n+1)=(3q-1)(3q)(3q+1)=3(3q-1)(q)(3q+1).
+      \]
+      It shows at least one of the three consecutive integers has $3$ as its factor.
+      Thus, $3\divides n^{3}-n$.
+    \end{subprove}
+    \item Prove that $5\divides n^{5}-n$.
+    \begin{subprove}
+      By algebra,
+      \[
+      n^{5}-n = (n-1)(n)(n+1)(n^{2}+1).
+      \]
+      By the Division Algorithm with divisor $5$, there exist integers $q\in\mathbb{Z}$ and $r$ with $0\le r<5$ such that
+      \[
+      n = 5q + r.
+      \]
+      Thus, for each $r\in\{0,1,2,3,4\}$, \\
+      If $r=0$ then $5\mid n$, so $5\mid n^{5}-n$.\\
+      If $r=1$ then $5\mid n-1$, so $5\mid n^{5}-n$.\\
+      If $r=2$ then $n^{2}+1=(5q+2)^{2}+1=5(5q^{2}+4q+1)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=3$ then $n^{2}+1=(5q+3)^{2}+1=5(5q^{2}+6q+2)$, so $5\mid n^{2}+1$ and therefore $5\mid n^{5}-n$.\\
+      If $r=4$ then $n+1=5q+5=5(q+1)$, so $5\mid n+1$ and hence $5\mid n^{5}-n$.\\
+      In every condition, the conclusion, $5\mid n^{5}-n$, has been consistent. Therefore, $5\mid n^{5}-n$.
+    \end{subprove}
+    \item Is it true that $4 \divides n^{4}-n$? Provide a proof or a counterexample.
+    \begin{subanswer}
+      Take $n=2$. $4 \nmid \group{n^{4}-n}$ since $n^{4}-n=16-2=14$ and $4\nmid14$. This is a counterexample. (false)
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \begin{claim}
+  Let $n > 1$ be an integer. If $n^{2}+1$ is prime then $n$ is even.
+    \begin{subprove}
+    Assume $n^{2}+1$ is prime. Suppose, for the sake of contradiction, $n$ is 
+    odd. Then, $n=2k+1$ for some $k\in\mathbb{Z}$. That is,
+    \[
+    n^{2}+1=(2k+1)^{2}+1=4k^{2}+4k+2=2\bigl(2k^{2}+2k+1\bigr).
+    \]
+    Thus, $n^{2}+1$ is even where $n^{2}+1 \ge 5$ by the assumption, not a prime. Therefore, by contradiction, If $n^{2}+1$ is prime then $n$ is even.
+    \end{subprove}
+  \end{claim}
+
+  \item Exercise Set 1.2, \#28. Let $a,n$ be positive integers, with $a > 1$. Show that 
+  if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \begin{subprove}
+    Assume $a^{n}+1$ is prime, then $n$ is even by the claim above. Suppose, for 
+    the sake of contradiction, $n$ is not a power of $2$. 
+    Let $n=2^{t}u$ where $t\ge 0$ and a relative prime (or odd integer) $u>2$, 
+    which does not follow the defintion of a power of $2$. Then,
+    \[
+    a^{n}+1 = \group{a^{2^{t}}}^u+1
+    = \bigl(a^{2^{t}}+1\bigr)\bigl(a^{2^{t}(u-1)}-a^{2^{t}(u-2)}+\cdots - a^{2^{t}}+1\bigr),
+    \]
+    so $a^{n}+1$ is composite, which contradicts the assumption, $a^{n}+1$ is prime. 
+    Therefore, by contradiction, if $a^{n}+1$ is prime, then $a$ is even, and $n$ is a power of $2$.
+  \end{subprove}
+
+  \item Let $n > 1$ be an integer. Prove that, if $n^{2} + 1$ is a prime number, then 
+  $n^{2} + 1$ is expressible in the form $4k + 1$ with integer $k$.
+  \begin{subprove}
+    Suppose, for the sake of direct proof, $n^{2} + 1$ is a prime number. By the claim above, $n$ is even. 
+    Then, by the definition of even, $n=2t$ for some $t\in\Z$. Then $n^{2}=4t^{2}$ and
+    \[
+      n^{2}+1 = 4t^{2}+1 = 4\,(t^{2}) + 1.
+    \]
+    Let $k=t^{2}\in\Z$. Then, $k$ is an integer by Closure Property of Integers. Thus, 
+    $n^{2}+1$ has the form $4k+1$.
+  \end{subprove}
+
+
+
+
+
+  \newpage
+
+
+
+
+
+
+  \item Exercise Set 1.3, \#43.
+  \begin{enumerate}
+    \item Let $a,b,c \in \Z$ with $(a,b)=1$. If $a \divides c$ and $b\divides c$ prove that $ab\divides c$.
+    \begin{subprove}
+      Since $a\divides c$, there exists $s\in\Z$ such that $c=a s$. Thus, $b\divides as$. Since $(a,b)=1$, $a \nmid b$, and
+      \begin{define}{Euclid's Lemma}[lem:euclid-lemma][red]
+      Let $a,b,p\in\mathds{Z}$ with $p$ prime. If $p\divides ab$, then $p\divides a$ or $p\divides b$.
+      \end{define}
+      by Euclid's Lemma, $b\divides s$. Thus, $s=bt$ for some $t\in\Z$, and hence $c=as=ab\,t$. Therefore, $ab\divides c$.
+    \end{subprove}
+    \item Provide a counterexample to show why the statement in (a) cannot hold if $(a,b)>1$.
+    \begin{subanswer}
+      Take $a=b=2$ and $c=2$. Then $a\divides c$ and $b\divides c$, but $ab=4\nmid 2$. 
+      This is a counterexample. (false)
+    \end{subanswer}
+    \item Let $a_1, \ldots, a_n \in \Z$ be pairwise relatively prime numbers. Prove that if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \begin{subprove}
+      It is trivial to say \inlinequote{$a \divides c$, then $a \divides c$} since it is a 
+      tautology, for the sake of inductive proof, base step is true. (base step)\vspace*{10px}\\
+      Suppose, for the sake of inductive proof (inductive step), the statement holds for $n-1$ 
+      pairwise relatively prime integers.
+      Let $b=a_1\cdots a_{n-1}$ satisfying the $n-1$ relative primes and $c=b\cdot a_n = a_1\cdots a_{n}$ assuming $a_n$ is another 
+      pairwise prime with $b$, for the sake of direct proof. 
+      Then, by the definition of pairwise prime numbers, we have $(b,a_n)=1$, and by all the 
+      assumptions, $b\divides c$ and $a_n\divides c$. This satisfies the condition of part (a). 
+      Thus, by the part (a), $b a_n\divides c$. In other words, $a_1\cdots a_{n}\divides c$.\vspace*{10px}\\
+      Thus, by (base step) and (inductive step), for all $n\in\setZ$, if each $a_j \divides c$, then $a_1 \cdots a_n \divides c$.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 1.3, \#48. Let $a,b\in \Z$. Show that $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \begin{subprove}
+    ($\Rightarrow$) Assume $(a, b)=1$. Suppose, for the sake of contradiction, that 
+    $d=(a+b, a b)$ where $d>1$ then there exists a prime $p$ divides $d$ by Well-Ordering 
+    Principle Lemma.
+    \begin{define}{Well-Ordering Principle Lemma}[thm:well-ordering-princ][red]
+    Every integer $n>1$ has at least one prime divisor.
+    \end{define}
+    Thus, by the transitive property of divisibility,
+    $$
+    p \divides(a+b) \quad \text { and } \quad p \divides a b
+    $$
+    since $p \divides d$, $d \divides \group{a+b}$, and $d \divides \group{a\cdot b}$.
+    Then, by \nameref{lem:euclid-lemma}, from $p \divides ab$ we have $p \divides a$ or $p \divides b$.  
+    Without loss of generality and by the definition of divisibility, there exists $i\in\setZ$ such that 
+    $$
+    a = p i.
+    $$
+    Also, by assumption of $p\divides(a+b)$, there exists $j\in\setZ$ such that $a+b = pj$. Thus,
+    $$
+    b = pj - pi = p(j-i),
+    $$
+    so $p\divides b$ as well since it is trivial that $j-i\in\setZ$ by the Closure Property of Integers, 
+    which means $p$ is a common prime divisor of $a$ and $b$.
+    It contradicts the assumption $(a,b) = p \ne 1$.
+    Therefore, $(a,b)=1$ only if $(a+b,ab) = 1$.\vspace*{10px}\\
+    ($\Leftarrow$) Assume $(a+b, a b)=1$. Suppose, for the sake of contradiction, 
+    that $(a, b)=g>1$. By the Well-Ordering Principle Lemma, there exists a prime 
+    $p$ with $p \divides g$. 
+    Since $g=(a, b)$ divides both $a$ and $b$, by transitivity of divisibility,
+    $$
+    p\divides a \text { and } p \divides b .
+    $$
+    Hence, trivially, $p \divides a b$ and $p \divides(a+b)$, which means $p$ is a common 
+    prime divisor of $a b$ and $a+b$. It contradicts the assumption $(a+b, a b) = p \ne1$.
+    Therefore, $(a,b)=1$ if $(a+b,ab) = 1$.\vspace*{10px}\\
+    Thus, by ($\Rightarrow$) and ($\Leftarrow$), $(a,b)=1$ if and only if $(a+b,ab) = 1$.
+  \end{subprove}
+
+  \newpage
+
+  \item Exercise Set 1.4, \#54(c). Use the Euclidean Algorithm for this exercise. Compute the 
+  gcd $(441,1155)$, and express it as an integral linear combination of $441$ and $1155$.
+  \begin{subanswer}
+    By Euclidean algorithm,
+    \[
+      \begin{aligned}
+        1155 &= 441\cdot 2 + 273,\\
+        441 &= 273\cdot 1 + 168,\\
+        273 &= 168\cdot 1 + 105,\\
+        168 &= 105\cdot 1 + 63,\\
+        105 &= 63\cdot 1 + 42,\\
+        63  &= 42\cdot 1 + 21,\\
+        42  &= 21\cdot 2 + 0.
+      \end{aligned}
+    \]
+    Hence $\gcd(441,1155)=21$. Then, by back-substitution,
+    \[
+      21 = 21\cdot 441 - 8\cdot 1155.
+    \]
+    Thus $21 = (21)\,441 + (-8)\,1155$, which is a linear combination with Bézout coefficients.
+  \end{subanswer}
+
+
+  \item Exercise Set 1.4, \#56. Find two rational numbers with denominators $11$ and $13$, whose 
+  sum is $\frac{7}{143}$.
+  \begin{subanswer}
+    Let $x,y\in\setZ$ be arbitrary, for the sake of definition of rational numbers, then construct 
+    the following equation,
+    $$\dfrac{x}{11}+\dfrac{y}{13}=\dfrac{7}{143}.$$
+    Then, since $13\times11=143$, it is equivalent to 
+    $$13x+11y=7.$$ 
+    Take $x=9$, $y=-10$ since $117-110=7$. Hence, the two such rational numbers are as follows.
+    \[
+      \group{\frac{9}{11}}+\group{-\frac{10}{13}}=\frac{7}{143}.
+    \]
+  \end{subanswer}
+\end{enumerate}
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 2}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 16th September}
+{Math 4150: HW2}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+
+
+
+\begin{enumerate}
+\item Exercise Set 1.5, \#61.
+Find the greatest common divisor and the least common multiple of each pair of integers below.
+\begin{define}{GCD and LCM}[def:gcdlcm][red]
+  For nonzero integers $a,b$, the greatest common divisor $(a,b)$ and least common 
+  multiple $[a,b]$ are defined in the usual way. One has the prime-power rules
+  \[
+  (a,b)=\prod p^{\min(\alpha_p,\beta_p)},\qquad [a,b]=\prod p^{\max(\alpha_p,\beta_p)},
+  \]
+  when $a=\prod p^{\alpha_p}$ and $b=\prod p^{\beta_p}$ are prime factorizations.
+\end{define}
+\begin{enumerate}
+  \item $2^2 \cdot 3^3 \cdot 5 \cdot 7$, \quad $2^2 \cdot 3^2 \cdot 5 \cdot 7^2$
+  \begin{subanswer}
+    Let $a = 2^2 \cdot 3^3 \cdot 5 \cdot 7$ and $b = 2^2 \cdot 3^2 \cdot 5 \cdot 7^2$.
+    By the prime factorization method,
+    \begin{align*}
+    \gcd(a,b) &= 2^{\min(2,2)} \cdot 3^{\min(3,2)} \cdot 5^{\min(1,1)} \cdot 7^{\min(1,2)} = 2^2 \cdot 3^2 \cdot 5^1 \cdot 7^1 \\
+    \lcm(a,b) &= 2^{\max(2,2)} \cdot 3^{\max(3,2)} \cdot 5^{\max(1,1)} \cdot 7^{\max(1,2)} = 2^2 \cdot 3^3 \cdot 5^1 \cdot 7^2
+    \end{align*}
+  \end{subanswer}
+  \item $2^2 \cdot 5^2 \cdot 7^3 \cdot 11^2$, \quad $3 \cdot 5 \cdot 11 \cdot 13 \cdot 17$
+  \begin{subanswer}
+    Let $a = 2^2 \cdot 5^2 \cdot 7^3 \cdot 11^2$ and $b = 3 \cdot 5 \cdot 11 \cdot 13 \cdot 17$. Considering common prime factors of $a$ and $b$,
+    \begin{align*}
+    \gcd(a,b) &= 5^{\min(2,1)} \cdot 11^{\min(2,1)} = 5^1 \cdot 11^1 \\
+    \lcm(a,b) &= 2^2 \cdot 3^1 \cdot 5^2 \cdot 7^3 \cdot 11^2 \cdot 13^1 \cdot 17^1
+    \end{align*}
+  \end{subanswer}
+  \item $2^2 \cdot 5^7 \cdot 11^{13}$, \quad $3^2 \cdot 7^5 \cdot 13^{11}$
+  \begin{subanswer}
+    Let $a = 2^2 \cdot 5^7 \cdot 11^{13}$ and $b = 3^2 \cdot 7^5 \cdot 13^{11}$.
+    Since $a$ and $b$ have no common prime factors, $\gcd(a,b) = 1$.
+    \begin{align*}
+    \lcm(a,b) &= 2^{\max(2,0)} \cdot 3^{\max(0,2)} \cdot 5^{\max(7,0)} \cdot 7^{\max(0,5)} \cdot 11^{\max(13,0)} \cdot 13^{\max(0,11)} \\
+    &= 2^2 \cdot 3^2 \cdot 5^7 \cdot 7^5 \cdot 11^{13} \cdot 13^{11}
+    \end{align*}
+  \end{subanswer}
+  \item $3 \cdot 17 \cdot 19^2 \cdot 23$, \quad $5 \cdot 7^2 \cdot 11 \cdot 19 \cdot 29$
+  \begin{subanswer}
+    Let $a = 3 \cdot 17 \cdot 19^2 \cdot 23$ and $b = 5 \cdot 7^2 \cdot 11 \cdot 19 \cdot 29$.
+    \begin{align*}
+    \gcd(a,b) &= 19^{\min(2,1)} = 19^1 = 19 \\
+    \lcm(a,b) &= 3^1 \cdot 5^1 \cdot 7^2 \cdot 11^1 \cdot 17^1 \cdot 19^2 \cdot 23^1 \cdot 29^1
+    \end{align*}
+  \end{subanswer}
+\end{enumerate}
+
+
+
+
+\newpage
+\item Exercise Set 1.5, \#70.
+Prove or disprove the following statements.
+\begin{enumerate}
+  \item If $a,b \in \setZ$, $a,b>0$, and $a^2 \mid b^3$, then $a \mid b$.
+  \begin{subdisprove}
+    Take $a=8$, $b=4$. Then $a^2=64$ and $b^3=64$, so $a^2\mid b^3$ but $a\nmid b$.\vspace*{10px}\\
+    Therefore, by counterexample, it has been disproved.
+  \end{subdisprove}
+  \item If $a,b \in \setZ$, $a,b>0$, and $a^2 \mid b^2$, then $a \mid b$.
+  \begin{subprove}
+    Let $a = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$ and $b = p_1^{f_1} p_2^{f_2} \cdots p_k^{f_k}$ 
+    be the prime factorizations of $a$ and $b$, where $p_i$ are distinct primes and 
+    $e_i, f_i \geq 0$. Then, suppose $a^2 = p_1^{2e_1} p_2^{2e_2} \cdots p_k^{2e_k}$ divides 
+    $b^2 = p_1^{2f_1} p_2^{2f_2} \cdots p_k^{2f_k}$ 
+    for the sake of direct proof. This implies $2e_i \leq 2f_i$ for all $i$, also, it implies 
+    $e_i \leq f_i$ for all $i$. Thus, $a \mid b$.\vspace*{10px}\\
+    Therefore, by direct proof, $a,b \in \setZ$, $a,b>0$, and $a^2 \mid b^2$ only if $a \mid b$.
+  \end{subprove}
+  \item If $a \in \setZ$, $a>0$, $p$ is a prime number, and $p^4 \mid a^3$, then $p^2 \mid a$.   
+  \begin{subprove}
+    Let $a = p^{k} \cdot m$ where $p \nmid m$ and $k \geq 0$. 
+    Then, $a^3 = p^{3k} \cdot m^3$. Suppose $p^4 \mid a^3$ for the sake of direct proof. 
+    Then, $p^4 \mid p^{3k} \cdot m^3$, so $p^4 \mid p^{3k}$ since $p \nmid m$.
+    This implies $4 \leq 3k$, which implies $k \geq \frac{4}{3}$, so $k \geq 2$ since $k$ is an integer.
+    Thus, $p^2 \mid p^k$ and $p^k \mid a$, so $p^2 \mid a$ by transitivity.\vspace*{10px}\\
+    Therefore, by direct proof, $a \in \setZ$, $a>0$, $p$ is a prime number, and $p^4 \mid a^3$ only if $p^2 \mid a$.   
+  \end{subprove}
+\end{enumerate}
+\item Exercise Set 1.5, \#78. 
+Let $n \in \setZ$ with $n>1$. The $n$th \emph{harmonic number} $H_n$
+is defined by $H_n:=1+\tfrac{1}{2}+\tfrac{1}{3}+\cdots+\tfrac{1}{n}$.
+Prove that $H_n \not \in \setZ$.
+\begin{subprove}
+  Assume $H_n \in \setZ$ for some integer $n>1$ for the sake of contradiction.
+  Let $L = \operatorname{lcm}(1,2,\dots,n)$ and 
+  $r$ be the largest integer with $2^r\le n$. By the definition of $\operatorname{lcm}$,
+  $2^r\mid L$ but $2^{r+1}\nmid L$.
+  Since $H_n\in\setZ$ by assumption, $L\cdot H_n\in\setZ$ by closure of the integers under multiplication.
+  Now, consider
+  \[
+    L\cdot H_n = \sum_{k=1}^n \frac{L}{k},
+  \]
+  where each $\dfrac{L}{k}$ is an integer. If $k=2^r$ then $k$ contains exactly the $r$ factors of 
+  $2$ that $L$ contains, so $\dfrac{L}{2^r}$ is odd. If $k\neq 2^r$, let $k=2^s\cdot t$ where $t$ 
+  odd and $s<r$ by assumption. Thus, $\dfrac{L}{k}=\dfrac{L}{2^s t}$ still contains at least one 
+  factor of $2$ and hence is even. This implies $L\cdot H_n$ is odd since it is summation of evens
+  with only one odd integer. (the case of $k=2^r$)
+  However, $2\LDIV L \group{= \operatorname{lcm}(1,2,\dots,n)}$ by assumption. 
+  If $H_n\in\setZ$, then $L\cdot H_n$ is a multiple of $L$. 
+  Since $L$ is even, $L\cdot H_n$ is also even, which contradicts the fact that $L\cdot H_n$ is odd.\vspace*{10px}\\
+  Therefore, by contradiction, $H_n\not\in\setZ$ for every integer $n>1$.
+\end{subprove}
+
+
+
+
+
+\newpage 
+\item Exercise Set 1.5, \#87.
+\begin{define}{Proposition 1.22}[prop:1.22][red]
+  There are infinitely many primes of the form $4n+3$, where $n$ is a nonnegative integer.
+  In other words, Infinitely many primes congruent to $3$ modulo $4$.
+\end{define}
+\begin{enumerate}
+\item Let $a,b \in \setZ$. Prove that if $a$ and $b$ are expressible in the form $6n+1$, 
+where $n$ is an integer, then $ab$ is also expressible in that form.
+\begin{subprove}
+  Let $a=6x+1$ and $b=6y+1$ for some $x,y\in\setZ$ for the sake of direct proof. Then
+  \[
+    ab=(6x+1)(6y+1)=36xy+6x+6y+1=6\bigl(6xy+x+y\bigr)+1.
+  \]
+  Since $6xy+x+y\in\setZ$, $ab$ has the form $6n+1$.\vspace*{10px}\\
+  Therefore, by direct proof, $a$ and $b$ are of the form $6n+1$ only if so is $ab$.
+\end{subprove}
+\item Prove that there are infinitely many prime numbers of the form $6n+5$, where $n$ is an integer. 
+(Hint: Parallel the proof of Proposition 1.22 that uses proof by contradiction).
+\begin{subprove}
+  Suppose there are only finitely many primes of the form $6n+5$ for the sake of contradiction.
+  List them as $p_1,\dots,p_k$, where each $p_i\equiv 5\pmod{6}$. Let $P:=p_1p_2\cdots p_k$ and
+  consider the integer
+  \[
+    N:=6P-1.
+  \]
+  Then $N\equiv -1\equiv 5\pmod{6}$, so $N>1$ and $N$ is not divisible by $2$ or $3$.
+  Let $q$ be any prime divisor of $N$. Since $q\nmid 6$, we must have $q\ge 5$ and hence
+  $q\equiv 1\text{ or }5\pmod{6}$. Moreover, none of $p_1,\dots,p_k$ divides $N$ because each $p_i$ divides $6P$ and hence cannot divide $6P-1=N$.
+  If all prime divisors of $N$ were congruent to $1\pmod{6}$, then their product would be $\equiv 1\pmod{6}$, contradicting $N\equiv 5\pmod{6}$. Therefore, at least one prime divisor $q$ of $N$ satisfies $q\equiv 5\pmod{6}$.
+  This $q$ is a prime of the form $6n+5$ not among $p_1,\dots,p_k$, contradicting the assumed finiteness.\vspace*{10px}\\
+  Therefore, by contradiction, there are infinitely many primes of the form $6n+5$ like \nameref{prop:1.22}.
+\end{subprove}
+\end{enumerate}
+
+
+
+
+
+\newpage 
+\item Exercise Set 2.1, \#12. 
+Let $a,b,c,d \in \setZ$ such that $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$. Prove or disprove the following statements.
+\begin{define}{Congruence modulo $m$}[def:congruence][red]
+  Let $a,b,m\in\setZ$ with $m>0$. We say that \emph{$a$ is congruent to $b$ modulo $m$}, and write
+  \[
+  a\equiv b\pmod{m},
+  \]
+  if $m\mid (a-b)$. The integer $m$ is called the \emph{modulus} of the congruence.
+\end{define}
+\begin{enumerate}
+  \item $(a-c) \equiv (b-d) \pmod{m}$.
+  \begin{subprove}
+    Assume $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$ for the sake of direct proof. By \nameref{def:congruence}, 
+    $m$ divides their difference,
+    \[
+      (a-b)-(c-d)=(a-c)-(b-d),
+    \]
+    since divisibility is closed under subtraction. Thus $m\mid\bigl((a-c)-(b-d)\bigr)$, i.e.,
+    $(a-c)\equiv(b-d)\pmod{m}$.\vspace*{10px}\\
+    Therefore, by direct proof, $a \equiv b \pmod{m}$ and $c \equiv d \pmod{m}$ only if $(a-c) \equiv (b-d) \pmod{m}$.
+  \end{subprove}
+  \item If $c \mid a$ and $d \mid b$, then $\tfrac{a}{c} \equiv \tfrac{b}{d} \pmod{m}$.
+  \begin{subdisprove}
+    Take $m=4$, $a=4$, $b=8$, $c=2$, and $d=2$.
+    Then $a\equiv b\pmod{4}$ and $c\equiv d\pmod{4}$, with $c\mid a$ and $d\mid b$. But
+    \[
+      \frac{a}{c}=2 \not\equiv 4=\frac{b}{d} \pmod{4} \quad(2\not\equiv 0\pmod{4}).
+    \]
+    Therefore, by counterexample, it has been disproved.
+  \end{subdisprove}
+\end{enumerate}
+
+
+
+
+
+
+\newpage 
+\item Exercise Set 2.1 \#13.
+\begin{enumerate}
+  \item Let $a$ be an even integer. Prove that $a^2 \equiv 0 \pmod{4}$.
+  \begin{subprove}
+    Let $a$ be even, so $a=2k$ for some $k\in\setZ$ for the sake of direct proof. Then
+    \[
+      a^2=(2k)^2=4k^2,
+    \]
+    so $4\mid a^2$. By \nameref{def:congruence}, $a^2\equiv 0\pmod{4}$.\vspace*{10px}\\
+    Therefore, by direct proof, if $a$ is even then $a^2\equiv 0\pmod{4}$.
+  \end{subprove}
+  \item Let $a$ be an odd integer. Prove that $a^2 \equiv 1 \pmod{8}$. Deduce that $a^2 \equiv 1 \pmod{4}$.
+  \begin{subprove}
+    Let $a$ be odd, so $a=2k+1$ for some $k\in\setZ$ for the sake of direct proof. Then
+    \[
+      a^2=(2k+1)^2=4k(k+1)+1.
+    \]
+    Since $k(k+1)$ is even, $k(k+1)=2m$ for some $m\in\setZ$, so $a^2=8m+1\equiv 1\pmod{8}$. \vspace*{10px}\\
+    Therefore, by direct proof, if $a$ is odd then $a^2\equiv 1\pmod{8}$ and hence $a^2\equiv 1\pmod{4}$.
+  \end{subprove}
+  \item Prove that if $n$ is a positive integer such that $n \equiv 3 \pmod{4}$, then $n$ can't be written as the sum of
+  two squares of integers.
+  \begin{subprove}
+    Suppose $n\equiv 3\pmod{4}$ and $n=a^2+b^2$ with $a,b\in\setZ$ for the sake of contradiction. 
+    By parts (a) and (b), each square is congruent to $0\pmod{4}$ or $1\pmod{4}$, 
+    so $a^2+b^2\equiv 0,1,$ or $2\pmod{4}$, never $3$, which contradicts the assumption.\vspace*{10px}\\
+    Therefore, by contradiction, if $n\equiv 3\pmod{4}$ then $n$ is not a sum of two squares.
+  \end{subprove}
+  \item Prove or disprove the converse of the statement in part (c) above.
+  \begin{subdisprove}
+    Take $n=6\equiv 2\pmod{4}$ since $6\ne x^2+y^2$ for any $x,y\in\setZ$. 
+    Then, $n\equiv 2\pmod{4}$, not $n\equiv 3\pmod{4}.$\vspace*{10px}\\
+    Therefore, by counterexample, the converse is disproved.
+  \end{subdisprove}
+\end{enumerate}
+
+
+
+
+
+\newpage 
+\item Exercise Set 2.2, \#29 (b),(d),(f).
+Find the inverse modulo $m$ of each integer $n$ below.
+\begin{define}{Corollary 2.8}[cor:2.8][red]
+  The congruence $ax\equiv 1\pmod{m}$ has a solution if and only if $\gcd(a,m)=1$. In that case the
+  inverse is unique modulo $m$.
+\end{define}
+\begin{enumerate}
+  \item $n=8$, $m=35$.
+  \begin{subanswer}
+    By \nameref{cor:2.8}, since $\gcd(8,35)=1$, an inverse exists. From the extended Euclidean algorithm,
+    \[
+      1=35\cdot 3+8\cdot (-13),
+    \]
+    so $8\cdot(-13)\equiv 1\pmod{35}$. As $-13\equiv 22\pmod{35}$, the inverse is $22$.\vspace*{10px}\\
+    Therefore, by the extended Euclidean algorithm, $8^{-1}\equiv 22\pmod{35}$.
+  \end{subanswer}
+  \item $n=51$, $m=99$.
+  \begin{subanswer}
+    By \nameref{cor:2.8}, an inverse exists iff $\gcd(51,99)=1$. Since $\gcd(51,99)=3\ne 1$, no inverse exists.\vspace*{10px}\\
+    Therefore, by \nameref{cor:2.8}, $51$ has no inverse modulo $99$.
+  \end{subanswer}
+  \item $n=1333$, $m=1517$.
+  \begin{subanswer}
+    By \nameref{cor:2.8}, the inverse exists since $\gcd(1333,1517)=1$. A backward substitution yields
+    \[
+      1=1333\cdot 371-1517\cdot 326,
+    \]
+    so $1333\cdot 371\equiv 1\pmod{1517}$.\vspace*{10px}\\
+    Therefore, by the extended Euclidean algorithm, $1333^{-1}\equiv 371\pmod{1517}$.
+  \end{subanswer}
+\end{enumerate}
+
+
+
+
+\newpage
+\item Exercise Set 2.3, \#33(a),(e), 34 (b) 
+Find the least non-negative solution of each system of congruences below.
+\begin{define}{Chinese Remainder Theorem}[thm:2.9][red]
+  Let $m_1,\dots,m_n$ be pairwise relatively prime positive integers and let $b_1,\dots,b_n\in\setZ$.
+  Then the system $x\equiv b_i\pmod{m_i}$ for $i=1,\dots,n$ has a solution, unique modulo $M:=m_1\cdots m_n$.
+\end{define}
+% \begin{define}{Congruences Arithmetic}[prop:2.4][red]
+% Let $a,b,c,d\in\setZ$ and $m>0$. If $a\equiv b\pmod{m}$ and $c\equiv d\pmod{m}$, then
+% \begin{enumerate}
+%   \item $a+c\equiv b+d\pmod{m}$,
+%   \item $ac\equiv bd\pmod{m}$.
+% \end{enumerate}
+% \end{define}
+\begin{enumerate}
+  \item 
+  \begin{align*}
+  x & \equiv 3 \pmod{4} \\
+  x & \equiv 2 \pmod{5}
+  \end{align*}
+  \begin{subanswer}
+    Since $\gcd(4,5)=1$, there is a unique solution modulo $20$. Let $x=4k+3$. 
+    Then $4k+3\equiv 2\pmod{5}$ gives $4k\equiv 4\pmod{5}$, so $k\equiv 1\pmod{5}$ 
+    and $x=20m+7$.\vspace*{10px}\\
+    Therefore, by the \nameref{thm:2.9}, the least non-negative solution is $x=7$.
+  \end{subanswer}
+  \item 
+  \begin{align*}
+  x & \equiv 1 \pmod{2} \\
+  x & \equiv 2 \pmod{3} \\
+  x & \equiv 4 \pmod{5} \\
+  x & \equiv 6 \pmod{7} 
+  \end{align*}
+  \begin{subanswer}
+    Combine congruences stepwise. From $x\equiv 1\pmod{2}$ and $x\equiv 2\pmod{3}$, 
+    write $x=2k+1$, so $2k+1\equiv 2\pmod{3}$ which gives $2k\equiv 1\pmod{3}$. 
+    Multiplying by $2^{-1}\equiv 2\pmod{3}$ yields $k\equiv 2\pmod{3}$, 
+    hence $x=2(3n+2)+1=6n+5$, so $x\equiv 5\pmod{6}$. 
+    With $x=6k+5$ and $x\equiv 4\pmod{5}$, we get $6k+5\equiv 4\pmod{5}$, 
+    so $k\equiv -1\equiv 4\pmod{5}$, yielding $x=6(5n+4)+5=30n+29$, so $x\equiv 29\pmod{30}$. 
+    Finally, with $x=30k+29$ and $x\equiv 6\pmod{7}$, we have $30k+29\equiv 6\pmod{7}$. 
+    This simplifies to $2k+1\equiv 6\pmod{7}$, so $2k\equiv 5\pmod{7}$. 
+    Since $2^{-1}\equiv 4\pmod{7}$, we find $k\equiv 5 \cdot 4 \equiv 20 \equiv 6\pmod{7}$. 
+    This gives $x=30(7n+6)+29=210n+180+29=210n+209$.\vspace*{10px}\\
+    Therefore, by the \nameref{thm:2.9}, the least non-negative solution is $x=209$.
+  \end{subanswer}
+  \item 
+  \begin{align*}
+  3x & \equiv 2 \pmod{4} \\
+  4x & \equiv 1 \pmod{5} \\
+  6x & \equiv 3 \pmod{9} \\
+  \end{align*}
+  \begin{subanswer}
+    Reduce each congruence. Since $3^{-1}\equiv 3\pmod{4}$, $x\equiv 2\cdot 3\equiv 2\pmod{4}$. 
+    Since $4^{-1}\equiv 4\pmod{5}$, $x\equiv 1\cdot 4\equiv 4\pmod{5}$. 
+    From $6x\equiv 3\pmod{9}$ we get $2x\equiv 1\pmod{3}$, so $x\equiv 2\pmod{3}$. Now solve
+    \begin{align*}
+    x & \equiv 2 \pmod{4} \\
+    x & \equiv 4 \pmod{5} \\
+    x & \equiv 2 \pmod{3}.
+    \end{align*}
+    Let $x=4k+2$. Then $4k\equiv 0\pmod{3}$ so $k\equiv 0\pmod{3}$, giving $x\equiv 2\pmod{12}$. 
+    With $x=12k+2$ and $x\equiv 4\pmod{5}$, we obtain $12k\equiv 2\pmod{5}$, 
+    so $k\equiv 1\pmod{5}$ and $x=60n+14$.\vspace*{10px}\\
+    Therefore, by the \nameref{thm:2.9}, the least non-negative solution is $x=14$.
+  \end{subanswer}
+\end{enumerate}
+\item Exercise Set 2.3 \#35.
+There are $n$ eggs in a basket. If eggs are removed from the basket $2,3,4,5$ and $6$ at a time,
+there remain $1,2,3,4$ and $5$ eggs in the basket, respectively. If eggs are removed from the basket
+$7$ at a time, no eggs remain in the basket.  What is the smallest value of $n$ for which this scenario could 
+occur (Show all of your work)?
+\begin{subanswer}
+  Translation to congruences are done as follows.
+  \begin{align*}
+  n & \equiv 1 \pmod{2},\quad n \equiv 2 \pmod{3},\quad n \equiv 3 \pmod{4},\\
+  n & \equiv 4 \pmod{5},\quad n \equiv 5 \pmod{6},\quad n \equiv 0 \pmod{7}.
+  \end{align*}
+  Solve stepwise. From the first two, $n\equiv 5\pmod{6}$. With $n=6k+5$ and $n\equiv 3\pmod{4}$, 
+  we get $6k\equiv -2\equiv 2\pmod{4}$, so $k\equiv 1\pmod{2}$ and $n\equiv 11\pmod{12}$. 
+  With $n=12k+11$ and $n\equiv 4\pmod{5}$, we obtain $12k\equiv -7\equiv 3\pmod{5}$, so 
+  $k\equiv 4\pmod{5}$ and $n\equiv 59\pmod{60}$. Finally, write $n=60k+59$ and impose 
+  $n\equiv 0\pmod{7}$ to get $60k\equiv -59\equiv 4\pmod{7}$. Since $60\equiv 4\pmod{7}$, 
+  we have $4k\equiv 4\pmod{7}$, so $k\equiv 1\pmod{7}$ and $n=420t+119$. 
+  The smallest positive solution is $n=119$.\vspace*{10px}\\
+  Therefore, by the \nameref{thm:2.9}, the smallest $n$ is $119$.
+\end{subanswer}
+
+
+
+
+
+
+\newpage
+\item Exercise Set 2.3, \#40.
+Prove that the system of linear congruences in one variable given by 
+\begin{align*}
+x & \equiv b_1 \pmod{m_1} \\
+x & \equiv b_2 \pmod{m_2} \\
+& \vdots \\
+x & \equiv b_n \pmod{m_n}
+\end{align*}
+is solvable if and only if $(m_i,m_j) \mid b_i-b_j$ for all pairs $i,j$ with $i \neq j$. In this case, prove that each solution is unique modulo $[m_1,m_2,\ldots,m_n]$.
+\begin{subprove}
+  ($\Rightarrow$) Assume a solution $x_0$ exists for the sake of direct proof. 
+  Then for any pair $i,j$, we have $x_0 \equiv b_i \pmod{m_i}$ and $x_0 \equiv b_j \pmod{m_j}$. 
+  Let $d = \gcd(m_i, m_j)$. Since $d$ divides both $m_i$ and $m_j$, we can reduce the congruences 
+  modulo $d$ to get $x_0 \equiv b_i \pmod d$ and $x_0 \equiv b_j \pmod d$. By transitivity, this 
+  implies $b_i \equiv b_j \pmod d$, which is the condition $\gcd(m_i, m_j) \mid (b_i - b_j)$.\vspace*{10px}\\
+  ($\Leftarrow$) Assume $\gcd(m_i,m_j)\mid(b_i-b_j)$ for all $i\ne j$ for the sake of direct proof. 
+  We proceed by induction on $n$. The base case $n=2$ is solvable, as the congruence 
+  $m_1 k \equiv b_2 - b_1 \pmod{m_2}$ has a solution if and only if $\gcd(m_1, m_2) \mid (b_2 - b_1)$. 
+  For the inductive step, assume a solution exists for the first $n-1$ congruences. Let this solution 
+  be $x_0$, which is unique modulo $M:=[m_1,\dots,m_{n-1}]$. We must solve the system
+  \[
+    x\equiv x_0\pmod{M},\qquad x\equiv b_n\pmod{m_n}.
+  \]
+  This system is solvable if and only if $\gcd(M,m_n)\mid(x_0-b_n)$. For any $i < n$, we have 
+  $x_0 \equiv b_i \pmod{m_i}$, so $x_0-b_n \equiv b_i-b_n \pmod{m_i}$. By hypothesis, 
+  $\gcd(m_i,m_n)\mid(b_i-b_n)$, so $x_0-b_n$ is a multiple of $\gcd(m_i,m_n)$ for all $i<n$. 
+  It follows that $x_0-b_n$ is a multiple of $\lcm(\gcd(m_1,m_n), \dots, \gcd(m_{n-1},m_n))$, 
+  which equals $\gcd(M,m_n)$. The condition holds, so a solution to the full system exists.\vspace*{10px}\\
+  For uniqueness, if $x_1,x_2$ are two solutions, then $m_i\mid(x_1-x_2)$ for all $i$. 
+  Thus, $x_1-x_2$ is a common multiple of all $m_i$, and hence $[m_1,\dots,m_n]\mid(x_1-x_2)$.
+  \vspace*{10px}\\
+  Therefore, the system is solvable exactly under the stated condition, 
+  and solutions are unique modulo $[m_1,\dots,m_n]$.
+\end{subprove}
+
+
+
+
+
+\newpage
+\item Exercise Set 2.4, \#43.
+\begin{define}{Wilson's Theorem}[thm:2.11][red]
+  Let $p$ be prime. Then $(p-1)!\equiv -1\pmod{p}$.
+\end{define}
+\begin{enumerate}
+  \item Prove that if $p$ is an odd prime number, then $2(p-3)! \equiv -1 \pmod{p}$.
+  \begin{subprove}
+    By \nameref{thm:2.11} and properties of factorials modulo primes, 
+    $(p-1)!\equiv -1\pmod{p}$. Also, 
+    $(p-1)!=(p-1)(p-2)(p-3)!\equiv (-1)(-2)(p-3)!\equiv 2(p-3)!\pmod{p}$. 
+    Hence, $2(p-3)!\equiv -1\pmod{p}$.\vspace*{10px}\\
+    Therefore, by \nameref{thm:2.11}, $2(p-3)!\equiv -1\pmod{p}$ for odd primes $p$.
+  \end{subprove}
+  \item Find the least non-negative residue of $2(100!) \pmod{103}$.
+  \begin{subanswer}
+    By \nameref{thm:2.11} with $p=103$ and the part (a), $2(103-3)!=2(100!)\equiv -1\pmod{103}$. 
+    Since $-1\equiv 102\pmod{103}$, the least non-negative residue is $102$.\vspace*{10px}\\
+    Therefore, $2(100!)\equiv 102\pmod{103}$.
+  \end{subanswer}
+\end{enumerate}
+\item Exercise Set 2.4, \#48.
+Let $p$ be an odd prime number. Prove that 
+\begin{equation*}
+1^2 3^2 5^2 \cdots (p-4)^2 (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}.
+\end{equation*}
+% \begin{define}{Fermat's Little Theorem}[thm:2.13][red]
+% Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
+% \[
+% a^{p-1}\equiv 1\pmod{p}.
+% \]
+% \end{define}
+\begin{subprove}
+  By \nameref{thm:2.11}, $(p-1)!\equiv -1\pmod{p}$. Moreover, the seperation of odd and even integers has been done as follows.
+  \[
+  (p-1)! = (1 \cdot 3 \cdot 5 \cdots (p-2)) \cdot (2 \cdot 4 \cdot 6 \cdots (p-1)).
+  \]
+  The product of the $\frac{p-1}{2}$ even terms can be related to the product of the odd terms. Since 
+  $2 \equiv -(p-2) \pmod{p}$, $4 \equiv -(p-4) \pmod{p}$, and so on up to $p-1 \equiv -1 \pmod{p}$,
+  \[
+  2 \cdot 4 \cdots (p-1) \equiv (-1)^{(p-1)/2} (1 \cdot 3 \cdots (p-2)) \pmod{p}.
+  \]
+  Substituting this back into the expression for $(p-1)!$ gives
+  \[
+  (p-1)! \equiv (-1)^{(p-1)/2} (1 \cdot 3 \cdot 5 \cdots (p-2))^2 \pmod{p}.
+  \]
+  As $(p-1)! \equiv -1 \pmod{p}$, this implies $-1 \equiv (-1)^{(p-1)/2} \cdot 1^2 \cdot 3^2 \cdots (p-2)^2 \pmod{p}$. 
+  Multiplying both sides by $(-1)^{(p-1)/2}$ yields
+  \[
+  (-1)^{(p-1)/2} \cdot (-1) \equiv ((-1)^{(p-1)/2})^2 \cdot 1^2 \cdot 3^2 \cdots (p-2)^2 \pmod{p}.
+  \]
+  The right side simplifies to $1^2 \cdot 3^2 \cdots (p-2)^2$ because $p-1$ is even. The left side becomes $(-1)^{(p+1)/2}$. Thus,
+  \[
+  1^2 \cdot 3^2 \cdot 5^2 \cdots (p-2)^2 \equiv (-1)^{(p+1)/2} \pmod{p}.
+  \]
+\end{subprove}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{enumerate}
+
+
+%   \newpage
+   
+%   \newpage
+%   \item \textbf{Least Non-Negative Residue}
+%   \begin{define}{Least Non-Negative Residue}
+%     Let $a$ and $n$ be integers with $n > 0$. The \textbf{least non-negative residue} of $a$ 
+%     modulo $n$ is defined as the unique integer $r$ that satisfies the following two conditions:
+%     \begin{enumerate}
+%       \item $a \equiv r \pmod{n}$
+%       \item $0 \le r < n$
+%     \end{enumerate}
+%     This integer $r$ is the \textbf{remainder} obtained when $a$ is divided by $n$, as described by the 
+%     Division Algorithm. The algorithm states that for any integer $a$ and any positive integer 
+%     $n$, there exist unique integers $q$ (the quotient) and $r$ (the remainder) such that 
+%     $a = qn + r$, where $0 \le r < n$.
+%   \end{define}
+%   \noindent\textbf{Example:}
+%   Let the problem be to find the least non-negative residue of $-15$ modulo $4$.
+%   \begin{itemize}
+%     \item We can write $-15 = (-4) \cdot 4 + 1$.
+%     \item Here, the remainder is $r=1$.
+%     \item The conditions are satisfied: $-15 \equiv 1 \pmod{4}$ and $0 \le 1 < 4$.
+%   \end{itemize}
+%   Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
+  
+  
+  
+  
+  
+  
+  
+%   \item \textbf{Euler's Theorem.}
+%   \begin{define}{Euler's Theorem}[thm:euler][red]
+%     Let $n \in \setN$ and $a \in \setZ$ with $\gcd(a,n) = 1$. Then
+%     \[
+%       a^{\phi(n)} \equiv 1 \pmod{n}
+%     \]
+%     where $\varphi(n)$ is Euler's totient function, defined by
+%     \[
+%       \varphi(n) = \abs{\sBUILD{1 \leq k \leq n}{\group{k,n} = 1}}.
+%     \]
+%     \textbf{Note:} If $n$ is prime, then $\phi(n) = n-1$.
+%     \begin{subprove}
+%       Let $R = \{ r_1, r_2, \dots, r_{\phi(n)} \}$ be the reduced residue system modulo $n$.
+%       Since $\gcd(a,n) = 1$, the products $a r_1, a r_2, \dots, a r_{\phi(n)}$ form another reduced residue system modulo $n$.
+%       Thus,
+%       \[
+%         a r_1 \cdot a r_2 \cdots a r_{\phi(n)} \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+%       \]
+%       That is,
+%       \[
+%         a^{\phi(n)} (r_1 r_2 \cdots r_{\phi(n)}) \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+%       \]
+%       Since $r_1 r_2 \cdots r_{\phi(n)}$ is relatively prime to $n$, it may be canceled from both sides.
+%       Therefore,
+%       \[
+%         a^{\phi(n)} \equiv 1 \pmod{n}.
+%       \]
+%     \end{subprove}
+%   \end{define}
+  
+%   \begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][red]
+%     If $p$ is prime and $\gcd(a,p)=1$, then
+%     \[
+%       a^{p-1} \equiv 1 \pmod{p}.
+%     \]
+%   \end{define}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+%   \item \textbf{Dirichlet's Theorem.}
+%   \begin{define}{Dirichlet's Theorem}[thm:dirichlet][red]
+%     If $\gcd(a,q) = 1$, then there exist infinitely many primes $p$ such that
+%     \[
+%       p \equiv a \pmod{q}.
+%     \]
+%   \end{define}
+  
+%   \begin{define}{Special Case: Dirichlet's Theorem}[cor:dirichlet-special][red]
+%     There are infinitely many primes of the form $4k+3$.
+%     \begin{subprove}
+%       Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.
+%       List them as $3, p_1, p_2, \dots, p_k$.
+%       Define
+%       \[
+%         Q = 4p_1 p_2 \cdots p_k + 3.
+%       \]
+%       Then $Q \equiv 3 \pmod{4}$.
+%       Moreover, $\gcd(Q, p_i) = 1$ for each $i$, and $\gcd(Q,3) = 1$.
+%       Thus $Q$ has a prime factor not among $\{3, p_1, \dots, p_k\}$.
+    
+%       Any prime factor of $Q$ must be congruent to $1 \pmod{4}$ or $3 \pmod{4}$.
+%       If all prime factors of $Q$ were congruent to $1 \pmod{4}$, then their product would also be congruent to $1 \pmod{4}$.
+%       However,
+%       \[
+%         Q \equiv 3 \pmod{4}.
+%       \]
+%       This is a contradiction.
+    
+%       Therefore, $Q$ has a prime factor congruent to $3 \pmod{4}$ not in the original list.
+%       Hence there are infinitely many primes of the form $4k+3$.
+%       \hfill $\square$
+%     \end{subprove}
+%   \end{define}  
+% \end{enumerate}
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 3}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 30th September}
+{Math 4150: HW3}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+% https://people.math.binghamton.edu/mazur/teach/40718/40718.html
+
+\begin{enumerate}
+  \item Exercise Set 2.5, \#58.
+  Let $a$ and $b$ be integers not divisible by the prime number $p$.
+  \begin{define}{Theorem 2.13 (Fermat's Little Theorem)}[thm:2.13][red]
+  Let $p$ be a prime and let $a\in\setZ$ with $p\nmid a$. Then
+  \[
+  a^{p-1}\equiv 1\pmod{p}.
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item If $a^p \equiv b^p \pmod{p}$, prove that $a \equiv b \pmod{p}$. \label{prob:2.5.58a}
+    \begin{subprove}
+      Since $p \nmid a$ and $p \nmid b$, by \nameref{thm:2.13}, 
+      $a^{p-1} \equiv 1 \pmod{p}$ and $b^{p-1} \equiv 1 \pmod{p}$. 
+      By multiplying by $a$ and $b$ respectively, it follows that $$a^p \equiv a \pmod{p}$$ and $$b^p \equiv b \pmod{p}.$$
+      Since $a^p \equiv b^p \pmod{p}$ by hypothesis, it follows that $a \equiv b \pmod{p}$.
+    \end{subprove}
+    \item If $a^p \equiv b^p \pmod{p}$, prove that $a^p \equiv b^p \pmod{p^2}$.
+    \begin{subprove}
+    By part (a), $a \equiv b \pmod{p}$, so $a = b + kp$ is true for some integer $k$. 
+    By the Binomial Theorem, $a^p$ can be expanded as follows:
+    \[
+      a^p = (b + kp)^p = b^p + \binom{p}{1}b^{p-1}(kp) + \binom{p}{2}b^{p-2}(kp)^2 + \cdots + (kp)^p.
+    \]
+    The second term, $\binom{p}{1}b^{p-1}(kp)$, is equal to $p \cdot b^{p-1} \cdot kp = (kb^{p-1})p^2$, which is divisible by $p^2$. 
+    Every subsequent term for $i \ge 2$ contains the factor $(kp)^i = k^i p^i$, which is divisible by $p^2$. 
+    Since every term in the expansion after $b^p$ is divisible by $p^2$, it follows that $a^p \equiv b^p \pmod{p^2}$.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+  \item Exercise Set 2.5, \#62.
+  The following exercise proves that there are infinitely many odd pseudoprime numbers.
+  \begin{define}{Pseudoprime (base 2)}[def:pseudoprime][red]
+  A composite integer $n>1$ is called a \underbar{(base-2) pseudoprime} if
+  \[
+  2^n\equiv 2\pmod n.
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item Let $a$ and $b$ be positive integers such that $a \mid b$. 
+    Prove that $2^a-1 \mid 2^b-1$.
+    \begin{subprove}
+      Since $a \mid b$, there exists a positive integer $k$ such that $b = ak$. 
+      Then $2^b - 1 = 2^{ak} - 1 = (2^a)^k - 1$. 
+      By the geometric series formula, $(2^a)^k - 1 = (2^a - 1)(1 + 2^a + (2^a)^2 + \cdots + (2^a)^{k-1})$.
+      Since the second factor is an integer, $2^a - 1 \mid 2^b - 1$.
+    \end{subprove}
+    \item Suppose that $n$ is composite. Prove that $n$ is an odd pseudoprime number 
+    if and only if $2^{n-1} \equiv 1 \pmod{n}$.
+    \begin{subprove}
+      ($\Rightarrow$) Suppose $n$ is an odd pseudoprime for the sake of direct proof, 
+      then $2^n \equiv 2 \pmod{n}$ by \nameref{def:pseudoprime}. 
+      Since $n$ is odd, $\gcd(2,n)=1$, so a multiplicative inverse for $2$ exists modulo $n$. 
+      Multiplying the congruence by this inverse gives $2^{n-1} \equiv 1 \pmod{n}$.\vspace*{10px}\\
+      ($\Leftarrow$) If $2^{n-1} \equiv 1 \pmod{n}$, then  $2^n \equiv 2 \pmod{n}$ by multiplying both sides by $2$. 
+      From the hypothesis $2^{n-1} \equiv 1 \pmod{n}$, it is known that $n$ must divide $2^{n-1}-1$. 
+      Since $2^{n-1}-1$ is an odd integer, any of its divisors, including $n$, must also be odd. 
+      As $n$ is given to be composite and has been shown to be odd while satisfying the defining congruence, $n$ is an odd pseudoprime.
+    \end{subprove}
+    \item Prove that if $n$ is an odd pseudoprime number, 
+    then $m=2^n-1$ is an odd pseudoprime number. 
+    [\textbf{Hint}: Use parts (a) and (b)]
+    \begin{subprove}
+      Since $n$ is an odd pseudoprime, by part (b), $2^{n-1} \equiv 1 \pmod{n}$.
+      First, it must be shown that $m=2^n-1$ is composite. As $n$ is composite, it can be written as $n=ab$ for integers $a,b>1$.
+      Then $m = 2^{ab}-1 = (2^a)^b-1$, which is divisible by $2^a-1$. This proves $m$ is composite.
+      To show $m$ is an odd pseudoprime, it suffices by part (b) to show that $2^{m-1} \equiv 1 \pmod{m}$.
+      The exponent is written as $m-1 = 2^n - 2 = 2(2^{n-1} - 1)$.
+      From the fact that $2^{n-1} \equiv 1 \pmod{n}$, it is known that $n \mid (2^{n-1} - 1)$.
+      By part (a), this implies that $(2^n - 1) \mid (2^{2^{n-1}-1} - 1)$.
+      This is equivalent to $m \mid (2^{(m-1)/2} - 1)$, which means $2^{(m-1)/2} \equiv 1 \pmod{m}$.
+      By squaring both sides, the desired result $2^{m-1} \equiv 1 \pmod{m}$ is obtained.
+    \end{subprove}
+    \item Prove that there are infinitely many odd pseudoprime numbers.
+    \begin{subprove}
+      By the example in the lecture notes, $341 = 11 \cdot 31$ is an odd pseudoprime. 
+      By part (c), if $n$ is an odd pseudoprime, then $m = 2^n - 1$ is also an odd pseudoprime.
+      Starting with $n_1 = 341$, define $n_{k+1} = 2^{n_k} - 1$ for $k \geq 1$.
+      Then each $n_k$ is an odd pseudoprime by repeated application of part (c).
+      Since $n_1 < n_2 < n_3 < \cdots$ (as $2^n - 1 > n$ for $n > 1$), this produces infinitely many distinct odd pseudoprimes.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+  \newpage
+  \item Exercise Set 2.6, \#68 (a),(d).
+  Using Euler's Theorem, find the least nonnegative residue modulo $m$ of each integer $n$ below.
+  \begin{define}{Euler Totient Function}[def:phi][red]
+  For $n\in\setZ_{>0}$ the Euler totient function $\phi(n)$ is the number of integers
+  $1\le x\le n$ with $\gcd(x,n)=1$; equivalently,
+  \[
+  \phi(n):=\#\{x\in\{1,2,\dots,n\}:\gcd(x,n)=1\}.
+  \]
+  \end{define}
+  \begin{define}{Theorem 2.17 (Euler's Theorem)}[thm:2.17][red]
+  Let $m>0$ and $a\in\setZ$ with $\gcd(a,m)=1$. Then
+  \[
+  a^{\phi(m)}\equiv 1\pmod m.
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item $n=29^{198}$, $m=20$
+    \begin{subanswer}
+      First, compute $\phi(20)$. Since $20 = 2^2 \cdot 5$, by the formula for Euler's phi-function,
+      \[
+      \phi(20) = 20 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{5}\right) = 20 \cdot \frac{1}{2} \cdot \frac{4}{5} = 8.
+      \]
+      Since $\gcd(29, 20) = 1$, by \nameref{thm:2.17}, $29^8 \equiv 1 \pmod{20}$.
+      By the Division Algorithm, $198 = 8 \cdot 24 + 6$, so
+      \[
+      29^{198} = (29^8)^{24} \cdot 29^6 \equiv 1^{24} \cdot 29^6 \equiv 29^6 \pmod{20}.
+      \]
+      Now, $29 \equiv 9 \pmod{20}$, so $29^6 \equiv 9^6 \pmod{20}$.
+      Since $9^2 = 81 \equiv 1 \pmod{20}$, it follows that $9^6 = (9^2)^3 \equiv 1^3 = 1 \pmod{20}$.
+      Therefore, $29^{198} \equiv 1 \pmod{20}$.
+    \end{subanswer}
+    \item $n=99^{999999}$, $m=26$
+    \begin{subanswer}
+      First, compute $\phi(26)$. Since $26 = 2 \cdot 13$, by the formula for Euler's phi-function,
+      \[
+      \phi(26) = 26 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{13}\right) = 26 \cdot \frac{1}{2} \cdot \frac{12}{13} = 12.
+      \]
+      Since $\gcd(99, 26) = 1$, by \nameref{thm:2.17}, $99^{12} \equiv 1 \pmod{26}$.
+      By the Division Algorithm, $999999 = 12 \cdot 83333 + 3$, so
+      \[
+      99^{999999} = (99^{12})^{83333} \cdot 99^3 \equiv 1^{83333} \cdot 99^3 \equiv 99^3 \pmod{26}.
+      \]
+      Now, $99 \equiv 21 \pmod{26}$, so $99^3 \equiv 21^3 \pmod{26}$.
+      Since $21^2 = 441 \equiv 441 - 17 \cdot 26 = 441 - 442 = -1 \pmod{26}$, it follows that 
+      \[
+      21^3 = 21^2 \cdot 21 \equiv (-1) \cdot 21 = -21 \equiv 5 \pmod{26}.
+      \]
+      Therefore, $99^{999999} \equiv 5 \pmod{26}$.
+    \end{subanswer}
+  \end{enumerate}
+
+
+  \newpage
+  \item Exercise Set 2.6, \#75.
+  Let $m$ be a positive integer with $m \neq 2$. If $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$, prove that
+  \[
+  r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
+  \]
+  \begin{define}{Reduced Residue System}[def:reducedRS][red]
+  A set of integers $S = \{r_1, r_2, \ldots, r_{\phi(m)}\}$ is called a \underbar{reduced residue system} modulo $m$ if its elements satisfy:
+  \begin{enumerate}
+    \item For each $r_i \in S$, $\gcd(r_i, m) = 1$.
+    \item For any distinct $r_i, r_j \in S$, $r_i \not\equiv r_j \pmod{m}$.
+  \end{enumerate}
+  \end{define}
+  \begin{subprove}
+    The case, $m=2$, has been excluded since 
+    the reduced residue system is $\{1\}$ by \nameref{def:reducedRS} where the sum is $1 \not\equiv 0 \pmod m$.
+    Thus, $m \neq 2$ will be assumed throughout the proof. Since $1 \equiv 0 \pmod 1$, $m=1$ is a trivial case.
+    \begin{claim}[claim:additivePairing]
+    For $m>2$, any reduced residue system $S$ modulo $m$ can be partitioned into $\phi(m)/2$ pairs of distinct elements $\{r, s\}$ such that
+    \[
+      r + s \equiv 0 \pmod m.
+    \]
+    \begin{subprove}
+      Let $r$ be an arbitrary element of $S$. Its additive inverse, 
+      $-r$, must also be relatively prime to $m$, since $\gcd(r,m)=1$ 
+      if and only if $\gcd(-r,m)=1$. By the definition of a reduced residue system, 
+      $-r$ must be congruent to a unique element $s \in S$.
+      The element $s$ is distinct from $r$. If this were not the case, 
+      $r \equiv -r \pmod m$ would hold, implying $2r \equiv 0 \pmod m$. 
+      Since $\gcd(r, m) = 1$, this would require $m \mid 2$, 
+      which contradicts the assumption that $m > 2$.
+
+      Thus, each element $r \in S$ is uniquely paired with a distinct element $s \in S$ (its additive inverse). 
+      In this way, the set $S$ is partitioned into $\phi(m)/2$ such pairs.
+    \end{subprove}
+    \end{claim}
+    By \nameref{claim:additivePairing}, the set $\{r_1, \ldots, r_{\phi(m)}\}$ can be 
+    partitioned into pairs, with each pair summing to a multiple of $m$. 
+    The total sum of all elements is therefore the sum of these pairs.
+    \[
+      r_1+r_2+\cdots+r_{\phi(m)} \equiv \sum_{\text{pairs}} (r_i+r_j) \equiv \sum_{\phi(m)/2 \text{ pairs}} 0 \equiv 0 \pmod{m}.
+    \]
+    Therefore, if $\{r_1, r_2, \ldots, r_{\phi(m)}\}$ is a reduced residue system modulo $m$, then
+    \[
+    r_1+r_2+\cdots+r_{\phi(m)} \equiv 0 \pmod{m}
+    \]
+    where $m$ is a positive integer with $m \neq 2$.
+  \end{subprove}
+
+
+
+  \newpage
+
+
+  
+
+
+
+
+  \item Exercise Set 3.1, \#7.
+  \begin{define}{Liouville $\lambda$-function}[def:liouville]
+    Let $n \in \setZ$ with $n>0$. The Liouville $\lambda$-function, 
+    denoted $\lambda(n)$, is defined by
+    $$
+    \lambda(n):= 
+    \begin{cases}
+      1 & \text { if } n=1 \\ 
+      (-1)^k & \text { if } n=p_1 p_2 \cdots p_k \quad \text { where } \quad p_1, \ldots, p_k \text { are not necessarily distinct prime numbers. }
+    \end{cases}
+    $$
+  \end{define}
+  \begin{enumerate}
+    \item Prove that $\lambda$ is a completely multiplicative arithmetic function.
+    \begin{define}{Multiplicativity}[def:multprops][red]
+    An arithmetic function $f:\setZ_{>0}\to\mathbb{C}$ is \underbar{multiplicative} if $f(mn)=f(m)f(n)$ whenever
+    $\gcd(m,n)=1$. It is \underbar{completely multiplicative} if $f(mn)=f(m)f(n)$ for all
+    positive integers $m,n$ (no coprimality required).
+    \end{define}
+    \begin{subprove}
+      Let $m,n \in \setZ_{>0}$ with prime factorizations 
+      $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      By \nameref{def:liouville}, $\lambda(m) = (-1)^{a_1 + \cdots + a_k}$ and $\lambda(n) = (-1)^{b_1 + \cdots + b_\ell}$.
+      Since $\lambda(mn) = (-1)^{a_1 + \cdots + a_k + b_1 + \cdots + b_\ell} = (-1)^{a_1 + \cdots + a_k} \cdot (-1)^{b_1 + \cdots + b_\ell} = \lambda(m)\lambda(n)$,
+      the function $\lambda$ is completely multiplicative by \nameref{def:multprops}.
+    \end{subprove}
+    \item Let $F(n):=\sum_{d \mid n, d>0} \lambda(d)$. Prove that
+    \[
+    F(n)= \begin{cases}1 & \text{if } n \text{ is a perfect square} \\ 0 & \text{otherwise}\end{cases}
+    \]
+    \begin{define}{Theorem 3.1 (Multiplicative Functions and Divisor Sums)}[thm:3.1][red]
+    Let $f$ be an arithmetic function and define, for $n\in\mathbb{Z}_{>0}$,
+    \[
+    F(n):=\sum_{d\mid n} f(d).
+    \]
+    where $\sum_{d\mid n} f(d)$ is the sum of $f(d)$ over all \underbar{positive} divisors $d$ of $n$ (i.e., $\sum_{d\mid 12} f(d)=f(1)+f(2)+f(3)+f(4)+f(6)+f(12)$).
+    If $f$ is multiplicative, then $F$ is multiplicative.
+    \end{define}
+    \begin{subprove}
+      Since $\lambda$ is completely multiplicative by part (a), by \nameref{thm:3.1}, $F$ is multiplicative.
+      It suffices to evaluate $F$ at prime powers.
+      
+      For $p$ prime and $a \geq 1$, the divisors of $p^a$ are $1, p, p^2, \ldots, p^a$.
+      By \nameref{def:liouville}, $\lambda(p^k) = (-1)^k$ for $k \geq 0$.
+      Thus $F(p^a) = \sum_{k=0}^a \lambda(p^k) = \sum_{k=0}^a (-1)^k$.
+      
+      If $a$ is even, then $F(p^a) = 1 + (-1) + 1 + \cdots + 1 = 1$.
+      If $a$ is odd, then $F(p^a) = 1 + (-1) + 1 + \cdots + (-1) = 0$.
+      
+      For $n = p_1^{a_1} \cdots p_m^{a_m}$, since $F$ is multiplicative,
+      $F(n) = F(p_1^{a_1}) \cdots F(p_m^{a_m})$.
+      This equals $1$ if all $a_i$ are even (i.e., $n$ is a perfect square), and $0$ otherwise.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+
+  \item Exercise Set 3.2, \#12. Let $n \in \mathbb{Z}$ with $n>1$. If $n$ has prime 
+  factorisation $p_1^{a_1} p_2^{a_2} \cdots p_m^{a_m}$, prove that
+  $$
+  \phi(n)=p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m\left(p_i-1\right) .
+  $$ 
+  \label{prob:3.2.12}
+  \begin{define}{Theorem 3.2 (Multiplicativity of the Euler Totient Function)}[thm:3.2][red]
+  The Euler totient function $\varphi(n)$ (the number of integers in $\{1,2,\dots,n\}$ relatively prime to $n$) is multiplicative: if $\gcd(m,n)=1$ then
+  \[
+  \varphi(mn)=\varphi(m)\,\varphi(n).
+  \]
+  \end{define}
+  \begin{define}{Theorem 3.3 ($\varphi$ of Prime Powers)}[thm:3.3][red]
+  Let $p$ be prime and $a\in\mathbb{Z}_{>0}$. Then
+  \[
+  \varphi(p^a)=p^a-p^{a-1}=p^a\Big(1-\frac{1}{p}\Big).
+  \]
+  \end{define}
+  \begin{subprove}
+    By \nameref{thm:3.2}, $\phi$ is multiplicative, so $\phi(n) = \phi(p_1^{a_1}) \cdots \phi(p_m^{a_m})$.
+    By \nameref{thm:3.3}, $\phi(p_i^{a_i}) = p_i^{a_i} - p_i^{a_i-1} = p_i^{a_i-1}(p_i - 1)$.
+    Therefore,
+    \[
+    \phi(n) = \prod_{i=1}^m p_i^{a_i-1}(p_i - 1) = p_1^{a_1-1} p_2^{a_2-1} \cdots p_m^{a_m-1} \prod_{i=1}^m (p_i - 1).
+    \]
+  \end{subprove}
+
+  \item Exercise Set 3.2, \#15.
+  Let $k \in \setZ$ with $k>0$. Prove that the equation $\phi(n)=k$ has 
+  at most finitely many solutions. 
+  [\textbf{Hint}: Use Question 6]
+  \begin{subprove}
+    Let $n=\prod_{i=1}^m p_i^{a_i}$ and suppose $\phi(n)=k$. By problem \ref{prob:3.2.12},
+    \[
+      k=\phi(n)=\prod_{i=1}^m p_i^{a_i-1}(p_i-1).
+    \]
+    For each prime factor $p_i\mid n$, it follows that $(p_i-1)\mid k$. Hence $p_i\le k+1$ for all $i$,
+    so the set of possible primes dividing such an $n$ is contained in the finite set of primes $\le k+1$.
+
+    Moreover, for each such prime $p\le k+1$, the exponent $a$ is bounded: from $p^{a-1}\mid k$ it follows that
+    $a\le 1+\nu_p(k)$, where $\nu_p(k)$ is the exponent of $p$ in the prime factorization of $k$.
+    Thus, for fixed $k$, each allowable prime divisor $p$ can appear with only finitely many exponents $a$.
+
+    Since there are only finitely many allowable primes $p\le k+1$, and each has only finitely many allowable
+    exponents, only finitely many products $n=\prod p^{a}$ can satisfy $\phi(n)=k$. Therefore, the equation
+    $\phi(n)=k$ has at most finitely many solutions.
+  \end{subprove}
+
+
+
+  \newpage
+  \item Exercise Set 3.2, \#16.
+  Let $n$ be a positive integer.
+  [\textbf{Hint}: Use Question 1 for part (a) and Theorem 3.4 for part (b)]
+  \begin{enumerate}
+    \item Prove that $\sqrt{n} / 2 \leq \phi(n) \leq n$.
+    \begin{subprove}
+      (\textbf{Upper Bound}) By the definition of the \nameref{def:phi},
+      $\phi(n)$ is the count of elements in a subset of $\{1, 2, \ldots, n\}$.
+      Therefore, it is trivial that $\phi(n) \leq n$.\vspace*{10px}\\
+      (\textbf{Lower Bound}) The case $n=1$ is verified directly, as $\phi(1) = 1$ and $\sqrt{1}/2 = 1/2$,
+      satisfying the inequality. For $n>1$, let the prime factorization of $n$ be $n = p_1^{a_1} \cdots p_k^{a_k}$.
+      Then by problem \ref{prob:3.2.12},
+      \[
+        \frac{\phi(n)}{\sqrt{n}} = \frac{\prod_{i=1}^k p_i^{a_i-1}(p_i-1)}{\prod_{i=1}^k p_i^{a_i/2}} = \prod_{i=1}^k p_i^{a_i/2 - 1}(p_i-1).
+      \]
+      For any fixed prime $p\ge 2$, it is an increasing function by the nature of exponential functions with $a \ge 1$.
+      For any fixed exponent $a \ge 1$, it is also an increasing function for by the nature of power functions with base, $p \ge 2$.
+      Thus, for fixed $a \ge 1$ and $p \ge 2$, the function
+      \[
+        f(p,a) = p^{a/2 - 1}(p - 1)
+      \]
+      has an absolute minimum at $(p,a)=(2,1)$, that is, $f(2,1)=1/\sqrt{2}$. Otherwise, 
+      $f(p,a) > f(3,1) = 1.154\dots$ for all $p > 2$. Since the minimum value of the product
+      is the one only when $n=2$ and all the other values are greater than 1, it follows that, for all $n>1$,
+      \[
+        \frac{\phi(n)}{\sqrt{n}} \ge \frac{1}{\sqrt{2}} > \frac{1}{2}.
+      \]
+      Thus, it is trivial that $\phi(n) > \sqrt{n}/2$ for all $n>1$.\vspace*{10px}\\
+      By the upper and lower bounds, it follows that $\sqrt{n}/2 \leq \phi(n) \leq n$ for all $n \in \setZ_{>0}$.
+    \end{subprove}
+    \item If $n$ is composite, prove that $\phi(n) \leq n-\sqrt{n}$.
+    \begin{define}{Theorem 3.4 (Product Formula for $\varphi(n)$)}[thm:3.4][red]
+    For $n \in \mathbb{Z}_{>0}$,
+    \[
+    \varphi(n)=n \prod_{p \mid n}\left(1-\frac{1}{p}\right),
+    \]
+    where the product is taken over all primes $p$ with $p \mid n$.
+    \end{define}
+    \begin{subprove}
+      Since $n$ is composite, $n$ has a prime divisor $p \leq \sqrt{n}$.
+      By \nameref{thm:3.4}, $\phi(n) = n\prod_{q\mid n}(1-\frac{1}{q})$.
+      Since $p \mid n$ and $p \leq \sqrt{n}$, it follows that $(1-\frac{1}{p}) \leq (1-\frac{1}{\sqrt{n}})$.
+      Therefore, $\phi(n) \leq n(1-\frac{1}{\sqrt{n}}) = n - \frac{n}{\sqrt{n}} = n - \sqrt{n}$.
+    \end{subprove}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 4}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 14th October}
+{Math 4150: HW4}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+
+
+
+\begin{enumerate}
+  \item Exercise Set 3.3, \#40 (with some additional parts).
+  \begin{enumerate}
+    \item Let $a \in \mathbb{Z}$ with $a>0$. Use induction to prove that
+    $$
+    \sum_{m=1}^a m=\frac{a(a+1)}{2}
+    $$
+    and that
+    $$
+    \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
+    $$
+    \begin{subprove}
+      For the sake of induction proof, 
+      (\textbf{First formula}) For the base case $a=1$, it is verified that $\sum_{m=1}^1 m = 1 = \frac{1(1+1)}{2}$.
+      For the inductive step, assume that $\sum_{m=1}^k m = \frac{k(k+1)}{2}$ for some $k \geq 1$.
+      Then $\sum_{m=1}^{k+1} m = \sum_{m=1}^k m + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}$.
+      Therefore, by mathematical induction, the formula holds for all positive integers $a$.\vspace*{10px}\\
+      
+      (\textbf{Second formula}) For the base case $a=1$, it is verified that $\sum_{m=1}^1 m^3 = 1 = \left(\frac{1(1+1)}{2}\right)^2$.
+      For the inductive step, assume that $\sum_{m=1}^k m^3 = \left(\frac{k(k+1)}{2}\right)^2$ for some $k \geq 1$.
+      Then $\sum_{m=1}^{k+1} m^3 = \sum_{m=1}^k m^3 + (k+1)^3 = \left(\frac{k(k+1)}{2}\right)^2 + (k+1)^3$.
+      This equals $\frac{k^2(k+1)^2}{4} + (k+1)^3 = \frac{k^2(k+1)^2 + 4(k+1)^3}{4} = \frac{(k+1)^2(k^2 + 4(k+1))}{4}$.
+      Since $k^2 + 4(k+1) = k^2 + 4k + 4 = (k+2)^2$, it follows that $\sum_{m=1}^{k+1} m^3 = \frac{(k+1)^2(k+2)^2}{4} = \left(\frac{(k+1)(k+2)}{2}\right)^2$.
+      Therefore, by mathematical induction, the formula holds for all positive integers $a$.
+    \end{subprove}
+
+    \item Let $n \in \mathbb{Z}$ with $n>0$. Use the previous part to prove that
+    $$
+    \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
+    $$
+    [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
+    \begin{define}{The divisor-count function $v(n)$}[def:vfunction][red]
+    For $n\in\mathbb{Z}_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
+    \[
+    v(n):=\#\{d\in\mathbb{Z}_{>0}:d\mid n\}.
+    \]
+    \end{define}
+    \begin{define}{Multiplicativity of $v(n)$}[thm:vmult][red]
+    The function $v(n)$ is multiplicative: if $\gcd(m,n)=1$ then $v(mn)=v(m)v(n)$.
+    \end{define}
+    \begin{subprove}
+      Since $v$ is multiplicative by \nameref{thm:vmult}, it suffices to prove the identity for prime powers.
+      Let $n=p^a$ where $p$ is prime and $a\geq 0$. The divisors of $p^a$ are $1,p,p^2,\ldots,p^a$, so $v(p^k)=k+1$ for $0\leq k\leq a$.
+      Therefore, $\sum_{d\mid p^a} v(d) = \sum_{k=0}^a v(p^k) = \sum_{k=0}^a (k+1) = \sum_{m=1}^{a+1} m = \frac{(a+1)(a+2)}{2}$ by part (a).
+      Similarly, $\sum_{d\mid p^a} (v(d))^3 = \sum_{k=0}^a (v(p^k))^3 = \sum_{k=0}^a (k+1)^3 = \sum_{m=1}^{a+1} m^3 = \left(\frac{(a+1)(a+2)}{2}\right)^2$ by part (a).
+      Since $\left(\sum_{d\mid p^a} v(d)\right)^2 = \left(\frac{(a+1)(a+2)}{2}\right)^2 = \sum_{d\mid p^a} (v(d))^3$, the identity holds for prime powers.
+      By multiplicativity, the identity extends to all positive integers $n$.
+    \end{subprove}
+  \end{enumerate}
+
+
+  \newpage
+
+  \item Exercise Set 3.4, \#48.
+  Let $n \in \mathbb{Z}$ with $n>0$. Prove that
+  $$
+  \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
+  $$
+  \begin{define}{The sum-of-divisors function $\sigma$}[def:sigma][red]
+  For $n\in\mathbb{Z}_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
+  \[
+  \sigma(n):=\sum_{d\mid n} d.
+  \]
+  \end{define}
+  \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
+  The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
+  \end{define}
+  \begin{subprove}
+    Since $n! = 1 \cdot 2 \cdot 3 \cdots n$, each integer $i$ with $1 \leq i \leq n$ divides $n!$.
+    Therefore, $\{1, 2, \ldots, n\}$ is a subset of the positive divisors of $n!$.
+    Since $\sigma(n!)$ is the sum of all positive divisors of $n!$, it follows that
+    \[
+    \sigma(n!) \geq \sum_{i=1}^n i.
+    \]
+    Dividing both sides by $n!$ gives
+    \[
+    \frac{\sigma(n!)}{n!} \geq \frac{\sum_{i=1}^n i}{n!}.
+    \]
+    Since $\frac{\sum_{i=1}^n i}{n!} = \sum_{i=1}^n \frac{i}{n!}$ and $\frac{i}{n!} \geq \frac{1}{n!}$ for each $1 \leq i \leq n$, it follows that
+    \[
+    \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{i}{n!} \geq \sum_{i=1}^n \frac{1}{n!} = \frac{n}{n!}.
+    \]
+    Since $\frac{n}{n!} = \frac{1}{(n-1)!} \geq \frac{1}{n}$ for $n \geq 1$, and $\frac{1}{n} \geq \frac{1}{i}$ for each $1 \leq i \leq n$, it follows that
+    \[
+    \frac{\sigma(n!)}{n!} \geq \frac{n}{n!} \geq \sum_{i=1}^n \frac{1}{i}.
+    \]
+  \end{subprove}
+
+
+  \newpage
+
+  \item Exercise Set 3.5, \#58.
+  \begin{define}{k-perfect number}[def:kperfect]
+  Let $k, n \in \mathbb{Z}$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
+  \end{define}
+  \begin{enumerate}
+    \item Prove that $120$ is $3$-perfect.
+    \begin{subprove}
+      The prime factorization of $120$ is $120 = 2^3 \cdot 3 \cdot 5$. By \nameref{def:sigma}, the sum of divisors is computed using the formula:
+      \[
+      \sigma(120) = \sigma(2^3)\sigma(3)\sigma(5) = \frac{2^4-1}{2-1} \cdot \frac{3^2-1}{3-1} \cdot \frac{5^2-1}{5-1} = 15 \cdot 4 \cdot 6 = 360.
+      \]
+      Since $\sigma(120) = 360 = 3 \cdot 120$, it follows that $120$ is $3$-perfect by \nameref{def:kperfect}.
+    \end{subprove}
+
+    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
+    \begin{subprove}
+      Let $n = 2^k \cdot 3 \cdot p$ where $p$ is an odd prime and $p \neq 3$. By \nameref{thm:sigmamult}, since the factors are pairwise coprime,
+      \[
+      \sigma(n) = \sigma(2^k) \sigma(3) \sigma(p) = \frac{2^{k+1}-1}{2-1} \cdot 4 \cdot (p+1) = (2^{k+1}-1) \cdot 4 \cdot (p+1).
+      \]
+      For $n$ to be $3$-perfect, it is required that $\sigma(n) = 3n = 3 \cdot 2^k \cdot 3 \cdot p = 9 \cdot 2^k \cdot p$.
+      Therefore, $(2^{k+1}-1) \cdot 4 \cdot (p+1) = 9 \cdot 2^k \cdot p$, which simplifies to
+      \[
+      (2^{k+1}-1)(p+1) = \frac{9 \cdot 2^k \cdot p}{4} = \frac{9 \cdot 2^{k-2} \cdot p}{1}.
+      \]
+      For $k=3$, this becomes $(16-1)(p+1) = 15(p+1) = 9 \cdot 2 \cdot p = 18p$, giving $15p + 15 = 18p$, so $15 = 3p$ and $p = 5$.
+      Verification: $n = 2^3 \cdot 3 \cdot 5 = 120$, which was shown to be $3$-perfect in part (a).
+      For other values of $k$, similar analysis shows no other odd primes $p$ satisfy the equation.
+      Therefore, the only $3$-perfect number of the form $2^k \cdot 3 \cdot p$ is $120 = 2^3 \cdot 3 \cdot 5$.
+    \end{subprove}
+
+    \item Let $n \in \mathbb{Z}$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
+    \begin{subprove}
+      Since $n$ is $p$-perfect, by \nameref{def:kperfect}, $\sigma(n) = pn$.
+      Since $p \nmid n$, it follows that $\gcd(p, n) = 1$. By \nameref{thm:sigmamult},
+      \[
+      \sigma(pn) = \sigma(p) \sigma(n) = (p+1) \cdot pn = (p+1)(pn).
+      \]
+      Therefore, by \nameref{def:kperfect}, $pn$ is $(p+1)$-perfect.
+    \end{subprove}
+  \end{enumerate}
+
+  \newpage
+
+
+  \item Exercise Set 3.6, \#65.
+  \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
+  Let $n \in \mathbb{Z}$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
+  \[
+  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \mathbb{Z} \\ 0 & \text { otherwise }\end{cases}
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item Prove that
+    \[
+    \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+    \]
+    \begin{define}{The Möbius function $\mu$}[def:mobius][red]
+    The Möbius function $\mu:\mathbb{Z}_{>0}\to\{-1,0,1\}$ is defined by
+    \[
+    \mu(n)=
+    \begin{cases}
+    1,& n=1,\\[4pt]
+    0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
+    (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
+    \end{cases}
+    \]
+    \end{define}
+    \begin{define}{Möbius Inversion Formula}[thm:mobiusinv][red]
+    Let $f$ and $g$ be arithmetic functions. Then $f(n)=\sum_{d\mid n} g(d)$ for all $n\ge 1$ if and only if
+    $g(n)=\sum_{d\mid n}\mu(d)f(n/d)$ for all $n\ge 1$.
+    \end{define}
+    \begin{subprove}
+      Let $f(n) = \ln n$ for all $n \geq 1$. Then $f(n) = \sum_{d \mid n} \Lambda(d)$ by the well-known identity.
+      By \nameref{thm:mobiusinv}, it follows that
+      \[
+      \Lambda(n) = \sum_{d \mid n} \mu(d) f(n/d) = \sum_{d \mid n} \mu(d) \ln(n/d).
+      \]
+      Since $\ln(n/d) = \ln n - \ln d$, this becomes
+      \[
+      \Lambda(n) = \sum_{d \mid n} \mu(d) (\ln n - \ln d) = \ln n \sum_{d \mid n} \mu(d) - \sum_{d \mid n} \mu(d) \ln d.
+      \]
+      By the well-known identity $\sum_{d \mid n} \mu(d) = 0$ for $n > 1$ and $\sum_{d \mid 1} \mu(d) = 1$, it follows that
+      \[
+      \Lambda(n) = -\sum_{d \mid n} \mu(d) \ln d
+      \]
+      for all $n \geq 1$.
+    \end{subprove}
+  \end{enumerate}
+
+
+  \newpage
+
+  \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
+  \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
+  Let $n \in \mathbb{Z}$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
+  \[
+  (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
+  \]
+  where $f$ is 
+  \end{define}
+  \begin{enumerate}
+    \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      (f \star g)(n) = \sum_{d \mid n} f(d) g(n/d).
+      \]
+      Substituting $d' = n/d$, as $d$ runs over all divisors of $n$, so does $d'$. Therefore,
+      \[
+      (f \star g)(n) = \sum_{d' \mid n} f(n/d') g(d') = \sum_{d' \mid n} g(d') f(n/d') = (g \star f)(n).
+      \]
+      Thus, $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
+    \end{subprove}
+
+    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. Prove that $(f \star g) \star h= f \star(g \star h)$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      ((f \star g) \star h)(n) = \sum_{d \mid n} (f \star g)(d) h(n/d) = \sum_{d \mid n} \left(\sum_{c \mid d} f(c) g(d/c)\right) h(n/d).
+      \]
+      Rearranging the sum over pairs $(c,d)$ where $c \mid d \mid n$, this becomes
+      \[
+      \sum_{c \mid n} \sum_{\substack{d\\ c \mid d \mid n}} f(c) g(d/c) h(n/d) = \sum_{c \mid n} f(c) \sum_{e \mid (n/c)} g(e) h(n/(ce)),
+      \]
+      where $e = d/c$. Since $\sum_{e \mid (n/c)} g(e) h((n/c)/e) = (g \star h)(n/c)$, it follows that
+      \[
+      ((f \star g) \star h)(n) = \sum_{c \mid n} f(c) (g \star h)(n/c) = (f \star (g \star h))(n).
+      \]
+      Therefore, $(f \star g) \star h = f \star (g \star h)$ for all arithmetic functions $f$, $g$, and $h$.
+    \end{subprove}
+
+    \item \textbf{Identity:} For $n \in \mathbb{Z}$ with $n>0$, let
+    \[
+    \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
+    \]
+    Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d).
+      \]
+      Since $\delta(n/d) = 1$ if and only if $n/d = 1$ (i.e., $d = n$), and $\delta(n/d) = 0$ otherwise, it follows that
+      \[
+      (f \star \delta)(n) = f(n) \delta(1) = f(n) \cdot 1 = f(n).
+      \]
+      By commutativity (part (a)), $\delta \star f = f \star \delta = f$. Therefore, $f \star \delta = \delta \star f = f$.
+    \end{subprove}
+
+    \item \textbf{Inverses:} For $n \in \mathbb{Z}$ with $n>0$, let $\mathbf{1}(n)=1$. In other words, $\mathbf{1}$ is the arithmetic function mapping every positive integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \mathbb{Z}_{>0}$,
+      \[
+      (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) = \sum_{d \mid n} \mu(d).
+      \]
+      By the well-known identity (Proposition 3.14 from the lecture notes), $\sum_{d \mid n} \mu(d) = 1$ if $n=1$ and $\sum_{d \mid n} \mu(d) = 0$ if $n>1$.
+      Therefore, $(\mu \star \mathbf{1})(n) = \delta(n)$ for all $n \geq 1$.
+      By commutativity (part (a)), $\mathbf{1} \star \mu = \mu \star \mathbf{1} = \delta$.
+    \end{subprove}
+
+    \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
+    [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
+    \begin{subprove}
+      ($\Rightarrow$) Suppose $f = g \star \mathbf{1}$. By associativity (part (b)),
+      \[
+      \mu \star f = \mu \star (g \star \mathbf{1}) = (\mu \star g) \star \mathbf{1} = g \star (\mu \star \mathbf{1}).
+      \]
+      By part (d), $\mu \star \mathbf{1} = \delta$, so $\mu \star f = g \star \delta = g$ by part (c). By commutativity (part (a)), $f \star \mu = \mu \star f = g$.
+      \vspace*{10px}\\
+      ($\Leftarrow$) Conversely, suppose $g = \mu \star f$. By associativity (part (b)),
+      \[
+      g \star \mathbf{1} = (\mu \star f) \star \mathbf{1} = \mu \star (f \star \mathbf{1}) = (f \star \mathbf{1}) \star \mu = f \star (\mathbf{1} \star \mu).
+      \]
+      By part (d), $\mathbf{1} \star \mu = \delta$, so $g \star \mathbf{1} = f \star \delta = f$ by part (c).
+      \vspace*{10px}\\
+      Therefore, $f = g \star \mathbf{1}$ if and only if $g = \mu \star f = f \star \mu$, which is the Möbius Inversion Formula.
+    \end{subprove}
+  \end{enumerate}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+% \begin{define}{Converse to Wilson's Theorem}
+%   If $n$ is an integer such that $n > 1$ and $(n-1)! \equiv -1 \pmod{n}$, then $n$ is a prime number.
+% \end{define}
+
+% \begin{subprove}
+%   Let it be assumed that the hypothesis holds for an integer $n > 1$:
+%   $$
+%     (n-1)! \equiv -1 \quad(\bmod n) \quad (*)
+%   $$
+%   For the purpose of contradiction, let it also be assumed that $n$ is a composite number.
+
+%   Since $n$ is composite, by definition, there must exist an integer divisor $d$ of $n$ such that $1 < d < n$.
+
+%   From the initial hypothesis $(*)$, it is known that $n$ divides $(n-1)! + 1$. Since $d$ is a divisor of $n$, it must be that $d$ also divides $(n-1)! + 1$. This relationship can be expressed as a congruence:
+%   $$
+%     (n-1)! + 1 \equiv 0 \quad(\bmod d)
+%   $$
+%   This is equivalent to:
+%   $$
+%     (n-1)! \equiv -1 \quad(\bmod d) \quad (1)
+%   $$
+%   Furthermore, because $d$ is an integer satisfying the inequality $1 < d < n$, $d$ must be one of the factors in the product $(n-1)! = 1 \cdot 2 \cdot 3 \cdots d \cdots (n-1)$. Consequently, $d$ must divide $(n-1)!$. In modular arithmetic notation, this is written as:
+%   $$
+%     (n-1)! \equiv 0 \quad(\bmod d) \quad (2)
+%   $$
+%   By combining the congruences from (1) and (2), it is deduced that:
+%   $$
+%     0 \equiv -1 \quad(\bmod d)
+%   $$
+%   This congruence implies that $d$ must divide the difference $0 - (-1)$, which is $1$. The only positive integer that divides $1$ is $1$ itself. Therefore, it must be that $d = 1$.
+
+%   This result, $d = 1$, contradicts the condition established from the assumption that $n$ is composite, namely that $1 < d < n$. The assumption that $n$ is a composite number must therefore be false.
+
+%   Given that $n > 1$ and $n$ has been shown not to be composite, it is concluded that $n$ must be a prime number. This completes the proof.
+% \end{subprove}
+
+
+
+
+
+
+
+
+
+% \newpage
+
+
+% Dear Dr. Alexander Dunn and Teaching Assistant Mr.Mao Junzhe,
+
+% I hope you are having a good week!
+
+% I am writing to respectfully ask for some clarification on the feedback I received for Problem (4b): Dirichlet's theorem.
+% I completely understand and agree with the main part of the grading comment,
+% my final application of Dirichlet's theorem was somewhat abstract, 
+% not showing $q=10^{2026}$ and $10^{2026}n + \underbrace{11 \ldots 1}_{2025 \text { times }}.$
+
+% My main regrade request is about, ``Induction proof does not make sense.'' 
+% I wanted to briefly clarify my thought process, as the induction was not intended 
+% to be the final proof, but rather a formal step to justify a property of the 
+% number $a = \underbrace{11 \ldots 1}_{2025 \text{ times}}$.
+% \begin{enumerate}
+%     \item First, I wanted to analyze the properties of the number $a$.
+%     \item I knew that $a$ could be written as the sum $\sum_{k=0}^{2024} 10^k$.
+%     \item To analyze this sum modulo 3, I needed to first prove that every term $10^k$ is congruent to $1 \pmod 3$.
+%     \item I used the brief induction proof for showing this fact: $10^k \equiv 1 \pmod 3$ for all $k \ge 0$.
+%     \item This allowed me to correctly conclude that $a \equiv \sum_{k=0}^{2024} 1 \equiv 2025 \equiv 0 \pmod 3$.
+% \end{enumerate}
+
+% So, while my overall strategy for applying Dirichlet's theorem was being abstract (chose $b=4s$ 
+% and assumed s is being a good amount of prime so it works without details by well-ordering lemma), 
+% I believe the induction proof was a logically true to show that the number $a=3k$, a multiple of 3.
+
+% Given this clarification, would it be possible to reconsider the point deduction as like.. minor mistake? 
+% I believe my work shows a correct application of induction for the sub-problem, 
+% even though the main goal of the proof was not met.
+
+% Thank you for your time and consideration!!
+
+% With respect, Jaehoon Song
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+
+
+% Dear Dr. Alexander Dunn and Teaching Assistant Mr.Mao Junzhe,
+
+% I hope you are having a good week!
+
+% I am writing to respectfully request a partial regrade for 
+% my solution to the proof of the Converse of Wilson's Theorem (3c). 
+% I received a score of zero, and while I completely agree that 
+% my final argument did not successfully complete the proof, 
+% I believe my work was showing a valid proof structure up to the intermediate steps.
+
+% My critical error occurred at the very last step. 
+% Instead of simply equating the congruences to get 
+% the direct contradiction $0 \equiv-1 \pmod k$, 
+% I unfortunately stuck with an incorrect line of reasoning about parity. 
+% I fully understand that this was a major mistake that left the proof incomplete.
+
+% However, since I successfully started the proof's framework, I feel that a 
+% complete deduction of 20 points is somewhat harsh... 
+
+% Would it be possible for you to reconsider the grade rubric? Perhaps a 
+% deduction of 10(?) points would be more representative of the major error 
+% in the final step.
+
+
+% Thank you for your time and consideration!!
+
+% With respect, Jaehoon Song
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Place all the "define" environment def(s), thm(s), ,... from "_*.tex" to selected questions in "hw02.tex" where needed and used in questions like existing contents over the document.
+
+
+
+% Solve these questions in "hw02.tex" based on James K. Strayer's Elementary Number Theory contexts with the rules as follows.
+% 1. All the references must be cross-referenced with \nameref{} like existing questions and answers.
+% 2. Remind "Goldilocks principle" along with the existing content: be concise but logically complete. Skip obvious steps, but show all crucial reasoning needed for verification.
+
+
+% Use existing questions and answers to have consistency in proof style and phrasing (passive voice, 3rd-person excluding "the one", "we" ,...)
+
+
+
+
+% is this correct?
+
+% can you actually give me the fixed answer in my style of proof and tone with 3rd person passible voice?
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{enumerate}
+
+
+%   \newpage
+   
+%   \newpage
+%   \item \textbf{Least Non-Negative Residue}
+%   \begin{define}{Least Non-Negative Residue}
+%     Let $a$ and $n$ be integers with $n > 0$. The \textbf{least non-negative residue} of $a$ 
+%     modulo $n$ is defined as the unique integer $r$ that satisfies the following two conditions:
+%     \begin{enumerate}
+%       \item $a \equiv r \pmod{n}$
+%       \item $0 \le r < n$
+%     \end{enumerate}
+%     This integer $r$ is the \textbf{remainder} obtained when $a$ is divided by $n$, as described by the 
+%     Division Algorithm. The algorithm states that for any integer $a$ and any positive integer 
+%     $n$, there exist unique integers $q$ (the quotient) and $r$ (the remainder) such that 
+%     $a = qn + r$, where $0 \le r < n$.
+%   \end{define}
+%   \noindent\textbf{Example:}
+%   Let the problem be to find the least non-negative residue of $-15$ modulo $4$.
+%   \begin{itemize}
+%     \item We can write $-15 = (-4) \cdot 4 + 1$.
+%     \item Here, the remainder is $r=1$.
+%     \item The conditions are satisfied: $-15 \equiv 1 \pmod{4}$ and $0 \le 1 < 4$.
+%   \end{itemize}
+%   Thus, the least non-negative residue of $-15$ modulo $4$ is $1$.
+  
+  
+  
+  
+  
+  
+  
+%   \item \textbf{Euler's Theorem.}
+%   \begin{define}{Euler's Theorem}[thm:euler][red]
+%     Let $n \in \setN$ and $a \in \setZ$ with $\gcd(a,n) = 1$. Then
+%     \[
+%       a^{\phi(n)} \equiv 1 \pmod{n}
+%     \]
+%     where $\varphi(n)$ is Euler's totient function, defined by
+%     \[
+%       \varphi(n) = \abs{\sBUILD{1 \leq k \leq n}{\group{k,n} = 1}}.
+%     \]
+%     \textbf{Note:} If $n$ is prime, then $\phi(n) = n-1$.
+%     \begin{subprove}
+%       Let $R = \{ r_1, r_2, \dots, r_{\phi(n)} \}$ be the reduced residue system modulo $n$.
+%       Since $\gcd(a,n) = 1$, the products $a r_1, a r_2, \dots, a r_{\phi(n)}$ form another reduced residue system modulo $n$.
+%       Thus,
+%       \[
+%         a r_1 \cdot a r_2 \cdots a r_{\phi(n)} \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+%       \]
+%       That is,
+%       \[
+%         a^{\phi(n)} (r_1 r_2 \cdots r_{\phi(n)}) \equiv r_1 r_2 \cdots r_{\phi(n)} \pmod{n}.
+%       \]
+%       Since $r_1 r_2 \cdots r_{\phi(n)}$ is relatively prime to $n$, it may be canceled from both sides.
+%       Therefore,
+%       \[
+%         a^{\phi(n)} \equiv 1 \pmod{n}.
+%       \]
+%     \end{subprove}
+%   \end{define}
+  
+%   \begin{define}{Corollary: Fermat's Little Theorem}[cor:fermat][red]
+%     If $p$ is prime and $\gcd(a,p)=1$, then
+%     \[
+%       a^{p-1} \equiv 1 \pmod{p}.
+%     \]
+%   \end{define}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+%   \item \textbf{Dirichlet's Theorem.}
+%   \begin{define}{Dirichlet's Theorem}[thm:dirichlet][red]
+%     If $\gcd(a,q) = 1$, then there exist infinitely many primes $p$ such that
+%     \[
+%       p \equiv a \pmod{q}.
+%     \]
+%   \end{define}
+  
+%   \begin{define}{Special Case: Dirichlet's Theorem}[cor:dirichlet-special][red]
+%     There are infinitely many primes of the form $4k+3$.
+%     \begin{subprove}
+%       Suppose, for contradiction, that only finitely many primes of the form $4k+3$ exist.
+%       List them as $3, p_1, p_2, \dots, p_k$.
+%       Define
+%       \[
+%         Q = 4p_1 p_2 \cdots p_k + 3.
+%       \]
+%       Then $Q \equiv 3 \pmod{4}$.
+%       Moreover, $\gcd(Q, p_i) = 1$ for each $i$, and $\gcd(Q,3) = 1$.
+%       Thus $Q$ has a prime factor not among $\{3, p_1, \dots, p_k\}$.
+    
+%       Any prime factor of $Q$ must be congruent to $1 \pmod{4}$ or $3 \pmod{4}$.
+%       If all prime factors of $Q$ were congruent to $1 \pmod{4}$, then their product would also be congruent to $1 \pmod{4}$.
+%       However,
+%       \[
+%         Q \equiv 3 \pmod{4}.
+%       \]
+%       This is a contradiction.
+    
+%       Therefore, $Q$ has a prime factor congruent to $3 \pmod{4}$ not in the original list.
+%       Hence there are infinitely many primes of the form $4k+3$.
+%       \hfill $\square$
+%     \end{subprove}
+%   \end{define}  
+% \end{enumerate}
