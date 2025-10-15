@@ -6,7 +6,7 @@
 \input{../preamble/font.tex}
 
 \input{../preamble/operator.tex} 
-% \input{../preamble/symbol.tex} 
+\input{../preamble/symbol.tex} 
 \input{../preamble/math.tex}  
 \input{../preamble/math-graph.tex}
 % \input{../preamble/math-tikz.tex}
@@ -14,7 +14,7 @@
 
 
 
-
+\usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -37,7 +37,7 @@
 \newcommand{\Z}{\mathds{Z}}
 \newcommand{\N}{\mathds{N}}
 \newcommand{\R}{\mathds{R}}
-\newcommand{\E}{\mathcal{E}}
+% \newcommand{\E}{\mathcal{E}}
 \newcommand{\RC}{RC}
 
 \newcommand{\tauRC}{\tau_{RC}}
@@ -350,138 +350,336 @@
 
 
 
-\newpage
-
-\section*{Part 1}
-\begin{multicolblock}{Solve each equation.}
-  \begin{enumerate}
-    \item $6 = \dfrac{a}{4} + 2$
-    \item $9x - 7 = -7$
-    \item $-4 = \dfrac{r}{20} - 5$
-    \item $-6 + \dfrac{x}{4} = -5$
-    \item $0 = 4 + \dfrac{n}{5}$
-    \item $-1 = \dfrac{5 + x}{6}$
-    \item $\dfrac{v + 9}{3} = 8$
-    \item $-9x + 1 = -80$
-    \item $-2 = 2 + \dfrac{v}{4}$
-    \item $2(n + 5) = -2$
-    \item $-6 = \dfrac{n}{2} - 10$
-    \item $144 = -12(x + 5)$
-    \item $8n + 7 = 31$
-    \item $\dfrac{n + 5}{-16} = -1$
-    \item $-10 = 10(k - 9)$
-    \item $-9x - 13 = -103$
-    \item $-10 = -10 + 7m$
-    \item $\dfrac{m}{9} - 1 = -2$
-    \item $-243=-9(10+x)$
-    \item $9+9 n=9$
-    \item $7(9+k)=84$
-    \item $8+\dfrac{b}{-4}=5$
-  \end{enumerate}
-\end{multicolblock}
-
-
-\begin{subanswer}
-  \begin{multicolblock}{Here are the answers.}[3]
-  \begin{enumerate}
-    \item $a=16$
-    \item $x=0$
-    \item $r=20$
-    \item $x=4$
-    \item $n=-20$
-    \item $x=-11$
-    \item $v=15$
-    \item $x=7$
-    \item $v=-24$
-    \item $n=-6$
-    \item $n=8$
-    \item $x=-17$
-    \item $n=3$
-    \item $n=-21$
-    \item $k=8$
-    \item $x=-4$
-    \item $m=0$
-    \item $m=-9$
-    \item $x=-37$
-    \item $n=0$
-    \item $k=0$
-    \item $b=-12$
-  \end{enumerate}
-  \end{multicolblock}
-\end{subanswer}
 
 
 
-\newpage
-\section*{Part 2}
 
-\begin{multicolblock}{Solve each equation.}
-  \begin{enumerate}
-    \item $\dfrac{r}{10}+4=5$
-    \item $\dfrac{n}{2}+5=3$
-    \item $3p-2=-29$
-    \item $1-r=-5$
-    \item $\dfrac{k-10}{2}=-7$
-    \item $\dfrac{n-5}{2}=5$
-    \item $-9+\dfrac{n}{4}=-7$
-    \item $\dfrac{9+m}{3}=2$
-    \item $\dfrac{-5+x}{22}=-1$
-    \item $4n-9=-9$
-    \item $\dfrac{x+9}{2}=3$
-    \item $\dfrac{-12+x}{11}=-3$
-    \item $\dfrac{-4+x}{2}=6$
-    \item $-5+\dfrac{n}{3}=0$
-    \item $\dfrac{p}{4}+8=7$
-    \item $9+\dfrac{n}{4}=15$
-    \item $6+\dfrac{x}{2}=4$
-    \item $\dfrac{b+11}{3}=-2$
-    \item $\dfrac{a-10}{3}=-4$
-    \item $-12r+4=100$
-    \item $\dfrac{m}{16}-9=-8$
-    \item $-7+4r=-15$
-    \item $\dfrac{m-13}{2}=-8$
-    \item $-5x+13=-17$
-    \item $\dfrac{k+10}{-2}=5$
-    \item $\dfrac{p+8}{-2}=10$
-    \item $-14r-19=303$
-    \item $\dfrac{x}{-4}-5=-8$
-  \end{enumerate}
-\end{multicolblock}
 
-\begin{subanswer}
-  \begin{multicolblock}{Here are the answers.}[3]
-  \begin{enumerate}
-    \item $r=10$
-    \item $n=-4$
-    \item $p=-9$
-    \item $r=6$
-    \item $k=-4$
-    \item $n=15$
-    \item $n=8$
-    \item $m=-3$
-    \item $x=-27$
-    \item $n=0$
-    \item $x=-3$
-    \item $x=-21$
-    \item $x=16$
-    \item $n=15$
-    \item $p=-4$
-    \item $n=24$
-    \item $x=-4$
-    \item $b=-17$
-    \item $a=-2$
-    \item $r=-8$
-    \item $m=16$
-    \item $r=-2$
-    \item $m=-5$
-    \item $x=4$
-    \item $k=-28$
-    \item $p=-26$
-    \item $r=-22$
-    \item $x=12$
-  \end{enumerate}
-  \end{multicolblock}
-\end{subanswer}
+
+\begin{define}{Groups}[def:group][red]
+  A \textbf{group} is a nonempty set \(G\) under the (binary) 
+  operation \(*: S \times S \to S\), denoted by \((G, *)\), such that
+  \begin{itemize}
+    \item \textbf{Closure:} For all \(a, b \in G\), \(a * b \in G\).
+    \item \textbf{Associativity:} For all \(a, b, c \in G\), \((a * b) * c = a * (b * c)\).
+    \item \textbf{Existence of Identity:} There exists an element \(e \in G\) 
+    such that for all \(a \in G\), \(e * a = a * e = a\).
+    \item \textbf{Existence of Inverse:} For each \(a \in G\), there exists an 
+    element \(a^{-1} \in G\) such that \(a * a^{-1} = a^{-1} * a = e\).
+  \end{itemize}
+\end{define}
+
+\begin{enumerate}
+  \item Show that \((\setZ, +)\) is a group.
+  \begin{subprove}
+    Let \(G = \setZ\) and let the operation be \(+\).
+    We will show that \((G, +)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a + b \in G\) since the sum of two integers is an integer.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a + b) + c = a + (b + c)\) by the associativity of integer addition.
+      \item \textbf{Existence of Identity:} The identity element is \(0\) since for any \(a \in G\), \(0 + a = a + 0 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(-a\) since \(a + (-a) = (-a) + a = 0\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setZ, +)\) is a group.
+  \end{subprove}
+  \item Show that \((\setZ, \cdot)\) is not a group.
+  \begin{subprove}
+    Let \(G = \setZ\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) does not satisfy all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two integers is an integer.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of integer multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), there does not exist an inverse element \(a^{-1} \in G\) such that \(a \cdot a^{-1} = a^{-1} \cdot a = 1\) unless \(a = 1\) or \(a = -1\). For example, if \(a = 2\), then there is no integer \(b\) such that \(2 \cdot b = 1\).
+    \end{itemize}
+    Since the existence of inverse property is not satisfied for all elements in \(G\), it follows that \((\setZ, \cdot)\) is not a group.
+  \end{subprove}
+  \item Show that \((\setQ, +)\) is a group.
+  \begin{subprove}
+    Let \(G = \setQ\) and let the operation be \(+\).
+    We will show that \((G, +)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a + b \in G\) since the sum of two rational numbers is a rational number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a + b) + c = a + (b + c)\) by the associativity of rational number addition.
+      \item \textbf{Existence of Identity:} The identity element is \(0\) since for any \(a \in G\), \(0 + a = a + 0 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(-a\) since \(a + (-a) = (-a) + a = 0\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setQ, +)\) is a group.
+  \end{subprove}
+  \item Show that \((\setQ, \cdot)\) is not a group.
+  \begin{subprove}
+    Let \(G = \setQ\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) does not satisfy all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two rational numbers is a rational number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of rational number multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), there does not exist an inverse element \(a^{-1} \in G\) such that \(a \cdot a^{-1} = a^{-1} \cdot a = 1\) if \(a = 0\). For example, if \(a = 0\), then there is no rational number \(b\) such that \(0 \cdot b = 1\).
+    \end{itemize}
+    Since the existence of inverse property is not satisfied for all elements in \(G\), it follows that \((\setQ, \cdot)\) is not a group.
+  \end{subprove}
+  \item Show that \((\setQ^*, \cdot)\) is a group, where \(\setQ^* = \set{q \in \setQ \mid q \neq 0}\).
+  \begin{subprove}
+    Let \(G = \setQ^*\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two nonzero rational numbers is a nonzero rational number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of rational number multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(a^{-1} = \frac{1}{a}\) since \(a \cdot a^{-1} = a^{-1} \cdot a = 1\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setQ^*, \cdot)\) is a group.
+  \end{subprove}
+  \item Show that \((\setR^{+}, +)\) is a group.
+  \begin{subprove}
+    Let \(G = \setR^{+}\) and let the operation be \(+\).
+    We will show that \((G, +)\) does not satisfy all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a + b \in G\) since the sum of two positive real numbers is a positive real number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a + b) + c = a + (b + c)\) by the associativity of real number addition.
+      \item \textbf{Existence of Identity:} There does not exist an identity element \(e \in G\) such that for all \(a \in G\), \(e + a = a + e = a\) since the only candidate for the identity element is \(0\), which is not in \(G\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), there does not exist an inverse element \(a^{-1} \in G\) such that \(a + a^{-1} = a^{-1} + a = e\) since the only candidate for the inverse element is \(-a\), which is not in \(G\).
+    \end{itemize}
+    Since the existence of identity and existence of inverse properties are not satisfied, it follows that \((\setR^{+}, +)\) is not a group.
+  \end{subprove}
+  \item Show that \((\setR^{+}, \cdot)\) is a group.
+  \begin{subprove}
+    Let \(G = \setR^{+}\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two positive real numbers is a positive real number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of real number multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(a^{-1} = \frac{1}{a}\) since \(a \cdot a^{-1} = a^{-1} \cdot a = 1\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setR^{+}, \cdot)\) is a group.
+  \end{subprove}
+\end{enumerate}
+
+
+
+\begin{define}{Abelian Groups}[def:abeliangroup][red]
+  A group \((G, *)\) is called an \textbf{Abelian group} 
+  (or \textbf{commutative group}) if (and only if) \textbf{commutative}, that is,
+  \[
+  \text{For all } a, b \in G, \, a * b = b * a.
+  \]
+\end{define}
+
+\begin{enumerate}
+  \item Let $G$ be a nonempty set of $2 \times 2$ matrices. 
+  Then, $(G, \cdot)$ is not an Abelian group, 
+  where $\cdot$ is the matrix multiplication operation.
+  \begin{subprove}
+    Let \(G\) be the set of all \(2 \times 2\) matrices with real entries, and let the operation be matrix multiplication \(\cdot\).
+    We will show that \((G, \cdot)\) does not satisfy the commutative property.
+    Consider the following two matrices in \(G\):
+    \[
+    A = \begin{pmatrix}
+    1 & 2 \\
+    0 & 1
+    \end{pmatrix}, \quad
+    B = \begin{pmatrix}
+    1 & 0 \\
+    3 & 1
+    \end{pmatrix}.
+    \]
+    Now, we compute \(A \cdot B\) and \(B \cdot A\):
+    \[
+    A \cdot B = \begin{pmatrix}
+    1 & 2 \\
+    0 & 1
+    \end{pmatrix} \cdot \begin{pmatrix}
+    1 & 0 \\
+    3 & 1
+    \end{pmatrix} = \begin{pmatrix}
+    1 + 6 & 2 + 2 \\
+    0 + 3 & 0 + 1
+    \end{pmatrix} = \begin{pmatrix}
+    7 & 4 \\
+    3 & 1
+    \end{pmatrix},
+    \]
+    and
+    \[
+    B \cdot A = \begin{pmatrix}
+    1 & 0 \\
+    3 & 1
+    \end{pmatrix} \cdot \begin{pmatrix}
+    1 & 2 \\
+    0 & 1
+    \end{pmatrix} = \begin{pmatrix}
+    1 + 0 & 2 + 0 \\
+    3 + 0 & 6 + 1
+    \end{pmatrix} = \begin{pmatrix}
+    1 & 2 \\
+    3 & 7
+    \end{pmatrix}.
+    \]
+    Since \(A \cdot B = \begin{pmatrix}
+    7 & 4 \\ 
+    3 & 1 
+    \end{pmatrix}\) is not equal to \(B \cdot A = \begin{pmatrix}
+    1 & 2 \\
+    3 & 7
+    \end{pmatrix}\).
+    Therefore, \((G, \cdot)\) does not satisfy the commutative property, and hence it is not an Abelian group.
+  \end{subprove}
+\end{enumerate}
+
+\begin{define}{Finite Groups}[def:finitegroup][red]
+  A group \((G, *)\) is called a \textbf{finite group} if (and only if) 
+  the order of \(G\), denoted by \(|G|\), is finite; that is,
+  \[
+  |G| < \infty.
+  \]
+\end{define}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+
+% \section*{Part 1}
+% \begin{multicolblock}{Solve each equation.}
+%   \begin{enumerate}
+%     \item $6 = \dfrac{a}{4} + 2$
+%     \item $9x - 7 = -7$
+%     \item $-4 = \dfrac{r}{20} - 5$
+%     \item $-6 + \dfrac{x}{4} = -5$
+%     \item $0 = 4 + \dfrac{n}{5}$
+%     \item $-1 = \dfrac{5 + x}{6}$
+%     \item $\dfrac{v + 9}{3} = 8$
+%     \item $-9x + 1 = -80$
+%     \item $-2 = 2 + \dfrac{v}{4}$
+%     \item $2(n + 5) = -2$
+%     \item $-6 = \dfrac{n}{2} - 10$
+%     \item $144 = -12(x + 5)$
+%     \item $8n + 7 = 31$
+%     \item $\dfrac{n + 5}{-16} = -1$
+%     \item $-10 = 10(k - 9)$
+%     \item $-9x - 13 = -103$
+%     \item $-10 = -10 + 7m$
+%     \item $\dfrac{m}{9} - 1 = -2$
+%     \item $-243=-9(10+x)$
+%     \item $9+9 n=9$
+%     \item $7(9+k)=84$
+%     \item $8+\dfrac{b}{-4}=5$
+%   \end{enumerate}
+% \end{multicolblock}
+
+
+% \begin{subanswer}
+%   \begin{multicolblock}{Here are the answers.}[3]
+%   \begin{enumerate}
+%     \item $a=16$
+%     \item $x=0$
+%     \item $r=20$
+%     \item $x=4$
+%     \item $n=-20$
+%     \item $x=-11$
+%     \item $v=15$
+%     \item $x=7$
+%     \item $v=-24$
+%     \item $n=-6$
+%     \item $n=8$
+%     \item $x=-17$
+%     \item $n=3$
+%     \item $n=-21$
+%     \item $k=8$
+%     \item $x=-4$
+%     \item $m=0$
+%     \item $m=-9$
+%     \item $x=-37$
+%     \item $n=0$
+%     \item $k=0$
+%     \item $b=-12$
+%   \end{enumerate}
+%   \end{multicolblock}
+% \end{subanswer}
+
+
+
+% \newpage
+% \section*{Part 2}
+
+% \begin{multicolblock}{Solve each equation.}
+%   \begin{enumerate}
+%     \item $\dfrac{r}{10}+4=5$
+%     \item $\dfrac{n}{2}+5=3$
+%     \item $3p-2=-29$
+%     \item $1-r=-5$
+%     \item $\dfrac{k-10}{2}=-7$
+%     \item $\dfrac{n-5}{2}=5$
+%     \item $-9+\dfrac{n}{4}=-7$
+%     \item $\dfrac{9+m}{3}=2$
+%     \item $\dfrac{-5+x}{22}=-1$
+%     \item $4n-9=-9$
+%     \item $\dfrac{x+9}{2}=3$
+%     \item $\dfrac{-12+x}{11}=-3$
+%     \item $\dfrac{-4+x}{2}=6$
+%     \item $-5+\dfrac{n}{3}=0$
+%     \item $\dfrac{p}{4}+8=7$
+%     \item $9+\dfrac{n}{4}=15$
+%     \item $6+\dfrac{x}{2}=4$
+%     \item $\dfrac{b+11}{3}=-2$
+%     \item $\dfrac{a-10}{3}=-4$
+%     \item $-12r+4=100$
+%     \item $\dfrac{m}{16}-9=-8$
+%     \item $-7+4r=-15$
+%     \item $\dfrac{m-13}{2}=-8$
+%     \item $-5x+13=-17$
+%     \item $\dfrac{k+10}{-2}=5$
+%     \item $\dfrac{p+8}{-2}=10$
+%     \item $-14r-19=303$
+%     \item $\dfrac{x}{-4}-5=-8$
+%   \end{enumerate}
+% \end{multicolblock}
+
+% \begin{subanswer}
+%   \begin{multicolblock}{Here are the answers.}[3]
+%   \begin{enumerate}
+%     \item $r=10$
+%     \item $n=-4$
+%     \item $p=-9$
+%     \item $r=6$
+%     \item $k=-4$
+%     \item $n=15$
+%     \item $n=8$
+%     \item $m=-3$
+%     \item $x=-27$
+%     \item $n=0$
+%     \item $x=-3$
+%     \item $x=-21$
+%     \item $x=16$
+%     \item $n=15$
+%     \item $p=-4$
+%     \item $n=24$
+%     \item $x=-4$
+%     \item $b=-17$
+%     \item $a=-2$
+%     \item $r=-8$
+%     \item $m=16$
+%     \item $r=-2$
+%     \item $m=-5$
+%     \item $x=4$
+%     \item $k=-28$
+%     \item $p=-26$
+%     \item $r=-22$
+%     \item $x=12$
+%   \end{enumerate}
+%   \end{multicolblock}
+% \end{subanswer}
 
 
 
