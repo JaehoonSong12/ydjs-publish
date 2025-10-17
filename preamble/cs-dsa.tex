@@ -77,27 +77,9 @@
 
 
 
-% ------------------------------------------------------------------------------
+%-------------------------------------
 % Resume Objective Environment
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Environment for creating a centered, italicized objective statement on resumes.
-%   Provides consistent formatting for professional objective sections.
-%
-% FEATURES:
-%   - Centered layout with proper spacing
-%   - Italicized text with reduced opacity for subtle appearance
-%   - Automatic color reset to black after environment
-%   - Consistent typography and spacing
-%
-% DEPENDENCIES:
-%   \usepackage{xcolor}  % for color definitions
-%
-% USAGE EXAMPLES:
-%   \begin{resume-objective}
-%     Seeking a software engineering position where I can apply my technical skills
-%     and passion for innovation to contribute to meaningful projects.
-%   \end{resume-objective}
+%-------------------------------------
 \newenvironment{resume-objective}{%
   \vspace{-1.4em}
   \begin{center}
@@ -108,57 +90,23 @@
   \end{center}
 }
 
-% ------------------------------------------------------------------------------
-% Resume Section Command
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Command for creating standardized section headers in resumes with consistent
-%   typography and formatting. Creates small caps text with underline rule.
-%
-% FEATURES:
-%   - Small caps typography for professional appearance
-%   - Horizontal rule underline for visual separation
-%   - Proper spacing and line breaks
-%   - Consistent formatting across all sections
-%
-% DEPENDENCIES:
-%   None (uses standard LaTeX commands)
-%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % USAGE EXAMPLES:
 %   \resumeSection{Experience}
-%   \resumeSection{Education}
-%   \resumeSection{Skills}
-%   \resumeSection{Projects}
-
-% Underlined, all-caps section title macro (no indent; use \hrule for the line)
-% \newcommand{\resumeSection}[1]{%
-%   {\noindent\bfseries\MakeUppercase{#1}\par\nobreak\vspace{-0.6em}%
-%   \noindent\rule{\linewidth}{0.6pt}\par}
-% }
-\newcommand{\resumeSection}[1]{%
-  {\noindent\large\textsc{#1}\par\nobreak\vspace{-0.6em}%
-  \noindent\rule{\linewidth}{0.6pt}\par}
-}
-
-% ------------------------------------------------------------------------------
-% Resume Itemize Environment
-% ------------------------------------------------------------------------------
-% DESCRIPTION:
-%   Environment for creating formatted resume entries with organization details,
-%   location, dates, position title, and optional additional information.
-%   Provides consistent formatting for experience, education, and other sections.
-%
-% FEATURES:
-%   - Organization name, location, and date formatting
-%   - Position title with optional additional info (e.g., GPA)
-%   - Bulleted list for achievements and responsibilities
-%   - Consistent spacing and typography
-%   - Optional fifth parameter for additional information
-%
-% DEPENDENCIES:
-%   \usepackage{xparse}  % for \NewDocumentEnvironment
-%
-% USAGE EXAMPLES:
 %   \begin{resume-itemize}
 %     {Bits of Good}{Atlanta, Georgia}{August 2021 -- Present}
 %     {Developer}[GPA: 4.0/4.0]
@@ -176,6 +124,23 @@
 %     {Peer Mentor}
 %     \item Mentored four first-generation Georgia Tech students throughout their first year of college, sharing personal experiences and advising them on similar struggles.
 %   \end{resume-itemize}
+
+
+
+% Underlined, all-caps section title macro (no indent; use \hrule for the line)
+% \newcommand{\resumeSection}[1]{%
+%   {\noindent\bfseries\MakeUppercase{#1}\par\nobreak\vspace{-0.6em}%
+%   \noindent\rule{\linewidth}{0.6pt}\par}
+% }
+\newcommand{\resumeSection}[1]{%
+  {\noindent\large\textsc{#1}\par\nobreak\vspace{-0.6em}%
+  \noindent\rule{\linewidth}{0.6pt}\par}
+}
+
+
+%-------------------------------------
+% Environment: resume-itemize
+%-------------------------------------
 \NewDocumentEnvironment{resume-itemize}{ m m m m o }{%
   % Header formatting
   \noindent\textbf{#1} \,|\, #2 \hfill \textit{#3}\\
