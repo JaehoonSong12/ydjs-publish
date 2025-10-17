@@ -54,20 +54,24 @@
 %   \socialicon{\faGithub} \href{https://github.com/john-username}{john-username} |
 %   \socialicon{\faTwitter} \href{https://twitter.com/john-handle}{john-handle}
 %   \end{resumeheader}
+
+%   \begin{resumeheader}
+%     {John Doe}{www.johnwebsite.com}
+%     {New York, NY - 10001, USA}{+1-234-567-8900}{john@email.com}
+%     \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/john-profile/}{john-profile} | 
+%     \socialicon{\faGithub} \href{https://github.com/john-username}{john-username} |
+%     \socialicon{\faTwitter} \href{https://twitter.com/john-handle}{john-handle} |
+%     \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/#5/}{john-profile} \\
+%     \socialicon{\faInstagram} \href{https://www.instagram.com/#8/}{john-instagram} |
+%     \socialicon{\faFacebook} \href{https://www.facebook.com/#9/}{john-facebook} |
+%     \socialicon{\faYoutube} \href{https://www.youtube.com/@#10}{john-youtube}
+%   \end{resumeheader}
 % ------------------------------------------------------------------------------
 \newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
-
 \NewDocumentEnvironment{resumeheader}{m m m m m}{%
 \begin{center}
-    {\Huge\textbf{#1} | \href{https://github.com/john-username}{\socialicon{\faGithub}}} \\ \vspace{0.5em}
-    #2 | \href{mailto:#3}{#3} | \href{https://www.#4/}{#4} \\ \vspace{0.5em}
+    {\LARGE\bfseries \href{#1}{\socialicon{\faGithub}} \textbf{#2}} \\ \vspace{0.5em}%\Huge?
+    {\small #3 | #4 | \href{mailto:#5}{#5}} \\ \vspace{0.5em}
 }{%
-    \\ \vspace{0.5em}
-    \small{#5}
 \end{center}
-% \vspace{-4mm}
 }
-
-% \socialicon{\faInstagram} \href{https://www.instagram.com/#8/}{john-instagram} |
-% \socialicon{\faFacebook} \href{https://www.facebook.com/#9/}{john-facebook} |
-% \socialicon{\faYoutube} \href{https://www.youtube.com/@#10}{john-youtube}
