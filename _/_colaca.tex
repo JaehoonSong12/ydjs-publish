@@ -543,6 +543,378 @@
 
 
 
+\newpage
+
+
+\begin{define}{Group}[def:group-recap][red]
+  A nonempty set \(G\) with a binary operation \(*: G \times G \to G\), written \((G, *)\), is a \textbf{group} if and only if
+  \begin{itemize}
+    \item \textbf{Closure:} For all \(a,b \in G\), \(a * b \in G\).
+    \item \textbf{Associativity:} For all \(a,b,c \in G\), \((a * b) * c = a * (b * c)\).
+    \item \textbf{Identity:} There exists \(e \in G\) such that for all \(a \in G\), \(e * a = a * e = a\).
+    \item \textbf{Inverses:} For each \(a \in G\) there exists \(b \in G\) such that \(a * b = b * a = e\).
+  \end{itemize}
+\end{define}
+
+Groups are generalizations of the familiar products of addition and of multiplication of real numbers. Remember, though, that a set with a product is a group if and only if the four axioms are satisfied!
+
+For instance, $\mathbb{Z}$ is a group under addition but not under multiplication (for more than one reason). The set $\mathbb{Q}$ is also group under addition but not under multiplication. The set $\mathbb{R}^{+}$of positive real numbers is a group under multiplication but not under addition.
+
+The groups above are infinite, but many interesting groups are finite. The order of a group $G$ is the number of elements in $G$, denoted $|\boldsymbol{G}|$. If (and only if) $|\boldsymbol{G}|<\infty$, then $G$ is a finite group.
+
+The smallest group consists of a single (identity) element, usually denoted $e$ (or sometimes $i$ when the group elements are functions).
+Here's an example of a group of order 2:
+Claim: The set $\{-1,1\}$ under multiplication is a group.
+Proof: Consider the set $\{-1,1\}$ under multiplication, denoted $\cdot$. Since $-1 \cdot-1=1=1 \cdot 1$ and $-1 \cdot 1=-1=1 \cdot-1$, then $\{-1,1\}$ is closed under multiplication. Since multiplication of real number is associative, then multiplication on $\{-1,1\}$ is associative. Since $-1 \cdot 1=1 \cdot-1=-1$ and $1 \cdot 1=1$, then 1 is the identity under multiplication. Since $-1 \cdot-1=1$ and $1 \cdot 1=1$, then both -1 and 1 have multiplicative inverses. Since all four axioms are satisfied, $(\{-1,1\}, \cdot)$ is a group. QED
+
+When the order of a group is small, it is often very useful to write out the product table for the group.
+
+
+For instance, let $G$ be a group of order two with product $*$. Then $G=\{e, a\}$ where $e$ is the identity and $a$ denotes the single non-identity element. The product table for $G$ is:
+
+\begin{tabular}{|l|l|l|}
+\hline$*$ & $e$ & $a$ \\
+\hline$e$ & $e$ & $a$ \\
+\hline$a$ & $a$ & $e$ \\
+\hline
+\end{tabular}
+
+This is the "only" group of order 2. By which we mean that all groups of order 2 must be isomorphic to this group.
+\begin{define}{Group Isomorphism}[def:group-isomorphism][red]
+  Let \((G, *)\) and \((G', \star)\) be groups. An \textbf{isomorphism} is a bijection \(\phi: G \to G'\) such that \(\phi(a * b) = \phi(a) \star \phi(b)\) for all \(a,b \in G\). We write \(G \simeq G'\) if such a map exists.
+\end{define}
+
+Claim: The group $(\{-1,1\}, \cdot)$ is isomorphic to the group $(G, *)$ with product table above.
+Proof: Let $\phi:\{-1,1\} \rightarrow\{e, a\}$ be the function given by $\phi(1)=e$ and $\phi(-1)=a$. Then by inspection $\phi$ is one-to-one and onto, and hence a bijection. Also, $\phi(1 \cdot 1)=\phi(1)=e=e * e=\phi(1) * \phi(1)$, $\phi(1 \cdot-1)=\phi(-1)=a=e * a=\phi(1) * \phi(-1)$, $\phi(-1 \cdot 1)=\phi(-1)=a=a * e=\phi(-1) * \phi(1)$, and $\phi(-1 \cdot-1)=\phi(1)=e=a * a=\phi(-1) * \phi(-1)$.
+Hence, $\phi$ preserve operations, and $(\{-1,1\}, \cdot) \simeq(\{e, a\}, *)$. QED
+Can you think of another group of order 2 ? What about the set $\left\{[0]_2,[1]_2\right\}$ of congrunence classes modulo two under addition? Can you prove this is isomorphic to $(G, *)$ with product table above?
+
+Fill in the product tables below. Let $e$ denote the identity element.
+Hint: How many times can an element appear in a given row (or column)? How many times must an element appear in a given row (or column)? If $g * h=h$ in a group $(G, *)$ with $g, h \in G$, then what is known about $g$ ?
+
+
+Up to isomorphism, there is one group of order 3. You should understand why after filling in this product table.
+
+\begin{tabular}{|c|c|c|c|}
+\hline & $e$ & $a$ & $b$ \\
+\hline$e$ & & & \\
+\hline$a$ & & & \\
+\hline$b$ & & & \\
+\hline
+\end{tabular}
+
+Up to isomorphism, there are two groups of order 4. Identify the first one by completing this product table.
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline & $e$ & $a$ & $b$ & $c$ \\
+\hline$e$ & & & & \\
+\hline$a$ & & $b$ & & \\
+\hline$b$ & & & & \\
+\hline$c$ & & & & \\
+\hline
+\end{tabular}
+
+Identify the other group of order 4 which is not isomorphic to the previous one.
+Hint: confirm your answer is not isomorphic to the previous group of order 4 under bijections like $b \leftrightarrow c$ or $a \leftrightarrow b$.
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline & $e$ & $a$ & $b$ & $c$ \\
+\hline$e$ & & & & \\
+\hline$a$ & & & & \\
+\hline$b$ & & & & \\
+\hline$c$ & & & & \\
+\hline$c$ & & & & \\
+\hline
+\end{tabular}
+
+
+
+
+
+\newpage
+
+
+Recall Wbwk8, Problem 4.
+Fix $n \geq 2$ and consider $\mathbb{Z}_n$, the set of equivalence classes under the relation congruence modulo $n$ on $\mathbb{Z}$.
+Are the following propositions true or false?
+
+\begin{enumerate}
+  \item Since addition on $\mathbb{Z}$ is associative, so is addition on $\mathbb{Z}_n$.
+  \item Since multiplication on $\mathbb{Z}$ is commutative, so is multiplication on $\mathbb{Z}_n$.
+  \item For all $a, b, c, d \in \mathbb{Z}$, if $[a]=[b]$ and $[c]=[d]$, then $[a c]=[b d]$.
+  \item Multiplication is well-defined on $\mathbb{Z}_n$.
+  \item Since multiplication on $\mathbb{Z}$ is associative, so is multiplication on $\mathbb{Z}_n$.
+  \item Addition is well-defined on $\mathbb{Z}_n$.
+  \item For all $a, b, c, d \in \mathbb{Z}$, if $[a]=[b]$ and $[c]=[d]$, then $[a+c]=[b+d]$.
+  \item Since addition on $\mathbb{Z}$ is commutative, so is addition on $\mathbb{Z}_n$.
+\end{enumerate}
+
+Now, compute the following sum and product tables for $n=6$.
+
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline+ & {$[0]$} & {$[1]$} & {$[2]$} & {$[3]$} & {$[4]$} & {$[5]$} \\
+\hline$[0]$ & & & & & & \\
+\hline$[1]$ & & & & & & \\
+\hline$[2]$ & & & & & & \\
+\hline$[3]$ & & & & & & \\
+\hline$[4]$ & & & & & & \\
+\hline$[5]$ & & & & & & \\
+\hline
+\end{tabular}
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline. & {$[0]$} & {$[1]$} & {$[2]$} & {$[3]$} & {$[4]$} & {$[5]$} \\
+\hline$[0]$ & & & & & & \\
+\hline$[1]$ & & & & & & \\
+\hline$[2]$ & & & & & & \\
+\hline$[3]$ & & & & & & \\
+\hline$[4]$ & & & & & & \\
+\hline$[5]$ & & & & & & \\
+\hline
+\end{tabular}
+
+
+
+
+
+\newpage
+
+
+Fix $n \geq 2$ and consider $\mathbb{Z}_n$, the set of equivalence classes under the relation congruence modulo $n$ on $\mathbb{Z}$.
+By definition, $\mathbb{Z}_n^*=\mathbb{Z}_n \backslash\{[0]\}$.
+Are the following propositions true or false?
+
+
+
+\begin{itemize}
+  \item[(\textbf{false})] Under multiplication $[0]$ is the identity element in $\mathbb{Z}_n$.
+  \item[(\textbf{false})] The set $\mathbb{Z}_n$ is a group under the product of multiplication.
+  \item[(\textbf{true})] There exists an identity element in $\mathbb{Z}_n$ under addition.
+  \item[(\textbf{false})] The set $\mathbb{Z}_n^*$ is a group under the product of multiplication.
+  \item[(\textbf{false})] For every $[a] \in \mathbb{Z}_n$ there exists a $[b] \in \mathbb{Z}_n$ such that $[a b]$ is the multiplicative identity.
+  \item[(\textbf{true})] Under multiplication $[1]$ is the identity element in $\mathbb{Z}_n^*$.
+  \item[(\textbf{false})] Under multiplication $[0]$ is the identity element in $\mathbb{Z}_n^*$ when $n$ is prime.
+  \item[(\textbf{true})] Under addition $[0]$ is the identity element in $\mathbb{Z}_n$.
+  \item[(\textbf{true})] There exist inverses in $\mathbb{Z}_n^*$ under multiplication when $n$ is prime.
+  \item[(\textbf{true})] There exists an identity element in $\mathbb{Z}_n^*$ under multiplication.
+  \item[(\textbf{true})] The set $\mathbb{Z}_n^*$ is a group under the product of multiplication when $n$ is prime.
+  \item[(\textbf{false})] For every $[a] \in \mathbb{Z}_n^*$ there exists a $[b] \in \mathbb{Z}_n^*$ such that $[a b]$ is the multiplicative identity.
+  \item[(\textbf{true})] For every $[a] \in \mathbb{Z}_n$ there exists a $[b] \in \mathbb{Z}_n$ such that $[a+b]$ is the additive identity.
+  \item[(\textbf{true})] Under multiplication $[1]$ is the identity element in $\mathbb{Z}_n^*$ when $n$ is prime.
+  \item[(\textbf{true})] There exists an identity element in $\mathbb{Z}_n$ under multiplication.
+  \item[(\textbf{false})] There exist inverses in $\mathbb{Z}_n$ under multiplication.
+  \item[(\textbf{false})] Under multiplication $[0]$ is the identity element in $\mathbb{Z}_n^*$.
+  \item[(\textbf{true})] For every $[a] \in \mathbb{Z}_n^*$ there exists a $[b] \in \mathbb{Z}_n^*$ such that $[a b]$ is the multiplicative identity when $n$ is prime.
+  \item[(\textbf{false})] Under addition $[1]$ is the identity element in $\mathbb{Z}_n$.
+  \item[(\textbf{true})] The set $\mathbb{Z}_n$ is a group under the product of addition.
+  \item[(\textbf{true})] Under multiplication $[1]$ is the identity element in $\mathbb{Z}_n$.
+  \item[(\textbf{true})] There exists an identity element in $\mathbb{Z}_n^*$ under multiplication when $n$ is prime.
+  \item[(\textbf{true})] There exist inverses in $\mathbb{Z}_n$ under addition.
+  \item[(\textbf{false})] There exist inverses in $\mathbb{Z}_n^*$ under multiplication.
+\end{itemize}
+
+
+
+
+
+\newpage
+
+\begin{define}{Nonabelian Group: Symmetries of an Equilateral Triangle}[def:nonabelian-triangle][red]
+A group $(G, *)$ is \textbf{abelian} if and only if $a * b = b * a$ for all $a, b \in G$.
+While many familiar groups are abelian, most groups are not! Hence, it is very important to understand well some examples of nonabelian groups.
+
+The smallest nonabelian group has order 6. One way to understand this group is as the symmetries of an equilateral triangle.
+
+Consider an equilateral triangle with vertex labels $1$, $2$, and $3$:
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+  % Vertices
+  \coordinate (A) at (0,1.5);
+  \coordinate (B) at (-1.3,-0.75);
+  \coordinate (C) at (1.3,-0.75);
+  \coordinate (O) at (0,0);
+
+  % Triangle
+  \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+  % Vertex labels
+  \node[above] at (A) {1};
+  \node[below left] at (B) {2};
+  \node[below right] at (C) {3};
+
+  % Center
+  \coordinate (O) at (0,0);
+\end{tikzpicture}
+\end{center}
+
+Let $f$ be a reflection through the vertical axis. So $f$ fixes point $1$ and switches $2$ and $3$.
+
+Let $g$ be a rotation $120^\circ$ clockwise around the center point. So $g$ sends $1$ to $2$, $2$ to $3$, and $3$ to $1$.
+
+There are four other symmetries of an equilateral triangle. What are they in terms of either an axis of reflection or an angle of rotation?
+
+The composition of two symmetries is another symmetry, and this product is associative. There is an identity symmetry, and every symmetry has an inverse. Why? How would you justify these statements?
+
+Hence, the symmetries of an equilateral triangle form a group under composition.
+\end{define}
+
+Match each symmetry on the left with an equivalent one from the right if possible. The notation $fg$ means $f \circ g$, so first rotate $120^\circ$, then reflect through the vertical axis.
+\begin{enumerate}[label=\Alph*.]
+  \item $g f$
+  \item $g^{-1}$
+  \item $g^2 f$
+  \item $f$
+  \item $f^2$
+  \item None of the above
+\end{enumerate}
+
+Match the following.
+\begin{enumerate}
+  \item $f^{-1}$
+  \item $g^3$
+  \item $f g^2$
+  \item $f g$
+  \item $g^2$
+\end{enumerate}
+
+
+Fill in the product table below using the given labels for the symmetries. Let $e$ denote the identity symmetry. Enter $g^2$ as "gg" and $f g^2$ as "fgg".
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline & $e$ & $f$ & $g$ & $g^2$ & $f g$ & $f g^2$ \\
+\hline$e$ & & & & & & \\
+\hline$f$ & & & & & \\
+\hline$g$ & & & & & & \\
+\hline$g^2$ & & & & & & \\
+\hline$f g$ & & & & & & \\
+\hline$f g^2$ & & & & & & \\
+\hline
+\end{tabular}
+
+
+\begin{define}{Order of an Element}[def:order-element][red]
+  Let \((G, *)\) be a group with identity \(e\). The \textbf{order} of an element \(a \in G\), denoted \(o(a)\), is the least positive integer \(m\) such that \(a^{m} = e\). If no such \(m\) exists, we say \(a\) has \textbf{infinite order}.
+\end{define}
+
+Let $(G, *)$ be the group of symmetries of an equilateral triangle under composition. What are the truth values of the following propositions?
+\begin{enumerate}
+  \item Every element in $(G, *)$ has order 2 or 3.
+  \item $f g = g^{-1} f$ but $g \neq g^{-1}$.
+  \item The order of $(G, *)$ is 6.
+  \item The order of $g^2$ is 6.
+  \item The order of $f$ is 2.
+  \item $(f g)^2 \neq f^2 g^2$.
+  \item For all elements $h \in G$, $h^6 = e$.
+  \item The order of $g$ is 3.
+  \item The order of every element in $(G, *)$ divides the order of the group.
+  \item $g^2 (f g) = (f g) g^2$.
+  \item $(G, *)$ is an abelian group.
+\end{enumerate}
+
+
+
+
+\newpage
+
+
+
+Up to isomorphism, there is a unique group of order 5 . Let $G=\{a, b, c, d, e\}$ be a group with product *. Complete the product table for $(G, *)$ below.
+
+\begin{center}
+  \begin{tabular}{|l|c|c|c|c|c|}
+  \hline$*$ & $e$ & $a$ & $b$ & $c$ & $d$ \\
+  \hline$e$ & $e$ & $a$ & $b$ & $c$ & $d$ \\
+  \hline$a$ & $a$ & $b$ & $d$ & $e$ & $c$ \\
+  \hline$b$ & $b$ & $d$ & $c$ & $a$ & $e$ \\
+  \hline$c$ & $c$ & $e$ & $a$ & $d$ & $b$ \\
+  \hline$d$ & $d$ & $c$ & $e$ & $b$ & $a$ \\
+  \hline
+  \end{tabular}
+\end{center}
+
+
+The congruence classes modulo 5 are also a group of order 5 under addition. Show that ( $\mathbb{Z}_5,+$ ) is isomorphic to $(G, *)$ in several different ways by completing the various bijections $\phi: \mathbb{Z}_5 \rightarrow G$ below.
+
+Match the elements of $\mathbb{Z}_5$ on the left with their images in $G$. Remember that the bijection $\phi$ must preserve operations to be an isomorphism.
+
+
+\begin{enumerate}
+  \item Suppose $\phi$ maps $[1]$ to $a$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$
+      \item $\phi([1]) \rightarrow a$
+      \item $\phi([2]) \rightarrow a^2 = b$
+      \item $\phi([3]) \rightarrow a^3 = d$
+      \item $\phi([4]) \rightarrow a^4 = c$
+    \end{itemize}
+  \end{subanswer}
+  \item Suppose $\phi$ maps $[1]$ to $b$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$
+      \item $\phi([1]) \rightarrow b$
+      \item $\phi([2]) \rightarrow b^2 = c$
+      \item $\phi([3]) \rightarrow b^3 = a$
+      \item $\phi([4]) \rightarrow b^4 = d$
+    \end{itemize}
+  \end{subanswer}
+  
+  \item Suppose $\phi$ maps $[1]$ to $c$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$
+      \item $\phi([1]) \rightarrow c$
+      \item $\phi([2]) \rightarrow c^2 = d$
+      \item $\phi([3]) \rightarrow c^3 = b$
+      \item $\phi([4]) \rightarrow c^4 = a$
+    \end{itemize}
+  \end{subanswer}
+  \item Suppose $\phi$ maps $[1]$ to $d$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$ \hfill (identity: $d^0 = e$)
+      \item $\phi([1]) \rightarrow d$ \hfill ($d^1 = d$)
+      \item $\phi([2]) \rightarrow d^2 = a$ \hfill ($d^2 = a$ from the table)
+      \item $\phi([3]) \rightarrow d^3 = c$ \hfill ($d^3 = c$ from the table)
+      \item $\phi([4]) \rightarrow d^4 = b$ \hfill ($d^4 = b$ from the table)
+    \end{itemize}
+  \end{subanswer}
+  \item Suppose $\phi$ maps $[2]$ to $a$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$ \hfill (identity: $a^0 = e$)
+      \item $\phi([1]) \rightarrow d$ \hfill ($a^1 = a$, but $a = d^2$, so $d$ is the element after $e$ in the cycle)
+      \item $\phi([2]) \rightarrow a$ \hfill (by assumption)
+      \item $\phi([3]) \rightarrow c$ \hfill ($a^3 = c$ from the table)
+      \item $\phi([4]) \rightarrow b$ \hfill ($a^4 = b$ from the table)
+    \end{itemize}
+  \end{subanswer}
+  \item Suppose $\phi$ maps $[3]$ to $a$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$ \hfill (identity: $a^0 = e$)
+      \item $\phi([1]) \rightarrow b$ \hfill ($a^1 = a$, $a^2 = b$)
+      \item $\phi([2]) \rightarrow c$ \hfill ($a^3 = c$)
+      \item $\phi([3]) \rightarrow a$ \hfill (by assumption)
+      \item $\phi([4]) \rightarrow d$ \hfill ($a^4 = d$)
+    \end{itemize}
+  \end{subanswer}
+  \item Suppose $\phi$ maps $[4]$ to $a$.
+  \begin{subanswer}
+    \begin{itemize}
+      \item $\phi([0]) \rightarrow e$
+      \item $\phi([1]) \rightarrow c$
+      \item $\phi([2]) \rightarrow d$
+      \item $\phi([3]) \rightarrow b$
+      \item $\phi([4]) \rightarrow a$
+    \end{itemize}
+  \end{subanswer}
+\end{enumerate}
+
+
+\newpage
 
 
 
