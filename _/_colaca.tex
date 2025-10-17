@@ -3,10 +3,18 @@
 \usepackage[T1]{fontenc}
 \input{macros.tex}
 
-\input{../preamble/math.tex}
+\input{../preamble/font.tex}
+
+\input{../preamble/operator.tex} 
+\input{../preamble/symbol.tex} 
+\input{../preamble/math.tex}  
+\input{../preamble/math-graph.tex}
+% \input{../preamble/math-tikz.tex}
+\input{../preamble/group.tex} 
 
 
 
+\usepackage{enumitem}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -29,7 +37,7 @@
 \newcommand{\Z}{\mathds{Z}}
 \newcommand{\N}{\mathds{N}}
 \newcommand{\R}{\mathds{R}}
-\newcommand{\E}{\mathcal{E}}
+% \newcommand{\E}{\mathcal{E}}
 \newcommand{\RC}{RC}
 
 \newcommand{\tauRC}{\tau_{RC}}
@@ -64,12 +72,952 @@
 
 
 
+% \usepackage{tikz}
+% \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% % =============================================================================
+% % SIMPLE UML FRAMEWORK
+% % =============================================================================
+
+% % Flowchart styles (your existing styles)
+% \tikzstyle{startstop} = [rectangle, rounded corners, text centered, draw=black, fill=blue!10, inner sep=1.5ex, text width=14em]
+% \tikzstyle{activity} = [rectangle, rounded corners, text centered, draw=black, fill=green!10, inner sep=1.5ex, text width=16em]
+% \tikzstyle{decision} = [diamond, aspect=1.5, text centered, draw=black, fill=red!10, inner sep=1ex, text width=15em]
+% \tikzstyle{arrow} = [thick, ->, >=Stealth]
+% \tikzstyle{startnode} = [circle, fill=black, minimum size=6pt, inner sep=0pt]
+% \tikzstyle{endnode} = [circle, draw, double, double distance=1.5pt, minimum size=6pt, inner sep=0pt]
+
+% % UML Class Diagram styles (using em units for font-relative sizing)
+% \tikzstyle{uml-class} = [rectangle, draw=black, fill=white, text width=8em, minimum height=3em, text centered, font=\small, inner sep=0.5em]
+% \tikzstyle{uml-interface} = [rectangle, draw=black, fill=yellow!20, text width=8em, minimum height=3em, text centered, font=\small, inner sep=0.5em]
+% \tikzstyle{uml-abstract} = [rectangle, draw=black, fill=blue!10, text width=8em, minimum height=3em, text centered, font=\small, inner sep=0.5em]
+
+% % UML Use Case styles
+% \tikzstyle{uml-use-case} = [ellipse, draw=black, fill=blue!20, text width=6em, minimum height=2em, text centered, font=\small, inner sep=0.3em]
+% \tikzstyle{uml-actor} = [rectangle, draw=black, fill=white, text width=4em, minimum height=1.5em, text centered, font=\small, inner sep=0.3em]
+
+% % UML Activity styles
+% \tikzstyle{uml-activity} = [rectangle, rounded corners, draw=black, fill=green!10, text width=6em, minimum height=1.5em, text centered, font=\small, inner sep=0.3em]
+% \tikzstyle{uml-decision} = [diamond, aspect=2, draw=black, fill=red!10, text width=5em, minimum height=1.5em, text centered, font=\small, inner sep=0.3em]
+
+% % UML Flow Diagram styles (for process flowcharts)
+% \tikzstyle{uml-startstop} = [rectangle, rounded corners, draw=black, fill=blue!10, text width=8em, minimum height=1.5em, text centered, font=\tiny, inner sep=0.3em]
+% \tikzstyle{uml-process} = [rectangle, rounded corners, draw=black, fill=green!10, text width=10em, minimum height=1.5em, text centered, font=\tiny, inner sep=0.3em]
+% \tikzstyle{uml-decision-flow} = [diamond, aspect=1.5, draw=black, fill=red!10, text width=8em, minimum height=1.5em, text centered, font=\tiny, inner sep=0.3em]
+% \tikzstyle{uml-start} = [circle, fill=black, minimum size=6pt, inner sep=0pt]
+% \tikzstyle{uml-end} = [circle, draw, double, double distance=1.5pt, minimum size=6pt, inner sep=0pt]
+
+% % Relationship arrows
+% \tikzstyle{uml-inheritance} = [thick, ->, >=Stealth, black]
+% \tikzstyle{uml-implementation} = [thick, ->, >=Stealth, dashed, black]
+% \tikzstyle{uml-association} = [thick, ->, >=Stealth, black]
+
+% % Simple UML commands
+% \newcommand{\umlclass}[3][]{\node[uml-class, #1] (#2) {\textbf{#3}};}
+% \newcommand{\umlinterface}[3][]{\node[uml-interface, #1] (#2) {\textbf{<<interface>>}\\\textbf{#3}};}
+% \newcommand{\umlabstract}[3][]{\node[uml-abstract, #1] (#2) {\textbf{#3}};}
+% \newcommand{\umlusecase}[3][]{\node[uml-use-case, #1] (#2) {#3};}
+% \newcommand{\umlactor}[3][]{\node[uml-actor, #1] (#2) {#3};}
+% \newcommand{\umlactivity}[3][]{\node[uml-activity, #1] (#2) {#3};}
+% \newcommand{\umldecision}[3][]{\node[uml-decision, #1] (#2) {#3};}
+
+% % Flow diagram commands
+% \newcommand{\umlstartstop}[3][]{\node[uml-startstop, #1] (#2) {#3};}
+% \newcommand{\umlprocess}[3][]{\node[uml-process, #1] (#2) {#3};}
+% \newcommand{\umldecisionflow}[3][]{\node[uml-decision-flow, #1] (#2) {#3};}
+% \newcommand{\umlstart}[3][]{\node[uml-start, #1] (#2) {};}
+% \newcommand{\umlend}[3][]{\node[uml-end, #1] (#2) {};}
+
+% % Relationship commands
+% \newcommand{\umlinheritance}[2]{\draw[uml-inheritance] (#1) -- (#2);}
+% \newcommand{\umlimplementation}[2]{\draw[uml-implementation] (#1) -- (#2);}
+% \newcommand{\umlassociation}[2]{\draw[uml-association] (#1) -- (#2);}
+
+% % Flow diagram arrows
+% \newcommand{\umlflow}[2]{\draw[arrow] (#1) -- (#2);}
+% \newcommand{\umlflowlabel}[3]{\draw[arrow] (#1) -- node[#3] {#2} (#2);}
+
+% % UML diagram environment with scaling
+% \newenvironment{umldiagram}[2][1.0]
+% {
+%     \begin{tikzpicture}[node distance=#2, transform shape, scale=#1]
+% }
+% {
+%     \end{tikzpicture}
+% }
+
+
+
+
+
+
+
+
+
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\tikzset{
+  startstop/.style={ellipse, draw, align=center, minimum width=2cm},
+  process/.style={rectangle, draw, align=center, minimum width=3cm},
+  decision/.style={diamond, draw, aspect=2, align=center},
+  arrow/.style={->, >=Stealth}
+}
+
+
+
+
+\usepackage{amsmath} % For math symbols like \lim
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode} % noend option removes "end if", "end for", etc.
+
+
+
+
+
+
+
+
+% Preamble: required packages
+\usepackage{multicol}  % balanced multi-column environment
+\usepackage{xparse}    % for flexible environment argument parsing
+
+% Multi-column block:
+% \begin{multicolblock}{<intro paragraph>}[<cols>]
+%   ... body in columns ...
+% \end{multicolblock}
+\NewDocumentEnvironment{multicolblock}{ m o }{%
+  % #1 = mandatory intro paragraph
+  % #2 = optional number of columns (if absent -> default 2)
+  % \par\medskip
+  % print the introductory paragraph (allow it to contain paragraphs)
+  \IfNoValueTF{#2}{\def\mccols{2}}{\def\mccols{#2}}% decide number of columns (default 2)
+  #1
+  \par\vspace{6pt}\noindent\hrule
+  \setlength{\columnsep}{1cm}% optional: adjust column separation here
+  \begin{multicols}{\mccols}\raggedcolumns% start multicol environment
+}{%
+  % end multicol environment and draw bottom rule
+  \end{multicols}
+  \noindent\hrule\par\vspace{9.5pt}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 \begin{document}
-  we need to address this issue.
+
+
+
+% \begin{algorithm}
+%   \caption{Convergence Test of a Series $\sum a_n$}
+%   \label{alg:convergence_test}
+%   \begin{algorithmic}[1]
+%     \Function{TestConvergence}{$\sum a_n$}
+%       \If{$\group{\abs{\dfrac{a_n}{b_n}}\nrightarrow \infty}$}
+%       \Comment{(1) Comparison Test}\State
+%         \Return \Call{TestConvergence}{$\sum b_n$}
+%       \ElsIf{$\group{a_n \nrightarrow 0}$} 
+%       \Comment{(2) Divergence Test}\State
+%         \Return \inlinequote{Divergent}
+%       \ElsIf{$\group{\lim_{n \to \infty} \abs{\dfrac{a_{n+1}}{a_n}} < 1}$ 
+%       \OR $\group{\lim_{n \to \infty} \sqrt[n]{\abs{a_n}} < 1}$} 
+%       \Comment{(3) Ratio/Root Test}\State
+%         \Return \inlinequote{Absolutely Convergent}
+%       \ElsIf{$\group{\abs{a_n} = \dfrac{1}{n^p}}$
+%       \AND $\group{p > 1}$}
+%       \Comment{(4) $p$-Series Test}\State
+%         \Return \inlinequote{Absolutely Convergent}
+%       \ElsIf{$\group{\int_1^\infty \abs{a_x} \, dx \nrightarrow \infty}$}
+%       \Comment{(5) Integral Test}\State
+%         \Return \inlinequote{Absolutely Convergent}
+%       \ElsIf{$\group{a_n = (-1)^n \abs{a_n}}$}
+%         \Comment{(6) Alternating Series Test}\State
+%         \Return \inlinequote{Conditionally Convergent}
+%       \Else
+%         \Comment{(7) Failure of Tests}\State
+%         \Return \inlinequote{Divergent}
+%       \EndIf
+%     \EndFunction
+%   \end{algorithmic}
+% \end{algorithm}
+
+
+
+% \begin{multicolblock}{Some explanatory paragraph before the columns.}[3]
+%   Item 1.
+
+%   Item 2.
+
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   Item 1.
+
+%   Item 2.
+
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   Item 1.
+
+%   Item 2.
+
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+%   Item 1.
+
+%   Item 2.
+
+%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
+
+%   \begin{enumerate}
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%     \item First item in a numbered list.
+%     \item Second item in a numbered list.
+%     \item Third item in a numbered list.
+%     \item Fourth item in a numbered list.
+%     \item Fifth item in a numbered list.
+%     \item Sixth item in a numbered list.
+%     \item   Seventh item in a numbered list.
+%     \item Eighth item in a numbered list.
+%     \item Ninth item in a numbered list.
+%     \item Tenth item in a numbered list.
+%   \end{enumerate}
+% \end{multicolblock}
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{define}{Groups}[def:group][red]
+  A \textbf{group} is a nonempty set \(G\) under the (binary) 
+  operation \(*: S \times S \to S\), denoted by \((G, *)\), such that
+  \begin{itemize}
+    \item \textbf{Closure:} For all \(a, b \in G\), \(a * b \in G\).
+    \item \textbf{Associativity:} For all \(a, b, c \in G\), \((a * b) * c = a * (b * c)\).
+    \item \textbf{Existence of Identity:} There exists an element \(e \in G\) 
+    such that for all \(a \in G\), \(e * a = a * e = a\).
+    \item \textbf{Existence of Inverse:} For each \(a \in G\), there exists an 
+    element \(a^{-1} \in G\) such that \(a * a^{-1} = a^{-1} * a = e\).
+  \end{itemize}
+\end{define}
+
+\begin{enumerate}
+  \item Show that \((\setZ, +)\) is a group.
+  \begin{subprove}
+    Let \(G = \setZ\) and let the operation be \(+\).
+    We will show that \((G, +)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a + b \in G\) since the sum of two integers is an integer.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a + b) + c = a + (b + c)\) by the associativity of integer addition.
+      \item \textbf{Existence of Identity:} The identity element is \(0\) since for any \(a \in G\), \(0 + a = a + 0 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(-a\) since \(a + (-a) = (-a) + a = 0\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setZ, +)\) is a group.
+  \end{subprove}
+  \item Show that \((\setZ, \cdot)\) is not a group.
+  \begin{subprove}
+    Let \(G = \setZ\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) does not satisfy all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two integers is an integer.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of integer multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), there does not exist an inverse element \(a^{-1} \in G\) such that \(a \cdot a^{-1} = a^{-1} \cdot a = 1\) unless \(a = 1\) or \(a = -1\). For example, if \(a = 2\), then there is no integer \(b\) such that \(2 \cdot b = 1\).
+    \end{itemize}
+    Since the existence of inverse property is not satisfied for all elements in \(G\), it follows that \((\setZ, \cdot)\) is not a group.
+  \end{subprove}
+  \item Show that \((\setQ, +)\) is a group.
+  \begin{subprove}
+    Let \(G = \setQ\) and let the operation be \(+\).
+    We will show that \((G, +)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a + b \in G\) since the sum of two rational numbers is a rational number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a + b) + c = a + (b + c)\) by the associativity of rational number addition.
+      \item \textbf{Existence of Identity:} The identity element is \(0\) since for any \(a \in G\), \(0 + a = a + 0 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(-a\) since \(a + (-a) = (-a) + a = 0\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setQ, +)\) is a group.
+  \end{subprove}
+  \item Show that \((\setQ, \cdot)\) is not a group.
+  \begin{subprove}
+    Let \(G = \setQ\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) does not satisfy all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two rational numbers is a rational number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of rational number multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), there does not exist an inverse element \(a^{-1} \in G\) such that \(a \cdot a^{-1} = a^{-1} \cdot a = 1\) if \(a = 0\). For example, if \(a = 0\), then there is no rational number \(b\) such that \(0 \cdot b = 1\).
+    \end{itemize}
+    Since the existence of inverse property is not satisfied for all elements in \(G\), it follows that \((\setQ, \cdot)\) is not a group.
+  \end{subprove}
+  \item Show that \((\setQ^*, \cdot)\) is a group, where \(\setQ^* = \set{q \in \setQ \mid q \neq 0}\).
+  \begin{subprove}
+    Let \(G = \setQ^*\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two nonzero rational numbers is a nonzero rational number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of rational number multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(a^{-1} = \frac{1}{a}\) since \(a \cdot a^{-1} = a^{-1} \cdot a = 1\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setQ^*, \cdot)\) is a group.
+  \end{subprove}
+  \item Show that \((\setR^{+}, +)\) is a group.
+  \begin{subprove}
+    Let \(G = \setR^{+}\) and let the operation be \(+\).
+    We will show that \((G, +)\) does not satisfy all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a + b \in G\) since the sum of two positive real numbers is a positive real number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a + b) + c = a + (b + c)\) by the associativity of real number addition.
+      \item \textbf{Existence of Identity:} There does not exist an identity element \(e \in G\) such that for all \(a \in G\), \(e + a = a + e = a\) since the only candidate for the identity element is \(0\), which is not in \(G\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), there does not exist an inverse element \(a^{-1} \in G\) such that \(a + a^{-1} = a^{-1} + a = e\) since the only candidate for the inverse element is \(-a\), which is not in \(G\).
+    \end{itemize}
+    Since the existence of identity and existence of inverse properties are not satisfied, it follows that \((\setR^{+}, +)\) is not a group.
+  \end{subprove}
+  \item Show that \((\setR^{+}, \cdot)\) is a group.
+  \begin{subprove}
+    Let \(G = \setR^{+}\) and let the operation be \(\cdot\).
+    We will show that \((G, \cdot)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(a, b \in G\), \(a \cdot b \in G\) since the product of two positive real numbers is a positive real number.
+      \item \textbf{Associativity:} For any \(a, b, c \in G\), \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) by the associativity of real number multiplication.
+      \item \textbf{Existence of Identity:} The identity element is \(1\) since for any \(a \in G\), \(1 \cdot a = a \cdot 1 = a\).
+      \item \textbf{Existence of Inverse:} For each \(a \in G\), the inverse element is \(a^{-1} = \frac{1}{a}\) since \(a \cdot a^{-1} = a^{-1} \cdot a = 1\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((\setR^{+}, \cdot)\) is a group.
+  \end{subprove}
+\end{enumerate}
+
+
+
+\begin{define}{Abelian Groups}[def:abeliangroup][red]
+  A group \((G, *)\) is called an \textbf{Abelian group} 
+  (or \textbf{commutative group}) if (and only if) \textbf{commutative}, that is,
+  \[
+  \text{For all } a, b \in G, \, a * b = b * a.
+  \]
+\end{define}
+
+\begin{enumerate}
+  \item Let $G$ be a nonempty set of $2 \times 2$ matrices. 
+  Then, $(G, \cdot)$ is not an Abelian group, 
+  where $\cdot$ is the matrix multiplication operation.
+  \begin{subprove}
+    Let \(G\) be the set of all \(2 \times 2\) matrices with real entries, and let the operation be matrix multiplication \(\cdot\).
+    We will show that \((G, \cdot)\) does not satisfy the commutative property.
+    Consider the following two matrices in \(G\):
+    \[
+    A = \begin{pmatrix}
+    1 & 2 \\
+    0 & 1
+    \end{pmatrix}, \quad
+    B = \begin{pmatrix}
+    1 & 0 \\
+    3 & 1
+    \end{pmatrix}.
+    \]
+    Now, we compute \(A \cdot B\) and \(B \cdot A\):
+    \[
+    A \cdot B = \begin{pmatrix}
+    1 & 2 \\
+    0 & 1
+    \end{pmatrix} \cdot \begin{pmatrix}
+    1 & 0 \\
+    3 & 1
+    \end{pmatrix} = \begin{pmatrix}
+    1 + 6 & 2 + 2 \\
+    0 + 3 & 0 + 1
+    \end{pmatrix} = \begin{pmatrix}
+    7 & 4 \\
+    3 & 1
+    \end{pmatrix},
+    \]
+    and
+    \[
+    B \cdot A = \begin{pmatrix}
+    1 & 0 \\
+    3 & 1
+    \end{pmatrix} \cdot \begin{pmatrix}
+    1 & 2 \\
+    0 & 1
+    \end{pmatrix} = \begin{pmatrix}
+    1 + 0 & 2 + 0 \\
+    3 + 0 & 6 + 1
+    \end{pmatrix} = \begin{pmatrix}
+    1 & 2 \\
+    3 & 7
+    \end{pmatrix}.
+    \]
+    Since \(A \cdot B = \begin{pmatrix}
+    7 & 4 \\ 
+    3 & 1 
+    \end{pmatrix}\) is not equal to \(B \cdot A = \begin{pmatrix}
+    1 & 2 \\
+    3 & 7
+    \end{pmatrix}\).
+    Therefore, \((G, \cdot)\) does not satisfy the commutative property, and hence it is not an Abelian group.
+  \end{subprove}
+\end{enumerate}
+
+\begin{define}{Finite Groups}[def:finitegroup][red]
+  A group \((G, *)\) is called a \textbf{finite group} if (and only if) 
+  the order of \(G\), denoted by \(|G|\), is finite; that is,
+  \[
+  |G| < \infty.
+  \]
+\end{define}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+
+% \section*{Part 1}
+% \begin{multicolblock}{Solve each equation.}
+%   \begin{enumerate}
+%     \item $6 = \dfrac{a}{4} + 2$
+%     \item $9x - 7 = -7$
+%     \item $-4 = \dfrac{r}{20} - 5$
+%     \item $-6 + \dfrac{x}{4} = -5$
+%     \item $0 = 4 + \dfrac{n}{5}$
+%     \item $-1 = \dfrac{5 + x}{6}$
+%     \item $\dfrac{v + 9}{3} = 8$
+%     \item $-9x + 1 = -80$
+%     \item $-2 = 2 + \dfrac{v}{4}$
+%     \item $2(n + 5) = -2$
+%     \item $-6 = \dfrac{n}{2} - 10$
+%     \item $144 = -12(x + 5)$
+%     \item $8n + 7 = 31$
+%     \item $\dfrac{n + 5}{-16} = -1$
+%     \item $-10 = 10(k - 9)$
+%     \item $-9x - 13 = -103$
+%     \item $-10 = -10 + 7m$
+%     \item $\dfrac{m}{9} - 1 = -2$
+%     \item $-243=-9(10+x)$
+%     \item $9+9 n=9$
+%     \item $7(9+k)=84$
+%     \item $8+\dfrac{b}{-4}=5$
+%   \end{enumerate}
+% \end{multicolblock}
+
+
+% \begin{subanswer}
+%   \begin{multicolblock}{Here are the answers.}[3]
+%   \begin{enumerate}
+%     \item $a=16$
+%     \item $x=0$
+%     \item $r=20$
+%     \item $x=4$
+%     \item $n=-20$
+%     \item $x=-11$
+%     \item $v=15$
+%     \item $x=7$
+%     \item $v=-24$
+%     \item $n=-6$
+%     \item $n=8$
+%     \item $x=-17$
+%     \item $n=3$
+%     \item $n=-21$
+%     \item $k=8$
+%     \item $x=-4$
+%     \item $m=0$
+%     \item $m=-9$
+%     \item $x=-37$
+%     \item $n=0$
+%     \item $k=0$
+%     \item $b=-12$
+%   \end{enumerate}
+%   \end{multicolblock}
+% \end{subanswer}
+
+
+
+% \newpage
+% \section*{Part 2}
+
+% \begin{multicolblock}{Solve each equation.}
+%   \begin{enumerate}
+%     \item $\dfrac{r}{10}+4=5$
+%     \item $\dfrac{n}{2}+5=3$
+%     \item $3p-2=-29$
+%     \item $1-r=-5$
+%     \item $\dfrac{k-10}{2}=-7$
+%     \item $\dfrac{n-5}{2}=5$
+%     \item $-9+\dfrac{n}{4}=-7$
+%     \item $\dfrac{9+m}{3}=2$
+%     \item $\dfrac{-5+x}{22}=-1$
+%     \item $4n-9=-9$
+%     \item $\dfrac{x+9}{2}=3$
+%     \item $\dfrac{-12+x}{11}=-3$
+%     \item $\dfrac{-4+x}{2}=6$
+%     \item $-5+\dfrac{n}{3}=0$
+%     \item $\dfrac{p}{4}+8=7$
+%     \item $9+\dfrac{n}{4}=15$
+%     \item $6+\dfrac{x}{2}=4$
+%     \item $\dfrac{b+11}{3}=-2$
+%     \item $\dfrac{a-10}{3}=-4$
+%     \item $-12r+4=100$
+%     \item $\dfrac{m}{16}-9=-8$
+%     \item $-7+4r=-15$
+%     \item $\dfrac{m-13}{2}=-8$
+%     \item $-5x+13=-17$
+%     \item $\dfrac{k+10}{-2}=5$
+%     \item $\dfrac{p+8}{-2}=10$
+%     \item $-14r-19=303$
+%     \item $\dfrac{x}{-4}-5=-8$
+%   \end{enumerate}
+% \end{multicolblock}
+
+% \begin{subanswer}
+%   \begin{multicolblock}{Here are the answers.}[3]
+%   \begin{enumerate}
+%     \item $r=10$
+%     \item $n=-4$
+%     \item $p=-9$
+%     \item $r=6$
+%     \item $k=-4$
+%     \item $n=15$
+%     \item $n=8$
+%     \item $m=-3$
+%     \item $x=-27$
+%     \item $n=0$
+%     \item $x=-3$
+%     \item $x=-21$
+%     \item $x=16$
+%     \item $n=15$
+%     \item $p=-4$
+%     \item $n=24$
+%     \item $x=-4$
+%     \item $b=-17$
+%     \item $a=-2$
+%     \item $r=-8$
+%     \item $m=16$
+%     \item $r=-2$
+%     \item $m=-5$
+%     \item $x=4$
+%     \item $k=-28$
+%     \item $p=-26$
+%     \item $r=-22$
+%     \item $x=12$
+%   \end{enumerate}
+%   \end{multicolblock}
+% \end{subanswer}
+
+
+
+
+% \begin{umldiagram}[1]{1em and 1em}
+  
+%   % Start node
+%   \umlstart[label=below:Start]{start}{}
+  
+%   % Process nodes (define in order)
+%   \umlprocess[below=of start, yshift=-0.5cm]{div_check}{Check the $n$-th Term Test: Calculate $\lim_{n \to \infty} a_n$}
+  
+%   % Decision nodes
+%   \umldecisionflow[below=of div_check]{div_decision}{Is $\lim_{n \to \infty} a_n = 0$?}
+%   \umldecisionflow[below=of div_decision, yshift=-1cm]{type_check}{Is it a special series? (Geometric, $p$-series)}
+%   \umldecisionflow[right=of type_check, xshift=3.5cm]{sign_check}{Does the series have all positive terms ($a_n > 0$)?}
+  
+%   % More process nodes
+%   \umlprocess[below=of type_check]{special_test}{Apply Geometric Series Test or $p$-Series Test}
+%   \umlprocess[below=of sign_check]{pos_tests}{Use tests for positive series: Integral, Direct Comparison, Limit Comparison}
+%   \umlprocess[left=of sign_check, xshift=-3.5cm]{alt_tests}{Use Alternating Series Test}
+%   \umlprocess[below=of sign_check, yshift=-4cm]{ratio_root}{As a last resort or for factorials/powers, use Ratio or Root Test}
+  
+%   % More decision nodes
+%   \umldecisionflow[below=of alt_tests]{alt_decision}{Does AST show convergence?}
+%   \umlprocess[below=of alt_decision]{abs_check}{Test for absolute convergence with $\sum |a_n|$}
+  
+%   % Start/Stop nodes
+%   \umlstartstop[right=of div_decision, xshift=3cm]{diverges}{Series DIVERGES}
+%   \umlstartstop[left=of abs_check, xshift=-2.5cm]{cond_conv}{Conditionally CONVERGENT}
+%   \umlstartstop[right=of abs_check, xshift=2.5cm]{abs_conv}{Absolutely CONVERGENT}
+  
+%   % End nodes
+%   \umlend[right=of diverges, xshift=1cm, label=below:End]{end1}{}
+%   \umlend[below=of special_test, yshift=-0.5cm, label=below:End]{end2}{}
+%   \umlend[below=of pos_tests, yshift=-0.5cm, label=below:End]{end3}{}
+%   \umlend[below=of cond_conv, yshift=-0.5cm, label=below:End]{end4}{}
+%   \umlend[below=of abs_conv, yshift=-0.5cm, label=below:End]{end5}{}
+%   \umlend[below=of ratio_root, yshift=-0.5cm, label=below:End]{end6}{}
+
+%   % Flow arrows
+%   \umlflow{start}{div_check}
+%   \umlflow{div_check}{div_decision}
+%   \draw[arrow] (div_decision) -- node[above] {No} (diverges);
+%   \umlflow{diverges}{end1}
+  
+%   \draw[arrow] (div_decision) -- node[left] {Yes} (type_check);
+  
+%   \draw[arrow] (type_check) -- node[left] {Yes} (special_test);
+%   \umlflow{special_test}{end2}
+  
+%   \draw[arrow] (type_check) -- node[above] {No} (sign_check);
+  
+%   \draw[arrow] (sign_check) -- node[above] {Yes} (pos_tests);
+%   \umlflow{pos_tests}{end3}
+%   \umlflow{pos_tests}{ratio_root}
+  
+%   \draw[arrow] (sign_check) -- node[above] {No} (alt_tests);
+%   \umlflow{alt_tests}{alt_decision}
+%   \draw[arrow] (alt_decision) -- node[right] {No $\implies$ Div.} (diverges);
+%   \draw[arrow] (alt_decision) -- node[left] {Yes} (abs_check);
+  
+%   \draw[arrow] (abs_check) -- node[above] {No} (cond_conv);
+%   \draw[arrow] (abs_check) -- node[above] {Yes} (abs_conv);
+%   \umlflow{cond_conv}{end4}
+%   \umlflow{abs_conv}{end5}
+
+%   \umlflow{ratio_root}{end6}
+  
+% \end{umldiagram}
+
+% \section{UML Diagram Environment Documentation}
+
+% The \texttt{umldiagram} environment provides a simple framework for creating UML diagrams with automatic scaling and positioning. This environment is built on top of TikZ and includes predefined styles for common UML elements.
+
+% \subsection{Environment Syntax}
+% \begin{verbatim}
+% \begin{umldiagram}[scale]{node_distance}
+%     % UML elements and relationships
+% \end{umldiagram}
+% \end{verbatim}
+
+% \subsubsection{Parameters}
+% \begin{itemize}
+%     \item \textbf{scale} (optional, default: 1.0): Scaling factor for the entire diagram
+%     \item \textbf{node\_distance}: Distance between nodes (e.g., "2cm and 2cm")
+% \end{itemize}
+
+% \subsection{Available UML Elements}
+
+% \subsubsection{Class Diagram Elements}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlclass[options]\{id\}\{name\}}: Regular class
+%     \item \texttt{\textbackslash umlinterface[options]\{id\}\{name\}}: Interface (yellow background)
+%     \item \texttt{\textbackslash umlabstract[options]\{id\}\{name\}}: Abstract class (blue background)
+% \end{itemize}
+
+% \subsubsection{Use Case Diagram Elements}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlactor[options]\{id\}\{name\}}: Actor (rectangular)
+%     \item \texttt{\textbackslash umlusecase[options]\{id\}\{name\}}: Use case (elliptical, blue background)
+% \end{itemize}
+
+% \subsubsection{Activity Diagram Elements}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlactivity[options]\{id\}\{name\}}: Activity (rounded rectangle, green background)
+%     \item \texttt{\textbackslash umldecision[options]\{id\}\{name\}}: Decision point (diamond, red background)
+% \end{itemize}
+
+% \subsection{Relationship Commands}
+% \begin{itemize}
+%     \item \texttt{\textbackslash umlinheritance\{from\}\{to\}}: Inheritance (solid arrow)
+%     \item \texttt{\textbackslash umlimplementation\{from\}\{to\}}: Implementation (dashed arrow)
+%     \item \texttt{\textbackslash umlassociation\{from\}\{to\}}: Association (solid arrow)
+% \end{itemize}
+
+% \subsection{Positioning Options}
+% All elements support standard TikZ positioning options:
+% \begin{itemize}
+%     \item \texttt{below=of node}: Position below another node
+%     \item \texttt{right=of node}: Position to the right of another node
+%     \item \texttt{above=of node}: Position above another node
+%     \item \texttt{left=of node}: Position to the left of another node
+%     \item \texttt{xshift=1cm}: Horizontal offset
+%     \item \texttt{yshift=1cm}: Vertical offset
+% \end{itemize}
+
+% \subsection{Scaling Features}
+% The environment includes \texttt{transform shape} which ensures that:
+% \begin{itemize}
+%     \item Text scales proportionally with the diagram
+%     \item Node shapes maintain their relative sizes
+%     \item All elements scale uniformly
+% \end{itemize}
+
+% \subsection{Complete Example}
+% Here's a complete example showing how to create a class diagram:
+
+% \begin{verbatim}
+% \begin{umldiagram}[0.8]{2cm and 2cm}
+%     % Define classes
+%     \umlclass{vehicle}{Vehicle}
+%     \umlclass[below=of vehicle]{car}{Car}
+%     \umlclass[right=of vehicle]{truck}{Truck}
+%     \umlinterface[below=of car]{drivable}{Drivable}
+    
+%     % Define relationships
+%     \umlinheritance{car}{vehicle}
+%     \umlinheritance{truck}{vehicle}
+%     \umlimplementation{car}{drivable}
+%     \umlimplementation{truck}{drivable}
+% \end{umldiagram}
+% \end{verbatim}
+
+% \subsection{Best Practices}
+% \begin{itemize}
+%     \item Use meaningful node IDs for easy reference
+%     \item Start with a central node and build outward
+%     \item Use consistent positioning patterns
+%     \item Test different scaling factors to find the best fit
+%     \item Group related elements together
+% \end{itemize}
+
+% \section{Simple UML Examples}
+
+% Here are examples using the UML framework with different scaling options:
+
+% \subsection{Normal Size (1.0x scale)}
+% \begin{figure}[h]
+% \centering
+% \begin{umldiagram}[1.0]{2cm and 2cm}
+%     % Define classes
+%     \umlclass{animal}{Animal}
+%     \umlclass[below=of animal]{dog}{Dog}
+%     \umlclass[right=of animal]{cat}{Cat}
+%     \umlinterface[below=of cat]{pet}{Pet}
+
+%     % Define relationships
+%     \umlinheritance{dog}{animal}
+%     \umlinheritance{cat}{animal}
+%     \umlimplementation{dog}{pet}
+%     \umlimplementation{cat}{pet}
+% \end{umldiagram}
+% \caption{Normal Size Animal Class Hierarchy}
+% \end{figure}
+
+% \subsection{Small Size (0.7x scale)}
+% \begin{figure}[h]
+% \centering
+% \begin{umldiagram}[0.7]{1.5cm and 1.5cm}
+%     % Define classes
+%     \umlclass{animal2}{Animal}
+%     \umlclass[below=of animal2]{dog2}{Dog}
+%     \umlclass[right=of animal2]{cat2}{Cat}
+%     \umlinterface[below=of cat2]{pet2}{Pet}
+    
+%     % Define relationships
+%     \umlinheritance{dog2}{animal2}
+%     \umlinheritance{cat2}{animal2}
+%     \umlimplementation{dog2}{pet2}
+%     \umlimplementation{cat2}{pet2}
+% \end{umldiagram}
+% \caption{Small Size Animal Class Hierarchy}
+% \end{figure}
+
+% \subsection{Use Case Diagram Example}
+% \begin{figure}[h]
+% \centering
+% \begin{umldiagram}[0.8]{2cm and 2cm}
+%     % Define actors and use cases
+%     \umlactor{user}{User}
+%     \umlactor[below=of user, yshift=-1cm]{admin}{Admin}
+    
+%     \umlusecase[right=of user, xshift=2cm]{login}{Login}
+%     \umlusecase[below=of login]{view}{View Data}
+%     \umlusecase[below=of view]{edit}{Edit Data}
+%     \umlusecase[right=of edit, xshift=1cm]{delete}{Delete Data}
+    
+%     % Define relationships
+%     \umlassociation{user}{login}
+%     \umlassociation{user}{view}
+%     \umlassociation{admin}{login}
+%     \umlassociation{admin}{view}
+%     \umlassociation{admin}{edit}
+%     \umlassociation{admin}{delete}
+% \end{umldiagram}
+% \caption{Use Case Diagram Example}
+% \end{figure}
+
+% \newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% % % \newpage
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% comb with gen func
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \begin{abstract}
+%   This document explains how generating functions use the concept of linear independence in the vector space of polynomials to count combinatorial objects. Key terms are defined and a concrete example is provided.
+% \end{abstract}
+
+% \section{Key Terminology}
+
+% \begin{itemize}
+%   \item \textbf{Generating function}: A formal power series $G(x) = \sum_{n=0}^\infty a_n x^n$ encoding a sequence $(a_n)$.
+%   \item \textbf{Monomial}: A term $x^n$ in a polynomial or power series.
+%   \item \textbf{Basis}: A set of vectors (here, monomials $\{1, x, x^2, \dots\}$) such that every element of the space is a unique linear combination of them.
+%   \item \textbf{Linear independence}: No nontrivial linear combination of basis elements equals zero; i.e., $\sum c_n x^n = 0$ implies all $c_n = 0$.
+%   \item \textbf{Coefficient}: The number multiplying $x^n$ in a power series, often representing the count of objects of size $n$.
+% \end{itemize}
+
+% \section{Core Relationship}
+
+% Generating functions work because the monomials $\{1, x, x^2, \dots\}$ are linearly independent. Each coefficient $a_n$ in $G(x)$ uniquely counts objects of size $n$. Linear independence ensures that collecting like terms (powers of $x$) is valid and unambiguous.
+
+% \section{Example Problem}
+
+% Find the number of non-negative integer solutions to $a + b + c = 10$ with:
+% \begin{itemize}
+%   \item $a \in \{2, 3, 4\}$
+%   \item $b$ even ($b \in \{0, 2, 4, \dots\}$)
+%   \item $c$ odd ($c \in \{1, 3, 5, \dots\}$)
+% \end{itemize}
+
+% \section{Encoding Constraints}
+
+% Each variable's allowed values are encoded as a generating function:
+% \begin{align*}
+%   A(x) &= x^2 + x^3 + x^4 \\
+%   B(x) &= 1 + x^2 + x^4 + \dots = \frac{1}{1-x^2} \\
+%   C(x) &= x + x^3 + x^5 + \dots = \frac{x}{1-x^2}
+% \end{align*}
+
+% \section{Combining by Multiplication}
+
+% The total generating function is $G(x) = A(x)B(x)C(x)$. Multiplying corresponds to summing exponents: selecting $x^a$, $x^b$, $x^c$ gives $x^{a+b+c}$. The coefficient of $x^{10}$ in $G(x)$ counts the solutions.
+
+% \section{Why Linear Independence Matters}
+
+% Because monomials are linearly independent, each power $x^n$ in $G(x)$ has a unique coefficient. This guarantees that the coefficient of $x^{10}$ counts only the desired combinations, with no overlap or ambiguity.
+
+% \section{Solution}
+
+% Expand:
+% \begin{align*}
+%   G(x) &= (x^2 + x^3 + x^4) \cdot \frac{1}{1-x^2} \cdot \frac{x}{1-x^2} \\
+%        &= \frac{x^3 + x^4 + x^5}{(1-x^2)^2}
+% \end{align*}
+% Expand the denominator:
+% \[
+%   \frac{1}{(1-x^2)^2} = \sum_{j=0}^\infty (j+1)x^{2j}
+% \]
+% To get $x^{10}$, use:
+% \begin{itemize}
+%   \item $x^3$ needs $x^7$ from denominator: not possible (only even powers).
+%   \item $x^4$ needs $x^6$: $j=3$, coefficient $4$.
+%   \item $x^5$ needs $x^5$: not possible.
+% \end{itemize}
+% Total: $0 + 4 + 0 = 4$.
+
+% \textbf{Answer:} There are 4 solutions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 % % \newpage

@@ -1,0 +1,479 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{amssymb} % For math symbols
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{0.3\textwidth}}
+\newcolumntype{R}{>{\raggedright\arraybackslash}p{0.5\textwidth}}
+% Define custom commands for clarity and simplicity
+\newcommand{\stablecoin}{\textsc{StableCoin}}
+\newcommand{\usd}{\textsc{USD}}
+\newcommand{\apy}{\textsc{APY}}
+\newcommand{\pos}{\textsc{Proof-of-Stake}}
+\newcommand{\usdc}{\textsc{USDC}}
+
+
+
+
+
+
+
+\usepackage{amsmath}
+
+\input{../preamble/font.tex}
+\usepackage[margin=1in]{geometry}
+
+
+
+\begin{document}
+\section*{USDC vs. USDT: A Simple Comparison of Stablecoins}
+
+\noindent Two well-known fiat-backed \stablecoin s in the digital asset market are USDC (USD Coin) and USDT (Tether). Both are made to keep their value equal to the U.S. dollar ($\$1.00$), which helps provide stability in the often unpredictable cryptocurrency world.
+
+\subsection*{Definition and Purpose}
+
+\noindent Stablecoins, like USDC and USDT, are used to reduce price 
+swings\footnote{Price swings, also called volatility, mean that the 
+value of something can change quickly and unpredictably.}. They make 
+it possible to send money quickly at any time and act as a temporary 
+way to hold value (a \inlinequote{digital dollar}) 
+for traders and investors, without needing regular banks.
+
+\subsection*{Key Differences in Simple Terms}
+
+\noindent The main differences between USDC and USDT are in how their 
+reserves\footnote{Reserves are the assets held to back up the value of 
+the stablecoin, making sure it can be exchanged for real dollars.}, 
+openness\footnote{Openness, also called transparency, means how much 
+information is shared about how the stablecoin works and what backs it.}, 
+and rules from governments\footnote{Regulatory engagement means how 
+closely the stablecoin follows laws and rules set by governments.}. 
+These differences affect how much people trust each stablecoin, as 
+shown in Table \ref{tab:comparison}.
+
+\begin{table}[h!]
+    \centering
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{} >{\bfseries}L R @{}}
+        \toprule
+        \textbf{Feature} & \textbf{Simple Explanation} \\
+        \midrule
+        \textbf{Transparency} & USDC shares regular reports from independent 
+        companies about its reserves. USDT has been questioned in the past 
+        for not sharing as much information. \\
+        \textbf{Reserve Backing} & USDC is backed mostly by \usd\ and safe 
+        U.S. government bonds\footnote{U.S. Treasury instruments are loans 
+        to the U.S. government, considered very safe.}. USDT uses a wider 
+        mix of assets, including cash, loans, and other investments. \\
+        \textbf{Regulatory Standing} & USDC tries to follow U.S. laws 
+        closely, and its company (Circle) is based in the U.S. USDT has 
+        faced some issues in the past about whether its reserves are 
+        enough and if it follows all rules. \\
+        \textbf{Market Adoption} & USDT is used the most worldwide and 
+        has the biggest market size because it has been around longer. 
+        USDC is chosen more by people and companies who want a stablecoin 
+        that follows more rules. \\
+        \bottomrule
+    \end{tabular}
+    \caption{Comparison of USDC and USDT Characteristics}
+    \label{tab:comparison}
+\end{table}
+
+\subsection*{Conclusion}
+
+\noindent Choosing between these two \stablecoin s depends on what matters most to you:
+
+\begin{itemize}
+    \item If you want \textbf{clear information and strong rules}, USDC is usually seen as more trustworthy.
+    \item If you need \textbf{the most trading options and popularity}, USDT is the most widely used.
+\end{itemize}
+
+
+
+\newpage
+
+\section*{What does ``USDC \(\cdot\) 4.10\% APY'' mean?}
+
+When a platform (e.g., Coinbase) displays
+\[
+\text{USDC}\;\cdot\;4.10\%\ \text{APY}
+\]
+it means: if you hold USDC (a U.S.-dollar-pegged stablecoin) on that platform, you may earn interest at an \textbf{Annual Percentage Yield (APY)} of \(\,4.10\%\) (as of the displayed rate). APY is the effective annual return after accounting for compounding.
+
+\bigskip
+
+\subsection*{Key definitions}
+\begin{itemize}
+  \item \textbf{USDC:} a stablecoin roughly pegged 1:1 to USD (so 1 USDC \(\approx\) \$1).
+  \item \textbf{APY (Annual Percentage Yield):} the effective annual rate including the effect of compounding.
+  \item \textbf{APR (Annual Percentage Rate):} usually quoted without compounding; APY converts APR to an annualized, compounding-aware rate.
+\end{itemize}
+
+\subsection*{Mathematics of compounding}
+Let:
+\[
+P = \text{initial principal (USD)}, \qquad r = \text{nominal annual rate (decimal)}, \qquad n = \text{number of compounding periods per year}.
+\]
+If interest is compounded \(n\) times per year, the balance after one year is
+\[
+A = P\left(1+\frac{r}{n}\right)^{n}.
+\]
+The corresponding APY is
+\[
+\text{APY} = \left(1+\frac{r}{n}\right)^{n} - 1.
+\]
+If interest were compounded continuously, the limit gives
+\[
+A_{\text{cont}} = Pe^{r},\qquad \text{APY}_{\text{cont}} = e^{r}-1.
+\]
+
+\bigskip
+
+\subsection*{Numeric example with \(\mathbf{4.10\%}\) APY}
+Take \(P=\$1{,}000\) and the displayed APY \(=4.10\%\), i.e. \(r_{\text{APY}}=0.041\).
+
+\paragraph{Simple annual compounding (once per year).}
+If the APY comes from annual compounding (\(n=1\)), then
+\[
+A = 1000\cdot(1+0.041)=1000\cdot 1.041 = \$1041.00.
+\]
+
+\paragraph{Daily compounding approximation (\(n=365\)).}
+If interest is compounded daily and the nominal/quoted rate leads to the same effective APY,
+\[
+A = 1000\left(1+\frac{0.041}{365}\right)^{365}.
+\]
+Numerically,
+\[
+A \approx 1000\cdot\left(1+\frac{0.041}{365}\right)^{365} \approx \$1041.85.
+\]
+
+\paragraph{Continuous compounding (for comparison).}
+\[
+A_{\text{cont}} = 1000\,e^{0.041}\approx \$1041.85.
+\]
+
+(You can see daily and continuous compounding give virtually identical results at this rate; the small differences are due to the limit behavior.)
+
+\bigskip
+
+\subsection*{Practical notes and caveats}
+\begin{itemize}
+  \item Platforms may display an APY that is \emph{variable} and can change over time depending on market conditions and the platform's yield sources.
+  \item The actual way the platform generates yield (e.g., lending, market-making, staking, partner programs) and any fees or restrictions are important to check in the platform's terms.
+  \item Cryptocurrency holdings are exposed to platform risk (counterparty risk) and regulatory risk; APY is not the same as an FDIC-insured bank interest rate.
+  \item Many platforms compound daily (or credit earnings daily), but check the platform documentation for the exact compounding frequency and whether there are any minimum balance or withdrawal limits.
+\end{itemize}
+
+\bigskip
+
+\section*{Short summary (one line)}
+\begin{align*}
+    &\text{USDC}\;\cdot\;4.10\%\ \text{APY} \\
+    &\qquad\Rightarrow\quad \text{an effective annual return of } 4.10\% \\
+    &\qquad\qquad\text{i.e. } \$1000 \to \approx \$1041.85\ \text{after 1 year (with daily/continuous compounding).}
+\end{align*}
+
+
+
+\newpage
+
+\section*{Crypto Staking, Fees, and Secure Local Storage: A Quick Guide}
+
+
+\section*{Explanation of the Staking Reward ($\text{Up to } 15.12\% \text{ APY}$)}
+
+\noindent The notice \inlinequote{Earn up to 15.12\% APY $\cdot$ Buy and 
+stake eligible assets to earn rewards} promotes \textbf{Staking}, 
+which is a high-yield method of earning passive income on 
+cryptocurrency, distinct from the rewards earned on simply holding \usdc.
+
+\subsection*{What is Staking?}
+
+\noindent Staking is the process by which a cryptocurrency holder commits their tokens to support the operations of a blockchain network utilizing the \pos\ consensus mechanism.
+
+\begin{itemize}
+  \item \textbf{Function:} The staked assets are used to validate transactions and secure the network, replacing energy-intensive mining.
+  \item \textbf{Reward Source:} Rewards are paid by the blockchain network itself, directly to the stakers, in the form of the asset being staked. Coinbase handles the technical requirements of this process.
+\end{itemize}
+
+\subsection*{The Annual Percentage Yield (APY)}
+
+\noindent The rate of $\text{up to } 15.12\% \text{ APY}$ represents the potential 
+annualized return on the highest-yielding eligible asset available for staking on the platform (e.g., Cosmos (\texttt{ATOM})).
+
+\begin{itemize}
+  \item \textbf{Nature of Rate:} The rate is \textbf{variable} and fluctuates based on the amount of crypto being staked network-wide and the network's activity. It is not a guaranteed fixed return.
+  \item \textbf{Asset-Specific:} Each cryptocurrency eligible for staking will have its own unique \apy\ (e.g., Ethereum (\texttt{ETH}) and Solana (\texttt{SOL}) offer lower rates than $15.12\%$).
+\end{itemize}
+
+\subsection*{Key Difference from USDC Rewards}
+
+\noindent Staking offers a higher potential reward but introduces additional financial risk and liquidity constraints compared to holding \usdc\ for rewards.
+
+\begin{table}[h!]
+  \centering
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.5}
+  \caption{Comparison of Staking vs. USDC Rewards}
+  \begin{tabular}{@{} >{\bfseries}L L L @{}}
+    \toprule
+    \textbf{Category} & \textbf{Staking (e.g., ATOM)} & \textbf{USDC Rewards} \\
+    \midrule
+    \textbf{APY} & High ($\text{up to } 15.12\%$), \textbf{Variable} & Lower ($4.10\%$), \textbf{Stable} \\
+    \textbf{Asset Risk} & \textbf{High.} Value of the staked coin can drop drastically. & \textbf{Low.} Value is pegged to $\$1.00$. \\
+    \textbf{Liquidity} & \textbf{Restricted.} Assets are locked; an unstaking period (hours to weeks) is required. & \textbf{Liquid.} Assets are immediately available for trading/sending once the ACH hold clears. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\newpage
+
+
+
+
+\section*{1. How Staking Works}
+
+\subsection*{Definition}
+\textbf{Staking} is the process of locking up a certain amount of cryptocurrency in order to support the operations of a blockchain network that uses a \textbf{Proof-of-Stake (PoS)} or related consensus mechanism. In return, stakers earn rewards (similar to interest) for helping validate transactions and maintain network security.
+
+\subsection*{Mechanics}
+In PoS-based blockchains (e.g., Ethereum, Cardano, Solana):
+\begin{itemize}
+  \item Users lock tokens in a staking contract.
+  \item Validators (or staking pools) are chosen to propose and verify blocks in proportion to their stake.
+  \item Successful validation yields a reward distributed to participants.
+\end{itemize}
+
+If a validator acts maliciously or stays offline, part of their stake may be \emph{slashed} (lost as a penalty).
+
+\subsection*{Mathematical View}
+Let:
+\[
+P = \text{amount staked}, \quad r = \text{annual staking yield (decimal)}, \quad t = \text{time in years}.
+\]
+Then the staking reward (ignoring compounding) is approximately
+\[
+R = P \cdot r \cdot t.
+\]
+If rewards are compounded continuously,
+\[
+A = P e^{r t}.
+\]
+
+\subsection*{Notes}
+\begin{itemize}
+  \item Staking is available only for PoS-based assets (e.g., ETH, ADA, SOL), not for Bitcoin or XRP.
+  \item Rewards depend on network conditions, validator performance, and lock-up duration.
+  \item On platforms like Coinbase, staking is custodial --- the platform stakes on behalf of users and takes a small commission.
+\end{itemize}
+
+\bigskip
+
+\section*{2. Crypto Transaction Fees: Network vs. Platform (Coinbase)}
+
+\subsection*{(a) Network Fees}
+Network fees are payments made directly to blockchain validators or miners for processing and confirming transactions. These fees depend on:
+\begin{itemize}
+  \item \textbf{Blockchain congestion:} When the network is busy, fees rise.
+  \item \textbf{Transaction complexity:} Larger or multi-step transactions require higher computation and storage.
+  \item \textbf{Token type:} Each blockchain (Bitcoin, Ethereum, Solana, etc.) has its own fee structure.
+\end{itemize}
+
+Mathematically, a simplified transaction fee can be written as
+\[
+\text{Fee}_{\text{network}} = \text{GasUsed} \times \text{GasPrice}.
+\]
+For example, on Ethereum, \texttt{GasUsed} measures computational effort, and \texttt{GasPrice} (in gwei) represents the cost per unit.
+
+\subsection*{(b) Platform Fees (Coinbase)}
+When trading or transferring on Coinbase, two types of additional fees may apply:
+\begin{itemize}
+  \item \textbf{Trading spread:} A small percentage (typically $0.5\%$) between buy and sell prices.
+  \item \textbf{Coinbase fee:} A service charge depending on payment method, transaction size, or region.
+\end{itemize}
+These are separate from blockchain-level network fees.  
+Coinbase automatically deducts the appropriate network fee when you withdraw crypto to an external wallet.
+
+\bigskip
+
+\section*{3. Keeping Coins Locally and Securely}
+
+\subsection*{Custodial vs. Non-Custodial Storage}
+\begin{itemize}
+  \item \textbf{Custodial:} The platform (e.g., Coinbase) holds your private keys. You access coins through your account but do not control the keys.
+  \item \textbf{Non-custodial:} You hold your own private keys through a wallet (hardware or software). This provides full control but also full responsibility.
+\end{itemize}
+
+\subsection*{Local Storage Options}
+\begin{enumerate}
+  \item \textbf{Hardware Wallets:} Physical devices (e.g., Ledger, Trezor) that store private keys offline. Considered the most secure for long-term holding.
+  \item \textbf{Software Wallets:} Apps (e.g., Coinbase Wallet, MetaMask) that store private keys locally on your phone or computer.
+  \item \textbf{Paper Wallets:} Physical printouts of keys or QR codes. Secure from hacking but can be lost or damaged.
+\end{enumerate}
+
+\subsection*{Security Best Practices}
+\begin{itemize}
+  \item Always enable \textbf{2FA (Two-Factor Authentication)} on exchange accounts.
+  \item Never share or upload your \textbf{seed phrase} (12 or 24-word recovery phrase).
+  \item Keep offline backups of your seed phrase in multiple secure locations.
+  \item Be cautious of phishing sites and emails pretending to be from Coinbase.
+  \item Consider using a dedicated hardware wallet for large holdings.
+\end{itemize}
+
+\subsection*{Summary Table}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Storage Type} & \textbf{Who Holds Keys?} & \textbf{Security Level} \\
+\hline
+Exchange (e.g., Coinbase) & Platform & Medium \\
+Software Wallet (e.g., MetaMask) & You & High (if secured) \\
+Hardware Wallet (e.g., Ledger) & You & Very High \\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section*{Key Takeaways}
+\begin{itemize}
+  \item Staking earns rewards by helping secure PoS networks.
+  \item Transaction fees include both network-level and platform-level charges.
+  \item Local storage gives you full control, but also full responsibility for security.
+\end{itemize}
+
+
+
+
+
+
+\newpage
+
+
+\section*{1. Two Ways Blockchains Stay Secure}
+
+Most blockchain networks use one of two main systems to stay secure and agree on transactions:
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Type} & \textbf{Meaning} & \textbf{Example Coins} \\
+\midrule
+Proof of Work (PoW) & Computers use electricity to solve puzzles; winners add new blocks. & Bitcoin (BTC) \\
+Proof of Stake (PoS) & Users lock coins (\emph{stake}) to prove honesty; validators are chosen based on stake. & Ethereum (ETH), Cardano (ADA), Solana (SOL), Cosmos (ATOM) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+
+\noindent
+\textbf{Key point:} Bitcoin uses \textbf{Proof of Work}, so it cannot be staked.  
+Cosmos (ATOM) and other PoS coins can be staked because their networks reward users for helping to verify transactions.
+
+\bigskip
+
+\section*{2. What Staking Really Is}
+
+When you \textbf{stake} a Proof-of-Stake coin:
+\begin{itemize}
+  \item You \textbf{lock your coins} to help the network run.
+  \item Validators (computers) use your stake to confirm transactions.
+  \item In return, you \textbf{earn rewards} in the same coin (similar to earning interest).
+\end{itemize}
+
+On platforms like Coinbase, you do not need to run validator software yourself.  
+Coinbase stakes your coins on your behalf and shares the rewards with you.
+
+\bigskip
+
+\section*{3. Example: Staking Cosmos (ATOM)}
+
+Suppose you buy and stake \(10\) ATOM.
+
+\begin{itemize}
+  \item The Cosmos network pays a variable rate, around \(8\% \text{--} 10\%\) APY.
+  \item Coinbase takes a small commission (around \(25\%\) of the reward).
+  \item Rewards are added to your ATOM balance periodically.
+\end{itemize}
+
+\noindent
+If the APY is \(10\%\), and you stake \(10\) ATOM for one year, your reward (before fees) is approximately
+\[
+R = P \cdot r \cdot t = 10 \times 0.10 \times 1 = 1~\text{ATOM}.
+\]
+After Coinbase's fee, you might receive about \(0.75~\text{ATOM}\).
+
+\bigskip
+
+\section*{4. Why Bitcoin Cannot Be Staked}
+
+Bitcoin uses \textbf{Proof of Work (PoW)}:
+\begin{itemize}
+  \item Miners use powerful computers to solve mathematical puzzles.
+  \item Solving a block earns new BTC (called a block reward).
+  \item This requires expensive hardware and large amounts of electricity.
+\end{itemize}
+
+Because Bitcoin does not rely on staked coins to verify transactions,  
+there is no staking mechanism --- only mining.
+
+\bigskip
+
+\section*{5. How Coinbase Handles Staking}
+
+When you stake through Coinbase:
+\begin{itemize}
+  \item Coinbase locks your tokens in the blockchain network.
+  \item Validators run by Coinbase or partners perform the staking work.
+  \item Rewards are credited to your account daily or weekly.
+  \item You can usually \textbf{unstake} (withdraw), but some networks require a waiting period.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Action} & \textbf{What Happens on Coinbase} \\
+\midrule
+Buy PoS coin (e.g., ATOM) & Coinbase holds the coin in your account. \\
+Click ``Stake'' & Coinbase locks your coins on the network. \\
+Earn rewards & Network pays rewards, shared with you. \\
+Unstake & Coinbase unlocks and returns your coins (may take days). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section*{6. Quick Summary Table}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Concept} & \textbf{PoW (e.g., Bitcoin)} & \textbf{PoS (e.g., Cosmos, Ethereum)} \\
+\midrule
+How the network stays secure & Mining (computers compete) & Staking (coins locked) \\
+Can I stake it? & \textbf{No} & \textbf{Yes} \\
+How do I earn? & Mining or price gain & Staking rewards (APY) \\
+Energy use & Very high & Low \\
+Who does the work on Coinbase? & N/A & Coinbase validators \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\section*{7. Key Takeaways}
+\begin{itemize}
+  \item Only \textbf{Proof-of-Stake} coins (like ATOM, ETH, SOL) can be staked.
+  \item \textbf{Bitcoin cannot be staked} because it uses Proof of Work instead.
+  \item Staking earns passive rewards but may involve network lock-up periods.
+  \item On Coinbase, staking is simplified --- the platform handles the technical side for you.
+\end{itemize}
+
+
+
+\end{document}

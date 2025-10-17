@@ -1,0 +1,178 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, geometry, hyperref}
+\geometry{margin=1in}
+\setlength{\parskip}{0.8em}
+
+
+\input{../preamble/font.tex}
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+
+
+\section*{Overview}
+To bring coins from Coinbase to a local wallet, you are \textbf{withdrawing cryptocurrency from Coinbase} and sending it to your own \textbf{wallet address}. The exact steps depend on the type of local wallet you are using.
+
+\section{Local Software Wallet (e.g., Electrum, Exodus, MetaMask)}
+\subsection*{1. Open Your Local Wallet}
+\begin{itemize}
+    \item Ensure the wallet is installed and fully synced (if required).
+    \item Locate the \textbf{Receive} section.
+    \item Copy your \textbf{wallet address} (a long alphanumeric string).
+\end{itemize}
+\textbf{Note:} Always ensure the coin type matches. For example, send BTC only to a Bitcoin address, not to an Ethereum address.
+
+\subsection*{2. Access Coinbase}
+\begin{itemize}
+    \item Log in to \href{https://www.coinbase.com}{Coinbase}.
+    \item On the dashboard, click \textbf{\inlinequote{Send \& Receive}}.
+    \item Under the \textbf{Send} tab, choose the cryptocurrency you want to withdraw.
+\end{itemize}
+
+\subsection*{3. Enter Your Wallet Address}
+\begin{itemize}
+    \item Paste your local wallet address into the \inlinequote{To} field.
+    \item Enter the amount you want to send.
+    \item Double-check the address and coin type.
+\end{itemize}
+
+\subsection*{4. Choose Network (If Applicable)}
+For tokens that exist on multiple networks (e.g., USDT on ERC20, TRC20, or Base):
+\begin{itemize}
+    \item Select the same network that your local wallet supports.
+    \item Coinbase will display a warning if the network is incompatible.
+\end{itemize}
+
+\subsection*{5. Confirm and Send}
+\begin{itemize}
+    \item Review all transaction details carefully.
+    \item Confirm the send using your 2FA or other security method.
+    \item Coinbase will broadcast the transaction to the blockchain.
+\end{itemize}
+
+\subsection*{6. Wait for Confirmations}
+\begin{itemize}
+    \item Transfers typically take from a few minutes to an hour.
+    \item You can track progress using the blockchain explorer link provided by Coinbase.
+\end{itemize}
+
+\section{Local Hardware Wallet (e.g., Ledger, Trezor)}
+\begin{itemize}
+    \item Use Ledger Live or Trezor Suite to generate your receive address.
+    \item Plug in and unlock your device before initiating the transfer.
+    \item Verify the address directly on the device screen before confirming on Coinbase.
+\end{itemize}
+
+\section{Example: Sending ETH from Coinbase to MetaMask}
+\begin{enumerate}
+    \item Open MetaMask, click \inlinequote{Account 1}, and copy your Ethereum address (\texttt{0x...}).
+    \item On Coinbase, click \inlinequote{Send \& Receive} and select Ethereum.
+    \item Paste your MetaMask address, enter the amount, and send.
+    \item Wait a few minutes and check MetaMask after confirmation.
+\end{enumerate}
+
+\section{Important Tips}
+\begin{itemize}
+    \item Always test with a small amount first.
+    \item Never send coins between incompatible networks (e.g., Base $\rightarrow$ Ethereum without bridging).
+    \item Be aware of network fees, especially on Ethereum.
+    \item Consider using \textbf{Coinbase Wallet} (self-custodial) if you are new to managing private keys.
+\end{itemize}
+
+
+\newpage
+
+
+\section*{Overview}
+We compare three things:
+\begin{itemize}
+  \item Ledger (hardware wallet)  
+  \item MetaMask (software wallet)  
+  \item A normal SSD (storage device)  
+\end{itemize}
+We also include how Ledger supports XRP (Ripple) as described on the Ledger XRP wallet page.
+
+\section{What They Are}
+
+\subsection*{Ledger (Hardware Wallet)}
+\begin{itemize}
+  \item A physical device (often USB, potentially Bluetooth) that stores \textbf{private keys} in secure hardware offline.  
+  \item It signs transactions internally, so your keys never leave the device.  
+  \item According to the Ledger XRP wallet page, Ledger supports XRP by allowing users to 
+  add an XRP account in the Ledger Live app and manage XRP (send, receive, swap) 
+  while the private keys remain securely stored in hardware. \\
+  \(\quad\) It states: \inlinequote{Ledger hardware wallet stores your private keys and 
+  signs transactions offline, making them resistant to malicious attacks.}\\
+  \(\quad\) Also, Ledger Live (the software companion) acts as the interface to manage XRP and other assets.
+  \item The XRP wallet feature is marketed by Ledger as \inlinequote{secure your XRP with hardware-backed security.}
+  \item The Ledger page notes that XRP addresses begin with the letter \inlinequote{r} and are case-sensitive.
+\end{itemize}
+
+\subsection*{MetaMask (Software Wallet)}
+\begin{itemize}
+  \item A software application (browser extension or mobile) which stores your private key (or seed phrase) locally (often encrypted) on your device.  
+  \item It enables you to interact with Ethereum, EVM-compatible chains, and dApps.  
+  \item Because it is \inlinequote{hot} (connected or accessible by the device), it has greater exposure to software attacks compared to a hardware wallet.  
+\end{itemize}
+
+\subsection*{Normal SSD (Storage Device)}
+\begin{itemize}
+  \item A solid-state drive is hardware for general data storage (files, programs, operating systems).  
+  \item It is not designed for cryptographic key security by itself.  
+  \item If you store private keys (or wallet files) on an SSD, they are only as secure as your system's protections (encryption, backups, malware defense).  
+  \item The SSD has no native concept of \inlinequote{signing transactions} or interfacing with blockchains — it is simply storage.
+\end{itemize}
+
+\section{Key Differences and Roles}
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+Feature & Ledger (Hardware) & MetaMask (Software) & SSD (Storage) \\
+\hline
+Purpose & Secure offline key storage \& transaction signing & Wallet interface and key management & General file/data storage \\
+\hline
+Private keys stored & In secure hardware, isolated & Encrypted on device storage & Not inherently — if stored here, vulnerable \\
+\hline
+Connectivity & Offline (cold), only connected when needed & Online (hot) & Always connected when in use \\
+\hline
+Risk & Low (physical access + PIN needed) & Moderate (software attacks, device compromise) & High (if used to store keys) \\
+\hline
+Transaction signing & Done internally in device & Done by software on the device & Not applicable \\
+\hline
+Asset storage & Keys only (actual coins live on blockchain) & Keys only & Raw storage (no blockchain interface) \\
+\hline
+Supports XRP? & Yes (via Ledger + Ledger Live) & Only if wallet software supports XRP protocol & N/A \\
+\hline
+\end{tabular}
+
+\section{How Ledger Supports XRP (Ripple)}
+
+From the Ledger XRP wallet page:
+
+\begin{itemize}
+  \item Ledger offers an XRP wallet solution (hardware + Ledger Live) to store and manage XRP securely.
+  \item Users can add an XRP account in Ledger Live and use it to send, receive, swap XRP, while private keys stay in hardware. 
+  \item XRP addresses are case-sensitive and begin with \inlinequote{r}.
+  \item Ledger's site emphasizes that hardware wallets keep private keys off connected systems, protecting them from many online threats. 
+\end{itemize}
+
+\section{Conclusion}
+
+\begin{itemize}
+  \item \textbf{Ledger} is a hardware wallet that gives you strong security by keeping keys offline, and Ledger supports XRP (Ripple) via its integrated wallet solution.  
+  \item \textbf{MetaMask} is a software (hot) wallet, convenient but more exposed.  
+  \item \textbf{Normal SSD} is a generic data storage device, not built with key security or blockchain functionality in mind.  
+\end{itemize}
+
+
+
+
+\end{document}
