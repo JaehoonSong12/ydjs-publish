@@ -1,16 +1,11 @@
-%
-%Academic CV LaTeX Template
-% Author: Dubasi Pavan Kumar
-% LinkedIn: https://www.linkedin.com/in/im-pavankumar/
-% License: MIT
-%
-% For errors, suggestions, or improvements, please contact:
-% Email: pavankumard.pg19.ma@nitp.ac.in
-%
-
-
 
 \documentclass[a4paper,11pt]{article}
+
+
+
+\input{../preamble/font.tex}
+\input{../preamble/resume.tex}
+
 
 % Package imports
 \usepackage{latexsym}
@@ -32,6 +27,9 @@
 \usepackage{cfr-lm}
 \usepackage[T1]{fontenc}
 \usepackage{fontawesome5}
+
+
+
 
 % Color definitions
 \definecolor{darkblue}{RGB}{0,0,139}
@@ -142,7 +140,6 @@
 \newcolumntype{C}{>{\centering\arraybackslash}X}%
 
 % Commands for icon sizing and positioning
-\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
 \newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
 
 % Font options
@@ -158,7 +155,28 @@
 \newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
 
 \begin{document}
+
+
+
+  % \resumeheader{John Doe}{+1-234-567-8900}{john@email.com}{johnwebsite.com}
+  % {john-profile}{john-username}{john-handle}{New York, NY - 10001, USA}
+
+
+
+  % \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/#5/}{john-profile} | 
+  % \socialicon{\faGithub} \href{https://github.com/#6}{john-username} |
+  % \socialicon{\faTwitter} \href{https://twitter.com/#7}{john-handle} |
+  % \socialicon{\faInstagram} \href{https://www.instagram.com/#8/}{john-instagram} |
+  % \socialicon{\faFacebook} \href{https://www.facebook.com/#9/}{john-facebook} |
+  % \socialicon{\faYoutube} \href{https://www.youtube.com/@#10}{john-youtube}
+
+
 \headerfontiii
+
+
+
+
+
 
 % Header
 \begin{center}

@@ -1,0 +1,73 @@
+% ------------------------------------------------------------------------------
+% Required Packages for preamble/group.tex
+% ------------------------------------------------------------------------------
+\makeatletter
+% \@ifpackageloaded{amsmath}{}{\usepackage{amsmath}}      % (implicit) math foundations
+% \@ifpackageloaded{amssymb}{}{\usepackage{amssymb}}      % \mathfrak{...}, \square, \blacksquare
+% \@ifpackageloaded{mathrsfs}{}{\usepackage{mathrsfs}}    % \mathscr{...}
+% \@ifpackageloaded{amsfonts}{}{\usepackage{amsfonts}}    % math symbols + DeclarePairedDelimiter
+% \@ifpackageloaded{mathtools}{}{\usepackage{mathtools}}  % enhanced math tools
+% \@ifpackageloaded{dsfont}{}{\usepackage{dsfont}}        % \mathds{...}
+% \@ifpackageloaded{xspace}{}{\usepackage{xspace}}        % text-usable macros
+% \@ifpackageloaded{xparse}{}{\usepackage{xparse}}        % define flexible macros (\NewDocumentCommand)
+% \@ifpackageloaded{ifthen}{}{\usepackage{ifthen}}        % basic conditional logic (\ifthenelse)
+% \@ifpackageloaded{mdframed}{}{\usepackage{mdframed}}    % framed / boxed environments
+% \@ifpackageloaded{xcolor}{}{\usepackage{xcolor}         % color definitions and coloring text/math
+%   \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
+%   \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
+%   \definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
+%   \definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
+%   \definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
+%   \definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
+%   \definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
+%   \definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
+%   \definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
+
+\@ifpackageloaded{graphicx}{}{\usepackage{graphicx}}  % \raisebox, \resizebox
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}  % social media icons
+\@ifpackageloaded{hyperref}{}{\usepackage[hidelinks]{hyperref}}  % hyperlinks
+% }
+\makeatother
+
+
+% ------------------------------------------------------------------------------
+% Resume Header Environment
+% ------------------------------------------------------------------------------
+% DESCRIPTION:
+%   Environment for creating a standardized resume header with contact information
+%   and social media links. Provides consistent formatting across resume documents.
+%
+% FEATURES:
+%   - Centered layout with proper spacing
+%   - Social media icons with hyperlinks (input between begin/end)
+%   - Contact information formatting
+%   - Consistent typography and spacing
+%
+% DEPENDENCIES:
+%   \usepackage{graphicx}      % for \raisebox, \resizebox
+%   \usepackage{fontawesome5}  % for social media icons
+%   \usepackage{hyperref}      % for clickable links
+%
+% USAGE EXAMPLES:
+%   \begin{resumeheader}{John Doe}{+1-234-567-8900}{john@email.com}{johnwebsite.com}{New York, NY - 10001, USA}
+%   \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/john-profile/}{john-profile} | 
+%   \socialicon{\faGithub} \href{https://github.com/john-username}{john-username} |
+%   \socialicon{\faTwitter} \href{https://twitter.com/john-handle}{john-handle}
+%   \end{resumeheader}
+% ------------------------------------------------------------------------------
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+
+\NewDocumentEnvironment{resumeheader}{m m m m m}{%
+\begin{center}
+    {\Huge\textbf{#1} | \href{https://github.com/john-username}{\socialicon{\faGithub}}} \\ \vspace{0.5em}
+    #2 | \href{mailto:#3}{#3} | \href{https://www.#4/}{#4} \\ \vspace{0.5em}
+}{%
+    \\ \vspace{0.5em}
+    \small{#5}
+\end{center}
+% \vspace{-4mm}
+}
+
+% \socialicon{\faInstagram} \href{https://www.instagram.com/#8/}{john-instagram} |
+% \socialicon{\faFacebook} \href{https://www.facebook.com/#9/}{john-facebook} |
+% \socialicon{\faYoutube} \href{https://www.youtube.com/@#10}{john-youtube}
