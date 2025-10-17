@@ -2062,6 +2062,217 @@ Let $p$ be an odd prime number. Prove that
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+Example. 1,3,4,5,9 are quadratic residues modulo 11.
+$$
+\left\{
+\begin{array}{l}
+\displaystyle
+\frac{1}{11} = 1,\quad \frac{4}{11} = 1,\quad \frac{5}{11} = 1,\quad \frac{9}{11} = 1 \\[10pt]
+\displaystyle
+\frac{2}{11} = -1,\quad \frac{3}{11} = -1,\quad \frac{6}{11} = -1,\quad \frac{7}{11} = -1,\quad \frac{8}{11} = -1,\quad \frac{10}{11} = -1
+\end{array}
+\right.
+$$
+
+Example. Find the value of $\frac{3}{7}$.
+\begin{define}{Quadratic Residue}[def:quadres]
+  Let $a \in \setZ$ and $n \in \setZ_{>0}$. Then $a$ is a \underbar{quadratic residue modulo $n$} if there exists an integer $x$ such that
+  \[
+    x^2 \equiv a \pmod{n}.
+  \]
+  If no such integer exists, then $a$ is a \underbar{quadratic non-residue modulo $n$}.
+\end{define}
+
+$1^2 \equiv 1 \pmod{7}$
+
+$2^2 \equiv 4 \pmod{7}$
+
+$3^2 \equiv 2 \pmod{7}$
+
+
+By \nameref{def:quadres}, there 
+are exactly $\frac{p-1}{2}$ quadratic residues modulo $7$. 
+Thus, $3$ is a quadratic residue modulo $7$.
+
+
+
+\begin{define}{Euler's Criterion}[thm:eulercrit][red]
+  Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. Then
+  \[
+    a \text{ is a quadratic residue modulo } p \iff a^{(p-1)/2} \equiv 1 \pmod{p}.
+  \]
+  Otherwise, $a$ is a quadratic non-residue modulo $p$ if and only if
+  \[
+    a^{(p-1)/2} \equiv -1 \pmod{p}.
+  \]
+  \begin{subprove}
+    Assume that $\frac{a}{p}=+1$. Then $a \equiv x^2 \pmod{p}$ 
+    has a solution. Say $x_0$ is a solution. Then,
+    \[
+      a^{(p-1)/2} \equiv (x_0^2)^{(p-1)/2} \equiv x_0^{p-1} \equiv 1 \pmod{p} \equiv \frac{a}{p} \pmod{1}
+    \]
+    by Fermat's Little Theorem. 
+    Conversely, assume that $a^{(p-1)/2} \equiv -1 \pmod{p}$.
+    For each $i \in \setZ$ with $1 \leq i \leq p-1$, 
+    there exists a unique $j \in \setZ$ with $1 \leq j \leq p-1$ 
+    such that
+    \[
+      i\cdot j \equiv a \pmod{p}.
+    \]
+    if $i \equiv j \pmod{p}$, by Theorem 2.6, then $i^2 \equiv a \pmod{p}$, 
+    which implies that $a$ is a quadratic residue modulo $p$ and $\frac{a}{p}=1$, a contradiction.
+    Thus, ${1,2,\dots,p-1}$ will be paired $\frac{p-1}{2}$ pairs.
+    Each with product $a \pmod{p}$. Then, 
+    \[
+      (p-1)! \equiv a^{(p-1)/2} \equiv -1 \pmod{p}.
+    \]
+    By Wilson's Theorem, $a$ is a quadratic non-residue modulo $p$ and $\frac{a}{p}=-1$.
+  \end{subprove}
+\end{define}
+
+
+
+
+\newpage
+
+\begin{define}{Legendre Symbol}[def:legendre]
+  Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. The \underbar{Legendre symbol} $\frac{a}{p}$ is defined as
+  \[
+    \frac{a}{p} = \begin{cases}
+      1 & \text{if } a \text{ is a quadratic residue modulo } p,\\
+      -1 & \text{if } a \text{ is a quadratic non-residue modulo } p.
+    \end{cases}
+  \]
+\end{define}
+
+Proposition 4.5
+Let $p$ be an odd prime and let $a, b \in \setZ$ with $p \nmid a$ and $p \nmid b$. Then,
+\begin{enumerate}
+  \item $\frac{a^2}{p} = 1$.
+  \item If $a \equiv b \pmod{p}$, then $\frac{a}{p} = \frac{b}{p}$.
+  \item $\frac{ab}{p} = \frac{a}{p} \cdot \frac{b}{p}$.
+\end{enumerate}
+\begin{subprove}
+  \begin{enumerate}
+    \item $x^2 \equiv a^2 \pmod{p}$ has a solution $x \equiv a \pmod{p}$.
+    \item Since $a \equiv b \pmod{p}$, the quadratic congruences to be solved is $x^2 \equiv a \pmod{p}$ and $x^2 \equiv b \pmod{p}$. 
+    Clearly, $x^2 \equiv a \pmod{p}$ is solvable if and only if $x^2 \equiv b \pmod{p}$ is solvable.
+    Thus, $\frac{a}{p} = \frac{b}{p}$.
+    \item $\frac{ab}{p} \equiv (ab)^{(p-1)/2} \equiv a^{(p-1)/2} b^{(p-1)/2} \equiv \frac{a}{p} \cdot \frac{b}{p} \pmod{p}$ 
+    by \nameref{thm:eulercrit}. Since the only values of the Legendre symbol are $1$ and $-1$, it follows that 
+    $$\frac{ab}{p} = \frac{a}{p} \cdot \frac{b}{p}$$.
+  \end{enumerate}
+\end{subprove}
+
+
+Example. Find the value of $\frac{3}{7}$.
+$$1^2 \equiv 1 \pmod{7}$$
+$$2^2 \equiv 4 \pmod{7}$$
+$$3^2 \equiv 2 \pmod{7}$$
+$$4^2 \equiv 2 \pmod{7}$$
+$$5^2 \equiv 4 \pmod{7}$$
+$$6^2 \equiv 1 \pmod{7}$$
+There are exactly $\frac{7-1}{2} = 3$ quadratic residues modulo $7$.
+Thus, $1,2,4$ are quadratic residues modulo $7$.
+By \nameref{def:legendre}, $\frac{3}{7} = -1$ since $3$ is a quadratic non-residue modulo $7$.
+
+
+
+Example. Find the value of $\frac{-11}{7}$. Is $x^2 \equiv -11 \pmod{7}$ solvable?
+By \nameref{def:legendre}, $\frac{-11}{7} = \frac{-1}{7} \cdot \frac{11}{7}= \frac{-1}{7} \cdot \frac{4}{7} = \frac{6}{7} \cdot 1 = -1$.
+Thus, $x^2 \equiv -11 \pmod{7}$ is not solvable.
+
+$$\frac{4}{7} = 1$$
+since $2^2 \equiv 4 \pmod{7}$.
+
+Further properties: let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$.
+Then,
+$$a=\pm 2^{a_0}p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k} \pmod{p}$$
+with $p_1,p_2,\ldots,p_k$ distinct primes such that $p_i \nmid a$ for all $i$ and $a_0,a_1,\ldots,a_k \in \setZ_{\ge 0}$ non-negative integers.
+Then, by Proposition 4.5,
+$$\frac{a}{p} = \frac{-1}{p} \cdot \left(\frac{2}{p}\right)^{a_0} \cdot \prod_{i=1}^k \left(\frac{p_i}{p}\right)^{a_i}.$$
+suffices to compute:
+$$x^2=1 \pmod{p}$$
+$$x^2=-1 \pmod{p}$$
+$$x^2=2 \pmod{p}$$
+$$x^2=p_i \pmod{p}$$
+
+for all $i=1,2,\ldots,k$.
+
+Theorem 4.6.
+Let $p$ be an odd prime. Then, 
+$$\frac{-1}{p} = (-1)^{(p-1)/2} = \begin{cases}
+1 & \text{if } p \equiv 1 \pmod{4},
+\\
+-1 & \text{if } p \equiv 3 \pmod{4}.
+\end{cases}$$
+\begin{subprove}
+  The first equiality follows from \nameref{thm:eulercrit} with
+  $$a=-1.$$
+
+\end{subprove}
+
+
+Example. Find the value of $\frac{-1}{53}$.
+By Theorem 4.6, $\frac{-1}{53} = 1$ since $53 \equiv 1 \pmod{4}$.
+
+
+
+\begin{define}{Lemma 4.7 (Gauss's Lemma)}[lem:gauss][red]
+  Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. 
+  Let $n$ be the number of least positive residues of the integers ${a, 2a, \ldots, ((p-1)/2)a}$ modulo $p$ that are greater than $p/2$.
+  Then, 
+  $$\frac{a}{p} = (-1)^n.$$
+  \begin{subprove}
+    Let $r_1, r_2, \ldots, r_{(p-1)/2}$ be the least positive residues of the integers $a, 2a, \ldots, ((p-1)/2)a$ modulo $p$.
+    Then,
+    $$\{r_1,r_2,\ldots,r_{(p-1)/2}\} = \{1,2,\ldots,(p-1)/2\}$$
+    as sets. Thus,
+    $$r_1 r_2 \cdots r_{(p-1)/2} \equiv 1 \cdot 2 \cdots (p-1)/2 \equiv ((p-1)/2)! \pmod{p}.$$
+    On the other hand,
+    $$r_i \equiv ia \pmod{p}$$
+    or
+    $$r_i \equiv ia - p \pmod{p}$$
+    for each $i=1,2,\ldots,(p-1)/2$. Since there are exactly $n$ integers among $r_1,r_2,\ldots,r_{(p-1)/2}$ that are greater than $p/2$, it follows that
+    $$r_1 r_2 \cdots r_{(p-1)/2} \equiv (-1)^n a^{(p-1)/2} (1\cdot 2 \cdots (p-1)/2) \equiv (-1)^n a^{(p-1)/2} ((p-1)/2)! \pmod{p}.$$
+    By canceling $((p-1)/2)!$ from both sides, it follows that
+    $$(-1)^n a^{(p-1)/2} \equiv 1 \pmod{p}.$$
+    By \nameref{thm:eulercrit}, $\frac{a}{p} = a^{(p-1)/2}$. Thus,
+    $$\frac{a}{p} = (-1)^n.$$
+  \end{subprove}
+\end{define}
+
+
+Example. Use Gauss's Lemma to find the value of $\frac{6}{11}$.
+The least positive residues of 
+\begin{align*}
+  6, 2\cdot 6, 3\cdot 6, 4\cdot 6, 5\cdot 6\\
+  6, 12, 18, 24, 30
+\end{align*}
+modulo $11$ are $6, 1, 7, 2, 8$.
+Among them, $6, 7, 8$ are greater than $11/2
+=5.5$. Thus, $n=3$.
+By \nameref{lem:gauss}, $\frac{6}{11} = (-1)^3 = -1$.
+
+
+
+
 % \newpage
 % \begin{define}{Converse to Wilson's Theorem}
 %   If $n$ is an integer such that $n > 1$ and $(n-1)! \equiv -1 \pmod{n}$, then $n$ is a prime number.
