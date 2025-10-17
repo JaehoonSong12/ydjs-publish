@@ -12,21 +12,20 @@
 % \@ifpackageloaded{xparse}{}{\usepackage{xparse}}        % define flexible macros (\NewDocumentCommand)
 % \@ifpackageloaded{ifthen}{}{\usepackage{ifthen}}        % basic conditional logic (\ifthenelse)
 % \@ifpackageloaded{mdframed}{}{\usepackage{mdframed}}    % framed / boxed environments
-% \@ifpackageloaded{xcolor}{}{\usepackage{xcolor}         % color definitions and coloring text/math
-%   \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
-%   \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
-%   \definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
-%   \definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
-%   \definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
-%   \definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
-%   \definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
-%   \definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
-%   \definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
-
+\@ifpackageloaded{xcolor}{}{\usepackage{xcolor}         % color definitions and coloring text/math
+  \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
+  \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
+  \definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
+  \definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
+  \definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
+  \definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
+  \definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
+  \definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
+  \definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
+}
 \@ifpackageloaded{graphicx}{}{\usepackage{graphicx}}  % \raisebox, \resizebox
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}  % social media icons
-\@ifpackageloaded{hyperref}{}{\usepackage[hidelinks]{hyperref}}  % hyperlinks
-% }
+\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}  % hyperlinks
 \makeatother
 
 
@@ -49,13 +48,13 @@
 %   \usepackage{hyperref}      % for clickable links
 %
 % USAGE EXAMPLES:
-%   \begin{resumeheader}{John Doe}{+1-234-567-8900}{john@email.com}{johnwebsite.com}{New York, NY - 10001, USA}
+%   \begin{resume-header}{John Doe}{+1-234-567-8900}{john@email.com}{johnwebsite.com}{New York, NY - 10001, USA}
 %   \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/john-profile/}{john-profile} | 
 %   \socialicon{\faGithub} \href{https://github.com/john-username}{john-username} |
 %   \socialicon{\faTwitter} \href{https://twitter.com/john-handle}{john-handle}
-%   \end{resumeheader}
+%   \end{resume-header}
 
-%   \begin{resumeheader}
+%   \begin{resume-header}
 %     {John Doe}{www.johnwebsite.com}
 %     {New York, NY - 10001, USA}{+1-234-567-8900}{john@email.com}
 %     \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/john-profile/}{john-profile} | 
@@ -65,13 +64,57 @@
 %     \socialicon{\faInstagram} \href{https://www.instagram.com/#8/}{john-instagram} |
 %     \socialicon{\faFacebook} \href{https://www.facebook.com/#9/}{john-facebook} |
 %     \socialicon{\faYoutube} \href{https://www.youtube.com/@#10}{john-youtube}
-%   \end{resumeheader}
+%   \end{resume-header}
 % ------------------------------------------------------------------------------
 \newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
-\NewDocumentEnvironment{resumeheader}{m m m m m}{%
+\NewDocumentEnvironment{resume-header}{m m m m m}{%
 \begin{center}
-    {\LARGE\bfseries \href{#1}{\socialicon{\faGithub}} \textbf{#2}} \\ \vspace{0.5em}%\Huge?
-    {\small #3 | #4 | \href{mailto:#5}{#5}} \\ \vspace{0.5em}
+    {\LARGE\bfseries \href{#1}{\socialicon{\faIcon{github}}} \textbf{#2}} \\ \vspace{0.5em}%\Huge?
+    {\small #3 | \socialicon{\faIcon{mobile-alt}} #4 | \socialicon{\faIcon{envelope}} \href{mailto:#5}{#5}} \\ \vspace{0.5em}
 }{%
 \end{center}
+}
+
+
+
+
+
+
+
+% Underlined, all-caps section title macro (no indent; use \hrule for the line)
+\newcommand{\resumetitle}[1]{%
+  {\noindent\bfseries\MakeUppercase{#1}\par\nobreak\vspace{-0.6em}%
+  \noindent\rule{\linewidth}{0.6pt}\par}
+}
+
+%-------------------------------------
+% Environment: resume-itemize
+%-------------------------------------
+\newenvironment{resume-itemize}[4]{%
+  % Header formatting
+%   \vspace{1.0em}
+  \noindent\textbf{#1} \,|\, #2 \hfill \textit{#4}\\
+  \noindent\textit{#3}
+  \vspace{-0.4em}
+  \begin{itemize}
+    \setlength{\itemsep}{0.2em}
+    \setlength{\parskip}{0pt}
+}{%
+  \end{itemize}
+}
+
+
+
+
+%-------------------------------------
+% Resume Objective Environment
+%-------------------------------------
+\newenvironment{resume-objective}{%
+  \vspace{-1.0em}
+  \begin{center}
+  \itshape
+  \color{gray}
+}{%
+  \color{black}
+  \end{center}
 }
