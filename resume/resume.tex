@@ -1,10 +1,12 @@
-%
-% CV LaTeX Template
-% Author: Jaehoon Song
+%-------------------------
+% Resume (CV) Template in Latex
+% Author : Jaehoon Song
 % Email: manual20151276@gmail.com
-% License: MIT
-%
+% License : MIT
+% 
+% Based on: https://github.com/sb2nov/resume
 % For errors, suggestions, or improvements, please contact me at manual20151276@gmail.com.
+%------------------------
 
 
 
@@ -28,6 +30,7 @@
 %-------------------------------------
 \begin{resume-objective}
 To obtain a position in the broad fields of computer science.
+Computational and proof-based mathematics, numerical analysis, mathematical modeling, combinatorics, algebraic structures, and applications of algorithms in topology.
 \end{resume-objective}
 
 
@@ -37,9 +40,56 @@ To obtain a position in the broad fields of computer science.
 
 
 
+%-------------------------------------
+% Education
+%-------------------------------------
+\resumeSection{Education}
+\begin{resume-itemize}
+  {Georgia Institute of Technology}{Atlanta, GA}{Dec 2025}
+  {Bachelor of Science in Computer Science}[GPA: 3.87/4.00]
+    \item \textbf{Relevant Coursework}: Calculus (MATH 1551/1552/2550), 
+    Algebra (MATH 1554/2106/3406), 
+    Discrete Mathematics (CS 2050/MATH 3012), 
+    Differential Equations (MATH 2552), 
+    Probability and Statistics (MATH 3215), 
+    Number Theory (MATH 4150).
+    \item \textbf{Awards}: Georgia Tech President's Undergraduate Research Award, 2024
+    \item \textbf{Honors}: Dean's List, College of Computing, 2021--2024
+\end{resume-itemize}
 
 
+\begin{resume-itemize}
+  {Southwestern University}{Georgetown, TX}{Aug. 2018 -- May 2021}
+  {Bachelor of Arts in Computer Science, Minor in Business}
+  \item Graduated Cum Laude with a GPA of 3.6/4.0.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Blinn College}{Bryan, TX}{Aug. 2014 -- May 2018}
+  {Associate's in Liberal Arts}
+  \item Graduated Cum Laude with a GPA of 3.6/4.0.
+\end{resume-itemize}
+
+
+%-------------------------------------
+% Experience
+%-------------------------------------
 \resumeSection{Experience}
+\begin{resume-itemize}
+  {Georgia Tech}{Atlanta, GA}{2023--2024}
+  {Teaching Assistant, MATH 1552: Integral Calculus}
+  \item Assisted in the instruction of integral calculus concepts, including techniques of integration and applications.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Georgia Tech Math Club}{Atlanta, GA}{2022--2023}
+  {Vice President}
+  \item Organized weekly meetings, guest lectures, and collaborative study sessions.
+  \item Fostered a supportive community for students interested in mathematics.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Atlanta Math Circle}{Atlanta, GA}{2021--Present}
+  {Volunteer Tutor}
+  \item Provided tutoring and mentorship to middle and high school students in mathematics.
+\end{resume-itemize}
 \begin{resume-itemize}
   {Bits of Good}{Atlanta, Georgia}{August 2021 -- Present}
   {Developer}[GPA: 4.0/4.0]
@@ -57,60 +107,88 @@ To obtain a position in the broad fields of computer science.
   {Peer Mentor}
   \item Mentored four first-generation Georgia Tech students throughout their first year of college, sharing personal experiences and advising them on similar struggles.
 \end{resume-itemize}
+\begin{resume-itemize}
+  {Texas A\&M University}{College Station, TX}{June 2020 -- Present}
+  {Undergraduate Research Assistant}
+    \item Developed a REST API using FastAPI and PostgreSQL to store data from learning management systems.
+    \item Built a full-stack web application using Flask, React, PostgreSQL, and Docker to analyze GitHub data.
+    \item Explored ways to visualize GitHub collaboration in a classroom setting.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Southwestern University}{Georgetown, TX}{Sep. 2018 -- Present}
+  {Information Technology Support Specialist}
+    \item Communicated with managers to set up campus computers used on campus.
+    \item Assessed and troubleshooted computer problems brought by students, faculty, and staff.
+    \item Maintained upkeep of computers, classroom equipment, and over 200 printers across campus.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Southwestern University}{Georgetown, TX}{May 2019 -- July 2019}
+  {Artificial Intelligence Research Assistant}
+    \item Explored methods to generate video game dungeons based on \emph{The Legend of Zelda}.
+    \item Developed a Java game to test generated dungeons and contributed 50K+ lines of code via Git.
+    \item Conducted a human-subject study on video game dungeon generation techniques.
+    \item Authored an 8-page paper and gave multiple on-campus presentations.
+    \item Presented virtually at the World Conference on Computational Intelligence.
+\end{resume-itemize}
+
+
+%-------------------------------------
+% Projects
+%-------------------------------------
+\resumeSection{Projects}
+\begin{resume-itemize}
+  {DFA for Numbers $\equiv 2 \pmod{5}$}{---}{Jan 2025}
+  {Formal Methods \& Automata Theory}
+    \item Implemented a deterministic finite automaton recognizing binary representations of integers congruent to $2 \pmod{5}$.
+    \item Provided formal proof of correctness and state-minimality.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Graph Visualization Toolkit}{---}{Nov 2024}
+  {Network Visualization \& Mathematical Modeling}
+    \item Developed an interactive Python application using NetworkX and Matplotlib to model and visualize complex networks.
+    \item Applied aesthetic criteria (minimized edge crossings, uniform edge lengths) and demonstrated Shneiderman's NetViz Nirvana principles.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Perl Automation Suite}{---}{Sep 2024}
+  {Systems Automation \& Data Engineering}
+    \item Created a suite of Perl scripts to automate file management, data parsing, and report generation.
+    \item Reduced manual workload by approximately 80\%.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Gitlytics}{Python, Flask, React, PostgreSQL, Docker}{June 2020 -- Present}
+  {Full-Stack Web Application}
+    \item Developed a full-stack web application using Flask (backend API) and React (frontend).
+    \item Implemented GitHub OAuth to retrieve and visualize user repository data.
+    \item Used Celery and Redis for asynchronous task processing.
+\end{resume-itemize}
+\begin{resume-itemize}
+  {Simple Paintball}{Spigot API, Java, Maven, TravisCI, Git}{May 2018 -- May 2020}
+  {Minecraft Plugin}
+    \item Created a Minecraft server plugin to entertain children at a previous job.
+    \item Published plugin with 2K+ downloads and an average 4.5/5-star rating.
+    \item Implemented continuous delivery with TravisCI for automatic builds.
+    \item Collaborated with Minecraft server admins for feedback and feature ideas.
+\end{resume-itemize}
+
+
+%-------------------------------------
+% Skills
+%-------------------------------------
+\resumeSection{Skills}
+% \small{
+  \textbf{Languages}: Java/Kotlin, Python, C/C++, SQL (Postgres), JavaScript (Node.js, React), HTML/CSS, R\\
+  \textbf{Mathematical Tools}: LaTeX, Mathematica, MATLAB, NetworkX\\
+  \textbf{Linux Customization}: Bash scripting, Shell scripting, Perl, AWK\\
+  \textbf{Frameworks}: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI\\
+  \textbf{Developer Tools}: Git, Docker, TravisCI, Google Cloud Platform, Agile workflows, VS Code, Visual Studio, PyCharm, IntelliJ, Eclipse\\
+  \textbf{Libraries}: pandas, NumPy, Matplotlib
+% }
 
 
 
 
-
-
-%===== Education =====
-\section*{Education}
-\noindent
-\textbf{Georgia Institute of Technology}, Atlanta, GA \hfill Expected May 2025\\
-\textit{Bachelor of Science in Computer Science}, \textbf{GPA: 3.87/4.00}\\
-Relevant Coursework: Differential Calculus (MATH 1551), Integral Calculus (MATH 1552), Linear Algebra (MATH 1554), Discrete Mathematics (CS 2050), Multivariable Calculus (MATH 2550), Differential Equations (MATH 2552), Applied Combinatorics (MATH 3012), Advanced Linear Algebra (MATH 3406), Probability and Statistics (MATH 3215), Number Theory (MATH 4150).
-
-%===== Research Interests =====
-\section*{Research Interests}
-Computational and proof-based mathematics, numerical analysis, mathematical modeling, combinatorics, algebraic structures, and applications of algorithms in topology.
-
-%===== Projects =====
-\section*{Selected Projects}
-\noindent
-\textbf{DFA for Numbers $\equiv 2 \pmod{5}$} \hfill Jan 2025\\
-Implemented a deterministic finite automaton recognizing binary representations of integers congruent to 2 mod 5. Provided formal proof of correctness and state-minimality.\\
-
-\noindent
-\textbf{Graph Visualization Toolkit} \hfill Nov 2024\\
-Developed interactive Python application using NetworkX and Matplotlib to model and visualize complex networks. Applied aesthetic criteria: minimized edge crossings and uniform edge lengths; demonstrated Shneiderman's principles.\\
-
-\noindent
-\textbf{Perl Automation Suite} \hfill Sep 2024\\
-Created a suite of Perl scripts to automate file management, data parsing, and report generation, reducing manual workload by 80\%.
-
-%===== Skills =====
-\section*{Technical Skills}
-\noindent
-\textbf{Mathematical Tools:} LaTeX, Mathematica, MATLAB, NetworkX\\
-\textbf{Programming:} Python, Java, C++, Perl, Kotlin, JavaScript (Node.js, React)\\
-\textbf{Other:} Git, Linux, Bash scripting, Agile workflows
-
-%===== Honors & Awards =====
-\section*{Honors \& Awards}
-\begin{itemize}
-  \item Georgia Tech President's Undergraduate Research Award, 2024
-  \item Dean's List, College of Computing, 2021--2024
-  \item Outstanding Undergraduate in Mathematics, Dept. of Mathematics, 2023
-\end{itemize}
-
-%===== Leadership & Activities =====
-\section*{Leadership \& Activities}
-\begin{itemize}
-  \item Teaching Assistant, MATH 1552: Integral Calculus, Georgia Tech (2023--2024)
-  \item Vice President, Georgia Tech Math Club (2022--2023)
-  \item Volunteer Tutor, Atlanta Math Circle (2021--present)
-\end{itemize}
-
-%===== References =====
+%-------------------------------------
+% References
+%-------------------------------------
 \section*{References}
 Available upon request.

@@ -26,6 +26,9 @@
 \@ifpackageloaded{graphicx}{}{\usepackage{graphicx}}  % \raisebox, \resizebox
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}  % social media icons
 \@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}  % hyperlinks
+\@ifpackageloaded{fontenc}{}{\usepackage[T1]{fontenc}}   % better font encoding
+\@ifpackageloaded{lmodern}{}{\usepackage{lmodern}}       % Latin Modern — scalable replacement for CM
+
 \makeatother
 
 
@@ -125,10 +128,15 @@
 
 
 % Underlined, all-caps section title macro (no indent; use \hrule for the line)
+% \newcommand{\resumeSection}[1]{%
+%   {\noindent\bfseries\MakeUppercase{#1}\par\nobreak\vspace{-0.6em}%
+%   \noindent\rule{\linewidth}{0.6pt}\par}
+% }
 \newcommand{\resumeSection}[1]{%
-  {\noindent\bfseries\MakeUppercase{#1}\par\nobreak\vspace{-0.6em}%
+  {\noindent\large\textsc{#1}\par\nobreak\vspace{-0.6em}%
   \noindent\rule{\linewidth}{0.6pt}\par}
 }
+
 
 %-------------------------------------
 % Environment: resume-itemize
