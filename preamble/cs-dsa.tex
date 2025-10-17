@@ -12,143 +12,57 @@
 % \@ifpackageloaded{xparse}{}{\usepackage{xparse}}        % define flexible macros (\NewDocumentCommand)
 % \@ifpackageloaded{ifthen}{}{\usepackage{ifthen}}        % basic conditional logic (\ifthenelse)
 % \@ifpackageloaded{mdframed}{}{\usepackage{mdframed}}    % framed / boxed environments
-\@ifpackageloaded{xcolor}{}{\usepackage{xcolor}         % color definitions and coloring text/math
-  \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
-  \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
-  \definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
-  \definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
-  \definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
-  \definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
-  \definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
-  \definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
-  \definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
-}
-\@ifpackageloaded{graphicx}{}{\usepackage{graphicx}}  % \raisebox, \resizebox
-\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}  % social media icons
-\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}  % hyperlinks
-\@ifpackageloaded{fontenc}{}{\usepackage[T1]{fontenc}}   % better font encoding
-\@ifpackageloaded{lmodern}{}{\usepackage{lmodern}}       % Latin Modern — scalable replacement for CM
-
+% \@ifpackageloaded{xcolor}{}{\usepackage{xcolor}         % color definitions and coloring text/math
+%   \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}            % {\color{redcolor}...}
+%   \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}          % {\color{greencolor}...}
+%   \definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}           % {\color{bluecolor}...}
+%   \definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}         % {\color{yellowcolor}...}
+%   \definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}           % {\color{cyancolor}...}
+%   \definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}        % {\color{magentacolor}...}
+%   \definecolor{blackcolor}{rgb}{0, 0, 0}                % {\color{blackcolor}...}
+%   \definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}           % {\color{graycolor}...}
+%   \definecolor{darkgreen}{RGB}{0,128,0}                 % {\color{darkgreen}...}
+% }
+% \@ifpackageloaded{graphicx}{}{\usepackage{graphicx}}  % \raisebox, \resizebox
+% \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}  % social media icons
+% \@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}  % hyperlinks
+% \@ifpackageloaded{fontenc}{}{\usepackage[T1]{fontenc}}   % better font encoding
+% \@ifpackageloaded{lmodern}{}{\usepackage{lmodern}}       % Latin Modern — scalable replacement for CM
+\@ifpackageloaded{amsmath}{}{\usepackage{amsmath}}
+\@ifpackageloaded{algorithm}{}{\usepackage{algorithm}}
+\@ifpackageloaded{algpseudocode}{}{\usepackage[noend]{algpseudocode}}
 \makeatother
 
-
 % ------------------------------------------------------------------------------
-% Resume Header Environment
+% Additional Packages for CS/DSA Content
 % ------------------------------------------------------------------------------
 % DESCRIPTION:
-%   Environment for creating a standardized resume header with contact information
-%   and social media links. Provides consistent formatting across resume documents.
+%   Additional package imports specifically for computer science and data structures
+%   and algorithms content. These packages provide enhanced mathematical typesetting
+%   and algorithm pseudocode formatting capabilities.
 %
 % FEATURES:
-%   - Centered layout with proper spacing
-%   - Social media icons with hyperlinks (input between begin/end)
-%   - Contact information formatting
-%   - Consistent typography and spacing
+%   - Enhanced mathematical symbol support
+%   - Professional algorithm pseudocode formatting
+%   - Clean algorithm presentation without end statements
+%   - Consistent mathematical notation
 %
 % DEPENDENCIES:
-%   \usepackage{graphicx}      % for \raisebox, \resizebox
-%   \usepackage{fontawesome5}  % for social media icons
-%   \usepackage{hyperref}      % for clickable links
+%   \usepackage{amsmath}        % for enhanced math symbols and environments
+%   \usepackage{algorithm}      % for algorithm environment
+%   \usepackage{algpseudocode}  % for pseudocode formatting
 %
 % USAGE EXAMPLES:
-%   \begin{resume-header}
-%     {www.johnwebsite.com}{Jaehoon Song}
-%     {1234 Campus Drive, Atlanta, GA 30332}{+1 123-567-8900}{john@email.com}
-%     \socialicon{\faIcon{linkedin}} \href{https://www.linkedin.com/in/john-profile/}{john-profile} |
-%     \socialicon{\faIcon{github}} \href{https://github.com/john-username}{john-username} |
-%     \socialicon{\faIcon{twitter}} \href{https://twitter.com/john-handle}{john-handle} |
-%     \socialicon{\faIcon{linkedin}} \href{https://www.linkedin.com/in/#5/}{john-profile} \\ 
-%     \socialicon{\faIcon{instagram}} \href{https://www.instagram.com/#8/}{john-instagram} |
-%     \socialicon{\faIcon{facebook}} \href{https://www.facebook.com/#9/}{john-facebook} |
-%     \socialicon{\faIcon{youtube}} \href{https://www.youtube.com/@#10}{john-youtube}
-%   \end{resume-header}
-
-% ------------------------------------------------------------------------------
-\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
-\NewDocumentEnvironment{resume-header}{m m m m m}{%
-\begin{center}
-    {\LARGE\bfseries \href{#1}{\socialicon{\faIcon{github}}} \textbf{#2}} \\ \vspace{0.5em}%\Huge?
-    {\small #3 | \socialicon{\faIcon{mobile-alt}} #4 | \socialicon{\faIcon{envelope}} \href{mailto:#5}{#5}} \\ \vspace{0.5em}
-}{%
-\end{center}
-}
-
-
-
-
-
-%-------------------------------------
-% Resume Objective Environment
-%-------------------------------------
-\newenvironment{resume-objective}{%
-  \vspace{-1.4em}
-  \begin{center}
-  \itshape
-  \color{black!60}
-}{%
-  \color{black}
-  \end{center}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% USAGE EXAMPLES:
-%   \resumeSection{Experience}
-%   \begin{resume-itemize}
-%     {Bits of Good}{Atlanta, Georgia}{August 2021 -- Present}
-%     {Developer}[GPA: 4.0/4.0]
-%       \item Programmed a Pokédex to search and get information about Pokémon entities using the PokeAPI, HTML/CSS, and JavaScript.
-%       \item Developed a restaurant review guide and a full-stack pet adoption website utilizing MongoDB, Mongoose, Express, React, and Next (MERN stack).
-%   \end{resume-itemize}
-%   \begin{resume-itemize}
-%     {Chinese Student Association}{Atlanta, Georgia}{January 2021 -- Present}
-%     {Engineering Manager}
-%     \item Improved the Chinese Student Association (CSA)'s website by replacing the pre-existing structure with the React framework.
-%     \item Led and delegated tasks to members of the website team based on their individual strengths.
-%   \end{resume-itemize}
-%   \begin{resume-itemize}
-%     {GT First Generation Jackets}{Atlanta, Georgia}{January 2021 -- Present}
-%     {Peer Mentor}
-%     \item Mentored four first-generation Georgia Tech students throughout their first year of college, sharing personal experiences and advising them on similar struggles.
-%   \end{resume-itemize}
-
-
-
-% Underlined, all-caps section title macro (no indent; use \hrule for the line)
-% \newcommand{\resumeSection}[1]{%
-%   {\noindent\bfseries\MakeUppercase{#1}\par\nobreak\vspace{-0.6em}%
-%   \noindent\rule{\linewidth}{0.6pt}\par}
-% }
-\newcommand{\resumeSection}[1]{%
-  {\noindent\large\textsc{#1}\par\nobreak\vspace{-0.6em}%
-  \noindent\rule{\linewidth}{0.6pt}\par}
-}
-
-
-%-------------------------------------
-% Environment: resume-itemize
-%-------------------------------------
-\NewDocumentEnvironment{resume-itemize}{ m m m m o }{%
-  % Header formatting
-  \noindent\textbf{#1} \,|\, #2 \hfill \textit{#3}\\
-  \noindent\textit{#4} \IfNoValueTF{#5}{}{\hfill #5}
-  \vspace{-0.4em}
-  \begin{itemize}
-    \setlength{\itemsep}{0.2em}
-    \setlength{\parskip}{0pt}
-}{%
-  \end{itemize}
-}
+%   \begin{algorithm}
+%     \caption{Euclidean Algorithm}
+%     \begin{algorithmic}[1]
+%       \Procedure{Euclidean}{$a, b$}
+%         \While{$b \neq 0$}
+%           \State $t \gets b$
+%           \State $b \gets a \bmod b$
+%           \State $a \gets t$
+%         \EndWhile
+%         \State \textbf{return} $a$
+%       \EndProcedure
+%     \end{algorithmic}
+%   \end{algorithm}
