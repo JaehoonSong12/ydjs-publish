@@ -48,23 +48,18 @@
 %   \usepackage{hyperref}      % for clickable links
 %
 % USAGE EXAMPLES:
-%   \begin{resume-header}{John Doe}{+1-234-567-8900}{john@email.com}{johnwebsite.com}{New York, NY - 10001, USA}
-%   \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/john-profile/}{john-profile} | 
-%   \socialicon{\faGithub} \href{https://github.com/john-username}{john-username} |
-%   \socialicon{\faTwitter} \href{https://twitter.com/john-handle}{john-handle}
+%   \begin{resume-header}
+%     {www.johnwebsite.com}{Jaehoon Song}
+%     {1234 Campus Drive, Atlanta, GA 30332}{+1 123-567-8900}{john@email.com}
+%     \socialicon{\faIcon{linkedin}} \href{https://www.linkedin.com/in/john-profile/}{john-profile} |
+%     \socialicon{\faIcon{github}} \href{https://github.com/john-username}{john-username} |
+%     \socialicon{\faIcon{twitter}} \href{https://twitter.com/john-handle}{john-handle} |
+%     \socialicon{\faIcon{linkedin}} \href{https://www.linkedin.com/in/#5/}{john-profile} \\ 
+%     \socialicon{\faIcon{instagram}} \href{https://www.instagram.com/#8/}{john-instagram} |
+%     \socialicon{\faIcon{facebook}} \href{https://www.facebook.com/#9/}{john-facebook} |
+%     \socialicon{\faIcon{youtube}} \href{https://www.youtube.com/@#10}{john-youtube}
 %   \end{resume-header}
 
-%   \begin{resume-header}
-%     {John Doe}{www.johnwebsite.com}
-%     {New York, NY - 10001, USA}{+1-234-567-8900}{john@email.com}
-%     \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/john-profile/}{john-profile} | 
-%     \socialicon{\faGithub} \href{https://github.com/john-username}{john-username} |
-%     \socialicon{\faTwitter} \href{https://twitter.com/john-handle}{john-handle} |
-%     \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/#5/}{john-profile} \\
-%     \socialicon{\faInstagram} \href{https://www.instagram.com/#8/}{john-instagram} |
-%     \socialicon{\faFacebook} \href{https://www.facebook.com/#9/}{john-facebook} |
-%     \socialicon{\faYoutube} \href{https://www.youtube.com/@#10}{john-youtube}
-%   \end{resume-header}
 % ------------------------------------------------------------------------------
 \newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
 \NewDocumentEnvironment{resume-header}{m m m m m}{%
@@ -110,10 +105,10 @@
 % Resume Objective Environment
 %-------------------------------------
 \newenvironment{resume-objective}{%
-  \vspace{-1.0em}
+  \vspace{-1.4em}
   \begin{center}
   \itshape
-  \color{gray}
+  \color{black!60}
 }{%
   \color{black}
   \end{center}
