@@ -209,106 +209,38 @@
 
 
 
-% \begin{algorithm}
-%   \caption{Convergence Test of a Series $\sum a_n$}
-%   \label{alg:convergence_test}
-%   \begin{algorithmic}[1]
-%     \Function{TestConvergence}{$\sum a_n$}
-%       \If{$\group{\abs{\dfrac{a_n}{b_n}}\nrightarrow \infty}$}
-%       \Comment{(1) Comparison Test}\State
-%         \Return \Call{TestConvergence}{$\sum b_n$}
-%       \ElsIf{$\group{a_n \nrightarrow 0}$} 
-%       \Comment{(2) Divergence Test}\State
-%         \Return \inlinequote{Divergent}
-%       \ElsIf{$\group{\lim_{n \to \infty} \abs{\dfrac{a_{n+1}}{a_n}} < 1}$ 
-%       \OR $\group{\lim_{n \to \infty} \sqrt[n]{\abs{a_n}} < 1}$} 
-%       \Comment{(3) Ratio/Root Test}\State
-%         \Return \inlinequote{Absolutely Convergent}
-%       \ElsIf{$\group{\abs{a_n} = \dfrac{1}{n^p}}$
-%       \AND $\group{p > 1}$}
-%       \Comment{(4) $p$-Series Test}\State
-%         \Return \inlinequote{Absolutely Convergent}
-%       \ElsIf{$\group{\int_1^\infty \abs{a_x} \, dx \nrightarrow \infty}$}
-%       \Comment{(5) Integral Test}\State
-%         \Return \inlinequote{Absolutely Convergent}
-%       \ElsIf{$\group{a_n = (-1)^n \abs{a_n}}$}
-%         \Comment{(6) Alternating Series Test}\State
-%         \Return \inlinequote{Conditionally Convergent}
-%       \Else
-%         \Comment{(7) Failure of Tests}\State
-%         \Return \inlinequote{Divergent}
-%       \EndIf
-%     \EndFunction
-%   \end{algorithmic}
-% \end{algorithm}
-
-
-
-% \begin{multicolblock}{Some explanatory paragraph before the columns.}[3]
-%   Item 1.
-
-%   Item 2.
-
-%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-%   Item 1.
-
-%   Item 2.
-
-%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-%   Item 1.
-
-%   Item 2.
-
-%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-%   Item 1.
-
-%   Item 2.
-
-%   A longer paragraph to demonstrate wrapping across the columns. It will balance across the columns nicely.
-
-%   \begin{enumerate}
-%     \item First item in a numbered list.
-%     \item Second item in a numbered list.
-%     \item Third item in a numbered list.
-%     \item Fourth item in a numbered list.
-%     \item Fifth item in a numbered list.
-%     \item Sixth item in a numbered list.
-%     \item   Seventh item in a numbered list.
-%     \item Eighth item in a numbered list.
-%     \item Ninth item in a numbered list.
-%     \item Tenth item in a numbered list.
-%     \item First item in a numbered list.
-%     \item Second item in a numbered list.
-%     \item Third item in a numbered list.
-%     \item Fourth item in a numbered list.
-%     \item Fifth item in a numbered list.
-%     \item Sixth item in a numbered list.
-%     \item   Seventh item in a numbered list.
-%     \item Eighth item in a numbered list.
-%     \item Ninth item in a numbered list.
-%     \item Tenth item in a numbered list.
-%     \item First item in a numbered list.
-%     \item Second item in a numbered list.
-%     \item Third item in a numbered list.
-%     \item Fourth item in a numbered list.
-%     \item Fifth item in a numbered list.
-%     \item Sixth item in a numbered list.
-%     \item   Seventh item in a numbered list.
-%     \item Eighth item in a numbered list.
-%     \item Ninth item in a numbered list.
-%     \item Tenth item in a numbered list.
-%     \item First item in a numbered list.
-%     \item Second item in a numbered list.
-%     \item Third item in a numbered list.
-%     \item Fourth item in a numbered list.
-%     \item Fifth item in a numbered list.
-%     \item Sixth item in a numbered list.
-%     \item   Seventh item in a numbered list.
-%     \item Eighth item in a numbered list.
-%     \item Ninth item in a numbered list.
-%     \item Tenth item in a numbered list.
-%   \end{enumerate}
-% \end{multicolblock}
+\begin{algorithm}
+  \caption{Convergence Test of a Series $\sum a_n$}
+  \label{alg:convergence_test}
+  \begin{algorithmic}[1]
+    \Function{TestConvergence}{$\sum a_n$}
+      \If{$\group{\abs{\dfrac{a_n}{b_n}}\nrightarrow \infty}$}
+      \Comment{(1) Comparison Test}\State
+        \Return \Call{TestConvergence}{$\sum b_n$}
+      \ElsIf{$\group{a_n \nrightarrow 0}$} 
+      \Comment{(2) Divergence Test}\State
+        \Return \inlinequote{Divergent}
+      \ElsIf{$\group{\lim_{n \to \infty} \abs{\dfrac{a_{n+1}}{a_n}} < 1}$ 
+      \OR $\group{\lim_{n \to \infty} \sqrt[n]{\abs{a_n}} < 1}$} 
+      \Comment{(3) Ratio/Root Test}\State
+        \Return \inlinequote{Absolutely Convergent}
+      \ElsIf{$\group{\abs{a_n} = \dfrac{1}{n^p}}$
+      \AND $\group{p > 1}$}
+      \Comment{(4) $p$-Series Test}\State
+        \Return \inlinequote{Absolutely Convergent}
+      \ElsIf{$\group{\int_1^\infty \abs{a_x} \, dx \nrightarrow \infty}$}
+      \Comment{(5) Integral Test}\State
+        \Return \inlinequote{Absolutely Convergent}
+      \ElsIf{$\group{a_n = (-1)^n \abs{a_n}}$}
+        \Comment{(6) Alternating Series Test}\State
+        \Return \inlinequote{Conditionally Convergent}
+      \Else
+        \Comment{(7) Failure of Tests}\State
+        \Return \inlinequote{Divergent}
+      \EndIf
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
 
 
 
@@ -318,6 +250,193 @@
 
 
 
+\newpage
+
+
+\section*{Taylor Series (Maclaurin Series)}
+If the function, $f(x)$, and all its derivatives exist at $x=a$ with the 
+interval of convergence, then there exists a \textbf{Taylor series} 
+(known as \inlinequote{\textbf{polynomial approximation}} or \inlinequote{\textbf{Taylor polynomial}}) 
+as follows, denoted $T_{N}(x)$:
+$$
+T_{N}(x)=\sum_{n=0}^{N} \frac{f^{(n)}(a)}{n!}(x-a)^{n}=f(a)+f^{\prime}(a)(x-a)+\cdots+\frac{f^{(N)}(a)}{N!}(x-a)^{N} \quad \text { where } \quad|x-a|<R
+$$
+where
+\begin{enumerate}
+  \item $(a-R, a+R)$ is the \textbf{interval of convergence}.
+  \item $R>0$ is the \textbf{radius of convergence}.
+  \item $N$ is the \textbf{degree of Taylor series} (or up-to \textbf{exponent $N$}).
+\end{enumerate}
+\textbf{Note}: Maclaurin series is specifically a Taylor series at $x=0$. It is very important since it lets us easily substitute, integrate, and differentiate to find representations of other functions as follows.
+
+\textbf{Example}. The following is a Maclaurin series of rational function,
+$$
+\frac{1}{1-x}=\sum_{n=0}^{\infty} x^{n} \quad \text { where } \quad|x|<1
+$$
+Using this, any rational functions can be derived into series as well as its interval of convergence. The following are examples of the application.
+$$
+\begin{aligned}
+& \frac{2}{3-x}=\frac{2}{3} \cdot \frac{1}{1-\left(\frac{x}{3}\right)}=\frac{2}{3} \cdot \sum_{n=0}^{\infty}\left(\frac{x}{3}\right)^{n} \quad \text { where } \quad\left|\frac{x}{3}\right|<1 \\
+& \frac{1}{x}=\frac{1}{1+(x-1)}=\sum_{n=0}^{\infty}(x-1)^{n} \quad \text { where }|x-1|<1
+\end{aligned}
+$$
+Also, the following is a Maclaurin series of trigonometric function,
+$$
+\cos x=\sum_{n=0}^{\infty}(-1)^{n} \frac{x^{2 n}}{(2 n)!}
+$$
+By one of the trigonometric properties,
+$$
+\sin \left(x+\frac{\pi}{2}\right)=\cos x
+$$
+Thus,
+$$
+\sin x=\cos \left(x-\frac{\pi}{2}\right)=\sum_{n=0}^{\infty}(-1)^{n} \frac{\left(x-\frac{\pi}{2}\right)^{2 n}}{(2 n)!}
+$$
+This shows how to get the Taylor series of sine at $x=\frac{\pi}{2}$. With this, time will be saved a lot. (No need to get every single $f^{(n)}(a)$, all the derivatives of $f$ )
+
+
+\newpage
+\section*{Maclaurin Series (Taylor Series at $x=0$)}
+Geometric Series (Rational and Logarithmic function)
+$$
+\begin{aligned}
+\frac{1}{1-x} & =\sum_{n=0}^{\infty} x^{n}=1+x+x^{2}+x^{3}+\cdots & & \text { where }|x|<1 \\
+\ln (1+x) & =\sum_{n=0}^{\infty}(-1)^{n} \frac{x^{n+1}}{n+1}=x-\frac{x^{2}}{2}+\frac{x^{3}}{3}-\frac{x^{4}}{4}+\cdots & & \text { where }|x|<1
+\end{aligned}
+$$
+Binomial Series (Power function, general\footnote{(Undergraduate Level) The Binomial Series is considered 
+\inlinequote{general} because it applies to any real or complex 
+exponent, not just to integers. It provides a flexible way to get 
+any rational and logarithmic series.})
+$$
+(1+x)^{p}=\sum_{n=0}^{\infty} \frac{p(p-1) \cdots(p-n+1)}{n!} x^{n} \quad \text { where }|x|<1
+$$
+Transcendental Series (Exponential and Trigonometric function)
+$$
+\begin{aligned}
+\cos x & =\sum_{n=0}^{\infty}(-1)^{n} \frac{x^{2 n}}{(2 n)!}=1-\frac{x^{2}}{2!}+\frac{x^{4}}{4!}-\frac{x^{6}}{6!}+\cdots & & \text { where } x \in \mathbb{R} \\
+\sin x & =\sum_{n=0}^{\infty}(-1)^{n} \frac{x^{2 n+1}}{(2 n+1)!}=x-\frac{x^{3}}{3!}+\frac{x^{5}}{5!}-\frac{x^{7}}{7!}+\cdots & & \text { where } x \in \mathbb{R} \\
+e^{x} & =\sum_{n=0}^{\infty} \frac{x^{n}}{n!}=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+\frac{x^{4}}{4!}+\cdots & & \text { where } x \in \mathbb{R}
+\end{aligned}
+$$
+Euler's formula (Complex function, general\footnote{(Undergraduate Level) Euler's formula bridges the 
+gap between exponential functions, trigonometric functions, and 
+complex numbers, revealing their interrelationships and demonstrating 
+the unity of mathematical concepts across different domains. It provides 
+a powerful tool for understanding and analyzing complex phenomena in 
+mathematics, physics, engineering, and other disciplines.})
+$$
+e^{i x}=\cos (x)+i \cdot \sin (x) \quad \text { where } \quad x \in \mathbb{R}
+$$
+
+
+
+
+\newpage
+
+\section*{Examples with Solutions}
+Find the Taylor polynomial of degree 3 for
+
+$$
+f(x)=\frac{1}{x+2}
+$$
+about the point $x=3$.\\
+\begin{subanswer}
+\begin{enumerate}
+  \item (\textbf{Taylor series}). By definition,
+  $$
+  T_{3}(x)=\sum_{n=0}^{3} \frac{f^{(n)}(3)}{n!}(x-3)^{n}=\frac{f(3)}{0!}(x-3)^{0}+\frac{f^{\prime}(3)}{1!}(x-3)^{1}+\frac{f^{\prime \prime}(3)}{2!}(x-3)^{2}+\frac{f^{\prime \prime \prime}(3)}{3!}(x-3)^{3}
+  $$
+  \begin{enumerate}
+    \item find all the derivatives.
+    $$
+    \begin{array}{rlrl}
+    f(3) & =\dfrac {1}{5} & & \\
+    f^{\prime}(x) & =\dfrac{-1}{(x+2)^{2}} \text {, that is, } \quad f^{\prime}(3)=\dfrac {-1}{25} \\
+    f^{\prime \prime}(x) & =\dfrac {2}{(x+2)^{3}} \text {, that is, } \quad f^{\prime \prime}(3)=\dfrac {2}{125} \\
+    f^{\prime \prime \prime}(x) & =\dfrac {-6}{(x+2)^{4}} \text {, that is, } \quad f^{\prime \prime \prime}(x)=\dfrac {-6}{625}
+    \end{array}
+    $$
+    \item find the coefficients.
+    $$
+    \begin{aligned}
+    \frac{f^{\prime}(3)}{1!} & =\frac{-\frac{1}{25}}{1}=\frac{-1}{25} \\
+    \frac{f^{\prime \prime}(3)}{2!} & =\frac{\frac{2}{125}}{2}=\frac{1}{125} \\
+    \frac{f^{\prime \prime \prime}(3)}{3!} & =\frac{6 / 625}{6}=\frac{1}{125}
+    \end{aligned}
+    $$
+    \item apply them to the Taylor polynomial.
+    $$
+    T_{3}(x)=\frac{1}{5}-\frac{(x-3)}{25}+\frac{(x-3)^{2}}{125}-\frac{(x-3)^{3}}{625}
+    $$
+  \end{enumerate}
+  Fortunately, it gives the right answer. However, this approach was painful in terms of calculation labor. Instead, the following answer can be a good alternative.
+  \item (\textbf{Maclaurin series}). We know the Maclaurin series already. So, with some algebra,
+  $$
+  f(x)=\frac{1}{x+2}=\frac{1}{5} \cdot \frac{1}{1-\left(-\frac{x-3}{5}\right)}=\frac{1}{5} \cdot \sum_{n=0}^{\infty}(-1)^{n} \cdot\left(\frac{x-3}{5}\right)^{n} \quad \text { where } \quad\left|\frac{x-3}{5}\right|<1
+  $$
+  Therefore,
+  $$
+  T_{3}(x)=\frac{1}{5} \cdot \sum_{n=0}^{\infty}(-1)^{n} \cdot\left(\frac{x-3}{5}\right)^{n}=\frac{1}{5}-\frac{1}{25}(x-3)+\frac{1}{125}(x-3)^{2}-\frac{1}{625}(x-3)^{3}
+  $$
+  \end{enumerate}
+\end{subanswer}
+
+
+
+\newpage 
+
+
+\section*{Extra Examples with Short Answers}
+
+Find the Maclaurin series for $f(x)=\frac{1}{1+x^{2}}$.
+\begin{subanswer}
+  Begin with the known series.
+  $$
+  f(x)=\frac{1}{1-x}=\sum_{n=0}^{\infty} x^{n}
+  $$
+  
+  Substitute $-x^{2}$ for $x$.
+  $$
+  f(x)=\frac{1}{1+x^{2}}=\frac{1}{1-\left(-x^{2}\right)}=\sum_{n=0}^{\infty}\left(-x^{2}\right)^{n}=\sum_{n=0}^{\infty}(-1)^{n} x^{2 n}=1-x^{2}+x^{4}-x^{6}+\cdots
+  $$
+\end{subanswer}
+
+A function $f(x)$ is approximated by the third order Taylor series $1+2(x-1)-(x-1)^{2}+(x-1)^{3}$ centered at $x=1$. Find $f^{\prime}(1)$ and $f^{\prime \prime}(1)$.
+\begin{subanswer}
+  The question can also be asking for the derivative's values reversely. In this case, there is no such painful calculation labor. Thus, to use the definition of Taylor series should be good enough as follows.
+  
+  Compare $\sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^{n}$ to the given polynomial:
+  $$
+  \begin{gathered}
+  \frac{f(1)}{0!}=1 \\
+  \frac{f^{\prime}(1)}{1!}=2 \\
+  \frac{f^{\prime \prime}(1)}{2!}=-1 \\
+  \vdots
+  \end{gathered}
+  $$
+  
+  Solve for derivatives as needed.
+  $$
+  \begin{gathered}
+  f^{\prime}(1)=2 \cdot 1!=2 \\
+  f^{\prime \prime}(1)=-1 \cdot 2!=-2
+  \end{gathered}
+  $$
+\end{subanswer}
+
+Differentiate the Maclaurin series for $f(x)=\ln (x+1)$ to find the Taylor series expansion for $f(x)=\frac{1}{x+1}$.
+\begin{subanswer}
+  The Taylor series is also handy for dealing with differentiation and integration.\\
+  Use the existing Maclaurin series formula.
+  $$
+  f(x)=\ln (x+1)=x-\frac{1}{2} x^{2}+\frac{1}{3} x^{3}-\frac{1}{4} x^{4}+\cdots
+  $$
+  Find derivatives over summation ($\sum$).
+  $$
+  f^{\prime}(x)=\frac{1}{x+1}=1-x+x^{2}-x^{3}+\cdots=\sum_{n=0}^{\infty}(-1)^{n} x^{n}
+  $$
+\end{subanswer}
 
 
 
@@ -332,7 +451,343 @@
 
 
 
+\newpage
+\section*{Practice Examples}
+\begin{enumerate}
+  \item (Use definition of Taylor series) Find the Maclaurin polynomial of degree 4 that approximates $f(x)=\ln (1+x)$.
+  \item (Try both methods) Find the Taylor series for the function $f(x)=e^{-x}$ about the point $x=\ln 2$.
+  \item Find the Maclaurin series for the function $f(x)=x e^{x}$.
+  \item Find the first four non-zero terms of the Maclaurin series for $f(x)=x \cdot \cos (2 x)$.
+  \item Approximate the function with a fourth degree Taylor polynomial centered at $x=1$.
+  $$
+  f(x)=e^{x^{2}}
+  $$
+  \item Find the Maclaurin series for the function and determine its interval of convergence.
+  $$
+  f(x)=\frac{1}{1+x^{2}}
+  $$
 
+  \item Use a Maclaurin series to approximate the integral
+  $$
+  \int_{0}^{1} \sin \left(x^{2}\right) d x
+  $$
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+
+\section*{Infinite Series}
+Sum of an Infinite Sequence: An infinite series is the sum of an infinite sequence of numbers
+
+$$
+a_{1}+a_{2}+a_{3}+\cdots+a_{n}+\cdots
+$$
+
+The goal of this section is to understand the meaning of such an infinite sum and to develop methods to calculate it. Since there are infinitely many terms to add in an infinite series, we cannot just keep adding to see what comes out. Instead, we look at the result of summing the first $n$ terms of the sequences,
+
+$$
+S_{n}:=a_{1}+a_{2}+a_{3}+\cdots+a_{n} .
+$$
+
+$S_{n}$ is called the $n^{\text {th }}$ partial sum. As $n$ gets larger, we expect the partial sums to get closer and closer to a limiting value in the same sense as the terms of a sequence approach a limit.
+
+Example 1: To assign meaning to an expression like
+
+$$
+1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots
+$$
+
+we add the terms one at a time from the beginning to look for a pattern in how these partial sums grow:
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{2}{|l|}{Partial Sum} & Value \\
+\hline
+First: & $S_{1}=1$ & $1=\frac{2^{1}-1}{2^{1-1}}$ \\
+\hline
+Second: & $S_{2}=1+\frac{1}{2}$ & $\frac{3}{2}=\frac{2^{2}-1}{2^{2-1}}$ \\
+\hline
+Third: & $S_{3}=1+\frac{1}{2}+\frac{1}{4}$ & $\frac{7}{4}=\frac{2^{3}-1}{2^{3-1}}$ \\
+\hline
+$n^{\text {th }}$ : & $S_{n}=1+\frac{1}{2}+\frac{1}{4}+\cdots+\frac{1}{2^{n-1}}$ & $\frac{2^{n}-1}{2^{n-1}}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+$$
+S=\lim _{n \rightarrow \infty} S_{n}=\lim _{n \rightarrow \infty} \frac{2^{n}-1}{2^{n-1}}=\lim _{n \rightarrow \infty}\left(\frac{2^{n}}{2^{n-1}}-\frac{1}{2^{n-1}}\right)=\lim _{n \rightarrow \infty}\left(2-\frac{1}{2^{n-1}}\right) 2 .
+$$
+
+Since the sequence of partial sums converges, the infinite series converges. That is,
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{2^{n-1}}=1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\frac{1}{16}+\cdots=2
+$$
+
+Definitions: Given a sequence of numbers $\left\{a_{n}\right\}_{n=1}^{\infty}$, an expression of the form
+
+$$
+\sum_{n=1}^{\infty} a_{n}=a_{1}+a_{2}+a_{3}+\cdots+a_{n}+\cdots
+$$
+
+is an infinite series. The number $a_{n}$ is the $n^{\text {th }}$ term of the series. The sequence $\left\{S_{n}\right\}_{n=1}^{\infty}$ defined by
+
+$$
+S_{n}:=\sum_{n=1}^{n} a_{n}=a_{1}+a_{2}+a_{3}+\cdots+a_{n}
+$$
+
+is called the sequence of partial sums of the series, the number $S_{n}$ being the $n^{\text {th }}$ partial sum.
+
+If the sequence of partial sums converges to a limit $L$, we say that the series converges and that the sum is $L$. In this case we write
+
+$$
+\sum_{n=1}^{\infty} a_{n}=a_{1}+a_{2}+a_{3}+\cdots+a_{n}+\cdots=L
+$$
+
+If the sequence of partial sums of the series does not converge, we say that the series diverges.
+
+Notation: Sometimes it is nicer, or even more beneficial, to consider sums starting at $n=0$ instead. For example, we can rewrite the series in Example 1 as
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{2^{n-1}}=\sum_{n=0}^{\infty} \frac{1}{2^{n}}
+$$
+
+At times it may also be nicer to start indexing at some number other than $n=0$ or $n=1$. This idea is called re-indexing the series (or sequence). So don't be alarmed if you come across series that do not start at $n=1$.
+
+Geometric Series: A geometric series is of the form
+
+$$
+a+a r+a r^{2}+a r^{3}+\cdots+a r^{n}+\cdots=\sum_{n=1}^{\infty} a r^{n-1}=\sum_{n=0}^{\infty} a r^{n}
+$$
+
+in which $a$ and $r$ are fixed real numbers and $a \neq 0$. The ratio $r$ can be positive (as in Example 1) or negative, as in
+
+$$
+1-\frac{1}{3}+\frac{1}{9}-\frac{1}{27}+\cdots+\left(-\frac{1}{3}\right)^{n-1}+\cdots=\sum_{n=1}^{\infty}\left(-\frac{1}{3}\right)^{n-1}
+$$
+
+If $r=1$, the $n^{\text {th }}$ partial sum of the geometric series is
+
+$$
+S_{n}=a_{a}(1)+a(1)^{2}+a(1)^{3}+\cdots+a(1)^{n-1}=n a
+$$
+
+and the series diverges since $\lim _{n \rightarrow \infty} S_{n}=\lim _{n \rightarrow \infty} n a= \pm \infty$ (depending on the sign of $a$ ).\\
+If $r=-1$, the series diverges since the $n^{\text {th }}$ partial sums alternate between $a$ and 0 .
+
+$$
+S_{1}=a, \quad S_{2}=a+a(-1)=0, \quad a+a(-1)=a(-1)^{2}=a, \quad \ldots
+$$
+
+If $|r| \neq 1$, then we use the following "trick":
+
+$$
+\begin{aligned}
+S_{n} & =a+a r+a r^{2}+\cdots+s r^{n-1} \\
+\Longrightarrow \quad r S_{n} & =a r+a r^{2}+a r^{3}+\cdots+a r^{n} \\
+\Longrightarrow \quad S_{n}-r S_{n} & =a-a r^{n} \\
+\Longrightarrow \quad S_{n} & =\frac{a-a r^{n}}{1-r}=\frac{a\left(1-r^{n}\right)}{1-r} .
+\end{aligned}
+$$
+
+If $|r|<1$ then $r^{n} \longrightarrow 0$ as $n \longrightarrow \infty$, so $S_{n} \longrightarrow \frac{a}{1-r}$. If $|r|>1$ then $\left|r^{n}\right| \longrightarrow \infty$ as $n \longrightarrow \infty$ and the series diverges.\\
+Convergence of Geometric Series: If $|r|<1$, the geometric series $a+a r+a r^{2}+\cdots a r^{n-1}+\cdots$ converges:
+
+$$
+\sum_{n=1}^{\infty} a r^{n-1}=\frac{a}{1-r}, \quad|r|<1
+$$
+
+If $|r| \geq 1$, the series diverges.
+
+Example 2: Consider the series
+
+$$
+\begin{gathered}
+\sum_{n=0}^{\infty} \frac{(-1)^{n} 5}{4^{n}} \\
+\sum_{n=0}^{\infty} \frac{(-1)^{n} 5}{4^{n}}=\sum_{n=1}^{\infty} \frac{(-1)^{n-1} 5}{4^{n-1}}=\sum_{n=1}^{\infty} 5\left(-\frac{1}{4}\right)^{n-1}
+\end{gathered}
+$$
+
+So this series is a geometric series with $a=5$ and $r=-\frac{1}{4}$. Since $|r|<1$ the series converges and so,
+
+$$
+\sum_{n=1}^{\infty} 5\left(-\frac{1}{4}\right)^{n-1}=\frac{5}{1-\left(-\frac{1}{4}\right)}=\boxed{4}
+$$
+
+Example 3: Express the repeating decimal $5.232323 \ldots$ as the ratio of two integers.
+
+$$
+\begin{aligned}
+5.232323 \ldots & =5+\frac{23}{100}+\frac{23}{100^{2}}+\frac{23}{100^{3}}+\cdots \\
+& =5+\frac{23}{100}\left(1+\frac{1}{100}+\frac{1}{100^{2}}+\cdots\right) \\
+& =5+\frac{23}{100} \sum_{n=1}^{\infty}\left(\frac{1}{100}\right)^{n-1} \quad a=1, \quad r=\frac{1}{100} \\
+& =5+\frac{23}{100}\left(\frac{1}{1-\frac{1}{100}}\right) \\
+& =5+\frac{23}{100} \cdot \frac{100}{99} \\
+& =\frac{518}{99}
+\end{aligned}
+$$
+
+Example 4: Find the sum of the telescoping series
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n(n+1)}
+$$
+
+If we take the partial sum decomposition,
+
+$$
+\sum_{n=1} \frac{1}{n(n+1)}=\sum_{n=1}^{\infty}\left(\frac{1}{n}-\frac{1}{n+1}\right)
+$$
+
+then its easy to see that the partial sums are,
+
+$$
+S_{n}=\left(1-\frac{1}{2}\right)+\left(\frac{1}{2}-\frac{1}{3}\right)+\left(\frac{1}{3}-\frac{1}{4}\right)+\cdots+\left(\frac{1}{\hbar}-\frac{1}{n+1}\right)=1-\frac{1}{n+1} \xrightarrow{n \rightarrow \infty} 1 .
+$$
+
+Since the sequence of partial sums converges, the series converges and so $\sum_{n=1}^{\infty} \frac{1}{n(n+1)}=\boxed{1}$\\
+Theorem: If the series $\sum_{n=1}^{\infty} a_{n}$ converges, then $\lim _{n \rightarrow \infty} a_{n}=0$.\\
+Suppose $\left\{S_{n}\right\}_{n=1}^{\infty}$ converges to $L$. Then note that $\left\{S_{n+1}\right\}_{n=1}^{\infty}$ also converges to $L$. So then,
+
+$$
+0=L-L=\lim _{n \rightarrow \infty} S_{n+1}-\lim _{n \rightarrow \infty} S_{n}=\lim _{n \rightarrow \infty}\left(S_{n+1}-S_{n}\right)=\lim _{n \rightarrow \infty} a_{n+1}=\lim _{n \rightarrow \infty} a_{n}
+$$
+
+SUPER IMPORTANT NOTE: This theorem does NOT say that if $\lim _{n \rightarrow \infty} a_{n}=0$ then $\sum_{n=1}^{\infty} a_{n}$ converges.\\
+The $n^{\text {th }}$ Term Test for Divergence: The series $\sum_{n=1}^{\infty} a_{n}$ diverges if $\lim _{n \rightarrow \infty} a_{n}$ fails to exist or is different from zero.\\
+SUPER IMPORTANT NOTE: This theorem does NOT say that if $\lim _{n \rightarrow \infty} a_{n}=0$ then $\sum_{n=1}^{\infty} a_{n}$ converges.
+
+\begin{enumerate}
+  \item $\sum_{n=1}^{\infty} n^{2}$ diverges since $\lim _{n \rightarrow \infty} n^{2}=\infty$.
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{l}
+3. $\sum_{\substack{n=1 \\ \text { ist. }}}^{\infty}(-1)^{n+1}$ diverges since $\lim _{n \rightarrow \infty}(-1)^{n+1}$ does not ex- \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item $\sum_{n=1}^{\infty} \frac{n+1}{n}$ diverges since $\lim _{n \rightarrow \infty} \frac{n+1}{n}=1 \neq 0$.
+\end{enumerate}
+
+Combining Series: If $\sum a_{n}=A$ and $b_{n}=B$, then
+
+\begin{enumerate}
+  \item Sum Rule : $\quad \sum_{n=1}^{\infty}\left(a_{n}+b_{n}\right)=A+B$,
+  \item Constant Multiple Rule : $\quad \sum_{n=1}^{\infty} c a_{n}=c A, \quad$ for any $c \in \mathbb{R}$.
+\end{enumerate}
+
+\section*{Some True Facts:}
+\begin{enumerate}
+  \item Every non-zero constant multiple of a divergent series diverges.
+  \item If $\sum a_{n}$ converges and $\sum b_{n}$ diverges, then $\sum\left(a_{n} \pm b_{n}\right)$ diverges.
+\end{enumerate}
+
+$$
+\left\{\begin{array}{l}
+\sum_{n=1}^{\infty} 1 \text { diverges } \\
+\sum_{n=1}^{\infty}(-1) \text { diverges } \\
+\sum_{n=1}^{\infty}(1+(-1))=0
+\end{array}\right.
+$$
+
+Caution! $\sum\left(a_{n}+b_{n}\right)$ can converge when both $\sum a_{n}$ and $\sum b_{n}$ diverge!.\\
+Adding/Deleting Terms: Adding/deleting a finite number of terms will not alter the convergence or divergence of a series.
+
+\section*{Practice Problems}
+
+\begin{multicolblock}{Determine whether the 
+  following series converge or diverge. 
+  In the case of convergence, give the sum of the series.}[3]
+  \begin{enumerate}
+    \item $\sum_{n=1}^{\infty} \frac{1}{2 n}$
+    \item $\sum_{n=1}^{\infty} \frac{n+1}{2 n-3}$
+    \item $\sum_{n=2}^{\infty} \frac{n^{2}}{n^{2}-1}$
+    \item $\sum_{n=1}^{\infty} \frac{n(n+2)}{(n+3)^{2}}$
+    \item $\sum_{n=1}^{\infty} \frac{1+2^{n}}{3^{n}}$
+    \item $\sum_{n=1}^{\infty} \frac{1+3^{n}}{2^{n}}$
+    \item $\sum_{n=1}^{\infty} \sqrt[n]{2}$
+    \item $\sum_{n=1}^{\infty} 0.8^{n-1}-0.3^{n}$
+    \item $\sum_{n=1}^{\infty} \ln \left(\frac{n^{2}+1}{2 n^{2}+1}\right)$
+    \item $\sum_{n=1}^{\infty} \cos ^{n}(1)$
+    \item $\sum_{n=1}^{\infty} \tan ^{-1}(n)$
+    \item $\sum_{n=1}^{\infty}\left(\frac{3}{5^{n}}+\frac{2}{n}\right)$
+    \item $\sum_{n=1}^{\infty}\left(\frac{1}{e^{n}}+\frac{1}{n(n+1)}\right)$
+    \item $\sum_{n=1}^{\infty} \frac{e^{n}}{n^{2}}$
+    \item $\sum_{n=2}^{\infty} \frac{2}{n^{2}-1}$
+    \item $\sum_{n=1}^{\infty} \frac{2}{n^{2}+4 n+3}$
+    \item $\sum_{n=1}^{\infty} \frac{3}{n(n+3)}$
+    \item $\sum_{n=1}^{\infty} \ln \left(\frac{n}{n+1}\right)$
+    \item $\sum_{n=1}^{\infty}\left(e^{1 / n}-e^{1 /(n+1)}\right)$
+    \item $\sum_{n=1}^{\infty}\left(\cos \left(\frac{1}{n^{2}}\right)-\cos \left(\frac{1}{(n+1)^{2}}\right)\right)$
+    \item $\sum_{n=1}^{\infty} 6(0.9)^{n-1}$
+  \end{enumerate}
+\end{multicolblock}
+
+Write the following numbers as a ratio of two integers.\\
+$22 \quad 0.222222 \ldots$\\
+$243.417417 \ldots$\\
+$261.53424242 \ldots$\\
+$230.737373 \ldots$\\
+$256.2545454 \ldots$\\
+27 7.1234512345...
+
+\section*{Solutions to Practice Problems}
+\begin{enumerate}
+  \item Diverges
+  \item Diverges
+  \item Diverges
+  \item Diverges
+  \item $\frac{5}{2}$
+  \item Diverges
+  \item Diverges
+  \item $\frac{32}{7}$
+  \item Diverges
+  \item $\frac{\cos (1)}{1-\cos (1)}$
+  \item Diverges
+  \item Diverges
+  \item $\frac{e}{e-1}$
+  \item Diverges
+  \item $\frac{3}{2}$
+  \item $\frac{5}{6}$
+  \item $\frac{11}{6}$
+  \item Diverges
+  \item $e-1$
+  \item $\cos (1)-1$
+  \item 60
+  \item $\frac{2}{9}$
+  \item $\frac{73}{99}$
+  \item $\frac{1138}{333}$
+  \item $\frac{344}{55}$
+  \item $\frac{5063}{3300}$
+  \item $\frac{237,446}{33,333}$
+\end{enumerate}
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Proof
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -524,8 +979,6 @@
 
 
 
-
-\newpage
 
 
 \begin{define}{Group}[def:group-recap][red]
@@ -896,15 +1349,19 @@ Match the elements of $\mathbb{Z}_5$ on the left with their images in $G$. Remem
 \end{enumerate}
 
 
-\newpage
 
 
 
 
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% UML
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
 
-
+% \newpage
 
 % \begin{umldiagram}[1]{1em and 1em}
   
