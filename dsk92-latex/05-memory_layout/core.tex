@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \input{core.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% system - comments
+\usepackage{comment}                                % \begin{comment}...\end{comment}
+
+% layout - margins
+\usepackage{geometry}
+\geometry{left=0pt, right=0pt, top=12pt, bottom=0pt}     % 1 in = 72 pt
+
+% font - colors
+\usepackage{xcolor}
+\definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}          % {\color{redcolor}...}
+\definecolor{greencolor}{rgb}{0.0, 1.0, 0.0}        % {\color{greencolor}...}
+\definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}         % {\color{bluecolor}...}
+\definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}       % {\color{yellowcolor}...}
+\definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}         % {\color{cyancolor}...}
+\definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}      % {\color{magentacolor}...}
+\definecolor{blackcolor}{rgb}{0, 0, 0}              % {\color{blackcolor}...}
+\definecolor{darkgreen}{RGB}{0,128,0}
+
+% paragraph - indentation
+\setlength{\parindent}{0pt}                         % default: 18pt
+
+% paragraph - bibliographies + citations
+\usepackage[backend=biber,style=apa]{biblatex}      % \newpage\printbibliography
+\addbibresource{references.bib}                         % \cite{reference1}
+
+% resource - hyperlinks
+
+
+% resource - hyperlinks
+\usepackage{hyperref}                               % \href{URL}{URL}.
+
+% resource - images
+\usepackage{graphicx}                               % \insertimage{size}{images/filename}{caption}
+\newcommand{\insertimage}[3]{                           % \ref{fig:images/filename}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=#1\textwidth]{#2}
+        \caption{#3}
+        \label{fig:#2}
+    \end{figure}
+}
+
+% paragraph - code
+\usepackage{listings}                               % \begin{lstlisting}\end{lstlisting}
+\lstset{
+  language=Python,
+  commentstyle=\color{darkgreen},
+  keywordstyle=\color{blue},
+  stringstyle=\color{darkgreen},
+  basicstyle=\ttfamily,
+  breaklines=true,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  literate=*{0}{{{\color{blue}0}}}1
+            {1}{{{\color{blue}1}}}1
+            {2}{{{\color{blue}2}}}1
+            {3}{{{\color{blue}3}}}1
+            {4}{{{\color{blue}4}}}1
+            {5}{{{\color{blue}5}}}1
+            {6}{{{\color{blue}6}}}1
+            {7}{{{\color{blue}7}}}1
+            {8}{{{\color{blue}8}}}1
+            {9}{{{\color{blue}9}}}1
+}
+
+% MATH
+\usepackage{amsmath}
+                                                    % \par\hfill$\blacksquare$
+                                                    % \par\hfill$\square$
+
+% Drawing
+\usepackage{tikz}
+
+
+
+% DEFAULT
+                                                    % \textbf{boldfaced}
+                                                    % \textit{intalicized}

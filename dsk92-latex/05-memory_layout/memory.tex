@@ -1,0 +1,87 @@
+\documentclass[letterpaper,12pt]{article}
+
+\input{core.tex}
+
+
+\begin{document}
+
+
+
+
+% \begin{center}
+%     \begin{tikzpicture}
+%     % Variables for grid line spacing
+%     \def\xstep{1} % width of each vertical line
+%     \def\ystep{1} % height of each horizontal line
+
+%     % Drawing the checkerboard pattern
+%     \foreach \y in {-1,-\ystep,...,-27.5} {
+%         \draw[thin, gray] (-0.5,\y) -- (16,\y);
+%     }
+%     \foreach \x in {-0.5,\xstep,...,16} {
+%         \draw[thin, gray] (\x,-1) -- (\x,-27.5);
+%     }
+
+%     % Draw outer rectangle for the memory layout
+%     \draw[thick] (-0.5,-1) rectangle (16,-27.5);
+
+%     % Memory segments
+%     \draw (-0.5,-2) -- (16,-2); % Separating Code Segment and Initialized Data Segment
+%     \draw (-0.5,-3) -- (16,-3); % Separating Initialized and Uninitialized Data Segments
+%     \draw (-0.5,-4) -- (16,-4); % Separating Uninitialized Data Segment and Heap
+%     \draw (-0.5,-14) -- (16,-14); % Separating Heap and Stack
+%     \draw (-0.5,-26) -- (16,-26); % Separating Stack and Command Line Arguments
+
+%     % Labels for the memory regions
+%     \node at (2,-1.5) {\textbf{Text/Code Segment}};
+%     \node at (2.5,-2.5) {\textbf{Initialized Data Segment}};
+%     \node at (3.5,-3.5) {\textbf{Uninitialized Data Segment (BSS)}};
+%     \node at (15,-4.5) {\textbf{Heap}};
+%     \node at (15,-14.5) {\textbf{Stack}};
+%     \node at (2.5,-26.5) {\textbf{Command Line Arguments}};
+
+%     % Arrows for memory growth directions
+%     \draw[->] (17,-1) -- (17,-4) node[midway,right] {Static Memory};
+%     \draw[<-] (17,-4.5) -- (17,-26) node[midway,right] {Dynamic Memory};
+
+%     \end{tikzpicture}
+% \end{center}
+
+
+
+\foreach \i in {1,...,100} % Change 3 to the number of iterations you want
+{
+    \newpage
+    \begin{center}
+        \begin{tikzpicture}
+        % Draw outer rectangle for the memory layout
+        \draw[thick] (-0.5,-1) rectangle (16,-27.5);
+
+        % Memory segments
+        \draw (-0.5,-2) -- (16,-2); % Separating Code Segment and Initialized Data Segment
+        \draw (-0.5,-3) -- (16,-3); % Separating Initialized and Uninitialized Data Segments
+        \draw (-0.5,-4) -- (16,-4); % Separating Uninitialized Data Segment and Heap
+        \draw (-0.5,-14) -- (16,-14); % Separating Heap and Stack
+        \draw (-0.5,-26) -- (16,-26); % Separating Stack and Command Line Arguments
+
+        % Labels for the memory regions
+        \node at (2,-1.5) {\textbf{Text/Code Segment}};
+        \node at (2.5,-2.5) {\textbf{Initialized Data Segment}};
+        \node at (3.5,-3.5) {\textbf{Uninitialized Data Segment (BSS)}};
+        \node at (15,-4.5) {\textbf{Heap}};
+        \node at (15,-14.5) {\textbf{Stack}};
+        \node at (2.5,-26.5) {\textbf{Command Line Arguments}};
+
+        % Arrows for memory growth directions
+        \draw[->] (17,-1) -- (17,-4) node[midway,right] {Static Memroy};
+        \draw[<-] (17,-4.5) -- (17,-26) node[midway,right] {Dynamic Memroy};
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+
+
+
+
+\end{document}

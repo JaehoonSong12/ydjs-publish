@@ -1,0 +1,532 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc} % For UTF-8 encoding
+
+
+
+
+\input{core.tex}
+
+
+
+
+
+
+\usepackage{amsmath} % For mathematical formulas
+\usepackage{amsfonts} % For additional fonts
+\usepackage{amssymb} % For additional symbols
+\usepackage{amsthm} % For theorem environments
+\usepackage{graphicx} % For including graphics
+\usepackage{hyperref} % For hyperlinks
+\usepackage{fancyhdr} % For custom headers and footers
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{J. Yundae Lee Song}
+\fancyhead[C]{CS 3510}
+\fancyhead[R]{\today}
+\fancyfoot[C]{\thepage}
+% Title
+\title{CS 3510 note}
+\author{J. Yundae Lee Song}
+\date{\today}
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\begin{abstract}
+This is a brief summary of the paper's content, including key results and conclusions.
+\end{abstract}
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Introduction
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Introduction}
+This is the introduction section. Provide background information and state the objectives of your paper.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Main Results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Main Results}
+\subsection{Preliminaries}
+Discuss any preliminary concepts or definitions needed for the paper.
+
+\subsection{Main Theorems}
+\begin{theorem}[Pythagorean Theorem]
+In a right-angled triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.
+\end{theorem}
+
+\begin{proof}
+Let \(a\) and \(b\) be the lengths of the two sides, and \(c\) the length of the hypotenuse. By the definition of a right-angled triangle, we have \(a^2 + b^2 = c^2\).
+\end{proof}
+
+\subsection{Applications}
+Provide applications or implications of your results.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Conclusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Conclusion}
+Summarize the results of the paper and discuss future work or open problems.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Limit Comparison Theorem
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage\section{Limit Comparison Theorem}
+% {\color{bluecolor}
+% \bigskip\textbf{Theorem (Limit Comparison Theorem)} \\
+% Let $f(n)$ and $g(n)$ represent the actual running times of two algorithms as functions of the input size $n$. For the given expression,
+% \[
+% L = \lim_{n \to \infty} \frac{f(n)}{g(n)}
+% \]
+% \begin{enumerate}
+%     \item $f(n) = \Theta(g(n))$ if $L > 0$.
+%     \item $f(n) = O(g(n))$ if $L = 0$.
+%     \item $f(n) = \Omega(g(n))$ if $L = \infty$.
+% \end{enumerate}
+% \textbf{Proof.} By the definition of limitation, given $\epsilon > 0$, there exists a positive integer $N$ such that for all $n > N$ where $L > 0$ is an arbitrarily constant,
+% \[
+% \left| \frac{f(n)}{g(n)} - L \right| < \epsilon
+% \]
+% that is,
+% \[
+% L - \epsilon < \frac{f(n)}{g(n)} < L + \epsilon
+% \]
+% Multiplying the inequality by $g(n)$ yields:
+% \[
+% (L - \epsilon)g(n) < f(n) < (L + \epsilon)g(n)
+% \]
+% Since both $L - \epsilon$ and $L + \epsilon$ are arbitrarily constant, by the definition of Theta notation, $f(n) = \Theta(g(n))$. WLOG (Without loss of generality), $f(n) = O(g(n))$ if $L = 0$ and $f(n) = \Omega(g(n))$ if $L = \infty$.
+% \hfill$\blacksquare$
+% }
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Stirling's Approximation
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage\section{Stirling's Approximation}
+% {\color{bluecolor}
+% \bigskip\textbf{Theorem (Stirling's Approximation)} \\
+% Stirling's approximation provides a way to estimate the factorial of a large number $n$. The approximation is given by:
+% \[
+% n! \approx \sqrt{2\pi n} \left( \frac{n}{e} \right)^n
+% \]
+% \[
+% \log(n!) \approx n \log(n) - n + \frac{1}{2} \log(2\pi n)
+% \]
+% \textbf{Proof.} By logarithmic property,
+% \[
+% \log(n!) = \log(n \times (n - 1) \times \cdots \times 2 \times 1) = \log(1) + \log(2) + \cdots + \log(n) = \sum_{k=1}^{n} \log(k)
+% \]
+% \[
+% \approx \int_{1}^{n} \log(x) \, dx = [x \log(x) - x]_{1}^{n} = (n \log(n) - n) - (\log(1) - 1) = n \log(n) - n + 1
+% \]
+% The approximation can be refined by considering a correction factor derived from the original derivation. Thus,
+% \[
+% \log(n!) \approx n \log(n) - n + \frac{1}{2} \log(2\pi n)
+% \]
+% \textbf{Note:} technically, Stirling's approximation can be derived using the continuous extension of the factorial function using the Gamma function, $\Gamma(n) = (n - 1)!$. The natural logarithm of the Gamma function, $\log \Gamma(n)$, can be approximated using integration and asymptotic methods.
+% \[
+% \Gamma(n) = \int_{0}^{\infty} e^{-t} \cdot t^{n-1} dt = (n - 1)!
+% \]
+% \[
+% \log(n!) = \log \Gamma(n + 1) \approx n \log n - n + \frac{1}{2} \log(2\pi n)
+% \]\hfill$\blacksquare$
+% }
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Time Complexity Classifications
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage\section{Time Complexity Classifications}
+% Time complexity classifications describe how the runtime of an algorithm scales with input size \( n \). This document explores logarithmic and polynomial classifications, focusing on \( k \)-tuple natural logarithms and their behaviors.
+% \subsubsection{Definition: \( k \)-tuple Natural Logarithm}
+% Let \( \ln^{(k)}(n) \) denote the \( k \)-tuple natural logarithm, defined recursively as:
+% \[
+% \ln^{(0)}(n) = n
+% \]
+% \[
+% \ln^{(k+1)}(n) = \ln(\ln^{(k)}(n)), \quad \text{for } k \geq 0
+% \]
+% \subsubsection{Theorem: \( \infty \)-tuple Natural Logarithm}
+% For \( n > e \), the \( \infty \)-tuple natural logarithm converges to 1:
+% \[
+% \lim_{k \to \infty} \ln^{(k)}(n) = 1
+% \]
+% \textbf{Proof:} To prove this, consider the derivative:
+% \[
+% \frac{d}{dn} \ln^{(k)}(n) = \frac{1}{\ln^{(k-1)}(n)} \cdot \frac{d}{dn} \ln^{(k-1)}(n)
+% \]
+% Assume \( \ln^{(k)}(n) \) converges to \( L \) as \( k \to \infty \) and let the derivative converge to \( K \):
+% \[
+% K = \frac{K}{L} \quad \Rightarrow \quad L = 1
+% \]
+% \hfill\(\blacksquare\)
+% \subsection{Iterated Logarithmic Time}
+% Consider the function \( T(n) = \log^{(k)}(n) \), where \( k \) is finite (\( k > 1 \)) and \( n > e^{(e^{(\dots^{(e)})})} \) with \( k \) iterations of \( e \). The time complexity is then:
+% \[
+% T(n) = \Theta(\log^{(k)}(n))
+% \]
+% \subsubsection{Constant Time (\( k = \infty \))}
+% For \( k \to \infty \), the function \( T(n) = \log^{(k)}(n) \) converges to a constant, 1, for sufficiently large \( n \), resulting in:
+% \[
+% T(n) = \Theta(1) = \Theta(e^0)
+% \]
+% \subsubsection{\( k \)-tuple Logarithmic Time (\( k = \texttt{undefined int}\))}
+% For \( 2 < k < \infty \), the function \( T(n) = \log^{(k)}(n) \) represents the \( k \)-tuple logarithmic time. For sufficiently large \( n \):
+% \[
+% T(n) = \Theta(\log^{(k)}(n)) = \Theta\left(e^{\log^{(k+1)}(n)}\right)
+% \]
+% \subsubsection{Double Logarithmic Time (\( k = 2 \))}
+% Consider the function \( T(n) = \log(\log(n)) \), where \( k = 2 \). For sufficiently large \( n \):
+% \[
+% T(n) = \Theta(\log(\log(n))) = \Theta\left(e^{\log^{(3)}(n)}\right)
+% \]
+% \subsubsection{Logarithmic Time (\( k = 1 \))}
+% Consider the function \( T(n) = \log(n) \), where \( k = 1 \). The time complexity is:
+% \[
+% T(n) = \Theta(\log(n)) = \Theta\left(e^{\log(\log(n))}\right)
+% \]
+% \subsection{Polynomial Time (\( k = 0 \))}
+% Polynomial time complexity involves functions where the runtime scales as a polynomial of the input size \( n \).
+% \subsubsection{Linear Time}
+% Consider the function \( T(n) = n \), where the runtime grows linearly with \( n \). The time complexity is:
+% \[
+% T(n) = \Theta(n) = \Theta\left(e^{\log(n)}\right)
+% \]
+% \subsubsection{Quadratic Time}
+% Consider the function \( T(n) = n^2 \), where the runtime grows quadratically with \( n \). The time complexity is:
+% \[
+% T(n) = \Theta(n^2) = \Theta\left(e^{2 \log(n)}\right)
+% \]
+% \subsubsection{Cubic Time}
+% Consider the function \( T(n) = n^3 \), where the runtime grows cubically with \( n \). The time complexity is:
+% \[
+% T(n) = \Theta(n^3) = \Theta\left(e^{3 \log(n)}\right)
+% \]
+% \subsection{Exponential Time}
+% Consider the function \( T(n) = e^n \). Exponential time complexity involves functions where the runtime scales as an exponential function of the input size \( n \). The time complexity is:
+% \[
+% T(n) = \Theta(e^n)
+% \]
+% \subsection{Permutation Time}
+% Consider the function \( T(n) = n! \). Permutation time complexity involves functions where the runtime scales as the factorial of the input size \( n \).
+% Using Stirling's approximation:
+% \[
+% n! \approx \sqrt{2 \pi n} \left(\frac{n}{e}\right)^n
+% \]
+% Thus, the time complexity is:
+% \[
+% T(n) = \Theta\left(\sqrt{n} \cdot \left(\frac{n}{e}\right)^n\right)
+% \]
+% \subsection{Super-Exponential Time}
+% Consider the function \( T(n) = n^n \). Super-exponential time complexity involves functions where the runtime scales as an exponential function with respect to the input size \( n \). For example:
+% Using the exponential form, it can be further expanded as follows:
+% \[
+% n^n = \Theta\left(n^n\right) = \Theta\left(e^{n \log n}\right)
+% \]
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Divide and Conquer Recurrence
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage\section{Divide and Conquer Recurrence}
+% \section*{Problem Statement}
+% Given the recurrence relation:
+% \[
+% T(n) = T\left(\frac{n}{b_1}\right) + T\left(\frac{n}{b_2}\right) + \cdots + T\left(\frac{n}{b_k}\right) + O(n^d)
+% \]
+% where:
+% \begin{itemize}
+%     \item \( b_1, b_2, \ldots, b_k \) are the branching factors, determining the size reduction in each recursive step.
+%     \item \( d \) is the degree of the cost function \( O(n^d) \), representing the non-recursive work.
+% \end{itemize}
+% We aim to determine the time complexity \( T(n) \).
+% \section*{Proof}
+% \subsection*{Step 1: Analyzing the Recursion Tree}
+% The recurrence generates a recursion tree, where each node at depth \( i \) represents a subproblem of size \( \frac{n}{b_i} \). There are \( k \) branches at each node, corresponding to the \( k \) recursive calls. The non-recursive work at each level is \( O(n^d) \), so the cost function \( f(n) = O(n^d) \) implies \( d \) is the degree of the polynomial.
+% \subsection*{Step 2: Determining the Depth \( k \)}
+% The depth \( k \) of the recursion tree is determined by the subproblem with the smallest branching factor \( b_{\min} = \min\{b_1, b_2, \ldots, b_k\} \), which will take the longest to reach the base case.
+% \[
+% \left(\frac{n}{b_{\min}}\right)^k = \Theta(1)
+% \]
+% Taking the logarithm of both sides:
+% \[
+% k \log b_{\min} = \log n
+% \]
+% \[
+% k = \frac{\log n}{\log b_{\min}}
+% \]
+% Since \( \log b_{\min} \) is constant:
+% \[
+% k = \Theta(\log n)
+% \]
+% \subsection*{Step 3: Total Work Calculation}
+% The total work at each level is \( O(n^d) \), and the tree has \( \Theta(\log n) \) levels. Thus, the total work \( W(n) \) is:
+% \[
+% W(n) = O(n^d \cdot \log n)
+% \]
+% \subsection*{Conclusion}
+% The time complexity of the algorithm governed by the recurrence relation is:
+% \[
+% T(n) = O(n^d \cdot \log n)
+% \]
+% This result accounts for the depth of the recursion tree and the work done at each level.
+% \hfill$\blacksquare$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% % Instant Note Area
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage\section{Instant Note}
+
+% \section*{General Analysis with \( O(n^d) \)}
+
+% \subsection*{1. Recurrence Form and Definitions}
+
+% Consider a recurrence relation of the form:
+% \[
+% T(n) = T\left(\frac{n}{b_1}\right) + T\left(\frac{n}{b_2}\right) + \dots + T\left(\frac{n}{b_k}\right) + O(n^d)
+% \]
+% where:
+% \begin{itemize}
+%     \item \( n \) is the size of the input problem.
+%     \item \( b_i \) (for \( i = 1, 2, \dots, k \)) are constants greater than 1, representing the factors by which the problem size is reduced in each subproblem.
+%     \item \( d \geq 0 \) is a constant that dictates the work done outside the recursive calls, which scales as \( O(n^d) \).
+% \end{itemize}
+
+% \subsection*{2. Depth of the Recursion Tree}
+
+% \paragraph{Problem Size at Depth \( i \):}
+% At depth \( i \), the size of the problem for the \( j \)th subproblem is:
+% \[
+% n_{i,j} = \frac{n}{b_j^i}
+% \]
+% where \( b_j^i \) represents the cumulative reduction in problem size after \( i \) levels.
+
+% \paragraph{Stopping Condition:}
+% The recursion stops when the problem size reaches a constant (e.g., \( n_{i,j} = 1 \)). The depth \( i_j \) at which this occurs for the \( j \)th subproblem is determined by:
+% \[
+% \frac{n}{b_j^i} = 1 \implies i_j = \frac{\log n}{\log b_j}
+% \]
+% The overall depth \( i_{\text{max}} \) of the recursion tree is determined by the largest depth, which corresponds to the smallest \( b_j \):
+% \[
+% i_{\text{max}} = \max\left(\frac{\log n}{\log b_1}, \frac{\log n}{\log b_2}, \dots, \frac{\log n}{\log b_k}\right) = \frac{\log n}{\log b_{\min}}
+% \]
+% where \( b_{\min} = \min(b_1, b_2, \dots, b_k) \).
+
+% \subsection*{3. Work Done at Each Level}
+
+% \paragraph{Work Per Level:}
+% At each level \( i \), the total work done by the non-recursive part (across all subproblems) is \( O(n^d) \). Thus, the work done at depth \( i \) is:
+% \[
+% W_i = c_i \cdot n^d
+% \]
+% where \( c_i \) is a constant that might vary with the depth but does not affect the overall asymptotic behavior.
+
+% \subsection*{4. Total Work Across All Levels}
+
+% \paragraph{Total Work:}
+% The total work \( T(n) \) is the sum of the work done at each level \( i \) from 0 to \( i_{\text{max}} \):
+% \[
+% T(n) = \sum_{i=0}^{i_{\text{max}}} W_i = \sum_{i=0}^{\frac{\log n}{\log b_{\min}}} c_i \cdot n^d
+% \]
+% Since \( c_i \) is a constant and the depth \( i_{\text{max}} = \frac{\log n}{\log b_{\min}} \) is \( O(\log n) \), the total work becomes:
+% \[
+% T(n) = O(n^d) \cdot O(\log n) = O(n^d \log n)
+% \]
+
+% \section*{General Statement}
+
+% For a recurrence relation of the form \( T(n) = T\left(\frac{n}{b_1}\right) + T\left(\frac{n}{b_2}\right) + \dots + T\left(\frac{n}{b_k}\right) + O(n^d) \), where \( b_1, b_2, \dots, b_k > 1 \) are the constants representing the scaling factors of the subproblems and \( d \geq 0 \) is the exponent in the polynomial work term:
+
+% \begin{itemize}
+%     \item \textbf{Depth of the Recursion Tree:} The depth \( i_{\text{max}} \) of the recursion tree is:
+%     \[
+%     i_{\text{max}} = \frac{\log n}{\log b_{\min}} = O(\log n)
+%     \]
+%     where \( b_{\min} = \min(b_1, b_2, \dots, b_k) \).
+    
+%     \item \textbf{Total Time Complexity:} The overall time complexity is:
+%     \[
+%     T(n) = O(n^d \log n)
+%     \]
+% \end{itemize}
+
+% This result generalizes the analysis to any recurrence that breaks the problem into subproblems of sizes \( \frac{n}{b_1}, \frac{n}{b_2}, \dots, \frac{n}{b_k} \) and performs polynomial work \( O(n^d) \) at each level. The constants \( \frac{1}{b_1}, \frac{1}{b_2}, \dots, \frac{1}{b_k} \) are referred to as \textit{scaling factors} of the subproblems.
+
+
+
+
+
+
+
+% \section*{Generalized Master Theorem}
+
+
+
+% The equation provided is a recurrence relation that can be used to analyze the time complexity of a divide-and-conquer algorithm. It is a generalized form of the Master Theorem for solving divide-and-conquer recurrences. The recurrence relation is:
+
+% \begin{equation}
+% T(n) = T\left(\frac{n}{b_1}\right) + T\left(\frac{n}{b_2}\right) + \cdots + T\left(\frac{n}{b_k}\right) + O(n^d)
+% \end{equation}
+
+% where:
+
+% - \( T(n) \) is the total time complexity for an input of size \( n \).
+% - \( T\left(\frac{n}{b_i}\right) \) for \( i = 1, 2, \ldots, k \) are the time complexities of the recursive calls. Each \(\frac{n}{b_i}\) represents the size of the \(i\)-th subproblem, and \( b_i > 1 \) are constants that indicate how much the input size is reduced in each recursive step. The constants \(b_i\) are known as branching factors.
+% - \( k \) is the number of recursive subproblems.
+% - \( O(n^d) \) represents the non-recursive work done to combine the results of the subproblems after the recursive calls. Here, \( n^d \) indicates that this work scales polynomially with the input size \( n \), and \( d \geq 0 \) is a constant that determines the degree of the polynomial.
+
+% \section*{Analyzing the Overall Time Complexity}
+
+% To analyze the overall time complexity \( T(n) \), we consider the distribution of work among the recursive calls and the combining step:
+
+% 1. \textbf{Case 1: Dominant Subproblem Work}  
+%    If the work done in the recursive calls dominates the combining work, the overall time complexity is determined by the recursive terms. This occurs when the reduction in size of the subproblems does not sufficiently offset the growth in the number of subproblems. Specifically, if:
+
+% \begin{equation}
+% \sum_{i=1}^{k} \left(\frac{1}{b_i}\right)^d > 1,
+% \end{equation}
+
+% the time complexity is dominated by the recursive calls, and we have:
+
+% \begin{equation}
+% T(n) = \Theta\left(n^{\log_{B} k}\right)
+% \end{equation}
+
+% where \(B\) is defined such that \(n^d = n^{\log_B n}\), or equivalently, \(B = n^{1/d}\).
+
+% 2. \textbf{Case 2: Balanced Work}  
+%    If the work done in the recursive calls is balanced by the combining work, meaning that the total work at each level of recursion does not change significantly as we move down the recursion tree, then:
+
+% \begin{equation}
+% \sum_{i=1}^{k} \left(\frac{1}{b_i}\right)^d = 1,
+% \end{equation}
+
+% the time complexity is:
+
+% \begin{equation}
+% T(n) = \Theta(n^d \log n)
+% \end{equation}
+
+% 3. \textbf{Case 3: Dominant Combining Work}  
+%    If the combining work dominates the work done in the recursive calls, then the overall time complexity is determined by the combining step. This happens when:
+
+% \begin{equation}
+% \sum_{i=1}^{k} \left(\frac{1}{b_i}\right)^d < 1,
+% \end{equation}
+
+% leading to a time complexity of:
+
+% \begin{equation}
+% T(n) = \Theta(n^d)
+% \end{equation}
+
+% Thus, the overall time complexity \( T(n) \) depends on the balance between the recursive work and the combining work, and is analyzed by comparing the exponent \(d\) with the effective sum of work distributions across all recursive subproblems. This generalized form of the Master Theorem allows us to evaluate different divide-and-conquer algorithms that split the problem into multiple subproblems of varying sizes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Bibliography
+\newpage
+\begin{thebibliography}{9}
+
+\bibitem{reference1}
+Author Name,
+\textit{Title of the Book},
+Publisher, Year.
+
+\bibitem{reference2}
+Author Name,
+\textit{Title of the Article},
+Journal Name, Volume(Issue), Page Numbers, Year.
+
+\end{thebibliography}
+
+\end{document}
