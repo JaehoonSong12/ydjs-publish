@@ -2075,6 +2075,236 @@ Let $p$ be an odd prime number. Prove that
 
 
 
+
+
+
+
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 5}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 28th October}
+{Math 4150: HW5}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+\begin{enumerate}
+  \item Exercise Set 4.1, \#5. Find all incongruent solutions of each quadratic congruence below.
+    \begin{enumerate}
+      \item $x^2 \equiv 23 \pmod{77}$. \\
+      \quad[Hint: consider the congruences $x^2\equiv 23\pmod{7}$ and $x^2\equiv 23\pmod{11}$ and use the Chinese Remainder Theorem.]
+      \begin{subanswer}
+        % your anwer here
+      \end{subanswer}
+      \item $x^2 \equiv 11 \pmod{39}$.
+      \begin{subanswer}
+        % your anwer here
+      \end{subanswer}
+      \item $x^2 \equiv 46 \pmod{105}$.
+      \begin{subanswer}
+        % your anwer here
+      \end{subanswer}
+    \end{enumerate}
+  \item Exercise Set 4.1, \#6. Let $p$ be an odd prime number. Prove that the $\dfrac{p-1}{2}$ quadratic residues modulo $p$ are congruent to
+  \[
+    1^2,2^2,3^2,\ldots,\left(\frac{p-1}{2}\right)^2
+  \]
+  modulo $p$.
+  \begin{subprove}
+    % your anwer here
+  \end{subprove}
+  \item Exercise Set 4.1, \#7.\\
+  \textbf{Note}: In this question one may use the standard formulae for $\sum_{j=1}^n j^2$ and $\sum_{j=1}^n j^4$ without proof.
+  \begin{enumerate}
+    \item Let $p$ be a prime with $p>3$. Prove that the sum of the quadratic residues modulo $p$ is divisible by $p$.
+    \begin{subprove}
+      % your anwer here
+    \end{subprove}
+    \item Let $p$ be a prime with $p>5$. Prove that the sum of the squares of the quadratic non-residues modulo $p$ is divisible by $p$.
+    \begin{subprove}
+      % your anwer here
+    \end{subprove}
+  \end{enumerate}
+  \item Exercise Set 4.2, \#22. Let $p$ be a prime with $p\equiv 1\pmod{4}$. Prove that
+  \[
+    \sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right)=0.
+  \]
+  \begin{subprove}
+    % your anwer here
+  \end{subprove}
+  \item Exercise Set 4.2, \#24.
+  \begin{enumerate}
+    \item Let $p$ be a prime number with $p \geq 7$. Prove that at least one of $2$, 
+    $5$, and $10$ is a quadratic residue modulo $p$.
+    \item Could exactly two of $2$, $5$, and $10$ be quadratic residues modulo $p$ 
+    in part (a)? Why or why not?
+    \item Let $p$ be a prime number with $p \geq 7$. Prove that there are at least 
+    two consecutive quadratic residues modulo $p$. [Hint: use part (a).]
+  \end{enumerate}
+
+
+  \newpage
+  \item Exercise Set 4.2, \#26. Prove that there are infinitely many prime 
+  numbers expressible in the form $4 n+1$ where $n$ is a positive integer. \newline
+  [Hint: Assume, by way of contradiction, that there are only finitely many 
+  such prime numbers $p_1, \ldots, p_r$. Consider the positive integer 
+  $4 p_1^2 p_2^2 \cdots p_r^2+1$ and use \nameref{thm:4.6}.]
+  \begin{define}{Theorem 4.6}[thm:4.6][red]
+    Let $p$ be an odd prime. Then
+    \[
+      \left(\frac{-1}{p}\right)=(-1)^{(p-1)/2}
+      =\begin{cases}
+        1 & \text{if } p\equiv 1\pmod{4},\\[4pt]
+        -1 & \text{if } p\equiv 3\pmod{4}.
+      \end{cases}
+    \]
+  \end{define}
+  \begin{subprove}
+  Assume there are only finitely many primes congruent to 
+  \(1\pmod 4\) as \(p_1,\dots,p_r\) for the sake of contradiction. Then, 
+  \[
+  N \;=\; 4p_1^2p_2^2\cdots p_r^2 \;+\; 1 \;=\; (2p_1p_2\cdots p_r)^2 + 1 > 1.
+  \]
+  Let \(q\) be any prime divisor of \(N\). Since \(N\) is odd, \(q\) is an odd prime and
+  \[
+  (2p_1p_2\cdots p_r)^2 \equiv -1 \pmod q.
+  \]
+  Thus, 
+  \[
+  \displaystyle\left(\frac{-1}{q}\right)=1.
+  \]
+  By \nameref{thm:4.6}, \(q\equiv1\pmod4\), hence \(q\) is a prime of the form \(4n+1\).
+
+  For each \(i\) we have \(4p_1^2\cdots p_r^2\equiv0\pmod{p_i}\), hence
+  \[
+  N \equiv 1 \pmod{p_i},
+  \]
+  so none of the \(p_i\) divide \(N\). Therefore the prime \(q\) is distinct from every \(p_i\), contradicting the assumption that \(p_1,\dots,p_r\) were all the primes congruent to \(1\pmod4\). This contradiction shows there are infinitely many primes of the form \(4n+1\).
+  \end{subprove}
+
+
+  \item Exercise Set 4.3, \#34. Let $p$ and $q$ be odd prime numbers with 
+  $p=q+4 a$ for some $a \in \mathbb{Z}$. Prove that
+  $$
+  \left(\frac{a}{p}\right)=\left(\frac{a}{q}\right).
+  $$
+  \begin{subprove}
+    Let \(p\) and \(q\) be odd primes with \(p=q+4a\) for some \(a\in\mathbb{Z}\).
+    Write \(a=2^{t}m\) with \(t\ge 0\) and \(m\) odd. By multiplicativity of the Legendre symbol it will be enough to prove that
+    \[
+    (2/p)^{t}(m/p)=(2/q)^{t}(m/q).
+    \]
+
+    First, let \(r\) be any odd prime divisor of \(m\). Since \(r\mid a\) it follows that \(r\mid(p-q)\), so \(p\equiv q\pmod r\) and hence \((p/r)=(q/r)\). By quadratic reciprocity,
+    \[
+    (r/p)(p/r)=(-1)^{\frac{r-1}{2}\frac{p-1}{2}},\qquad
+    (r/q)(q/r)=(-1)^{\frac{r-1}{2}\frac{q-1}{2}}.
+    \]
+    Because \(p-q=4a\) is divisible by \(4\), the congruence \(p\equiv q\pmod 4\) holds, so \(\dfrac{p-1}{2}\) and \(\dfrac{q-1}{2}\) have the same parity and the two signs on the right are equal. Dividing the two reciprocity relations and using \((p/r)=(q/r)\) yields \((r/p)=(r/q)\). Since this holds for every odd prime divisor \(r\) of \(m\), multiplicativity implies \((m/p)=(m/q)\).
+
+    If \(t\) is even then \((2/p)^t=(2/q)^t=1\) and the desired equality follows. If \(t\) is odd then \(2\mid a\), so \(4a\) is divisible by \(8\) and hence \(p\equiv q\pmod 8\). By the supplement for \(2\),
+    \[
+    (2/p)=(-1)^{\frac{p^2-1}{8}},\qquad (2/q)=(-1)^{\frac{q^2-1}{8}},
+    \]
+    and the congruence \(p\equiv q\pmod 8\) forces \((2/p)=(2/q)\). Therefore in all cases \((2/p)^{t}=(2/q)^{t}\).
+
+    Combining the equalities for the \(2\)-power part and for \(m\) yields \((a/p)=(a/q)\), as was to be shown.
+  \end{subprove}
+
+  \item Exercise Set 4.3, \#35.
+  Let $p$ be an odd prime number (with $p>3$ in parts (b) and (c)). 
+  Prove the following statements.
+  \begin{define}{Supplements and Reciprocity Laws}[def:supplaw]
+    Let \(p\) be an odd prime (and \(p>3\) where indicated). The following supplements and reciprocity laws will be used without further comment:
+    \[
+    (-1/p)=(-1)^{\frac{p-1}{2}},\qquad (2/p)=(-1)^{\frac{p^{2}-1}{8}},
+    \]
+    and for odd primes \(r\neq p\),
+    \[
+    (r/p)(p/r)=(-1)^{\frac{r-1}{2}\frac{p-1}{2}}.
+    \]
+  \end{define}
+  \begin{enumerate}
+    \item $\left(\frac{-2}{p}\right)=1$ if and only if $p \equiv 1,3\pmod{8}$.
+    \begin{subprove}
+      By multiplicativity \(({-2}/p)=(-1/p)(2/p)=(-1)^{\frac{p-1}{2}}(-1)^{\frac{p^{2}-1}{8}}=(-1)^{\frac{4(p-1)+ (p^{2}-1)}{8}}\), but it is more transparent to evaluate by cases modulo \(8\). For \(p\) odd one has four possibilities \(p\equiv 1,3,5,7\pmod 8\); the values of the two supplements are:
+      \[
+      \begin{array}{c|c|c|c}
+      p\pmod 8 & (-1/p) & (2/p) & (-2/p)=(-1/p)(2/p)\\\hline
+      1 & 1 & 1 & 1\\
+      3 & -1 & -1 & 1\\
+      5 & 1 & -1 & -1\\
+      7 & -1 & 1 & -1
+      \end{array}
+      \]
+      Consequently \(({-2}/p)=1\) if and only if \(p\equiv 1\) or \(3\pmod 8\), as claimed.
+    \end{subprove}
+    \item $\left(\frac{3}{p}\right)=1$ if and only if $p \equiv \pm 1\pmod{12}$.
+    \begin{subprove}
+      By quadratic reciprocity (with \(r=3\)) one obtains
+      \[
+      (3/p)=(p/3)(-1)^{\frac{3-1}{2}\frac{p-1}{2}}=(p/3)(-1)^{\frac{p-1}{2}}.
+      \]
+      The value \((p/3)\) equals \(1\) or \(-1\) according as \(p\equiv 1\) or \(2\pmod 3\). Examining the four residue classes of \(p\) modulo \(12\) which are possible for an odd prime \(p>3\) (namely \(1,5,7,11\)) gives:
+      \[
+      \begin{array}{c|c|c|c}
+      p\pmod{12} & p\pmod 3 & (-1)^{\frac{p-1}{2}} & (3/p)=(p/3)(-1)^{\frac{p-1}{2}}\\\hline
+      1 & 1 & 1 & 1\\
+      5 & 2 & 1 & -1\\
+      7 & 1 & -1 & -1\\
+      11& 2 & -1 & 1
+      \end{array}
+      \]
+      Hence \((3/p)=1\) precisely when \(p\equiv 1\) or \(11\pmod{12}\), i.e. \(p\equiv\pm1\pmod{12}\).
+    \end{subprove}
+    \item $\left(\frac{-3}{p}\right)=1$ if and only if $p \equiv 1\pmod{6}$.
+    \begin{subprove}
+      By multiplicativity and the reciprocity formula used in (b) one has
+      \[
+      (-3/p)=(-1/p)(3/p)=(-1)^{\frac{p-1}{2}}\bigl((p/3)(-1)^{\frac{p-1}{2}}\bigr)=(p/3),
+      \]
+      since the two factors \( (-1)^{\frac{p-1}{2}}\) cancel. Therefore \(({-3}/p)=1\) is equivalent to \((p/3)=1\), which holds exactly when \(p\equiv 1\pmod 3\). For an odd prime this condition is equivalent to \(p\equiv 1\pmod 6\). This completes the proof.
+    \end{subprove}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 
 
