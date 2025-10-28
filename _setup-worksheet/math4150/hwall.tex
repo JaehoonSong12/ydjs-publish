@@ -2094,6 +2094,221 @@ Let $p$ be an odd prime number. Prove that
 \newpage
 
 
+
+
+
+\begin{define}{Proposition 4.1}[prop:4.1][red]
+Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then the
+congruence
+\[
+x^2\equiv a \pmod p
+\]
+has either no solution or exactly two incongruent solutions modulo $p$.
+\end{define}
+
+\begin{subprove}
+Suppose the congruence has a solution $x_0$. Then $(-x_0)^2\equiv x_0^2\equiv a$,
+so $-x_0$ is also a solution. If $x_0\equiv -x_0\pmod p$ then $2x_0\equiv 0\pmod p$.
+Since $p$ is odd, $\gcd(2,p)=1$, hence $x_0\equiv 0\pmod p$, and thus
+$a\equiv x_0^2\equiv 0\pmod p$, contradicting $p\nmid a$. Therefore $x_0$ and $-x_0$
+are distinct modulo $p$.
+
+If $x_0$ and $x_1$ are any two solutions then $x_0^2\equiv x_1^2\pmod p$, so
+$p\mid(x_0^2-x_1^2)=(x_0-x_1)(x_0+x_1)$. As $p$ is prime, $p\mid(x_0-x_1)$ or
+$p\mid(x_0+x_1)$, hence $x_0\equiv x_1\pmod p$ or $x_0\equiv -x_1\pmod p$. Thus
+there are at most two incongruent solutions, and the previous paragraph shows
+that when a solution exists there are exactly two.
+\end{subprove}
+
+\begin{define}{Corollary 4.2}[cor:4.2][red]
+Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. If
+$x^2\equiv a\pmod p$ is solvable and $x_0$ is one solution, then the two
+incongruent solutions modulo $p$ are $x_0$ and $-x_0\equiv p-x_0$.
+\end{define}
+
+\begin{define}{Proposition 4.3}[prop:4.3][red]
+Let $p$ be an odd prime. There are exactly $\dfrac{p-1}{2}$ distinct
+(incongruent) quadratic residues modulo $p$ among the nonzero residue
+classes, and exactly $\dfrac{p-1}{2}$ quadratic non-residues among the
+nonzero classes.
+\end{define}
+
+\begin{subprove}
+Consider the multiplicative group $(\mathbb{Z}/p\mathbb{Z})^\times$ of size
+$p-1$. For each $x\in(\mathbb{Z}/p\mathbb{Z})^\times$ the square $x^2$ is a
+nonzero quadratic residue, and $x^2 = (-x)^2$, so each nonzero quadratic
+residue is obtained from exactly two distinct elements $x$ and $-x$ of the
+group. Hence the set of distinct nonzero squares has size $(p-1)/2$. The
+remaining $(p-1)/2$ nonzero classes are therefore quadratic non-residues.
+\end{subprove}
+
+
+\newpage
+
+\begin{define}{Definition 4.1 (Legendre symbol)}[def:4.1]
+Let $p$ be an odd prime and let $a\in\mathbb{Z}$. The \emph{Legendre symbol} $(\tfrac{a}{p})$ is defined by
+\[
+\left(\frac{a}{p}\right):=
+\begin{cases}
+0, & \text{if } p\mid a,\\[4pt]
+1, & \text{if } p\nmid a\text{ and } a \text{ is a quadratic residue modulo } p,\\[4pt]
+-1,& \text{if } p\nmid a\text{ and } a \text{ is a quadratic non-residue modulo } p.
+\end{cases}
+\]
+% Comment: Added the $0$ case (standard) which was missing in the original notes.
+\end{define}
+
+Working modulo $11$, the nonzero quadratic residues are the squares
+\[
+1^2\equiv 1,\quad 2^2\equiv 4,\quad 3^2\equiv 9,\quad 4^2\equiv 5,\quad 5^2\equiv 3 \pmod{11},
+\]
+so the quadratic residues modulo $11$ are
+\[
+1,\,3,\,4,\,5,\,9.
+\]
+Hence
+\[
+\left(\frac{1}{11}\right)
+=\left(\frac{3}{11}\right)
+=\left(\frac{4}{11}\right)
+=\left(\frac{5}{11}\right)
+=\left(\frac{9}{11}\right)=1,
+\]
+and the remaining nonzero residues
+\[
+2,\,6,\,7,\,8,\,10
+\]
+are quadratic non-residues modulo $11$, so their Legendre symbols equal $-1$:
+\[
+\left(\frac{2}{11}\right)
+=\left(\frac{6}{11}\right)
+=\left(\frac{7}{11}\right)
+=\left(\frac{8}{11}\right)
+=\left(\frac{10}{11}\right)=-1.
+\]
+
+
+\begin{define}{Theorem 4.4 (Euler's Criterion)}[thm:4.4]
+Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
+\[
+\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p,
+\]
+and, since both sides take values in $\{\pm1\}$, we may (and usually do) interpret this congruence as the equality
+\[
+\left(\frac{a}{p}\right) = a^{\frac{p-1}{2}} \pmod p \in\{1,-1\}.
+\]
+\end{define}
+
+\begin{subprove}
+% Comment: Clarified both cases and cleaned Fermat/Wilson usage.
+First suppose $\left(\frac{a}{p}\right)=1$. Then there exists $x_0$ with $x_0^2\equiv a\pmod p$, so
+\[
+a^{\frac{p-1}{2}} \equiv (x_0^2)^{\frac{p-1}{2}} \equiv x_0^{\,p-1}\equiv 1\pmod p
+\]
+by Fermat's little theorem. Hence $a^{(p-1)/2}\equiv 1\pmod p$, which matches $\left(\frac{a}{p}\right)=1$.
+
+Now suppose $\left(\frac{a}{p}\right)=-1$. Consider the set $\{1,2,\dots,p-1\}$. For each $i\in\{1,\dots,p-1\}$ there is a unique $j\in\{1,\dots,p-1\}$ with $ij\equiv a\pmod p$ (since multiplication by $i$ is a permutation of the nonzero residues). If $i=j$ for some such pair then $i^2\equiv a\pmod p$, contradicting that $a$ is a non-residue; hence the elements $1,\dots,p-1$ can be paired into $(p-1)/2$ disjoint pairs whose products are congruent to $a$. Therefore
+\[
+(p-1)!\equiv a^{\frac{p-1}{2}} \pmod p.
+\]
+By Wilson's theorem $(p-1)!\equiv -1\pmod p$, so $a^{(p-1)/2}\equiv -1\pmod p$, which matches $\left(\frac{a}{p}\right)=-1$.
+
+Combining both cases proves the statement.
+\end{subprove}
+
+Compute $\left(\frac{3}{7}\right)$ using Euler's criterion:
+\[
+3^{\frac{7-1}{2}}=3^3=27\equiv 27-21=6\equiv -1\pmod 7,
+\]
+so $\left(\frac{3}{7}\right)=-1$.
+
+
+
+\begin{define}{Proposition 4.5}[prop:4.5]
+Let $p$ be an odd prime and let $a,b\in\mathbb{Z}$ with $p\nmid a$ and $p\nmid b$. Then
+\begin{enumerate}
+  \item $\left(\dfrac{a^2}{p}\right)=1$.
+  \item If $a\equiv b\pmod p$ then $\left(\dfrac{a}{p}\right)=\left(\dfrac{b}{p}\right)$.
+  \item $\left(\dfrac{ab}{p}\right)=\left(\dfrac{a}{p}\right)\left(\dfrac{b}{p}\right)$ (multiplicativity).
+\end{enumerate}
+\end{define}
+
+\begin{subprove}
+(a) If $p\nmid a$ then $a$ is a solution of $x^2\equiv a^2\pmod p$, so $(a^2/p)=1$.
+
+(b) If $a\equiv b\pmod p$ then the congruences $x^2\equiv a\pmod p$ and $x^2\equiv b\pmod p$ are identical; hence solvability is the same for both, so the Legendre symbols agree.
+
+(c) Using Euler's criterion,
+\[
+\left(\frac{ab}{p}\right) \equiv (ab)^{\frac{p-1}{2}} \equiv a^{\frac{p-1}{2}} b^{\frac{p-1}{2}} \equiv
+\left(\frac{a}{p}\right)\left(\frac{b}{p}\right)\pmod p.
+\]
+Both sides are in $\{\pm1\}$, so the congruence implies equality:
+\[
+\left(\frac{ab}{p}\right)=\left(\frac{a}{p}\right)\left(\frac{b}{p}\right).
+\]
+\end{subprove}
+
+Compute $\left(\dfrac{-11}{7}\right)$. We factor
+\[
+\left(\frac{-11}{7}\right)=\left(\frac{-1}{7}\right)\left(\frac{11}{7}\right).
+\]
+Since $11\equiv 4\pmod 7$ and $4=2^2$ is a square, $(11/7)=(4/7)=1$. Hence
+\[
+\left(\frac{-11}{7}\right)=\left(\frac{-1}{7}\right).
+\]
+By Theorem \nameref{thm:4.6} below (or direct computation) $\left(\dfrac{-1}{7}\right)=-1$ because $7\equiv 3\pmod 4$. Thus $\left(\dfrac{-11}{7}\right)=-1$.
+
+\textbf{Remark}. Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Write the integer $a$ (up to sign) as a product of prime powers
+\[
+a=\pm 2^{\alpha_0} q_1^{\alpha_1} q_2^{\alpha_2}\cdots q_r^{\alpha_r},
+\]
+where the $q_i$ are distinct odd primes different from $p$ and the $\alpha_i\ge 0$ are integers. By multiplicativity (Proposition \nameref{prop:4.5}(c)) we have
+\[
+\left(\frac{a}{p}\right)=\left(\frac{\pm1}{p}\right)\left(\frac{2}{p}\right)^{\alpha_0}
+\left(\frac{q_1}{p}\right)^{\alpha_1}\cdots\left(\frac{q_r}{p}\right)^{\alpha_r}.
+\]
+Hence it suffices to compute $\left(\frac{\pm1}{p}\right)$, $\left(\frac{2}{p}\right)$, and $\left(\frac{q}{p}\right)$ for an odd prime $q\ne p$.
+
+
+\begin{define}{Theorem 4.6 (Value of $(-1/p)$)}[thm:4.6]
+Let $p$ be an odd prime. Then
+\[
+\left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=
+\begin{cases}
+1, & \text{if } p\equiv 1\pmod 4,\\[4pt]
+-1,& \text{if } p\equiv 3\pmod 4.
+\end{cases}
+\]
+\end{define}
+
+\begin{subprove}
+Apply Euler's criterion with $a=-1$:
+\[
+\left(\frac{-1}{p}\right)\equiv (-1)^{\frac{p-1}{2}}\pmod p.
+\]
+But the left-hand side is $\pm1$ and the right-hand side equals the integer $(-1)^{(p-1)/2}\in\{\pm1\}$, hence equality holds. Writing $p=4k+1$ or $p=4k+3$ and evaluating $(-1)^{(p-1)/2}$ gives the two cases above.
+\end{subprove}
+
+\begin{define}{Lemma 4.7 (Gauss's Lemma)}[lem:4.7]
+Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$ let $r_k$ be the least positive residue of $ka$ modulo $p$ (i.e., $r_k\in\{1,\dots,p-1\}$ and $r_k\equiv ka\pmod p$). Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
+\[
+\left(\frac{a}{p}\right)=(-1)^n.
+\]
+\end{define}
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
 \begin{enumerate}
   \item Exercise Set 4.1, \#5. Find all incongruent solutions of each quadratic congruence below.
     \begin{enumerate}
