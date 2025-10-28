@@ -1,0 +1,873 @@
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 5}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 28th October}
+{Math 4150: HW5}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L12
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{define}{Proposition 4.1}[prop:4.1][red]
+% Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then the
+% congruence
+% \[
+% x^2\equiv a \pmod p
+% \]
+% has either no solution or exactly two incongruent solutions modulo $p$.
+% \begin{subprove}
+% Let $x_0$ be a solution. Then, $(-x_0)^2\equiv x_0^2\equiv a \pmod p$, so $-x_0$ is also a solution. If $x_0\equiv -x_0\pmod p$, then $2x_0\equiv 0\pmod p$. Since $p$ is odd, $\gcd(2,p)=1$, hence $x_0\equiv 0\pmod p$. This implies $a\equiv x_0^2\equiv 0\pmod p$, contradicting $p\nmid a$. Therefore, $x_0\not\equiv -x_0\pmod p$.
+
+% If $x_0$ and $x_1$ are solutions, then $x_0^2\equiv x_1^2\pmod p$, so $p\mid(x_0^2-x_1^2)=(x_0-x_1)(x_0+x_1)$. Since $p$ is prime, $p\mid(x_0-x_1)$ or $p\mid(x_0+x_1)$, hence $x_0\equiv x_1\pmod p$ or $x_0\equiv -x_1\pmod p$. Thus, there are at most two incongruent solutions. Therefore, exactly two exist when any solution exists.
+% \end{subprove}
+% \end{define}
+
+
+% \begin{define}{Corollary 4.2}[cor:4.2][red]
+% Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. If $x^2\equiv a\pmod p$ is solvable and $x_0$ is a solution, then the two incongruent solutions modulo $p$ are $x_0$ and $-x_0\equiv p-x_0$.
+% \end{define}
+
+
+% \newpage
+% \begin{enumerate}
+%   \item Compute $\left(\frac{a}{11}\right)$ for all $a=1,2,\dots,10$.
+%   \begin{define}{Definition 4.1 (Legendre symbol)}[def:4.1][red]
+%   Let $p$ be an odd prime and let $a\in\mathbb{Z}$. The \emph{Legendre symbol} $(\tfrac{a}{p})$ is defined by
+%   \[
+%   \left(\frac{a}{p}\right):=
+%   \begin{cases}
+%   0, & \text{if } p\mid a,\\[4pt]
+%   1, & \text{if } p\nmid a\text{ and } a \text{ is a quadratic residue modulo } p,\\[4pt]
+%   -1,& \text{if } p\nmid a\text{ and } a \text{ is a quadratic non-residue modulo } p.
+%   \end{cases}
+%   \]
+%   % Comment: Added the $0$ case (standard) which was missing in the original notes.
+%   \end{define}
+%   \begin{subanswer}
+%     Working modulo $11$, the nonzero quadratic residues are the squares
+%     \[
+%     1^2\equiv 1,\quad 2^2\equiv 4,\quad 3^2\equiv 9,\quad 4^2\equiv 5,\quad 5^2\equiv 3 \pmod{11},
+%     \]
+%     so the quadratic residues modulo $11$ are
+%     \[
+%     1,\,3,\,4,\,5,\,9.
+%     \]
+%     Hence
+%     \[
+%     \left(\frac{1}{11}\right)
+%     =\left(\frac{3}{11}\right)
+%     =\left(\frac{4}{11}\right)
+%     =\left(\frac{5}{11}\right)
+%     =\left(\frac{9}{11}\right)=1,
+%     \]
+%     and the remaining nonzero residues
+%     \[
+%     2,\,6,\,7,\,8,\,10
+%     \]
+%     are quadratic non-residues modulo $11$, so their Legendre symbols equal $-1$:
+%     \[
+%     \left(\frac{2}{11}\right)
+%     =\left(\frac{6}{11}\right)
+%     =\left(\frac{7}{11}\right)
+%     =\left(\frac{8}{11}\right)
+%     =\left(\frac{10}{11}\right)=-1.
+%     \]
+%   \end{subanswer}
+%   \newpage
+
+
+
+%   \item Compute $\left(\frac{3}{7}\right)$.
+%   \begin{subanswer}
+%     By \nameref{thm:4.4},
+%     \[
+%     3^{\frac{7-1}{2}}=3^3=27\equiv 27-21=6\equiv -1\pmod 7,
+%     \]
+%     so $\left(\frac{3}{7}\right)=-1$.
+%   \end{subanswer}
+
+
+
+%   \newpage
+%   \item Compute $\left(\dfrac{-11}{7}\right)$.
+%   \begin{subanswer}
+%   By multiplicativity, $\left(\frac{-11}{7}\right)=\left(\frac{-1}{7}\right)\left(\frac{11}{7}\right)$. Since $11\equiv 4\equiv 2^2\pmod 7$, we have $(11/7)=1$. By \nameref{thm:4.6}, $\left(\frac{-1}{7}\right)=-1$ since $7\equiv 3\pmod 4$. Therefore, $\left(\frac{-11}{7}\right)=-1$.
+
+%   \textbf{Remark}. For an odd prime $p$ and $a\in\mathbb{Z}$ with $p\nmid a$, factor $a=\pm 2^{\alpha_0} q_1^{\alpha_1}\cdots q_r^{\alpha_r}$ where the $q_i$ are distinct odd primes different from $p$. By \nameref{prop:4.5}(c),
+%   \[
+%   \left(\frac{a}{p}\right)=\left(\frac{\pm1}{p}\right)\left(\frac{2}{p}\right)^{\alpha_0}\prod_{i=1}^r\left(\frac{q_i}{p}\right)^{\alpha_i}.
+%   \]
+%   Computation reduces to $\left(\frac{\pm1}{p}\right)$, $\left(\frac{2}{p}\right)$, and $\left(\frac{q}{p}\right)$ for odd primes $q\ne p$.
+%   \end{subanswer}
+% \end{enumerate}
+
+
+
+% \newpage
+
+% \begin{define}{Proposition 4.5}[prop:4.5][red]
+%   Let $p$ be an odd prime and let $a,b\in\mathbb{Z}$ with $p\nmid a$ and $p\nmid b$. Then
+%   \begin{enumerate}
+%     \item $\left(\dfrac{a^2}{p}\right)=1$.
+%     \item If $a\equiv b\pmod p$ then $\left(\dfrac{a}{p}\right)=\left(\dfrac{b}{p}\right)$.
+%     \item $\left(\dfrac{ab}{p}\right)=\left(\dfrac{a}{p}\right)\left(\dfrac{b}{p}\right)$ (multiplicativity).
+%   \end{enumerate}
+%   \begin{subprove}
+%     \begin{enumerate}
+%       \item Since $p\nmid a$, $x=a$ solves $x^2\equiv a^2\pmod p$, hence $\left(\frac{a^2}{p}\right)=1$.
+
+%       \item If $a\equiv b\pmod p$ then the congruences $x^2\equiv a\pmod p$ and $x^2\equiv b\pmod p$ coincide, hence $\left(\frac{a}{p}\right)=\left(\frac{b}{p}\right)$.
+
+%       \item By \nameref{thm:4.4},
+%       \[
+%         \left(\frac{ab}{p}\right)\equiv (ab)^{\frac{p-1}{2}}
+%         \equiv a^{\frac{p-1}{2}}b^{\frac{p-1}{2}}
+%         \equiv \left(\frac{a}{p}\right)\left(\frac{b}{p}\right)\pmod p.
+%       \]
+%       Both sides lie in $\{\pm1\}$, hence equality holds.
+%     \end{enumerate}
+%   \end{subprove}
+% \end{define}
+
+
+
+
+
+
+
+
+
+
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L13
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{enumerate}
+%   \item Compute $(7/53)$. Since $53\equiv 1\pmod 4$.
+
+%   by Quadratic Reciprocity (\nameref{thm:4.9}) we have
+%   \[
+%   \left(\frac{7}{53}\right)=\left(\frac{53}{7}\right).
+%   \]
+%   Reduce $53$ modulo $7$: $53\equiv 4\pmod 7$. Thus
+%   \[
+%   \left(\frac{7}{53}\right)=\left(\frac{4}{7}\right)=1,
+%   \]
+%   because $4\equiv 2^2$ is a square modulo $7$.
+
+%   \item Compute $\left(\frac{-158}{101}\right)$. We compute
+%   \[
+%   \left(\frac{-158}{101}\right)=\left(\frac{-1}{101}\right)\left(\frac{158}{101}\right).
+%   \]
+%   Since $101\equiv 1\pmod 4$, $\left(\frac{-1}{101}\right)=1$, so
+%   \[
+%   \left(\frac{-158}{101}\right)=\left(\frac{158}{101}\right).
+%   \]
+%   Reduce $158\pmod{101}$: $158\equiv 57\pmod{101}$. Factor $57=3\cdot 19$, so multiplicativity gives
+%   \[
+%   \left(\frac{57}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{19}{101}\right).
+%   \]
+%   Compute $\left(\frac{3}{101}\right)$ by reciprocity. Since $(3-1)/2=1$ and $(101-1)/2=50$, their product is even,
+%   so no sign change occurs:
+%   \[
+%   \left(\frac{3}{101}\right)=\left(\frac{101}{3}\right)=\left(\frac{2}{3}\right)=-1,
+%   \]
+%   because $2$ is a nonresidue modulo $3$.
+
+%   Next compute $\left(\frac{19}{101}\right)$. Here
+%   \[
+%   \left(\frac{19}{101}\right)=\left(\frac{101}{19}\right)
+%   \]
+%   since $((19-1)/2)((101-1)/2)=9\cdot50$ is even. Reduce $101\pmod{19}$: $101\equiv 6\pmod{19}$, hence
+%   \[
+%   \left(\frac{19}{101}\right)=\left(\frac{6}{19}\right)=\left(\frac{2}{19}\right)\left(\frac{3}{19}\right).
+%   \]
+%   Using Theorem \nameref{thm:4.8}, $\left(\frac{2}{19}\right)=-1$ because $19\equiv 3\pmod 8$.
+%   Also
+%   \[
+%   \left(\frac{3}{19}\right) = -\left(\frac{19}{3}\right)
+%   \]
+%   by reciprocity (the sign is $-1$ because $(3-1)/2\cdot(19-1)/2 =1\cdot9$ is odd). Now, $19\equiv 1\pmod 3$, so
+%   $\left(\frac{19}{3}\right)=\left(\frac{1}{3}\right)=1$, hence $\left(\frac{3}{19}\right)=-1$.
+%   Therefore $\left(\frac{6}{19}\right)=(-1)\cdot(-1)=1$, so $\left(\frac{19}{101}\right)=1$.
+
+%   Combining the two factors,
+%   \[
+%   \left(\frac{57}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{19}{101}\right)=(-1)\cdot 1 = -1,
+%   \]
+%   and hence
+%   \[
+%   \left(\frac{-158}{101}\right)=-1.
+%   \]
+% \end{enumerate}
+
+% \textbf{Warning:} Do not apply Quadratic Reciprocity to composite moduli. For example, it is incorrect to write
+% \[
+% \left(\frac{57}{101}\right)=\left(\frac{101}{57}\right)
+% \]
+% because $57$ is not prime. Quadratic Reciprocity applies only to odd prime moduli.
+
+% % END OF L13
+
+
+
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L14
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{define}{Lemma 4.10}[lem:4.10][red]
+% Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$ and $a$ odd. Define
+% \[
+% N:=\sum_{j=1}^{\frac{p-1}{2}}\left\lfloor\frac{j a}{p}\right\rfloor .
+% \]
+% Then
+% \[
+% \left(\frac{a}{p}\right)=(-1)^N.
+% \]
+% Here $\lfloor \cdot\rfloor$ denotes the floor function.
+% \end{define}
+
+% Lemma \nameref{lem:4.10}, like Euler's criterion and Gauss's Lemma, is often more useful theoretically than computationally; nevertheless it provides an alternate viewpoint that is convenient for proving reciprocity.
+
+% \begin{enumerate}
+% \item Compute $(\tfrac{7}{11})$ using Lemma \nameref{lem:4.10}. For $j=1,\dots,5$ compute
+% \[
+% \left\lfloor\frac{7}{11}\right\rfloor=0,\quad
+% \left\lfloor\frac{14}{11}\right\rfloor=1,\quad
+% \left\lfloor\frac{21}{11}\right\rfloor=1,\quad
+% \left\lfloor\frac{28}{11}\right\rfloor=2,\quad
+% \left\lfloor\frac{35}{11}\right\rfloor=3,
+% \]
+% so
+% \[
+% N=0+1+1+2+3=7.
+% \]
+% Therefore, $(\tfrac{7}{11})=(-1)^7=-1$.
+% \end{enumerate}
+
+% \begin{define}{Proof of Lemma 4.10}[lem:4.10proof][red]
+% \begin{subprove}
+% Let $p$ and $a$ satisfy the hypotheses. For $k=1,\dots,\tfrac{p-1}{2}$ write the division identity
+% \begin{equation}\label{eq:div_j}
+% k a = p\left\lfloor\frac{k a}{p}\right\rfloor + r_k,
+% \end{equation}
+% where $r_k$ is the remainder, $0\le r_k\le p-1$. Since $p\nmid a$, none of the remainders equals $0$. Partition the least positive remainders $r_k$ into
+% \[
+% \{r_1,\dots,r_n\} \quad\text{(those }r_k>p/2\text{)}\quad\text{and}\quad
+% \{s_1,\dots,s_m\} \quad\text{(those }s_k<p/2\text{)},
+% \]
+% so $n+m=(p-1)/2$.
+
+% Summing \eqref{eq:div_j} over $k=1,\dots,(p-1)/2$ yields
+% \[
+% \sum_{k=1}^{\frac{p-1}{2}} k a
+% = p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor + \sum_{k=1}^{\frac{p-1}{2}} r_k.
+% \tag{2}
+% \]
+% By the proof of \nameref{lem:4.7}, the multiset of remainders $\{r_1,\dots,r_n,s_1,\dots,s_m\}$ coincides with the least positive residues of $a,2a,\dots,\frac{p-1}{2}a$. Moreover, the integers
+% \[
+% p-r_1,\dots,p-r_n,s_1,\dots,s_m
+% \]
+% form a permutation of $1,2,\dots,\tfrac{p-1}{2}$. Hence,
+% \[
+% \sum_{j=1}^{\frac{p-1}{2}} j = \sum_{i=1}^n (p-r_i) + \sum_{j=1}^m s_j
+% = pn - \sum_{i=1}^n r_i + \sum_{j=1}^m s_j .
+% \tag{3}
+% \]
+% But $\sum_{k=1}^{(p-1)/2} r_k=\sum_{i=1}^n r_i + \sum_{j=1}^m s_j$. Subtracting (3) from (2) gives
+% \[
+% \sum_{k=1}^{\frac{p-1}{2}} ka - \sum_{j=1}^{\frac{p-1}{2}} j
+% = p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - pn + 2\sum_{i=1}^n r_i.
+% \tag{4}
+% \]
+% Reduce both sides of (4) modulo $2$. Note that $\sum_{k=1}^{(p-1)/2} ka - \sum_{j=1}^{(p-1)/2} j$ is an integer multiple of $(p-1)/2$ and hence even or odd depending on $(p-1)/2$, but the parity analysis below yields
+% \[
+% 0 \equiv p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - pn \pmod 2.
+% \]
+% Since $p$ is odd we may cancel $p$ modulo $2$ to obtain
+% \[
+% 0 \equiv \sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - n \pmod 2,
+% \]
+% so
+% \[
+% n \equiv \sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor \equiv N \pmod 2.
+% \]
+% By \nameref{lem:4.7}, $(\tfrac{a}{p})=(-1)^n$, hence
+% \[
+% \left(\frac{a}{p}\right)=(-1)^n = (-1)^N,
+% \]
+% which proves the lemma.
+% \end{subprove}
+% \end{define}
+
+% \begin{define}{Proof of Theorem 4.9 (Quadratic Reciprocity)}[thm:4.9proof][red]
+% \begin{subprove}
+% For distinct odd primes $p$ and $q$, let $N_1=\sum_{j=1}^{(q-1)/2}\lfloor jp/q\rfloor$ and $N_2=\sum_{j=1}^{(p-1)/2}\lfloor jq/p\rfloor$. A lattice-point count on $[0,(p-1)/2]\times[0,(q-1)/2]$ divided by $y=(q/p)x$ yields $N_1+N_2=(p-1)/2\cdot(q-1)/2$.
+
+% By \nameref{lem:4.10}, $\left(\frac{p}{q}\right)=(-1)^{N_1}$ and $\left(\frac{q}{p}\right)=(-1)^{N_2}$. Hence, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{N_1+N_2}=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}$.
+% \end{subprove}
+% \end{define}
+
+% \begin{enumerate}
+% \item Find all odd primes $p\ne 11$ with $(\tfrac{11}{p})=1$.
+
+% By \nameref{thm:4.9},
+% \[
+% \left(\frac{11}{p}\right)=
+% \begin{cases}
+% \left(\frac{p}{11}\right), &\text{if } p\equiv 1\pmod 4,\\[4pt]
+% -\left(\frac{p}{11}\right), &\text{if } p\equiv 3\pmod 4.
+% \end{cases}
+% \]
+% The quadratic residues modulo $11$ (nonzero squares) are $1,3,4,5,9$ and non-residues are $2,6,7,8,10$.
+
+% Thus for $p\equiv 1\pmod4$ we need $p\pmod{11}\in\{1,3,4,5,9\}$, and for $p\equiv 3\pmod4$ we need $p\pmod{11}\in\{2,6,7,8,10\}$. Solving these congruence pairs modulo $44$ (via the Chinese Remainder Theorem) yields the residue classes modulo $44$ of primes $p$ for which $(\tfrac{11}{p})=1$:
+
+% \[
+% p\equiv 1,5,9,25,37 \pmod{44} \quad\text{or}\quad
+% p\equiv 7,19,35,39,43 \pmod{44}.
+% \]
+
+% Equivalently, the ten congruence classes modulo $44$ are
+% \[
+% 1,5,7,9,19,25,35,37,39,43\pmod{44}.
+% \]
+% \end{enumerate}
+
+% \textbf{Exercise:} Characterize the primes $p$ for which a given integer $s$ is a quadratic residue modulo $p$ (use factorization, multiplicativity and Quadratic Reciprocity).
+
+% % End of L14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark} The following definitions (or results) are already proved in class or on previous ICA, Wbwk, Hmwk assignments, and contents of the textbook.
+\begin{define}{Theorem 4.4 (Euler's Criterion)}[thm:4.4][red]
+  Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
+  \[
+  \left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p,
+  \]
+  and, since both sides take values in $\{\pm1\}$, we may (and usually do) interpret this congruence as the equality
+  \[
+  \left(\frac{a}{p}\right) = a^{\frac{p-1}{2}} \pmod p \in\{1,-1\}.
+  \]
+  \begin{subprove}
+    If $\left(\frac{a}{p}\right)=1$, there exists $x_0$ with $x_0^2\equiv a\pmod p$. Then
+    \[
+    a^{\frac{p-1}{2}} \equiv (x_0^2)^{\frac{p-1}{2}} \equiv x_0^{\,p-1}\equiv 1\pmod p
+    \]
+    by Fermat's little theorem.
+    
+    If $\left(\frac{a}{p}\right)=-1$, the nonzero residues $\{1,2,\dots,p-1\}$ partition into $(p-1)/2$ pairs with product $a$: if $i^2\equiv a\pmod p$ for some $i$, then $a$ is a residue, contradiction. Hence $(p-1)!\equiv a^{\frac{p-1}{2}} \pmod p$. By Wilson's theorem, $(p-1)!\equiv -1\pmod p$, so $a^{\frac{p-1}{2}}\equiv -1\pmod p$.
+  \end{subprove}
+\end{define}
+\begin{define}{Lemma 4.7 (Gauss's Lemma)}[lem:4.7][red]
+  Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$ let $r_k$ be the least positive residue of $ka$ modulo $p$ (i.e., $r_k\in\{1,\dots,p-1\}$ and $r_k\equiv ka\pmod p$). Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
+  \[
+  \left(\frac{a}{p}\right)=(-1)^n.
+  \]
+  \begin{subprove}
+  Let $p$ be an odd prime and $a\in\mathbb{Z}$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$, let $r_k$ be the least positive residue of $ka$ modulo $p$. Partition into $\{r_1,\dots,r_n\}$ (those $r_k>p/2$) and $\{s_1,\dots,s_m\}$ (those $s_k<p/2$), so $n+m=(p-1)/2$.
+
+  Consider $p-r_1,\dots,p-r_n,s_1,\dots,s_m$. These lie in $\{1,\dots,(p-1)/2\}$ and are pairwise distinct modulo $p$: distinct $r_k,s_k$ by construction; if $p-r_i\equiv s_j\pmod p$, then $r_i+s_j\equiv 0\pmod p$ gives $(k_i+k_j)a\equiv 0\pmod p$, forcing $k_i+k_j=p$ (contradiction).
+
+  Therefore, these form a permutation of $\{1,\dots,(p-1)/2\}$:
+  \[
+  \prod_{i=1}^n (p-r_i)\cdot\prod_{j=1}^m s_j \equiv \left(\frac{p-1}{2}\right)! \pmod p.
+  \]
+  Since $p-r_i \equiv -r_i\pmod p$ and $\{r_1,\dots,r_n,s_1,\dots,s_m\}$ equals the least positive residues of $a,2a,\dots,\frac{p-1}{2}a$:
+  \[
+  (-1)^n a^{\frac{p-1}{2}}\left(\frac{p-1}{2}\right)! \equiv \left(\frac{p-1}{2}\right)! \pmod p.
+  \]
+  Canceling the factorial yields $a^{\frac{p-1}{2}}\equiv (-1)^n\pmod p$. By \nameref{thm:4.4}, $\left(\frac{a}{p}\right)=(-1)^n$.
+  \end{subprove}
+\end{define}
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\begin{enumerate}
+  \item Exercise Set 4.1, \#5. Find all incongruent solutions of each quadratic congruence below.
+  \begin{enumerate}
+    \item $x^2 \equiv 23 \pmod{77}$. \\
+    \quad[Hint: consider the congruences $x^2\equiv 23\pmod{7}$ and $x^2\equiv 23\pmod{11}$ and use the Chinese Remainder Theorem.]
+    \begin{subanswer}
+      Since $77=7\cdot 11$ with $\gcd(7,11)=1$, by the Chinese Remainder Theorem the congruence $x^2\equiv 23\pmod{77}$ is equivalent to the system $x^2\equiv 23\pmod{7}$ and $x^2\equiv 23\pmod{11}$.
+      \begin{itemize}
+        \item Modulo $7$, it is found that $23\equiv 2\pmod{7}$. The quadratic residues modulo $7$ are $1^2\equiv 1$, $2^2\equiv 4$, $3^2\equiv 2\pmod{7}$. Therefore, $x^2\equiv 2\pmod{7}$ has solutions $x\equiv \pm 3\equiv 3,4\pmod{7}$.
+        \item Modulo $11$, it is found that $23\equiv 1\pmod{11}$. Since $1\equiv 1^2\pmod{11}$, the congruence $x^2\equiv 1\pmod{11}$ has solutions $x\equiv \pm 1\equiv 1,10\pmod{11}$.
+      \end{itemize}
+      By the Chinese Remainder Theorem, $2\cdot 2=4$ incongruent solutions modulo $77$ exist.
+      \begin{align*}
+        x &\equiv 3\pmod{7},\quad x\equiv 1\pmod{11} \THEN x\equiv 10\pmod{77},\\
+        x &\equiv 3\pmod{7},\quad x\equiv 10\pmod{11} \THEN x\equiv 45\pmod{77},\\
+        x &\equiv 4\pmod{7},\quad x\equiv 1\pmod{11} \THEN x\equiv 32\pmod{77},\\
+        x &\equiv 4\pmod{7},\quad x\equiv 10\pmod{11} \THEN x\equiv 67\pmod{77}.
+      \end{align*}
+      Therefore, the solutions are $x\equiv 10,32,45,67\pmod{77}$.
+    \end{subanswer}
+    \item $x^2 \equiv 11 \pmod{39}$.
+    \begin{subanswer}
+      Since $39=3\cdot 13$ with $\gcd(3,13)=1$, the congruence $x^2\equiv 11\pmod{39}$ is equivalent to the system $x^2\equiv 11\pmod{3}$ and $x^2\equiv 11\pmod{13}$.
+      \begin{itemize}
+        \item Modulo $3$, it is found that $11\equiv 2\pmod{3}$. The quadratic residues modulo $3$ are $1^2\equiv 1\pmod{3}$ only, so $x^2\equiv 2\pmod{3}$ has no solutions.
+      \end{itemize}
+      Since one of the congruences has no solution, the original congruence $x^2\equiv 11\pmod{39}$ has no solutions.
+    \end{subanswer}
+    \item $x^2 \equiv 46 \pmod{105}$.
+    \begin{subanswer}
+      Since $105=3\cdot 5\cdot 7$, the congruence $x^2\equiv 46\pmod{105}$ is equivalent to the system $x^2\equiv 46\pmod{3}$, $x^2\equiv 46\pmod{5}$, and $x^2\equiv 46\pmod{7}$.
+      \begin{itemize}
+        \item Modulo $3$, $46\equiv 1\pmod{3}$, and $x^2\equiv 1\pmod{3}$ has solutions $x\equiv 1,2\pmod{3}$.
+        \item Modulo $5$, $46\equiv 1\pmod{5}$, and $x^2\equiv 1\pmod{5}$ has solutions $x\equiv 1,4\pmod{5}$.
+        \item Modulo $7$, $46\equiv 4\pmod{7}$, and $x^2\equiv 4\pmod{7}$ has solutions $x\equiv 2,5\pmod{7}$.
+      \end{itemize}
+      By the Chinese Remainder Theorem, $2\cdot 2\cdot 2=8$ incongruent solutions modulo $105$ exist.
+      \[
+      x\equiv 16, 19, 26, 44, 61, 79, 86, 89 \pmod{105}.
+      \]
+    \end{subanswer}
+  \end{enumerate}
+  \item Exercise Set 4.1, \#6. Let $p$ be an odd prime number. Prove that the $\dfrac{p-1}{2}$ quadratic residues modulo $p$ are congruent to
+  \[
+    1^2,2^2,3^2,\ldots,\left(\frac{p-1}{2}\right)^2
+  \]
+  modulo $p$.
+  \begin{define}{Proposition 4.3}[prop:4.3][red]
+  Let $p$ be an odd prime. There are exactly $\dfrac{p-1}{2}$ distinct
+  (incongruent) quadratic residues modulo $p$ among the nonzero residue
+  classes, and exactly $\dfrac{p-1}{2}$ quadratic non-residues among the
+  nonzero classes.
+  \begin{subprove}
+  The multiplicative group $(\mathbb{Z}/p\mathbb{Z})^\times$ has order $p-1$. For each $x\in(\mathbb{Z}/p\mathbb{Z})^\times$, the square $x^2$ is a nonzero quadratic residue. Since $x^2 = (-x)^2$, each nonzero quadratic residue is obtained from exactly two distinct elements. Hence, $(p-1)/2$ distinct nonzero quadratic residues exist. The remaining $(p-1)/2$ nonzero classes are quadratic non-residues.
+  \end{subprove}
+  \end{define}
+  
+  \begin{subprove}
+    Let $k$ be an integer with $1\leq k\leq \frac{p-1}{2}$. Since $k\in\{1,2,\ldots,p-1\}$ and $p$ does not divide $k$, the value $k^2$ is a quadratic residue modulo $p$.
+    
+    It is shown that if $k_1,k_2\in\{1,2,\ldots,\frac{p-1}{2}\}$ with $k_1\neq k_2$, then $k_1^2\not\equiv k_2^2\pmod{p}$. For if $k_1^2\equiv k_2^2\pmod{p}$, then $p\mid(k_1-k_2)(k_1+k_2)$. Since $0<k_1+k_2<p$, it is concluded that $p\mid(k_1-k_2)$. But $|k_1-k_2|\leq\frac{p-1}{2}<p$, hence $k_1=k_2$, a contradiction.
+    
+    Therefore, the $(p-1)/2$ values $1^2,2^2,\ldots,\left(\frac{p-1}{2}\right)^2$ are all distinct modulo $p$ and are quadratic residues. By \nameref{prop:4.3}, exactly $(p-1)/2$ quadratic residues modulo $p$ exist. Hence, these are all the quadratic residues.
+  \end{subprove}
+
+
+  \newpage
+  \item Exercise Set 4.1, \#7.\\
+  \textbf{Note} In this question one may use the standard formulae for $\sum_{j=1}^n j^2$ and $\sum_{j=1}^n j^4$ without proof.
+  \begin{enumerate}
+    \item Let $p$ be a prime with $p>3$. Prove that the sum of the quadratic residues modulo $p$ is divisible by $p$.
+    \begin{subprove}
+      The sum of quadratic residues is $S_{QR} = \sum_{j=1}^{(p-1)/2} j^2$.
+      Let $n = (p-1)/2$. The sum is $\frac{n(n+1)(2n+1)}{6}$.
+      Since $n+1 = (p+1)/2$ and $2n+1 = p$, this becomes
+      \[
+        S_{QR} = \frac{\left(\frac{p-1}{2}\right)\left(\frac{p+1}{2}\right)p}{6} = \frac{p(p^2-1)}{24}.
+      \]
+      To prove divisibility by $p$, it must be shown that $\frac{p^2-1}{24}$ is an integer.
+      Since $p$ is a prime $> 3$, $p$ is coprime to 2 and 3.
+      \begin{itemize}
+          \item $p$ is odd, then $p-1$ and $p+1$ are consecutive evens, then $(p-1)(p+1) = p^2-1$ is divisible by 8.
+          \item $p \not\equiv 0 \pmod 3$, then $p^2 \equiv 1 \pmod 3$, then $p^2-1$ is divisible by 3.
+      \end{itemize}
+      Since $\gcd(3, 8)=1$, $p^2-1$ is divisible by $3 \cdot 8 = 24$.\vspace*{10px}\\
+      Therefore, $S_{QR} = p \cdot (\text{integer})$, so $S_{QR} \equiv 0 \pmod p$.
+    \end{subprove}
+    \item Let $p$ be a prime with $p>5$. Prove that the sum of the squares of the quadratic non-residues modulo $p$ is divisible by $p$.
+    \begin{subprove}
+      Let $S_{ALL} = \sum_{j=1}^{p-1} j^2$, $S_{QR} = \sum_{j=1}^{(p-1)/2} (j^2)^2$, and $S_{QNR} = S_{ALL} - S_{QR}$.
+      The goal is to prove $S_{QNR} \equiv 0 \pmod p$. 
+      This is achieved by showing $S_{ALL} \equiv 0 \pmod p$ and $S_{QR} \equiv 0 \pmod p$.
+      \[
+        S_{ALL} = \frac{(p-1)p(2p-1)}{6} = p \cdot \left(\frac{(p-1)(2p-1)}{6}\right).
+      \]
+      Since $p>5$, $p$ is prime to 6. $\frac{(p-1)(2p-1)}{6}$ is an integer, so $S_{ALL} \equiv 0 \pmod p$. Now,
+      Let $n = (p-1)/2$. Then, $S_{QR} = \sum_{j=1}^{n} j^4 = \frac{n(n+1)(2n+1)(3n^2+3n-1)}{30}$.
+      Substituting $2n+1 = p$
+      \[
+        S_{QR} = p \cdot \left( \frac{n(n+1)(3n^2+3n-1)}{30} \right) = p \cdot \left( \frac{(p^2-1)(3p^2-7)}{120} \right).
+      \]
+      It must be shown that $\frac{(p^2-1)(3p^2-7)}{120}$ is an integer.
+      Since $p>5$, $p$ is prime to 2, 3, and 5.
+      \begin{itemize}
+        \item By part (a), $p^2-1$ is divisible by 24.
+        \item By Fermat's Little Theorem, $p^2 \equiv \pm 1 \pmod 5$.
+        \begin{itemize}
+          \item If $p^2 \equiv 1 \pmod 5$, then $p^2-1$ is divisible by 5.
+          \item If $p^2 \equiv -1 \pmod 5$, then $3p^2-7 \equiv 3(-1)-7 = -10 \equiv 0 \pmod 5$.
+        \end{itemize}
+        In either case, the numerator is divisible by 5.
+      \end{itemize}
+      Since $\gcd(24, 5)=1$, the numerator is divisible by $24 \cdot 5 = 120$.
+      Thus, $S_{QR} = p \cdot (\text{integer})$, so $S_{QR} \equiv 0 \pmod p$.
+      Therefore, $S_{QNR} = S_{ALL} - S_{QR} \equiv 0 - 0 \equiv 0 \pmod p$.
+    \end{subprove}
+  \end{enumerate}
+  
+  \newpage
+  \item Exercise Set 4.2, \#22. Let $p$ be a prime with $p\equiv 1\pmod{4}$. Prove that
+  \[
+    \sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right)=0.
+  \]
+  \begin{define}{Theorem 4.6 (Value of $(-1/p)$)}[thm:4.6][red]
+  Let $p$ be an odd prime. Then
+  \[
+  \left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=
+  \begin{cases}
+  1, & \text{if } p\equiv 1\pmod 4,\\[4pt]
+  -1,& \text{if } p\equiv 3\pmod 4.
+  \end{cases}
+  \]
+  \begin{subprove}
+  By \nameref{thm:4.4} with $a=-1$:
+  \[
+  \left(\frac{-1}{p}\right)\equiv (-1)^{\frac{p-1}{2}}\pmod p.
+  \]
+  Both sides lie in $\{\pm1\}$, hence equality holds. Writing $p=4k+1$ or $p=4k+3$ gives the stated cases.
+  \end{subprove}
+  \end{define}
+  \begin{subprove}
+    Let $S = \sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right)$.
+    
+    The sum over all non-zero residue classes is known to be zero, as $(p-1)/2$ quadratic residues (each contributing $+1$) and $(p-1)/2$ non-residues (each contributing $-1$) exist.
+    \[
+      \sum_{a=1}^{p-1}\left(\frac{a}{p}\right) = \sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right) + \sum_{a=(p+1)/2}^{p-1}\left(\frac{a}{p}\right) = 0.
+    \]
+    Let $S_1 = \sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right)$ and $S_2 = \sum_{a=(p+1)/2}^{p-1}\left(\frac{a}{p}\right)$. Thus, $S_1 + S_2 = 0$.
+
+    By \nameref{thm:4.6}, since $p\equiv 1\pmod{4}$, it is found that $\left(\frac{-1}{p}\right)=1$.
+    
+    Using the properties of the Legendre symbol
+    \[
+      \left(\frac{a}{p}\right) = \left(\frac{-1 \cdot -a}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{-a}{p}\right) = (1) \cdot \left(\frac{p-a}{p}\right) = \left(\frac{p-a}{p}\right).
+    \]
+    The map $a \mapsto p-a$ is a bijection from the set $\{1, \ldots, \frac{p-1}{2}\}$ to the set $\{\frac{p+1}{2}, \ldots, p-1\}$. Since $\left(\frac{a}{p}\right) = \left(\frac{p-a}{p}\right)$ for each $a$,
+    \[
+      S_1 = \sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right) = \sum_{a=1}^{(p-1)/2}\left(\frac{p-a}{p}\right) = \sum_{b=(p+1)/2}^{p-1}\left(\frac{b}{p}\right) = S_2.
+    \]
+    A system of two equations is established.
+    \begin{enumerate}
+        \item $S_1 + S_2 = 0$
+        \item $S_1 = S_2$
+    \end{enumerate}
+    Therefore, $S_1 = 0$, and so $\sum_{a=1}^{(p-1)/2}\left(\frac{a}{p}\right)=0$.
+  \end{subprove}
+
+
+
+
+  \newpage
+  \item Exercise Set 4.2, \#24.
+  \begin{enumerate}
+    \item Let $p$ be a prime number with $p \geq 7$. Prove that at least one of $2$, 
+    $5$, and $10$ is a quadratic residue modulo $p$.
+    \begin{subprove}
+      By multiplicativity of the Legendre symbol, $\left(\frac{10}{p}\right) = \left(\frac{2}{p}\right)\left(\frac{5}{p}\right)$. If both $\left(\frac{2}{p}\right) = -1$ and $\left(\frac{5}{p}\right) = -1$, then $\left(\frac{10}{p}\right) = (-1)(-1) = 1$. Therefore, at least one of $2$, $5$, and $10$ is a quadratic residue modulo $p$.
+    \end{subprove}
+    \item Could exactly two of $2$, $5$, and $10$ be quadratic residues modulo $p$ 
+    in part (a)? Why or why not?
+    \begin{subanswer}
+      \textbf{No}, this is not possible. The Legendre symbols for $2$, $5$, and $10$ are multiplicatively related. $\left(\frac{2}{p}\right)\left(\frac{5}{p}\right) = \left(\frac{10}{p}\right)$.
+      
+      Consider the product of all three symbols
+      \[
+      \left(\frac{2}{p}\right)\left(\frac{5}{p}\right)\left(\frac{10}{p}\right) = \left(\frac{10}{p}\right)\left(\frac{10}{p}\right) = \left(\frac{10}{p}\right)^2.
+      \]
+      Since $p \geq 7$, $p$ does not divide $10$, so $\left(\frac{10}{p}\right) = \pm 1$. In either case, $\left(\frac{10}{p}\right)^2 = 1$.
+      
+      For the product of these three $\pm 1$ values to be $1$, an even number of $-1$s (zero or two) must exist.
+      \begin{itemize}
+      \item If zero $-1$s exist, all three values are $1$. This gives \textbf{three} quadratic residues.
+      \item If two $-1$s exist, one value is $1$. This gives \textbf{one} quadratic residue.
+      \end{itemize}
+      It is impossible to have exactly two $+1$ values (quadratic residues), as this would require one $-1$ value, making the product $-1$. Therefore, the number of quadratic residues among $\{2, 5, 10\}$ must be odd (one or three), never two.
+    \end{subanswer}
+    \item Let $p$ be a prime number with $p \geq 7$. Prove that at least two consecutive quadratic residues modulo $p$ exist. [Hint: use part (a).]
+    \begin{subprove}
+      By part (a), at least one of $2$, $5$, and $10$ is a quadratic residue.
+      \begin{itemize}
+        \item If $2$ is a quadratic residue, then $1^2 = 1$ and $2$ are consecutive quadratic residues.
+        \item If $5$ is a quadratic residue, then there exists $x$ with $x^2 \equiv 5\pmod{p}$. Consider $y$ such that $y^2 \equiv 4 \equiv 2^2\pmod{p}$. Since $4$ and $5$ are consecutive integers, they represent consecutive quadratic residues.
+        \item If $10$ is a quadratic residue, then $10 \equiv 3^2 \pmod{p}$ for some $p\not\equiv 3\pmod{10}$ or through reciprocity. Then, $9 \equiv 3^2$ and $10$ are consecutive quadratic residues.
+      \end{itemize}
+      Therefore, at least two consecutive quadratic residues modulo $p$ exist.
+    \end{subprove}
+  \end{enumerate}
+
+
+  \newpage
+  \item Exercise Set 4.2, \#26. Prove that infinitely many prime numbers expressible in the form $4 n+1$ where $n$ is a positive integer exist. \newline
+  [Hint: Assume, by way of contradiction, that only finitely many such prime numbers $p_1, \ldots, p_r$ exist. Consider the positive integer $4 p_1^2 p_2^2 \cdots p_r^2+1$ and use \nameref{thm:4.6}.]
+  \begin{subprove}
+    Suppose that only finitely many primes of the form $4n+1$ exist for the sake of contradiction. 
+    Let these be $p_1, p_2, \ldots, p_r$. Consider $N = 4p_1^2p_2^2\cdots p_r^2 + 1$.
+    Since $N$ is odd and greater than $1$, it has an odd prime divisor $q$. Since $N\equiv 1\pmod{4}$, 
+    any odd divisor of $N$ satisfies $q\equiv 1\pmod{4}$ or $q\equiv 3\pmod{4}$.
+    If $q\equiv 3\pmod{4}$, then by \nameref{thm:4.6}, $\left(\frac{-1}{q}\right) = -1$. 
+    However, it is found that $4p_1^2\cdots p_r^2 \equiv -1\pmod{q}$, 
+    so $(-1)\equiv (2p_1\cdots p_r)^2\pmod{q}$, 
+    which gives $\left(\frac{-1}{q}\right) = 1$, a contradiction.\vspace*{10px}\\
+    Thus, $q\equiv 1\pmod{4}$, and so $q$ is a prime of the form $4n+1$. 
+    However, $q$ does not divide any $p_i$ (since $N\equiv 1\pmod{p_i}$), and 
+    $q$ is not among $p_1, \ldots, p_r$. This contradicts the assumption 
+    that only finitely many such primes exist.\vspace*{10px}\\
+    Therefore, by contradiction, infinitely many 
+    primes of the form $4n+1$ exist.
+  \end{subprove}
+  \item Exercise Set 4.3, \#34. Let $p$ and $q$ be odd prime numbers with 
+  $p=q+4 a$ for some $a \in \mathbb{Z}$. Prove that
+  $$
+  \left(\frac{a}{p}\right)=\left(\frac{a}{q}\right).
+  $$
+  \begin{define}{Theorem 4.9 (Quadratic Reciprocity)}[thm:4.9][red]
+  Let $p$ and $q$ be distinct odd primes. Then
+  \[
+  \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}.
+  \]
+  Equivalently,
+  \[
+  \left(\frac{p}{q}\right)=\left(\frac{q}{p}\right)\quad\text{unless }p\equiv q\equiv 3\pmod 4,
+  \]
+  in which case
+  \[
+  \left(\frac{p}{q}\right)=-\left(\frac{q}{p}\right).
+  \]
+  \end{define}
+  \begin{subprove}
+    Let the prime factorization of $a$ be $a = \sigma \cdot 2^k \cdot r_1 \cdot r_2 \cdots r_m$, where $\sigma = \pm 1$ is the sign of $a$, $k \ge 0$, and each $r_i$ is an odd prime.
+
+    By the multiplicative property of the Legendre symbol, it is found that
+    \[
+      \left(\frac{a}{p}\right) = \left(\frac{\sigma}{p}\right) \left(\frac{2}{p}\right)^k \prod_{i=1}^m \left(\frac{r_i}{p}\right)
+      \quad \text{and} \quad
+      \left(\frac{a}{q}\right) = \left(\frac{\sigma}{q}\right) \left(\frac{2}{q}\right)^k \prod_{i=1}^m \left(\frac{r_i}{q}\right).
+    \]
+    The proof is complete if it can be shown that each corresponding factor in these two products is equal.
+    \begin{enumerate}
+      \item 
+      If $a$ is negative, $\sigma = -1$. It must be shown that $\left(\frac{-1}{p}\right) = \left(\frac{-1}{q}\right)$.
+      It is given that $p = q + 4a$. This implies $p \equiv q \pmod 4$.
+      By \nameref{thm:4.6}, the value of $\left(\frac{-1}{p}\right)$ depends only on the prime's residue modulo 4. Since $p \equiv q \pmod 4$, they must have the same residue (either both $1$ or both $3$).
+      Therefore, $\left(\frac{-1}{p}\right) = \left(\frac{-1}{q}\right)$. (If $\sigma=1$, the factor is $1=1$).
+      \item  
+      If $a$ is even, $k > 0$. It must be shown that $\left(\frac{2}{p}\right) = \left(\frac{2}{q}\right)$.
+      Since $a$ is even, $a = 2m$ for some integer $m$.
+      The given equation is $p = q + 4a = q + 4(2m) = q + 8m$.
+      This implies $p \equiv q \pmod 8$.
+      The value of $\left(\frac{2}{p}\right)$ depends only on the prime's residue modulo 8 (it is $1$ if $p \equiv 1, 7 \pmod 8$ and $-1$ if $p \equiv 3, 5 \pmod 8$).
+      Since $p \equiv q \pmod 8$, they must have the same residue.
+      Therefore, $\left(\frac{2}{p}\right) = \left(\frac{2}{q}\right)$. (If $k=0$, the factor is $1=1$).
+    \end{enumerate}
+    It must be shown that $\left(\frac{r_i}{p}\right) = \left(\frac{r_i}{q}\right)$ for each odd prime factor $r_i$ of $a$.
+    By \nameref{thm:4.9}, the symbols can be flipped:
+    \[
+      \left(\frac{r_i}{p}\right) = \left(\frac{p}{r_i}\right) (-1)^{\frac{p-1}{2} \cdot \frac{r_i-1}{2}}
+    \]
+    \[
+      \left(\frac{r_i}{q}\right) = \left(\frac{q}{r_i}\right) (-1)^{\frac{q-1}{2} \cdot \frac{r_i-1}{2}}
+    \]
+    It must be shown that the expressions on the right-hand side are equal.
+    \begin{itemize}
+        \item 
+        It is given that $p = q + 4a$. Since $r_i$ is a factor of $a$, it is found that $a \equiv 0 \pmod{r_i}$.
+        Thus, $p = q + 4(0) \pmod{r_i}$, which means $p \equiv q \pmod{r_i}$.
+        By the periodicity of the Legendre symbol in its top argument, $\left(\frac{p}{r_i}\right) = \left(\frac{q}{r_i}\right)$.
+        \item 
+        By part (1), it is already shown that $p \equiv q \pmod 4$.
+        Therefore, $\frac{p-1}{2}$ and $\frac{q-1}{2}$ have the same parity.
+        Therefore, the exponents $\frac{p-1}{2} \cdot \frac{r_i-1}{2}$ and $\frac{q-1}{2} \cdot \frac{r_i-1}{2}$ have the same parity.
+        This implies $(-1)^{\frac{p-1}{2} \cdot \frac{r_i-1}{2}} = (-1)^{\frac{q-1}{2} \cdot \frac{r_i-1}{2}}$.
+    \end{itemize}
+    Since both parts of the right-hand side are equal for $p$ and $q$, it is found that $\left(\frac{r_i}{p}\right) = \left(\frac{r_i}{q}\right)$.
+    It has been shown that $\left(\frac{\sigma}{p}\right) = \left(\frac{\sigma}{q}\right)$, $\left(\frac{2}{p}\right)^k = \left(\frac{2}{q}\right)^k$, and $\left(\frac{r_i}{p}\right) = \left(\frac{r_i}{q}\right)$ for all $i$.
+    Since all corresponding factors are equal, the products must be equal.
+    Therefore, $\left(\frac{a}{p}\right)=\left(\frac{a}{q}\right)$.
+  \end{subprove}
+
+
+
+
+
+  \newpage
+  \item Exercise Set 4.3, \#35.
+  Let $p$ be an odd prime number (with $p>3$ in parts (b) and (c)). 
+  Prove the following statements.
+  \begin{define}{Theorem 4.8 (Value of $(2/p)$)}[thm:4.8][red]
+  Let $p$ be an odd prime. Then
+  \[
+  \left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}=
+  \begin{cases}
+  1, & \text{if } p\equiv 1,7\pmod 8,\\[4pt]
+  -1,& \text{if } p\equiv 3,5\pmod 8.
+  \end{cases}
+  \]
+  \begin{subprove}
+  By \nameref{lem:4.7}, let $n$ be the number of least positive residues of $2,2\cdot2,3\cdot2,\dots,\frac{p-1}{2}\cdot2$ greater than $p/2$. Then, $\left(\frac{2}{p}\right)=(-1)^n$.
+  For $1\le k\le (p-1)/2$, $2k<p/2$ iff $k<p/4$, hence exactly $\lfloor p/4\rfloor$ produce residues $<p/2$. Therefore, $n = \frac{p-1}{2} - \lfloor p/4\rfloor$.
+  The parity of $n$ is verified by computing $\frac{p-1}{2}-\lfloor\frac{p}{4}\rfloor \equiv \frac{p^2-1}{8}\pmod 2$ for $p\equiv 1,3,5,7\pmod 8$.
+  \begin{itemize}
+  \item $p\equiv 1\pmod 8$: write $p=8k+1$. Then
+  \[
+  \frac{p-1}{2}-\left\lfloor\frac{p}{4}\right\rfloor = 4k - \lfloor 2k+\tfrac14\rfloor =4k-2k=2k\equiv 0\pmod2,
+  \]
+  and
+  \[
+  \frac{p^2-1}{8}=\frac{(8k+1)^2-1}{8}=8k^2+2k\equiv 0\pmod2.
+  \]
+  \item $p\equiv 3\pmod 8$: write $p=8k+3$. Then
+  \[
+  \frac{p-1}{2}-\left\lfloor\frac{p}{4}\right\rfloor =4k+1 - \lfloor 2k+\tfrac34\rfloor =4k+1-(2k+0)=2k+1\equiv 1\pmod2,
+  \]
+  and
+  \[
+  \frac{p^2-1}{8}=\frac{(8k+3)^2-1}{8}=8k^2+6k+1\equiv 1\pmod2.
+  \]
+  \item $p\equiv 5\pmod 8$: write $p=8k+5$. Then
+  \[
+  \frac{p-1}{2}-\left\lfloor\frac{p}{4}\right\rfloor =4k+2 - \lfloor 2k+1+\tfrac14\rfloor =4k+2-(2k+1)=2k+1\equiv 1\pmod2,
+  \]
+  and
+  \[
+  \frac{p^2-1}{8}=\frac{(8k+5)^2-1}{8}=8k^2+10k+3\equiv 1\pmod2.
+  \]
+  \item $p\equiv 7\pmod 8$: write $p=8k+7$. Then
+  \[
+  \frac{p-1}{2}-\left\lfloor\frac{p}{4}\right\rfloor =4k+3 - \lfloor 2k+1+\tfrac34\rfloor =4k+3-(2k+1)=2k+2\equiv 0\pmod2,
+  \]
+  and
+  \[
+  \frac{p^2-1}{8}=\frac{(8k+7)^2-1}{8}=8k^2+14k+6\equiv 0\pmod2.
+  \]
+  \end{itemize}
+  Hence, $\left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}$ for all odd primes $p$.
+  \end{subprove}
+  \end{define}
+  \begin{enumerate}
+    \item $\left(\frac{-2}{p}\right)=1$ if and only if $p \equiv 1,3\pmod{8}$.
+    \begin{subprove}
+      By multiplicativity, $\left(\frac{-2}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{2}{p}\right)$.
+      By \nameref{thm:4.6}, $\left(\frac{-1}{p}\right) = 1$ if $p\equiv 1\pmod{4}$ and $-1$ if $p\equiv 3\pmod{4}$.
+      By \nameref{thm:4.8}, $\left(\frac{2}{p}\right) = 1$ if $p\equiv 1,7\pmod{8}$ and $-1$ if $p\equiv 3,5\pmod{8}$.
+      Therefore, $\left(\frac{-2}{p}\right) = 1$ precisely when $p\equiv 1\pmod{8}$ (both symbols are $1$) or $p\equiv 3\pmod{8}$ (both symbols are $-1$).
+    \end{subprove}
+    \item $\left(\frac{3}{p}\right)=1$ if and only if $p \equiv \pm 1\pmod{12}$.
+    \begin{subprove}
+      By \nameref{thm:4.9}, $\left(\frac{3}{p}\right) = \left(\frac{p}{3}\right)$ since $\frac{3-1}{2} = 1$ is odd, 
+      and $\frac{p-1}{2}$ is odd when $p\equiv 1\pmod{4}$ and even when $p\equiv 3\pmod{4}$.
+      More precisely, $\left(\frac{3}{p}\right)\left(\frac{p}{3}\right) = (-1)^{\frac{3-1}{2}\cdot\frac{p-1}{2}} = (-1)^{\frac{p-1}{2}}$. 
+      Therefore, $\left(\frac{3}{p}\right) = (-1)^{\frac{p-1}{2}}\left(\frac{p}{3}\right)$.
+      The quadratic residues modulo $3$ are $1$, and the non-residues are $2$. So $\left(\frac{1}{3}\right) = 1$ and $\left(\frac{2}{3}\right) = -1$.
+      \begin{itemize}
+        \item If $p\equiv 1\pmod{3}$, then $\left(\frac{p}{3}\right) = 1$ and $\left(\frac{3}{p}\right) = (-1)^{\frac{p-1}{2}}$.
+        \item If $p\equiv 2\pmod{3}$, then $\left(\frac{p}{3}\right) = -1$ and $\left(\frac{3}{p}\right) = -(-1)^{\frac{p-1}{2}}$.
+      \end{itemize}
+      Combining with $p\equiv 1$ or $3\pmod{4}$ yields $\left(\frac{3}{p}\right) = 1$ if and only if $p\equiv 1,11\pmod{12}$, i.e., $p\equiv \pm 1\pmod{12}$.
+    \end{subprove}
+    \item $\left(\frac{-3}{p}\right)=1$ if and only if $p \equiv 1\pmod{6}$.
+    \begin{subprove}
+      By multiplicativity, $\left(\frac{-3}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{3}{p}\right)$.
+      By \nameref{thm:4.6}, it is known that $\left(\frac{-1}{p}\right) = (-1)^{\frac{p-1}{2}}$.
+      By the proof of part (b), it is known that $\left(\frac{3}{p}\right) = (-1)^{\frac{p-1}{2}}\left(\frac{p}{3}\right)$.
+      Substitute these into the product
+      \[
+      \left(\frac{-3}{p}\right) = \left( (-1)^{\frac{p-1}{2}} \right) \cdot \left( (-1)^{\frac{p-1}{2}}\left(\frac{p}{3}\right) \right)
+      \]
+      \[
+      \left(\frac{-3}{p}\right) = \left( (-1)^{\frac{p-1}{2}} \right)^2 \left(\frac{p}{3}\right)
+      \]
+      Since $\left( (-1)^{\frac{p-1}{2}} \right)^2 = (-1)^{p-1} = 1$ (as $p-1$ is even), the expression simplifies to
+      \[
+      \left(\frac{-3}{p}\right) = \left(\frac{p}{3}\right).
+      \]
+      The condition $\left(\frac{-3}{p}\right) = 1$ is equivalent to $\left(\frac{p}{3}\right) = 1$ for all primes $p>3$.
+      The Legendre symbol $\left(\frac{p}{3}\right) = 1$ if and only if $p \equiv 1 \pmod 3$.
+      Since $p$ is a prime greater than $3$, it cannot be $p \equiv 0 \pmod 3$. The only other possibility is $p \equiv 2 \pmod 3$ (which is $p \equiv 5 \pmod 6$).
+      Thus, the condition $p \equiv 1 \pmod 3$ is identical to the condition $p \equiv 1 \pmod 6$ for all primes $p>3$.\vspace*{10px}\\
+      Therefore, $\left(\frac{-3}{p}\right) = 1$ if and only if $p \equiv 1\pmod 6$.
+    \end{subprove}
+  \end{enumerate}
+\end{enumerate}
