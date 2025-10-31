@@ -11,6 +11,9 @@
 \usepackage{kotex}          % For Korean language support
 \usepackage{forloop}        % For looping pages
 
+
+
+
 % 2. FORM FIELD DEFINITION
 % Define a custom command \tf for text fields
 % Usage: \tf{<base_name>}{<width>}{<page_id>}
@@ -32,7 +35,7 @@
 \newcounter{loopcounter}
 
 % The \begin{Form} environment contains all form fields
-\begin{Form}
+\begin{Form}[NeedAppearances=true]
 
 % Set table properties
 \setlength{\extrarowheight}{12pt} % Add padding to rows
@@ -42,7 +45,7 @@
 % We loop from 1 to 3 (n=3 pages). 
 % To change the number of pages, change the '4' (which means 'less than 4').
 % For 5 pages, use: \value{loopcounter} < 6
-\forloop{loopcounter}{1}{\value{loopcounter} < 50}{%
+\forloop{loopcounter}{1}{\value{loopcounter} < 11}{%
 
 % --- Add visible page number ---
 \noindent % Prevent indentation
@@ -158,5 +161,6 @@
 % End of document
 
 % LuaLaTeX compilation command:
+% cd etc && 
 % lualatex -shell-escape -synctex=1 -interaction=nonstopmode form.tex
 % Note: Ensure that your LaTeX editor is set to compile with LuaLaTeX to properly render Korean characters in form fields.
