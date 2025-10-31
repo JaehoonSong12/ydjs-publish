@@ -1,0 +1,162 @@
+% This document is compiled with LuaLaTeX to support Korean in form fields.
+% It uses the 'kotex' package for Korean language support.
+\documentclass[10pt, a4paper, landscape]{article}
+
+% 1. PACKAGES
+% \usepackage[T1]{fontenc}  % REMOVED: Not needed for LuaLaTeX
+% \usepackage{lmodern}      % REMOVED: Not needed for LuaLaTeX
+\usepackage[landscape, margin=1cm]{geometry} % Page layout (landscape, small margins)
+\usepackage{array}          % For \extrarowheight
+\usepackage[unicode]{hyperref} % MOVED: Load hyperref *before* kotex for font setup
+\usepackage{kotex}          % For Korean language support
+\usepackage{forloop}        % For looping pages
+
+% 2. FORM FIELD DEFINITION
+% Define a custom command \tf for text fields
+% Usage: \tf{<base_name>}{<width>}{<page_id>}
+% This creates a standard, bordered text field with a unique name.
+\newcommand{\tf}[3]{%
+  \TextField[name=#1_#3, width=#2, height=10pt, charsize=8pt, bordercolor={0.5 0.5 0.5}]{}%
+}
+
+% We define a command \tfrow for a single data row to avoid repetition
+% \tfrow{<row_id>}{<page_id>}
+\newcommand{\tfrow}[2]{
+  \tf{date_#1}{2.0cm}{#2} & \tf{item_#1}{3.0cm}{#2} & \tf{spec_#1}{2.0cm}{#2} & \tf{qty_#1}{2.0cm}{#2} & \tf{unit_#1}{2.0cm}{#2} & \tf{supply_#1}{2.6cm}{#2} & \tf{tax_#1}{2.6cm}{#2}
+}
+
+% 3. DOCUMENT BODY
+\begin{document}
+
+% Create a counter for our page loop
+\newcounter{loopcounter}
+
+% The \begin{Form} environment contains all form fields
+\begin{Form}
+
+% Set table properties
+\setlength{\extrarowheight}{12pt} % Add padding to rows
+\setlength{\tabcolsep}{4pt}       % Reduce space between columns
+
+% --- PAGE LOOP START ---
+% We loop from 1 to 3 (n=3 pages). 
+% To change the number of pages, change the '4' (which means 'less than 4').
+% For 5 pages, use: \value{loopcounter} < 6
+\forloop{loopcounter}{1}{\value{loopcounter} < 50}{%
+
+% --- Add visible page number ---
+\noindent % Prevent indentation
+\parbox{\linewidth}{\raggedleft Page \theloopcounter}
+\vspace{2pt} % Add a little space before the table
+
+% We use \noindent to prevent indentation before the table
+\noindent
+% We use a 'tabular' environment with manually defined column widths
+% to precisely match the layout of the image.
+% Total 7 columns:
+% C1: 2.2cm | C2: 3.2cm | C3: 2.2cm | C4: 2.2cm | C5: 2.2cm | C6: 2.8cm | C7: 2.8cm
+\begin{tabular}{|p{2.2cm}|p{3.2cm}|p{2.2cm}|p{2.2cm}|p{2.2cm}|p{2.8cm}|p{2.8cm}|}
+\hline
+
+% --- ROW 1: Date and Registration No. ---
+% Spans C1-C3
+\multicolumn{3}{|p{7.6cm}|}{ % 2.2+3.2+2.2 + 4*tabcolsep
+  \tf{year}{1.2cm}{\theloopcounter} 년 \tf{month}{1.2cm}{\theloopcounter} 월 \tf{day}{1.2cm}{\theloopcounter} 일
+} &
+% Spans C4-C5
+\multicolumn{2}{c|}{등록번호} &
+% Spans C6-C7
+\multicolumn{2}{p{5.6cm}|}{ \tf{reg_no_1}{5.4cm}{\theloopcounter} } \\
+\hline
+
+% --- ROW 2: Recipient, Company, Name ---
+\multicolumn{3}{|c|}{ \tf{attn_name}{3.6cm}{\theloopcounter} 귀하 } & % C1
+\multicolumn{1}{c|}{상호} & % C2
+\multicolumn{1}{p{2.2cm}|}{ \tf{sender_co}{2.0cm}{\theloopcounter} } & % C3
+\multicolumn{1}{c|}{성명} & % C4
+% Spans C5-C7
+\multicolumn{1}{p{2.6cm}|}{ \tf{sender_name}{2.6cm}{\theloopcounter} } \\
+\hline
+
+% --- ROW 3: Calculation note, Address ---
+% Spans C1-C3
+\multicolumn{3}{|c|}{아래와 같이 계산합니다} &
+% Spans C4-C5
+\multicolumn{2}{c|}{사업장 주소} &
+% Spans C6-C7
+\multicolumn{2}{p{5.6cm}|}{ \tf{sender_addr}{5.4cm}{\theloopcounter} } \\
+\hline
+
+% --- ROW 4: Biz Type, Biz Item ---
+\multicolumn{3}{|c|}{아래와 같이 계산합니다} & % C1-C3 (Empty)
+\multicolumn{1}{c|}{업태} & % C4
+\multicolumn{1}{p{2.2cm}|}{ \tf{sender_biz_type}{2.0cm}{\theloopcounter} } & % C5
+\multicolumn{1}{c|}{종목} & % C6
+\multicolumn{1}{p{2.8cm}|}{ \tf{sender_biz_item}{2.6cm}{\theloopcounter} } \\ % C7
+\hline
+
+% --- ROW 5: Total Amount, Market Price header ---
+\multicolumn{1}{|c|}{합계금액} & % C1
+% Spans C2-C3
+\multicolumn{2}{p{5.4cm}|}{ \tf{total_amount_text}{5.2cm}{\theloopcounter} } &
+% Spans C4-C7
+\multicolumn{1}{c|}{시세} & 
+\multicolumn{3}{p{5.4cm}|}{ \tf{total_amount}{5.2cm}{\theloopcounter} }  \\
+\hline
+
+% --- ROW 6: Main Table Headers ---
+\multicolumn{1}{|c|}{월일} &     % C1
+\multicolumn{1}{c|}{품목} &     % C2
+\multicolumn{1}{c|}{규격} &     % C3
+\multicolumn{1}{c|}{수량} &     % C4
+\multicolumn{1}{c|}{단가} &     % C5
+\multicolumn{1}{c|}{공급가액} & % C6
+\multicolumn{1}{c|}{세액} \\      % C7
+\hline
+
+% --- Data Rows (x12) ---
+% Generate the 12 data rows
+\tfrow{1}{\theloopcounter} \\ \hline
+\tfrow{2}{\theloopcounter} \\ \hline
+\tfrow{3}{\theloopcounter} \\ \hline
+\tfrow{4}{\theloopcounter} \\ \hline
+\tfrow{5}{\theloopcounter} \\ \hline
+\tfrow{6}{\theloopcounter} \\ \hline
+\tfrow{7}{\theloopcounter} \\ \hline
+\tfrow{8}{\theloopcounter} \\ \hline
+\tfrow{9}{\theloopcounter} \\ \hline
+\tfrow{10}{\theloopcounter} \\ \hline
+\tfrow{11}{\theloopcounter} \\ \hline
+\tfrow{12}{\theloopcounter} \\ \hline
+
+% --- Subtotal Row ---
+% Spans C1-C5
+\multicolumn{3}{|c|}{합계} &
+\multicolumn{3}{|c|}{\tf{total_supply}{6cm}{\theloopcounter}} &
+\tf{total_tax}{2.6cm}{\theloopcounter} \\   % C7
+\hline
+
+% --- Footer Row ---
+\multicolumn{1}{|c|}{입금} & % C1
+\multicolumn{1}{p{3.2cm}|}{ \tf{f_deposit}{3.0cm}{\theloopcounter} } & % C2
+\multicolumn{1}{c|}{잔금} & % C3
+\multicolumn{1}{p{2.2cm}|}{ \tf{f_balance}{2.0cm}{\theloopcounter} } & % C4
+\multicolumn{1}{c|}{연수자} & % C5
+% Spans C6-C7
+\multicolumn{2}{p{5.6cm}|}{ \tf{f_collector}{5.4cm}{\theloopcounter} } \\
+\hline
+
+\end{tabular} % End of the table
+
+\clearpage % Force a new page for the next loop iteration
+
+}% --- PAGE LOOP END ---
+
+\end{Form} % End of the form
+\end{document}
+
+% End of document
+
+% LuaLaTeX compilation command:
+% lualatex -shell-escape -synctex=1 -interaction=nonstopmode form.tex
+% Note: Ensure that your LaTeX editor is set to compile with LuaLaTeX to properly render Korean characters in form fields.
