@@ -1,0 +1,789 @@
+\newpage\handout
+{\textsc{Math 2106: Foundations of Mathematical Proof}}{\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA 4.0 license}}
+{Assignment 1: WeBWorK}
+{Author: \href{\HandoutAuthorUrl}{\HandoutAuthor}}{Generated on \generatedOn}
+{Proof1}
+\input{preface.tex}
+\newpage
+
+
+% \tableofcontents
+% \newpage
+
+
+
+\input{reference-logic.tex}
+\newpage
+
+
+
+
+
+\begin{enumerate}
+
+
+  \item \textbf{Propositions --- Identification} (10 points)\\
+  A proposition is a (logical) statement that is either true or false, but not both.\\
+  Select all propositions from the following sentences.
+  \begin{enumerate}[label=\Alph*.]
+    \item This statement is false.\\
+    \begin{subanswer}
+      Not a proposition. (Liar paradox; no well-defined classical truth value.)
+    \end{subanswer}
+
+    \item Is $P=NP$?\\
+    \begin{subanswer}
+      Not a proposition. (Interrogative/question, not a declarative statement.)
+    \end{subanswer}
+
+    \item $2^2 \neq 4$\\
+    \begin{subanswer}
+      Proposition; False.
+    \end{subanswer}
+
+    \item $1>2$\\
+    \begin{subanswer}
+      Proposition; False.
+    \end{subanswer}
+
+    \item $x^3$ is odd.\\
+    \begin{subanswer}
+      Not a proposition. (Contains free variable $x$; a predicate unless quantified.)
+    \end{subanswer}
+
+    \item 1729 is the smallest number which is expressible as the sum of two cubes in two different ways.\\
+    \begin{subanswer}
+      Proposition; True. (Ramanujan's property of 1729.)
+    \end{subanswer}
+
+    \item Divide 1729 by 91.\\
+    \begin{subanswer}
+      Not a proposition. (Imperative/command, not declarative.)
+    \end{subanswer}
+
+    \item The universe is expanding.\\
+    \begin{subanswer}
+      Proposition; True (empirical claim accepted by current evidence).
+    \end{subanswer}
+
+    \item The Poincare conjecture is true.\\
+    \begin{subanswer}
+      Proposition; True (now proven).
+    \end{subanswer}
+
+    \item Pigs can fly.\\
+    \begin{subanswer}
+      Proposition; False (false under ordinary biological assumptions).
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+  \newpage
+
+
+  \item \textbf{Logical Operators --- Truth Evaluation} (10 points)\\
+  Logical operators, such as negation, conjunction, disjunction, and 
+  implication are used to form more complicated propositions from simpler 
+  ones. With the exception of tautologies and contradictions 
+  (see Wbwk2 assignment), the truth value of a compound proposition 
+  depends on the truth value of its constituent propositions.\\
+
+  Select all true statements from the following propositions.
+  \begin{enumerate}[label=\Alph*.]
+    \item Either it will rain tomorrow or it won't.\\
+    \begin{subanswer}
+      True. (Law of excluded middle for the proposition "it will rain tomorrow".)
+    \end{subanswer}
+
+    \item If dark matter exists, then $1+2=3$.\\
+    \begin{subanswer}
+      True. (Material implication with true consequent.)
+    \end{subanswer}
+
+    \item If $1+1=3$, then $2+2=4$.\\
+    \begin{subanswer}
+      True. (Antecedent false, consequent true; implication true.)
+    \end{subanswer}
+
+    \item If $1+1=3$, then $2+2=5$.\\
+    \begin{subanswer}
+      True. (Antecedent false; material implication is true.)
+    \end{subanswer}
+
+    \item Today is Sunday, and tomorrow is Thursday.\\
+    \begin{subanswer}
+      False. (Conjunction false in ordinary calendar facts.)
+    \end{subanswer}
+
+    \item If $1+1=2$, then $2+2=5$.\\
+    \begin{subanswer}
+      False. (True antecedent, false consequent, so implication false.)
+    \end{subanswer}
+
+    \item If $2+2=5$, then the Riemann hypothesis is false.\\
+    \begin{subanswer}
+      True. (Antecedent false; implication vacuously true.)
+    \end{subanswer}
+
+    \item Either 7 is composite or 9 is prime.\\
+    \begin{subanswer}
+      False. (7 is prime and 9 is composite; both disjuncts false.)
+    \end{subanswer}
+
+    \item Either 2 is even or there are an infinite number of twin primes.\\
+    \begin{subanswer}
+      True. (Left disjunct \inlinequote{2 is even} is true, so disjunction is true.)
+    \end{subanswer}
+
+    \item It is not the case that this object is immovable and that force is unstoppable.\\
+    \begin{subanswer}
+      True. (The conjunction \inlinequote{immovable object and unstoppable force} is conceptually incompatible, so its negation is true.)
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+
+
+
+
+% What about conjunction of propositions, and disjunction of propositions? the parts of the proof as a good example for future work.
+
+
+% Claim: For all propositions $p$ and $q, p \wedge q \equiv q \wedge p$ and $p \vee q \equiv q \vee p$.
+% Proof: Let $p$ and $q$ be propositions. By the definition of conjunction and disjunction, we have the following truth table.
+
+% \begin{tabular}{|l|l|l|l|l|l|}
+% \hline $p$ & $q$ & $p \wedge q$ & $q \wedge p$ & $p \vee q$ & $q \vee p$ \\
+% \hline T & T & $T$ & $T$ & $T$ & $T$ \\
+% \hline T & F & $F$ & $F$ & $T$ & $T$ \\
+% \hline F & T & $F$ & $F$ & $T$ & $T$ \\
+% \hline F & F & $F$ & $F$ & $F$ & $F$ \\
+% \hline
+% \end{tabular}
+
+% Since the columns labeled $p \wedge q$ and $q \wedge p$ have the same truth values, we conclude that the propositions are equivalent. Likewise, $p \vee q \equiv q \vee p$. QED
+
+% Although multiplication of 2x2 matrices is not commutative, it is associative since $(A B) C=A(B C)$ for all 2x2 matrics $A, B$, and $C$.
+% An example of a binary operator that is commutative but not associative is the average of two 
+% real numbers. Let $x \circ y=\frac{x+y}{2}$ for real numbers $x$ and $y$. Then 
+% $x \circ y=\frac{x+y}{2}=\frac{y+x}{2}=y \circ x$ since addition of real numbers is 
+% commutative. However, $1 \circ(2 \circ 3) \neq(1 \circ 2) \circ 3$ since 
+% $\frac{1+\frac{2+3}{2}}{2}=\frac{7}{4} \neq \frac{9}{4}=\frac{\frac{1+2}{2}+3}{2}$.
+
+% What about conjunction of propositions, and disjunction of propositions?
+% Show that these logical operators are associative by proving that $(p \wedge q) \wedge r \equiv p \wedge(q \wedge r)$ and $(p \vee q) \vee r \equiv p \vee(q \vee r)$. Complete the following truth table by filling in the blanks with T or F as appropriate. Pay careful attention to the rest of the parts of the proof as a good example for future work.
+
+% Claim: For all propositions $p, q$, and $r,(p \wedge q) \wedge r \equiv p \wedge(q \wedge r)$ and $(p \vee q) \vee r \equiv p \vee(q \vee r)$.
+% Proof: Let $p$ and $q$ be propositions. By the definition of conjunction and disjunction, we have the following truth table.
+
+% \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+% \hline $p$ & $q$ & $r$ & & $p \wedge q$ & & $(p \wedge q) \wedge r$ & & $q \wedge r$ & \multicolumn{2}{|c|}{$p \wedge(q \wedge r)$} & & $p \vee q$ & \multicolumn{2}{|c|}{$(p \vee q) \vee r$} & \multicolumn{2}{|c|}{$q \vee r$} & \multicolumn{2}{|c|}{$p \vee(q \vee r)$} \\
+% \hline T & T & T & $T$  & $T$  & $T$  & $T$  & $T$  & $T$  & $T$  & $T$  \\
+% \hline T & T & F & $T$  & $F$  & $F$  & $F$  & $T$  & $T$  & $T$  & $T$  \\
+% \hline T & F & T & $F$  & $F$  & $F$  & $F$  & $T$  & $T$  & $T$  & $T$  \\
+% \hline T & F & F & $F$  & $F$  & $F$  & $F$  & $T$  & $T$  & $F$  & $T$  \\
+% \hline F & T & T & $F$  & $F$  & $T$  & $F$  & $T$  & $T$  & $T$  & $T$  \\
+% \hline F & T & F & $F$  & $F$  & $F$  & $F$  & $T$  & $T$  & $T$  & $T$  \\
+% \hline F & F & T & $F$  & $F$  & $F$  & $F$  & $F$  & $T$  & $T$  & $T$  \\
+% \hline F & F & F & $F$  & $F$  & $F$  & $F$  & $F$  & $F$  & $F$  & $F$  \\
+% \hline
+% \end{tabular}
+
+% Since the columns labeled $(p \wedge q) \wedge r$ and $p \wedge(q \wedge r)$ have the same truth values, we conclude that the propositions are equivalent. Likewise, $(p \vee q) \vee r \equiv p \vee(q \vee r)$. QED
+
+
+
+
+  \newpage
+
+  \item \textbf{Conditional Equivalences --- Identify statements meaning $p \rightarrow q$} (10 points)\\
+  Select all sentences below that express $p \rightarrow q$.
+  \begin{enumerate}[label=\Alph*.]
+    \item If $p$, then $q$.\\
+    \begin{subanswer}
+      Yes. This is the standard form of $p \rightarrow q$. 
+    \end{subanswer}
+
+    \item $q$ whenever $p$.\\
+    \begin{subanswer}
+      Yes. ``$q$ whenever $p$'' means \inlinequote{if $p$ then $q$}, i.e., $p \rightarrow q$.
+    \end{subanswer}
+
+    \item $p$ only if $q$.\\
+    \begin{subanswer}
+      Yes. ``$p$ only if $q$'' means \inlinequote{if $p$ then $q$}, i.e., $p \rightarrow q$.
+    \end{subanswer}
+
+    \item $q$ is sufficient for $p$.\\
+    \begin{subanswer}
+      No. ``$q$ is sufficient for $p$'' means \inlinequote{if $q$ then $p$}, i.e., $q \rightarrow p$, the reverse of $p \rightarrow q$.
+    \end{subanswer}
+
+    \item $q$ if $p$.\\
+    \begin{subanswer}
+      Yes. ``$q$ if $p$'' is another way to say \inlinequote{if $p$ then $q$}, i.e., $p \rightarrow q$.
+    \end{subanswer}
+
+    \item $q$ implies $p$.\\
+    \begin{subanswer}
+      No. ``$q$ implies $p$'' means $q \rightarrow p$, not $p \rightarrow q$.
+    \end{subanswer}
+
+    \item $p$ is necessary for $q$.\\
+    \begin{subanswer}
+      No. ``$p$ is necessary for $q$'' means \inlinequote{if $q$ then $p$}, i.e., $q \rightarrow p$, not $p \rightarrow q$.
+    \end{subanswer}
+  \end{enumerate}
+
+  \newpage
+
+  \item \textbf{Premise Identification --- True/False classification} (10 points)\\
+  For each quoted implication, the statement asserts a particular sentence is the premise. Indicate whether that assertion is true or false and justify by rewriting the quoted sentence in the standard ``If..., then...'' form.
+  \begin{enumerate}
+    \item The premise of \inlinequote{It is necessary to have a valid password to log on to the server.} is \inlinequote{have a valid password}.\\
+    \begin{subanswer}
+      False. Rewrite: \inlinequote{If you log on to the server, then you have a valid password} (log on $\rightarrow$ have valid password). The premise is \inlinequote{log on to the server}, not \inlinequote{have a valid password}.
+    \end{subanswer}
+
+    \item The premise of \inlinequote{To get tenure as a professor, it is sufficient to be world-famous.} is \inlinequote{get tenure as a professor}.\\
+    \begin{subanswer}
+      False. Rewrite: \inlinequote{If you are world-famous, then you get tenure} (world-famous $\rightarrow$ get tenure). The premise is \inlinequote{be world-famous}, not \inlinequote{get tenure as a professor}.
+    \end{subanswer}
+
+    \item The premise of \inlinequote{Your guarantee is good only if you bought your iPad less than 90 days ago.} is \inlinequote{Your guarantee is good}.\\
+    \begin{subanswer}
+      True. ``A only if B'' means $A \rightarrow B$. Here $A$ is \inlinequote{Your guarantee is good} and $B$ is \inlinequote{you bought your iPad less than 90 days ago}, so the premise is \inlinequote{Your guarantee is good}.
+    \end{subanswer}
+
+    \item The premise of \inlinequote{That the Chicago Bulls win the championship implies they beat the Miami Heat.} is \inlinequote{the Chicago Bulls win the championship}.\\
+    \begin{subanswer}
+      True. The sentence is of the form \inlinequote{If the Chicago Bulls win the championship, then they beat the Miami Heat}, so the premise is \inlinequote{the Chicago Bulls win the championship}.
+    \end{subanswer}
+
+    \item The premise of \inlinequote{The beach erodes whenever there is a hurricane.} is \inlinequote{The beach erodes}.\\
+    \begin{subanswer}
+      False. ``$X$ whenever $Y$'' means \inlinequote{if $Y$ then $X$}. Here it is \inlinequote{If there is a hurricane, then the beach erodes} (hurricane $\rightarrow$ beach erodes). The premise is \inlinequote{there is a hurricane}, not \inlinequote{the beach erodes}.
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+
+
+
+
+
+  \newpage
+
+
+
+
+  \item \textbf{Truth Table Completion} (10 points)\\
+  Complete the truth table by filling in $T$ or $F$ as appropriate.
+  \begin{table}[h!]
+  \centering
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{6pt}
+  \caption*{\textbf{Truth Table}}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \rowcolor[HTML]{E0E0E0}
+  $p$ & $q$ & $\bar{p}$ & $\bar{q}$ & $p \rightarrow q$ & $p \wedge \bar{p}$ & $p \vee \bar{p}$ & $\overline{p \rightarrow q}$ & $p \wedge \bar{q}$ & $\bar{p} \vee q$ & $\bar{q} \rightarrow \bar{p}$ & $\bar{p} \wedge q$ & $p \vee \bar{q}$ & $(p \wedge \bar{q}) \rightarrow (p \wedge \bar{p})$ \\
+  \hline
+  T & T & F & F & T & F & T & F & F & T & T & F & T & T \\
+  \hline
+  T & F & F & T & F & F & T & T & T & F & F & F & T & F \\
+  \hline
+  F & T & T & F & T & F & T & F & F & T & T & T & F & T \\
+  \hline
+  F & F & T & T & T & F & T & F & F & T & T & F & T & T \\
+  \hline
+  \end{tabular}
+  \end{table}
+
+
+  \item \textbf{Logical Equivalences --- Match to $A,B,$ or $C$} (10 points)\\
+  For each statement on the left, select which is logically equivalent: 
+  \begin{enumerate}[label=(\Alph*)]
+    \item $p \rightarrow q$
+    \item $\overline{p \rightarrow q}$
+    \item None of the above
+  \end{enumerate}
+  \begin{enumerate}[label=\arabic*.]
+    \item $\bar{p} \wedge q$\\
+    \begin{subanswer}
+      $C$. Truth vector is $(F,F,T,F)$ which matches neither $p\rightarrow q$ $(T,F,T,T)$ nor $\overline{p\rightarrow q}$ $(F,T,F,F)$.
+    \end{subanswer}
+
+    \item $p \vee \bar{p}$\\
+    \begin{subanswer}
+      $C$. This is a tautology $(T,T,T,T)$, not equivalent to $p\rightarrow q$ or its negation.
+    \end{subanswer}
+
+    \item $p \vee \bar{q}$\\
+    \begin{subanswer}
+      $C$. Truth vector is $(T,T,F,T)$, matching neither $p\rightarrow q$ nor $\overline{p\rightarrow q}$.
+    \end{subanswer}
+
+    \item $p \wedge \bar{q}$\\
+    \begin{subanswer}
+      $B$. Truth vector is $(F,T,F,F)$ which equals $\overline{p\rightarrow q}$.
+    \end{subanswer}
+
+    \item $\bar{q} \rightarrow \bar{p}$\\
+    \begin{subanswer}
+      $A$. This is the contrapositive; truth vector $(T,F,T,T)$ equals that of $p\rightarrow q$.
+    \end{subanswer}
+
+    \item $p \wedge \bar{p}$\\
+    \begin{subanswer}
+      $C$. This is a contradiction $(F,F,F,F)$, not equivalent to $p\rightarrow q$ or its negation.
+    \end{subanswer}
+
+    \item $(p \wedge \bar{q}) \rightarrow(p \wedge \bar{p})$\\
+    \begin{subanswer}
+      $A$. Truth vector is $(T,F,T,T)$ which matches $p\rightarrow q$ (this implication is logically equivalent to the contrapositive form).
+    \end{subanswer}
+
+    \item $\bar{p} \vee q$\\
+    \begin{subanswer}
+      $A$. $\bar{p}\vee q$ is the standard disjunctive form of implication and has truth vector $(T,F,T,T)$ equal to $p\rightarrow q$.
+    \end{subanswer}
+  \end{enumerate}
+
+
+  \newpage
+
+
+
+  \item \textbf{Conditional, Converse, Contrapositive, Inverse} (10 points)\\
+  Let $p$ and $q$ be propositions. Recall that $\bar{p}$ and $\sim p$ mean the same thing.  
+  The conditional $p \rightarrow q$ has three closely related implications: its converse $q \rightarrow p$, its contrapositive $\bar{q} \rightarrow \bar{p}$, and its inverse $\bar{p} \rightarrow \bar{q}$.  
+  Complete the truth table and use it to verify logical equivalences.
+
+  \begin{table}[h!]
+  \centering
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{10pt}
+  \caption*{\textbf{Truth Table}}
+  \begin{tabular}{|c|c|c|c|c|c|}
+  \hline
+  \rowcolor[HTML]{E0E0E0}
+  $p$ & $q$ & $p \rightarrow q$ & $q \rightarrow p$ & $\bar{q} \rightarrow \bar{p}$ & $\bar{p} \rightarrow \bar{q}$ \\
+  \hline
+  T & T & T & T & T & T \\
+  \hline
+  T & F & F & T & F & T \\
+  \hline
+  F & T & T & F & T & F \\
+  \hline
+  F & F & T & T & T & T \\
+  \hline
+  \end{tabular}
+  \end{table}
+
+  \item \textbf{Logical Equivalence Statements} (10 points)\\
+  Determine whether the following propositions are true or false based on the table above.
+  \begin{enumerate}
+    \item A conditional is logically equivalent to its converse.\\
+    \begin{subanswer}
+      False. The columns for $p \rightarrow q$ and $q \rightarrow p$ differ (row 2 and row 3).
+    \end{subanswer}
+
+    \item A conditional is logically equivalent to its inverse.\\
+    \begin{subanswer}
+      False. The columns for $p \rightarrow q$ and $\bar{p} \rightarrow \bar{q}$ differ (row 2 and row 3).
+    \end{subanswer}
+
+    \item The contrapositive and inverse of a conditional are logically equivalent.\\
+    \begin{subanswer}
+      False. The columns for $\bar{q} \rightarrow \bar{p}$ and $\bar{p} \rightarrow \bar{q}$ differ (row 2 and row 3).
+    \end{subanswer}
+
+    \item A conditional is logically equivalent to its contrapositive.\\
+    \begin{subanswer}
+      True. The columns for $p \rightarrow q$ and $\bar{q} \rightarrow \bar{p}$ are identical.
+    \end{subanswer}
+
+    \item The converse and contrapositive of a conditional are logically equivalent.\\
+    \begin{subanswer}
+      False. The columns for $q \rightarrow p$ and $\bar{q} \rightarrow \bar{p}$ are identical.
+    \end{subanswer}
+
+    \item The inverse and converse of a conditional are logically equivalent.\\
+    \begin{subanswer}
+      True. The columns for $\bar{p} \rightarrow \bar{q}$ and $q \rightarrow p$ are identical.
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+  \newpage
+
+  \item \textbf{Tautology, Contradiction, and Contingency --- Truth Table} (10 points)\\
+  A proposition which is always true is called a tautology and denoted $\boldsymbol{T}$ (or $\mathbb{T}$ if handwritten), and one which is always false is called a contradiction and denoted $\boldsymbol{F}$ (or $\mathbb{F}$ if handwritten). A proposition which is neither a tautology nor a contradiction is called a contingency.\\
+  Example tautology: \inlinequote{Either the Riemann hypothesis is true or it is not.}\\
+  Example contradiction: \inlinequote{Dark matter exists and it does not.}\\
+  Let $p$ be a proposition. Complete the truth table to verify which propositions are logically equivalent.
+  \begin{table}[h!]
+  \centering
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{8pt}
+  \caption*{\textbf{Truth Table}}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  \rowcolor[HTML]{E0E0E0}
+  $p$ & $\bar{p}$ & $\overline{\bar{p}}$ & $p \wedge p$ & $p \vee p$ & $p \wedge \bar{p}$ & $p \vee \bar{p}$ & $p \wedge \boldsymbol{T}$ & $p \vee \boldsymbol{T}$ & $p \wedge \boldsymbol{F}$ & $p \vee \boldsymbol{F}$ \\
+  \hline
+  T & F & T & T & T & F & T & T & T & F & T \\
+  \hline
+  F & T & F & F & F & F & T & F & T & F & F \\
+  \hline
+  \end{tabular}
+  \end{table}
+
+  \newpage
+
+  \item \textbf{Logical Equivalences --- Match to $A$--$E$} (10 points)\\
+  For each statement on the left, select a logically equivalent one from the list on the right.
+  \begin{enumerate}[label=(\Alph*)]
+    \item $T$
+    \item $\bar{p}$
+    \item $\boldsymbol{F}$
+    \item $p$
+    \item None of the above
+  \end{enumerate}
+
+  \begin{enumerate}
+    \item $p \wedge F$\\
+    \begin{subanswer}
+      C
+    \end{subanswer}
+    \item $p \wedge p$\\
+    \begin{subanswer}
+      D
+    \end{subanswer}
+    \item $p \vee \bar{p}$\\
+    \begin{subanswer}
+      A
+    \end{subanswer}
+    \item $p \wedge \bar{p}$\\
+    \begin{subanswer}
+      C
+    \end{subanswer}
+    \item $p \vee \boldsymbol{F}$\\
+    \begin{subanswer}
+      D
+    \end{subanswer}
+    \item $p \vee p$\\
+    \begin{subanswer}
+      D
+    \end{subanswer}
+    \item $p \wedge T$\\
+    \begin{subanswer}
+      D
+    \end{subanswer}
+    \item $\overline{\bar{p}}$\\
+    \begin{subanswer}
+      D
+    \end{subanswer}
+    \item $p \vee \boldsymbol{T}$\\
+    \begin{subanswer}
+      A
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+
+
+
+
+  \newpage
+
+
+
+  \item \textbf{Distributive Law 1 --- Verification} (10 points)\\
+  Definition: Two propositions $p$ and $q$ are logically equivalent, denoted $p \equiv q$, if (and only if) $p \leftrightarrow q$ is a tautology. Verify the distributive law
+  \[
+    p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)
+  \]
+  by confirming that the left-hand side and right-hand side have the same truth value for every combination of truth values for propositions $p,q,r$.\\
+
+  Select all conditions under which $p \wedge (q \vee r)$ is true.
+  \begin{enumerate}[label=\Alph*.]
+    \item $p$ is true; $q$ is true; $r$ is false.
+    \item $p$ is false; $q$ is false; $r$ is false.
+    \item $p$ is false; $q$ is false; $r$ is true.
+    \item $p$ is true; $q$ is false; $r$ is false.
+    \item $p$ is false; $q$ is true; $r$ is false.
+    \item $p$ is true; $q$ is false; $r$ is true.
+    \item $p$ is false; $q$ is true; $r$ is true.
+    \item $p$ is true; $q$ is true; $r$ is true.
+  \end{enumerate}
+  \begin{subanswer}
+    Selected: A, F, H. \\
+    Reason: $p \wedge (q \vee r)$ is true exactly when $p$ is true \emph{and} at least one of $q,r$ is true. That holds for A $(T,T,F)$, F $(T,F,T)$, and H $(T,T,T)$.
+  \end{subanswer}
+
+  Select all conditions under which $(p \wedge q) \vee (p \wedge r)$ is false.
+  \begin{enumerate}[label=\Alph*.]
+    \item $p$ is false; $q$ is false; $r$ is false.
+    \item $p$ is true; $q$ is false; $r$ is true.
+    \item $p$ is false; $q$ is true; $r$ is false.
+    \item $p$ is true; $q$ is true; $r$ is true.
+    \item $p$ is true; $q$ is true; $r$ is false.
+    \item $p$ is true; $q$ is false; $r$ is false.
+    \item $p$ is false; $q$ is false; $r$ is true.
+    \item $p$ is false; $q$ is true; $r$ is true.
+  \end{enumerate}
+  \begin{subanswer}
+    Selected: A, C, F, G, H. \\
+    Reason: $(p\wedge q)\vee(p\wedge r)\equiv p\wedge(q\vee r)$, so it is false whenever $p$ is false (cases A,C,G,H) or when $p$ is true but both $q$ and $r$ are false (case F).
+  \end{subanswer}
+
+
+
+  \newpage
+  \item \textbf{Distributive Law 2 --- Verification} (10 points)\\
+  Now verify the biconditional is a tautology for the other distributive law
+  \[
+    p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r).
+  \]
+  Select all conditions under which $p \vee (q \wedge r)$ is false.
+  \begin{enumerate}[label=\Alph*.]
+    \item $p$ is false; $q$ is true; $r$ is true.
+    \item $p$ is false; $q$ is true; $r$ is false.
+    \item $p$ is true; $q$ is false; $r$ is true.
+    \item $p$ is true; $q$ is true; $r$ is false.
+    \item $p$ is false; $q$ is false; $r$ is false.
+    \item $p$ is true; $q$ is true; $r$ is true.
+    \item $p$ is true; $q$ is false; $r$ is false.
+    \item $p$ is false; $q$ is false; $r$ is true.
+  \end{enumerate}
+  \begin{subanswer}
+    Selected: B, E, H. \\
+    Reason: $p \vee (q\wedge r)$ is false exactly when $p$ is false and $q\wedge r$ is false. That occurs when $p$ is false and at least one of $q,r$ is false: B $(F,T,F)$, E $(F,F,F)$, H $(F,F,T)$.
+  \end{subanswer}
+
+  Select all conditions under which $(p \vee q) \wedge (p \vee r)$ is true.
+  \begin{enumerate}[label=\Alph*.]
+    \item $p$ is false; $q$ is false; $r$ is true.
+    \item $p$ is true; $q$ is true; $r$ is true.
+    \item $p$ is true; $q$ is false; $r$ is true.
+    \item $p$ is false; $q$ is false; $r$ is false.
+    \item $p$ is true; $q$ is true; $r$ is false.
+    \item $p$ is true; $q$ is false; $r$ is false.
+    \item $p$ is false; $q$ is true; $r$ is false.
+    \item $p$ is false; $q$ is true; $r$ is true.
+  \end{enumerate}
+  \begin{subanswer}
+    Selected: B, C, E, F, H. \\
+    Reason: $(p\vee q)\wedge(p\vee r)$ is true when $p$ is true \emph{or} when both $q$ and $r$ are true. Thus any row with $p=T$ (B,C,E,F) is true; additionally H $(F,T,T)$ is true because $q\wedge r$ holds. These correspond exactly to the rows where $p\vee(q\wedge r)$ is true, confirming the equivalence.
+  \end{subanswer}
+
+
+  \newpage
+
+
+  \item \textbf{De Morgan's Laws --- Truth-table and equivalence proof} (10 points)\\
+  Use the definition of logical equivalence and a truth table to prove one of De Morgan's Laws.\\
+
+  Claim: For all propositions $p$ and $q$, $\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$.\\
+  \begin{subprove}
+    Let $p$ and $q$ be propositions. We verify the biconditional $\overline{p\wedge q}\leftrightarrow(\bar p\vee\bar q)$ is a tautology by truth table:
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    $p$ & $q$ & $p\wedge q$ & $\overline{p\wedge q}$ & $\bar p$ & $\bar q$ & $\bar p\vee\bar q$ \\
+    \hline
+    T & T & T & F & F & F & F \\
+    \hline
+    T & F & F & T & F & T & T \\
+    \hline
+    F & T & F & T & T & F & T \\
+    \hline
+    F & F & F & T & T & T & T \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Comparing the columns for $\overline{p\wedge q}$ and $\bar p\vee\bar q$ we see they match on every row (F,T,T,T), so the biconditional
+    $\overline{p\wedge q}\leftrightarrow(\bar p\vee\bar q)$ evaluates to T for all truth assignments. Hence it is a tautology, and therefore
+    $\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$.
+  \end{subprove}
+
+  Claim: For all propositions $p$ and $q$, $\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$.\\
+  \begin{subprove}
+    Let $p$ and $q$ be propositions. We derive this from the previous law using substitution and double negation.
+    From the proved law with $A=\bar p$ and $B=\bar q$ we have
+    \[
+      \overline{{\bar p}\wedge{\bar q}} \equiv \overline{\bar p}\vee\overline{\bar q}.
+    \]
+    But $\overline{\bar p}\vee\overline{\bar q}=p\vee q$ by double negation, so
+    \[
+      \overline{{\bar p}\wedge{\bar q}} \equiv p\vee q.
+    \]
+    Taking negations of both sides and using double negation gives
+    \[
+      \overline{p\vee q} \equiv \overline{\overline{{\bar p}\wedge{\bar q}}} \equiv (\bar p)\wedge(\bar q).
+    \]
+    Thus $\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$.
+  \end{subprove}
+
+
+
+
+
+
+  \newpage
+
+  \item \textbf{Biconditional — supply missing justifications} (10 points)\\
+  Supply the missing justifications in the biconditional equivalence proofs below. 
+  For the first proof, complete the truth table. For the second, provide the label 
+  (a, b, c, etc.) from the list of equivalences in the reference table corresponding 
+  to the correct justifications in each step of this proof. Remember that changing 
+  order of operations and/or parentheses matter!\\
+
+  \textbf{Claim:} For all propositions $p$ and $q$, $p \leftrightarrow q \equiv (p \rightarrow q) \wedge (q \rightarrow p)$.\\
+  \begin{subprove}
+    Let $p$ and $q$ be propositions. By the definitions of conditional, conjunction, and biconditional, we have the following truth table.
+
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $p$ & $q$ & $p \leftrightarrow q$ & $p \rightarrow q$ & $q \rightarrow p$ & $(p \rightarrow q) \wedge (q \rightarrow p)$ \\
+    \hline
+    T & T & T & T & T & T \\
+    \hline
+    T & F & F & F & T & F \\
+    \hline
+    F & T & F & T & F & F \\
+    \hline
+    F & F & T & T & T & T \\
+    \hline
+    \end{tabular}
+    \end{center}
+
+    Since $p \leftrightarrow q$ and $(p \rightarrow q) \wedge (q \rightarrow p)$ have the 
+    same truth value for each combination of truth values for $p$ and $q$, their 
+    biconditional is a tautology, and they are logically equivalent.
+  \end{subprove}
+
+
+  \textbf{Claim:} For all propositions $p$ and $q$, $p \leftrightarrow q \equiv (p \wedge q) \vee (\bar{p} \wedge \bar{q})$.\\
+  \begin{subprove}
+    Let $p$ and $q$ be propositions. We know that 
+    $p \leftrightarrow q \equiv (p \rightarrow q) \wedge (q \rightarrow p)$ by proof above. \\
+    Then $(p \rightarrow q) \wedge (q \rightarrow p) \equiv (\bar{p} \vee q) \wedge (\bar{q} \vee p)$ 
+    by applying \textbf{Implication equivalence}, $\,p \rightarrow q \equiv \bar{p} \vee q$, twice. \\
+    Applying $\square$ first, and then applying $\square$ followed by $\square$ to both sides of the main disjunction, we have that
+    $$
+    (\bar{p} \vee q) \wedge (\bar{q} \vee p) \equiv ((\bar{p} \vee q) \wedge \bar{q}) \vee ((\bar{p} \vee q) \wedge p) \equiv ((\bar{q} \wedge \bar{p}) \vee (\bar{q} \wedge q)) \vee ((p \wedge \bar{p}) \vee (p \wedge q)).
+    $$
+
+    We continue the chain of equivalence as $((\bar{q} \wedge \bar{p}) \vee \boldsymbol{F}) \vee (\boldsymbol{F} \vee (p \wedge q)) \equiv (p \wedge q) \vee (\bar{p} \wedge \bar{q})$ by simplifying terms on both sides of the main disjunction using first $\square$ and then $\square$ (and using $\square$ as needed to reorder within parentheses). \\
+    Hence, we have shown that $p \leftrightarrow q \equiv (p \wedge q) \vee (\bar{p} \wedge \bar{q})$, and the claim holds. 
+  \end{subprove}
+
+  
+
+
+
+
+  \newpage
+
+
+  \item \textbf{Knights and Knaves --- Identifying the Truth Tellers} (10 points)\\
+  Truth tables are all well and good, but as the number of propositions in an argument grows so 
+  does the size of the truth table. (Exponentially!) Solve the following puzzle using your reasoning skills, not brute force.
+
+  Back in the Land of Logicalia, you find yourself surrounded by a group of six mounted men who will release you if (and only if) you correctly identify the Knights from the Knaves.\\
+
+  Arthur says: None of us is a Knight.\\
+  Merlin says: At least three of us are Knights.\\
+  Galahad says: At most three of us are Knights.\\
+  Lancelot says: Exactly five of us are Knights.\\
+  Ector says: Exactly two of us are Knights.\\
+  Tristan says: Exactly one of us is a Knight.\\
+  
+  Do you live to scholar another day? Are the following warriors Knights or Knaves? Or can't you tell from the information given?
+    \begin{enumerate}[label=\arabic*.]
+      \item Arthur\\
+      \begin{subanswer}
+        \textbf{Knave}. If Arthur were a Knight, his statement "None of us is a Knight" would be true, which contradicts him being a Knight. Therefore, he must be a Knave, and his statement is false, meaning there is at least one Knight.
+      \end{subanswer}
+      \item Ector\\
+      \begin{subanswer}
+        \textbf{Knight}. Merlin's and Galahad's statements are contradictory, so one is a Knight and the other is a Knave. Lancelot's, Ector's, and Tristan's statements are mutually exclusive, so at most one of them can be a Knight. If there are exactly two Knights, Ector's statement becomes true (making him a Knight), Merlin's false (Knave), and Galahad's true (Knight). This consistent scenario is the only one where all statements align.
+      \end{subanswer}
+      \item Lancelot\\
+      \begin{subanswer}
+        \textbf{Knave}. As there are exactly two Knights (Ector and Galahad), Lancelot's statement "Exactly five of us are Knights" is false.
+      \end{subanswer}
+      \item Merlin\\
+      \begin{subanswer}
+        \textbf{Knave}. As there are exactly two Knights, Merlin's statement "At least three of us are Knights" is false.
+      \end{subanswer}
+      \item Tristan\\
+      \begin{subanswer}
+        \textbf{Knave}. As there are exactly two Knights, Tristan's statement "Exactly one of us is a Knight" is false.
+      \end{subanswer}
+      \item Galahad\\
+      \begin{subanswer}
+        \textbf{Knight}. As there are exactly two Knights, Galahad's statement "At most three of us are Knights" is true.
+      \end{subanswer}
+    \end{enumerate}
+
+
+  \item \textbf{Knights and Knaves --- Fair Maidens} (10 points)\\
+  Confirm that your previous (well-justified?!?) decisions were correct. (We will discuss the justifications themselves on Friday.) Are the following Logicalians Knights or Knaves? Or can't you tell from the information given?
+
+  You are approached by two fair (and armed) maidens who will escort you safely through the Black Forest provided you know whether either Guinevere or Morgana (or both) is telling the truth. Morgana says: Both of us are Knaves. Can you claim safe passage?
+  \begin{enumerate}[label=\arabic*.]
+    \item Guinevere\\
+    \begin{subanswer}
+      \textbf{Knight}. If Morgana were a Knight, her statement "Both of us are Knaves" would be true, which contradicts her being a Knight. Therefore, Morgana is a Knave. If Morgana is a Knave, her statement is false, meaning it is not the case that both are Knaves. Since Morgana is a Knave, Guinevere must be a Knight.
+    \end{subanswer}
+    \item Morgana\\
+    \begin{subanswer}
+      \textbf{Knave}. As deduced above, Morgana's statement leads to a contradiction if she is a Knight, so she must be a Knave.
+    \end{subanswer}
+  \end{enumerate}
+
+  \item \textbf{Knights and Knaves --- Duel Challenges} (10 points)\\
+  Percival and Quentin are both challenging you to a duel, but you are only obligated to accept challenges from a Knight. Percival says: Either I am a Knave or Quentin is a Knight. Which challenge(s) if any do you have to accept?
+  \begin{enumerate}[label=\arabic*.]
+    \item Percival\\
+    \begin{subanswer}
+      \textbf{Knight}. If Percival were a Knave, his statement \inlinequote{Either I am a Knave or Quentin is a Knight} would be false. For an "or" statement to be false, both parts must be false. However, the first part \inlinequote{I am a Knave} would be true, leading to a contradiction. Therefore, Percival must be a Knight.
+    \end{subanswer}
+    \item Quentin\\
+    \begin{subanswer}
+      \textbf{Knight}. Since Percival is a Knight, his statement \inlinequote{Either I am a Knave or Quentin is a Knight} must be true. Since the first part \inlinequote{I am a Knave} is false (because Percival is a Knight), the second part \inlinequote{Quentin is a Knight} must be true for the overall statement to be true.
+    \end{subanswer}
+  \end{enumerate}
+
+  \item \textbf{Knights and Knaves --- Witches' Brew} (10 points)\\
+  You are about to be poisoned by three wizened witches (Igraine, Ragnell, and Nimue) unless you can determine the type of the leader Nimue. Ragnell says: Igraine is a Knave. Igraine says: Ragnell and Nimue are of the same type. Do you have to drink the cup of doom?
+  \begin{enumerate}[label=\arabic*.]
+    \item Igraine\\
+    \begin{subanswer}
+      \textbf{Can't tell}. If Ragnell is a Knight, then Igraine is a Knave. If Ragnell is a Knave, then Igraine is a Knight. We cannot determine Ragnell's type definitively, so we can't determine Igraine's.
+    \end{subanswer}
+    \item Nimue\\
+    \begin{subanswer}
+      \textbf{Knave}.
+      Case 1: Ragnell is a Knight. Then Igraine is a Knave. Since Igraine is a Knave, her statement \inlinequote{Ragnell and Nimue are of the same type} is false. As Ragnell is a Knight, Nimue must be a Knave for Igraine's statement to be false.
+      Case 2: Ragnell is a Knave. Then Igraine is a Knight. Since Igraine is a Knight, her statement \inlinequote{Ragnell and Nimue are of the same type} is true. As Ragnell is a Knave, Nimue must also be a Knave for Igraine's statement to be true.
+      In both consistent cases, Nimue is a Knave.
+    \end{subanswer}
+    \item Ragnell\\
+    \begin{subanswer}
+      \textbf{Can't tell}. As shown above, both the scenario where Ragnell is a Knight and the scenario where Ragnell is a Knave lead to consistent outcomes for all statements.
+    \end{subanswer}
+  \end{enumerate}
+
+
+\end{enumerate}

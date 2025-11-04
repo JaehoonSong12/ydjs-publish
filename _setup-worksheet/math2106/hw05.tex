@@ -1,0 +1,385 @@
+\newpage\handout[true]
+{\textsc{Math 2106-B: Foundations of Mathematical Proof}}{Fall 2025}
+{Homework 5}
+{\textit{Prof.} \href{https://ceheitsch.github.io/webpage/}{Dr. Christine Heitsch}}{Due Date: October 2nd}
+{Math 2106-B: HW5}
+\input{math2106/preface.tex}\newpage
+% \input{reference.tex}\newpage
+% \input{reference-logic.tex}\newpage
+% \input{reference-set.tex}\newpage
+% \input{reference-number.tex}\newpage
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
+Wbwk, Hmwk assignments, and contents of the textbook.
+
+\begin{define}{One-to-One Correspondence (Bijective Function)}[def:bijective][red]
+  Let $f : A \to B$ be a function. $f$ is \textbf{bijective} if and only if it is both injective and surjective.
+\end{define}
+
+\begin{define}{Theorem (Existence of Inverse)}[thm:inverse-function][red]
+  The inverse relation $f^{-1}$ is a function if and only if $f$ is both injective and surjective.
+  \begin{subprove}
+    We consider the inverse relation $f^{-1} \subseteq B \times A$ for the function 
+    \[
+    f : A \to B \quad \text{on nonempty sets $A,B$.}
+    \]
+    Assume $f$ is a bijection, i.e., both one-to-one and onto. Let $b \in B$. Since $f$ is onto, by definition, there exists $a \in A$ with $f(a) = b$. So $(a,b) \in f$ and $(b,a) \in f^{-1}$. Hence for all $b \in B$ there exists $a \in A$ such that $(b,a) \in f^{-1}$. 
+
+    Now let $a, a' \in A$. Suppose $(b,a) \in f^{-1}$ and $(b,a') \in f^{-1}$. 
+    Then $(a,b), (a',b) \in f$, so $f(a) = b$ and $f(a') = b$. 
+    But $f$ is one-to-one by assumption, and so $a = a'$. 
+    Hence we have shown that each $b \in B$ has at least one image under 
+    the inverse relation $f^{-1}$ and no more than one. 
+    Thus the inverse relation is a function whenever $f$ is a bijection.
+
+    \medskip
+    Conversely, \dots
+  \end{subprove}
+  % \begin{subprove}
+  %   ($\Rightarrow$) Assume $f^{-1}$ is a function. To show $f$ is injective, let $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$. 
+  %   Then, $(a_1, f(a_1)) \in f$ and $(a_2, f(a_2)) \in f$. Since $f^{-1}$ is a function, $(f(a_1), a_1) \in f^{-1}$ and $(f(a_2), a_2) \in f^{-1}$. 
+  %   By the definition of a function, $a_1 = a_2$. Thus, $f$ is injective.
+    
+  %   To show $f$ is surjective, let $b \in B$. Since $f^{-1}$ is a function, there exists an $a \in A$ such that $(b, a) \in f^{-1}$. 
+  %   By the definition of inverse relation, $(a, b) \in f$, so $f(a) = b$. Thus, $f$ is surjective.
+    
+  %   ($\Leftarrow$) Assume $f$ is both injective and surjective. To show $f^{-1}$ is a function, let $(b, a_1), (b, a_2) \in f^{-1}$. 
+  %   Then, $(a_1, b), (a_2, b) \in f$. Since $f$ is injective, it follows that $a_1 = a_2$. Thus, $f^{-1}$ satisfies the definition of a function.
+  % \end{subprove}
+
+\end{define}
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate} 
+  \item Let $X, Y$, and $Z$ be nonempty sets with $A, B \subseteq X$ and $C, D \subseteq Y$. 
+  Let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be functions. 
+  Prove the following statements or give the required counterexample.
+  \begin{enumerate}
+    \item Prove that if $f$ and $g$ are one-to-one, then so is $g \circ f$.
+    \begin{define}{One-to-One (Injective Function)}[def:injective][red]
+      Let $f : A \to B$ be a function. $f$ is \textbf{injective} (one-to-one) if and only if for all $a_1, a_2 \in A$, if $f(a_1) = f(a_2)$, then $a_1 = a_2$.
+    \end{define}
+    \begin{subprove}
+      Suppose $f$ and $g$ are \nameref{def:injective} for the sake of direct proof.\proofstep
+      Let $x_1, x_2 \in A$ be arbitrary such that $(g \circ f)(x_1) = (g \circ f)(x_2)$.
+      By the definition of function composition, it follows that $$g(f(x_1)) = g(f(x_2)).$$
+      By assumption, the function $g$ is one-to-one, it follows that $f(x_1) = f(x_2)$.
+      Furthermore, $f$ is also one-to-one, it follows that $x_1 = x_2$.\proofstep
+      Therefore, the function $g \circ f$ is one-to-one by definition.
+    \end{subprove}
+    \item Prove that if $g \circ f$ is one-to-one, then so is $f$.
+    \begin{subprove}
+      Assume $g \circ f$ is \nameref{def:injective}. Suppose $f$ is not one-to-one 
+      for the sake of contradiction. \proofstep
+      Let $x_1, x_2 \in A$ be arbitrary. Since $f$ is not one-to-one, 
+      there exist $x_1, x_2 \in A$ such that $x_1 \neq x_2$ and $f(x_1) = f(x_2)$. 
+      By the definition of function composition and the assumption, $$(g \circ f)(x_1) = g(f(x_1)) = g(f(x_2)) = (g \circ f)(x_2).$$
+      Then, $x_1 = x_2$ since $g \circ f$ is one-to-one, which contradicts the assumption, $x_1 \neq x_2$. Therefore, $f$ must be one-to-one.
+    \end{subprove}
+    \newpage
+    \item Prove that if $f$ is onto and $g \circ f$ is one-to-one, then $g$ is one-to-one.
+    \begin{define}{Onto (Surjective Function)}[def:surjective][red]
+      Let $f : A \to B$ be a function. $f$ is \textbf{surjective} (onto) if and only if for every $b \in B$, there exists $a \in A$ such that $f(a) = b$.
+    \end{define}
+    \begin{subprove}
+      Let $y_1, y_2 \in Y$ be arbitrary elements. 
+      Assume $f$ is \nameref{def:surjective} and $g \circ f$ is \nameref{def:injective} 
+      for the sake of direct proof.\proofstep
+      Suppose $y_1, y_2 \in Y$ be arbitrary such that $g(y_1) = g(y_2)$.
+      Then, there exist $x_1, x_2 \in X$ such that 
+      $f(x_1) = y_1$ and $f(x_2) = y_2$ for $y_1, y_2 \in Y$ since $f$ is onto by assumption. 
+      Thus, by substitution, $g(f(x_1)) = g(f(x_2))$.
+      Moreover, it implies $x_1 = x_2$ since $g \circ f$ is one-to-one. 
+      \begin{define}{Function}[def:function][red]
+        Let $A$ and $B$ be nonempty sets. A \textbf{function} $f$ from $A$ to $B$, denoted $f : A \to B$, 
+        is a relation, $f\in A\sTIMES B$ such that 
+        \begin{enumerate}
+          \item For every $a \in A$, there exists an element $b \in B$ such that $f(a) = b$.
+          \item For every $a \in A$ and for all $b, c \in B$, if $f(a) = b$ and $f(a) = c$, then $b = c$.
+        \end{enumerate}
+        where the set $A$ is called the \textbf{domain} of $f$, 
+        and the set $B$ is called the \textbf{codomain} of $f$.
+        If $f(a)=b$, then $b$ is called the \textbf{image} of $a$ under $f$.
+        The function maps $a$ to $b$, and $f$ is often called a \textbf{mapping}.
+      \end{define}
+      \begin{define}{Domain and Codomain}[def:domain-codomain][red]
+        If $f : A \to B$ is a function, then $A$ is called the \textbf{domain} of $f$, and $B$ is called the \textbf{codomain} of $f$.
+      \end{define}
+      By the definition of \nameref{def:function}, there must be a mapping of $x$ to $y$ in \nameref{def:domain-codomain} such that
+      $$y_1 = f(x_1) = f(x_2) = y_2.$$
+      Thus, $g$ is one-to-one by definition.\proofstep
+      Therefore, by direct proof, $f$ is onto and $g \circ f$ is one-to-one only if $g$ is one-to-one.
+    \end{subprove}
+    \newpage
+    \item Give an example where $g \circ f$ is one-to-one, but $g$ is not.
+    \begin{subanswer}
+      Let $X=\{1,2\}, Y=\{3,4,5\}, Z=\{6,7\}$. 
+      Let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be functions defined as follows for the sake of counterexample.
+      \[
+        f(1)=3, \quad f(2)=4; \qquad g(3)=6, \quad g(4)=7, \quad g(5)=7.
+      \]
+      % Diagram of f and g and g o f
+      diagramed as follows. \label{prob:1d}
+      \[
+        \xymatrix@R=2em@C=2em{
+          X \xyArc[r]^{f}   & Y \xyArc[r]^{g}   & Z \\
+          \{1\} \xyArc[r]   & \{3\} \xyArc[r]   & \{6\} \\
+          \{2\} \xyArc[r]   & \{4\} \xyArc[r]   & \{7\} \\
+          {}                & \{5\} \xyArc[ur]  & {} \\
+        }
+      \]
+      Then, the composition $g \circ f$ is one-to-one since 
+      $(g \circ f)(1) = g(f(1)) = g(3) = 6$ and $(g \circ f)(2) = g(f(2)) = g(4) = 7$ which follows the definition of \nameref{def:injective}.
+      However, $g$ is not one-to-one since $g(4) = 7$ and $g(5) = 7$, but $4 \neq 5$.\proofstep
+      Therefore, by counterexample, there exists a case that $g \circ f$ is one-to-one, but $g$ is not.
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+  \newpage
+  \item Let $X, Y$, and $Z$ be nonempty sets with $A, B \subseteq X$ and $C, D \subseteq Y$. 
+  Let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be functions. 
+  Prove the following statements or give the required counterexample.
+  \begin{enumerate}
+    \item Prove that if $f$ and $g$ are onto, then so is $g \circ f$.
+    \begin{subprove}
+      Let $z \in Z$ be an arbitrary image for $g \circ f$. 
+      Then, assume $f$ and $g$ are onto for the sake of direct proof.
+      By definition of \nameref{def:surjective}, 
+      there exists $x \in X$ such that $f(x) = y$ since $f$ is onto.
+      Also, there exists $y \in Y$ such that $g(y) = z$ since $g$ is onto.\proofstep
+      Thus, for any $z \in Z$, there exists $x \in X$ such that $(g \circ f)(x) = z$.
+      Therefore, $g \circ f$ is onto by definition.
+    \end{subprove}
+    \item Prove that if $g \circ f$ is onto, then so is $g$.
+    \begin{subprove}
+      Let $z \in Z$ be an arbitrary image for $g \circ f$. 
+      Assume $g \circ f$ is onto for the sake of direct proof.
+      By definition of \nameref{def:surjective}, 
+      there exists $x \in X$ such that $(g \circ f)(x) = z$.
+      Moreover, there exists $y \in Y$ such that $f(x) = y$ since $f$ is a \nameref{def:function}.
+      By substitution, $g(y) = z$.\proofstep
+      Thus, for any $z \in Z$, there exists $y \in Y$ such that $g(y) = z$.
+      Therefore, $g$ is onto by definition.
+    \end{subprove}
+    \item Prove that if $g$ is one-to-one and $g \circ f$ is onto, then $f$ is onto.
+    \begin{subprove}
+      Let $y \in Y$ be an arbitrary image for $f$. 
+      Assume $g$ is \nameref{def:injective} and $g \circ f$ is \nameref{def:surjective} for the sake of direct proof.
+      By definition, there exists $z \in Z$ such that $g(y) = z$ since $g$ is a \nameref{def:function}.
+      Moreover, there exists $x \in X$ such that $(g \circ f)(x) = z$ for the $z$ since $g \circ f$ is onto.
+      It follows that 
+      $$g(f(x)) = g(y) = z$$
+      which implies $f(x) = y$ since $g$ is \nameref{def:injective}.\proofstep
+      Thus, for any $y \in Y$, there exists $x \in X$ such that $f(x) = y$.
+      Therefore, $f$ is onto by definition.
+    \end{subprove}
+    \item Give an example where $g \circ f$ is onto, but $f$ is not.
+    \begin{subanswer}
+      Let $X=\{1,2\}, Y=\{3,4,5\}, Z=\{6,7\}$. 
+      Let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be functions defined as follows for the sake of counterexample.
+      \[
+        f(1)=3, \quad f(2)=4; \qquad g(3)=6, \quad g(4)=7, \quad g(5)=7.
+      \]
+      It has been already diagramed in the previous problem, \parenref{prob:1d}.
+      Then, the composition $g \circ f$ is onto since 
+      $(g \circ f)(1) = g(f(1)) = g(3) = 6$ and $(g \circ f)(2) = g(f(2)) = g(4) = 7$ which follows the definition of \nameref{def:surjective}.
+      However, $f$ is not onto since there is no $x \in X$ such that $f(x) = 5$.\proofstep
+      Therefore, by counterexample, there exists a case that $g \circ f$ is onto, but $f$ is not.
+    \end{subanswer}
+  \end{enumerate}
+
+
+  \newpage 
+  \item Let $X, Y$, and $Z$ be nonempty sets with $A, B \subseteq X$ and $C, D \subseteq Y$. 
+  Let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be functions. 
+  Prove the following statements.
+  \begin{define}{Set Equality}[def:set-equality][red]
+    Let $A$ and $B$ be sets. The sets $A$ and $B$ are equal ($A = B$) if $A \subseteq B$ and $B \subseteq A$.
+  \end{define}
+  \begin{define}{Subset}[def:subset][red]
+    Let $A$ and $B$ be sets. $A$ is a subset of $B$ ($A \subseteq B$) if (and only if) for all $x \in A$, $x \in B$.
+  \end{define}
+  \textbf{Remark}: Let $A$ and $B$ be arbitrary sets. By definition of \nameref{def:set-equality}, 
+  $A = B$ requires showing both directions of \nameref{def:subset}s, $A \subseteq B$ and $B \subseteq A$.
+  \begin{define}{Image and Inverse Image}[def:image][red]
+    Let $f : X \to Y$ be a function, $C\subseteq X$, and $D\subseteq Y$. 
+    \begin{enumerate}
+      \item The \textbf{image} $f(C)$ is the set $\{f(c) \in Y : c \in C\} \subseteq Y$.
+      \item The \textbf{inverse image} $f^{-1}(D)$ is the set $\{x \in X : f(x) \in D\} \subseteq X$.
+    \end{enumerate}
+  \end{define} 
+  \begin{enumerate}
+    \item $f(A \sOR B)=f(A) \sOR f(B)$ \label{prob:3a}
+    \begin{subprove}
+      ($\subseteq$) Let $y \in f(A \sOR B)$ be arbitrary. Then, by definition of \nameref{def:image}, 
+      there exists $x \in A \sOR B$ such that $f(x) = y$.
+      \begin{define}{Union}[def:union][red]
+        Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \sOR B$, is the set of all elements that are in $A$, or in $B$, or in both. That is, $A \sOR B = \{x : x \in A \lor x \in B\}$.
+      \end{define}
+      Since $x \in A \sOR B$, by definition of \nameref{def:union}, $x \in A$ or $x \in B$. By the cases as follows,
+      \begin{itemize}
+        \item If $x \in A$, then $y = f(x) \in f(A)$ by definition.
+        \item If $x \in B$, then $y = f(x) \in f(B)$ by definition.
+      \end{itemize}
+      which logically equivalent to $y \in f(A) \sOR f(B)$.
+      Thus, $f(A \sOR B) \subseteq f(A) \sOR f(B)$.\proofstep
+      ($\supseteq$) Let $y \in f(A) \sOR f(B)$ be arbitrary. Then, by definition (trivially), 
+      $y \in f(A)$ or $y \in f(B)$.
+      \begin{define}{Subset of Union}[claim:subset-union][red]
+        Let $A$ and $B$ be sets. Then, $A \subseteq \sOR{A}{B}$
+        \begin{subprove}[red]
+          Let $x\in U$, assume $x\in A$. Then the statement \inlinequote{$x\in A$ or $x\in B$} is true.
+          Hence, by definition of \nameref{def:union}, $\sOR{A}{B}=\{x\in U\LDIV x\in A$ or $x\in B\}$, $x\in \sOR{A}{B}$.
+          Thus, $A \subseteq \sOR{A}{B}$.
+        \end{subprove}
+      \end{define}
+      \begin{itemize}
+        \item If $y \in f(A)$, then there exists $x \in A$ such that $f(x) = y$ by definition.
+        Since $x \in A$, it follows that $x \in A \sOR B$ by \nameref{claim:subset-union}.
+        \item If $y \in f(B)$, then there exists $x \in B$ such that $f(x) = y$ by definition.
+        Since $x \in B$, it follows that $x \in A \sOR B$ by \nameref{claim:subset-union}.
+      \end{itemize}
+      In both cases, $y \in f(A \sOR B)$.
+      Thus, $f(A) \sOR f(B) \subseteq f(A \sOR B)$.\proofstep
+      Therefore, by ($\subseteq$) and ($\supseteq$), $f(A \sOR B)=f(A) \sOR f(B)$.
+    \end{subprove}
+
+    \newpage
+    \item $f^{-1}(C \sOR D)=f^{-1}(C) \sOR f^{-1}(D)$
+    \begin{subprove}
+      ($\subseteq$) Let $x \in f^{-1}(C \sOR D)$ be arbitrary. Then, by definition of \nameref{def:image}, 
+      $f(x) \in C \sOR D$.
+      Since $f(x) \in C \sOR D$, by definition of \nameref{def:union}, $f(x) \in C$ or $f(x) \in D$.
+      \begin{itemize}
+        \item If $f(x) \in C$, then $x \in f^{-1}(C)$ by definition.
+        \item If $f(x) \in D$, then $x \in f^{-1}(D)$ by definition.
+      \end{itemize}
+      which logically equivalent to $x \in f^{-1}(C) \sOR f^{-1}(D)$.
+      Thus, $f^{-1}(C \sOR D) \subseteq f^{-1}(C) \sOR f^{-1}(D)$.\proofstep
+      ($\supseteq$) Let $x \in f^{-1}(C) \sOR f^{-1}(D)$ be arbitrary. Then, by definition (trivially), 
+      $x \in f^{-1}(C)$ or $x \in f^{-1}(D)$.
+      \begin{itemize}
+        \item If $x \in f^{-1}(C)$, then $f(x) \in C$ by definition.
+        Since $f(x) \in C$, it follows that $f(x) \in C \sOR D$ by \nameref{claim:subset-union}.
+        \item If $x \in f^{-1}(D)$, then $f(x) \in D$ by definition.
+        Since $f(x) \in D$, it follows that $f(x) \in C \sOR D$ by \nameref{claim:subset-union}.
+      \end{itemize}
+      In both cases, $x \in f^{-1}(C \sOR D)$.
+      Thus, $f^{-1}(C) \sOR f^{-1}(D) \subseteq f^{-1}(C \sOR D)$.\proofstep
+      Therefore, by ($\subseteq$) and ($\supseteq$), $f^{-1}(C \sOR D)=f^{-1}(C) \sOR f^{-1}(D)$.
+    \end{subprove}
+    \item $f^{-1}(C \sAND D)=f^{-1}(C) \sAND f^{-1}(D)$
+    \begin{subprove}
+      ($\subseteq$) Let $x \in f^{-1}(C \sAND D)$ be arbitrary. Then, by definition of \nameref{def:image}, 
+      $f(x) \in C \sAND D$.
+      \begin{define}{Intersection}[def:intersection][red]
+        Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \sAND B$, is the set of all elements that are in both $A$ and $B$. That is, $A \sAND B = \{x : x \in A \land x \in B\}$.
+      \end{define}
+      Since $f(x) \in C \sAND D$, by definition of \nameref{def:intersection}, $f(x) \in C$ and $f(x) \in D$.
+      Therefore, $x \in f^{-1}(C)$ and $x \in f^{-1}(D)$ by definition,
+      which logically equivalent to $x \in f^{-1}(C) \sAND f^{-1}(D)$.
+      Thus, $f^{-1}(C \sAND D) \subseteq f^{-1}(C) \sAND f^{-1}(D)$.\proofstep
+      ($\supseteq$) Let $x \in f^{-1}(C) \sAND f^{-1}(D)$ be arbitrary. Then, by definition of \nameref{def:intersection}, 
+      $x \in f^{-1}(C)$ and $x \in f^{-1}(D)$.
+      Since $x \in f^{-1}(C)$, it follows that $f(x) \in C$
+      and $x \in f^{-1}(D)$, it follows that $f(x) \in D$ by definition,
+      which logically equivalent to $f(x) \in C \sAND D$.
+      Furthermore, $x \in f^{-1}(C \sAND D)$.
+      Thus, $f^{-1}(C) \sAND f^{-1}(D) \subseteq f^{-1}(C \sAND D)$.\proofstep
+      Therefore, by ($\subseteq$) and ($\supseteq$), $f^{-1}(C \sAND D)=f^{-1}(C) \sAND f^{-1}(D)$.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+
+
+  \newpage
+  \item Let $X, Y$, and $Z$ be nonempty sets with $A, B \subseteq X$ and $C, D \subseteq Y$. 
+  Let $f: X \rightarrow Y$ and $g: Y \rightarrow Z$ be functions. 
+  Prove the following statements.
+  \begin{enumerate}
+    \item $f(A \sAND B) \subseteq f(A) \sAND f(B)$. \label{prob:4a}
+    \begin{subprove}
+      Let $y \in f(A \sAND B)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, by definition of \nameref{def:image}, there exists $x \in A \sAND B$ such that $f(x) = y$.
+      Since $x \in A \sAND B$, by definition of \nameref{def:intersection}, $x \in A$ and $x \in B$.
+      Since $x \in A$ and $f(x) = y$, it follows that $y \in f(A)$ by definition.
+      Since $x \in B$ and $f(x) = y$, it follows that $y \in f(B)$ by definition.
+      Thus, $y \in f(A) \sAND f(B)$ by definition of \nameref{def:intersection}.
+      Therefore, $f(A \sAND B) \subseteq f(A) \sAND f(B)$.
+    \end{subprove}
+    \item $f$ is one-to-one if and only if $f(A \sAND B)=f(A) \sAND f(B)$ for all $A, B \subseteq X$.
+    \begin{subprove}
+      ($\Rightarrow$) Suppose $f$ is one-to-one for the sake of direct proof. 
+      To show $f(A \sAND B)=f(A) \sAND f(B)$ for all $A, B \subseteq X$, 
+      both ($\subseteq$) and ($\supseteq$) are required.
+      Fortunately, ($\subseteq$) direction was already proved in part \parenref{prob:4a}.\proofstep
+      For ($\supseteq$), let $y \in f(A) \sAND f(B)$ be arbitrary. 
+      Then, by definition of \nameref{def:intersection}, $y \in f(A)$ and $y \in f(B)$.
+      Since $y \in f(A)$, there exists $x_1 \in A$ such that $f(x_1) = y$ by definition of \nameref{def:image}.
+      Since $y \in f(B)$, there exists $x_2 \in B$ such that $f(x_2) = y$ by definition.
+      Since $f$ is \nameref{def:injective} by assumption and $f(x_1) = f(x_2) = y$, it follows that $x=x_1 = x_2$.
+      Thus, $x \in A \sAND B$ which is equivalent to $y = f(x_1) \in f(A \sAND B)$.
+      Therefore, $f(A) \sAND f(B) \subseteq f(A \sAND B)$.\proofstep
+      Thus, $f$ is one-to-one only if $f(A \sAND B)=f(A) \sAND f(B)$ for all $A, B \subseteq X$.\proofstep
+      ($\Leftarrow$) Let $A = \{x_1\} \subseteq X$ and $B = \{x_2\} \subseteq X$ such that $f(x_1) = f(x_2)$.
+      Suppose $f(A \sAND B)=f(A) \sAND f(B)$ for all $A, B \subseteq X$ for the sake of direct proof.
+      By definition of \nameref{def:domain-codomain},
+      \begin{enumerate}
+        \item $f(A) = \{f(x_1)\}$
+        \item $f(B) = \{f(x_2)\} = \{f(x_1)\}$
+      \end{enumerate}
+      Since $f(x_1) = f(x_2)$. Moreover,
+      $$f(A \sAND B) = f(A) \sAND f(B) = \{f(x_1)\}$$ by assumption. 
+      Also, by definition of \nameref{def:domain-codomain}, $x_1 \in A \sAND B$.
+      Here, shortly claim the following.
+      \begin{define}{Subset of Intersection}[claim:subset-intersection][red]
+        Let $A$ and $B$ be sets. Then, $A \sAND B \subseteq B$ and $A \sAND B \subseteq A$
+        \begin{subprove}[red]
+          Let $x\in \setUNIV$, assume $x\in A \sAND B$. Then the statement \inlinequote{$x\in A$ and $x\in B$} is true.
+          Hence, by definition of \nameref{def:intersection}, $\sAND{A}{B}=\{x\in U\LDIV x\in A$ and $x\in B\}$, $x\in A$ and $x\in B$.
+          Thus, $A \sAND B \subseteq A$ and $A \sAND B \subseteq B$.
+        \end{subprove}
+      \end{define}
+      By \nameref{claim:subset-intersection}, $x_1 \in A=\set{x_1}$ (trivial) 
+      and $x_1 \in B=\set{x_2}$, which implies $x_1 = x_2$.\proofstep
+      Thus, $f$ is one-to-one if $f(A \sAND B)=f(A) \sAND f(B)$ for all $A, B \subseteq X$.\proofstep
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $f$ is one-to-one 
+      if and only if $f(A \sAND B)=f(A) \sAND f(B)$ for all $A, B \subseteq X$.
+    \end{subprove}
+  \end{enumerate}
+\end{enumerate}

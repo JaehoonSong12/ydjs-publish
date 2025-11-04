@@ -1,0 +1,318 @@
+\newpage\handout[true]
+{\textsc{Math 2106-B: Foundations of Mathematical Proof}}{Fall 2025}
+{Homework 3}
+{\textit{Prof.} \href{https://ceheitsch.github.io/webpage/}{Dr. Christine Heitsch}}{Due Date: September 18th}
+{Math 2106-B: HW3}
+\input{math2106/preface.tex}\newpage
+% \input{reference.tex}\newpage
+% \input{reference-logic.tex}\newpage
+% \input{reference-set.tex}\newpage
+% \input{reference-number.tex}\newpage
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Remark}: The following definitions (or results) are already proved in class or on previous ICA, 
+Wbwk, Hmwk assignments, and in Sections 4.4, 4.5, and 4.6 of the textbook.
+\begin{define}{Set Equality}[def:set-equality][red]
+  Let $A$ and $B$ be sets. The sets $A$ and $B$ are equal ($A = B$) iff $A \subseteq B$ and $B \subseteq A$.
+\end{define}
+\begin{define}{Subset Relation}[def:subset][red]
+  Let $A$ and $B$ be sets. $A$ is a subset of $B$ ($A \subseteq B$) iff for all $x \in A$ only if $x \in B$.
+\end{define}  
+\begin{define}{Union of Sets}[def:union][red]
+  Let $A$ and $B$ be sets. The union of $A$ and $B$, denoted $A \cup B$, is the 
+  set of all elements that are in $A$, or in $B$, or in both. 
+  That is, $A \cup B = \{x : x \in A \text{ or } x \in B\}$.
+\end{define}
+\begin{define}{Intersection of Sets}[def:intersection][red]
+  Let $A$ and $B$ be sets. The intersection of $A$ and $B$, denoted $A \cap B$, is the 
+  set of all elements that are in both $A$ and $B$. That is, $A \cap B = \{x : x \in A \text{ and } x \in B\}$.
+\end{define}
+\begin{define}{Set Difference}[def:set-difference][red]
+  Let $A$, $B$ be subsets of a universal set $\setUNIV$. The set difference $A \sMINUS B$ is defined to be the set $\{ x \in \setUNIV \LDIV x \in A \text{ and } x \notin B\}$. \vspace*{5px}\\
+  \textit{It is sometimes called the relative complement of $B$ in $A$, and denoted in the textbook as $A - B$.}
+\end{define}
+\begin{define}{Power Set}[def:power-set][red]
+  Let $A$ be a set. The power set of $A$, denoted $\sPOWER{A}$ or $2^{\abs{A}}$, is the set of all subsets of $A$. That is, $\sPOWER{A} = \{S\in\setUNIV : S \subseteq A\}$.
+\end{define}
+\begin{define}{Complementary Set}[def:complementary-set][red]
+  Let $A$ be a subset of the universal set $\setUNIV$. The complement of $A$, 
+  denoted $A^c$ or $\sNOT{A}$, is the set of all elements in $\setUNIV$ that are not in $A$. 
+  That is, $\sNOT{A} = \{x \in \setUNIV : x \notin A\}$.
+\end{define}
+\begin{define}{Cartesian Product}[def:cartesian-product][red]
+  Let $A$ and $B$ be sets. The Cartesian product of $A$ and $B$, denoted $A \sTIMES B$, is the set consisting of all ordered pairs:
+  \[
+  A \sTIMES B = \{(a, b) \LDIV a \in A, b \in B\}.
+  \]
+\end{define}
+\begin{define}{Pairwise Disjoint Sets}[def:pairwise-disjoint][red]
+  Let $A_1, A_2, \ldots, A_n$ be sets. These sets are \textbf{pairwise disjoint} if for all $i \neq j$, we have $A_i \cap A_j = \emptyset$.
+\end{define}
+
+
+% Functions
+\newpage
+
+\begin{define}{Function}[def:function][red]
+  Let $A$ and $B$ be nonempty sets. A \textbf{function} $f$ from $A$ to $B$, denoted $f : A \to B$, 
+  is a relation, $f\in A\sTIMES B$ such that 
+  \begin{enumerate}
+    \item For every $a \in A$, there exists a $b \in B$ such that $f(a) = b$.
+    \item For every $a \in A$ and for all $b, c \in B$, if $f(a) = b$ and $f(a) = c$, then $b = c$.
+    \item The set $A$ is called the \textbf{domain} of $f$, 
+    and the set $B$ is called the \textbf{codomain} of $f$.
+    \item If $f(a)=b$, then $b$ is called the \textbf{image} of $a$ under $f$.
+    \item The function maps $a$ to $b$, and $f$ is often called a mapping.
+  \end{enumerate}
+\end{define}
+
+\begin{define}{Domain and Codomain}[def:domain-codomain][red]
+  If $f : A \to B$ is a function, then $A$ is called the \textbf{domain} of $f$, and $B$ is called the \textbf{codomain} of $f$.
+\end{define}
+
+\begin{define}{Image and Inverse Image}[def:image][red]
+  Let $f : A \to B$ be a function, $C\subseteq A$, and $D\subseteq B$. 
+  The \textbf{image} $f(C)$ is the set $\{f(c) \in B : c \in C\} \subseteq B$.
+  The \textbf{inverse image} $f^{-1}(D)$ is the set $\{a \in A : f(a) \in D\} \subseteq A$.
+\end{define}
+
+\begin{define}{Injective, Surjective, Bijective Functions}[def:injectivity-surjectivity-bijective][red]
+  Let $f : A \to B$ be a function.
+  \begin{itemize}
+    \item $f$ is \textbf{injective} (one-to-one) iff for all $a_1, a_2 \in A$, if $f(a_1) = f(a_2)$, then $a_1 = a_2$.
+    \item $f$ is \textbf{surjective} (onto) iff for every $b \in B$, there exists $a \in A$ such that $f(a) = b$.
+    \item $f$ is \textbf{bijective} iff it is both injective and surjective.
+  \end{itemize}
+\end{define}
+
+
+\begin{define}{Theorem}[def:bijective][red]
+  The inverse relation $f^{-1}$ is a function if and only if $f$ is both injective and surjective.
+  % \begin{subprove}
+  %   ($\Rightarrow$) Assume $f^{-1}$ is a function. To show $f$ is injective, let $a_1, a_2 \in A$ such that $f(a_1) = f(a_2)$. 
+  %   Then, $(a_1, f(a_1)) \in f$ and $(a_2, f(a_2)) \in f$. Since $f^{-1}$ is a function, $(f(a_1), a_1) \in f^{-1}$ and $(f(a_2), a_2) \in f^{-1}$. 
+  %   By the definition of a function, $a_1 = a_2$. Thus, $f$ is injective.
+    
+  %   To show $f$ is surjective, let $b \in B$. Since $f^{-1}$ is a function, there exists an $a \in A$ such that $(b, a) \in f^{-1}$. 
+  %   By the definition of inverse relation, $(a, b) \in f$, so $f(a) = b$. Thus, $f$ is surjective.
+    
+  %   ($\Leftarrow$) Assume $f$ is both injective and surjective. To show $f^{-1}$ is a function, let $(b, a_1), (b, a_2) \in f^{-1}$. 
+  %   Then, $(a_1, b), (a_2, b) \in f$. Since $f$ is injective, it follows that $a_1 = a_2$. Thus, $f^{-1}$ satisfies the definition of a function.
+  % \end{subprove}
+
+  \begin{subprove}
+    We consider the inverse relation $f^{-1} \subseteq B \times A$ for the function 
+    \[
+    f : A \to B \quad \text{on nonempty sets $A,B$.}
+    \]
+    Assume $f$ is a bijection, i.e., both one-to-one and onto. Let $b \in B$. Since $f$ is onto, by definition, there exists $a \in A$ with $f(a) = b$. So $(a,b) \in f$ and $(b,a) \in f^{-1}$. Hence for all $b \in B$ there exists $a \in A$ such that $(b,a) \in f^{-1}$. 
+
+    Now let $a, a' \in A$. Suppose $(b,a) \in f^{-1}$ and $(b,a') \in f^{-1}$. Then $(a,b), (a',b) \in f$, so $f(a) = b$ and $f(a') = b$. But $f$ is one-to-one by assumption, and so $a = a'$. Hence we have shown that each $b \in B$ has at least one image under the inverse relation $f^{-1}$ and no more than one. Thus the inverse relation is a function whenever $f$ is a bijection.
+
+    \medskip
+    Conversely, \dots
+  \end{subprove}
+\end{define}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate} 
+  \newpage
+  \item Let $A$, $B$, $C$, and $D$ be subsets of a universal set $\setUNIV$. 
+  Prove the following propositions.~\footnote{
+    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
+    However, the Gradescope PDF view might not support clickable hyperlinks.
+  }\\
+  \textit{This proves that the three subsets are a partition of $(A \sOR B)$. Partitions will be very important to understanding equivalence relations.}
+  \begin{enumerate}
+    \item $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.~\footnote{
+      I intentionally avoided repetitive or excessive cross-references for better readability.
+    }
+    \begin{subprove}
+      By definition of \nameref{def:set-equality}, $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$ 
+      requires showing both directions of \nameref{def:subset}s, as follows.\vspace*{5px}\\
+      ($\subseteq$) Let $x \in A \sOR B$ be arbitrary. Then, $x \in A$ or $x \in B$ 
+      by definition of \nameref{def:union}. Consider the following cases.
+      \begin{itemize}
+        \item If $x \in A$ and $x \in B$, then $x \in A \sAND B$ by definition of \nameref{def:intersection}.
+        \item If $x \in A$ and $x \notin B$, then $x \in A \sMINUS B$ by definition of \nameref{def:set-difference}.
+        \item If $x \notin A$ and $x \in B$, then $x \in B \sMINUS A$ by definition.
+      \end{itemize}
+      In all cases, $x \in (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$. 
+      Hence, proof by cases, $(A \sOR B) \subseteq (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.\vspace*{5px}\\
+      ($\supseteq$) Let $x \in (A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$ be arbitrary. 
+      Then, $x \in A \sAND B$ or $x \in A \sMINUS B$ or $x \in B \sMINUS A$. Consider the following cases.
+      \begin{itemize}
+        \item If $x \in A \sAND B$, then $x \in A$ and $x \in B$ by definition, so $x \in A \sOR B$.
+        \item If $x \in A \sMINUS B$, then $x \in A$ by definition, so $x \in A \sOR B$ by definition.
+        \item If $x \in B \sMINUS A$, then $x \in B$ by definition, so $x \in A \sOR B$ by definition.
+      \end{itemize}
+      Hence, proof by cases, $(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A) \subseteq A \sOR B$.\vspace*{5px}\\
+      Therefore, by ($\subseteq$) and ($\supseteq$), 
+      $(A \sOR B)=(A \sAND B) \sOR(A \sMINUS B) \sOR(B \sMINUS A)$.
+    \end{subprove}
+
+    \item $(A \sAND B)$, $(A \sMINUS B)$, and $(B \sMINUS A)$ are all pairwise disjoint.
+    \begin{subprove}
+      It is required to show that any two of these sets have empty intersection,
+      \begin{itemize}
+        \item To claim $(A \sAND B) \sAND (A \sMINUS B) = \setNULL$,
+        assume there exists $x \in (A \sAND B) \sAND (A \sMINUS B)$ for 
+        the sake of contradiction. Then, $x \in A \sAND B$ and $x \in A \sMINUS B$. 
+        Since $x \in A \sAND B$, it follows that $x \in A$ and $x \in B$ by definition of \nameref{def:intersection}. 
+        Since $x \in A \sMINUS B$, it follows that $x \in A$ and $x \notin B$ by definition of \nameref{def:set-difference}, 
+        which contradicts $x \in B$. Therefore, $(A \sAND B) \sAND (A \sMINUS B) = \setNULL$.
+        \item To claim $(A \sAND B) \sAND (B \sMINUS A) = \setNULL$, without loss of generality, 
+        it is symmetrical to the previous case, with the roles of sets $A$ and $B$ swapped.
+        Hence, trivially, $(A \sAND B) \sAND (B \sMINUS A) = \setNULL$.
+        \item To claim $(A \sMINUS B) \sAND (B \sMINUS A) = \setNULL$,
+        assume there exists $x \in (A \sMINUS B) \sAND (B \sMINUS A)$ for 
+        the sake of contradiction. Then, $x \in A \sMINUS B$ and $x \in B \sMINUS A$. 
+        Since $x \in A \sMINUS B$, it follows that $x \in A$ and $x \notin B$ by definition of \nameref{def:set-difference}. 
+        Since $x \in B \sMINUS A$, it follows that $x \in B$ and $x \notin A$ by definition of \nameref{def:set-difference}, 
+        which contradicts both $x \notin B$ and $x \in A$ at the same time. 
+        Therefore, $(A \sMINUS B) \sAND (B \sMINUS A) = \setNULL$.
+      \end{itemize}
+      Therefore, $(A \sAND B)$, $(A \sMINUS B)$, and $(B \sMINUS A)$ are all pairwise disjoint by definition of \nameref{def:pairwise-disjoint}.
+    \end{subprove}
+  \end{enumerate}
+  
+
+
+
+
+  \newpage
+  \item Let $A$, $B$, $C$, and $D$ be subsets of a universal set $\setUNIV$. 
+  Prove or disprove the following propositions.~\footnote{
+    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
+    However, the Gradescope PDF view might not support clickable hyperlinks.
+  }\\
+  \textit{Likewise, Cartesian product of sets (above) and the power set of a set (below) will be very important in the next part of the course.}
+  \begin{enumerate}
+    \item $(A \sTIMES B) \sAND(C \sTIMES D) \subseteq(A \sAND C) \sTIMES(B \sAND D)$.
+    \begin{subprove}
+      Let $(x,y) \in (A \sTIMES B) \sAND(C \sTIMES D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $(x,y) \in A \sTIMES B$ and $(x,y) \in C \sTIMES D$. 
+      Since $(x,y) \in A \sTIMES B$, it follows that $x \in A$ 
+      and $y \in B$ by definition of \nameref{def:cartesian-product}. Since $(x,y) \in C \sTIMES D$, it follows 
+      that $x \in C$ and $y \in D$ as well.
+      Thus, $x \in A \sAND C$ 
+      and $y \in B \sAND D$ by definition of \nameref{def:intersection}, 
+      so $(x,y) \in (A \sAND C) \sTIMES(B \sAND D)$.
+      Hence, $(A \sTIMES B) \sAND(C \sTIMES D) \subseteq(A \sAND C) \sTIMES(B \sAND D)$.
+    \end{subprove}
+
+    \item $(A \sAND C) \sTIMES(B \sAND D) \subseteq(A \sTIMES B) \sAND(C \sTIMES D)$.
+    \begin{subprove}
+      Let $(x,y) \in (A \sAND C) \sTIMES(B \sAND D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $x \in A \sAND C$ and $y \in B \sAND D$ by definition of \nameref{def:cartesian-product}. 
+      Since $x \in A \sAND C$, it follows that $x \in A$ and $x \in C$ by definition of \nameref{def:intersection}. 
+      Since $y \in B \sAND D$, it follows that $y \in B$ and $y \in D$.
+      Therefore, $(x,y) \in A \sTIMES B$ and $(x,y) \in C \sTIMES D$ since logical AND (\AND) is commutative.
+      Thus, $(x,y) \in (A \sTIMES B) \sAND(C \sTIMES D)$.
+      Hence, $(A \sAND C) \sTIMES(B \sAND D) \subseteq(A \sTIMES B) \sAND(C \sTIMES D)$.
+    \end{subprove}
+
+    \item $(A \sTIMES B) \sOR(C \sTIMES D) \subseteq(A \sOR C) \sTIMES(B \sOR D)$.
+    \begin{subprove}
+      Let $(x,y) \in (A \sTIMES B) \sOR(C \sTIMES D)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $(x,y) \in A \sTIMES B$ or $(x,y) \in C \sTIMES D$ by definition of \nameref{def:union}. 
+      \begin{itemize}
+        \item If $(x,y) \in A \sTIMES B$, then $x \in A$ and $y \in B$ by definition of \nameref{def:cartesian-product}. \label{prob:proof-2}
+        Since $x \in A$, it follows that $x \in A \sOR C$ by definition of \nameref{def:union}. 
+        Since $y \in B$, it follows that $y \in B \sOR D$ by definition of \nameref{def:union}. 
+        Therefore, $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$.
+        \item If $(x,y) \in C \sTIMES D$, without loss of generality, it is symmetrical to the previous case.
+        Therefore, it trivially implies $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$.
+      \end{itemize}
+      In both cases, $(x,y) \in (A \sOR C) \sTIMES(B \sOR D)$. 
+      Hence, proof by cases, $(A \sTIMES B) \sOR(C \sTIMES D) \subseteq(A \sOR C) \sTIMES(B \sOR D)$.
+    \end{subprove}
+
+    \item $(A \sOR C) \sTIMES(B \sOR D) \subseteq(A \sTIMES B) \sOR(C \sTIMES D)$.
+    \begin{subdisprove}
+      Let $A=\{1\}, B=\{2\}, C=\{3\}, D=\{4\}$ be subsets of a universal set $\setUNIV$ 
+      for the sake of counterexample. 
+      Then, $(A \sOR C) \sTIMES(B \sOR D)=\{1,3\} \sTIMES \{2,4\}=\{(1,2),(1,4),(3,2),(3,4)\}$ 
+      and $(A \sTIMES B) \sOR(C \sTIMES D)=\{(1,2)\} \sOR \{(3,4)\}=\{(1,2),(3,4)\}$. 
+      Since $(1,4) \in (A \sOR C) \sTIMES(B \sOR D)$ but $(1,4) \notin (A \sTIMES B) \sOR(C \sTIMES D)$, 
+      it follows that $(A \sOR C) \sTIMES(B \sOR D) \not\subseteq (A \sTIMES B) \sOR(C \sTIMES D)$. 
+      Therefore, by counterexample, the statement is \textbf{false}.
+    \end{subdisprove}
+  \end{enumerate}
+
+
+
+
+
+  \newpage
+  \item Let $A$, $B$ be subsets of a universal set $\setUNIV$. 
+  Prove or disprove the following propositions.~\footnote{
+    \textbf{Notice}: The answers contain cross-references throughout this document as clickable hyperlinks in most PDF viewers. 
+    However, the Gradescope PDF view might not support clickable hyperlinks.
+  }
+  \begin{enumerate}
+    \item $\sPOWER(A \sAND B) \subseteq \sPOWER{A} \sAND \sPOWER{B}$.
+    \begin{subprove}
+      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER(A \sAND B)$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $X \subseteq A \sAND B$ by definition of \nameref{def:power-set}. 
+      Since $X \subseteq A \sAND B$, it follows that 
+      $X \subseteq A$ and $X \subseteq B$ by definition of \nameref{def:intersection}. Therefore, $X \in \sPOWER{A}$ 
+      and $X \in \sPOWER{B}$, so $X \in \sPOWER{A} \sAND \sPOWER{B}$.
+      Hence, $\sPOWER(A \sAND B) \subseteq \sPOWER{A} \sAND \sPOWER{B}$.
+    \end{subprove}
+    
+    \item $\sPOWER{A} \sAND \sPOWER{B} \subseteq \sPOWER(A \sAND B)$.
+    \begin{subprove}
+      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER{A} \sAND \sPOWER{B}$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $X \in \sPOWER{A}$ and $X \in \sPOWER{B}$ by definition of \nameref{def:intersection}. 
+      Since $X \in \sPOWER{A}$, it follows that $X \subseteq A$ by definition of \nameref{def:power-set}. 
+      Without loss of generality, (trivial) $X \subseteq B$.
+      Since $X \subseteq A$ and $X \subseteq B$, it follows that $X \subseteq A \sAND B$.
+      Therefore, $X \in \sPOWER(A \sAND B)$.
+      Hence, $\sPOWER{A} \sAND \sPOWER{B} \subseteq \sPOWER(A \sAND B)$.
+    \end{subprove}
+
+    \item $\sPOWER(A \sOR B) \subseteq \sPOWER{A} \sOR \sPOWER{B}$.
+    \begin{subdisprove}
+      Let $A=\{1\}, B=\{2\}$ be subsets of a universal set $\setUNIV$ 
+      for the sake of counterexample. 
+      Then, $\sPOWER(A \sOR B)=\sPOWER(\{1,2\})=\{\setNULL,\{1\},\{2\},\{1,2\}\}$ by definition of \nameref{def:power-set}
+      and $\sPOWER{A} \sOR \sPOWER{B}=\{\setNULL,\{1\}\} \sOR \{\setNULL,\{2\}\}=\{\setNULL,\{1\},\{2\}\}$. 
+      Since $\{1,2\} \in \sPOWER(A \sOR B)$ but $\{1,2\} \notin \sPOWER{A} \sOR \sPOWER{B}$, 
+      it follows that $\sPOWER(A \sOR B) \not\subseteq \sPOWER{A} \sOR \sPOWER{B}$. 
+      Therefore, by the counterexample, the statement is \textbf{false}.
+    \end{subdisprove}
+
+    \item $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
+    \begin{subprove}
+      Let $X \subseteq\setUNIV$. Assume $X\in\sPOWER{A} \sOR \sPOWER{B}$ be arbitrary for the sake of directly showing ($\subseteq$). 
+      Then, $X \in \sPOWER{A}$ or $X \in \sPOWER{B}$ by definition of \nameref{def:union}. 
+      \begin{define}{Subset of Union: $A \subseteq \sOR{A}{B}$}[claim:subset-union][red]
+        \begin{subprove}[red]
+            Let $x\in U$, assume $x\in A$. Then the statement \inlinequote{$x\in A$ or $x\in B$} is true.
+            Hence, by definition of \nameref{def:union}, $\sOR{A}{B}=\{x\in U\LDIV x\in A$ or $x\in B\}$, $x\in \sOR{A}{B}$.
+            Thus, $A \subseteq \sOR{A}{B}$.
+        \end{subprove}
+      \end{define}
+      If $X \in \sPOWER{A}$, then $X \subseteq A \subseteq A \sOR B$ by definition of \nameref{def:power-set} and the short claim above, \nameref{claim:subset-union}, 
+      so $X \in \sPOWER(A \sOR B)$.
+      Without loss of generality, the case of $X \in \sPOWER{B}$ trivially implies $X \in \sPOWER(A \sOR B)$ as well. 
+      In both cases, $X \in \sPOWER(A \sOR B)$. 
+      Hence, proof by cases, $\sPOWER{A} \sOR \sPOWER{B} \subseteq \sPOWER(A \sOR B)$.
+    \end{subprove}
+  \end{enumerate}
+\end{enumerate}

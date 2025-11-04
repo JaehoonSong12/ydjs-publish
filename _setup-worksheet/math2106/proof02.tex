@@ -1,0 +1,269 @@
+\newpage\handout
+{\textsc{Math 2106: Foundations of Mathematical Proof}}{\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA 4.0 license}}
+{Content 2: WeBWorK}
+{Author: \href{\HandoutAuthorUrl}{\HandoutAuthor}}{Generated on \generatedOn}
+{Proof1}
+\input{preface.tex}
+\newpage
+
+
+
+
+
+
+% \input{ref01-logic.tex}
+% \newpage
+
+
+
+
+
+\begin{enumerate}
+  \item Let $P(x)$ and $Q(x)$ be predicates with domain $D$. Below are pairs of hypotheses and conclusions which might be used to prove $\forall x \in D,\, P(x) \rightarrow Q(x)$.  
+  The comma communicates that the proposition is $\forall x \in D(P(x) \rightarrow Q(x))$ and not $(\forall x \in D P(x)) \rightarrow Q(x)$.  
+  Select all pairs which could be the basis of a correct proof.
+
+  \begin{enumerate}[label=\Alph*.]
+    \item Let $x \in D$. Assume $Q(x)$ is false. Prove $P(x)$ is false.\\
+    \begin{subanswer}
+        Valid. This is a proof by contrapositive: showing $\lnot Q(x)\Rightarrow \lnot P(x)$ is equivalent to $P(x)\Rightarrow Q(x)$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x)$ is false and $Q(x)$ is true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. The assumption $\lnot P(x)\land Q(x)$ is consistent with $P(x)\rightarrow Q(x)$, so deriving a contradiction from it does not yield the desired universal implication.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $\overline{P(x)} \rightarrow \overline{Q(x)}$ is true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. Assuming $\lnot P\rightarrow\lnot Q$ and deriving a contradiction would not establish $P\rightarrow Q$; the correct contrapositive is $\lnot Q\rightarrow\lnot P$, not $\lnot P\rightarrow\lnot Q$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x)$ is true and $Q(x)$ is false. Prove a contradiction.\\
+    \begin{subanswer}
+        Valid. Showing $P(x)\land\lnot Q(x)$ leads to contradiction proves $\lnot(P(x)\land\lnot Q(x))$, which is equivalent to $P(x)\rightarrow Q(x)$ for that arbitrary $x$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x)$ and $Q(x)$ are false. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. The assumption $\lnot P(x)\land\lnot Q(x)$ does not contradict $P(x)\rightarrow Q(x)$; deriving a contradiction from it would not establish the implication.
+    \end{subanswer}
+
+    \item Assume there exists an $x \in D$ such that $P(x) \rightarrow Q(x)$ is false. Prove a contradiction.\\
+    \begin{subanswer}
+        Valid. This is proof by contradiction on the universal: assuming $\exists x\,\lnot(P(x)\rightarrow Q(x))$ (i.e. a counterexample) and deriving a contradiction proves $\forall x\,P(x)\rightarrow Q(x)$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x)$ is true. Prove $Q(x)$ is true.\\
+    \begin{subanswer}
+        Valid. This is the direct proof method: for an arbitrary $x$ assume $P(x)$ and prove $Q(x)$.
+    \end{subanswer}
+
+    \item Assume there exists an $x \in D$ such that $P(x)$ is false and $Q(x)$ is true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. The existence of $\lnot P(x)\land Q(x)$ is compatible with $P(x)\rightarrow Q(x)$; contradicting such an existence does not prove the universal implication.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $\overline{Q(x)}$ is true. Prove $\overline{P(x)}$ is true.\\
+    \begin{subanswer}
+        Valid. This is the contrapositive method: $\lnot Q(x)\Rightarrow\lnot P(x)$ is equivalent to $P(x)\Rightarrow Q(x)$.
+    \end{subanswer}
+
+    \item Assume there exists an $x \in D$ such that $\overline{P(x)} \rightarrow \overline{Q(x)}$ is true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. Showing $\exists x\,(\lnot P\rightarrow\lnot Q)$ impossible does not establish $\forall x\,(P\rightarrow Q)$; the implication $\lnot P\rightarrow\lnot Q$ is not the contrapositive of $P\rightarrow Q$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $Q(x)$ is true. Prove $P(x)$ is true.\\
+    \begin{subanswer}
+        Not valid. This proves the converse $Q(x)\Rightarrow P(x)$, which is not generally equivalent to $P(x)\Rightarrow Q(x)$.
+    \end{subanswer}
+
+    \item Assume there exists an $x \in D$ such that $P(x) \rightarrow Q(x)$ is true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. Proving $\exists x\,(P\rightarrow Q)$ false would establish the negation of an existence statement; deriving a contradiction from existence of a true instance does not yield the universal implication.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x) \rightarrow Q(x)$ is true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. For an arbitrary $x$, assuming the desired implication and deriving a contradiction would show $\lnot(P\rightarrow Q)$ for that $x$, i.e. the opposite of the goal.
+    \end{subanswer}
+
+    \item Assume there exists an $x \in D$ such that $P(x)$ is true and $Q(x)$ is false. Prove a contradiction.\\
+    \begin{subanswer}
+        Valid. Assuming a counterexample $\exists x\,(P(x)\land\lnot Q(x))$ and deriving a contradiction proves there are no counterexamples, hence $\forall x\,P(x)\rightarrow Q(x)$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x)$ is false. Prove $Q(x)$ is false.\\
+    \begin{subanswer}
+        Not valid. The implication $\lnot P(x)\Rightarrow\lnot Q(x)$ is not equivalent to $P(x)\Rightarrow Q(x)$; it is the converse of the contrapositive.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x) \rightarrow Q(x)$ is false. Prove a contradiction.\\
+    \begin{subanswer}
+        Valid. For an arbitrary $x$, $P(x)\rightarrow Q(x)$ false means $P(x)\land\lnot Q(x)$; assuming that and deriving a contradiction proves $\lnot(P(x)\land\lnot Q(x))$, i.e. $P(x)\rightarrow Q(x)$ for that $x$.
+    \end{subanswer}
+
+    \item Let $x \in D$. Assume $P(x)$ and $Q(x)$ are true. Prove a contradiction.\\
+    \begin{subanswer}
+        Not valid. The assumption $P(x)\land Q(x)$ is compatible with $P(x)\rightarrow Q(x)$; contradicting it does not establish the implication.
+    \end{subanswer}
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  Let $A$ and $B$ be subsets of a universal set $\mathcal{U}$. Here $\bar{A}$ is the complement of $A$ in $\mathcal{U}$.
+
+For each statement on the left, choose a logically equivalent one from the right.
+A. $\exists x \in \mathcal{U}, x \notin A \wedge x \notin B$
+B. $\exists i \in I, \forall x \in B, x \in A_i$
+C. $\forall x \in B, \forall i \in I, x \in A_i$
+D. $\forall x \in \mathcal{U}, x \notin A$ implies $x \notin B$
+E. $\exists x \in \mathcal{U}, x \in A \wedge x \notin B$
+F. $\exists x \in B, \forall i \in I, x \in A_i$
+G. $\forall x \in \mathcal{U}, x \in A$ implies $x \notin B$
+H. $\forall i \in I, \exists x \in B, x \in A_i$
+I. $\forall x \in B, \exists i \in I, x \in A_i$
+J. $\exists x \in \mathcal{U}, x \in A \vee x \in B$
+
+
+
+1. $B \subseteq A$
+2. $B \subseteq \bigcap_{i \in I} A_i$
+3. $A \nsubseteq B$
+4. $A \cap B=\emptyset$
+5. $B \cap\left(\bigcap_{i \in I} A_i\right) \neq \emptyset$
+6. $\overline{A \cup B} \neq \emptyset$
+7. $B \subseteq\left(\bigcup_{i \in I} A_i\right)$
+8. $B \subseteq A_i$ for some $i$
+9. $A \cup B \neq \emptyset$
+10. $B \cap A_i \neq \emptyset$ for every $i$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let $A, B$, and $C$ be subsets of a universal set $\mathcal{U}$. Here $\bar{A}$ is the complement of $A$ in $\mathcal{U}$.
+
+Set identities are closely related to logically equivalences via proofs using set builder notation. For example, the complementation law for sets is proved as follows using the double negation logical equivalence.
+Both operations are denoted with an overline; it is should always be clear from the context whether this operation is logical negation or set complementation.
+
+$$
+\begin{aligned}
+& \text { Claim: For all } A \subseteq \mathcal{U}, \overline{\bar{A}}=A . \\
+& \text { Proof: Let } A \subseteq \mathcal{U} . \text { Then } \overline{\bar{A}}=\{x \in \mathcal{U} \mid x \notin \bar{A}\} \\
+& =\{x \in \mathcal{U} \mid \overline{(x \in \bar{A})}\} \\
+& =\{x \in \mathcal{U} \mid \overline{(x \notin A)}\} \\
+& =\{x \in \mathcal{U} \mid \overline{(x \in A)}\} \\
+& =\{x \in \mathcal{U} \mid x \in A\}=A, \text { and the claim holds. }
+\end{aligned}
+$$
+
+For each set identity on the left, choose the corresponding logical equivalence from the right. Here $p, q$, and $r$ are propositions; $\boldsymbol{F}$ is a contradiction and $\boldsymbol{T}$ is a tautology.
+
+A. $\overline{p \vee q} \equiv \bar{p} \wedge \bar{q}$
+B. $p \vee(q \wedge r) \equiv(p \vee q) \wedge(p \vee r)$
+C. $p \wedge(q \vee r) \equiv(p \wedge q) \vee(p \wedge r)$
+D. $(p \wedge q) \wedge r \equiv p \wedge(q \wedge r)$
+E. $(p \vee q) \vee r \equiv p \vee(q \vee r)$
+F. $p \vee p \equiv p$
+G. $\overline{p \wedge q} \equiv \bar{p} \vee \bar{q}$
+H. $p \wedge \boldsymbol{F} \equiv \boldsymbol{F}$
+I. $p \vee \boldsymbol{F} \equiv p$
+J. $p \vee q \equiv q \vee p$
+K. $p \wedge \boldsymbol{T} \equiv p$
+L. $p \wedge p \equiv p$
+M. $p \vee \boldsymbol{T} \equiv \boldsymbol{T}$
+N. $p \wedge q \equiv q \wedge p$
+O. None of the above
+
+
+
+1. $(A \cup B) \cup C=A \cup(B \cup C)$
+2. $A \cup \mathcal{U}=\mathcal{U}$
+3. $\overline{A \cup B}=\bar{A} \cap \bar{B}$
+4. $A \cap \mathcal{U}=A$
+5. $A \cup(B \cap C)=(A \cup B) \cap(A \cup C)$
+6. $\overline{A \cap B}=\bar{A} \cup \bar{B}$
+7. $A \cup A=A$
+8. $A \cap A=A$
+9. $A \cup \emptyset=A$
+10. $A \cap B=B \cap A$
+11. $(A \cap B) \cap C=A \cap(B \cap C)$
+12. $A \cap(B \cup C)=(A \cap B) \cup(A \cap C)$
+13. $A \cap \emptyset=\emptyset$
+14. $A \cup B=B \cup A$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For each set identity on the left, choose the name from the right.
+A. Associative
+B. De Morgan's
+C. Commutative
+D. Distributive
+E. None of the above
+
+
+1. $(A \cap B) \cap C=A \cap(B \cap C)$
+2. $\overline{A \cap B}=\bar{A} \cup \bar{B}$
+3. $A \cup B=B \cup A$
+4. $A \cup \mathcal{U}=\mathcal{U}$
+5. $A \cup(B \cap C)=(A \cup B) \cap(A \cup C)$
+6. $A \cap B=B \cap A$
+7. $\overline{A \cup B}=\bar{A} \cap \bar{B}$
+8. $A \cap(B \cup C)=(A \cap B) \cup(A \cap C)$
+9. $A \cup \emptyset=A$
+10. $A \cup A=A$
+11. $A \cap \mathcal{U}=A$
+12. $A \cap A=A$
+13. $(A \cup B) \cup C=A \cup(B \cup C)$
+14. $A \cap \emptyset=\emptyset$
+
+
+\end{enumerate}
