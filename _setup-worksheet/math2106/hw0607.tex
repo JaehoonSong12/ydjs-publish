@@ -3,6 +3,56 @@
 
 % Continue, 
 % these are not correctly formatted, and somewhat broken, I need to reformat all these contents consistently like before.
+
+
+% This table is designed to span the full text width.
+% 'X' columns are special 'tabularx' columns that wrap text 
+% and share the available space.
+\section*{Groups Families in Nutshell}
+\begin{table}[htbp]
+  \centering
+  \caption{Groups Families in Nutshell}
+  \label{tab:group_summary}
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabularx}{\textwidth}{@{} l l X X @{}}
+    \hline
+    \textbf{Group Family} & \textbf{Notation} & 
+    \textbf{Definition} & \textbf{Properties \& Significance} \\
+    \hline
+    \multicolumn{4}{c}{\textbf{Abelian Groups ($a \cdot b = b \cdot a$)}} \\
+    \hline
+    Cyclic Group & $\mathbb{Z}_n$, $\mathbb{Z}$ & Group generated 
+    by a single element. & Fundamental building blocks of finite 
+    abelian groups. Simplest group structure. \\
+    \rule{0pt}{3ex}
+    Klein 4-Group & $V_4$ & $(\mathbb{Z}_2 \times \mathbb{Z}_2, +)$ 
+    with coordinate-wise addition. & Smallest non-cyclic group. 
+    Demonstrates that abelian does not imply cyclic. \\
+    \hline
+    \multicolumn{4}{c}{\textbf{Non-Abelian Groups ($a \cdot b \neq b \cdot a$ in general)}} \\
+    \hline
+    \rule{0pt}{3ex}
+    Symmetric Group 
+    & $S_n$ 
+    & Group of all permutations of $n$ objects under composition. 
+    & Every finite group is isomorphic to a subgroup of $S_n$ (Cayley's Theorem). 
+    $|S_n| = n!$. \\ 
+    \rule{0pt}{3ex}
+    Alternating Group 
+    & $A_n$ 
+    & Subgroup of $S_n$ consisting of all even permutations. 
+    & Simple group for $n \geq 5$. $|A_n| = n!/2$. 
+    Related to solvability of polynomial equations. \\
+    \rule{0pt}{3ex}
+    Dihedral Group 
+    & $D_n$ 
+    & Group of symmetries (rotations and reflections) of a regular $n$-gon. 
+    & $|D_n| = 2n$. Provides intuitive geometric examples. $D_3 \cong S_3$. \\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\newpage
 \begin{define}{Group}[def:group][red]
   A nonempty set \(G\) is a \textbf{group} under the (binary) operation \(*\), 
   denoted \((G, *)\), if (and only if) these four propositions are satisfied:
@@ -313,15 +363,15 @@ Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets.
 
 
   \newpage
-  \begin{define}{Abelian Groups}[def:abeliangroup][red]
+  \begin{define}{Abelian Group}[def:abelian-group][red]
     A \nameref{def:group} \((G, *)\) is called an \textbf{Abelian group} 
     (or \textbf{commutative group}) if (and only if) \textbf{commutative}, that is,
     \[
     \text{For all } a, b \in G, \, a * b = b * a.
     \]
-  \end{define}
+  \end{define}  
   \item Let $G$ be a nonempty set of $2 \times 2$ matrices. 
-  Then, $(G, \cdot)$ is not a \nameref{def:abeliangroup}, 
+  Then, $(G, \cdot)$ is not a \nameref{def:abelian-group}, 
   where $\cdot$ is the matrix multiplication operation.
   \begin{subprove}
     Let \(G\) be the set of all \(2 \times 2\) matrices with real entries, and let the operation be matrix multiplication \(\cdot\).
@@ -376,9 +426,9 @@ Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets.
     1 & 2 \\
     3 & 7
     \end{pmatrix}\).
-    Therefore, \((G, \cdot)\) does not satisfy the commutative property, and hence it is not a \nameref{def:abeliangroup}.
+    Therefore, \((G, \cdot)\) does not satisfy the commutative property, and hence it is not a \nameref{def:abelian-group}.
   \end{subprove}
-  \item Prove that if \(|S| \geq 3\), then \(A(S)\) is not a \nameref{def:abeliangroup}.
+  \item Prove that if \(|S| \geq 3\), then \(A(S)\) is not a \nameref{def:abelian-group}.
   \begin{subprove}
     A counterexample will be provided. Let \(|S| \geq 3\) and let \(a, b, c \in S\) be distinct.
     Define \(f, g \in A(S)\) as follows.
@@ -401,7 +451,7 @@ Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets.
       (g \circ f)(a) = g(f(a)) = g(b) = c.
     \]
     Since \((f \circ g)(a) = a \neq c = (g \circ f)(a)\), it follows that \(f \circ g \neq g \circ f\).
-    Therefore, \(A(S)\) is not a \nameref{def:abeliangroup}.
+    Therefore, \(A(S)\) is not a \nameref{def:abelian-group}.
   \end{subprove}
   \newpage
   \item Let \(f: S \to T\) and \(g: T \to U\) be functions.
@@ -795,91 +845,104 @@ Let \((G, *)\) be a \nameref{def:group} with identity \(e\).
     \end{itemize}
     Therefore, \(A\) is a \nameref{def:subgroup} of \(G\), and hence \((a)\) is well-defined.
   \end{subprove}
+  
+  \item Does \((\setZ_{4}, +)\) have a proper \nameref{def:cyclic-subgroup}?
+  What about \((\setZ_{5}, +)\)?
+  Justify your answers.
+  \begin{subprove}
+    \((\setZ_{4}, +)\) has a proper \nameref{def:cyclic-subgroup}. 
+    By \nameref{def:cyclic-subgroup}, \(([2]) = \{[2]^{i} \mid i \in \setZ\}\). 
+    In additive notation, \([2]^{i} = i \cdot [2] = [2i]\), so 
+    \(([2]) = \{[0], [2]\}\), which is a proper \nameref{def:cyclic-subgroup} 
+    since it is not equal to \(\{[0]\}\) or \(\setZ_{4}\).\proofstep
+    \((\setZ_{5}, +)\) does not have a proper \nameref{def:cyclic-subgroup}. 
+    Since \(5\) is prime, for any nonzero \([a] \in \setZ_{5}\), \(\gcd(a, 5) = 1\), 
+    so by \nameref{def:cyclic-subgroup}, 
+    \(([a]) = \{[a]^{i} \mid i \in \setZ\} = \setZ_{5}\). \proofstep
+    Therefore, every nonzero element generates the entire group, 
+    so there are no proper \nameref{def:cyclic-subgroup}s.
+    \footnote{\textbf{Proper} \nameref{def:cyclic-subgroup} 
+    (sometimes called a \textbf{nontrivial} \nameref{def:cyclic-subgroup}) 
+    is a \nameref{def:cyclic-subgroup} that is not the entire group.}
+  \end{subprove}
+  \newpage
+  \begin{define}{Order of Element}[def:order-of-element][red]
+    Let $G$ be a finite \nameref{def:group}. The \textbf{order} of an 
+    element $a \in G$, denoted $o(a)$, is the least positive 
+    integer $m$ such that $a^m=e$.
+  \end{define}
+  \item Prove that if \(a \in G\) has order \(n\) and \(G\) is a finite \nameref{def:group} of order \(m\), 
+  then \(n \mid m\).
+  \begin{define}{Lagrange's Theorem}[thm:lagrange][red]
+    Let \((G, *)\) be a finite \nameref{def:group} and \(H\) a \nameref{def:subgroup} of \(G\). 
+    Then \(|H| \mid |G|\), where \(|H|\) and \(|G|\) denote the orders of \(H\) and \(G\) respectively.
+    In particular, for any \(a \in G\), \(o(a) \mid |G|\), where \(o(a)\) denotes the order of \(a\).
+  \end{define}
+  \begin{subprove}
+    Let \((G, *)\) be a finite \nameref{def:group} of order \(m\), and let \(a \in G\) have order \(n\).
+    By \nameref{def:order-of-element}, \(o(a)\) equals the order of the \nameref{def:cyclic-subgroup} \((a)\) generated by \(a\).
+    Since \((a)\) is a \nameref{def:subgroup} of \(G\), by \nameref{thm:lagrange}, the order of \((a)\) divides the order of \(G\).
+    Therefore, \(n = o(a)\) divides \(m\), the order of \(G\).
+  \end{subprove}
   \item Consider the \nameref{def:group} of integers under addition.
   What is the \nameref{def:cyclic-subgroup} generated by \(-1\)?
   What is \((2)\)?
   Are the odd integers a \nameref{def:subgroup} of \((\setZ, +)\)?
   Justify your answers.
   \begin{subprove}
-    Let \(G = (\setZ, +)\) be the \nameref{def:group} of integers under addition.
-    It will be determined what the \nameref{def:cyclic-subgroup} generated by \(-1\) is, what \((2)\) is, and whether the odd integers form a \nameref{def:subgroup} of \((\setZ, +)\).
-    
-    First, the \nameref{def:cyclic-subgroup} generated by \(-1\) will be computed.
-    By \nameref{def:cyclic-subgroup}, \((-1) = \{(-1)^{i} \mid i \in \setZ\}\).
-    In additive notation, \((-1)^{i} = i \cdot (-1) = -i\) for all \(i \in \setZ\).
-    Therefore, \((-1) = \{-i \mid i \in \setZ\} = \setZ\).
-    That is, the \nameref{def:cyclic-subgroup} generated by \(-1\) is the entire group \(\setZ\).
-    
-    Now, \((2)\) will be computed.
-    By \nameref{def:cyclic-subgroup}, \((2) = \{2^{i} \mid i \in \setZ\}\).
-    In additive notation, \(2^{i} = i \cdot 2 = 2i\) for all \(i \in \setZ\).
-    Therefore, \((2) = \{2i \mid i \in \setZ\} = \{\ldots, -4, -2, 0, 2, 4, \ldots\}\), which is the set of all even integers.
-    
-    Now, it will be determined whether the odd integers form a \nameref{def:subgroup} of \((\setZ, +)\).
-    The set of odd integers is \(O = \{\ldots, -3, -1, 1, 3, 5, \ldots\}\).
-    It will be proved that \(O\) is not a \nameref{def:subgroup} of \((\setZ, +)\).
-    
-    By \nameref{def:subgroup-lemma}, a subset \(H \subseteq G\) is a \nameref{def:subgroup} if and only if (1) \(H \neq \emptyset\), (2) for all \(a, b \in H\), \(a + b \in H\), and (3) for all \(a \in H\), \(-a \in H\).
-    
-    It will be checked whether \(O\) satisfies these conditions:
-    \begin{itemize}
-      \item \(O \neq \emptyset\) since, for example, \(1 \in O\).
-      \item For closure, let \(a, b \in O\) be arbitrary odd integers.
-      Then \(a = 2m + 1\) and \(b = 2n + 1\) for some \(m, n \in \setZ\).
-      Therefore, \(a + b = (2m + 1) + (2n + 1) = 2(m + n + 1)\), which is even, not odd.
-      For example, \(1 + 1 = 2\), but \(2 \notin O\).
-      Therefore, \(O\) is not closed under addition.
-      \item Since \(O\) is not closed under addition, it is not necessary to check the inverse condition.
-    \end{itemize}
-    
-    Since \(O\) is not closed under addition, it follows that \(O\) is not a \nameref{def:subgroup} of \((\setZ, +)\).
-    
-    \textbf{Summary:}
-    \begin{itemize}
-      \item \((-1) = \setZ\) (the entire group of integers)
-      \item \((2) = \{2i \mid i \in \setZ\}\) (the set of all even integers)
-      \item The odd integers are not a \nameref{def:subgroup} of \((\setZ, +)\) because they are not closed under addition (e.g., \(1 + 1 = 2\), which is not odd).
-    \end{itemize}
+    By \nameref{def:cyclic-subgroup}, \((-1) = \{(-1)^{i} \mid i \in \setZ\}\). 
+    In additive notation, \((-1)^{i}\) equals \(i \cdot (-1) = -i\) for all \(i \in \setZ\), 
+    so \((-1) = \{-i \mid i \in \setZ\} = \setZ\).\proofstep
+    By \nameref{def:cyclic-subgroup}, \((2) = \{2^{i} \mid i \in \setZ\}\). 
+    In additive notation, \(2^{i}\) equals \(i \cdot 2 = 2i\) for all \(i \in \setZ\), 
+    so \((2) = \{2i \mid i \in \setZ\}\), which is the set of all even integers.\proofstep
+    The odd integers \(O\) are not a \nameref{def:subgroup} of \((\setZ, +)\). 
+    By \nameref{def:subgroup-lemma}, a \nameref{def:subgroup} must be closed 
+    under addition. For \(a, b \in O\), \(a\) is expressed as \(2m + 1\) and 
+    \(b\) is expressed as \(2n + 1\) for some \(m, n \in \setZ\), so \(a + b = 2(m + n + 1)\) 
+    is even, not odd. For example, \(1 + 1 = 2 \notin O\). \proofstep
+    Therefore, \(O\) is not closed under addition, so \(O\) is not 
+    a \nameref{def:subgroup} of \((\setZ, +)\).
   \end{subprove}
-  \item Does \((\setZ_{4}, +)\) have a proper \nameref{def:cyclic-subgroup}?
-  What about \((\setZ_{5}, +)\)?
+  \newpage
+  \begin{define}{Alternating Group}[def:alternating-group][red]
+    A permutation is \textbf{even} if it is expressed as a product of an even number of transpositions; otherwise it is \textbf{odd}. 
+    The \textbf{sign} (or \textbf{parity}) of a permutation \(\sigma\) is defined as
+    \[
+    \text{sign}(\sigma) = \begin{cases}
+      +1 & \text{if } \sigma \text{ is even}, \\
+      -1 & \text{if } \sigma \text{ is odd}.
+    \end{cases}
+    \]
+    For a \(k\)-cycle \(\sigma\), by \nameref{def:order-of-element}, \(o(\sigma) = k\), and its sign is
+    \[
+    \text{sign}(\sigma) = (-1)^{k-1} = (-1)^{o(\sigma)-1}.
+    \]
+    The \textbf{alternating group} \(A_{n}\) is the \nameref{def:subgroup} of \nameref{def:symmetric-group} \(S_{n}\) consisting of all even permutations.
+  \end{define}
+  \item Consider the \nameref{def:symmetric-group} $S_3$, the \nameref{def:group} of all permutations on the set $\{1, 2, 3\}$.
+  Identify all $3! = 6$ elements of $S_3$.
+  Determine the sign (parity) of each element.
+  What is the \nameref{def:alternating-group} $A_3$?
+  Let $O_3$ be the set of odd permutations. Is $A_3$ a \nameref{def:subgroup} of $S_3$? Is $O_3$ a \nameref{def:subgroup} of $S_3$?
   Justify your answers.
   \begin{subprove}
-    It will be determined whether \((\setZ_{4}, +)\) and \((\setZ_{5}, +)\) have proper \nameref{def:cyclic-subgroup}s.
-    
-    First, it will be determined whether \((\setZ_{4}, +)\) has a proper \nameref{def:cyclic-subgroup}.
-    From the previous problem, the subgroups of \((\setZ_{4}, +)\) are:
-    \begin{itemize}
-      \item \(\{[0]\}\) (the trivial subgroup)
-      \item \(\{[0], [2]\}\) (the subgroup generated by \([2]\), since \(2[2] = [4] = [0]\))
-      \item \(\setZ_{4}\) (the group itself)
-    \end{itemize}
-    
-    The subgroup \(\{[0], [2]\}\) is a proper \nameref{def:cyclic-subgroup} since it is generated by \([2]\) and is not equal to \(\{[0]\}\) or \(\setZ_{4}\).
-    That is, \(([2]) = \{[0], [2]\}\).
-    Therefore, \((\setZ_{4}, +)\) has a proper \nameref{def:cyclic-subgroup}, namely \(\{[0], [2]\}\).
-    
-    Now, it will be determined whether \((\setZ_{5}, +)\) has a proper \nameref{def:cyclic-subgroup}.
-    From the previous problem, the subgroups of \((\setZ_{5}, +)\) are:
-    \begin{itemize}
-      \item \(\{[0]\}\) (the trivial subgroup)
-      \item \(\setZ_{5}\) (the group itself)
-    \end{itemize}
-    
-    Since \(5\) is prime, \((\setZ_{5}, +)\) has no nontrivial proper subgroups.
-    For any nonzero element \([a] \in \setZ_{5}\), since \(\gcd(a, 5) = 1\), the \nameref{def:cyclic-subgroup} generated by \([a]\) is the entire group \(\setZ_{5}\).
-    For example, \(([1]) = \{[0], [1], [2], [3], [4]\} = \setZ_{5}\), and \(([2]) = \{[0], [2], [4], [1], [3]\} = \setZ_{5}\).
-    Therefore, \((\setZ_{5}, +)\) does not have a proper \nameref{def:cyclic-subgroup}.
-    
-    \textbf{Summary:}
-    \begin{itemize}
-      \item \((\setZ_{4}, +)\) has a proper \nameref{def:cyclic-subgroup}, namely \(\{[0], [2]\}\), which is generated by \([2]\).
-      \item \((\setZ_{5}, +)\) does not have a proper \nameref{def:cyclic-subgroup} because \(5\) is prime, so every nonzero element generates the entire group.
-    \end{itemize}
+    The six elements of $S_3$ are $e$, the 3-cycles $(123)$ and $(132)$, and the transpositions $(12)$, $(13)$, and $(23)$. By \nameref{def:order-of-element}, a $k$-cycle has order $k$, so by \nameref{def:alternating-group}, it has sign $(-1)^{k-1} = (-1)^{o(\sigma)-1}$. Therefore, $e$ is even (sign $+1$), $(123)$ and $(132)$ have order $3$ and are even (sign $(-1)^{3-1} = +1$), and $(12)$, $(13)$, $(23)$ have order $2$ and are odd (sign $(-1)^{2-1} = -1$).\proofstep
+    By \nameref{def:alternating-group}, $A_3 = \{e, (123), (132)\}$ is the \nameref{def:subgroup} of all even permutations in $S_3$. $A_3$ is a \nameref{def:subgroup} since it contains $e$, is closed under composition (e.g., $(123) \circ (123) = (132) \in A_3$), and contains inverses (e.g., $(123)^{-1} = (132) \in A_3$).\proofstep
+    The set of odd permutations $O_3 = \{(12), (13), (23)\}$ is not a \nameref{def:subgroup} of $S_3$. By \nameref{def:subgroup-lemma}, a \nameref{def:subgroup} must contain the identity $e$, but $e$ is even, so $e \notin O_3$. Furthermore, $O_3$ is not closed: $(12) \circ (13) = (132) \in A_3$, not $O_3$. \proofstep
+    Therefore, $O_3$ is not a \nameref{def:subgroup}.
   \end{subprove}
-  \item Consider the set \(\setZ_{2} \times \setZ_{2}\) under the product of coordinate-wise addition.
+  \newpage
+  \begin{define}{Klein 4-Group}[def:klein-four-group][red]
+    The \textbf{Klein 4-group}, denoted \(V_{4}\), is the \nameref{def:group} 
+    \((\setZ_{2} \times \setZ_{2}, +)\) under coordinate-wise addition, where 
+    \((a, b) + (c, d) = (a + c, b + d)\) for all \((a, b), (c, d) \in \setZ_{2} \times \setZ_{2}\).
+  \end{define}
+  \item Consider the set \(\setZ_{2} \times \setZ_{2}\) under the product 
+  of coordinate-wise addition.
   Prove this is a \nameref{def:group}.
-  This \nameref{def:group}, denoted \(V_{4}\), is called the Klein 4-group.
+  This \nameref{def:group}, denoted \(V_{4}\), is called the 
+  \nameref{def:klein-four-group}.
   \begin{subprove}
     Let \(G = \setZ_{2} \times \setZ_{2}\) with the operation \(+\) defined by \((a, b) + (c, d) = (a + c, b + d)\) for all \((a, b), (c, d) \in G\).
     It will be proved that \((G, +)\) satisfies all four group properties.
@@ -899,107 +962,68 @@ Let \((G, *)\) be a \nameref{def:group} with identity \(e\).
     A group $(G, *)$ is called a \textbf{cyclic group} if there exists 
     an element \(g \in G\) such that 
     \[
-    G = (a) = \{a^i \mid i \in \setZ\},
+    G = (g) = \{g^i \mid i \in \setZ\},
     \] 
-    where \((a)\) is the cyclic subgroup generated by \(a\) as defined in \nameref{def:cyclic-subgroup}. 
-    The element \(a\) is called a \textbf{generator} of \(G\).
+    where \((g)\) is the cyclic subgroup generated by \(g\) 
+    as defined in \nameref{def:cyclic-subgroup}. 
+    The element \(g\) is called a \textbf{generator} of \(G\).
   \end{define}
   \begin{subprove}
-    \((\setZ, +)\) is a \nameref{def:cyclic-group}. By \nameref{def:cyclic-subgroup}, \((1) = \{1^{i} \mid i \in \setZ\}\). In additive notation, \(1^{i} = i \cdot 1 = i\) for all \(i \in \setZ\), so \((1) = \{i \mid i \in \setZ\} = \setZ\). Therefore, \((\setZ, +) = (1)\), so \((\setZ, +)\) is cyclic with generator \(1\) (or \(-1\), since \((-1) = \setZ\) as shown earlier).
-    
-    For integer \(n > 2\), \((\setZ_{n}, +)\) is a \nameref{def:cyclic-group}. By \nameref{def:cyclic-subgroup}, \(([1]) = \{[1]^{i} \mid i \in \setZ\}\). In additive notation, \([1]^{i} = i \cdot [1] = [i]\) for all \(i \in \setZ\), so \(([1]) = \{[0], [1], [2], \ldots, [n-1]\} = \setZ_{n}\). Therefore, \((\setZ_{n}, +) = ([1])\), so \((\setZ_{n}, +)\) is cyclic with generator \([1]\).
+    \((\setZ, +)\) is a \nameref{def:cyclic-group}. 
+    By \nameref{def:cyclic-subgroup}, \((1) = \{1^{i} \mid i \in \setZ\}\). 
+    In additive notation, \(1^{i} = i \cdot 1 = i\) for all \(i \in \setZ\), 
+    so \((1) = \{i \mid i \in \setZ\} = \setZ\). 
+    Therefore, \((\setZ, +) = (1)\), so \((\setZ, +)\) is cyclic with 
+    generator \(1\) (or \(-1\), since \((-1) = \setZ\) as shown earlier).\proofstep    
+    For integer \(n > 2\), \((\setZ_{n}, +)\) is a \nameref{def:cyclic-group}. 
+    By \nameref{def:cyclic-subgroup}, \(([1]) = \{[1]^{i} \mid i \in \setZ\}\). 
+    In additive notation, \([1]^{i} = i \cdot [1] = [i]\) for all \(i \in \setZ\), 
+    so \(([1]) = \{[0], [1], [2], \ldots, [n-1]\} = \setZ_{n}\). 
+    Therefore, \((\setZ_{n}, +) = ([1])\), 
+    so \((\setZ_{n}, +)\) is cyclic with generator \([1]\).
   \end{subprove}
-  \item Prove that the Klein 4-group in problem 5 is \nameref{def:abeliangroup}, but not \nameref{def:cyclic-group}.
+  \newpage
+  \item Prove that the Klein 4-group in problem 6 is \nameref{def:abelian-group}, but not \nameref{def:cyclic-group}.
   \begin{subprove}
-    Let \(V_{4} = \setZ_{2} \times \setZ_{2}\) be the Klein 4-group as defined above.
-    It will be proved that \(V_{4}\) is \nameref{def:abeliangroup}, but not \nameref{def:cyclic-group}.
-    
-    First, it will be proved that \(V_{4}\) is \nameref{def:abeliangroup}.
-    For any \((a, b), (c, d) \in V_{4}\), \((a, b) + (c, d) = (a + c, b + d) = (c + a, d + b) = (c, d) + (a, b)\) by the commutativity of addition in \(\setZ_{2}\).
-    Therefore, \(V_{4}\) is \nameref{def:abeliangroup}.
-    
-    Now, it will be proved that \(V_{4}\) is not \nameref{def:cyclic-group}.
-    The elements of \(V_{4}\) are \((0, 0), (1, 0), (0, 1), (1, 1)\).
-    Consider \((1, 0)\).
-    The \nameref{def:cyclic-subgroup} generated by \((1, 0)\) is \((1, 0) = \{(1, 0)^{i} \mid i \in \setZ\} = \{(0, 0), (1, 0)\}\), which is not equal to \(V_{4}\).
-    Similarly, \((0, 1) = \{(0, 0), (0, 1)\} \neq V_{4}\).
-    Finally, \((1, 1) = \{(0, 0), (1, 1)\} \neq V_{4}\).
-    Therefore, no single element generates \(V_{4}\), so \(V_{4}\) is not \nameref{def:cyclic-group}.
+    Let \(V_{4}\) be the \nameref{def:klein-four-group}. 
+    For any \((a, b), (c, d) \in V_{4}\), 
+    \((a, b) + (c, d) = (a + c, b + d) = (c + a, d + b) = (c, d) + (a, b)\) 
+    by commutativity of addition in \(\setZ_{2}\), so \(V_{4}\) is \nameref{def:abelian-group}.\proofstep
+    \(V_{4}\) is not \nameref{def:cyclic-group}. 
+    The elements of \(V_{4}\) are \((0, 0), (1, 0), (0, 1), (1, 1)\). 
+    By \nameref{def:cyclic-subgroup}, 
+    \((1, 0) = \{(1, 0)^{i} \mid i \in \setZ\} = \{(0, 0), (1, 0)\} \neq V_{4}\), 
+    \((0, 1) = \{(0, 0), (0, 1)\} \neq V_{4}\), and 
+    \((1, 1) = \{(0, 0), (1, 1)\} \neq V_{4}\). 
+    Therefore, no element generates \(V_{4}\), 
+    so \(V_{4}\) is not \nameref{def:cyclic-group}.\footnote{
+      The \textbf{Klein 4-group} is an example of an abelian group. 
+      It is \textbf{the smallest non-cyclic abelian group} with four elements.
+      It shows that \inlinequote{Abelian} does not automatically mean \inlinequote{Cyclic}.
+    }
   \end{subprove}
   \item For each of the four \nameref{def:group} axioms, give an example of a set with a binary product for which the axiom fails.
   \begin{subprove}
-    For each of the four \nameref{def:group} axioms, an example of a set with a binary product for which the axiom fails will be provided.
-    
-    \textbf{1. Closure:} An example where closure fails will be given.
-    Let \(G = \{1, 2, 3\}\) and define the operation \(*\) by \(a * b = a + b\) for all \(a, b \in G\).
-    Then \(2 * 2 = 2 + 2 = 4\), but \(4 \notin G\).
-    Therefore, closure fails.
-    
-    \textbf{2. Associativity:} An example where associativity fails will be given.
-    Let \(G = \setZ\), the set of integers, and define the operation \(*\) by \(a * b = a - b\) for all \(a, b \in G\).
-    Then \((1 * 2) * 3 = (1 - 2) * 3 = (-1) * 3 = (-1) - 3 = -4\), but \(1 * (2 * 3) = 1 * (2 - 3) = 1 * (-1) = 1 - (-1) = 2\).
-    Since \((1 * 2) * 3 = -4 \neq 2 = 1 * (2 * 3)\), associativity fails.
-    
-    \textbf{3. Existence of Identity:} An example where existence of identity fails will be given.
-    Let \(G = \{2, 3, 4, \ldots\}\) be the set of integers greater than or equal to \(2\), and let the operation be multiplication.
-    Suppose, for contradiction, that there exists an identity element \(e \in G\) such that \(e \cdot a = a \cdot e = a\) for all \(a \in G\).
-    Then \(e \cdot 2 = 2\), so \(e = 1\).
-    But \(1 \notin G\), which is a contradiction.
-    Therefore, there is no identity element in \(G\).
-    Therefore, existence of identity fails.
-    
-    \textbf{4. Existence of Inverses:} An example where existence of inverses fails will be given.
-    Let \(G = \{0, 1, 2, 3, \ldots\}\) be the set of nonnegative integers, and let the operation be addition.
-    Then \(0\) is the identity element.
-    However, for any \(a > 0\), there is no \(b \in G\) such that \(a + b = 0\), since \(a + b \geq a > 0\) for all \(b \in G\).
-    For example, there is no \(b \in G\) such that \(1 + b = 0\).
-    Therefore, existence of inverses fails.
+    \begin{enumerate}
+      \item \textbf{Closure:} Let \(G = \{1, 2, 3\}\) with operation \(*\) defined by \(a * b = a + b\) for all \(a, b \in G\). Then \(2 * 2 = 4 \notin G\), so closure fails.
+      \item \textbf{Associativity:} Let \(G = \setZ\) with operation \(*\) defined by \(a * b = a - b\) for all \(a, b \in G\). Then \((1 * 2) * 3 = -4\) but \(1 * (2 * 3) = 2\), so associativity fails.
+      \item \textbf{Existence of Identity:} Let \(G = \{2, 3, 4, \ldots\}\) with multiplication. If \(e \in G\) is an identity, then \(e \cdot 2 = 2\), so \(e = 1 \notin G\), a contradiction. Therefore, no identity exists.
+      \item \textbf{Existence of Inverses:} Let \(G = \{0, 1, 2, 3, \ldots\}\) with addition. For any \(a > 0\), \(a + b \geq a > 0\) for all \(b \in G\), so there is no \(b \in G\) such that \(a + b = 0\). Therefore, inverses do not exist.
+    \end{enumerate}
   \end{subprove}
   \item Give an example of a nonabelian \nameref{def:group}.
   Justify your answer fully.
   That is, why is it a \nameref{def:group} and how is it nonabelian?
   \begin{subprove}
-    An example of a nonabelian \nameref{def:group} will be given, and it will be proved that it is a \nameref{def:group} and that it is nonabelian.
+    The \nameref{def:symmetric-group} \(S_{3}\) is a \nameref{def:group}. Since \(S_{3} = A(\{1, 2, 3\})\) is the set of all bijections from \(\{1, 2, 3\}\) to itself under composition, it satisfies all four group properties: closure (composition of bijections is a bijection), associativity (function composition is associative), identity (the identity function), and inverses (every bijection has an inverse function).
     
-    Let \(S_{3}\) be the symmetric group of degree \(3\), which is the set of all bijections from \(\{1, 2, 3\}\) to itself under composition.
-    It will be proved that \(S_{3}\) is a \nameref{def:group} and that it is nonabelian.
-    
-    First, it will be proved that \(S_{3}\) is a \nameref{def:group}.
-    By the earlier result, \(A(S)\) is a \nameref{def:group} under composition for any nonempty set \(S\).
-    Since \(S_{3} = A(\{1, 2, 3\})\) is the set of all bijections from \(\{1, 2, 3\}\) to itself, it follows that \(S_{3}\) is a \nameref{def:group} under composition.
-    More explicitly, the four group properties are satisfied:
-    \begin{itemize}
-      \item \textbf{Closure:} The composition of two bijections is a bijection, so for any \(\sigma, \tau \in S_{3}\), \(\sigma \circ \tau \in S_{3}\).
-      \item \textbf{Associativity:} Function composition is associative, so for any \(\sigma, \tau, \rho \in S_{3}\), \((\sigma \circ \tau) \circ \rho = \sigma \circ (\tau \circ \rho)\).
-      \item \textbf{Existence of Identity:} The identity function \(i: \{1, 2, 3\} \to \{1, 2, 3\}\) defined by \(i(k) = k\) for all \(k \in \{1, 2, 3\}\) is the identity element.
-      \item \textbf{Existence of Inverses:} Since every bijection has an inverse function, for any \(\sigma \in S_{3}\), there exists \(\sigma^{-1} \in S_{3}\) such that \(\sigma \circ \sigma^{-1} = \sigma^{-1} \circ \sigma = i\).
-    \end{itemize}
-    Therefore, \(S_{3}\) is a \nameref{def:group}.
-    
-    Now, it will be proved that \(S_{3}\) is nonabelian, that is, there exist \(\sigma, \tau \in S_{3}\) such that \(\sigma \circ \tau \neq \tau \circ \sigma\).
-    
-    Let \(f, g \in S_{3}\) be defined as follows:
-    \begin{itemize}
-      \item \(f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}\), which means \(f(1) = 2\), \(f(2) = 1\), \(f(3) = 3\).
-      \item \(g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}\), which means \(g(1) = 2\), \(g(2) = 3\), \(g(3) = 1\).
-    \end{itemize}
-    
-    It will be computed that \(f \circ g \neq g \circ f\).
-    \begin{itemize}
-      \item \((f \circ g)(1) = f(g(1)) = f(2) = 1\).
-      \item \((g \circ f)(1) = g(f(1)) = g(2) = 3\).
-    \end{itemize}
-    
-    Since \((f \circ g)(1) = 1\) and \((g \circ f)(1) = 3\), and since \(1 \neq 3\), it follows that \((f \circ g)(1) \neq (g \circ f)(1)\).
-    Therefore, \(f \circ g \neq g \circ f\).
-    
-    Since there exist \(f, g \in S_{3}\) such that \(f \circ g \neq g \circ f\), it follows that \(S_{3}\) is not a \nameref{def:abeliangroup}, that is, \(S_{3}\) is nonabelian.
-    
-    \textbf{Summary:}
-    \begin{itemize}
-      \item \(S_{3}\) is a \nameref{def:group} because it is the set of all bijections from a finite set to itself under composition, which satisfies all four group properties.
-      \item \(S_{3}\) is nonabelian because there exist permutations \(f, g \in S_{3}\) such that \(f \circ g \neq g \circ f\), as shown by computing \((f \circ g)(1) = 1 \neq 3 = (g \circ f)(1)\).
-    \end{itemize}
+    \(S_{3}\) is nonabelian. 
+    Let \(f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}=(1,2)\) 
+    and \(g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}=(1,3,2)\) in \(S_{3}\). 
+    Then, \((f \circ g)(1) = f(g(1)) = f(2) = 1\) 
+    but \((g \circ f)(1) = g(f(1)) = g(2) = 3\), 
+    so \(f \circ g \neq g \circ f\). \proofstep
+    Therefore, \(S_{3}\) is not \nameref{def:abelian-group}, so \(S_{3}\) is nonabelian.
   \end{subprove}
 \end{enumerate}
 
@@ -1018,160 +1042,108 @@ Here \(\circ\) is a generic product symbol (like \(*\)) and not function composi
     \item \(\phi(a * b) = \phi(a) \circ \phi(b)\) for all \(a, b \in G\).
   \end{enumerate}
   When proving an isomorphism, the product symbol should be written explicitly.
-  If such an isomorphism exists, we write \(G \simeq H\).
+  If such an isomorphism exists, 
+  the groups \(G\) and \(H\) are said to be \textbf{isomorphic}, denoted \(G \cong H\).
+  
+  The isomorphism relation \(\cong\) satisfies:
+  \begin{enumerate}
+    \item \textbf{Reflexivity:} \(G \cong G\) for any \nameref{def:group} \(G\).
+    \item \textbf{Symmetry:} If \(G \cong H\), then \(H \cong G\).
+    \item \textbf{Transitivity:} If \(G \cong H\) and \(H \cong K\), then \(G \cong K\).
+  \end{enumerate}
 \end{define}
 
 \begin{enumerate}
   \item Show that the \nameref{def:group}s \((\{-1, 1\}, \cdot), (\setZ_{2}, +), (\setZ_{3}^{*}, \cdot)\) are all pairwise isomorphic.
   \begin{subprove}
     Let \(G_{1} = (\{-1, 1\}, \cdot)\), \(G_{2} = (\setZ_{2}, +)\), and \(G_{3} = (\setZ_{3}^{*}, \cdot)\).
-    It will be proved that \(G_{1} \simeq G_{2}\), \(G_{2} \simeq G_{3}\), and \(G_{1} \simeq G_{3}\).
     
-    First, it will be proved that \(G_{1} \simeq G_{2}\).
-    Define \(\phi_{1}: G_{1} \to G_{2}\) by \(\phi_{1}(1) = [0]\) and \(\phi_{1}(-1) = [1]\).
-    It will be proved that \(\phi_{1}\) is a bijection.
-    Since \(\phi_{1}(1) = [0] \neq [1] = \phi_{1}(-1)\), \(\phi_{1}\) is injective.
-    Since for any \([a] \in G_{2}\), either \([a] = [0]\) or \([a] = [1]\), and \(\phi_{1}(1) = [0]\) and \(\phi_{1}(-1) = [1]\), \(\phi_{1}\) is surjective.
-    Therefore, \(\phi_{1}\) is a bijection.
-    Now, it will be proved that \(\phi_{1}\) preserves the operation.
-    For any \(a, b \in G_{1}\), it will be verified that \(\phi_{1}(a \cdot b) = \phi_{1}(a) + \phi_{1}(b)\).
-    \begin{itemize}
-      \item If \(a = 1, b = 1\), then \(\phi_{1}(1 \cdot 1) = \phi_{1}(1) = [0] = [0] + [0] = \phi_{1}(1) + \phi_{1}(1)\).
-      \item If \(a = 1, b = -1\), then \(\phi_{1}(1 \cdot (-1)) = \phi_{1}(-1) = [1] = [0] + [1] = \phi_{1}(1) + \phi_{1}(-1)\).
-      \item If \(a = -1, b = 1\), then \(\phi_{1}((-1) \cdot 1) = \phi_{1}(-1) = [1] = [1] + [0] = \phi_{1}(-1) + \phi_{1}(1)\).
-      \item If \(a = -1, b = -1\), then \(\phi_{1}((-1) \cdot (-1)) = \phi_{1}(1) = [0] = [1] + [1] = \phi_{1}(-1) + \phi_{1}(-1)\).
-    \end{itemize}
-    Therefore, \(\phi_{1}\) is a \nameref{def:group-isomorphism}, so \(G_{1} \simeq G_{2}\).
+    \(G_{1} \simeq G_{2}\): Define \(\phi_{1}: G_{1} \to G_{2}\) by \(\phi_{1}(1) = [0]\) and \(\phi_{1}(-1) = [1]\). Since \(\phi_{1}(1) \neq \phi_{1}(-1)\) and \(G_{2} = \{[0], [1]\}\), \(\phi_{1}\) is a bijection. For all \(a, b \in G_{1}\), \(\phi_{1}(a \cdot b) = \phi_{1}(a) + \phi_{1}(b)\) (verified by checking all four cases). Therefore, \(\phi_{1}\) is a \nameref{def:group-isomorphism}, so \(G_{1} \simeq G_{2}\).
     
-    Next, it will be proved that \(G_{2} \simeq G_{3}\).
-    Define \(\phi_{2}: G_{2} \to G_{3}\) by \(\phi_{2}([0]) = [1]\) and \(\phi_{2}([1]) = [2]\).
-    It will be proved that \(\phi_{2}\) is a bijection.
-    Since \(\phi_{2}([0]) = [1] \neq [2] = \phi_{2}([1])\), \(\phi_{2}\) is injective.
-    Since \(G_{3} = \{[1], [2]\}\) and \(\phi_{2}([0]) = [1]\) and \(\phi_{2}([1]) = [2]\), \(\phi_{2}\) is surjective.
-    Therefore, \(\phi_{2}\) is a bijection.
-    Now, it will be proved that \(\phi_{2}\) preserves the operation.
-    For any \([a], [b] \in G_{2}\), it will be verified that \(\phi_{2}([a] + [b]) = \phi_{2}([a]) \cdot \phi_{2}([b])\).
-    \begin{itemize}
-      \item If \([a] = [0], [b] = [0]\), then \(\phi_{2}([0] + [0]) = \phi_{2}([0]) = [1] = [1] \cdot [1] = \phi_{2}([0]) \cdot \phi_{2}([0])\).
-      \item If \([a] = [0], [b] = [1]\), then \(\phi_{2}([0] + [1]) = \phi_{2}([1]) = [2] = [1] \cdot [2] = \phi_{2}([0]) \cdot \phi_{2}([1])\).
-      \item If \([a] = [1], [b] = [0]\), then \(\phi_{2}([1] + [0]) = \phi_{2}([1]) = [2] = [2] \cdot [1] = \phi_{2}([1]) \cdot \phi_{2}([0])\).
-      \item If \([a] = [1], [b] = [1]\), then \(\phi_{2}([1] + [1]) = \phi_{2}([2]) = \phi_{2}([0]) = [1] = [2] \cdot [2] = \phi_{2}([1]) \cdot \phi_{2}([1])\).
-    \end{itemize}
-    Therefore, \(\phi_{2}\) is a \nameref{def:group-isomorphism}, so \(G_{2} \simeq G_{3}\).
+    \(G_{2} \simeq G_{3}\): Define \(\phi_{2}: G_{2} \to G_{3}\) by \(\phi_{2}([0]) = [1]\) and \(\phi_{2}([1]) = [2]\). Since \(\phi_{2}([0]) \neq \phi_{2}([1])\) and \(G_{3} = \{[1], [2]\}\), \(\phi_{2}\) is a bijection. For all \([a], [b] \in G_{2}\), \(\phi_{2}([a] + [b]) = \phi_{2}([a]) \cdot \phi_{2}([b])\) (verified by checking all four cases). Therefore, \(\phi_{2}\) is a \nameref{def:group-isomorphism}, so \(G_{2} \simeq G_{3}\).
     
-    Finally, since \(G_{1} \simeq G_{2}\) and \(G_{2} \simeq G_{3}\), and since isomorphism is transitive, it follows that \(G_{1} \simeq G_{3}\).
-    Therefore, the \nameref{def:group}s \((\{-1, 1\}, \cdot), (\setZ_{2}, +), (\setZ_{3}^{*}, \cdot)\) are all pairwise isomorphic.
+    Since isomorphism is transitive and \(G_{1} \simeq G_{2}\) and \(G_{2} \simeq G_{3}\), it follows that \(G_{1} \simeq G_{3}\). Therefore, the \nameref{def:group}s \((\{-1, 1\}, \cdot), (\setZ_{2}, +), (\setZ_{3}^{*}, \cdot)\) are all pairwise isomorphic.
   \end{subprove}
-  \item Prove or disprove the following statements.
-  \begin{enumerate}
-    \item \((\setZ_{5}^{*}, \cdot)\) is isomorphic to \((\setZ_{4}, +)\).
-    \begin{subprove}
-      It will be proved that \((\setZ_{5}^{*}, \cdot)\) is not isomorphic to \((\setZ_{4}, +)\).
-      Note that \((\setZ_{5}^{*}, \cdot) = (\{[1], [2], [3], [4]\}, \cdot)\) has order \(4\), and \((\setZ_{4}, +)\) has order \(4\).
-      However, \((\setZ_{4}, +)\) is a \nameref{def:cyclic-group} since \((\setZ_{4}, +) = ([1])\).
-      On the other hand, \((\setZ_{5}^{*}, \cdot)\) is not \nameref{def:cyclic-group} since for any \([a] \in \setZ_{5}^{*}\), the \nameref{def:cyclic-subgroup} generated by \([a]\) has order at most \(4\), but no element generates all of \(\setZ_{5}^{*}\).
-      Since \nameref{def:cyclic-group} is preserved under isomorphism, it follows that \((\setZ_{5}^{*}, \cdot)\) is not isomorphic to \((\setZ_{4}, +)\).
-    \end{subprove}
-    \item \(V_{4}\), the Klein 4-group, is isomorphic to \((\setZ_{4}, +)\).
-    \begin{subprove}
-      It will be proved that \(V_{4}\) is not isomorphic to \((\setZ_{4}, +)\).
-      Note that \((\setZ_{4}, +)\) is a \nameref{def:cyclic-group} since \((\setZ_{4}, +) = ([1])\).
-      However, \(V_{4}\) is not \nameref{def:cyclic-group} as shown in problem 7 above.
-      Since \nameref{def:cyclic-group} is preserved under isomorphism, it follows that \(V_{4}\) is not isomorphic to \((\setZ_{4}, +)\).
-    \end{subprove}
-    \item \((\setZ_{6}, +)\) is isomorphic to \(S_{3}\).
-    \begin{subprove}
-      It will be proved that \((\setZ_{6}, +)\) is not isomorphic to \(S_{3}\).
-      Note that \((\setZ_{6}, +)\) is a \nameref{def:abeliangroup} since addition of integers modulo \(6\) is commutative.
-      However, \(S_{3}\) is not \nameref{def:abeliangroup} as shown earlier.
-      Since \nameref{def:abeliangroup} is preserved under isomorphism, it follows that \((\setZ_{6}, +)\) is not isomorphic to \(S_{3}\).
-    \end{subprove}
-  \end{enumerate}
   \item Let \(m > 1\) be an integer and \(H_{m} = \{m x \mid x \in \setZ\}\).
   Prove that \(H_{m}\) is a \nameref{def:subgroup} of \((\setZ, +)\).
   \begin{subprove}
     Let \(m > 1\) be an integer, let \(H_{m} = \{m x \mid x \in \setZ\}\), and let \(G = (\setZ, +)\).
     It will be proved that \(H_{m}\) is a \nameref{def:subgroup} of \(G\).
-    By \nameref{def:subgroup-lemma}, it suffices to show that (1) \(H_{m} \neq \emptyset\), (2) for all \(a, b \in H_{m}\), \(a + b \in H_{m}\), and (3) for all \(a \in H_{m}\), \(-a \in H_{m}\).
-    \begin{itemize}
+    \begin{enumerate}
       \item Since \(m \cdot 0 = 0 \in H_{m}\), it follows that \(H_{m} \neq \emptyset\).
       \item For any \(a, b \in H_{m}\), there exist \(x, y \in \setZ\) such that \(a = m x\) and \(b = m y\).
       Therefore, \(a + b = m x + m y = m(x + y) \in H_{m}\).
       \item For any \(a \in H_{m}\), there exists \(x \in \setZ\) such that \(a = m x\).
       Therefore, \(-a = -(m x) = m(-x) \in H_{m}\).
-    \end{itemize}
-    Therefore, \(H_{m}\) is a \nameref{def:subgroup} of \((\setZ, +)\).
+    \end{enumerate}
+    Therefore, \(H_{m}\) is a \nameref{def:subgroup} of \((\setZ, +)\)
+    by \nameref{def:subgroup-lemma}.
   \end{subprove}
+  \newpage
+  \item Prove or disprove the following statements.
+  \begin{enumerate}
+    \item \((\setZ_{5}^{*}, \cdot)\) is isomorphic to \((\setZ_{4}, +)\).
+    \begin{subdisprove}
+      Note that \((\setZ_{5}^{*}, \cdot) = (\{[1], [2], [3], [4]\}, \cdot)\) 
+      has order \(4\), 
+      and \((\setZ_{4}, +)\) has order \(4\).
+      However, \((\setZ_{4}, +)\) is a \nameref{def:cyclic-group} since \((\setZ_{4}, +) = ([1])\).
+      On the other hand, \((\setZ_{5}^{*}, \cdot)\) is not \nameref{def:cyclic-group} since for any \([a] \in \setZ_{5}^{*}\), the \nameref{def:cyclic-subgroup} generated by \([a]\) has order at most \(4\), but no element generates all of \(\setZ_{5}^{*}\).
+      Since \nameref{def:cyclic-group} is preserved under isomorphism, \((\setZ_{5}^{*}, \cdot)\) is not isomorphic to \((\setZ_{4}, +)\).
+    \end{subdisprove}
+    \item \(V_{4}\), the Klein 4-group, is isomorphic to \((\setZ_{4}, +)\).
+    \begin{subdisprove}
+      Note that \((\setZ_{4}, +)\) is a \nameref{def:cyclic-group} since \((\setZ_{4}, +) = ([1])\).
+      However, \(V_{4}\) is not \nameref{def:cyclic-group} as shown in previous problem above.
+      Since \nameref{def:cyclic-group} is preserved under isomorphism, it follows that \(V_{4}\) is not isomorphic to \((\setZ_{4}, +)\).
+    \end{subdisprove}
+    \item \((\setZ_{6}, +)\) is isomorphic to \(S_{3}\).
+    \begin{subdisprove}
+      Note that \((\setZ_{6}, +)\) is a \nameref{def:abelian-group} since addition of integers modulo \(6\) is commutative.
+      However, \(S_{3}\) is not \nameref{def:abelian-group} as shown earlier.
+      Since \nameref{def:abelian-group} is preserved under isomorphism, it follows that \((\setZ_{6}, +)\) is not isomorphic to \(S_{3}\).
+    \end{subdisprove}
+  \end{enumerate}
   \item Let \(G\) be a \nameref{def:group} with identity \(e\) and \(H = \{a \in G \mid a^{2} = e\}\).
   \begin{enumerate}
-    \item Prove that if \(G\) is \nameref{def:abeliangroup}, then \(H\) is a \nameref{def:subgroup} of \(G\).
+    \item Prove that if \(G\) is \nameref{def:abelian-group}, then \(H\) is a \nameref{def:subgroup} of \(G\).
     \begin{subprove}
-      Let \(G\) be a \nameref{def:group} with identity \(e\), let \(H = \{a \in G \mid a^{2} = e\}\), and suppose that \(G\) is \nameref{def:abeliangroup}.
-      It will be proved that \(H\) is a \nameref{def:subgroup} of \(G\).
-      By \nameref{def:subgroup-lemma}, it suffices to show that (1) \(H \neq \emptyset\), (2) for all \(a, b \in H\), \(a * b \in H\), and (3) for all \(a \in H\), \(a^{-1} \in H\).
-      \begin{itemize}
+      Let \(G\) be a \nameref{def:group} with identity \(e\), let \(H = \{a \in G \mid a^{2} = e\}\), and suppose that \(G\) is \nameref{def:abelian-group}.
+      \begin{enumerate}
         \item Since \(e^{2} = e\), it follows that \(e \in H\), so \(H \neq \emptyset\).
-        \item For any \(a, b \in H\), since \(a^{2} = e\) and \(b^{2} = e\), and since \(G\) is \nameref{def:abeliangroup}, \((a * b)^{2} = (a * b) * (a * b) = a * b * a * b = a * a * b * b = a^{2} * b^{2} = e * e = e\).
-        Therefore, \(a * b \in H\).
-        \item For any \(a \in H\), since \(a^{2} = e\), it follows that \(a = a^{-1}\).
-        Therefore, \((a^{-1})^{2} = a^{2} = e\), so \(a^{-1} \in H\).
-      \end{itemize}
-      Therefore, \(H\) is a \nameref{def:subgroup} of \(G\).
+        \item For any \(a, b \in H\), since \(a^{2} = e\) and \(b^{2} = e\), and \(G\) is \nameref{def:abelian-group}, \((a * b)^{2} = (a * b) * (a * b) = a * b * a * b = a * a * b * b = a^{2} * b^{2} = e * e = e\). Therefore, \(a * b \in H\).
+        \item For any \(a \in H\), since \(a^{2} = e\), it follows that \(a = a^{-1}\), so \((a^{-1})^{2} = a^{2} = e\). Therefore, \(a^{-1} \in H\).
+      \end{enumerate}
+      Therefore, \(H\) is a \nameref{def:subgroup} of \(G\) by \nameref{def:subgroup-lemma}.
     \end{subprove}
     \item Is the statement true if \(G\) is nonabelian? Justify your answer.
-    \begin{subprove}
-      It will be proved that the statement is false if \(G\) is nonabelian.
-      A counterexample will be provided.
-      
-      Let \(G = S_{3}\), the symmetric group of degree \(3\), which is a nonabelian \nameref{def:group} as shown earlier.
-      Let \(H = \{a \in S_{3} \mid a^{2} = e\}\), where \(e = i\) is the identity permutation.
-      It will be proved that \(H\) is not a \nameref{def:subgroup} of \(S_{3}\).
-      
-      First, the elements of \(H\) will be determined.
-      The elements of \(S_{3}\) are \(i, f, g, g^{2}, f g, g f\), where:
-      \begin{itemize}
-        \item \(i = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}\) is the identity permutation.
-        \item \(f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}\).
-        \item \(g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}\).
-      \end{itemize}
-      
-      It will be checked which elements satisfy \(a^{2} = i\):
-      \begin{itemize}
-        \item \(i^{2} = i\), so \(i \in H\).
-        \item \(f^{2} = i\) (as shown earlier), so \(f \in H\).
-        \item \(g^{2} \neq i\) (since \(g^{3} = i\) and \(g \neq i\)), so \(g \notin H\).
-        \item \((g^{2})^{2} = g^{4} = g^{3} \cdot g = i \cdot g = g \neq i\), so \(g^{2} \notin H\).
-        \item \((f g)^{2} = i\) (as shown earlier, since \(f g\) is a reflection), so \(f g \in H\).
-        \item \((g f)^{2} = i\) (as shown earlier, since \(g f\) is a reflection), so \(g f \in H\).
-      \end{itemize}
-      
-      Therefore, \(H = \{i, f, f g, g f\}\).
-      
-      Now, it will be checked whether \(H\) is closed under composition.
-      From the product table for \(S_{3}\) computed earlier, \(f \cdot (f g) = g\).
-      Since \(g^{2} \neq i\), it follows that \(g \notin H\).
-      Therefore, \(f \in H\) and \(f g \in H\), but \(f \cdot (f g) = g \notin H\).
-      Therefore, \(H\) is not closed under composition.
-      
-      Since \(H\) is not closed under composition, it follows that \(H\) is not a \nameref{def:subgroup} of \(S_{3}\).
-      
-      Therefore, the statement that \(H = \{a \in G \mid a^{2} = e\}\) is a \nameref{def:subgroup} of \(G\) is false when \(G\) is nonabelian.
-    \end{subprove}
+    \begin{subdisprove}
+      Let \(G = S_{3}\), the \nameref{def:symmetric-group} of degree \(3\), 
+      which is a nonabelian \nameref{def:group}. 
+      Let \(H = \{a \in S_{3} \mid a^{2} = e\}\), where \(e\) is the identity permutation.
+      The elements of \(S_{3}\) satisfying \(a^{2} = e\) are \(e, f, f g, g f\) 
+      where \(f = (1,2)\) and \(g = (1,3,2)\), so \(H = \{e, f, f g, g f\}\).
+      However, \(f \in H\) and \(f g \in H\), but \(f \cdot (f g) = g \notin H\) 
+      since \(g^{2} \neq e\). 
+      Thus, \(H\) is not closed under composition, 
+      so \(H\) is not a \nameref{def:subgroup} of \(S_{3}\) by \nameref{def:subgroup-lemma}.\proofstep
+      Therefore, by counterexample, the statement is false when \(G\) is nonabelian.
+    \end{subdisprove}
   \end{enumerate}
   \item Let \((G, *)\) be a \nameref{def:group} and \(H\) a nonempty subset of \(G\) that is closed under \(*\).
   \begin{enumerate}
     \item Prove that if \(H\) is finite, then \(H\) is a \nameref{def:subgroup} of \(G\).
     \begin{subprove}
       Let \((G, *)\) be a \nameref{def:group} with identity \(e\), let \(H\) be a nonempty finite subset of \(G\) that is closed under \(*\).
-      It will be proved that \(H\) is a \nameref{def:subgroup} of \(G\).
-      By \nameref{def:subgroup-lemma}, it suffices to show that for all \(a \in H\), \(a^{-1} \in H\).
-      Let \(a \in H\).
-      Since \(H\) is closed under \(*\) and finite, the sequence \(a, a^{2}, a^{3}, \ldots\) must eventually repeat.
-      That is, there exist positive integers \(m < n\) such that \(a^{m} = a^{n}\).
-      Since \(a^{m} = a^{n}\), multiplying both sides by \(a^{-m}\) on the right yields \(a^{m} * a^{-m} = a^{n} * a^{-m}\), which simplifies to \(e = a^{n-m}\).
-      Since \(n - m > 0\), it follows that \(a^{n-m-1} * a = e\), so \(a^{n-m-1} = a^{-1}\).
-      Since \(H\) is closed under \(*\), \(a^{n-m-1} \in H\), so \(a^{-1} \in H\).
-      Therefore, \(H\) is a \nameref{def:subgroup} of \(G\).
+      \begin{enumerate}
+        \item Since \(H\) is nonempty by assumption, \(H \neq \emptyset\).
+        \item Since \(H\) is closed under \(*\) by assumption, for all \(a, b \in H\), \(a * b \in H\).
+        \item For any \(a \in H\), since \(H\) is closed under \(*\) and finite, the sequence \(a, a^{2}, a^{3}, \ldots\) must eventually repeat. That is, there exist positive integers \(m < n\) such that \(a^{m} = a^{n}\).
+        Since \(a^{m} = a^{n}\) and \(a^{m}, a^{n} \in H \subseteq G\), by cancellation in \(G\), we have \(e = a^{n-m}\) where \(n - m > 0\).
+        Since \(a^{n-m} = e\) and \(n - m > 0\), we have \(a * a^{n-m-1} = e\), so \(a^{n-m-1} = a^{-1}\).
+        Since \(H\) is closed under \(*\), \(a^{n-m-1} \in H\), so \(a^{-1} \in H\).
+      \end{enumerate}
+      Therefore, \(H\) is a \nameref{def:subgroup} of \(G\) by \nameref{def:subgroup-lemma}.
     \end{subprove}
     \item Is \(H\) a \nameref{def:subgroup} of \(G\) if \(G\) is finite? Justify your answer.
     \begin{subprove}
@@ -1978,14 +1950,14 @@ Here \(\circ\) is a generic product symbol (like \(*\)) and not function composi
   \end{subprove}
   \item Let \(G\) be a \nameref{def:group} with identity \(e\) and \(H = \{a \in G \mid a^{2} = e\}\).
   \begin{enumerate}
-    \item Prove that if \(G\) is \nameref{def:abeliangroup}, then \(H\) is a \nameref{def:subgroup} of \(G\).
+    \item Prove that if \(G\) is \nameref{def:abelian-group}, then \(H\) is a \nameref{def:subgroup} of \(G\).
     \begin{subprove}
-      Let \(G\) be a \nameref{def:group} with identity \(e\), let \(H = \{a \in G \mid a^{2} = e\}\), and suppose that \(G\) is \nameref{def:abeliangroup}.
+      Let \(G\) be a \nameref{def:group} with identity \(e\), let \(H = \{a \in G \mid a^{2} = e\}\), and suppose that \(G\) is \nameref{def:abelian-group}.
       It will be proved that \(H\) is a \nameref{def:subgroup} of \(G\).
       By \nameref{def:subgroup-lemma}, it suffices to show that (1) \(H \neq \emptyset\), (2) for all \(a, b \in H\), \(a * b \in H\), and (3) for all \(a \in H\), \(a^{-1} \in H\).
       \begin{itemize}
         \item Since \(e^{2} = e\), it follows that \(e \in H\), so \(H \neq \emptyset\).
-        \item For any \(a, b \in H\), since \(a^{2} = e\) and \(b^{2} = e\), and since \(G\) is \nameref{def:abeliangroup}, \((a * b)^{2} = (a * b) * (a * b) = a * b * a * b = a * a * b * b = a^{2} * b^{2} = e * e = e\).
+        \item For any \(a, b \in H\), since \(a^{2} = e\) and \(b^{2} = e\), and since \(G\) is \nameref{def:abelian-group}, \((a * b)^{2} = (a * b) * (a * b) = a * b * a * b = a * a * b * b = a^{2} * b^{2} = e * e = e\).
         Therefore, \(a * b \in H\).
         \item For any \(a \in H\), since \(a^{2} = e\), it follows that \(a = a^{-1}\).
         Therefore, \((a^{-1})^{2} = a^{2} = e\), so \(a^{-1} \in H\).
@@ -2037,13 +2009,10 @@ Here \(\circ\) is a generic product symbol (like \(*\)) and not function composi
     \item Prove that if \(H\) is finite, then \(H\) is a \nameref{def:subgroup} of \(G\).
     \begin{subprove}
       Let \((G, *)\) be a \nameref{def:group} with identity \(e\), let \(H\) be a nonempty finite subset of \(G\) that is closed under \(*\).
-      It will be proved that \(H\) is a \nameref{def:subgroup} of \(G\).
       By \nameref{def:subgroup-lemma}, it suffices to show that for all \(a \in H\), \(a^{-1} \in H\).
-      Let \(a \in H\).
-      Since \(H\) is closed under \(*\) and finite, the sequence \(a, a^{2}, a^{3}, \ldots\) must eventually repeat.
-      That is, there exist positive integers \(m < n\) such that \(a^{m} = a^{n}\).
-      Since \(a^{m} = a^{n}\), multiplying both sides by \(a^{-m}\) on the right yields \(a^{m} * a^{-m} = a^{n} * a^{-m}\), which simplifies to \(e = a^{n-m}\).
-      Since \(n - m > 0\), it follows that \(a^{n-m-1} * a = e\), so \(a^{n-m-1} = a^{-1}\).
+      Let \(a \in H\). Since \(H\) is closed under \(*\) and finite, the sequence \(a, a^{2}, a^{3}, \ldots\) must eventually repeat. That is, there exist positive integers \(m < n\) such that \(a^{m} = a^{n}\).
+      Since \(a^{m} = a^{n}\) and \(a^{m}, a^{n} \in H \subseteq G\), by cancellation in \(G\), we have \(e = a^{n-m}\) where \(n - m > 0\).
+      Since \(a^{n-m} = e\) and \(n - m > 0\), we have \(a * a^{n-m-1} = e\), so \(a^{n-m-1} = a^{-1}\).
       Since \(H\) is closed under \(*\), \(a^{n-m-1} \in H\), so \(a^{-1} \in H\).
       Therefore, \(H\) is a \nameref{def:subgroup} of \(G\).
     \end{subprove}
@@ -4946,17 +4915,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
     \item for all $a \in H, a^{-1} \in H$.
   \end{enumerate}
 \end{define}
-\begin{define}{Order of an Element}[def:order-of-an-element][red]
-  Let $G$ be a finite group. The \textbf{order} of an 
-  element $a \in G$, denoted $o(a)$, is the least positive 
-  integer $m$ such that $a^m=e$.
-\end{define}
-\begin{define}{Abelian Group}[def:abelian-group][red]
-  A group $(G, *)$ is called an \textbf{abelian group} (or \textbf{commutative group}) if for all $a, b \in G$, 
-  \[
-    a * b = b * a.
-  \]
-\end{define}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problems
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4968,30 +4926,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
     The \textbf{Klein 4-group} is an example of an abelian group. 
     It is the smallest non-cyclic abelian group with four elements.
   }}.
-  \begin{define}{Abelian Group $\setZ_2$}[def:abelian-group-z2][red]
-    Let $\setZ_2=\{[0],[1]\}$ be \textbf{integers modulo $2$}, 
-    i.e., the \textbf{set of equivalence classes} of integers under 
-    the \textbf{equivalence relation} of congruence modulo $2$.
-    Then, $(\setZ_2, +)$ is an abelian group.
-    \begin{subprove}
-      The addition table for $\setZ_2$ is shown as follows.
-      \begin{center}
-        \renewcommand{\arraystretch}{1.2}% vertical padding
-        \begin{tabular}{|c||c|c|}
-        \hline
-        $+$ & $[0]$ & $[1]$ \\
-        \hline\hline
-        $[0]$ & $[0]$ & $[1]$ \\
-        \hline
-        $[1]$ & $[1]$ & $[0]$ \\
-        \hline
-        \end{tabular}
-      \end{center}
-      where $[0]$ is the identity element and every element is its own inverse.
-      Furthermore, the addition is clearly well-defined, closed, associative, and commutative by nature.
-      Therefore, by definition of \nameref{def:abelian-group}, $(\setZ_2, +)$ is an abelian group.
-    \end{subprove}
-  \end{define}
   \begin{subprove}
     Let $G = \setZ_2 \times \setZ_2 = \{([0],[0]), ([0],[1]), ([1],[0]), ([1],[1])\}$, 
     where $\setZ_2 = \{[0], [1]\}$. 
@@ -5661,18 +5595,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
     \item for all $a \in H, a^{-1} \in H$.
   \end{enumerate}
 \end{define}
-\begin{define}{Order of an Element}[def:order-of-an-element][red]
-  Let $G$ be a finite group. The \textbf{order} of an 
-  element $a \in G$, denoted $o(a)$, is the least positive 
-  integer $m$ such that $a^m=e$.
-\end{define}
-\begin{define}{Abelian Group}[def:abelian-group][red]
-  A group $(G, *)$ is called an \textbf{abelian group} (or \textbf{commutative group}) if for all $a, b \in G$, 
-  \[
-    a * b = b * a.
-  \]
-\end{define}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problems Section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -5960,7 +5882,7 @@ Let $G$ be a group with identity $e$.
     \end{subprove}
     \item Let $g \in G$ have order $k \in \setN$. Prove that $\phi(g)$ has order $k$ in $H$.
     \begin{subprove}
-      Let $g \in G$ have order $k \in \setN$ as defined in \nameref{def:order-of-an-element}, 
+      Let $g \in G$ have order $k \in \setN$ as defined in \nameref{def:order-of-element}, 
       meaning that $k$ is the least positive integer such that $g^k = e$.
       Let $(G, *)$ and $(H, \circ)$ be groups with identities $e \in G$ and $f \in H$, 
       and let $\phi: G \to H$ be an isomorphism as defined in \nameref{def:isomorphism}.
@@ -5985,7 +5907,7 @@ Let $G$ be a group with identity $e$.
       since $m < k$ and $g^m = e$.
       
       Therefore, $k$ is the least positive integer such that $(\phi(g))^k = f$.
-      By definition of \nameref{def:order-of-an-element}, it is concluded that $\phi(g)$ has order $k$ in $H$.
+      By definition of \nameref{def:order-of-element}, it is concluded that $\phi(g)$ has order $k$ in $H$.
     \end{subprove}
   \end{enumerate}
 
