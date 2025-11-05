@@ -102,15 +102,223 @@
 
 
 
-\begin{define}{Abelian Groups}[def:abeliangroup][red]
-  A \nameref{def:group} \((G, *)\) is called an \textbf{Abelian group} 
-  (or \textbf{commutative group}) if (and only if) \textbf{commutative}, that is,
-  \[
-  \text{For all } a, b \in G, \, a * b = b * a.
-  \]
-\end{define}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{define}{Pigeonhole Principle}[def:pigeonhole][red]
+  If \(k+1\) or more pigeons (objects) are placed into \(k\) pigeonholes (boxes), 
+  then there is at least one pigeonhole (box) containing two or more pigeons (objects).
+\end{define}
+Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets. 
 \begin{enumerate}
+  \item Let \(f: S \to T\), \(g: T \to U\), and \(h: U \to V\) be functions.
+  Prove any of the following statements not already done before.
+  \begin{enumerate}
+    \item Prove that \(h \circ (g \circ f) = (h \circ g) \circ f\).
+    \begin{subprove}
+      Let \(f: S \to T\), \(g: T \to U\), and \(h: U \to V\) be functions.
+      It will be proved that \(h \circ (g \circ f) = (h \circ g) \circ f\).\proofstep
+      Let \(x \in S\) be arbitrary.
+      By the definition of function composition, 
+      \[
+      (h\circ(g\circ f))(x)= h((g \circ f)(x))=h(g(f(x)))= (h \circ g)(f(x))=((h\circ g)\circ f)(x).
+      \]
+      Therefore, it follows that \(h \circ (g \circ f) = (h \circ g) \circ f\)
+      since \(x\) was arbitrary.
+    \end{subprove}
+    \item Prove that \(i_{T} \circ f = f\) and \(f \circ i_{S} = f\), where \(i_{S}: S \to S\) and \(i_{T}: T \to T\) are the identity functions defined by \(i_{S}(s) = s\) for all \(s \in S\) and \(i_{T}(t) = t\) for all \(t \in T\).
+    \begin{subprove}
+      Let \(f: S \to T\) and \(i_S,i_T\) be as above.
+      Let \(x \in S\). Then
+      \[
+        (i_{T}\circ f)(x)=i_{T}(f(x))=f(x),
+      \]
+      since \(i_{T}\) fixes every element of \(T\). Because \(x\) was arbitrary, \(i_{T}\circ f=f\).
+
+      Likewise, for any \(x \in S\),
+      \[
+        (f\circ i_{S})(x)=f(i_{S}(x))=f(x),
+      \]
+      since \(i_{S}\) fixes every element of \(S\). Therefore, \(f\circ i_{S}=f\).
+    \end{subprove}
+    \item Prove that if \(f\) and \(g\) are bijective, then so is \(g \circ f\) directly from the definitions.
+    \begin{subprove}
+      Let \(f: S \to T\) and \(g: T \to U\) be functions.
+      It will be proved that if \(f\) and \(g\) are bijective, then so is \(g \circ f\).
+      
+      Since \(f\) and \(g\) are bijective, they are both injective and surjective.
+      It will be proved that \(g \circ f\) is both injective and surjective.\proofstep
+      Let \(x_{1}, x_{2} \in S\) be such that \((g \circ f)(x_{1}) = (g \circ f)(x_{2})\).
+      By the definition of function composition, \(g(f(x_{1})) = g(f(x_{2}))\).
+      Since \(g\) is injective, it follows that \(f(x_{1}) = f(x_{2})\).
+      Since \(f\) is injective, it follows that \(x_{1} = x_{2}\).
+      Therefore, \(g \circ f\) is injective.\proofstep
+      Let \(u \in U\) be arbitrary.
+      Since \(g\) is surjective, there exists \(t \in T\) such that \(g(t) = u\).
+      Since \(f\) is surjective, there exists \(s \in S\) such that \(f(s) = t\).
+      Therefore, \((g \circ f)(s) = g(f(s)) = g(t) = u\).
+      Since \(u\) was arbitrary, it follows that \(g \circ f\) is surjective.\proofstep
+      Since \(g \circ f\) is both injective and surjective, it follows that \(g \circ f\) is bijective.
+    \end{subprove}
+  \end{enumerate}
+  \item Prove that a function \(f: S \to T\) is a bijection if and only if 
+  there exists a function \(g: T \to S\) with \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
+  \begin{subprove}
+    \textbf{($\rightarrow$) Assume that \(f\) is a bijection.}
+    Since \(f\) is a bijection, it is both injective and surjective.
+    Since \(f\) is surjective, for each \(t \in T\), 
+    there exists at least one \(s \in S\) such that \(f(s) = t\).
+    Furthermore, the \(s\) is unique since \(f\) is injective.
+    Therefore, a function \(g: T \to S\) can be defined by setting \(g(t)\) to be the unique \(s \in S\) such that \(f(s) = t\).
+    Let \(s \in S\) be arbitrary.
+    Then,
+    \[
+    (g \circ f)(s) = g(f(s)) = s,
+    \]
+    Therefore, it follows that \(g \circ f = i_{S}\) by definition of function composition.\proofstep
+    Let \(t \in T\) be arbitrary.
+    Then,
+    \[
+    (f \circ g)(t) = f(g(t)) = t,
+    \]
+    since \(g(t)\) is defined to be the unique \(s \in S\) such that \(f(s) = t\).
+    Therefore, it follows that \(f \circ g = i_{T}\).
+    
+    \textbf{($\leftarrow$) Assume that there exists a function \(g: T \to S\) with \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).}
+    It will be proved that \(f\) is a bijection.
+    It will be proved that \(f\) is both injective and surjective.\proofstep
+    Let \(s_{1}, s_{2} \in S\) be such that \(f(s_{1}) = f(s_{2})\).
+    Then,
+    \[
+    g(f(s_{1})) = g(f(s_{2})).
+    \]
+    Since \(g \circ f = i_{S}\), it follows that \(s_{1} = s_{2}\).
+    Therefore, \(f\) is injective.\proofstep
+    Let \(t \in T\) be arbitrary.
+    Since \(f \circ g = i_{T}\), it follows that
+    \[
+    f(g(t)) = t.
+    \]
+    Therefore, there exists \(s = g(t) \in S\) such that \(f(s) = t\).
+    Since \(t\) was arbitrary, it follows that \(f\) is surjective.\proofstep
+    Since \(f\) is both injective and surjective, it follows that \(f\) is a bijection.
+  \end{subprove}
+  \newpage
+  \item Prove that \(A(S)\) is a \nameref{def:group} under the operation of function composition. 
+  For simplicity, write \(g \circ f\) as \(g f\) for \(f, g \in A(S)\).
+  \begin{define}{Finite Groups}[def:finitegroup][red]
+    A \nameref{def:group} \((G, *)\) is called a \textbf{finite group} if (and only if) 
+    the order of \(G\), denoted by \(|G|\), is finite; that is,
+    \[
+    |G| < \infty.
+    \]
+  \end{define}
+  \begin{subprove}
+    Let \(G = A(S)\) and let the operation be function composition, denoted by \(\circ\).
+    It will be proved that \((G, \circ)\) satisfies all four group properties.
+    \begin{itemize}
+      \item \textbf{Closure:} For any \(f, g \in G\), since \(f\) and \(g\) are bijections from \(S\) to \(S\), by the previous problem, \(g \circ f\) is also a bijection from \(S\) to \(S\), so \(g \circ f \in G\).
+      \item \textbf{Associativity:} For any \(f, g, h \in G\), by the previous problem, \((h \circ g) \circ f = h \circ (g \circ f)\).
+      \item \textbf{Existence of Identity:} The identity function \(i_{S}: S \to S\) defined by \(i_{S}(s) = s\) for all \(s \in S\) is a bijection, so \(i_{S} \in G\). For any \(f \in G\), by the previous problem, \(i_{S} \circ f = f\) and \(f \circ i_{S} = f\).
+      \item \textbf{Existence of Inverse:} For each \(f \in G\), since \(f\) is a bijection, by the previous problem, there exists a function \(g: S \to S\) such that \(g \circ f = i_{S}\) and \(f \circ g = i_{S}\). By the previous problem (with roles of \(f\) and \(g\) interchanged), \(g\) is also a bijection, so \(g \in G\). Therefore, \(g = f^{-1}\) is the inverse of \(f\).
+    \end{itemize}
+    Since all four group properties are satisfied, it follows that \((A(S), \circ)\) is a \nameref{def:group}.
+  \end{subprove}
+  \begin{define}{Symmetric Group}[def:symmetric-group][red]
+    Let \(|S| = n < \infty\). The group \((A(S), \circ)\) is called the 
+    \textbf{symmetric group of degree \(n\)}, denoted \(S_{n}\).
+    The elements of \(S_{n}\) are called \textbf{permutations}, and \(|S_{n}| = n!\) such that 
+    \[
+    S_{n} = A(S) = \{\sigma: S \to S \mid \sigma \text{ is a bijection}\}.
+    \]
+    \textbf{Note}: \(A(S)\) is the set of all bijections from \(S\) to \(S\) for a nonempty set \(S\).
+  \end{define}
+  \item Consider \(i, f, g \in S_{3}\) where \(i = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}\), 
+  \(f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}\), and \(g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}\). 
+  The notation means \(f(1) = 2\), \(f(2) = 1\), \(f(3) = 3\) while \(g(1) = 2\), \(g(2) = 3\), \(g(3) = 1\).
+  \begin{enumerate}
+    \item Prove that \(i, f, g, g^{2}, f g, g f\) are all distinct permutations by considering the symmetries of a triangle (under rotation and reflection) with vertices labeled 1, 2, and 3.
+    \begin{subprove}
+      Let \(S = \{1, 2, 3\}\). The elements are computed as follows:
+      \begin{align*}
+        i &= \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}, &
+        f &= \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}, &
+        g &= \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}, \\
+        g^{2} &= \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}, &
+        f g &= \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}, &
+        g f &= \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}.
+      \end{align*}
+      Since \(|S_{3}| = 3! = 6\) and these six elements have distinct two-line representations, they are all distinct and form all elements of \(S_{3}\).
+    \end{subprove}
+    \newpage
+    \item Prove that \(f^{2} = f f = i\) and \(g^{3} = g(g^{2}) = i\). What are the inverses of the other elements?
+    \begin{subprove}
+      Computing \(f^{2}\) and \(g^{3}\):
+      \begin{align*}
+        f^{2} &= \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix} = i, \\
+        g^{3} &= \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix} = i.
+      \end{align*}
+      Since \(f^{2} = i\), it follows that \(f^{-1} = f\).
+      Since \(g^{3} = i\), it follows that \(g^{-1} = g^{2}\) and \((g^{2})^{-1} = g\).
+      Since \((f g)^{2} = i\) and \((g f)^{2} = i\), it follows that \((f g)^{-1} = f g\) and \((g f)^{-1} = g f\).
+    \end{subprove}
+    \item Complete the product table for \(S_{3}\):
+    \begin{subprove}
+      The products are computed as follows:
+      \begin{align*}
+        f \cdot g^{2} &= g f, & f \cdot (f g) &= g, & f \cdot (g f) &= g^{2}, \\
+        g \cdot (f g) &= f, & g \cdot (g f) &= f g, \\
+        g^{2} \cdot f &= f g, & g^{2} \cdot (f g) &= g f, & g^{2} \cdot (g f) &= f, \\
+        (f g) \cdot f &= g^{2}, & (f g) \cdot g &= g f, & (f g) \cdot g^{2} &= f, & (f g) \cdot (g f) &= g, \\
+        (g f) \cdot f &= g, & (g f) \cdot g &= f, & (g f) \cdot g^{2} &= f g, & (g f) \cdot (f g) &= g^{2}.
+      \end{align*}
+      Together with the identity row \(i \cdot x = x\), \(f \cdot f = i\), \(g \cdot g = g^{2}\), \(g \cdot g^{2} = i\), \(g^{2} \cdot g^{2} = g\), \((f g)^{2} = i\), and \((g f)^{2} = i\), the product table for \(S_{3}\) is as follows.
+      \begin{center}
+      \begin{tabular}{|c|c|c|c|c|c|c|}
+      \hline
+      & \(i\) & \(f\) & \(g\) & \(g^{2}\) & \(f g\) & \(g f\) \\
+      \hline
+      \(i\) & \(i\) & \(f\) & \(g\) & \(g^{2}\) & \(f g\) & \(g f\) \\
+      \hline
+      \(f\) & \(f\) & \(i\) & \(f g\) & \(g f\) & \(g\) & \(g^{2}\) \\
+      \hline
+      \(g\) & \(g\) & \(g f\) & \(g^{2}\) & \(i\) & \(f\) & \(f g\) \\
+      \hline
+      \(g^{2}\) & \(g^{2}\) & \(f g\) & \(i\) & \(g\) & \(g f\) & \(f\) \\
+      \hline
+      \(f g\) & \(f g\) & \(g^{2}\) & \(g f\) & \(f\) & \(i\) & \(g\) \\
+      \hline
+      \(g f\) & \(g f\) & \(g\) & \(f\) & \(f g\) & \(g^{2}\) & \(i\) \\
+      \hline
+      \end{tabular}
+      \end{center}
+    \end{subprove}
+  \end{enumerate}
+
+
+
+  \newpage
+  \begin{define}{Abelian Groups}[def:abeliangroup][red]
+    A \nameref{def:group} \((G, *)\) is called an \textbf{Abelian group} 
+    (or \textbf{commutative group}) if (and only if) \textbf{commutative}, that is,
+    \[
+    \text{For all } a, b \in G, \, a * b = b * a.
+    \]
+  \end{define}
   \item Let $G$ be a nonempty set of $2 \times 2$ matrices. 
   Then, $(G, \cdot)$ is not a \nameref{def:abeliangroup}, 
   where $\cdot$ is the matrix multiplication operation.
@@ -169,385 +377,50 @@
     \end{pmatrix}\).
     Therefore, \((G, \cdot)\) does not satisfy the commutative property, and hence it is not a \nameref{def:abeliangroup}.
   \end{subprove}
-\end{enumerate}
-
-\begin{define}{Finite Groups}[def:finitegroup][red]
-  A \nameref{def:group} \((G, *)\) is called a \textbf{finite group} if (and only if) 
-  the order of \(G\), denoted by \(|G|\), is finite; that is,
-  \[
-  |G| < \infty.
-  \]
-\end{define}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-\begin{define}{Pigeonhole Principle}[def:pigeonhole][red]
-  If \(k+1\) or more pigeons (objects) are placed into \(k\) pigeonholes (boxes), 
-  then there is at least one pigeonhole (box) containing two or more pigeons (objects).
-\end{define}
-Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets. 
-\begin{enumerate}
-  \item Let \(f: S \to T\), \(g: T \to U\), and \(h: U \to V\) be functions.
-  Prove any of the following statements not already done before.
-  \begin{enumerate}
-    \item Prove that \(h \circ (g \circ f) = (h \circ g) \circ f\).
-    \begin{subprove}
-      Let \(f: S \to T\), \(g: T \to U\), and \(h: U \to V\) be functions.
-      It will be proved that \(h \circ (g \circ f) = (h \circ g) \circ f\).\proofstep
-      Let \(x \in S\) be arbitrary.
-      By the definition of function composition, \((h \circ (g \circ f))(x) = h((g \circ f)(x)) = h(g(f(x)))\).
-      Similarly, \(((h \circ g) \circ f)(x) = (h \circ g)(f(x)) = h(g(f(x)))\).
-      Therefore, \((h \circ (g \circ f))(x) = h(g(f(x))) = ((h \circ g) \circ f)(x)\).
-      
-      Since \(x\) was arbitrary, it follows that \(h \circ (g \circ f) = (h \circ g) \circ f\).
-    \end{subprove}
-    \item Prove that \(i_{T} \circ f = f\) and \(f \circ i_{S} = f\), where \(i_{S}: S \to S\) and \(i_{T}: T \to T\) are the identity functions defined by \(i_{S}(s) = s\) for all \(s \in S\) and \(i_{T}(t) = t\) for all \(t \in T\).
-    \begin{subprove}
-      Let \(f: S \to T\) be a function, and let \(i_{S}: S \to S\) and \(i_{T}: T \to T\) be the identity functions defined by \(i_{S}(s) = s\) for all \(s \in S\) and \(i_{T}(t) = t\) for all \(t \in T\).
-      It will be proved that \(i_{T} \circ f = f\) and \(f \circ i_{S} = f\).
-      
-      First, it will be proved that \(i_{T} \circ f = f\).
-      Since both \(i_{T} \circ f\) and \(f\) have domain \(S\) and codomain \(T\), it suffices to show that they agree on every element of \(S\).
-      Let \(x \in S\) be arbitrary.
-      By the definition of function composition, \((i_{T} \circ f)(x) = i_{T}(f(x)) = f(x)\).
-      Therefore, \((i_{T} \circ f)(x) = f(x)\).
-      Since \(x\) was arbitrary, it follows that \(i_{T} \circ f = f\).
-      
-      Now, it will be proved that \(f \circ i_{S} = f\).
-      Since both \(f \circ i_{S}\) and \(f\) have domain \(S\) and codomain \(T\), it suffices to show that they agree on every element of \(S\).
-      Let \(x \in S\) be arbitrary.
-      By the definition of function composition, \((f \circ i_{S})(x) = f(i_{S}(x)) = f(x)\).
-      Therefore, \((f \circ i_{S})(x) = f(x)\).
-      Since \(x\) was arbitrary, it follows that \(f \circ i_{S} = f\).
-    \end{subprove}
-    \item Prove that if \(f\) and \(g\) are bijective, then so is \(g \circ f\) directly from the definitions.
-    \begin{subprove}
-      Let \(f: S \to T\) and \(g: T \to U\) be functions.
-      It will be proved that if \(f\) and \(g\) are bijective, then so is \(g \circ f\).
-      
-      Since \(f\) and \(g\) are bijective, they are both injective and surjective.
-      It will be proved that \(g \circ f\) is both injective and surjective.
-      
-      First, it will be proved that \(g \circ f\) is injective.
-      Let \(x_{1}, x_{2} \in S\) be such that \((g \circ f)(x_{1}) = (g \circ f)(x_{2})\).
-      By the definition of function composition, \(g(f(x_{1})) = g(f(x_{2}))\).
-      Since \(g\) is injective, it follows that \(f(x_{1}) = f(x_{2})\).
-      Since \(f\) is injective, it follows that \(x_{1} = x_{2}\).
-      Therefore, \(g \circ f\) is injective.
-      
-      Now, it will be proved that \(g \circ f\) is surjective.
-      Let \(u \in U\) be arbitrary.
-      Since \(g\) is surjective, there exists \(t \in T\) such that \(g(t) = u\).
-      Since \(f\) is surjective, there exists \(s \in S\) such that \(f(s) = t\).
-      Therefore, \((g \circ f)(s) = g(f(s)) = g(t) = u\).
-      Since \(u\) was arbitrary, it follows that \(g \circ f\) is surjective.
-      
-      Since \(g \circ f\) is both injective and surjective, it follows that \(g \circ f\) is bijective.
-    \end{subprove}
-  \end{enumerate}
-  \item Prove that a function \(f: S \to T\) is a bijection if and only if 
-  there exists a function \(g: T \to S\) with \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
-  \begin{subprove}
-    Let \(f: S \to T\) be a function, and let \(i_{S}: S \to S\) and \(i_{T}: T \to T\) be the identity functions defined by \(i_{S}(s) = s\) for all \(s \in S\) and \(i_{T}(t) = t\) for all \(t \in T\).
-    It will be proved that \(f\) is a bijection if and only if there exists a function \(g: T \to S\) with \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
-    
-    First, suppose that \(f\) is a bijection.
-    It will be proved that there exists a function \(g: T \to S\) such that \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
-    
-    Since \(f\) is a bijection, it is both injective and surjective.
-    Define \(g: T \to S\) as follows: for each \(t \in T\), since \(f\) is surjective, there exists \(s \in S\) such that \(f(s) = t\).
-    Since \(f\) is injective, this \(s\) is unique.
-    Define \(g(t) = s\), where \(s\) is the unique element of \(S\) such that \(f(s) = t\).
-    This defines a function \(g: T \to S\).
-    
-    It will be proved that \(g \circ f = i_{S}\).
-    Let \(s \in S\) be arbitrary.
-    By the definition of \(g\), \(g(f(s))\) is the unique element \(s' \in S\) such that \(f(s') = f(s)\).
-    Since \(f(s') = f(s)\) and \(f\) is injective, it follows that \(s' = s\).
-    Therefore, \((g \circ f)(s) = g(f(s)) = s = i_{S}(s)\).
-    Since \(s\) was arbitrary, it follows that \(g \circ f = i_{S}\).
-    
-    It will be proved that \(f \circ g = i_{T}\).
-    Let \(t \in T\) be arbitrary.
-    By the definition of \(g\), \(g(t)\) is the unique element \(s \in S\) such that \(f(s) = t\).
-    Therefore, \((f \circ g)(t) = f(g(t)) = f(s) = t = i_{T}(t)\).
-    Since \(t\) was arbitrary, it follows that \(f \circ g = i_{T}\).
-    
-    Therefore, there exists a function \(g: T \to S\) such that \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
-    
-    Conversely, suppose that there exists a function \(g: T \to S\) such that \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
-    It will be proved that \(f\) is a bijection.
-    
-    It will be proved that \(f\) is injective.
-    Let \(s_{1}, s_{2} \in S\) be such that \(f(s_{1}) = f(s_{2})\).
-    Since \(g \circ f = i_{S}\), it follows that \(g(f(s_{1})) = s_{1}\) and \(g(f(s_{2})) = s_{2}\).
-    Since \(f(s_{1}) = f(s_{2})\), it follows that \(g(f(s_{1})) = g(f(s_{2}))\).
-    Therefore, \(s_{1} = g(f(s_{1})) = g(f(s_{2})) = s_{2}\).
-    Therefore, \(f\) is injective.
-    
-    It will be proved that \(f\) is surjective.
-    Let \(t \in T\) be arbitrary.
-    Since \(f \circ g = i_{T}\), it follows that \(f(g(t)) = t\).
-    Therefore, there exists \(s = g(t) \in S\) such that \(f(s) = t\).
-    Since \(t\) was arbitrary, it follows that \(f\) is surjective.
-    
-    Since \(f\) is both injective and surjective, it follows that \(f\) is a bijection.
-    
-    Therefore, \(f\) is a bijection if and only if there exists a function \(g: T \to S\) with \(g \circ f = i_{S}\) and \(f \circ g = i_{T}\).
-  \end{subprove}
-  \item The set of all one-to-one mappings from a nonempty set \(S\) onto itself is denoted \(A(S)\). 
-  Prove that \(A(S)\) is a \nameref{def:group} under the operation of function composition. 
-  For simplicity, write \(g \circ f\) as \(g f\) for \(f, g \in A(S)\).
-  \begin{subprove}
-    Let \(S\) be a nonempty set, and let \(A(S)\) be the set of all one-to-one mappings from \(S\) onto itself.
-    Note that a one-to-one mapping from \(S\) onto itself is a bijection from \(S\) to \(S\).
-    It will be proved that \(A(S)\) is a \nameref{def:group} under the operation of function composition.
-    
-    Let \(G = A(S)\) and let the operation be function composition, denoted by \(\circ\) (or simply by juxtaposition).
-    It will be proved that \((G, \circ)\) satisfies all four group properties.
-    
-    \begin{itemize}
-      \item \textbf{Closure:} For any \(f, g \in G\), since \(f\) and \(g\) are bijections from \(S\) to \(S\), by the previous problem, \(g \circ f\) is also a bijection from \(S\) to \(S\).
-      Therefore, \(g \circ f \in G\).
-      
-      \item \textbf{Associativity:} For any \(f, g, h \in G\), by the previous problem, \((h \circ g) \circ f = h \circ (g \circ f)\).
-      Therefore, function composition is associative.
-      
-      \item \textbf{Existence of Identity:} The identity function \(i_{S}: S \to S\) defined by \(i_{S}(s) = s\) for all \(s \in S\) is a bijection from \(S\) to \(S\), so \(i_{S} \in G\).
-      For any \(f \in G\), by the previous problem, \(i_{S} \circ f = f\) and \(f \circ i_{S} = f\).
-      Therefore, \(i_{S}\) is the identity element in \(G\).
-      
-      \item \textbf{Existence of Inverse:} For each \(f \in G\), since \(f\) is a bijection from \(S\) to \(S\), by the previous problem, there exists a function \(g: S \to S\) such that \(g \circ f = i_{S}\) and \(f \circ g = i_{S}\).
-      It will be proved that \(g\) is also a bijection from \(S\) to \(S\).
-      
-      First, it will be proved that \(g\) is injective.
-      Let \(s_{1}, s_{2} \in S\) be such that \(g(s_{1}) = g(s_{2})\).
-      Since \(f \circ g = i_{S}\), it follows that \(f(g(s_{1})) = s_{1}\) and \(f(g(s_{2})) = s_{2}\).
-      Since \(g(s_{1}) = g(s_{2})\), it follows that \(f(g(s_{1})) = f(g(s_{2}))\).
-      Therefore, \(s_{1} = f(g(s_{1})) = f(g(s_{2})) = s_{2}\).
-      Therefore, \(g\) is injective.
-      
-      Now, it will be proved that \(g\) is surjective.
-      Let \(s \in S\) be arbitrary.
-      Since \(g \circ f = i_{S}\), it follows that \(g(f(s)) = s\).
-      Therefore, there exists \(s' = f(s) \in S\) such that \(g(s') = s\).
-      Since \(s\) was arbitrary, it follows that \(g\) is surjective.
-      
-      Since \(g\) is both injective and surjective, it follows that \(g\) is a bijection from \(S\) to \(S\), so \(g \in G\).
-      Therefore, \(g\) is the inverse of \(f\) in \(G\), and it will be denoted by \(f^{-1}\).
-    \end{itemize}
-    
-    Since all four group properties are satisfied, it follows that \((A(S), \circ)\) is a \nameref{def:group}.
-  \end{subprove}
-  \item When \(|S| = n < \infty\), then \(A(S)\) is called the symmetric group of degree \(n\), 
-  often denoted \(S_{n}\). The elements of \(S_{n}\) are called permutations of \(S\), and 
-  \(S_{n}\) has \(n!\) elements.
-  Consider \(i, f, g \in S_{3}\) where \(i = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}\), 
-  \(f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}\), and \(g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}\). 
-  The notation means \(f(1) = 2\), \(f(2) = 1\), \(f(3) = 3\) while \(g(1) = 2\), \(g(2) = 3\), \(g(3) = 1\).
-  \begin{enumerate}
-    \item Prove that \(i, f, g, g^{2}, f g, g f\) are all distinct permutations by considering the symmetries of a triangle (under rotation and reflection) with vertices labeled 1, 2, and 3.
-    \begin{subprove}
-      Let \(S = \{1, 2, 3\}\) and consider the symmetries of an equilateral triangle with vertices labeled 1, 2, and 3.
-      It will be proved that \(i, f, g, g^{2}, f g, g f\) are all distinct permutations.
-      
-      First, the elements are computed explicitly.
-      \begin{itemize}
-        \item \(i = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}\) is the identity permutation, corresponding to no transformation.
-        \item \(f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}\) is a reflection through the line through vertex 3 and the midpoint of the opposite side.
-        \item \(g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}\) is a counterclockwise rotation by \(120°\).
-        \item \(g^{2} = g(g(1)) = g(2) = 3\), \(g^{2}(2) = g(g(2)) = g(3) = 1\), \(g^{2}(3) = g(g(3)) = g(1) = 2\), so \(g^{2} = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}\), which is a counterclockwise rotation by \(240°\) (or equivalently, a clockwise rotation by \(120°\)).
-        \item \((f g)(1) = f(g(1)) = f(2) = 1\), \((f g)(2) = f(g(2)) = f(3) = 3\), \((f g)(3) = f(g(3)) = f(1) = 2\), so \(f g = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}\), which is a reflection through the line through vertex 1 and the midpoint of the opposite side.
-        \item \((g f)(1) = g(f(1)) = g(2) = 3\), \((g f)(2) = g(f(2)) = g(1) = 2\), \((g f)(3) = g(f(3)) = g(3) = 1\), so \(g f = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}\), which is a reflection through the line through vertex 2 and the midpoint of the opposite side.
-      \end{itemize}
-      
-      Since \(|S_{3}| = 3! = 6\), and the six elements \(i, f, g, g^{2}, f g, g f\) are all distinct (as verified by their explicit two-line representations), they form all elements of \(S_{3}\).
-      These correspond to the six symmetries of an equilateral triangle: the identity, three reflections (through each vertex/median), and two rotations (by \(120°\) and \(240°\)).
-    \end{subprove}
-    \item Prove that \(f^{2} = f f = i\) and \(g^{3} = g(g^{2}) = i\). What are the inverses of the other elements?
-    \begin{subprove}
-      It will be proved that \(f^{2} = i\) and \(g^{3} = i\).
-      
-      First, it will be proved that \(f^{2} = i\).
-      For any \(k \in \{1, 2, 3\}\), \((f^{2})(k) = f(f(k))\).
-      \begin{itemize}
-        \item \((f^{2})(1) = f(f(1)) = f(2) = 1 = i(1)\).
-        \item \((f^{2})(2) = f(f(2)) = f(1) = 2 = i(2)\).
-        \item \((f^{2})(3) = f(f(3)) = f(3) = 3 = i(3)\).
-      \end{itemize}
-      Therefore, \(f^{2} = i\).
-      
-      Now, it will be proved that \(g^{3} = i\).
-      Since \(g^{2} = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix}\) as computed above, \(g^{3} = g(g^{2})\).
-      \begin{itemize}
-        \item \((g^{3})(1) = g(g^{2}(1)) = g(3) = 1 = i(1)\).
-        \item \((g^{3})(2) = g(g^{2}(2)) = g(1) = 2 = i(2)\).
-        \item \((g^{3})(3) = g(g^{2}(3)) = g(2) = 3 = i(3)\).
-      \end{itemize}
-      Therefore, \(g^{3} = i\).
-      
-      Now, the inverses of the other elements will be determined.
-      Since \(f^{2} = i\), it follows that \(f^{-1} = f\).
-      Since \(g^{3} = i\), it follows that \(g^{-1} = g^{2}\).
-      Since \((g^{2})^{3} = (g^{3})^{2} = i^{2} = i\), and since \(g^{2} \neq i\) and \((g^{2})^{2} = g^{4} = g \neq i\), it follows that \((g^{2})^{-1} = g\).
-      Since \((f g)^{2} = (f g)(f g) = f(g f) g = f(g f) g\), and since \(f g\) is a reflection, \((f g)^{2} = i\), so \((f g)^{-1} = f g\).
-      Similarly, since \((g f)^{2} = i\), it follows that \((g f)^{-1} = g f\).
-    \end{subprove}
-    \item Complete the product table for \(S_{3}\):
-    \begin{subprove}
-      It will be proved that the product table for \(S_{3}\) is as follows.
-      All products are computed by applying the functions in order from right to left.
-      
-      The products are computed as follows:
-      \begin{itemize}
-        \item \textbf{Row \(i\):} Since \(i\) is the identity, \(i \cdot x = x\) for all \(x \in S_{3}\).
-        \item \textbf{Row \(f\):} 
-          \begin{itemize}
-            \item \(f \cdot i = f\)
-            \item \(f \cdot f = f^{2} = i\)
-            \item \(f \cdot g = f g = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}\)
-            \item \(f \cdot g^{2}\): \((f g^{2})(1) = f(g^{2}(1)) = f(3) = 3\), \((f g^{2})(2) = f(g^{2}(2)) = f(1) = 2\), \((f g^{2})(3) = f(g^{2}(3)) = f(2) = 1\), so \(f \cdot g^{2} = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix} = g f\)
-            \item \(f \cdot (f g)\): \((f(f g))(1) = f((f g)(1)) = f(1) = 2\), \((f(f g))(2) = f((f g)(2)) = f(3) = 3\), \((f(f g))(3) = f((f g)(3)) = f(2) = 1\), so \(f \cdot (f g) = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix} = g\)
-            \item \(f \cdot (g f)\): \((f(g f))(1) = f((g f)(1)) = f(3) = 3\), \((f(g f))(2) = f((g f)(2)) = f(2) = 1\), \((f(g f))(3) = f((g f)(3)) = f(1) = 2\), so \(f \cdot (g f) = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix} = g^{2}\)
-          \end{itemize}
-        \item \textbf{Row \(g\):}
-          \begin{itemize}
-            \item \(g \cdot i = g\)
-            \item \(g \cdot f = g f = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix}\)
-            \item \(g \cdot g = g^{2}\)
-            \item \(g \cdot g^{2} = g^{3} = i\)
-            \item \(g \cdot (f g)\): \((g(f g))(1) = g((f g)(1)) = g(1) = 2\), \((g(f g))(2) = g((f g)(2)) = g(3) = 1\), \((g(f g))(3) = g((f g)(3)) = g(2) = 3\), so \(g \cdot (f g) = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} = f\)
-            \item \(g \cdot (g f)\): \((g(g f))(1) = g((g f)(1)) = g(3) = 1\), \((g(g f))(2) = g((g f)(2)) = g(2) = 3\), \((g(g f))(3) = g((g f)(3)) = g(1) = 2\), so \(g \cdot (g f) = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix} = f g\)
-          \end{itemize}
-        \item \textbf{Row \(g^{2}\):}
-          \begin{itemize}
-            \item \(g^{2} \cdot i = g^{2}\)
-            \item \(g^{2} \cdot f\): \((g^{2} f)(1) = g^{2}(f(1)) = g^{2}(2) = 1\), \((g^{2} f)(2) = g^{2}(f(2)) = g^{2}(1) = 3\), \((g^{2} f)(3) = g^{2}(f(3)) = g^{2}(3) = 2\), so \(g^{2} \cdot f = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix} = f g\)
-            \item \(g^{2} \cdot g = g^{3} = i\)
-            \item \(g^{2} \cdot g^{2} = g^{4} = g^{3} \cdot g = i \cdot g = g\)
-            \item \(g^{2} \cdot (f g)\): \((g^{2}(f g))(1) = g^{2}((f g)(1)) = g^{2}(1) = 3\), \((g^{2}(f g))(2) = g^{2}((f g)(2)) = g^{2}(3) = 2\), \((g^{2}(f g))(3) = g^{2}((f g)(3)) = g^{2}(2) = 1\), so \(g^{2} \cdot (f g) = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix} = g f\)
-            \item \(g^{2} \cdot (g f)\): \((g^{2}(g f))(1) = g^{2}((g f)(1)) = g^{2}(3) = 2\), \((g^{2}(g f))(2) = g^{2}((g f)(2)) = g^{2}(2) = 1\), \((g^{2}(g f))(3) = g^{2}((g f)(3)) = g^{2}(1) = 3\), so \(g^{2} \cdot (g f) = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} = f\)
-          \end{itemize}
-        \item \textbf{Row \(f g\):}
-          \begin{itemize}
-            \item \((f g) \cdot i = f g\)
-            \item \((f g) \cdot f\): \(((f g) f)(1) = (f g)(f(1)) = (f g)(2) = 3\), \(((f g) f)(2) = (f g)(f(2)) = (f g)(1) = 1\), \(((f g) f)(3) = (f g)(f(3)) = (f g)(3) = 2\), so \((f g) \cdot f = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix} = g^{2}\)
-            \item \((f g) \cdot g\): \(((f g) g)(1) = (f g)(g(1)) = (f g)(2) = 3\), \(((f g) g)(2) = (f g)(g(2)) = (f g)(3) = 2\), \(((f g) g)(3) = (f g)(g(3)) = (f g)(1) = 1\), so \((f g) \cdot g = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix} = g f\)
-            \item \((f g) \cdot g^{2}\): \(((f g) g^{2})(1) = (f g)(g^{2}(1)) = (f g)(3) = 2\), \(((f g) g^{2})(2) = (f g)(g^{2}(2)) = (f g)(1) = 1\), \(((f g) g^{2})(3) = (f g)(g^{2}(3)) = (f g)(2) = 3\), so \((f g) \cdot g^{2} = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} = f\)
-            \item \((f g) \cdot (f g) = (f g)^{2} = i\) (since \(f g\) is a reflection)
-            \item \((f g) \cdot (g f)\): \(((f g)(g f))(1) = (f g)((g f)(1)) = (f g)(3) = 2\), \(((f g)(g f))(2) = (f g)((g f)(2)) = (f g)(2) = 3\), \(((f g)(g f))(3) = (f g)((g f)(3)) = (f g)(1) = 1\), so \((f g) \cdot (g f) = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix} = g\)
-          \end{itemize}
-        \item \textbf{Row \(g f\):}
-          \begin{itemize}
-            \item \((g f) \cdot i = g f\)
-            \item \((g f) \cdot f\): \(((g f) f)(1) = (g f)(f(1)) = (g f)(2) = 2\), \(((g f) f)(2) = (g f)(f(2)) = (g f)(1) = 3\), \(((g f) f)(3) = (g f)(f(3)) = (g f)(3) = 1\), so \((g f) \cdot f = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix} = g\)
-            \item \((g f) \cdot g\): \(((g f) g)(1) = (g f)(g(1)) = (g f)(2) = 2\), \(((g f) g)(2) = (g f)(g(2)) = (g f)(3) = 1\), \(((g f) g)(3) = (g f)(g(3)) = (g f)(1) = 3\), so \((g f) \cdot g = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix} = f\)
-            \item \((g f) \cdot g^{2}\): \(((g f) g^{2})(1) = (g f)(g^{2}(1)) = (g f)(3) = 1\), \(((g f) g^{2})(2) = (g f)(g^{2}(2)) = (g f)(1) = 3\), \(((g f) g^{2})(3) = (g f)(g^{2}(3)) = (g f)(2) = 2\), so \((g f) \cdot g^{2} = \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix} = f g\)
-            \item \((g f) \cdot (f g)\): \(((g f)(f g))(1) = (g f)((f g)(1)) = (g f)(1) = 3\), \(((g f)(f g))(2) = (g f)((f g)(2)) = (g f)(3) = 1\), \(((g f)(f g))(3) = (g f)((f g)(3)) = (g f)(2) = 2\), so \((g f) \cdot (f g) = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{pmatrix} = g^{2}\)
-            \item \((g f) \cdot (g f) = (g f)^{2} = i\) (since \(g f\) is a reflection)
-          \end{itemize}
-      \end{itemize}
-      
-      Therefore, the product table for \(S_{3}\) is as follows:
-    \end{subprove}
-    \begin{center}
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
-    & \(i\) & \(f\) & \(g\) & \(g^{2}\) & \(f g\) & \(g f\) \\
-    \hline
-    \(i\) & \(i\) & \(f\) & \(g\) & \(g^{2}\) & \(f g\) & \(g f\) \\
-    \hline
-    \(f\) & \(f\) & \(i\) & \(f g\) & \(g f\) & \(g\) & \(g^{2}\) \\
-    \hline
-    \(g\) & \(g\) & \(g f\) & \(g^{2}\) & \(i\) & \(f\) & \(f g\) \\
-    \hline
-    \(g^{2}\) & \(g^{2}\) & \(f g\) & \(i\) & \(g\) & \(g f\) & \(f\) \\
-    \hline
-    \(f g\) & \(f g\) & \(g^{2}\) & \(g f\) & \(f\) & \(i\) & \(g\) \\
-    \hline
-    \(g f\) & \(g f\) & \(g\) & \(f\) & \(f g\) & \(g^{2}\) & \(i\) \\
-    \hline
-    \end{tabular}
-    \end{center}
-  \end{enumerate}
   \item Prove that if \(|S| \geq 3\), then \(A(S)\) is not a \nameref{def:abeliangroup}.
   \begin{subprove}
-    Let \(S\) be a nonempty set with \(|S| \geq 3\), and let \(A(S)\) be the set of all one-to-one mappings from \(S\) onto itself.
-    It will be proved that \(A(S)\) is not a \nameref{def:abeliangroup}, that is, there exist \(f, g \in A(S)\) such that \(f \circ g \neq g \circ f\).
-    
-    Since \(|S| \geq 3\), there exist three distinct elements \(a, b, c \in S\).
-    Two bijections \(f, g: S \to S\) will be defined as follows:
-    \begin{itemize}
-      \item \(f\) is defined by \(f(a) = b\), \(f(b) = a\), and \(f(x) = x\) for all \(x \in S \setminus \{a, b\}\).
-        That is, \(f\) is the transposition that swaps \(a\) and \(b\), fixing all other elements.
-      \item \(g\) is defined by \(g(a) = b\), \(g(b) = c\), \(g(c) = a\), and \(g(x) = x\) for all \(x \in S \setminus \{a, b, c\}\).
-        That is, \(g\) is the 3-cycle that sends \(a \to b \to c \to a\), fixing all other elements.
-    \end{itemize}
-    
-    Since \(f\) and \(g\) are bijections from \(S\) to \(S\), it follows that \(f, g \in A(S)\).
-    
-    Now, it will be proved that \(f \circ g \neq g \circ f\) by computing both compositions on the element \(a\).
-    
-    First, \((f \circ g)(a)\) is computed:
-    \begin{itemize}
-      \item Since \(g(a) = b\), it follows that \((f \circ g)(a) = f(g(a)) = f(b) = a\).
-    \end{itemize}
-    
-    Now, \((g \circ f)(a)\) is computed:
-    \begin{itemize}
-      \item Since \(f(a) = b\), it follows that \((g \circ f)(a) = g(f(a)) = g(b) = c\).
-    \end{itemize}
-    
-    Since \((f \circ g)(a) = a\) and \((g \circ f)(a) = c\), and since \(a \neq c\), it follows that \((f \circ g)(a) \neq (g \circ f)(a)\).
-    Therefore, \(f \circ g \neq g \circ f\).
-    
-    Since there exist \(f, g \in A(S)\) such that \(f \circ g \neq g \circ f\), it follows that \(A(S)\) is not a \nameref{def:abeliangroup}.
+    A counterexample will be provided. Let \(|S| \geq 3\) and let \(a, b, c \in S\) be distinct.
+    Define \(f, g \in A(S)\) as follows.
+    \[
+      f(x) = \begin{cases}
+        b & \text{if } x = a, \\
+        a & \text{if } x = b, \\
+        c & \text{if } x = c,
+      \end{cases}
+      \quad
+      g(x) = \begin{cases}
+        b & \text{if } x = a, \\
+        c & \text{if } x = b, \\
+        a & \text{if } x = c,
+      \end{cases}
+    \]
+    Then
+    \[
+      (f \circ g)(a) = f(g(a)) = f(b) = a, \quad
+      (g \circ f)(a) = g(f(a)) = g(b) = c.
+    \]
+    Since \((f \circ g)(a) = a \neq c = (g \circ f)(a)\), it follows that \(f \circ g \neq g \circ f\).
+    Therefore, \(A(S)\) is not a \nameref{def:abeliangroup}.
   \end{subprove}
+  \newpage
   \item Let \(f: S \to T\) and \(g: T \to U\) be functions.
   \begin{enumerate}
     \item Let \(h: T \to U\) be a function. Prove that if \(f\) is surjective and \(g \circ f = h \circ f\), then \(g = h\).
     \begin{subprove}
-      Let \(f: S \to T\) and \(g, h: T \to U\) be functions.
-      Suppose that \(f\) is surjective and \(g \circ f = h \circ f\).
-      It will be proved that \(g = h\), that is, for all \(t \in T\), \(g(t) = h(t)\).
-      
       Let \(t \in T\) be arbitrary.
       Since \(f\) is surjective, there exists \(s \in S\) such that \(f(s) = t\).
       Since \(g \circ f = h \circ f\), it follows that \((g \circ f)(s) = (h \circ f)(s)\).
       That is, \(g(f(s)) = h(f(s))\).
-      Since \(f(s) = t\), it follows that \(g(t) = h(t)\).
-      
+      Since \(f(s) = t\), it follows that \(g(t) = h(t)\).\proofstep
       Since \(t\) was arbitrary, it follows that for all \(t \in T\), \(g(t) = h(t)\).
       Therefore, \(g = h\).
     \end{subprove}
     \item Let \(h: S \to T\) be a function. Prove that if \(g\) is injective and \(g \circ f = g \circ h\), then \(f = h\).
     \begin{subprove}
-      Let \(f, h: S \to T\) and \(g: T \to U\) be functions.
-      Suppose that \(g\) is injective and \(g \circ f = g \circ h\).
-      It will be proved that \(f = h\), that is, for all \(s \in S\), \(f(s) = h(s)\).
-      
       Let \(s \in S\) be arbitrary.
       Since \(g \circ f = g \circ h\), it follows that \((g \circ f)(s) = (g \circ h)(s)\).
       That is, \(g(f(s)) = g(h(s))\).
-      Since \(g\) is injective, it follows that \(f(s) = h(s)\).
-      
+      Since \(g\) is injective, it follows that \(f(s) = h(s)\).\proofstep
       Since \(s\) was arbitrary, it follows that for all \(s \in S\), \(f(s) = h(s)\).
       Therefore, \(f = h\).
     \end{subprove}
@@ -556,70 +429,27 @@ Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets.
   \begin{enumerate}
     \item Suppose \(S\) is finite. Prove that \(f\) is onto if and only if \(f\) is one-to-one.
     \begin{subprove}
-      Let \(S\) be a finite set and let \(f: S \to S\) be a function.
-      It will be proved that \(f\) is onto if and only if \(f\) is one-to-one.
-      
-      First, it will be proved that if \(f\) is onto, then \(f\) is one-to-one.
-      Suppose that \(f\) is onto.
-      It will be proved that \(f\) is one-to-one, that is, for all \(s_{1}, s_{2} \in S\), if \(f(s_{1}) = f(s_{2})\), then \(s_{1} = s_{2}\).
-      
-      Suppose, for contradiction, that \(f\) is not one-to-one.
-      Then there exist \(s_{1}, s_{2} \in S\) such that \(s_{1} \neq s_{2}\) and \(f(s_{1}) = f(s_{2})\).
-      Since \(f\) is onto and \(S\) is finite with \(|S| = n\), it follows that \(|f(S)| = n\), where \(f(S) = \{f(s) \mid s \in S\}\).
-      However, since \(f(s_{1}) = f(s_{2})\) and \(s_{1} \neq s_{2}\), it follows that \(|f(S)| \leq n - 1\), which contradicts \(|f(S)| = n\).
-      Therefore, \(f\) is one-to-one.
-      
-      Now, it will be proved that if \(f\) is one-to-one, then \(f\) is onto.
-      Suppose that \(f\) is one-to-one.
-      It will be proved that \(f\) is onto, that is, for every \(t \in S\), there exists \(s \in S\) such that \(f(s) = t\).
-      
-      Since \(f\) is one-to-one and \(S\) is finite with \(|S| = n\), it follows that \(|f(S)| = n\).
-      Since \(f(S) \subseteq S\) and \(|f(S)| = |S| = n\), it follows that \(f(S) = S\).
-      Therefore, for every \(t \in S\), there exists \(s \in S\) such that \(f(s) = t\).
-      Therefore, \(f\) is onto.
-      
-      Since both directions have been proved, it follows that \(f\) is onto if and only if \(f\) is one-to-one.
+      Let \(S\) be finite with \(|S| = n\) and let \(f: S \to S\) be a function.
+      (\(\Rightarrow\)) Suppose \(f\) is onto. Then, \(|f(S)| = n\). 
+      If \(f\) is not one-to-one, then there exist \(s_{1}, s_{2} \in S\) with \(s_{1} \neq s_{2}\) and \(f(s_{1}) = f(s_{2})\), 
+      so \(|f(S)| \leq n - 1\), a contradiction. Therefore, \(f\) is one-to-one.
+      (\(\Leftarrow\)) Suppose \(f\) is one-to-one. Then, \(|f(S)| = n\). 
+      Since \(f(S) \subseteq S\) and \(|f(S)| = |S| = n\), it follows that \(f(S) = S\), so \(f\) is onto.
     \end{subprove}
     \item Disprove the general statement that \(f\) is onto only if \(f\) is one-to-one.
-    \begin{subprove}
-      It will be disproved that for any function \(f: S \to S\), if \(f\) is onto, then \(f\) is one-to-one.
-      A counterexample will be provided.
-      
-      Let \(S = \setZ\), the set of integers.
-      Let \(f: \setZ \to \setZ\) be defined by \(f(n) = \lfloor \frac{n}{2} \rfloor\) for all \(n \in \setZ\), where \(\lfloor x \rfloor\) denotes the floor function (the greatest integer less than or equal to \(x\)).
-      
-      It will be proved that \(f\) is onto.
-      Let \(m \in \setZ\) be arbitrary.
-      Then \(f(2m) = \lfloor \frac{2m}{2} \rfloor = \lfloor m \rfloor = m\).
-      Therefore, for every \(m \in \setZ\), there exists \(n = 2m \in \setZ\) such that \(f(n) = m\).
-      Therefore, \(f\) is onto.
-      
-      However, \(f\) is not one-to-one.
-      For example, \(f(0) = \lfloor \frac{0}{2} \rfloor = 0\) and \(f(1) = \lfloor \frac{1}{2} \rfloor = 0\).
-      Since \(f(0) = f(1)\) but \(0 \neq 1\), it follows that \(f\) is not one-to-one.
-      
-      Therefore, the statement that \(f\) is onto only if \(f\) is one-to-one is false in general.
-    \end{subprove}
+    \begin{subdisprove}
+      Let \(S = \setZ\) and define \(f: \setZ \to \setZ\) by \(f(n) = \lfloor n/2 \rfloor\) for all \(n \in \setZ\).
+      For any \(m \in \setZ\), \(f(2m) = \lfloor 2m/2 \rfloor = m\), so \(f\) is onto.
+      Since \(f(0) = 0 = f(1)\) but \(0 \neq 1\), it follows that \(f\) is not one-to-one.\proofstep
+      Therefore, by counterexample, it is false that \(f\) is onto only if \(f\) is one-to-one.
+    \end{subdisprove}
     \item Disprove the general statement that \(f\) is one-to-one only if \(f\) is onto.
-    \begin{subprove}
-      It will be disproved that for any function \(f: S \to S\), if \(f\) is one-to-one, then \(f\) is onto.
-      A counterexample will be provided.
-      
-      Let \(S = \setZ\), the set of integers.
-      Let \(f: \setZ \to \setZ\) be defined by \(f(n) = 2n\) for all \(n \in \setZ\).
-      
-      It will be proved that \(f\) is one-to-one.
-      Let \(n_{1}, n_{2} \in \setZ\) be such that \(f(n_{1}) = f(n_{2})\).
-      Then \(2n_{1} = 2n_{2}\), so \(n_{1} = n_{2}\).
-      Therefore, \(f\) is one-to-one.
-      
-      However, \(f\) is not onto.
-      For example, \(1 \in \setZ\), but there is no \(n \in \setZ\) such that \(f(n) = 1\), since \(f(n) = 2n\) is always even, and \(1\) is odd.
-      More generally, for any odd integer \(m\), there is no \(n \in \setZ\) such that \(f(n) = m\).
-      Therefore, \(f\) is not onto.
-      
-      Therefore, the statement that \(f\) is one-to-one only if \(f\) is onto is false in general.
-    \end{subprove}
+    \begin{subdisprove}
+      Let \(S = \setZ\) and define \(f: \setZ \to \setZ\) by \(f(n) = 2n\) for all \(n \in \setZ\).
+      If \(f(n_{1}) = f(n_{2})\), then \(2n_{1} = 2n_{2}\), so \(n_{1} = n_{2}\). Therefore, \(f\) is one-to-one.
+      Since \(f(n) = 2n\) is always even, there is no \(n \in \setZ\) such that \(f(n) = 1\), so \(f\) is not onto.\proofstep
+      Therefore, by counterexample, it is false that \(f\) is one-to-one only if \(f\) is onto.
+    \end{subdisprove}
   \end{enumerate}
 \end{enumerate}
 
@@ -633,47 +463,31 @@ Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets.
 
 
 \newpage
-It may be assumed that \((\setZ, +)\) is a \nameref{def:group} with identity \(0\), and that multiplication on the integers is closed and associative with identity \(1\).
-
-Also, the following number theory result may be used without proof.
-If \(a, b \in \setZ\) with either \(a \neq 0\) or \(b \neq 0\), then the greatest common divisor of \(a\) and \(b\) is \(1\) if and only if there exist \(n, m \in \setZ\) such that \(a n + b m = 1\).
-
-\begin{define}{Integers Modulo \(n\)}[def:integers-modulo-n][red]
-  For an integer \(n \geq 2\), the set of integers modulo \(n\), denoted \(\setZ_{n}\), 
-  is the set of equivalence classes of integers under the equivalence relation 
-  (an equivalence relation) \(a \equiv b \pmod{n}\). 
-  The \textbf{equivalence class} of an integer \(a\) is denoted \([a]\), 
-  where \([a] = \{b \in \setZ \mid a \equiv b \pmod{n}\}\).\\
-  \textbf{Note}: \(\setZ_{3} = \{[0], [1], [2]\} = \{[-5], [9], [23]\}\), 
-  however, \(\setZ_{3} \neq \{0, 1, 2\}\).
+\begin{define}{Bézout's Identity}[thm:bezout-identity][red]
+  For \(a, b \in \setZ\) with either \(a \neq 0\) or \(b \neq 0\), 
+  the greatest common divisor of \(a\) and \(b\) is \(1\) if and only if 
+  there exist \(m, n \in \setZ\) such that
+  \[
+    a m + b n = 1.
+  \]
 \end{define}
-
-\begin{define}{Well-Defined Operation}[def:well-defined][red]
-  An operation \(*\) on a set \(S\) is said to be \textbf{well-defined} if (and only if) whenever \(a = a'\) and \(b = b'\) in \(S\), it follows that \(a * b = a' * b'\).
-  That is, the result of the operation does not depend on the choice of representative elements from equivalence classes.
-\end{define}
-
 \begin{enumerate}
   \item Let \(G\) be a group.
   (When not necessary for clarity the product \(a * b\) is written as \(a b\) for \(a, b \in G\) and the group is denoted as simply \(G\) instead of \((G, *)\).)
   \begin{enumerate}
     \item Prove that if \(a b = a c\), then \(b = c\) for all \(a, b, c \in G\).
     \begin{subprove}
-      Let \(G\) be a group, and let \(a, b, c \in G\).
-      It will be proved that if \(a b = a c\), then \(b = c\).
-      Since \(a b = a c\), and since \(G\) is a group, there exists an inverse element \(a^{-1} \in G\) such that \(a^{-1} a = e\), where \(e\) is the identity element of \(G\).
-      Multiplying both sides of \(a b = a c\) on the left by \(a^{-1}\) yields \(a^{-1} (a b) = a^{-1} (a c)\).
-      By associativity, \((a^{-1} a) b = (a^{-1} a) c\), which simplifies to \(e b = e c\).
-      Since \(e\) is the identity element, it follows that \(b = c\).
+      Let \(a, b, c \in G\) and suppose \(a b = a c\).
+      Since \(G\) is a \nameref{def:group}, there exists \(a^{-1} \in G\) such that \(a^{-1} a = e\), where \(e\) is the identity.
+      Multiplying on the left by \(a^{-1}\) gives \(a^{-1} (a b) = a^{-1} (a c)\).
+      By associativity, \((a^{-1} a) b = (a^{-1} a) c\), so \(e b = e c\), and therefore \(b = c\).
     \end{subprove}
     \item Prove that if \(b a = c a\), then \(b = c\) for all \(a, b, c \in G\).
     \begin{subprove}
-      Let \(G\) be a group, and let \(a, b, c \in G\).
-      It will be proved that if \(b a = c a\), then \(b = c\).
-      Since \(b a = c a\), and since \(G\) is a group, there exists an inverse element \(a^{-1} \in G\) such that \(a a^{-1} = e\), where \(e\) is the identity element of \(G\).
-      Multiplying both sides of \(b a = c a\) on the right by \(a^{-1}\) yields \((b a) a^{-1} = (c a) a^{-1}\).
-      By associativity, \(b (a a^{-1}) = c (a a^{-1})\), which simplifies to \(b e = c e\).
-      Since \(e\) is the identity element, it follows that \(b = c\).
+      Let \(a, b, c \in G\) and suppose \(b a = c a\).
+      Since \(G\) is a \nameref{def:group}, there exists \(a^{-1} \in G\) such that \(a a^{-1} = e\), where \(e\) is the identity.
+      Multiplying on the right by \(a^{-1}\) gives \((b a) a^{-1} = (c a) a^{-1}\).
+      By associativity, \(b (a a^{-1}) = c (a a^{-1})\), so \(b e = c e\), and therefore \(b = c\).
     \end{subprove}
   \end{enumerate}
   \item Let \(G\) be a group.
@@ -681,27 +495,44 @@ If \(a, b \in \setZ\) with either \(a \neq 0\) or \(b \neq 0\), then the greates
     \item Prove that \(\left(a^{-1}\right)^{-1} = a\) for all \(a \in G\).
     The inverse of the inverse of \(a\) is \(a\).
     \begin{subprove}
-      Let \(G\) be a group, and let \(a \in G\).
-      It will be proved that \(\left(a^{-1}\right)^{-1} = a\).
-      By the definition of inverse, \(a^{-1} a = a a^{-1} = e\), where \(e\) is the identity element of \(G\).
+      Let \(a \in G\), where \(G\) is a \nameref{def:group}.
+      By the definition of inverse in a \nameref{def:group}, \(a^{-1} a = a a^{-1} = e\), where \(e\) is the identity.
       This shows that \(a\) is an inverse of \(a^{-1}\).
       Since the inverse of \(a^{-1}\) is unique, it follows that \(\left(a^{-1}\right)^{-1} = a\).
     \end{subprove}
     \item Prove that \((a b)^{-1} = b^{-1} a^{-1}\) for all \(a, b \in G\).
     The inverse of the product of \(a\) and \(b\) is the product of their inverses in reverse order.
     \begin{subprove}
-      Let \(G\) be a group, and let \(a, b \in G\).
-      It will be proved that \((a b)^{-1} = b^{-1} a^{-1}\).
-      It suffices to show that \((b^{-1} a^{-1}) (a b) = (a b) (b^{-1} a^{-1}) = e\), where \(e\) is the identity element of \(G\).
+      Let \(a, b \in G\), where \(G\) is a \nameref{def:group}.
+      It suffices to show that \((b^{-1} a^{-1}) (a b) = (a b) (b^{-1} a^{-1}) = e\), where \(e\) is the identity.
       By associativity, \((b^{-1} a^{-1}) (a b) = b^{-1} (a^{-1} a) b = b^{-1} e b = b^{-1} b = e\).
       Similarly, \((a b) (b^{-1} a^{-1}) = a (b b^{-1}) a^{-1} = a e a^{-1} = a a^{-1} = e\).
       Therefore, \((a b)^{-1} = b^{-1} a^{-1}\).
     \end{subprove}
   \end{enumerate}
-  \item Fix an integer \(n \geq 2\) and consider \(\setZ_{n}\) as defined in \nameref{def:integers-modulo-n}.
-  Define addition on \(\setZ_{n}\) as \([a] + [b] = [a + b]\) and multiplication as \([a] \cdot [b] = [a b]\) for all \([a], [b] \in \setZ_{n}\).
+  \item Fix an integer \(n \geq 2\) and consider \(\setZ_{n}\) as 
+  defined in \nameref{def:integers-modulo-n}.
+  Define addition on \(\setZ_{n}\) as \([a] + [b] = [a + b]\) and 
+  multiplication as \([a] \cdot [b] = [a b]\) for all \([a], [b] \in \setZ_{n}\).
+  \begin{define}{Integers Modulo \(n\)}[def:integers-modulo-n][red]
+    For an integer \(n \geq 2\), the \textbf{set of integers modulo \(n\)}, 
+    denoted \(\setZ_{n}\), is the set of equivalence classes of integers 
+    under the equivalence relation \(a \equiv b \pmod{n}\). 
+    The \textbf{equivalence class} of an integer \(a\) is denoted \([a]\), 
+    where
+    \[
+      [a] = \{b \in \setZ \mid a \equiv b \pmod{n}\}.
+    \]
+  \end{define}
   \begin{enumerate}
     \item Prove that addition on \(\setZ_{n}\) is \nameref{def:well-defined}.
+    \begin{define}{Well-Defined Operation}[def:well-defined][red]
+      An operation \(*\) on a set \(S\) is said to be \textbf{well-defined} 
+      if (and only if) for all \(a, a', b, b' \in S\), 
+      \[
+        a * b = a' * b' \text{ whenever } a = a' \text{ and } b = b'.
+      \]
+    \end{define}
     \begin{subprove}
       Let \(n \geq 2\) be an integer, and let \([a], [b], [a'], [b'] \in \setZ_{n}\) such that \([a] = [a']\) and \([b] = [b']\).
       It will be proved that \([a + b] = [a' + b']\).
@@ -5552,13 +5383,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
   Let $G=S_3$, the symmetric group of degree 3, from ICA13. 
   It is also $D_6$, the dihedral group of order 6, i.e. 
   symmetries of the equilateral triangle (from the warm-up and webwork).
-  \begin{define}{Symmetric Group}[def:symmetric-group][red]
-    The symmetric group of degree $n$, denoted $S_n$, is the group of all permutations (bijective maps) of the set $\{1,\dots,n\}$ with composition as the group operation:
-    \[
-      S_n=\{\sigma:\{1,\dots,n\}\to\{1,\dots,n\}\mid \sigma\ \text{is a bijection}\}
-    \]
-    Note that $\abs{S_n}=n!$.
-  \end{define}
   \begin{define}{Dihedral Group}[def:dihedral-group][red]
     The dihedral group of order $2n$ (for $n \geq 3$), denoted $D_{2n}$, is the group of symmetries of a 
     regular $n$-gon. It has the presentation
@@ -5595,6 +5419,7 @@ Let $(G, *)$ be a group with identity $e \in G$.
       \draw[<->, >=stealth, thick] (210:0.5) arc (210:330:0.5) node[pos=0.5, above right] {$s$};      
       \end{tikzpicture}
     \end{center}
+    \textbf{Note}: Dihedral Group $D_n$ is a small subgroup of $S_n$.
   \end{define}
 
 
@@ -5949,13 +5774,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
 \begin{define}{Cyclic Subgroup}[def:cyclic-subgroup][red]
   The cyclic subgroup generated by $a \in G$ is the 
   set, $\left(a\right)=\left\{a^i \mid i \in \setZ\right\}$.
-\end{define}
-\begin{define}{Symmetric Group}[def:symmetric-group][red]
-  The symmetric group of degree $n$, denoted $S_n$, is the group of all permutations (bijective maps) of the set $\{1,\dots,n\}$ with composition as the group operation:
-  \[
-    S_n=\{\sigma:\{1,\dots,n\}\to\{1,\dots,n\}\mid \sigma\ \text{is a bijection}\}
-  \]
-  Note that $\abs{S_n}=n!$.
 \end{define}
 
 
@@ -6418,11 +6236,47 @@ Let $G$ be a group with identity $e$.
 
 
 
+  \newpage
+  
+  \begin{define}{Cayley's Theorem}[def:cayley-theorem][red]
+    Every \nameref{def:group} \((G, *)\) is isomorphic to a subgroup of the \nameref{def:symmetric-group} on \(G\).
+    That is, there exists an injective homomorphism \(\phi: G \to A(G)\).
+  \end{define}
+  \item Consider the cyclic group \((\setZ_3, +)\) where \(\setZ_3 = \{0, 1, 2\}\).
+  The Cayley embedding \(\phi: \setZ_3 \to A(\setZ_3)\) maps each 
+  element to its left multiplication map:
+  \begin{align*}
+    \phi(0) &= \begin{pmatrix} 0 & 1 & 2 \\ 0 & 1 & 2 \end{pmatrix} = i, \\
+    \phi(1) &= \begin{pmatrix} 0 & 1 & 2 \\ 1 & 2 & 0 \end{pmatrix}, \\
+    \phi(2) &= \begin{pmatrix} 0 & 1 & 2 \\ 2 & 0 & 1 \end{pmatrix}.
+  \end{align*}
+  Then \(\phi\) is an injective homomorphism, and \(\phi(\setZ_3)\) is 
+  isomorphic to \((\setZ_3, +)\).
+  Prove \nameref{def:cayley-theorem}.
+  \begin{subprove}
+    Let \((G, *)\) be a group with identity \(e\). For each \(g \in G\), 
+    define \(\phi(g): G \to G\) by \(\phi(g)(x) = g * x\) for all \(x \in G\).\proofstep
+    For each \(g \in G\), \(\phi(g)\) is a bijection:
+    If \(\phi(g)(x_1) = \phi(g)(x_2)\), then \(g * x_1 = g * x_2\), so \(x_1 = x_2\) by left cancellation.
+    For any \(y \in G\), \(\phi(g)(g^{-1} * y) = g * (g^{-1} * y) = y\), so \(\phi(g)\) is surjective.
+    Therefore, \(\phi(g) \in A(G)\).\proofstep
+    For any \(g, h \in G\) and \(x \in G\),
+    \[
+    (\phi(g) \circ \phi(h))(x) = \phi(g)(h * x) = g * (h * x) = (g * h) * x = \phi(g * h)(x),
+    \]
+    so \(\phi(g) \circ \phi(h) = \phi(g * h)\), and \(\phi\) is a homomorphism.\proofstep
+    If \(\phi(g) = \phi(h)\), then \(\phi(g)(e) = \phi(h)(e)\), 
+    so \(g * e = h * e\), which implies \(g = h\).
+    Therefore, \(\phi\) is injective.
+    Since \(\phi\) is an injective homomorphism, \(G\) is isomorphic 
+    to \(\phi(G)\), which is a subgroup of \(A(G)\).
+  \end{subprove}
+
+
 
 
 
   \newpage
-
   \item Complete but do not hand in. Write out the product table and repeat problem 8 from \textbf{Hmwk 6} for each of the following groups.
   \begin{enumerate}
     \item $G=<a, x \mid a^{2}=x^{3}=(a x)^{2}=e>$ where the elements are $\left\{a^{i} x^{j} \mid 0 \leq i \leq 1,0 \leq j \leq 2\right\}$.
