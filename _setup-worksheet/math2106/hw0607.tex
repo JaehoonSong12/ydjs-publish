@@ -722,93 +722,68 @@ Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets.
   \item Prove that \(\setZ_{n}^{*}\) is a \nameref{def:group} under 
   multiplication if and only if \(n \geq 2\) is a prime.
   \begin{subprove}
-    Let \(n \geq 2\) be an integer, and let \(G = \setZ_{n}^{*} = \setZ_{n} \setminus \{[0]\}\) with the operation \(\cdot\).
-    It will be proved that \((G, \cdot)\) is a \nameref{def:group} if and only if \(n\) is prime.
-    
-    First, suppose that \(n\) is prime.
-    It will be proved that \((G, \cdot)\) satisfies all four group properties.
+    (\(\Rightarrow\)) Suppose \(n\) is not prime for the sake of contradiction. 
+    Then there exists \(d \in \setZ\) with \(1 < d < n\) such that \(d \mid n\).
+    Since \([d] \neq [0]\), we have \([d] \in \setZ_{n}^{*}\). 
+    If \([d]\) had an inverse \([d]^{-1}\), then 
+    \(d \cdot d^{-1} \equiv 1 \pmod{n}\), so \(\gcd(d, n) = 1\) 
+    by \nameref{thm:bezout-identity}, contradicting \(d \mid n\). 
+    Therefore, \(\setZ_{n}^{*}\) is not a \nameref{def:group}.
+
+    (\(\Leftarrow\)) Suppose \(n\) is prime. Let \(G = \setZ_{n}^{*} = \setZ_{n} \setminus \{[0]\}\).
     \begin{itemize}
-      \item \textbf{Closure:} For any \([a], [b] \in G\), \([a] \cdot [b] = [a b] \in G\) since if \(a b \equiv 0 \pmod{n}\), then \(n \mid a b\).
-      Since \(n\) is prime, this implies that \(n \mid a\) or \(n \mid b\), which contradicts \([a] \neq [0]\) and \([b] \neq [0]\).
-      Therefore, \([a b] \neq [0]\), so \([a b] \in G\).
-      \item \textbf{Associativity:} For any \([a], [b], [c] \in G\), \(([a] \cdot [b]) \cdot [c] = [a b] \cdot [c] = [(a b) c] = [a (b c)] = [a] \cdot [b c] = [a] \cdot ([b] \cdot [c])\) by the associativity of integer multiplication and the definition of multiplication modulo \(n\).
-      \item \textbf{Existence of Identity:} The identity element is \([1]\) since for any \([a] \in G\), \([1] \cdot [a] = [1 \cdot a] = [a]\) and \([a] \cdot [1] = [a \cdot 1] = [a]\).
-      \item \textbf{Existence of Inverse:} For each \([a] \in G\), since \(n\) is prime and \([a] \neq [0]\), it follows that \(\gcd(a, n) = 1\).
-      By the number theory result stated above, there exist integers \(m, k\) such that \(a m + n k = 1\).
-      This implies that \(a m \equiv 1 \pmod{n}\), so \([a] \cdot [m] = [a m] = [1]\).
-      Similarly, \([m] \cdot [a] = [m a] = [1]\).
-      Therefore, \([m]\) is the inverse of \([a]\) in \(G\).
+      \item \textbf{Closure:} For \([a], [b] \in G\), if \([a b] = [0]\), then \(n \mid a b\), so \(n \mid a\) or \(n \mid b\) (since \(n\) is prime), contradicting \([a], [b] \neq [0]\). Therefore, \([a b] \in G\).
+      \item \textbf{Associativity:} \(([a] \cdot [b]) \cdot [c] = [a b] \cdot [c] = [(a b) c] = [a (b c)] = [a] \cdot [b c] = [a] \cdot ([b] \cdot [c])\).
+      \item \textbf{Identity:} \([1] \cdot [a] = [a] = [a] \cdot [1]\) for all \([a] \in G\).
+      \item \textbf{Inverse:} For \([a] \in G\), since \(n\) is prime, \(\gcd(a, n) = 1\). By \nameref{thm:bezout-identity}, there exist \(m, k \in \setZ\) such that \(a m + n k = 1\), so \([a] \cdot [m] = [a m] = [1]\), and \([m] \cdot [a] = [1]\). Therefore, \([m]\) is the inverse of \([a]\).
     \end{itemize}
-    Since all four group properties are satisfied, it follows that \((G, \cdot)\) is a \nameref{def:group}.
-    
-    Conversely, suppose that \(n\) is not prime.
-    Then \(n\) has a nontrivial divisor \(d\) such that \(1 < d < n\).
-    Consider \([d] \in \setZ_{n}\).
-    Since \(1 < d < n\), it follows that \([d] \neq [0]\), so \([d] \in G\).
-    However, there does not exist an inverse element \([d]^{-1} \in G\) such that \([d] \cdot [d]^{-1} = [1]\), because if such an inverse existed, then \(d \cdot d^{-1} \equiv 1 \pmod{n}\) for some integer \(d^{-1}\) with \(1 \leq d^{-1} < n\), which would imply that \(\gcd(d, n) = 1\), contradicting the fact that \(d\) is a nontrivial divisor of \(n\).
-    Therefore, \((G, \cdot)\) does not satisfy the existence of inverse property, so it is not a \nameref{def:group}.
-    
-    Therefore, \(\setZ_{n}^{*}\) is a \nameref{def:group} under multiplication if and only if \(n \geq 2\) is a prime.
+    Therefore, \((G, \cdot)\) is a \nameref{def:group}.
   \end{subprove}
 \end{enumerate}
-
-
-
-
 \newpage
 Let \((G, *)\) be a \nameref{def:group} with identity \(e\).
-
-\begin{define}{Exponent Notation}[def:exponent-notation][red]
-  For \(a \in G\), define \(a^{0} = e\).
-  For \(i \in \setZ\) with \(i \geq 1\), define \(a^{i} = a * a^{i-1}\) and \(a^{-i} = \left(a^{-1}\right)^{i}\).
-  It follows that \(a^{n} a^{m} = a^{n+m}\) and \(\left(a^{n}\right)^{m} = a^{n m}\) for \(n, m \in \setZ\).
-\end{define}
-\begin{define}{Subgroup Lemma}[def:subgroup-lemma][red]
-  A subset \(H \subseteq G\) is a subgroup of \((G, *)\) if and only if
-  \begin{enumerate}
-    \item \(H\) is nonempty,
-    \item for all \(a, b \in H\), \(a * b \in H\), and
-    \item for all \(a \in H\), \(a^{-1} \in H\).
-  \end{enumerate}
-\end{define}
-
-\begin{define}{Cyclic Subgroup}[def:cyclic-subgroup][red]
-  The \textbf{cyclic subgroup} generated by \(a \in G\), denoted \((a)\), is the set \((a) = \{a^{i} \mid i \in \setZ\}\).
-\end{define}
-
-\begin{define}{Cyclic Group}[def:cyclic-group][red]
-  A \nameref{def:group} \(G\) is called a \textbf{cyclic group} if (and only if) there exists \(a \in G\) such that \(G = (a)\).
-\end{define}
-
 \begin{enumerate}
   \item Let \(H \subseteq G\).
-  Prove that \((H, *)\) is a \nameref{def:subgroup} of \((G, *)\) if and only if \(H\) is nonempty, closed under the product of \(G\), and contains inverses.
-  That is, \((H, *)\) is a \nameref{def:subgroup} if and only if (1) \(H \neq \emptyset\), (2) for all \(a, b \in H\), \(a * b \in H\), and (3) for all \(a \in H\), \(a^{-1} \in H\).
+  Prove that \((H, *)\) is a \nameref{def:subgroup} of \((G, *)\) 
+  if and only if \(H\) is nonempty, closed under the product of \(G\), 
+  and contains inverses.
+  That is, \((H, *)\) is a \nameref{def:subgroup} if and only if 
+  (1) \(H \neq \emptyset\), (2) for all \(a, b \in H\), \(a * b \in H\), 
+  and (3) for all \(a \in H\), \(a^{-1} \in H\).
+  \begin{define}{Subgroup Lemma}[def:subgroup-lemma][red]
+    A subset \(H \subseteq G\) is a subgroup of \((G, *)\) if and only if
+    \begin{enumerate}
+      \item \(H\) is nonempty,
+      \item for all \(a, b \in H\), \(a * b \in H\), and
+      \item for all \(a \in H\), \(a^{-1} \in H\).
+    \end{enumerate}
+  \end{define}
   \begin{subprove}
-    Let \((G, *)\) be a \nameref{def:group} with identity \(e\), and let \(H \subseteq G\).
-    It will be proved that \((H, *)\) is a \nameref{def:subgroup} of \((G, *)\) if and only if \(H\) is nonempty, closed under the product of \(G\), and contains inverses.
-    
-    First, suppose that \((H, *)\) is a \nameref{def:subgroup} of \((G, *)\).
-    Since \(H\) is a \nameref{def:group}, it is nonempty, so \(H \neq \emptyset\).
-    Since \(H\) is closed under the operation \(*\), for all \(a, b \in H\), \(a * b \in H\).
-    Since \(H\) is a \nameref{def:group}, every element \(a \in H\) has an inverse \(a^{-1} \in H\).
-    Therefore, \(H\) is nonempty, closed under the product of \(G\), and contains inverses.
-    
-    Conversely, suppose that \(H\) is nonempty, closed under the product of \(G\), and contains inverses.
-    It will be proved that \((H, *)\) is a \nameref{def:group}, and hence a \nameref{def:subgroup} of \((G, *)\).
+    Let \((G, *)\) be a \nameref{def:group} with identity \(e\), and let \(H \subseteq G\).\proofstep
+    (\(\Rightarrow\)) Suppose \((H, *)\) is a \nameref{def:subgroup} of \((G, *)\). Since \(H\) is a \nameref{def:group}, \(H \neq \emptyset\), \(a * b \in H\) for all \(a, b \in H\), and \(a^{-1} \in H\) for all \(a \in H\).
+    \proofstep
+    (\(\Leftarrow\)) Suppose \(H \neq \emptyset\), \(a * b \in H\) for all \(a, b \in H\), and \(a^{-1} \in H\) for all \(a \in H\). It will be shown that \((H, *)\) is a \nameref{def:group}:
     \begin{itemize}
-      \item \textbf{Closure:} For any \(a, b \in H\), \(a * b \in H\) by assumption.
-      \item \textbf{Associativity:} For any \(a, b, c \in H\), since \(H \subseteq G\) and \(G\) is a \nameref{def:group}, \((a * b) * c = a * (b * c)\) by the associativity of the operation in \(G\).
-      \item \textbf{Existence of Identity:} Since \(H \neq \emptyset\), there exists \(h \in H\).
-      By assumption, \(h^{-1} \in H\), and since \(H\) is closed under the product, \(h * h^{-1} = e \in H\).
-      Therefore, \(e\) is the identity element in \(H\).
-      \item \textbf{Existence of Inverse:} For each \(a \in H\), by assumption, \(a^{-1} \in H\), and since \(a * a^{-1} = a^{-1} * a = e\), \(a^{-1}\) is the inverse of \(a\) in \(H\).
+      \item \textbf{Closure:} By assumption, \(a * b \in H\) for all \(a, b \in H\).
+      \item \textbf{Associativity:} For \(a, b, c \in H\), since \(H \subseteq G\) and \(G\) is a \nameref{def:group}, \((a * b) * c = a * (b * c)\).
+      \item \textbf{Identity:} Since \(H \neq \emptyset\), there exists \(h \in H\). By assumption, \(h^{-1} \in H\) and \(h * h^{-1} = e \in H\). Therefore, \(e\) is the identity in \(H\).
+      \item \textbf{Inverse:} For \(a \in H\), by assumption \(a^{-1} \in H\), and \(a * a^{-1} = a^{-1} * a = e\), so \(a^{-1}\) is the inverse of \(a\) in \(H\).
     \end{itemize}
-    Since all four group properties are satisfied, it follows that \((H, *)\) is a \nameref{def:group}, and hence a \nameref{def:subgroup} of \((G, *)\).
+    Therefore, \((H, *)\) is a \nameref{def:group}, and hence a \nameref{def:subgroup} of \((G, *)\).
   \end{subprove}
+  \newpage
+  \begin{define}{Exponent Notation}[def:exponent-notation][red]
+    For $a \in G$, define $a^0=e$. 
+    For $i \in \setZ$ with $i \geq 1$, 
+    define $a^i=a * a^{i-1}$ and $a^{-i}=\left(a^{-1}\right)^i$. 
+    It follows that $a^n a^m=a^{n+m}$ and $\left(a^n\right)^m=a^{n m}$ for $n, m \in \setZ$.
+  \end{define}
   \item Let \(a \in G\) and consider the set \(A = \{a^{i} \mid i \in \setZ\}\).
   Prove that \(A\) is a \nameref{def:subgroup} of \(G\).
   This proves that \((a)\), the \nameref{def:cyclic-subgroup} generated by \(a\), is well-defined.
+  \begin{define}{Cyclic Subgroup}[def:cyclic-subgroup][red]
+    The \textbf{cyclic subgroup} generated by \(a \in G\), denoted \((a)\), is the set \((a) = \{a^{i} \mid i \in \setZ\}\).
+  \end{define}
   \begin{subprove}
     Let \((G, *)\) be a \nameref{def:group} with identity \(e\), let \(a \in G\), and let \(A = \{a^{i} \mid i \in \setZ\}\).
     It will be proved that \(A\) is a \nameref{def:subgroup} of \(G\).
@@ -920,6 +895,20 @@ Let \((G, *)\) be a \nameref{def:group} with identity \(e\).
   Is \((\setZ, +)\) a \nameref{def:cyclic-group}?
   What about \((\setZ_{n}, +)\) for integer \(n > 2\)?
   Justify your answers.
+  \begin{define}{Cyclic Group}[def:cyclic-group][red]
+    A group $(G, *)$ is called a \textbf{cyclic group} if there exists 
+    an element \(g \in G\) such that 
+    \[
+    G = (a) = \{a^i \mid i \in \setZ\},
+    \] 
+    where \((a)\) is the cyclic subgroup generated by \(a\) as defined in \nameref{def:cyclic-subgroup}. 
+    The element \(a\) is called a \textbf{generator} of \(G\).
+  \end{define}
+  \begin{subprove}
+    \((\setZ, +)\) is a \nameref{def:cyclic-group}. By \nameref{def:cyclic-subgroup}, \((1) = \{1^{i} \mid i \in \setZ\}\). In additive notation, \(1^{i} = i \cdot 1 = i\) for all \(i \in \setZ\), so \((1) = \{i \mid i \in \setZ\} = \setZ\). Therefore, \((\setZ, +) = (1)\), so \((\setZ, +)\) is cyclic with generator \(1\) (or \(-1\), since \((-1) = \setZ\) as shown earlier).
+    
+    For integer \(n > 2\), \((\setZ_{n}, +)\) is a \nameref{def:cyclic-group}. By \nameref{def:cyclic-subgroup}, \(([1]) = \{[1]^{i} \mid i \in \setZ\}\). In additive notation, \([1]^{i} = i \cdot [1] = [i]\) for all \(i \in \setZ\), so \(([1]) = \{[0], [1], [2], \ldots, [n-1]\} = \setZ_{n}\). Therefore, \((\setZ_{n}, +) = ([1])\), so \((\setZ_{n}, +)\) is cyclic with generator \([1]\).
+  \end{subprove}
   \item Prove that the Klein 4-group in problem 5 is \nameref{def:abeliangroup}, but not \nameref{def:cyclic-group}.
   \begin{subprove}
     Let \(V_{4} = \setZ_{2} \times \setZ_{2}\) be the Klein 4-group as defined above.
@@ -4962,10 +4951,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
   element $a \in G$, denoted $o(a)$, is the least positive 
   integer $m$ such that $a^m=e$.
 \end{define}
-\begin{define}{Cyclic Subgroup}[def:cyclic-subgroup][red]
-  The cyclic subgroup generated by $a \in G$ is the 
-  set, $\left(a\right)=\left\{a^i \mid i \in \setZ\right\}$.
-\end{define}
 \begin{define}{Abelian Group}[def:abelian-group][red]
   A group $(G, *)$ is called an \textbf{abelian group} (or \textbf{commutative group}) if for all $a, b \in G$, 
   \[
@@ -5135,12 +5120,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
   \item Let $G$ be a finite group and $a \in G$. 
   Prove there exists $n \in \setZ$ with $n>0$ such that $a^n=e$.
   \textit{Observe that this means the order of an element in a finite group is well-defined}.
-  \begin{define}{Exponent Notation}[def:exponent-notation][red]
-    For $a \in G$, define $a^0=e$. 
-    For $i \in \setZ$ with $i \geq 1$, 
-    define $a^i=a * a^{i-1}$ and $a^{-i}=\left(a^{-1}\right)^i$. 
-    It follows that $a^n a^m=a^{n+m}$ and $\left(a^n\right)^m=a^{n m}$ for $n, m \in \setZ$.
-  \end{define}
   \begin{subprove}
     Let $G$ be a finite group and $a \in G$ for the sake of direct proof.
     Consider the $\abs{G} + 1$ sequence of powers of $a$ as follows.
@@ -5682,12 +5661,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
     \item for all $a \in H, a^{-1} \in H$.
   \end{enumerate}
 \end{define}
-\begin{define}{Exponent Notation}[def:exponent-notation][red]
-  For $a \in G$, define $a^0=e$. 
-  For $i \in \setZ$ with $i \geq 1$, 
-  define $a^i=a * a^{i-1}$ and $a^{-i}=\left(a^{-1}\right)^i$. 
-  It follows that $a^n a^m=a^{n+m}$ and $\left(a^n\right)^m=a^{n m}$ for $n, m \in \setZ$.
-\end{define}
 \begin{define}{Order of an Element}[def:order-of-an-element][red]
   Let $G$ be a finite group. The \textbf{order} of an 
   element $a \in G$, denoted $o(a)$, is the least positive 
@@ -5699,11 +5672,6 @@ Let $(G, *)$ be a group with identity $e \in G$.
     a * b = b * a.
   \]
 \end{define}
-\begin{define}{Cyclic Subgroup}[def:cyclic-subgroup][red]
-  The cyclic subgroup generated by $a \in G$ is the 
-  set, $\left(a\right)=\left\{a^i \mid i \in \setZ\right\}$.
-\end{define}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Problems Section
@@ -5714,11 +5682,6 @@ Let $G$ be a group with identity $e$.
   \item Prove or disprove from the definitions:
   \begin{enumerate}
     \item A cyclic group is abelian.
-    \begin{define}{Cyclic Group}[def:cyclic-group][red]
-      A group $(G, *)$ is called a \textbf{cyclic group} if there exists an element $g \in G$ such that $G = (g) = \{g^i \mid i \in \setZ\}$, 
-      where $(g)$ is the cyclic subgroup generated by $g$ as defined in \nameref{def:cyclic-subgroup}. 
-      The element $g$ is called a \textbf{generator} of $G$.
-    \end{define}
     \begin{subprove}
       Let $(G, *)$ be a cyclic group and let $g \in G$ be a generator of $G$ such that $G = (g) = \{g^i \mid i \in \setZ\}$.
       Let $a, b \in G$ be arbitrary elements.
