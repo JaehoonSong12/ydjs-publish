@@ -169,10 +169,6 @@
 
 
 \newpage
-\begin{define}{Pigeonhole Principle}[def:pigeonhole][red]
-  If \(k+1\) or more pigeons (objects) are placed into \(k\) pigeonholes (boxes), 
-  then there is at least one pigeonhole (box) containing two or more pigeons (objects).
-\end{define}
 Let \(S\), \(T\), \(U\), and \(V\) be nonempty sets. 
 \begin{enumerate}
   \item Let \(f: S \to T\), \(g: T \to U\), and \(h: U \to V\) be functions.
@@ -1133,56 +1129,42 @@ Here \(\circ\) is a generic product symbol (like \(*\)) and not function composi
   \item Let \((G, *)\) be a \nameref{def:group} and \(H\) a nonempty subset of \(G\) that is closed under \(*\).
   \begin{enumerate}
     \item Prove that if \(H\) is finite, then \(H\) is a \nameref{def:subgroup} of \(G\).
+    \begin{define}{Pigeonhole Principle}[def:pigeonhole-principle][red]
+      If \(p+1\) or more pigeons (objects) are placed into \(p\) pigeonholes (boxes), 
+      then there is at least one pigeonhole (box) containing two or more pigeons (objects).
+    \end{define}
     \begin{subprove}
       Let \((G, *)\) be a \nameref{def:group} with identity \(e\), let \(H\) be a nonempty finite subset of \(G\) that is closed under \(*\).
       \begin{enumerate}
         \item Since \(H\) is nonempty by assumption, \(H \neq \emptyset\).
         \item Since \(H\) is closed under \(*\) by assumption, for all \(a, b \in H\), \(a * b \in H\).
-        \item For any \(a \in H\), since \(H\) is closed under \(*\) and finite, the sequence \(a, a^{2}, a^{3}, \ldots\) must eventually repeat. That is, there exist positive integers \(m < n\) such that \(a^{m} = a^{n}\).
+        \item For any \(a \in H\), let \(|H| = p\). Consider the sequence \(a, a^{2}, \ldots, a^{p+1}\). Since \(H\) is closed under \(*\), all these powers are in \(H\). By \nameref{def:pigeonhole-principle}, with \(p+1\) elements placed into \(p\) positions in \(H\), there exist positive integers \(m < n \leq p+1\) such that \(a^{m} = a^{n}\).
         Since \(a^{m} = a^{n}\) and \(a^{m}, a^{n} \in H \subseteq G\), by cancellation in \(G\), we have \(e = a^{n-m}\) where \(n - m > 0\).
-        Since \(a^{n-m} = e\) and \(n - m > 0\), we have \(a * a^{n-m-1} = e\), so \(a^{n-m-1} = a^{-1}\).
-        Since \(H\) is closed under \(*\), \(a^{n-m-1} \in H\), so \(a^{-1} \in H\).
+        Since \(a^{n-m} = e\) and \(n - m > 0\), we have \(a * a^{n-m-1} = e\), 
+        so \(a^{n-m-1} = a^{-1}\in H\).
       \end{enumerate}
       Therefore, \(H\) is a \nameref{def:subgroup} of \(G\) by \nameref{def:subgroup-lemma}.
     \end{subprove}
     \item Is \(H\) a \nameref{def:subgroup} of \(G\) if \(G\) is finite? Justify your answer.
     \begin{subprove}
-      It will be proved that if \(G\) is finite, then \(H\) is a \nameref{def:subgroup} of \(G\).
-      
-      Suppose that \(G\) is finite.
-      Since \(H\) is a subset of \(G\) and \(G\) is finite, it follows that \(H\) is finite.
-      Since \(H\) is nonempty, finite, and closed under \(*\), by the previous result, it follows that \(H\) is a \nameref{def:subgroup} of \(G\).
-      
-      Therefore, if \(G\) is finite, then \(H\) is a \nameref{def:subgroup} of \(G\).
+      Assume \(G\) is finite for the sake of direct proof. 
+      Then, \(H \subseteq G\) implies \(H\) is finite. 
+      Since \(H\) is nonempty, finite, and closed under \(*\), 
+      by the previous result, \(H\) is a \nameref{def:subgroup} of \(G\).
     \end{subprove}
     \item What about if \(G\) is infinite? Justify your answer.
-    \begin{subprove}
-      It will be proved that if \(G\) is infinite, then \(H\) is not necessarily a \nameref{def:subgroup} of \(G\).
-      A counterexample will be provided.
+    \begin{subdisprove}
+      If \(H\) is finite, then by the previous result, \(H\) is a \nameref{def:subgroup} of \(G\). 
+      However, if \(H\) is infinite, \(H\) is not necessarily a \nameref{def:subgroup} of \(G\).
       
-      If \(H\) is finite, then by the previous result, \(H\) is a \nameref{def:subgroup} of \(G\).
-      However, if \(H\) is infinite, then \(H\) might not be a \nameref{def:subgroup} of \(G\).
+      Let \(G = (\setZ, +)\) and \(H = \{0, 1, 2, 3, \ldots\}\), the set of nonnegative integers. 
+      Then \(H\) is nonempty and closed under addition, but \(1 \in H\) while \(-1 \notin H\). 
+      By \nameref{def:subgroup-lemma}, \(H\) is not a \nameref{def:subgroup} of \(G\) since it is not closed under inverses.
       
-      A counterexample will be provided.
-      Let \(G = (\setZ, +)\), the group of integers under addition, which is infinite.
-      Let \(H = \{0, 1, 2, 3, \ldots\}\), the set of nonnegative integers.
-      
-      It will be checked whether \(H\) satisfies the conditions:
-      \begin{itemize}
-        \item \(H\) is nonempty since \(0 \in H\).
-        \item \(H\) is closed under addition since the sum of two nonnegative integers is a nonnegative integer.
-      \end{itemize}
-      
-      However, \(H\) is not a \nameref{def:subgroup} of \(G\).
-      By \nameref{def:subgroup-lemma}, a subset \(H \subseteq G\) is a \nameref{def:subgroup} if and only if (1) \(H \neq \emptyset\), (2) for all \(a, b \in H\), \(a + b \in H\), and (3) for all \(a \in H\), \(-a \in H\).
-      While \(H\) satisfies conditions (1) and (2), it does not satisfy condition (3).
-      For example, \(1 \in H\), but \(-1 \notin H\).
-      Therefore, \(H\) is not a \nameref{def:subgroup} of \((\setZ, +)\).
-      
-      Therefore, if \(G\) is infinite, then \(H\) is not necessarily a \nameref{def:subgroup} of \(G\).
-      However, if \(H\) is finite (even when \(G\) is infinite), then \(H\) is a \nameref{def:subgroup} of \(G\) by the previous result.
-    \end{subprove}
+      Therefore, by counterexample, if \(G\) is infinite, then \(H\) is not necessarily a \nameref{def:subgroup} of \(G\).
+    \end{subdisprove}
   \end{enumerate}
+  \newpage
   \item Up to isomorphism, how many \nameref{def:group}s of order \(n\) are there for \(n = 1, 2, 3\)?
   What about \(n = 4\)?
   And \(n = 5\)?
@@ -5061,7 +5043,7 @@ Let $(G, *)$ be a group with identity $e \in G$.
       a^0, a^1, a^2, a^3, \ldots, a^{\abs{G}}
     \]
     Since $G$ is finite, there are only finitely many distinct elements in $G$, i.e. $\abs{G}$.
-    By the pigeonhole principle, there must exist integers $m$ and $n$ with $0 \leq n < m \leq \abs{G}$ such that
+    By the \nameref{def:pigeonhole-principle}, there must exist integers $m$ and $n$ with $0 \leq n < m \leq \abs{G}$ such that
     \[
       a^m = a^n.
     \]
