@@ -16,177 +16,103 @@
 \begin{enumerate}
   \item Let $f$ be a multiplicative arithmetic function. Show that $F(n)=\sum_{d \mid n} f(d)$ is multiplicative.
   \begin{subprove}
-    We need to show that if $f$ is multiplicative (by \nameref{def:arithmeticfunction}), then $F(n) = \sum_{d \mid n} f(d)$ is also multiplicative.
-    
-    Let $m$ and $n$ be positive integers with $\gcd(m,n) = 1$. We need to show that $F(mn) = F(m)F(n)$.
-    
-    Since $\gcd(m,n) = 1$, every divisor $d$ of $mn$ can be uniquely written as $d = d_1 d_2$ where $d_1 \mid m$, $d_2 \mid n$, and $\gcd(d_1, d_2) = 1$.
-    
-    Therefore:
+    Let $f$ be multiplicative by \nameref{def:arithmeticfunction}. 
+    For $m, n \in \setZ_{>0}$ with $\gcd(m,n) = 1$, it is shown that $F(mn) = F(m)F(n)$.
+    Since $\gcd(m,n) = 1$, each divisor $d$ of $mn$ is uniquely expressed as 
+    $d = d_1 d_2$ where $d_1 \mid m$, $d_2 \mid n$, and $\gcd(d_1, d_2) = 1$.
+    Therefore,
     \[
     F(mn) = \sum_{d \mid mn} f(d) = \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} f(d_1 d_2).
     \]
-    
-    Since $f$ is multiplicative and $\gcd(d_1, d_2) = 1$ (because $d_1 \mid m$ and $d_2 \mid n$ with $\gcd(m,n) = 1$), we have:
-    \[
-    f(d_1 d_2) = f(d_1) f(d_2).
-    \]
-    
-    Therefore:
+    Since $f$ is multiplicative and $\gcd(d_1, d_2) = 1$, it follows that $f(d_1 d_2) = f(d_1) f(d_2)$. Therefore
     \[
     F(mn) = \sum_{\substack{d_1 \mid m \\ d_2 \mid n}} f(d_1) f(d_2) = \left(\sum_{d_1 \mid m} f(d_1)\right) \left(\sum_{d_2 \mid n} f(d_2)\right) = F(m) F(n).
     \]
-    
-    Therefore, $F$ is multiplicative.
+    Hence, $F$ is multiplicative.
   \end{subprove}
   
   \item For integers $k \geq 1$, and multiplicative function $f$, show that the function $g(n):=f\left(n^{k}\right)$ is multiplicative.
   \begin{subprove}
-    We need to show that if $f$ is multiplicative (by \nameref{def:arithmeticfunction}), then $g(n) = f(n^k)$ is also multiplicative.
-    
-    Let $m$ and $n$ be positive integers with $\gcd(m, n) = 1$. We need to show that $g(mn) = g(m)g(n)$.
-    
-    Since $f$ is multiplicative, we have:
-    \[
-    f(mn) = f(m)f(n) \quad \text{whenever} \quad \gcd(m, n) = 1.
-    \]
-    
-    Now, if $\gcd(m, n) = 1$, then $\gcd(m^k, n^k) = 1$ (since raising to the power $k$ preserves coprimality: if $\gcd(m, n) = 1$, then $m$ and $n$ share no prime factors, so $m^k$ and $n^k$ also share no prime factors).
-    
-    Therefore:
+    Let $f$ be multiplicative by \nameref{def:arithmeticfunction}. 
+    For $m, n \in \setZ_{>0}$ with $\gcd(m, n) = 1$, it is shown that $g(mn) = g(m)g(n)$.
+    Since $\gcd(m, n) = 1$, it follows that $\gcd(m^k, n^k) = 1$ (raising to a power preserves coprimality).
+    Therefore,
     \[
     g(mn) = f((mn)^k) = f(m^k n^k).
     \]
-    
-    Since $\gcd(m^k, n^k) = 1$ and $f$ is multiplicative, we have:
-    \[
-    f(m^k n^k) = f(m^k) f(n^k) = g(m) g(n).
-    \]
-    
-    Therefore, $g(mn) = g(m)g(n)$.
-    
-    Since $m$ and $n$ were arbitrary positive integers with $\gcd(m, n) = 1$, we have shown that $g$ is multiplicative.
+    Since $\gcd(m^k, n^k) = 1$ and $f$ is multiplicative, it follows that $f(m^k n^k) = f(m^k) f(n^k) = g(m) g(n)$.
+    Hence, $g$ is multiplicative.
   \end{subprove}
-\end{enumerate}
-
-\begin{define}{Von Mangoldt Function $\Lambda$}[def:vonmangoldt][red]
-  For $n\in\setZ_{>0}$, the von Mangoldt function $\Lambda:\setZ_{>0}\to\setR$ is defined by
-  \[
-  \Lambda(n):= \begin{cases}\ln p & \text{if } n=p^{a} \text{ for some } p \text{ prime and } a \in \setZ_{>0} \\ 0 & \text{otherwise}\end{cases}
-  \]
-\end{define}
-
-\begin{enumerate}
+  \newpage
   \item Prove that the von Mangoldt function $\Lambda$ is not multiplicative.
+  \begin{define}{Von Mangoldt Function $\Lambda$}[def:vonmangoldt][red]
+    For $n\in\setZ_{>0}$, the von Mangoldt function $\Lambda:\setZ_{>0}\to\setR$ is defined by
+    \[
+    \Lambda(n):= \begin{cases}\ln p & \text{if } n=p^{a} \text{ for some } p \text{ prime and } a \in \setZ_{>0} \\ 0 & \text{otherwise}\end{cases}
+    \]
+  \end{define}
   \begin{subprove}
-    To prove that $\Lambda$ is not multiplicative, we need to find positive integers $m$ and $n$ with $\gcd(m,n)=1$ such that $\Lambda(mn) \neq \Lambda(m)\Lambda(n)$.
-    
-    Let $m=2$ and $n=3$. Then $\gcd(2,3)=1$.
-    
-    We have:
-    \begin{itemize}
-      \item $\Lambda(2) = \ln 2$ (since $2 = 2^1$ is a prime power),
-      \item $\Lambda(3) = \ln 3$ (since $3 = 3^1$ is a prime power),
-      \item $\Lambda(6) = 0$ (since $6 = 2 \cdot 3$ is not a prime power).
-    \end{itemize}
-    
-    Therefore, $\Lambda(2) \cdot \Lambda(3) = \ln 2 \cdot \ln 3 \neq 0 = \Lambda(6)$.
-    
-    Since $\Lambda(6) \neq \Lambda(2)\Lambda(3)$ even though $\gcd(2,3)=1$, the von Mangoldt function $\Lambda$ is not multiplicative.
+    By \nameref{def:arithmeticfunction}, a function $f$ is multiplicative if $f(mn) = f(m)f(n)$ whenever $\gcd(m,n) = 1$.
+    A counterexample is provided to show that $\Lambda$ does not satisfy this property.
+    Let $m = 2$ and $n = 3$. Then $\gcd(2,3) = 1$.
+    Since $2 = 2^1$ and $3 = 3^1$ are prime powers, it follows that $\Lambda(2) = \ln 2$ and $\Lambda(3) = \ln 3$.
+    Since $6 = 2 \cdot 3$ is not a prime power, it follows that $\Lambda(6) = 0$.
+    Therefore,
+    \[
+    \Lambda(2) \cdot \Lambda(3) = \ln 2 \cdot \ln 3 \neq 0 = \Lambda(6).
+    \]
+    Since $\Lambda(6) \neq \Lambda(2)\Lambda(3)$ and $\gcd(2,3) = 1$, it is shown that $\Lambda$ is not multiplicative.
   \end{subprove}
-\end{enumerate}
-
-\begin{define}{Möbius function $\mu$}[def:mobius][red]
-  For $n\in\setZ_{>0}$, the Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
-  \[
-  \mu(n)=
-  \begin{cases}
-  1,& n=1,\\[4pt]
-  0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
-  (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
-  \end{cases}
-  \]
-  The Möbius function has the following key property:
-  \[
-  \sum_{d \mid n, d>0} \mu(d) = \begin{cases}
-  1, & \text{if } n=1,\\
-  0, & \text{if } n>1.
-  \end{cases}
-  \]
-\end{define}
-
-\begin{enumerate}
   \item Define the Möbius function $\mu(n)$. Show that $\mu$ is multiplicative, but not completely multiplicative.
+  \begin{define}{Möbius function $\mu$}[def:mobius][red]
+    For $n\in\setZ_{>0}$, the Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
+    \[
+    \mu(n)=
+    \begin{cases}
+    1,& n=1,\\[4pt]
+    0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
+    (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
+    \end{cases}
+    \]
+    The Möbius function has the following key property:
+    \[
+    \sum_{d \mid n, d>0} \mu(d) = \begin{cases}
+    1, & \text{if } n=1,\\
+    0, & \text{if } n>1.
+    \end{cases}
+    \]
+  \end{define}
   \begin{subprove}
-    The Möbius function $\mu$ is defined as above. We will show that $\mu$ is multiplicative but not completely multiplicative.
+    The Möbius function $\mu$ is defined by \nameref{def:mobius}. 
+    It is shown that $\mu$ is multiplicative but not completely multiplicative by \nameref{def:arithmeticfunction}.
     
-    \textbf{Step 1: Show that $\mu$ is multiplicative}
+    For $m, n \in \setZ_{>0}$ with $\gcd(m,n) = 1$, it is shown that $\mu(mn) = \mu(m)\mu(n)$.
+    If $m = 1$ or $n = 1$, then without loss of generality, $m = 1$, so $\mu(mn) = \mu(n) = \mu(1)\mu(n) = \mu(m)\mu(n)$.
+    If $p^2 \mid m$ for some prime $p$, then $p^2 \mid mn$ (since $\gcd(m,n) = 1$), so $\mu(mn) = 0 = \mu(m) = \mu(m)\mu(n)$.
+    If both $m$ and $n$ are square-free, then $m = p_1 \cdots p_r$ and $n = q_1 \cdots q_s$ where all primes are distinct (since $\gcd(m,n) = 1$).
+    Therefore, $mn = p_1 \cdots p_r q_1 \cdots q_s$ is a product of $r+s$ distinct primes, so $\mu(mn) = (-1)^{r+s} = (-1)^r (-1)^s = \mu(m)\mu(n)$.
+    Hence, $\mu$ is multiplicative.
     
-    We need to show that $\mu(mn) = \mu(m)\mu(n)$ whenever $\gcd(m,n) = 1$.
-    
-    Let $m$ and $n$ be positive integers with $\gcd(m,n) = 1$.
-    
-    \begin{itemize}
-      \item If $m = 1$ or $n = 1$: Without loss of generality, suppose $m = 1$. Then $\mu(mn) = \mu(n) = \mu(1)\mu(n) = 1 \cdot \mu(n) = \mu(m)\mu(n)$.
-      
-      \item If $m$ or $n$ has a square factor: Suppose $p^2 \mid m$ for some prime $p$. Then $p^2 \mid mn$ (since $\gcd(m,n) = 1$), so $\mu(mn) = 0$ and $\mu(m) = 0$, hence $\mu(mn) = 0 = \mu(m)\mu(n)$.
-      
-      \item If both $m$ and $n$ are square-free: Write $m = p_1 p_2 \cdots p_r$ and $n = q_1 q_2 \cdots q_s$ where $p_1, \ldots, p_r$ and $q_1, \ldots, q_s$ are distinct primes. Since $\gcd(m,n) = 1$, all primes are distinct. Then $mn = p_1 \cdots p_r q_1 \cdots q_s$ is a product of $r+s$ distinct primes, so $\mu(mn) = (-1)^{r+s} = (-1)^r (-1)^s = \mu(m)\mu(n)$.
-    \end{itemize}
-    
-    Therefore, $\mu$ is multiplicative.
-    
-    \textbf{Step 2: Show that $\mu$ is not completely multiplicative}
-    
-    To show that $\mu$ is not completely multiplicative, we need to find positive integers $m$ and $n$ (not necessarily coprime) such that $\mu(mn) \neq \mu(m)\mu(n)$.
-    
-    Let $m = 2$ and $n = 2$. Then:
-    \begin{itemize}
-      \item $\mu(2) = -1$ (since $2$ is a single prime),
-      \item $\mu(2) \cdot \mu(2) = (-1) \cdot (-1) = 1$,
-      \item $\mu(4) = 0$ (since $2^2 = 4 \mid 4$).
-    \end{itemize}
-    
-    Therefore, $\mu(4) = 0 \neq 1 = \mu(2)\mu(2)$.
-    
-    Since $\mu(4) \neq \mu(2)\mu(2)$, the Möbius function $\mu$ is not completely multiplicative.
+    A counterexample is provided to show that $\mu$ is not completely multiplicative.
+    Let $m = 2$ and $n = 2$. Since $2$ is a single prime, it follows that $\mu(2) = -1$ and $\mu(2) \cdot \mu(2) = 1$.
+    Since $2^2 \mid 4$, it follows that $\mu(4) = 0$.
+    Therefore,
+    \[
+    \mu(4) = 0 \neq 1 = \mu(2)\mu(2).
+    \]
+    Since $\mu(4) \neq \mu(2)\mu(2)$, it is shown that $\mu$ is not completely multiplicative.
   \end{subprove}
-  
   \item Evaluate $\sum_{d \mid n, d>0} \mu(d)$ for all integers $n \geq 1$.
   \begin{subanswer}
-    This is a key property of the Möbius function that is stated in the definition above. We will prove it.
-    
-    Let $n \geq 1$ be an integer. We need to evaluate $\sum_{d \mid n, d>0} \mu(d)$.
-    
-    \textbf{Case 1: $n = 1$}
-    
-    The only positive divisor of $1$ is $1$ itself. Therefore:
-    \[
-    \sum_{d \mid 1, d>0} \mu(d) = \mu(1) = 1.
-    \]
-    
-    \textbf{Case 2: $n > 1$}
-    
-    Write $n = p_1^{a_1} p_2^{a_2} \cdots p_r^{a_r}$ where $p_1, \ldots, p_r$ are distinct primes and $a_i \geq 1$ for all $i$.
-    
-    Since $\mu$ is multiplicative (as shown above) and the Möbius function is zero for any divisor that is not square-free, we only need to consider square-free divisors.
-    
-    For each square-free divisor $d$ of $n$, we can write $d = p_{i_1} p_{i_2} \cdots p_{i_k}$ where $\{i_1, \ldots, i_k\} \subseteq \{1, \ldots, r\}$ and $k \geq 0$. Then $\mu(d) = (-1)^k$.
-    
-    Therefore:
-    \[
-    \sum_{d \mid n, d>0} \mu(d) = \sum_{k=0}^{r} \sum_{\substack{d \mid n \\ d \text{ has } k \text{ distinct prime factors}}} \mu(d) = \sum_{k=0}^{r} \binom{r}{k} (-1)^k = (1-1)^r = 0^r = 0.
-    \]
-    
-    The last equality follows from the binomial theorem: $(1-1)^r = \sum_{k=0}^{r} \binom{r}{k} 1^{r-k} (-1)^k = \sum_{k=0}^{r} \binom{r}{k} (-1)^k$.
-    
-    Alternatively, since $\mu$ is multiplicative (as shown above) and the sum over divisors of a multiplicative function is also multiplicative, we have that $F(n) = \sum_{d \mid n} \mu(d)$ is multiplicative. It's easy to check that for any prime power $p^k$ with $k \geq 1$:
+    The Möbius function $\mu$ is defined by \nameref{def:mobius}. 
+    Since $\mu$ is multiplicative (as shown above) by \nameref{def:arithmeticfunction}, it follows that $F(n) = \sum_{d \mid n, d>0} \mu(d)$ is multiplicative.
+    For $n = 1$, it follows that $\sum_{d \mid 1, d>0} \mu(d) = \mu(1) = 1$.
+    For any prime power $p^k$ with $k \geq 1$, it follows that
     \[
     F(p^k) = \sum_{d \mid p^k} \mu(d) = \mu(1) + \mu(p) = 1 + (-1) = 0.
     \]
-    Therefore, for any $n > 1$, we have $F(n) = 0$ (since $n$ has at least one prime factor).
-    
-    Therefore:
+    Since any $n > 1$ has at least one prime factor, it follows that $F(n) = 0$ for all $n > 1$.
+    Therefore,
     \[
     \sum_{d \mid n, d>0} \mu(d) = \begin{cases}
     1, & \text{if } n = 1,\\
@@ -194,351 +120,270 @@
     \end{cases}
     \]
   \end{subanswer}
-\end{enumerate}
 
-\begin{define}{Euler's Totient Function $\phi$}[def:phi][red]
-  For $n\in\setZ_{>0}$, Euler's totient function $\phi(n)$ is defined as the number of positive integers less than or equal to $n$ that are relatively prime to $n$:
-  \[
-  \phi(n):=\#\{k\in\setZ_{>0}:1\leq k\leq n \text{ and } \gcd(k,n)=1\}.
-  \]
-  For powers of prime numbers, Euler's totient function is given by:
-  \[
-  \phi(p^k)=p^k-p^{k-1}=p^{k-1}(p-1) \text{ for prime } p \text{ and } k\geq 1.
-  \]
-  In particular, for a prime $p$, we have $\phi(p)=p-1$.
-\end{define}
+  \newpage
 
-\begin{enumerate}
+  \begin{define}{Möbius Inversion Formula*}[thm:mobiusinv][red]
+    Let $f$ and $g$ be arithmetic functions. Then
+    \[
+    f(n)=\sum_{d\mid n, d>0} g(d) \quad \text{for all } n\ge 1
+    \]
+    if and only if
+    \[
+    g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d) \quad \text{for all } n\ge 1.
+    \]
+    \begin{subprove}
+      ($\Rightarrow$) Assume $f(n)=\sum_{d\mid n, d>0} g(d)$ for all $n\ge 1$. Then
+      \begin{align*}
+        \sum_{d\mid n, d>0}\mu(d)f(n/d) &= \sum_{d\mid n, d>0}\mu(d)\sum_{e\mid (n/d), e>0}g(e)\\
+        &= \sum_{d\mid n, d>0}\sum_{e\mid (n/d), e>0}\mu(d)g(e).
+      \end{align*}
+      Let $de = k$, so $k\mid n$ and $d\mid k$. Then this becomes
+      \[
+      \sum_{k\mid n, k>0}g(k)\sum_{d\mid k, d>0}\mu(d).
+      \]
+      By the key property of the Möbius function, $\sum_{d\mid k, d>0}\mu(d) = 1$ if $k=1$ and $0$ if $k>1$. Therefore, the sum equals $g(n)$.
+      
+      ($\Leftarrow$) Assume $g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d)$ for all $n\ge 1$. Define $F(n) = \sum_{d\mid n, d>0}f(d)$ for all $n\ge 1$.
+      
+      Then
+      \begin{align*}
+        \sum_{d\mid n, d>0}g(d) &= \sum_{d\mid n, d>0}\sum_{e\mid d, e>0}\mu(e)f(d/e)\\
+        &= \sum_{e\mid n, e>0}\mu(e)\sum_{d\mid n, e\mid d, d>0}f(d/e).
+      \end{align*}
+      Let $k = d/e$, so $k\mid (n/e)$ and $ke = d\mid n$. Then this becomes
+      \[
+      \sum_{e\mid n, e>0}\mu(e)\sum_{k\mid (n/e), k>0}f(k) = \sum_{e\mid n, e>0}\mu(e)F(n/e),
+      \]
+      where $F(n/e) = \sum_{k\mid (n/e), k>0}f(k)$.
+      
+      By the forward direction we already proved, since $F(n) = \sum_{d\mid n, d>0}f(d)$ for all $n\ge 1$, we have $f(n) = \sum_{d\mid n, d>0}\mu(d)F(n/d)$ for all $n\ge 1$. Therefore:
+      \[
+      \sum_{e\mid n, e>0}\mu(e)F(n/e) = f(n).
+      \]
+      Therefore, $\sum_{d\mid n, d>0}g(d) = f(n)$.
+    \end{subprove}
+  \end{define}
+
+  \newpage
+
+
+
+
+
   \item Show that $\sum_{d \mid n} \phi(d)=n$ for all integers $n \geq 1$.
+  \begin{define}{Euler's Totient Function $\phi$}[def:phi][red]
+    For $n\in\setZ_{>0}$, Euler's totient function $\phi(n)$ is defined as the number of positive integers less than or equal to $n$ that are relatively prime to $n$:
+    \[
+    \phi(n):=\#\{k\in\setZ_{>0}:1\leq k\leq n \text{ and } \gcd(k,n)=1\}.
+    \]
+    For powers of prime numbers, Euler's totient function is given by:
+    \[
+    \phi(p^k)=p^k-p^{k-1}=p^{k-1}(p-1) \text{ for prime } p \text{ and } k\geq 1.
+    \]
+    In particular, for a prime $p$, we have $\phi(p)=p-1$.
+  \end{define}
   \begin{subprove}
-    We will prove this using a combinatorial argument and then confirm it using \nameref{thm:mobiusinv} (Möbius Inversion Formula).
-    
-    \textbf{Combinatorial Proof:}
-    
-    For each positive integer $k$ with $1 \leq k \leq n$, let $d = \gcd(k, n)$. Then $d \mid n$. Write $k = d \cdot k'$ where $\gcd(k', n/d) = 1$. Since $1 \leq k \leq n$, we have $1 \leq k' \leq n/d$.
-    
+    The Euler totient function $\phi$ is defined by \nameref{def:phi}. 
+    For each positive integer $k$ with $1 \leq k \leq n$, let $d = \gcd(k, n)$. Then $d \mid n$ and $k = d \cdot k'$ where $\gcd(k', n/d) = 1$ and $1 \leq k' \leq n/d$.
     Conversely, for each divisor $d$ of $n$ and each positive integer $k'$ with $1 \leq k' \leq n/d$ and $\gcd(k', n/d) = 1$, the integer $k = dk'$ satisfies $1 \leq k \leq n$ and $\gcd(k, n) = d$.
-    
-    Therefore, the integers $1, 2, \ldots, n$ can be partitioned into disjoint sets, where each set corresponds to a divisor $d$ of $n$ and contains exactly $\phi(n/d)$ integers $k$ with $\gcd(k, n) = d$.
-    
-    Since there are $n$ total integers, we have:
+    Therefore, the integers $1, 2, \ldots, n$ are partitioned into disjoint sets, where each set corresponds to a divisor $d$ of $n$ and contains exactly $\phi(n/d)$ integers $k$ with $\gcd(k, n) = d$.
+    Since there are $n$ total integers, it follows that
     \[
     n = \sum_{d \mid n} \phi(n/d) = \sum_{d \mid n} \phi(d),
     \]
     where the last equality follows by reindexing (since $d \mapsto n/d$ is a bijection on the divisors of $n$).
     
-    \textbf{Verification using Möbius Inversion:}
-    
+    Alternatively, this is verified using \nameref{thm:mobiusinv}. 
     Let $f(n) = n$ and $g(d) = \phi(d)$. Then $f(n) = \sum_{d \mid n} g(d) = \sum_{d \mid n} \phi(d)$.
-    
-    By \nameref{thm:mobiusinv} (Möbius Inversion Formula), we have:
+    By \nameref{thm:mobiusinv}, it follows that
     \[
     g(n) = \sum_{d \mid n} \mu(d) f(n/d) = \sum_{d \mid n} \mu(d) \cdot \frac{n}{d} = n \sum_{d \mid n} \frac{\mu(d)}{d}.
     \]
-    
-    It is a known identity that $\sum_{d \mid n} \frac{\mu(d)}{d} = \frac{\phi(n)}{n}$ for all $n \geq 1$. Therefore, $g(n) = n \cdot \frac{\phi(n)}{n} = \phi(n)$, which confirms that $f(n) = \sum_{d \mid n} \phi(d) = n$.
-    
-    Therefore, $\sum_{d \mid n} \phi(d) = n$ for all integers $n \geq 1$.
+    Since $\sum_{d \mid n} \frac{\mu(d)}{d} = \frac{\phi(n)}{n}$ for all $n \geq 1$, it follows that $g(n) = n \cdot \frac{\phi(n)}{n} = \phi(n)$, confirming that $f(n) = \sum_{d \mid n} \phi(d) = n$.
+    Hence, $\sum_{d \mid n} \phi(d) = n$ for all integers $n \geq 1$.
   \end{subprove}
-\end{enumerate}
 
-\begin{define}{Divisor-Count Function $v(n)$}[def:vfunction][red]
-  For $n\in\setZ_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
-  \[
-  v(n):=\#\{d\in\setZ_{>0}:d\mid n\}.
-  \]
-  For powers of prime numbers, the divisor-count function is given by:
-  \[
-  v(p^k)=k+1 \text{ for prime } p \text{ and } k\geq 0.
-  \]
-  In particular, for a prime $p$, we have $v(p)=2$.
-\end{define}
 
-\begin{enumerate}
-  \item Evaluate the number divisor function $v(450), v(105), v\left(p^{k}\right)$, for prime $p$ and non-negative integer $k$.
+
+
+  \newpage
+  \item Evaluate the number divisor function $v(450), v(105), v\left(p^{k}\right)$, 
+  for prime $p$ and non-negative integer $k$.
+  \begin{define}{Divisor-Count Function $v(n)$}[def:vfunction][red]
+    For $n\in\setZ_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
+    \[
+    v(n):=\#\{d\in\setZ_{>0}:d\mid n\}.
+    \]
+    For powers of prime numbers, the divisor-count function is given by:
+    \[
+    v(p^k)=k+1 \text{ for prime } p \text{ and } k\geq 0.
+    \]
+    In particular, for a prime $p$, we have $v(p)=2$.
+  \end{define}
   \begin{subanswer}
-    The divisor-count function $v(n)$ is multiplicative (as shown earlier, since $v(n) = \sum_{d \mid n, d>0} 1$ and the constant function $1$ is multiplicative).
-    
-    \textbf{For $v(p^k)$:}
-    
-    By the definition above, for a prime power $p^k$:
-    \[
-    v(p^k) = k+1.
-    \]
-    
-    This is because the positive divisors of $p^k$ are $1, p, p^2, \ldots, p^k$, which are $k+1$ in total.
-    
-    \textbf{For $v(450)$:}
-    
-    First, factor $450$:
-    \[
-    450 = 2 \cdot 3^2 \cdot 5^2.
-    \]
-    
-    Since $v$ is multiplicative and $\gcd(2, 3^2, 5^2) = 1$ (with the factors being pairwise coprime), we have:
+    The divisor-count function $v$ is defined by \nameref{def:vfunction}. 
+    Since $v(n) = \sum_{d \mid n, d>0} 1$ and the constant function $1$ is multiplicative, it follows that $v$ is multiplicative by \nameref{def:arithmeticfunction}.
+    For a prime power $p^k$, it follows that $v(p^k) = k+1$ (the positive divisors of $p^k$ are $1, p, p^2, \ldots, p^k$).
+    For $450 = 2 \cdot 3^2 \cdot 5^2$, since $v$ is multiplicative and $\gcd(2, 3^2, 5^2) = 1$, it follows that
     \[
     v(450) = v(2) \cdot v(3^2) \cdot v(5^2) = v(2^1) \cdot v(3^2) \cdot v(5^2) = (1+1) \cdot (2+1) \cdot (2+1) = 2 \cdot 3 \cdot 3 = 18.
     \]
-    
-    \textbf{For $v(105)$:}
-    
-    First, factor $105$:
-    \[
-    105 = 3 \cdot 5 \cdot 7.
-    \]
-    
-    Since $v$ is multiplicative and $\gcd(3, 5, 7) = 1$ (with the factors being pairwise coprime), we have:
+    For $105 = 3 \cdot 5 \cdot 7$, since $v$ is multiplicative and $\gcd(3, 5, 7) = 1$, it follows that
     \[
     v(105) = v(3) \cdot v(5) \cdot v(7) = v(3^1) \cdot v(5^1) \cdot v(7^1) = (1+1) \cdot (1+1) \cdot (1+1) = 2 \cdot 2 \cdot 2 = 8.
     \]
-    
-    Therefore:
+    Therefore,
     \begin{align*}
     v(450) &= 18,\\
     v(105) &= 8,\\
     v(p^k) &= k+1 \quad \text{for prime } p \text{ and non-negative integer } k.
     \end{align*}
   \end{subanswer}
-\end{enumerate}
+  
 
-\begin{define}{Sum-of-Divisors Function $\sigma(n)$}[def:sigma][red]
-  For $n\in\setZ_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
-  \[
-  \sigma(n):=\sum_{d\mid n, d>0} d.
-  \]
-  For powers of prime numbers, the sum of divisors formula is given by:
-  \[
-  \sigma(p^k)=\sum_{d\mid p^k, d>0} d = 1 + p + p^2 + \cdots + p^k = \frac{p^{k+1}-1}{p-1} \text{ for prime } p \text{ and } k\geq 0.
-  \]
-  In particular, for a prime $p$, we have $\sigma(p)=1+p=p+1$.
-\end{define}
-
-\begin{enumerate}
+  \newpage
   \item Show that $\sum_{d \mid n, d>0} \frac{1}{d}=\frac{\sigma(n)}{n}$ for all integers $n \geq 1$.
+  \begin{define}{Sum-of-Divisors Function $\sigma(n)$}[def:sigma][red]
+    For $n\in\setZ_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
+    \[
+    \sigma(n):=\sum_{d\mid n, d>0} d.
+    \]
+    For powers of prime numbers, the sum of divisors formula is given by:
+    \[
+    \sigma(p^k)=\sum_{d\mid p^k, d>0} d = 1 + p + p^2 + \cdots + p^k = \frac{p^{k+1}-1}{p-1} \text{ for prime } p \text{ and } k\geq 0.
+    \]
+    In particular, for a prime $p$, we have $\sigma(p)=1+p=p+1$.
+  \end{define}
   \begin{subprove}
-    We need to show that $\sum_{d \mid n, d>0} \frac{1}{d} = \frac{\sigma(n)}{n}$ for all positive integers $n$.
-    
-    By the definition of $\sigma(n)$, we have:
+    The sum-of-divisors function $\sigma$ is defined by \nameref{def:sigma}. 
+    It is shown that $\sum_{d \mid n, d>0} \frac{1}{d} = \frac{\sigma(n)}{n}$ for all $n \in \setZ_{>0}$.
+    By the definition of $\sigma$, it follows that
     \[
     \sigma(n) = \sum_{d \mid n, d>0} d.
     \]
-    
-    Dividing both sides by $n$:
+    Dividing both sides by $n$, it follows that
     \[
     \frac{\sigma(n)}{n} = \frac{1}{n} \sum_{d \mid n, d>0} d = \sum_{d \mid n, d>0} \frac{d}{n}.
     \]
-    
-    For each divisor $d$ of $n$, we have $d \cdot (n/d) = n$, so $n/d$ is also a divisor of $n$. Moreover, as $d$ runs through all positive divisors of $n$, $n/d$ also runs through all positive divisors of $n$ (since the map $d \mapsto n/d$ is a bijection on the divisors of $n$).
-    
-    Therefore:
+    Since the map $d \mapsto n/d$ is a bijection on the divisors of $n$, it follows that
     \[
     \frac{\sigma(n)}{n} = \sum_{d \mid n, d>0} \frac{d}{n} = \sum_{d \mid n, d>0} \frac{1}{n/d} = \sum_{e \mid n, e>0} \frac{1}{e},
     \]
-    where we reindexed by letting $e = n/d$, so $e$ runs through all positive divisors of $n$ as $d$ does.
-    
-    Therefore:
+    where reindexing is performed by letting $e = n/d$.
+    Therefore,
     \[
     \sum_{d \mid n, d>0} \frac{1}{d} = \frac{\sigma(n)}{n}
     \]
-    for all positive integers $n$.
+    for all $n \in \setZ_{>0}$.
   \end{subprove}
-\end{enumerate}
 
-\begin{define}{Convolution of Arithmetic Functions}[def:convolution][red]
-  For $n\in\setZ_{>0}$ and arithmetic functions $f$ and $g$, the convolution of $f$ and $g$, denoted $f \star g$, is defined by
-  \[
-  (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right).
-  \]
-  The convolution operation is commutative: $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
-\end{define}
-
-\begin{enumerate}
-  \item Evaluate $\sum_{d \mid n, d>0} \mu(d) v(n / d)$, where $v$ is the number of divisors function and $n=4^{3} \cdot 7^{2}$.
+  
+  \newpage
+  \item Evaluate $\sum_{d \mid n, d>0} \mu(d) v(n / d)$, where $v$ is the 
+  number of divisors function and $n=4^{3} \cdot 7^{2}$.
+  \begin{define}{Convolution of Arithmetic Functions}[def:convolution][red]
+    For $n\in\setZ_{>0}$ and arithmetic functions $f$ and $g$, the convolution of $f$ and $g$, denoted $f \star g$, is defined by
+    \[
+    (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right).
+    \]
+    The convolution operation is commutative: $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
+  \end{define}
   \begin{subanswer}
-    By the definition of convolution, we have:
-    \[
-    \sum_{d \mid n, d>0} \mu(d) v(n/d) = (\mu \star v)(n).
-    \]
-    
-    We will use \nameref{thm:mobiusinv} (Möbius Inversion Formula) to evaluate this.
-    
-    Recall that the divisor-count function $v(n)$ counts the number of positive divisors of $n$:
-    \[
-    v(n) = \sum_{d \mid n, d>0} 1.
-    \]
-    
-    Let $f(n) = v(n)$ and $g(d) = 1$ for all $d \geq 1$. Then:
-    \[
-    f(n) = \sum_{d \mid n, d>0} g(d) = \sum_{d \mid n, d>0} 1 = v(n).
-    \]
-    
-    By \nameref{thm:mobiusinv} (Möbius Inversion Formula), we have:
+    The convolution is defined by \nameref{def:convolution}, so it follows that $\sum_{d \mid n, d>0} \mu(d) v(n/d) = (\mu \star v)(n)$.
+    The divisor-count function $v$ is defined by \nameref{def:vfunction}, so it follows that $v(n) = \sum_{d \mid n, d>0} 1$.
+    Let $f(n) = v(n)$ and $g(d) = 1$ for all $d \geq 1$. Then $f(n) = \sum_{d \mid n, d>0} g(d) = \sum_{d \mid n, d>0} 1 = v(n)$.
+    By \nameref{thm:mobiusinv}, it follows that
     \[
     g(n) = \sum_{d \mid n, d>0} \mu(d) f(n/d) = \sum_{d \mid n, d>0} \mu(d) v(n/d).
     \]
-    
-    Since $g(n) = 1$ for all $n \geq 1$, we have:
-    \[
-    \sum_{d \mid n, d>0} \mu(d) v(n/d) = 1
-    \]
-    for all positive integers $n$.
-    
-    Therefore, for $n = 4^3 \cdot 7^2 = 64 \cdot 49 = 3136$:
+    Since $g(n) = 1$ for all $n \geq 1$, it follows that $\sum_{d \mid n, d>0} \mu(d) v(n/d) = 1$ for all $n \in \setZ_{>0}$.
+    Therefore, for $n = 4^3 \cdot 7^2 = 64 \cdot 49 = 3136$, it follows that
     \[
     \sum_{d \mid 3136, d>0} \mu(d) v(3136/d) = 1.
     \]
   \end{subanswer}
-\end{enumerate}
 
-\begin{define}{Möbius Inversion Formula}[thm:mobiusinv][blue]
-  Let $f$ and $g$ be arithmetic functions. Then
-  \[
-  f(n)=\sum_{d\mid n, d>0} g(d) \quad \text{for all } n\ge 1
-  \]
-  if and only if
-  \[
-  g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d) \quad \text{for all } n\ge 1.
-  \]
+
+
+  
+  \newpage
+  \item If $a$ is a quadratic residue modulo two distinct odd primes $p$ and $q$, 
+  then the equation $x^{2} \equiv a \pmod{pq}$ is solvable.
+  \begin{define}{Quadratic Residue}[def:quadres][red]
+    For $a\in\setZ$ and $n\in\setZ_{>0}$, $a$ is a \textbf{quadratic residue modulo $n$} if there exists $x\in\setZ$ such that
+    \[
+    x^2 \equiv a \pmod{n}.
+    \]
+    If no such $x$ exists, then $a$ is a \textbf{quadratic non-residue modulo $n$}.
+  \end{define}
   \begin{subprove}
-    ($\Rightarrow$) Assume $f(n)=\sum_{d\mid n, d>0} g(d)$ for all $n\ge 1$. Then
-    \begin{align*}
-      \sum_{d\mid n, d>0}\mu(d)f(n/d) &= \sum_{d\mid n, d>0}\mu(d)\sum_{e\mid (n/d), e>0}g(e)\\
-      &= \sum_{d\mid n, d>0}\sum_{e\mid (n/d), e>0}\mu(d)g(e).
-    \end{align*}
-    Let $de = k$, so $k\mid n$ and $d\mid k$. Then this becomes
-    \[
-    \sum_{k\mid n, k>0}g(k)\sum_{d\mid k, d>0}\mu(d).
-    \]
-    By the key property of the Möbius function, $\sum_{d\mid k, d>0}\mu(d) = 1$ if $k=1$ and $0$ if $k>1$. Therefore, the sum equals $g(n)$.
-    
-    ($\Leftarrow$) Assume $g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d)$ for all $n\ge 1$. Define $F(n) = \sum_{d\mid n, d>0}f(d)$ for all $n\ge 1$.
-    
-    Then
-    \begin{align*}
-      \sum_{d\mid n, d>0}g(d) &= \sum_{d\mid n, d>0}\sum_{e\mid d, e>0}\mu(e)f(d/e)\\
-      &= \sum_{e\mid n, e>0}\mu(e)\sum_{d\mid n, e\mid d, d>0}f(d/e).
-    \end{align*}
-    Let $k = d/e$, so $k\mid (n/e)$ and $ke = d\mid n$. Then this becomes
-    \[
-    \sum_{e\mid n, e>0}\mu(e)\sum_{k\mid (n/e), k>0}f(k) = \sum_{e\mid n, e>0}\mu(e)F(n/e),
-    \]
-    where $F(n/e) = \sum_{k\mid (n/e), k>0}f(k)$.
-    
-    By the forward direction we already proved, since $F(n) = \sum_{d\mid n, d>0}f(d)$ for all $n\ge 1$, we have $f(n) = \sum_{d\mid n, d>0}\mu(d)F(n/d)$ for all $n\ge 1$. Therefore:
-    \[
-    \sum_{e\mid n, e>0}\mu(e)F(n/e) = f(n).
-    \]
-    Therefore, $\sum_{d\mid n, d>0}g(d) = f(n)$.
-  \end{subprove}
-\end{define}
-
-\begin{define}{Quadratic Residue}[def:quadres][red]
-  For $a\in\setZ$ and $n\in\setZ_{>0}$, $a$ is a \textbf{quadratic residue modulo $n$} if there exists $x\in\setZ$ such that
-  \[
-  x^2 \equiv a \pmod{n}.
-  \]
-  If no such $x$ exists, then $a$ is a \textbf{quadratic non-residue modulo $n$}.
-\end{define}
-
-\begin{enumerate}
-  \item If $a$ is a quadratic residue modulo two distinct odd primes $p$ and $q$, then the equation $x^{2} \equiv a \pmod{pq}$ is solvable.
-  \begin{subprove}
-    Since $a$ is a quadratic residue modulo $p$, by the definition of a quadratic residue, there exists $x_1 \in \mathbb{Z}$ such that $x_1^2 \equiv a \pmod{p}$.
-    
-    Since $a$ is a quadratic residue modulo $q$, there exists $x_2 \in \mathbb{Z}$ such that $x_2^2 \equiv a \pmod{q}$.
-    
-    Since $p$ and $q$ are distinct odd primes, we have $\gcd(p, q) = 1$. By the Chinese Remainder Theorem, there exists a unique solution $x$ modulo $pq$ to the system:
+    A quadratic residue is defined by \nameref{def:quadres}. 
+    Since $a$ is a quadratic residue modulo $p$, there exists $x_1 \in \setZ$ such that $x_1^2 \equiv a \pmod{p}$.
+    Since $a$ is a quadratic residue modulo $q$, there exists $x_2 \in \setZ$ such that $x_2^2 \equiv a \pmod{q}$.
+    Since $p$ and $q$ are distinct odd primes, it follows that $\gcd(p, q) = 1$. 
+    By the Chinese Remainder Theorem, there exists a unique solution $x$ modulo $pq$ to the system
     \[
     \begin{cases}
     x \equiv x_1 \pmod{p},\\
     x \equiv x_2 \pmod{q}.
     \end{cases}
     \]
-    
-    We claim that this $x$ satisfies $x^2 \equiv a \pmod{pq}$.
-    
-    Since $x \equiv x_1 \pmod{p}$, we have $x^2 \equiv x_1^2 \equiv a \pmod{p}$.
-    
-    Since $x \equiv x_2 \pmod{q}$, we have $x^2 \equiv x_2^2 \equiv a \pmod{q}$.
-    
-    Since $x^2 \equiv a \pmod{p}$ and $x^2 \equiv a \pmod{q}$, and $\gcd(p, q) = 1$, by the Chinese Remainder Theorem, we have $x^2 \equiv a \pmod{pq}$.
-    
-    Therefore, the equation $x^2 \equiv a \pmod{pq}$ is solvable.
+    Since $x \equiv x_1 \pmod{p}$, it follows that $x^2 \equiv x_1^2 \equiv a \pmod{p}$.
+    Since $x \equiv x_2 \pmod{q}$, it follows that $x^2 \equiv x_2^2 \equiv a \pmod{q}$.
+    Since $x^2 \equiv a \pmod{p}$ and $x^2 \equiv a \pmod{q}$, and $\gcd(p, q) = 1$, by the Chinese Remainder Theorem, it follows that $x^2 \equiv a \pmod{pq}$.
+    Hence, the equation $x^2 \equiv a \pmod{pq}$ is solvable.
   \end{subprove}
   
   \item Find all incongruent quadratic residues modulo 13. Do the same for the modulus 17, and the modulus 23.
   \begin{subanswer}
+    A quadratic residue is defined by \nameref{def:quadres}. 
     For an odd prime $p$, the quadratic residues modulo $p$ are the squares of the integers $1, 2, \ldots, \frac{p-1}{2}$ modulo $p$.
-    
-    \textbf{Modulo 13:} Since $\frac{13-1}{2}=6$, compute $k^2 \pmod{13}$ for $k=1,2,\ldots,6$:
+    For $p = 13$, since $\frac{13-1}{2} = 6$, it follows that
     \begin{align*}
-      1^2 &\equiv 1 \pmod{13},\\
-      2^2 &\equiv 4 \pmod{13},\\
-      3^2 &\equiv 9 \pmod{13},\\
-      4^2 &\equiv 16 \equiv 3 \pmod{13},\\
-      5^2 &\equiv 25 \equiv 12 \pmod{13},\\
-      6^2 &\equiv 36 \equiv 10 \pmod{13}.
+      1^2 &\equiv 1, \quad 2^2 \equiv 4, \quad 3^2 \equiv 9, \quad 4^2 \equiv 3, \quad 5^2 \equiv 12, \quad 6^2 \equiv 10 \pmod{13}.
     \end{align*}
-    Therefore, the quadratic residues modulo 13 are: $1, 3, 4, 9, 10, 12$.
-    
-    \textbf{Modulo 17:} Since $\frac{17-1}{2}=8$, compute $k^2 \pmod{17}$ for $k=1,2,\ldots,8$:
+    Therefore, the quadratic residues modulo 13 are $1, 3, 4, 9, 10, 12$.
+    For $p = 17$, since $\frac{17-1}{2} = 8$, it follows that
     \begin{align*}
-      1^2 &\equiv 1 \pmod{17},\\
-      2^2 &\equiv 4 \pmod{17},\\
-      3^2 &\equiv 9 \pmod{17},\\
-      4^2 &\equiv 16 \pmod{17},\\
-      5^2 &\equiv 25 \equiv 8 \pmod{17},\\
-      6^2 &\equiv 36 \equiv 2 \pmod{17},\\
-      7^2 &\equiv 49 \equiv 15 \pmod{17},\\
-      8^2 &\equiv 64 \equiv 13 \pmod{17}.
+      1^2 &\equiv 1, \quad 2^2 \equiv 4, \quad 3^2 \equiv 9, \quad 4^2 \equiv 16, \quad 5^2 \equiv 8, \quad 6^2 \equiv 2, \quad 7^2 \equiv 15, \quad 8^2 \equiv 13 \pmod{17}.
     \end{align*}
-    Therefore, the quadratic residues modulo 17 are: $1, 2, 4, 8, 9, 13, 15, 16$.
-    
-    \textbf{Modulo 23:} Since $\frac{23-1}{2}=11$, compute $k^2 \pmod{23}$ for $k=1,2,\ldots,11$:
+    Therefore, the quadratic residues modulo 17 are $1, 2, 4, 8, 9, 13, 15, 16$.
+    For $p = 23$, since $\frac{23-1}{2} = 11$, it follows that
     \begin{align*}
-      1^2 &\equiv 1 \pmod{23},\\
-      2^2 &\equiv 4 \pmod{23},\\
-      3^2 &\equiv 9 \pmod{23},\\
-      4^2 &\equiv 16 \pmod{23},\\
-      5^2 &\equiv 25 \equiv 2 \pmod{23},\\
-      6^2 &\equiv 36 \equiv 13 \pmod{23},\\
-      7^2 &\equiv 49 \equiv 3 \pmod{23},\\
-      8^2 &\equiv 64 \equiv 18 \pmod{23},\\
-      9^2 &\equiv 81 \equiv 12 \pmod{23},\\
-      10^2 &\equiv 100 \equiv 8 \pmod{23},\\
-      11^2 &\equiv 121 \equiv 6 \pmod{23}.
+      1^2 &\equiv 1, \quad 2^2 \equiv 4, \quad 3^2 \equiv 9, \quad 4^2 \equiv 16, \\
+      \quad 5^2 &\equiv 2, \quad 6^2 \equiv 13, \quad 7^2 \equiv 3, \quad 8^2 \equiv 18, \\
+      \quad 9^2 &\equiv 12, \quad 10^2 \equiv 8, \quad 11^2 \equiv 6 \pmod{23}.
     \end{align*}
-    Therefore, the quadratic residues modulo 23 are: $1, 2, 3, 4, 6, 8, 9, 12, 13, 16, 18$.
+    Therefore, the quadratic residues modulo 23 are $1, 2, 3, 4, 6, 8, 9, 12, 13, 16, 18$.
   \end{subanswer}
   
+  \newpage
   \item Find all incongruent solutions to the congruence $x^{2} \equiv 23 \pmod{77}$.
   \begin{subanswer}
-    Since $77=7\cdot 11$ with $\gcd(7,11)=1$, by the Chinese Remainder Theorem the congruence $x^2\equiv 23\pmod{77}$ is equivalent to the system $x^2\equiv 23\pmod{7}$ and $x^2\equiv 23\pmod{11}$.
-    
-    \begin{itemize}
-      \item Modulo $7$, it is found that $23\equiv 2\pmod{7}$. The quadratic residues modulo $7$ are $1^2\equiv 1$, $2^2\equiv 4$, $3^2\equiv 2\pmod{7}$. Therefore, $x^2\equiv 2\pmod{7}$ has solutions $x\equiv \pm 3\equiv 3,4\pmod{7}$.
-      \item Modulo $11$, it is found that $23\equiv 1\pmod{11}$. Since $1\equiv 1^2\pmod{11}$, the congruence $x^2\equiv 1\pmod{11}$ has solutions $x\equiv \pm 1\equiv 1,10\pmod{11}$.
-    \end{itemize}
-    
-    By the Chinese Remainder Theorem, $2\cdot 2=4$ incongruent solutions modulo $77$ exist.
+    A quadratic residue is defined by \nameref{def:quadres}. 
+    Since $77 = 7 \cdot 11$ with $\gcd(7, 11) = 1$, by the Chinese Remainder Theorem the congruence $x^2 \equiv 23 \pmod{77}$ is equivalent to the system $x^2 \equiv 23 \pmod{7}$ and $x^2 \equiv 23 \pmod{11}$.
+    Since $23 \equiv 2 \pmod{7}$ and $3^2 \equiv 2 \pmod{7}$, it follows that $x^2 \equiv 2 \pmod{7}$ has solutions $x \equiv \pm 3 \equiv 3, 4 \pmod{7}$.
+    Since $23 \equiv 1 \pmod{11}$ and $1^2 \equiv 1 \pmod{11}$, it follows that $x^2 \equiv 1 \pmod{11}$ has solutions $x \equiv \pm 1 \equiv 1, 10 \pmod{11}$.
+    By the Chinese Remainder Theorem, there are $2 \cdot 2 = 4$ incongruent solutions modulo $77$
     \begin{align*}
-      x &\equiv 3\pmod{7},\quad x\equiv 1\pmod{11} \implies x\equiv 10\pmod{77},\\
-      x &\equiv 3\pmod{7},\quad x\equiv 10\pmod{11} \implies x\equiv 45\pmod{77},\\
-      x &\equiv 4\pmod{7},\quad x\equiv 1\pmod{11} \implies x\equiv 32\pmod{77},\\
-      x &\equiv 4\pmod{7},\quad x\equiv 10\pmod{11} \implies x\equiv 67\pmod{77}.
+      x &\equiv 3 \pmod{7}, \quad x \equiv 1 \pmod{11} \implies x \equiv 10 \pmod{77},\\
+      x &\equiv 3 \pmod{7}, \quad x \equiv 10 \pmod{11} \implies x \equiv 45 \pmod{77},\\
+      x &\equiv 4 \pmod{7}, \quad x \equiv 1 \pmod{11} \implies x \equiv 32 \pmod{77},\\
+      x &\equiv 4 \pmod{7}, \quad x \equiv 10 \pmod{11} \implies x \equiv 67 \pmod{77}.
     \end{align*}
-    Therefore, the solutions are $x\equiv 10,32,45,67\pmod{77}$.
+    Therefore, the solutions are $x \equiv 10, 32, 45, 67 \pmod{77}$.
   \end{subanswer}
+  
+
+
   
   \item Find all incongruent solutions to the congruence $x^{2} \equiv 11 \pmod{39}$.
   \begin{subanswer}
-    Since $39=3\cdot 13$ with $\gcd(3,13)=1$, the congruence $x^2\equiv 11\pmod{39}$ is equivalent to the system $x^2\equiv 11\pmod{3}$ and $x^2\equiv 11\pmod{13}$.
-    
-    \begin{itemize}
-      \item Modulo $3$, it is found that $11\equiv 2\pmod{3}$. The quadratic residues modulo $3$ are $1^2\equiv 1\pmod{3}$ only, so $x^2\equiv 2\pmod{3}$ has no solutions.
-    \end{itemize}
-    
-    Since one of the congruences has no solution, the original congruence $x^2\equiv 11\pmod{39}$ has no solutions.
+    A quadratic residue is defined by \nameref{def:quadres}. 
+    Since $39 = 3 \cdot 13$ with $\gcd(3, 13) = 1$, by the Chinese Remainder Theorem the congruence $x^2 \equiv 11 \pmod{39}$ is equivalent to the system $x^2 \equiv 11 \pmod{3}$ and $x^2 \equiv 11 \pmod{13}$.
+    Since $11 \equiv 2 \pmod{3}$ and the only quadratic residue modulo $3$ is $1^2 \equiv 1 \pmod{3}$, it follows that $x^2 \equiv 2 \pmod{3}$ has no solutions.
+    Since one of the congruences has no solution, by the Chinese Remainder Theorem the original congruence $x^2 \equiv 11 \pmod{39}$ has no solutions.
   \end{subanswer}
   
   \item Suppose that $p$ and $2 p+1$ are both odd primes. Find all incongruent solutions to
@@ -546,46 +391,31 @@
   x^{2} \equiv 1 \pmod{p(2 p+1)}.
   \]
   \begin{subanswer}
-    Since $p$ and $2p+1$ are both odd primes, and $\gcd(p, 2p+1) = \gcd(p, 1) = 1$, they are coprime. By the Chinese Remainder Theorem, the congruence $x^2 \equiv 1 \pmod{p(2p+1)}$ is equivalent to the system:
+    A quadratic residue is defined by \nameref{def:quadres}. 
+    Since $p$ and $2p+1$ are both odd primes and $\gcd(p, 2p+1) = \gcd(p, 1) = 1$, by the Chinese Remainder Theorem the congruence $x^2 \equiv 1 \pmod{p(2p+1)}$ is equivalent to the system
     \[
     \begin{cases}
     x^2 \equiv 1 \pmod{p},\\
     x^2 \equiv 1 \pmod{2p+1}.
     \end{cases}
     \]
-    
-    For any odd prime $q$, the congruence $x^2 \equiv 1 \pmod{q}$ implies $(x-1)(x+1) \equiv 0 \pmod{q}$. Since $q$ is prime, either $x \equiv 1 \pmod{q}$ or $x \equiv -1 \pmod{q}$. By \nameref{def:quadres}, $1$ is always a quadratic residue modulo any prime, and since exactly half of the nonzero residues are quadratic residues, $-1$ is also a quadratic residue (and thus $x^2 \equiv 1 \pmod{q}$ has exactly two solutions).
-    
-    Therefore:
-    \begin{itemize}
-      \item Modulo $p$: $x^2 \equiv 1 \pmod{p}$ has solutions $x \equiv \pm 1 \pmod{p}$.
-      \item Modulo $2p+1$: $x^2 \equiv 1 \pmod{2p+1}$ has solutions $x \equiv \pm 1 \pmod{2p+1}$.
-    \end{itemize}
-    
-    By the Chinese Remainder Theorem, there are $2 \cdot 2 = 4$ incongruent solutions modulo $p(2p+1)$:
-    \begin{align*}
-      x &\equiv 1 \pmod{p},\quad x \equiv 1 \pmod{2p+1} \implies x \equiv 1 \pmod{p(2p+1)},\\
-      x &\equiv 1 \pmod{p},\quad x \equiv -1 \pmod{2p+1},\\
-      x &\equiv -1 \pmod{p},\quad x \equiv 1 \pmod{2p+1},\\
-      x &\equiv -1 \pmod{p},\quad x \equiv -1 \pmod{2p+1} \implies x \equiv -1 \pmod{p(2p+1)}.
-    \end{align*}
-    
-    To find the explicit solutions for the two middle cases:
-    
-    \textbf{Case 2:} $x \equiv 1 \pmod{p}$ and $x \equiv -1 \pmod{2p+1}$.
-    
-    Write $x = 1 + kp$ for some integer $k$. Then $1 + kp \equiv -1 \pmod{2p+1}$, so $kp \equiv -2 \pmod{2p+1}$. Since $p \equiv -p-1 \pmod{2p+1}$, we have $k(-p-1) \equiv -2 \pmod{2p+1}$, so $k(p+1) \equiv 2 \pmod{2p+1}$. Since $\gcd(p+1, 2p+1) = \gcd(p+1, 1) = 1$, we can solve for $k$. Note that $(p+1)(2p-1) = 2p^2+p-1 = p(2p+1)-1 \equiv -1 \pmod{2p+1}$, so $(p+1)^{-1} \equiv -(2p-1) \equiv 1-2p \pmod{2p+1}$. Therefore, $k \equiv 2(1-2p) = 2-4p \equiv 2-4p+2(2p+1) = 4 \pmod{2p+1}$. Checking: $4(p+1) = 4p+4 \equiv 4p+4-2(2p+1) = 4p+4-4p-2 = 2 \pmod{2p+1}$. Therefore, $x \equiv 1 + 4p \pmod{p(2p+1)}$.
-    
-    \textbf{Case 3:} $x \equiv -1 \pmod{p}$ and $x \equiv 1 \pmod{2p+1}$.
-    
-    Write $x = -1 + kp$ for some integer $k$. Then $-1 + kp \equiv 1 \pmod{2p+1}$, so $kp \equiv 2 \pmod{2p+1}$. Since $p \equiv -p-1 \pmod{2p+1}$, we have $k(-p-1) \equiv 2 \pmod{2p+1}$, so $k(p+1) \equiv -2 \pmod{2p+1}$. Using the same inverse as before, $(p+1)^{-1} \equiv 1-2p \pmod{2p+1}$. Therefore, $k \equiv -2(1-2p) = -2+4p \equiv -2+4p-2(2p+1) = -2+4p-4p-2 = -4 \equiv 2p-3 \pmod{2p+1}$. Checking: $(-4)(p+1) = -4p-4 \equiv -4p-4+2(2p+1) = -4p-4+4p+2 = -2 \pmod{2p+1}$. Therefore, $x \equiv -1 + (-4)p = -1 - 4p \equiv p(2p+1) - 1 - 4p = 2p^2 + p - 1 - 4p = 2p^2 - 3p - 1 \pmod{p(2p+1)}$.
-    
-    Therefore, all incongruent solutions to $x^2 \equiv 1 \pmod{p(2p+1)}$ are:
+    For any odd prime $q$, the congruence $x^2 \equiv 1 \pmod{q}$ implies $(x-1)(x+1) \equiv 0 \pmod{q}$.
+    Since $q$ is prime, it follows that $x \equiv \pm 1 \pmod{q}$.
+    Therefore, modulo $p$ it follows that $x \equiv \pm 1 \pmod{p}$, and modulo $2p+1$ it follows that $x \equiv \pm 1 \pmod{2p+1}$.
+    By the Chinese Remainder Theorem, there are $2 \cdot 2 = 4$ incongruent solutions modulo $p(2p+1)$.
+    The solutions $x \equiv 1 \pmod{p(2p+1)}$ and $x \equiv -1 \pmod{p(2p+1)}$ are immediate.
+    For $x \equiv 1 \pmod{p}$ and $x \equiv -1 \pmod{2p+1}$, since $x = 1 + kp$ for some integer $k$, it follows that $1 + kp \equiv -1 \pmod{2p+1}$, so $kp \equiv -2 \pmod{2p+1}$.
+    Since $p \equiv -p-1 \pmod{2p+1}$, it follows that $k(p+1) \equiv 2 \pmod{2p+1}$.
+    Since $\gcd(p+1, 2p+1) = \gcd(p+1, 1) = 1$ and $(p+1)(2p-1) = p(2p+1) - 1 \equiv -1 \pmod{2p+1}$, it follows that $(p+1)^{-1} \equiv 1-2p \pmod{2p+1}$.
+    Therefore, $k \equiv 2(1-2p) \equiv 4 \pmod{2p+1}$, so $x \equiv 1 + 4p \pmod{p(2p+1)}$.
+    For $x \equiv -1 \pmod{p}$ and $x \equiv 1 \pmod{2p+1}$, since $x = -1 + kp$ for some integer $k$, it follows that $-1 + kp \equiv 1 \pmod{2p+1}$, so $kp \equiv 2 \pmod{2p+1}$.
+    Since $p \equiv -p-1 \pmod{2p+1}$, it follows that $k(p+1) \equiv -2 \pmod{2p+1}$.
+    Using the same inverse, it follows that $k \equiv -2(1-2p) \equiv -4 \pmod{2p+1}$, so $x \equiv -1 - 4p \equiv 2p^2 - 3p - 1 \pmod{p(2p+1)}$.
+    Therefore, all incongruent solutions to $x^2 \equiv 1 \pmod{p(2p+1)}$ are
     \[
     x \equiv 1, \quad x \equiv -1, \quad x \equiv 1 + 4p, \quad x \equiv 2p^2 - 3p - 1 \pmod{p(2p+1)}.
     \]
   \end{subanswer}
-\end{enumerate}
 
 
 
@@ -593,21 +423,26 @@
 
 
 
-\newpage
-\begin{define}{Legendre Symbol}[def:legendre][red]
-  For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, the Legendre symbol $\left(\frac{a}{p}\right)$ is defined by
-  \[
-  \left(\frac{a}{p}\right):=
-  \begin{cases}
-  1, & \text{if } a \text{ is a quadratic residue modulo } p,\\[4pt]
-  -1, & \text{if } a \text{ is a quadratic non-residue modulo } p.
-  \end{cases}
-  \]
-  If $p\mid a$, then $\left(\frac{a}{p}\right)=0$.
-\end{define}
 
-\begin{enumerate}
+
+
+
+
+
+
+  \newpage
   \item Is $x^{2} \equiv 137 \pmod{401}$ solvable? (Note: 137 and 401 are both prime).
+  \begin{define}{Legendre Symbol}[def:legendre][red]
+    For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, the Legendre symbol $\left(\frac{a}{p}\right)$ is defined by
+    \[
+    \left(\frac{a}{p}\right):=
+    \begin{cases}
+    1, & \text{if } a \text{ is a quadratic residue modulo } p,\\[4pt]
+    -1, & \text{if } a \text{ is a quadratic non-residue modulo } p.
+    \end{cases}
+    \]
+    If $p\mid a$, then $\left(\frac{a}{p}\right)=0$.
+  \end{define}
   \begin{subanswer}
     To determine if $x^{2} \equiv 137 \pmod{401}$ is solvable, we compute the Legendre symbol $\left(\frac{137}{401}\right)$.
     
@@ -743,7 +578,7 @@
 
   \newpage
   \begin{define}{Theorem 4.4 (Euler's Criterion)}[thm:4.4][blue]
-    Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
+    Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. Then
     \[
     \left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p,
     \]
@@ -790,12 +625,12 @@
 
   \newpage
   \begin{define}{Lemma 4.7 (Gauss's Lemma)}[lem:4.7][blue]
-    Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$ let $r_k$ be the least positive residue of $ka$ modulo $p$ (i.e., $r_k\in\{1,\dots,p-1\}$ and $r_k\equiv ka\pmod p$). Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
+    Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$ let $r_k$ be the least positive residue of $ka$ modulo $p$ (i.e., $r_k\in\{1,\dots,p-1\}$ and $r_k\equiv ka\pmod p$). Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
     \[
     \left(\frac{a}{p}\right)=(-1)^n.
     \]
     \begin{subprove}
-    Let $p$ be an odd prime and $a\in\mathbb{Z}$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$, let $r_k$ be the least positive residue of $ka$ modulo $p$. Partition into $\{r_1,\dots,r_n\}$ (those $r_k>p/2$) and $\{s_1,\dots,s_m\}$ (those $s_k<p/2$), so $n+m=(p-1)/2$.
+    Let $p$ be an odd prime and $a\in\setZ$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$, let $r_k$ be the least positive residue of $ka$ modulo $p$. Partition into $\{r_1,\dots,r_n\}$ (those $r_k>p/2$) and $\{s_1,\dots,s_m\}$ (those $s_k<p/2$), so $n+m=(p-1)/2$.
   
     Consider $p-r_1,\dots,p-r_n,s_1,\dots,s_m$. These lie in $\{1,\dots,(p-1)/2\}$ and are pairwise distinct modulo $p$: distinct $r_k,s_k$ by construction; if $p-r_i\equiv s_j\pmod p$, then $r_i+s_j\equiv 0\pmod p$ gives $(k_i+k_j)a\equiv 0\pmod p$, forcing $k_i+k_j=p$ (contradiction).
   
@@ -929,7 +764,7 @@
     \]
   \end{define}
   \begin{define}{Lemma 4.10}[lem:4.10][red]
-    Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$ and $a$ odd. Define
+    Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$ and $a$ odd. Define
     \[
     N:=\sum_{j=1}^{\frac{p-1}{2}}\left\lfloor\frac{j a}{p}\right\rfloor .
     \]
@@ -2074,7 +1909,7 @@
 % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % % \begin{define}{Proposition 4.1}[prop:4.1][red]
-% % Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then the
+% % Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. Then the
 % % congruence
 % % \[
 % % x^2\equiv a \pmod p
@@ -2089,7 +1924,7 @@
 
 
 % % \begin{define}{Corollary 4.2}[cor:4.2][red]
-% % Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. If $x^2\equiv a\pmod p$ is solvable and $x_0$ is a solution, then the two incongruent solutions modulo $p$ are $x_0$ and $-x_0\equiv p-x_0$.
+% % Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. If $x^2\equiv a\pmod p$ is solvable and $x_0$ is a solution, then the two incongruent solutions modulo $p$ are $x_0$ and $-x_0\equiv p-x_0$.
 % % \end{define}
 
 
@@ -2097,7 +1932,7 @@
 % % \begin{enumerate}
 % %   \item Compute $\left(\frac{a}{11}\right)$ for all $a=1,2,\dots,10$.
 % %   \begin{define}{Definition 4.1 (Legendre symbol)}[def:4.1][red]
-% %   Let $p$ be an odd prime and let $a\in\mathbb{Z}$. The \emph{Legendre symbol} $(\tfrac{a}{p})$ is defined by
+% %   Let $p$ be an odd prime and let $a\in\setZ$. The \emph{Legendre symbol} $(\tfrac{a}{p})$ is defined by
 % %   \[
 % %   \left(\frac{a}{p}\right):=
 % %   \begin{cases}
@@ -2158,7 +1993,7 @@
 % %   \begin{subanswer}
 % %   By multiplicativity, $\left(\frac{-11}{7}\right)=\left(\frac{-1}{7}\right)\left(\frac{11}{7}\right)$. Since $11\equiv 4\equiv 2^2\pmod 7$, we have $(11/7)=1$. By \nameref{thm:4.6}, $\left(\frac{-1}{7}\right)=-1$ since $7\equiv 3\pmod 4$. Therefore, $\left(\frac{-11}{7}\right)=-1$.
 
-% %   \textbf{Remark}. For an odd prime $p$ and $a\in\mathbb{Z}$ with $p\nmid a$, factor $a=\pm 2^{\alpha_0} q_1^{\alpha_1}\cdots q_r^{\alpha_r}$ where the $q_i$ are distinct odd primes different from $p$. By \nameref{prop:4.5}(c),
+% %   \textbf{Remark}. For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, factor $a=\pm 2^{\alpha_0} q_1^{\alpha_1}\cdots q_r^{\alpha_r}$ where the $q_i$ are distinct odd primes different from $p$. By \nameref{prop:4.5}(c),
 % %   \[
 % %   \left(\frac{a}{p}\right)=\left(\frac{\pm1}{p}\right)\left(\frac{2}{p}\right)^{\alpha_0}\prod_{i=1}^r\left(\frac{q_i}{p}\right)^{\alpha_i}.
 % %   \]
@@ -2171,7 +2006,7 @@
 % % \newpage
 
 % % \begin{define}{Proposition 4.5}[prop:4.5][red]
-% %   Let $p$ be an odd prime and let $a,b\in\mathbb{Z}$ with $p\nmid a$ and $p\nmid b$. Then
+% %   Let $p$ be an odd prime and let $a,b\in\setZ$ with $p\nmid a$ and $p\nmid b$. Then
 % %   \begin{enumerate}
 % %     \item $\left(\dfrac{a^2}{p}\right)=1$.
 % %     \item If $a\equiv b\pmod p$ then $\left(\dfrac{a}{p}\right)=\left(\dfrac{b}{p}\right)$.
@@ -2525,7 +2360,7 @@
 %   classes, and exactly $\dfrac{p-1}{2}$ quadratic non-residues among the
 %   nonzero classes.
 %   \begin{subprove}
-%   The multiplicative group $(\mathbb{Z}/p\mathbb{Z})^\times$ has order $p-1$. For each $x\in(\mathbb{Z}/p\mathbb{Z})^\times$, the square $x^2$ is a nonzero quadratic residue. Since $x^2 = (-x)^2$, each nonzero quadratic residue is obtained from exactly two distinct elements. Hence, $(p-1)/2$ distinct nonzero quadratic residues exist. The remaining $(p-1)/2$ nonzero classes are quadratic non-residues.
+%   The multiplicative group $(\setZ/p\setZ)^\times$ has order $p-1$. For each $x\in(\setZ/p\setZ)^\times$, the square $x^2$ is a nonzero quadratic residue. Since $x^2 = (-x)^2$, each nonzero quadratic residue is obtained from exactly two distinct elements. Hence, $(p-1)/2$ distinct nonzero quadratic residues exist. The remaining $(p-1)/2$ nonzero classes are quadratic non-residues.
 %   \end{subprove}
 %   \end{define}
   
@@ -2701,7 +2536,7 @@
 %     primes of the form $4n+1$ exist.
 %   \end{subprove}
 %   \item Exercise Set 4.3, \#34. Let $p$ and $q$ be odd prime numbers with 
-%   $p=q+4 a$ for some $a \in \mathbb{Z}$. Prove that
+%   $p=q+4 a$ for some $a \in \setZ$. Prove that
 %   $$
 %   \left(\frac{a}{p}\right)=\left(\frac{a}{q}\right).
 %   $$
