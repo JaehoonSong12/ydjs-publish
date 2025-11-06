@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+%New command to display footnote whose markers will always be hidden
+\let\svthefootnote\thefootnote
+\newcommand\blfootnotetext[1]{%
+  \let\thefootnote\relax\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \let\thefootnote\svthefootnote%
+}
+
+%Overriding the \footnotetext command to hide the marker if its value is `0`
+\let\svfootnotetext\footnotetext
+\renewcommand\footnotetext[2][?]{%
+  \if\relax#1\relax%
+    \ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+  \else%
+    \if?#1\ifnum\value{footnote}=0\blfootnotetext{#2}\else\svfootnotetext{#2}\fi%
+    \else\svfootnotetext[#1]{#2}\fi%
+  \fi
+}
+
+\begin{document}
+This is a guide to how to think about the midterm. It is not a literal practice exam but mastering these concepts will be a good preparation for the exam. The midterm exam will be closed book with no calculators. The exam will be $\mathbf{7 5}$ minutes. The midterm will cover up to and including the material in Section 5.2 of the textbook.
+
+\section*{1. Key Topics}
+Topics of focus include (but are not limited to):\\
+(1) Arithmetic Functions. Some key examples of arithmetic functions include: Möbius Function $\mu(n)$, Euler $\phi$-function $\phi(n)$, number divisors function $v(n)$, sum of divisors function $\sigma(n)$.\\
+(2) Multiplicative and completely multiplicative functions.\\
+(3) Convolution of arithmetic functions and Möbius inversion\\
+(4) Quadratic residues and Legendre symbols\\
+(5) Evaluation of special Legendre symbols e.g. $\left(\frac{-1}{p}\right)$ and $\left(\frac{2}{p}\right)$ for $p$ prime\\
+(6) Quadratic Reciprocity
+
+$$
+\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{(p-1)}{2} \cdot \frac{(q-1)}{2}} \quad \text { for } \quad p \neq q \quad \text { odd primes. }
+$$
+
+(7) Definition of primitive roots. Definition of the order of an integer modulo $m$. (The Primitive root theorem will not be covered by this midterm).\\
+Note: Although the topics above are the main focus, you will still need to know the material covered by the first midterm to fully understand the above material.
+
+\section*{2. Practice Questions}
+Question 1. Computational questions:
+
+\begin{itemize}
+  \item Is $x^{2} \equiv 137(\bmod 401)$ solvable? (note: 137 and 401 are both prime).
+  \item Find all incongruent quadratic residues modulo 13. Do the same for the modulus 17, and the modulus 23.
+  \item Find all incongruent solutions to the congruence $x^{2} \equiv 23(\bmod 77)$.
+  \item Find all incongruent solutions to the congruence $x^{2} \equiv 11(\bmod 39)$. [HINT: For the above two questions use the Chinese Remainder Theorem].
+  \item Prove that von Mangoldt function
+\end{itemize}
+
+$$
+\Lambda(n):= \begin{cases}\log p & n=p^{a} \text { such that } p \text { prime and } a \in \mathbb{N} \\ 0 & \text { otherwise }\end{cases}
+$$
+
+is not multiplicative.
+
+\footnotetext{Date: Fall 2023.
+}\begin{itemize}
+  \item Use Euler's criterion to determine $\left(\frac{-6}{11}\right)$.
+  \item Use Gauss' Lemma to determine $\left(\frac{12}{23}\right)$.
+  \item Use Quadratic Reciprocity to determine ( $\frac{91}{127}$ ).
+  \item Find the order of 8 modulo 15. Find the order of 9 modulo 17.
+  \item Assuming there is a primitive root modulo 18 , how many incongruent primitive roots are there? Do the same question for modulus 19 and modulo 57.
+  \item What are all the possible orders of an integer modulo 31.
+  \item Compute the order of 2 modulo $1085=5 \cdot 7 \cdot 31$ (this is not meant to be done by brute force).
+  \item Let $p$ and $q=4 p+1$ be primes. Compute $\left(\frac{p}{q}\right)$.
+  \item If $a$ is a primitive root modulo 31 , what is the order of $a^{3}, a^{12}, a^{16}, a^{17}$, $a^{20}$.
+\end{itemize}
+
+Question 2. Some Theorems to know by name and how they can be applied to solve problems.
+
+\begin{itemize}
+  \item Euler's Criteria for the Legendre symbol (and proof)
+  \item Gauss' Lemma for the Legendre Symbol (and proof)
+  \item Möbius Inversion
+  \item Quadratic Reciprocity
+\end{itemize}
+
+Question 3. These questions require the use of one of the named theorems above. Correct solutions should cite the theorem used and explain the computation/steps.
+
+\begin{itemize}
+  \item Show that $\sum_{a=1}^{p-1}\left(\frac{a}{p}\right)=0$.
+  \item Suppose that $p$ and $2 p+1$ are both odd primes. Find all incongruent solutions to
+\end{itemize}
+
+$$
+x^{2} \equiv 1 \quad(\bmod p(2 p+1))
+$$
+
+\begin{itemize}
+  \item Let $p$ be an odd prime and let a be a quadratic residue mod $p$. Show that if $-a$ is also a quadratic residue modulo $p$, then $p \equiv 1(\bmod 4)$.
+  \item Derive a closed form formula for $\left(\frac{5}{p}\right)$ for primes $p \geq 7$.\\[0pt]
+[HINT: The answer should be a piecewise function whose values depend on some congruence classes for the prime $p$ modulo 5].
+  \item If a is a quadratic residue modulo two distinct odd primes $p$ and $q$, then the equation $x^{2} \equiv a(\bmod p q)$ is solvable.
+  \item Use Gauss' Lemma to argue that $\left(\frac{2}{p}\right)=(-1)^{N}$, where $N=\frac{p-1}{2}-\left\lfloor\frac{p}{4}\right\rfloor$.
+\end{itemize}
+
+Question 4. - Define the Möbius function $\mu(n)$. Show that $\mu$ it is multiplicative, but not completely multiplicative.
+
+\begin{itemize}
+  \item Let $f$ be a multiplicative arithmetic function. Show that $F(n)=\sum_{d \mid n} f(d)$ is multiplicative.
+  \item Show that $\sum_{d \mid n} \phi(d)=n$ for all integers $n \geq 1$.
+  \item Evaluate $\sum_{d \mid n, d>0} \mu(d)$ for all integers $n \geq 1$.
+  \item Evaluate $\sum_{d \mid n, d>0} \mu(d) v(n / d)$, where $v$ is the number of divisors function and $n=4^{3} \cdot 7^{2}$.
+  \item Show that $\sum_{d \mid n, d>0} \frac{1}{d}=\frac{\sigma(n)}{n}$ for all integers $n \geq 1$.
+  \item For integers $k \geq 1$, and multiplicative function $f$, show that the function $g(n):=f\left(n^{k}\right)$ is multiplicative.
+  \item Evaluate the number divisor function $v(450), v(105), v\left(p^{k}\right)$, for prime $p$ and non-negative integer $k$.
+\end{itemize}
+
+
+\end{document}
