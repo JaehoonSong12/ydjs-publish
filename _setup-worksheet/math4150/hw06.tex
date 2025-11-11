@@ -21,57 +21,28 @@
 \textbf{Remark} The following definitions (or results) are already proved in class or on previous ICA, Wbwk, Hmwk assignments, and contents of the textbook.
 
 
-\begin{define}{Quadratic Residue}[def:quadres][red]
-For $a\in\setZ$ and $n\in\setZ_{>0}$, $a$ is a \textbf{quadratic residue modulo $n$} if there exists $x\in\setZ$ such that
+\begin{define}{Quadratic residue modulo $m$}[def:quadres][red]
+Let $a,m\in\mathbb{Z}$ with $m>0$ and $\gcd(a,m)=1$. An integer $a$ is said to be a
+\emph{quadratic residue modulo $m$} if the congruence
 \[
 x^2 \equiv a \pmod{n}.
 \]
-If no such $x$ exists, then $a$ is a \textbf{quadratic non-residue modulo $n$}.
 For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic residues modulo $p$ among the integers $1, 2, \ldots, p-1$.
 \end{define}
 
 
-\begin{define}{Legendre Symbol}[def:legendre][red]
-  For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, the Legendre symbol $\left(\frac{a}{p}\right)$ is defined by
-  \[
-  \left(\frac{a}{p}\right):=
-  \begin{cases}
-  1, & \text{if } a \text{ is a quadratic residue modulo } p,\\[4pt]
-  -1, & \text{if } a \text{ is a quadratic non-residue modulo } p.
-  \end{cases}
-  \]
-  If $p\mid a$, then $\left(\frac{a}{p}\right)=0$.
+\begin{define}{Definition 4.1 (Legendre symbol)}[def:legendre][red]
+Let $p$ be an odd prime and let $a\in\mathbb{Z}$. The \emph{Legendre symbol} $(\tfrac{a}{p})$ is defined by
+\[
+\left(\frac{a}{p}\right):=
+\begin{cases}
+0, & \text{if } p\mid a,\\[4pt]
+1, & \text{if } p\nmid a\text{ and } a \text{ is a quadratic residue modulo } p,\\[4pt]
+-1,& \text{if } p\nmid a\text{ and } a \text{ is a quadratic non-residue modulo } p.
+\end{cases}
+\]
 \end{define}
 
-
-\begin{define}{Order of an Integer Modulo $m$}[def:order][red]
-  For $a\in\setZ$ and $m\in\setZ_{>0}$ with $\gcd(a,m)=1$, the \textbf{order of $a$ modulo $m$} is the smallest positive integer $k$ such that
-  \[
-  a^k \equiv 1 \pmod{m}.
-  \]
-\end{define}
-\begin{define}{Primitive Root}[def:primroot][red]
-  Let $m\in\setZ_{>0}$ and $\phi$ be Euler's totient function.
-  An integer $g$ is a \textbf{primitive root modulo $m$} if it satisfies two properties:
-  \begin{enumerate}
-    \item $\gcd(g,m)=1$
-    \item The order of $g$ modulo $m$ is equal to $\phi(m)$.
-  \end{enumerate}
-  This is equivalent to stating that $g$ is a \textbf{generator} of the multiplicative group of integers modulo $m$, $(\setZ/m\setZ)^\times$. That is, for every integer $a$ with $\gcd(a,m)=1$, there exists an integer $k$ such that
-  \[
-  g^k \equiv a \pmod m.
-  \]
-  \textbf{Note}: The order of $a$ modulo $m$ must be a divisor of $\phi(m)$ by Euler's theorem (Upper Bound).
-  \end{define}
-\begin{define}{Index (Discrete Logarithm)}[def:index][red]
-  Let $m\in\setZ_{>0}$ and let $g$ be a primitive root modulo $m$.
-  For any integer $a$ with $\gcd(a,m)=1$, the \textbf{index of $a$ with respect to the base $g$}, denoted $\operatorname{ind}_g(a)$, is the unique integer $k$ with $1 \leq k \leq \phi(m)$ such that
-  \[
-  g^k \equiv a \pmod{m}.
-  \]
-  The index is also called the \textbf{discrete logarithm} of $a$ to the base $g$ modulo $m$.
-  \textbf{Note}: Since $g$ is a primitive root modulo $m$, every integer $a$ with $\gcd(a,m)=1$ has a unique index with respect to $g$.
-\end{define}
 
 
 
@@ -83,25 +54,48 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
   \item Exercise Set 5.1, \#9. Let $p$ be an odd prime number and let $r$ be an integer with $p \nmid r$. 
   Prove that $r$ is a primitive root modulo $p$ if and only if $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ 
   for all prime divisors $q$ of $p-1$.
+  \begin{define}{Order of an Integer Modulo $m$}[def:order][red]
+  Let $m>0$ be an integer and let $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. The \emph{order} of $a$ modulo $m$, denoted $\operatorname{ord}_m(a)$, is the least positive integer $n$ such that
+  \[
+  a^n\equiv 1 \pmod m.
+  \]
+  \end{define}
+  \begin{define}{Primitive Root Modulo $m$}[def:primroot][red]
+  Let $m>0$. An integer $r$ with $\gcd(r,m)=1$ is called a \emph{primitive root modulo $m$} if
+  \[
+  \operatorname{ord}_m(r)=\varphi(m).
+  \]
+  \end{define}
+  \begin{define}{Euler's Theorem}[thm:euler][red]
+  Let $m>0$ and let $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. Then
+  \[
+  a^{\varphi(m)}\equiv 1 \pmod{m}.
+  \]
+  In particular, for a prime $p$ and $a\in\mathbb{Z}$ with $p\nmid a$, we have
+  \[
+  a^{p-1}\equiv 1 \pmod{p}.
+  \]
+  \end{define}
   \begin{subprove}
     The order of an integer modulo $m$ is defined by \nameref{def:order}.
-    A primitive root is defined by \nameref{def:primroot}.
-    Since $p$ is an odd prime, it follows that $\phi(p) = p-1$.
-    For $r \in \setZ$ with $p \nmid r$, it follows that $\gcd(r, p) = 1$, so the order of $r$ modulo $p$ is well-defined.
-    By Euler's theorem, the order of $r$ modulo $p$ divides $\phi(p) = p-1$.
+    A primitive root modulo $m$ is defined by \nameref{def:primroot}.
+    Euler's theorem is given by \nameref{thm:euler}.
+    Since $p$ is an odd prime, it follows that $\varphi(p) = p-1$.
+    For $r \in \mathbb{Z}$ with $p \nmid r$, it follows that $\gcd(r, p) = 1$, so the order of $r$ modulo $p$ is well-defined.
+    By \nameref{thm:euler}, the order of $r$ modulo $p$ divides $\varphi(p) = p-1$.
     
     ($\Rightarrow$) Suppose $r$ is a primitive root modulo $p$ for the sake of direct proof.
-    Then, by \nameref{def:primroot}, the order of $r$ modulo $p$ equals $\phi(p) = p-1$.
+    Then, by \nameref{def:primroot}, $\operatorname{ord}_p(r) = \varphi(p) = p-1$.
     Let $q$ be a prime divisor of $p-1$. It is shown that $r^{(p-1)/q} \not\equiv 1 \pmod{p}$.
     Suppose, for the sake of contradiction, that $r^{(p-1)/q} \equiv 1 \pmod{p}$.
-    Then, by \nameref{def:order}, the order of $r$ modulo $p$ divides $(p-1)/q$.
+    Then, by \nameref{def:order}, $\operatorname{ord}_p(r)$ divides $(p-1)/q$.
     Since $q$ is a prime divisor of $p-1$, it follows that $(p-1)/q < p-1$.
-    Therefore, the order of $r$ modulo $p$ is at most $(p-1)/q < p-1$, which contradicts the fact that the order of $r$ modulo $p$ equals $p-1$.
+    Therefore, $\operatorname{ord}_p(r) \leq (p-1)/q < p-1$, which contradicts the fact that $\operatorname{ord}_p(r) = p-1$.
     Hence, $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$.
     
     ($\Leftarrow$) Suppose $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$ for the sake of direct proof.
-    It is shown that $r$ is a primitive root modulo $p$, i.e., the order of $r$ modulo $p$ equals $p-1$.
-    Let $d$ be the order of $r$ modulo $p$. By Euler's theorem, $d$ divides $p-1$.
+    It is shown that $r$ is a primitive root modulo $p$, i.e., $\operatorname{ord}_p(r) = p-1$.
+    Let $d = \operatorname{ord}_p(r)$. By \nameref{thm:euler}, $d$ divides $p-1$.
     Suppose, for the sake of contradiction, that $d < p-1$.
     Then $p-1 = d \cdot k$ for some integer $k > 1$.
     Since $k > 1$, there exists a prime divisor $q$ of $k$, and hence $q$ is also a prime divisor of $p-1$.
@@ -112,30 +106,30 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     r^{(p-1)/q} = r^{d \cdot \ell} = (r^d)^\ell \equiv 1^\ell \equiv 1 \pmod{p},
     \]
     which contradicts the assumption that $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$.
-    Therefore, $d = p-1$, so the order of $r$ modulo $p$ equals $p-1 = \phi(p)$.
+    Therefore, $d = p-1$, so $\operatorname{ord}_p(r) = p-1 = \varphi(p)$.
     Hence, by \nameref{def:primroot}, $r$ is a primitive root modulo $p$.
     
     Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $r$ is a primitive root modulo $p$ if and only if $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$.
   \end{subprove}
 
-  \newpage
   \item Exercise Set 5.2, \#11(d). Find all incongruent integers having order 10 modulo 61. 
   [Hint: First find a primitive root modulo 61.]
-  \begin{define}{Euler's Totient Function $\phi$}[def:euler_totient][red]
-    For $n \in \mathbb{Z}_{>0}$, Euler's totient function $\phi(n)$ is defined as the number of positive integers less than or equal to $n$ that are relatively prime to $n$:
+  \begin{define}{Euler Totient Function}[def:euler_totient][red]
+    For $n\in\mathbb{Z}_{>0}$ the Euler totient function $\varphi(n)$ is the number of integers
+    $1\le x\le n$ with $\gcd(x,n)=1$; equivalently,
     \[
-    \phi(n) := \#\{\,k \in \mathbb{Z}_{>0} : 1 \le k \le n \text{ and } \gcd(k, n) = 1\,\}.
+    \varphi(n):=\#\{x\in\{1,2,\dots,n\}:\gcd(x,n)=1\}.
     \]
     If $n$ has the prime factorization $n = p_1^{e_1} p_2^{e_2} \cdots p_r^{e_r}$, then Euler's totient function is given by
     \[
-    \phi(n) = n \prod_{i=1}^{r} \left(1 - \frac{1}{p_i}\right).
+    \varphi(n) = n \prod_{i=1}^{r} \left(1 - \frac{1}{p_i}\right).
     \]
   \end{define}  
   \begin{subanswer}
     The order of an integer modulo $m$ is defined by \nameref{def:order}.
-    A primitive root is defined by \nameref{def:primroot}.
+    A primitive root modulo $m$ is defined by \nameref{def:primroot}.
     Euler's totient function is defined by \nameref{def:euler_totient}.
-    Since $61$ is prime, it follows that $\phi(61) = 60$.
+    Since $61$ is prime, it follows that $\varphi(61) = 60$.
     
     First, a primitive root modulo $61$ is found. Since $60 = 2^2 \cdot 3 \cdot 5$, the prime divisors of $60$ are $2$, $3$, and $5$.
     By the previous problem (Exercise Set 5.1, \#9), an integer $r$ with $61 \nmid r$ is a primitive root modulo $61$ if and only if $r^{60/2} = r^{30} \not\equiv 1 \pmod{61}$, $r^{60/3} = r^{20} \not\equiv 1 \pmod{61}$, and $r^{60/5} = r^{12} \not\equiv 1 \pmod{61}$.
@@ -150,8 +144,15 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     \end{itemize}
     Since $2^{12} \equiv 9 \not\equiv 1$, $2^{20} \equiv 47 \not\equiv 1$, and $2^{30} \equiv 60 \equiv -1 \not\equiv 1 \pmod{61}$, it follows that $2$ is a primitive root modulo $61$.
     
+    \begin{define}{Proposition 5.4}[prop:5.4][red]
+      Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. For any positive integer $i$,
+      \[
+      \operatorname{ord}_m\!\bigl(a^i\bigr)=\frac{\operatorname{ord}_m(a)}{\gcd\bigl(\operatorname{ord}_m(a),\,i\bigr)}.
+      \]
+    \end{define}
+
     Let $g = 2$ be a primitive root modulo $61$. Then every integer $a$ with $\gcd(a, 61) = 1$ can be written as $a \equiv g^k \pmod{61}$ for some $k$ with $1 \leq k \leq 60$.
-    The order of $g^k$ modulo $61$ is $\frac{60}{\gcd(k, 60)}$.
+    By \nameref{prop:5.4}, the order of $g^k$ modulo $61$ is $\frac{\operatorname{ord}_{61}(g)}{\gcd(\operatorname{ord}_{61}(g), k)} = \frac{60}{\gcd(60, k)}$.
     
     For the order to be $10$, it is required that $\frac{60}{\gcd(k, 60)} = 10$, which implies $\gcd(k, 60) = 6$.
     The positive integers $k$ with $1 \leq k \leq 60$ and $\gcd(k, 60) = 6$ are those of the form $k = 6m$ where $\gcd(m, 10) = 1$ and $1 \leq 6m \leq 60$, i.e., $1 \leq m \leq 10$ with $\gcd(m, 10) = 1$.
@@ -184,46 +185,51 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
   \end{subanswer}
 
 
-  \newpage
 
+
+
+
+  \newpage
   \item Exercise Set 5.2, \#12. Let $p$ be an odd prime number.
   \begin{enumerate}
     \item Prove that any primitive root $r$ modulo $p$ is a quadratic non-residue modulo $p$. 
     Deduce that $r^{(p-1)/2} \equiv -1 \pmod{p}$.
     \begin{define}{Theorem 4.4 (Euler's Criterion)}[thm:4.4][red]
-      Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. Then
+      Let $p$ be an odd prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
       \[
       \left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p,
       \]
-      and, since both sides take values in $\{\pm1\}$, we may (and usually do) interpret this congruence as the equality
+      and, since both sides take values in $\{\pm1\}$, this congruence may be (and usually is) interpreted as the equality
       \[
       \left(\frac{a}{p}\right) = a^{\frac{p-1}{2}} \pmod p \in\{1,-1\}.
       \]
-      \begin{subprove}
-        If $\left(\frac{a}{p}\right)=1$, there exists $x_0$ with $x_0^2\equiv a\pmod p$. Then
-        \[
-        a^{\frac{p-1}{2}} \equiv (x_0^2)^{\frac{p-1}{2}} \equiv x_0^{\,p-1}\equiv 1\pmod p
-        \]
-        by Fermat's little theorem.
-        If $\left(\frac{a}{p}\right)=-1$, the nonzero residues $\{1,2,\dots,p-1\}$ partition into $(p-1)/2$ pairs with product $a$: if $i^2\equiv a\pmod p$ for some $i$, then $a$ is a residue, contradiction. Hence $(p-1)!\equiv a^{\frac{p-1}{2}} \pmod p$. By Wilson's theorem, $(p-1)!\equiv -1\pmod p$, so $a^{\frac{p-1}{2}}\equiv -1\pmod p$.
-      \end{subprove}
+    \end{define}
+    \begin{define}{Fermat's Little Theorem}[thm:fermat][red]
+      Let $p$ be a prime and let $a\in\mathbb{Z}$ with $p\nmid a$. Then
+      \[
+      a^{p-1}\equiv 1 \pmod{p}.
+      \]
     \end{define}
     \begin{subprove}
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
+      A quadratic residue modulo $m$ is defined by \nameref{def:quadres}.
+      The Legendre symbol is defined by \nameref{def:legendre}.
       The order of an integer modulo $m$ is defined by \nameref{def:order}.
       Euler's criterion is given by \nameref{thm:4.4}.
+      Fermat's little theorem is given by \nameref{thm:fermat}.
       
-      Let $r$ be a primitive root modulo $p$. Then, by \nameref{def:primroot}, the order of $r$ modulo $p$ equals $\phi(p) = p-1$.
+      Let $r$ be a primitive root modulo $p$. Then, by \nameref{def:primroot}, $\operatorname{ord}_p(r) = \varphi(p) = p-1$.
       
       It is shown that $r$ is a quadratic non-residue modulo $p$ by contradiction.
       Suppose, for the sake of contradiction, that $r$ is a quadratic residue modulo $p$.
-      Then, by \nameref{def:quadres}, there exists $x \in \setZ$ such that $x^2 \equiv r \pmod{p}$.
+      Then, by \nameref{def:quadres}, there exists $x \in \mathbb{Z}$ such that $x^2 \equiv r \pmod{p}$.
       Since $r$ is a primitive root, it follows that $\gcd(r, p) = 1$, so $\gcd(x, p) = 1$ as well.
       Therefore,
       \[
       r^{(p-1)/2} \equiv (x^2)^{(p-1)/2} = x^{p-1} \equiv 1 \pmod{p}
       \]
-      by Fermat's little theorem.
-      However, since the order of $r$ modulo $p$ is $p-1$ and $(p-1)/2 < p-1$, it follows that $r^{(p-1)/2} \not\equiv 1 \pmod{p}$.
+      by \nameref{thm:fermat}.
+      However, since $\operatorname{ord}_p(r) = p-1$ and $(p-1)/2 < p-1$, it follows that $r^{(p-1)/2} \not\equiv 1 \pmod{p}$.
       This is a contradiction.
       Therefore, $r$ is not a quadratic residue modulo $p$, so $r$ is a quadratic non-residue modulo $p$.
       
@@ -235,46 +241,60 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
       Therefore, $r^{(p-1)/2} \equiv -1 \pmod{p}$.
     \end{subprove}
     
-    \item Prove that there are exactly $\frac{p-1}{2}-\phi(p-1)$ incongruent quadratic non-residues 
+    \item Prove that there are exactly $\frac{p-1}{2}-\varphi(p-1)$ incongruent quadratic non-residues 
     modulo $p$ that are not primitive roots modulo $p$.
     \begin{subprove}
-      A primitive root is defined by \nameref{def:primroot}.
-      A quadratic residue is defined by \nameref{def:quadres}.
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
+      A quadratic residue modulo $m$ is defined by \nameref{def:quadres}.
       Euler's totient function is defined by \nameref{def:euler_totient}.
+      Euler's criterion is given by \nameref{thm:4.4}.
       
       Since $p$ is an odd prime, by \nameref{def:quadres}, there are exactly $\frac{p-1}{2}$ quadratic non-residues modulo $p$ among the integers $1, 2, \ldots, p-1$.
       
-      Since $p$ is prime, primitive roots exist modulo $p$. The number of incongruent primitive roots modulo $p$ is $\phi(\phi(p)) = \phi(p-1)$.
+      Since $p$ is prime, primitive roots exist modulo $p$. The number of incongruent primitive roots modulo $p$ is $\varphi(\varphi(p)) = \varphi(p-1)$.
       
       By part (a), every primitive root modulo $p$ is a quadratic non-residue modulo $p$.
-      Therefore, all $\phi(p-1)$ primitive roots are among the $\frac{p-1}{2}$ quadratic non-residues.
+      Therefore, all $\varphi(p-1)$ primitive roots are among the $\frac{p-1}{2}$ quadratic non-residues.
       
       It is shown that no quadratic residue can be a primitive root.
       If $a$ is a quadratic residue modulo $p$, then by \nameref{thm:4.4}, $a^{(p-1)/2} \equiv 1 \pmod{p}$.
-      Since $(p-1)/2 < p-1 = \phi(p)$, the order of $a$ modulo $p$ divides $(p-1)/2$ and is strictly less than $\phi(p)$.
+      Since $(p-1)/2 < p-1 = \varphi(p)$, the order of $a$ modulo $p$ divides $(p-1)/2$ and is strictly less than $\varphi(p)$.
       Therefore, by \nameref{def:primroot}, $a$ is not a primitive root modulo $p$.
       
       Since all primitive roots are quadratic non-residues and no quadratic residue is a primitive root, it follows that the number of quadratic non-residues that are not primitive roots is
       \[
-      \frac{p-1}{2} - \phi(p-1).
+      \frac{p-1}{2} - \varphi(p-1).
       \]
-      Therefore, there are exactly $\frac{p-1}{2}-\phi(p-1)$ incongruent quadratic non-residues modulo $p$ that are not primitive roots modulo $p$.
+      Therefore, there are exactly $\frac{p-1}{2}-\varphi(p-1)$ incongruent quadratic non-residues modulo $p$ that are not primitive roots modulo $p$.
     \end{subprove}
   \end{enumerate}
 
+
+
+
+
+
+
+
+
+
+
+  \newpage
   \item Exercise Set 5.3, \#24(c).
   \begin{enumerate}
     \item Find a primitive root that works modulo $13^m$ for every positive integer $m$. 
     Justify your choice.
-    \begin{subanswer}
-      A primitive root is defined by \nameref{def:primroot}.
-      The order of an integer modulo $m$ is defined by \nameref{def:order}.
-      Euler's totient function is defined by \nameref{def:euler_totient}.
-      
+    \begin{define}{Primitive Roots Modulo Prime Powers}[thm:primroot_primepower][red]
       For an odd prime $p$, if $g$ is a primitive root modulo $p$ and $g^{p-1} \not\equiv 1 \pmod{p^2}$, then $g$ is a primitive root modulo $p^m$ for all $m \geq 1$.
       If $g^{p-1} \equiv 1 \pmod{p^2}$, then $g+p$ is a primitive root modulo $p^m$ for all $m \geq 1$.
+    \end{define}
+    \begin{subanswer}
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
+      Euler's totient function is defined by \nameref{def:euler_totient}.
+      The result on primitive roots modulo prime powers is given by \nameref{thm:primroot_primepower}.
       
-      For $p = 13$, it follows that $\phi(13) = 12$. The prime divisors of $12$ are $2$ and $3$.
+      For $p = 13$, it follows that $\varphi(13) = 12$. The prime divisors of $12$ are $2$ and $3$.
       By Exercise Set 5.1, \#9, an integer $r$ with $13 \nmid r$ is a primitive root modulo $13$ if and only if $r^{12/2} = r^6 \not\equiv 1 \pmod{13}$ and $r^{12/3} = r^4 \not\equiv 1 \pmod{13}$.
       
       It is verified that $2$ is a primitive root modulo $13$:
@@ -291,26 +311,51 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
       Therefore, $2^{12} \equiv 1 - 26 \cdot 5 = 1 - 130 = -129 \equiv 40 \pmod{169}$.
       More directly: $2^{12} = 4096 = 169 \cdot 24 + 40$, so $2^{12} \equiv 40 \not\equiv 1 \pmod{169}$.
       
-      Since $2$ is a primitive root modulo $13$ and $2^{12} \not\equiv 1 \pmod{169}$, it follows that $2$ is a primitive root modulo $13^m$ for all $m \geq 1$.
+      Since $2$ is a primitive root modulo $13$ and $2^{12} \not\equiv 1 \pmod{169}$, by \nameref{thm:primroot_primepower}, it follows that $2$ is a primitive root modulo $13^m$ for all $m \geq 1$.
       
       Therefore, $2$ is a primitive root modulo $13^m$ for every positive integer $m$.
     \end{subanswer}
   \end{enumerate}
 
+
+
+
+
+
+
+
+
   \newpage
   \item Exercise Set 5.4, \#30(a),(e). Use indices to find all incongruent solutions of each congruence below.
+  \begin{define}{Index}[def:index][red]
+  Let $r$ be a primitive root modulo $m$. For $a\in\mathbb{Z}$ with $\gcd(a,m)=1$ the \emph{index of $a$ with respect to $r$}, denoted $\operatorname{ind}_r(a)$, is the least positive integer $n$ such that
+  \[
+  r^n\equiv a\pmod m.
+  \]
+  \end{define}
+  \begin{define}{Properties of indices}[prop:5.20][red]
+  Let $r$ be a primitive root modulo $m$ and let $a,b\in\mathbb{Z}$ with $\gcd(a,m)=\gcd(b,m)=1$. Then
+  \begin{enumerate}
+    \item $\operatorname{ind}_r(1)=\varphi(m)$ (equivalently $\operatorname{ind}_r(1)\equiv 0\pmod{\varphi(m)}$).
+    \item $\operatorname{ind}_r(r)=1$.
+    \item $\operatorname{ind}_r(ab)\equiv \operatorname{ind}_r(a)+\operatorname{ind}_r(b)\pmod{\varphi(m)}$.
+    \item For $n\in\mathbb{Z}_{>0}$: $\operatorname{ind}_r(a^n)\equiv n\operatorname{ind}_r(a)\pmod{\varphi(m)}$.
+  \end{enumerate}
+  \end{define}
   \begin{enumerate}
     \item $8x^7 \equiv 5 \pmod{13}$
     \begin{subanswer}
-      A primitive root is defined by \nameref{def:primroot}.
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
       The index is defined by \nameref{def:index}.
+      The properties of indices are given by \nameref{prop:5.20}.
       From the previous problem (Exercise Set 5.3, \#24(c)), it is known that $2$ is a primitive root modulo $13$.
-      Let $g = 2$ be a primitive root modulo $13$. Then $\phi(13) = 12$.
+      Let $g = 2$ be a primitive root modulo $13$. Then $\varphi(13) = 12$.
       
       The congruence $8x^7 \equiv 5 \pmod{13}$ is equivalent to
       \[
-      \operatorname{ind}_2(8) + 7\operatorname{ind}_2(x) \equiv \operatorname{ind}_2(5) \pmod{12}.
+      \operatorname{ind}_2(8) + 7\operatorname{ind}_2(x) \equiv \operatorname{ind}_2(5) \pmod{12}
       \]
+      by \nameref{prop:5.20}.
       
       The indices are computed:
       \begin{itemize}
@@ -348,9 +393,11 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     
     \item $7x^5 \equiv 2 \pmod{17}$
     \begin{subanswer}
-      A primitive root is defined by \nameref{def:primroot}.
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
       The index is defined by \nameref{def:index}.
-      Since $17$ is prime, it follows that $\phi(17) = 16$. The prime divisors of $16$ are $2$ only.
+      The properties of indices are given by \nameref{prop:5.20}.
+      Euler's totient function is defined by \nameref{def:euler_totient}.
+      Since $17$ is prime, it follows that $\varphi(17) = 16$. The prime divisors of $16$ are $2$ only.
       By Exercise Set 5.1, \#9, an integer $r$ with $17 \nmid r$ is a primitive root modulo $17$ if and only if $r^{16/2} = r^8 \not\equiv 1 \pmod{17}$.
       
       It is verified that $3$ is a primitive root modulo $17$:
@@ -361,11 +408,12 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
       \end{itemize}
       Since $3^8 \equiv -1 \not\equiv 1 \pmod{17}$, it follows that $3$ is a primitive root modulo $17$.
       
-      Let $g = 3$ be a primitive root modulo $17$. Then $\phi(17) = 16$.
+      Let $g = 3$ be a primitive root modulo $17$. Then $\varphi(17) = 16$.
       The congruence $7x^5 \equiv 2 \pmod{17}$ is equivalent to
       \[
-      \operatorname{ind}_3(7) + 5\operatorname{ind}_3(x) \equiv \operatorname{ind}_3(2) \pmod{16}.
+      \operatorname{ind}_3(7) + 5\operatorname{ind}_3(x) \equiv \operatorname{ind}_3(2) \pmod{16}
       \]
+      by \nameref{prop:5.20}.
       
       The indices are computed:
       \begin{itemize}
@@ -407,14 +455,18 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     \end{subanswer}
   \end{enumerate}
 
+
+  \newpage
+
   \item Exercise Set 5.4, \#35. Let $p$ be a prime number and let $r$ and $s$ be primitive roots modulo $p$. 
   Let $a \in \setZ$ with $p \nmid a$.
   \begin{enumerate}
     \item Prove that $\operatorname{ind}_s a \equiv (\operatorname{ind}_r a)(\operatorname{ind}_s r) \pmod{p-1}$. 
     (This corresponds to the change-of-base formula for logarithms.)
     \begin{subprove}
-      A primitive root is defined by \nameref{def:primroot}.
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
       The index is defined by \nameref{def:index}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
       Since $r$ and $s$ are primitive roots modulo $p$, by \nameref{def:index}, there exist unique integers $\operatorname{ind}_r a$, $\operatorname{ind}_s a$, and $\operatorname{ind}_r s$ such that
       \[
       a \equiv r^{\operatorname{ind}_r a} \pmod{p}, \quad a \equiv s^{\operatorname{ind}_s a} \pmod{p}, \quad s \equiv r^{\operatorname{ind}_r s} \pmod{p}.
@@ -429,7 +481,7 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
       r^{\operatorname{ind}_r s \cdot \operatorname{ind}_s a} \equiv r^{\operatorname{ind}_r a} \pmod{p}.
       \]
       
-      Since $r$ is a primitive root modulo $p$, the order of $r$ modulo $p$ is $\phi(p) = p-1$.
+      Since $r$ is a primitive root modulo $p$, by \nameref{def:primroot}, the order of $r$ modulo $p$ is $\varphi(p) = p-1$.
       Therefore, by \nameref{def:order}, it follows that
       \[
       \operatorname{ind}_r s \cdot \operatorname{ind}_s a \equiv \operatorname{ind}_r a \pmod{p-1}.
@@ -455,7 +507,7 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     \item Prove that $\operatorname{ind}_r(p-a) \equiv \operatorname{ind}_r a + \frac{p-1}{2} \pmod{p-1}$. 
     (This congruence yields all indices relative to $r$ after half of these indices are computed.)
     \begin{subprove}
-      A primitive root is defined by \nameref{def:primroot}.
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
       The index is defined by \nameref{def:index}.
       The order of an integer modulo $m$ is defined by \nameref{def:order}.
       Since $r$ is a primitive root modulo $p$, by \nameref{def:index}, there exists a unique integer $\operatorname{ind}_r a$ such that
@@ -468,7 +520,7 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
       p-a \equiv -a \equiv -r^{\operatorname{ind}_r a} \pmod{p}.
       \]
       
-      Since $r$ is a primitive root modulo $p$, the order of $r$ modulo $p$ is $\phi(p) = p-1$.
+      Since $r$ is a primitive root modulo $p$, by \nameref{def:primroot}, the order of $r$ modulo $p$ is $\varphi(p) = p-1$.
       By part (a) of Exercise Set 5.2, \#12, since $r$ is a primitive root modulo $p$, it follows that $r^{(p-1)/2} \equiv -1 \pmod{p}$.
       Therefore,
       \[
@@ -488,30 +540,36 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     \end{subprove}
   \end{enumerate}
 
+
+
+
+  \newpage
   \item Exercise Set 5.4, \#36.
   \begin{enumerate}
     \item Let $p$ be an odd prime number. Prove that the congruence $x^4 \equiv -1 \pmod{p}$ is solvable 
     if and only if $p \equiv 1 \pmod{8}$.
     \begin{define}{Theorem 4.6 (Value of $(-1/p)$)}[thm:4.6][red]
-    Let $p$ be an odd prime. Then
-    \[
-    \left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=
-    \begin{cases}
-    1, & \text{if } p\equiv 1\pmod 4,\\[4pt]
-    -1,& \text{if } p\equiv 3\pmod 4.
-    \end{cases}
-    \]
-    \begin{subprove}
-    By \nameref{thm:4.4} with $a=-1$:
-    \[
-    \left(\frac{-1}{p}\right)\equiv (-1)^{\frac{p-1}{2}}\pmod p.
-    \]
-    Both sides lie in $\{\pm1\}$, hence equality holds. Writing $p=4k+1$ or $p=4k+3$ gives the stated cases.
-    \end{subprove}
+      Let $p$ be an odd prime. Then
+      \[
+      \left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=
+      \begin{cases}
+      1, & \text{if } p\equiv 1\pmod 4,\\[4pt]
+      -1,& \text{if } p\equiv 3\pmod 4.
+      \end{cases}
+      \]
     \end{define}
     \begin{subprove}
+      A quadratic residue modulo $m$ is defined by \nameref{def:quadres}.
+      The Legendre symbol is defined by \nameref{def:legendre}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
+      A primitive root modulo $m$ is defined by \nameref{def:primroot}.
+      Euler's criterion is given by \nameref{thm:4.4}.
+      The value of $\left(\frac{-1}{p}\right)$ is given by \nameref{thm:4.6}.
+      Fermat's little theorem is given by \nameref{thm:fermat}.
+      Euler's theorem is given by \nameref{thm:euler}.
+      
       ($\Rightarrow$) Suppose $x^4 \equiv -1 \pmod{p}$ is solvable for the sake of direct proof.
-      Then there exists $x \in \setZ$ with $p \nmid x$ such that $x^4 \equiv -1 \pmod{p}$.
+      Then there exists $x \in \mathbb{Z}$ with $p \nmid x$ such that $x^4 \equiv -1 \pmod{p}$.
       Since $x^4 \equiv -1 \pmod{p}$, it follows that $(x^2)^2 \equiv -1 \pmod{p}$.
       Therefore, $-1$ is a quadratic residue modulo $p$.
       By \nameref{thm:4.6}, it follows that $\left(\frac{-1}{p}\right) = 1$, which implies $p \equiv 1 \pmod{4}$.
@@ -520,15 +578,15 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
       By \nameref{def:order}, the order of $x$ modulo $p$ divides $8$.
       Since $x^4 \equiv -1 \not\equiv 1 \pmod{p}$, the order of $x$ modulo $p$ does not divide $4$.
       Therefore, the order of $x$ modulo $p$ is exactly $8$.
-      Since the order of $x$ modulo $p$ divides $\phi(p) = p-1$ by Euler's theorem, it follows that $8 \mid p-1$.
+      Since the order of $x$ modulo $p$ divides $\varphi(p) = p-1$ by \nameref{thm:euler}, it follows that $8 \mid p-1$.
       Therefore, $p \equiv 1 \pmod{8}$.
       
       ($\Leftarrow$) Suppose $p \equiv 1 \pmod{8}$ for the sake of direct proof.
       It is shown that $x^4 \equiv -1 \pmod{p}$ is solvable.
       Since $p \equiv 1 \pmod{8}$, there exists a primitive root $g$ modulo $p$ by \nameref{def:primroot}.
       Since $8 \mid p-1$, let $h = g^{(p-1)/8}$.
-      Then $h^8 = g^{p-1} \equiv 1 \pmod{p}$ by Fermat's little theorem.
-      Since $g$ is a primitive root modulo $p$, the order of $g$ modulo $p$ is $\phi(p) = p-1$.
+      Then $h^8 = g^{p-1} \equiv 1 \pmod{p}$ by \nameref{thm:fermat}.
+      Since $g$ is a primitive root modulo $p$, by \nameref{def:primroot}, the order of $g$ modulo $p$ is $\varphi(p) = p-1$.
       Therefore, the order of $h = g^{(p-1)/8}$ modulo $p$ is exactly $8$ (since if the order were a proper divisor $d$ of $8$, then $g^{(p-1)/8 \cdot d} \equiv 1 \pmod{p}$, which would imply the order of $g$ divides $(p-1)/8 \cdot d < p-1$, a contradiction).
       Since the order of $h$ modulo $p$ is $8$ and $h^8 \equiv 1 \pmod{p}$, it follows that $h^4 \not\equiv 1 \pmod{p}$ (otherwise the order would divide $4$).
       Since $(h^4)^2 = h^8 \equiv 1 \pmod{p}$ and $h^4 \not\equiv 1 \pmod{p}$, it follows that $h^4 \equiv -1 \pmod{p}$.
@@ -539,7 +597,11 @@ For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic resid
     
     \item Prove that there are infinitely many primes expressible of the form $8n+1$ where $n$ is a positive integer.
     [Hint: Parallel the proof from Question 6 on Homework 5.]
-    \begin{subprove}      
+    \begin{subprove}
+      A quadratic residue modulo $m$ is defined by \nameref{def:quadres}.
+      The Legendre symbol is defined by \nameref{def:legendre}.
+      The value of $\left(\frac{-1}{p}\right)$ is given by \nameref{thm:4.6}.
+      
       Suppose that only finitely many primes of the form $8n+1$ exist for the sake of contradiction.
       Let these be $p_1, p_2, \ldots, p_r$. Consider $N = (2p_1p_2\cdots p_r)^4 + 1$.
       Since $N$ is odd and greater than $1$, it has an odd prime divisor $q$.

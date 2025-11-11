@@ -24,6 +24,7 @@
 \usepackage{mathtools}
 \usepackage{dsfont} % if you prefer \mathds for sets; otherwise use \mathds
 \usepackage{longdivision}
+\usepackage{enumitem}
 
 
 \usepackage[version=4]{mhchem}
@@ -3340,6 +3341,30 @@ Characterize the primes $p$ for which a given integer $s$ is a quadratic residue
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 \subsection{L15: 5.1 Primitive roots and order of an integer modulo m.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -4083,7 +4108,7 @@ hence
 
 \begin{define}{Proposition 5.20 (Properties of indices)}[prop:5.20]
 Let \(r\) be a primitive root modulo \(m\) and let \(a,b\in\mathbb{Z}\) with \(\gcd(a,m)=\gcd(b,m)=1\). Then
-\begin{enumerate}[(a)]
+\begin{enumerate}
   \item \(\operatorname{ind}_r(1)=\varphi(m)\) (equivalently \(\operatorname{ind}_r(1)\equiv 0\pmod{\varphi(m)}\)).
   \item \(\operatorname{ind}_r(r)=1\).
   \item \(\operatorname{ind}_r(ab)\equiv \operatorname{ind}_r(a)+\operatorname{ind}_r(b)\pmod{\varphi(m)}\).
