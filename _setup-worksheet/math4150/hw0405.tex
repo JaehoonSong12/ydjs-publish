@@ -1,3 +1,47 @@
+\section*{Arithmetic Functions in Nutshell}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\Id}{\text{Id}}
+\begin{table}[htbp]
+  \centering
+  \caption{Arithmetic Functions in Nutshell}
+  \label{tab:arithmetic_functions_summary}
+  \renewcommand{\arraystretch}{1.6}
+  \begin{tabularx}{\textwidth}{@{} l X X @{}}
+    \hline
+    \textbf{\nameref{def:arithmeticfunction}} & 
+    \textbf{Definition} & \textbf{Properties \& Significance} \\
+    \hline
+    \rule{0pt}{3ex}
+    Dirichlet Convolution ($f \star g$, Abelian Group) 
+    & $(f \star g)(n) = \sum_{d \mid n} f(d)g(n/d)$ is a special way to combine two functions $f$ and $g$ over the divisors of $n$.
+    & If $f, g$ are multiplicative, $f \star g$ is also multiplicative. It is associative and commutative. \\
+    \rule{0pt}{3ex}
+    Divisor-Count Function ($\nu = u \star u$)
+    & $\nu(n) = \sum_{d \mid n} 1$ counts the number of positive divisors of $n$.
+    & It is multiplicative. $\nu(12) = \nu(3) \cdot \nu(4) = 2 \cdot 3 = 6$. It is the convolution $\nu = \one \star \one$. \\
+    \rule{0pt}{3ex}
+    Sum-of-Divisors Function  ($\sigma = i \star u$)
+    & $\sigma(n) = \sum_{d \mid n} d$ adds up all the positive divisors of $n$.
+    & It is multiplicative. $\sigma(12) = \sigma(3) \cdot \sigma(4) = 4 \cdot 7 = 28$. It is the convolution $\sigma = \Id \star \one$. \\
+    \rule{0pt}{3ex}
+    Möbius Function 
+    (Square-Free Detector)
+    & $\mu(n)=
+    \begin{cases}
+    1,& n=1\\
+    0,&\text{if } p^2\mid n \\
+    (-1)^r,&\text{if } n=p_1\cdots p_r
+    \end{cases}$ is the special "inverter" key designed to cancel out terms in sums over divisors.
+    & It is multiplicative. Its key "canceling" property is $\sum_{d \mid n} \mu(d) = 0$ for all $n>1$. \\
+    \rule{0pt}{3ex}
+    Möbius Inversion Formula ($F = f \star u \IFF F \star \mu = f \star u \star \mu = f \star \epsilon = f$)
+    & If $F(n) = \sum_{d \mid n} f(d)$, then $f(n) = \sum_{d \mid n} \mu(d)F(n/d)$. This is the "Undo Button" that recovers $f$ from $F$.
+    & This is the main theorem. In convolution terms: If $F = f \star \one$, then $f = F \star \mu$. This proves that $\mu$ is the inverse of $\one$. \\
+    \hline
+  \end{tabularx}
+\end{table}
+\newpage
+
 \begin{define}{Arithmetic Function}[def:arithmeticfunction][red]
   An arithmetic function is a function $f:\setZ_{>0}\to\setC$ that maps 
   positive integers to complex numbers (or real numbers or integers).
@@ -50,6 +94,7 @@
     \[
     \Lambda(n):= \begin{cases}\ln p & \text{if } n=p^{a} \text{ for some } p \text{ prime and } a \in \setZ_{>0} \\ 0 & \text{otherwise}\end{cases}
     \]
+    \textbf{Note}: $\Lambda(n)$ is a \textbf{Prime-Power Detector}.
   \end{define}
   \begin{subprove}
     By \nameref{def:arithmeticfunction}, a function $f$ is multiplicative if $f(mn) = f(m)f(n)$ whenever $\gcd(m,n) = 1$.
@@ -81,6 +126,7 @@
     0, & \text{if } n>1.
     \end{cases}
     \]
+    \textbf{Note}: $\mu(n)$ is a \textbf{Square-Free Detector}.
   \end{define}
   \begin{subprove}
     The Möbius function $\mu$ is defined by \nameref{def:mobius}. 
@@ -172,19 +218,18 @@
 
 
   \item Show that $\sum_{d \mid n} \phi(d)=n$ for all integers $n \geq 1$.
-  \begin{define}{Euler's Totient Function $\phi$}[def:phi][red]
-    For $n\in\setZ_{>0}$, Euler's totient function $\phi(n)$ is defined as the number of positive integers less than or equal to $n$ that are relatively prime to $n$:
+  \begin{define}{Euler's Totient Function $\phi$}[def:euler_totient][red]
+    For $n \in \mathbb{Z}_{>0}$, Euler's totient function $\phi(n)$ is defined as the number of positive integers less than or equal to $n$ that are relatively prime to $n$:
     \[
-    \phi(n):=\#\{k\in\setZ_{>0}:1\leq k\leq n \text{ and } \gcd(k,n)=1\}.
+    \phi(n) := \#\{\,k \in \mathbb{Z}_{>0} : 1 \le k \le n \text{ and } \gcd(k, n) = 1\,\}.
     \]
-    For powers of prime numbers, Euler's totient function is given by:
+    If $n$ has the prime factorization $n = p_1^{e_1} p_2^{e_2} \cdots p_r^{e_r}$, then Euler's totient function is given by
     \[
-    \phi(p^k)=p^k-p^{k-1}=p^{k-1}(p-1) \text{ for prime } p \text{ and } k\geq 1.
+    \phi(n) = n \prod_{i=1}^{r} \left(1 - \frac{1}{p_i}\right).
     \]
-    In particular, for a prime $p$, we have $\phi(p)=p-1$.
-  \end{define}
+  \end{define}  
   \begin{subprove}
-    The Euler totient function $\phi$ is defined by \nameref{def:phi}. 
+    The Euler totient function $\phi$ is defined by \nameref{def:euler_totient}. 
     For each positive integer $k$ with $1 \leq k \leq n$, let $d = \gcd(k, n)$. Then $d \mid n$ and $k = d \cdot k'$ where $\gcd(k', n/d) = 1$ and $1 \leq k' \leq n/d$.
     Conversely, for each divisor $d$ of $n$ and each positive integer $k'$ with $1 \leq k' \leq n/d$ and $\gcd(k', n/d) = 1$, the integer $k = dk'$ satisfies $1 \leq k \leq n$ and $\gcd(k, n) = d$.
     Therefore, the integers $1, 2, \ldots, n$ are partitioned into disjoint sets, where each set corresponds to a divisor $d$ of $n$ and contains exactly $\phi(n/d)$ integers $k$ with $\gcd(k, n) = d$.
@@ -316,6 +361,7 @@
     x^2 \equiv a \pmod{n}.
     \]
     If no such $x$ exists, then $a$ is a \textbf{quadratic non-residue modulo $n$}.
+    For an odd prime $p$, there are exactly $\frac{p-1}{2}$ non-zero quadratic residues modulo $p$ among the integers $1, 2, \ldots, p-1$.
   \end{define}
   \begin{subprove}
     A quadratic residue is defined by \nameref{def:quadres}. 
@@ -424,160 +470,8 @@
 
 
 
-
-
-
-
-
-
   \newpage
-  \item Is $x^{2} \equiv 137 \pmod{401}$ solvable? (Note: 137 and 401 are both prime).
-  \begin{define}{Legendre Symbol}[def:legendre][red]
-    For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, the Legendre symbol $\left(\frac{a}{p}\right)$ is defined by
-    \[
-    \left(\frac{a}{p}\right):=
-    \begin{cases}
-    1, & \text{if } a \text{ is a quadratic residue modulo } p,\\[4pt]
-    -1, & \text{if } a \text{ is a quadratic non-residue modulo } p.
-    \end{cases}
-    \]
-    If $p\mid a$, then $\left(\frac{a}{p}\right)=0$.
-  \end{define}
-  \begin{subanswer}
-    To determine if $x^{2} \equiv 137 \pmod{401}$ is solvable, we compute the Legendre symbol $\left(\frac{137}{401}\right)$.
-    
-    Since both 137 and 401 are odd primes, we apply \nameref{thm:4.9} (Quadratic Reciprocity):
-    \[
-    \left(\frac{137}{401}\right)\left(\frac{401}{137}\right)=(-1)^{\frac{137-1}{2}\cdot\frac{401-1}{2}}=(-1)^{68\cdot200}=(-1)^{13600}=1.
-    \]
-    Therefore, $\left(\frac{137}{401}\right)=\left(\frac{401}{137}\right)$.
-    
-    Now reduce 401 modulo 137: $401 \equiv 401 - 2 \cdot 137 = 401 - 274 = 127 \pmod{137}$.
-    
-    Since $127 \equiv -10 \pmod{137}$, we have
-    \[
-    \left(\frac{401}{137}\right)=\left(\frac{127}{137}\right)=\left(\frac{-10}{137}\right)=\left(\frac{-1}{137}\right)\left(\frac{2}{137}\right)\left(\frac{5}{137}\right).
-    \]
-    
-    By \nameref{thm:4.6}, since $137 \equiv 1 \pmod{4}$, we have $\left(\frac{-1}{137}\right)=1$.
-    
-    By \nameref{thm:4.8}, since $137 \equiv 1 \pmod{8}$, we have $\left(\frac{2}{137}\right)=1$.
-    
-    For $\left(\frac{5}{137}\right)$, by Quadratic Reciprocity:
-    \[
-    \left(\frac{5}{137}\right)\left(\frac{137}{5}\right)=(-1)^{\frac{5-1}{2}\cdot\frac{137-1}{2}}=(-1)^{2\cdot68}=1,
-    \]
-    so $\left(\frac{5}{137}\right)=\left(\frac{137}{5}\right)$.
-    
-    Since $137 \equiv 2 \pmod{5}$, we have $\left(\frac{137}{5}\right)=\left(\frac{2}{5}\right)=-1$ (since 2 is a quadratic non-residue modulo 5).
-    
-    Therefore, $\left(\frac{5}{137}\right)=-1$.
-    
-    Combining all factors:
-    \[
-    \left(\frac{137}{401}\right)=1 \cdot 1 \cdot (-1) = -1.
-    \]
-    
-    Since $\left(\frac{137}{401}\right)=-1$, the congruence $x^{2} \equiv 137 \pmod{401}$ is \textbf{not solvable}.
-  \end{subanswer}
-  
-  \item Show that $\sum_{a=1}^{p-1}\left(\frac{a}{p}\right)=0$.
-  \begin{subprove}
-    For an odd prime $p$, there are exactly $\frac{p-1}{2}$ quadratic residues and $\frac{p-1}{2}$ quadratic non-residues modulo $p$ among the integers $1, 2, \ldots, p-1$.
-    
-    By the definition of the Legendre symbol, for each $a$ with $1 \leq a \leq p-1$:
-    \[
-    \left(\frac{a}{p}\right) = \begin{cases}
-    1, & \text{if } a \text{ is a quadratic residue modulo } p,\\
-    -1, & \text{if } a \text{ is a quadratic non-residue modulo } p.
-    \end{cases}
-    \]
-    
-    Since there are exactly $\frac{p-1}{2}$ values of $a$ for which $\left(\frac{a}{p}\right) = 1$ and exactly $\frac{p-1}{2}$ values of $a$ for which $\left(\frac{a}{p}\right) = -1$, we have:
-    \[
-    \sum_{a=1}^{p-1}\left(\frac{a}{p}\right) = \frac{p-1}{2} \cdot 1 + \frac{p-1}{2} \cdot (-1) = \frac{p-1}{2} - \frac{p-1}{2} = 0.
-    \]
-    
-    Alternatively, by \nameref{thm:4.4} (Euler's Criterion), we have $\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod{p}$ for all $a$ with $1 \leq a \leq p-1$. Since both sides take values in $\{\pm 1\}$, we have $\left(\frac{a}{p}\right) = a^{\frac{p-1}{2}}$ (as integers). The sum $\sum_{a=1}^{p-1} a^{\frac{p-1}{2}}$ equals 0 because exactly $\frac{p-1}{2}$ terms equal $1$ and exactly $\frac{p-1}{2}$ terms equal $-1$.
-  \end{subprove}
-  
-  \item Use Euler's criterion to determine $\left(\frac{-6}{11}\right)$.
-  \begin{subanswer}
-    By Euler's criterion (Theorem 4.4), for an odd prime $p$ and $a \in \setZ$ with $p \nmid a$,
-    \[
-    \left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod{p}.
-    \]
-    
-    For $\left(\frac{-6}{11}\right)$, we have $p=11$ and $a=-6$. Since $11 \nmid -6$, we can apply Euler's criterion:
-    \[
-    \left(\frac{-6}{11}\right) \equiv (-6)^{\frac{11-1}{2}} = (-6)^5 \pmod{11}.
-    \]
-    
-    Now compute $(-6)^5 \pmod{11}$:
-    \begin{align*}
-      (-6)^5 &= -(6^5)\\
-      &= -(6^4 \cdot 6).
-    \end{align*}
-    
-    Compute powers of $6$ modulo $11$:
-    \begin{align*}
-      6^2 &= 36 \equiv 3 \pmod{11},\\
-      6^3 &= 6^2 \cdot 6 \equiv 3 \cdot 6 = 18 \equiv 7 \pmod{11},\\
-      6^4 &= 6^3 \cdot 6 \equiv 7 \cdot 6 = 42 \equiv 9 \pmod{11},\\
-      6^5 &= 6^4 \cdot 6 \equiv 9 \cdot 6 = 54 \equiv 10 \pmod{11}.
-    \end{align*}
-    
-    Therefore,
-    \[
-    (-6)^5 \equiv -10 \equiv 1 \pmod{11}.
-    \]
-    
-    Since the Legendre symbol takes values in $\{\pm 1\}$ and $(-6)^5 \equiv 1 \pmod{11}$, we conclude that
-    \[
-    \left(\frac{-6}{11}\right) = 1.
-    \]
-  \end{subanswer}
-  
-  \item Use Gauss' Lemma to determine $\left(\frac{12}{23}\right)$.
-  \begin{subanswer}
-    By Gauss' Lemma (Lemma 4.7), for an odd prime $p$ and $a \in \setZ$ with $p \nmid a$, let $r_k$ be the least positive residue of $ka$ modulo $p$ for $k=1,2,\ldots,\frac{p-1}{2}$. Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
-    \[
-    \left(\frac{a}{p}\right) = (-1)^n.
-    \]
-    
-    For $\left(\frac{12}{23}\right)$, we have $p=23$ and $a=12$. Since $23 \nmid 12$, we can apply Gauss' Lemma.
-    
-    We need to compute $k \cdot 12 \pmod{23}$ for $k=1,2,\ldots,\frac{23-1}{2}=11$ and count how many are greater than $23/2=11.5$ (i.e., greater than 11):
-    
-    \begin{align*}
-      1 \cdot 12 &\equiv 12 \pmod{23} \quad (\text{12 > 11, count})\\
-      2 \cdot 12 &\equiv 24 \equiv 1 \pmod{23} \quad (\text{1 $\leq$ 11})\\
-      3 \cdot 12 &\equiv 36 \equiv 13 \pmod{23} \quad (\text{13 > 11, count})\\
-      4 \cdot 12 &\equiv 48 \equiv 2 \pmod{23} \quad (\text{2 $\leq$ 11})\\
-      5 \cdot 12 &\equiv 60 \equiv 14 \pmod{23} \quad (\text{14 > 11, count})\\
-      6 \cdot 12 &\equiv 72 \equiv 3 \pmod{23} \quad (\text{3 $\leq$ 11})\\
-      7 \cdot 12 &\equiv 84 \equiv 15 \pmod{23} \quad (\text{15 > 11, count})\\
-      8 \cdot 12 &\equiv 96 \equiv 4 \pmod{23} \quad (\text{4 $\leq$ 11})\\
-      9 \cdot 12 &\equiv 108 \equiv 16 \pmod{23} \quad (\text{16 > 11, count})\\
-      10 \cdot 12 &\equiv 120 \equiv 5 \pmod{23} \quad (\text{5 $\leq$ 11})\\
-      11 \cdot 12 &\equiv 132 \equiv 17 \pmod{23} \quad (\text{17 > 11, count})
-    \end{align*}
-    
-    The residues greater than 11 are: $12, 13, 14, 15, 16, 17$. Therefore, $n=6$.
-    
-    By Gauss' Lemma:
-    \[
-    \left(\frac{12}{23}\right) = (-1)^6 = 1.
-    \]
-  \end{subanswer}
-
-
-
-
-
-
-  \newpage
-  \begin{define}{Theorem 4.4 (Euler's Criterion)}[thm:4.4][blue]
+  \begin{define}{Theorem 4.4 (Euler's Criterion)*}[thm:4.4][red]
     Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. Then
     \[
     \left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p,
@@ -592,39 +486,33 @@
       a^{\frac{p-1}{2}} \equiv (x_0^2)^{\frac{p-1}{2}} \equiv x_0^{\,p-1}\equiv 1\pmod p
       \]
       by Fermat's little theorem.
-      
       If $\left(\frac{a}{p}\right)=-1$, the nonzero residues $\{1,2,\dots,p-1\}$ partition into $(p-1)/2$ pairs with product $a$: if $i^2\equiv a\pmod p$ for some $i$, then $a$ is a residue, contradiction. Hence $(p-1)!\equiv a^{\frac{p-1}{2}} \pmod p$. By Wilson's theorem, $(p-1)!\equiv -1\pmod p$, so $a^{\frac{p-1}{2}}\equiv -1\pmod p$.
     \end{subprove}
   \end{define}
-
-  \item Evaluate the special Legendre symbol $\left(\frac{-1}{p}\right)$ for an odd prime $p$.
-  \begin{define}{Theorem 4.6 (Value of $(-1/p)$)}[thm:4.6][red]
-  Let $p$ be an odd prime. Then
-  \[
-  \left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=
-  \begin{cases}
-  1, & \text{if } p\equiv 1\pmod 4,\\[4pt]
-  -1,& \text{if } p\equiv 3\pmod 4.
-  \end{cases}
-  \]
-  \end{define}
+  \item\label{thm:4.6} Evaluate the special Legendre symbol $\left(\frac{-1}{p}\right)$ for an odd prime $p$.
   \begin{subprove}
-    By \nameref{thm:4.4} (Euler's Criterion) with $a=-1$:
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{thm:4.4}, since $p$ is an odd prime and $p \nmid -1$, it follows that
     \[
     \left(\frac{-1}{p}\right)\equiv (-1)^{\frac{p-1}{2}}\pmod p.
     \]
-    Since both sides take values in $\{\pm1\}$, equality holds:
-    \[
-    \left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}.
-    \]
-    Writing $p=4k+1$ or $p=4k+3$ gives the stated cases.
+    Since both sides take values in $\{\pm1\}$, it follows that $\left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}$.
+    Since $p$ is odd, it follows that $p \equiv 1 \pmod{4}$ or $p \equiv 3 \pmod{4}$.
+    Therefore, 
+      \[
+      \left(\frac{-1}{p}\right)=(-1)^{\frac{p-1}{2}}=
+      \begin{cases}
+      1, & \text{if } p\equiv 1\pmod 4,\\[4pt]
+      -1,& \text{if } p\equiv 3\pmod 4.
+      \end{cases}
+      \]
   \end{subprove}
 
 
 
 
   \newpage
-  \begin{define}{Lemma 4.7 (Gauss's Lemma)}[lem:4.7][blue]
+  \begin{define}{Lemma 4.7 (Gauss's Lemma)*}[lem:4.7][red]
     Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. For $k=1,2,\dots,\frac{p-1}{2}$ let $r_k$ be the least positive residue of $ka$ modulo $p$ (i.e., $r_k\in\{1,\dots,p-1\}$ and $r_k\equiv ka\pmod p$). Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
     \[
     \left(\frac{a}{p}\right)=(-1)^n.
@@ -645,51 +533,17 @@
     Canceling the factorial yields $a^{\frac{p-1}{2}}\equiv (-1)^n\pmod p$. By \nameref{thm:4.4}, $\left(\frac{a}{p}\right)=(-1)^n$.
     \end{subprove}
   \end{define}
-  
   \item Use Gauss' Lemma to argue that $\left(\frac{2}{p}\right)=(-1)^{N}$, where $N=\frac{p-1}{2}-\left\lfloor\frac{p}{4}\right\rfloor$.
   \begin{subprove}
-    By \nameref{lem:4.7} (Gauss's Lemma), for an odd prime $p$ and $a=2$ (with $p \nmid 2$ since $p$ is odd), let $r_k$ be the least positive residue of $2k$ modulo $p$ for $k=1,2,\ldots,\frac{p-1}{2}$. Let $n$ be the number of these residues $r_k$ that are greater than $p/2$. Then
-    \[
-    \left(\frac{2}{p}\right) = (-1)^n.
-    \]
-    
-    For $a=2$, we need to count how many of the residues $r_k = 2k \bmod p$ (for $k=1,2,\ldots,\frac{p-1}{2}$) are greater than $p/2$.
-    
-    The least positive residue of $2k$ modulo $p$ is:
-    \[
-    r_k = \begin{cases}
-    2k, & \text{if } 2k < p,\\
-    2k - p, & \text{if } 2k \geq p.
-    \end{cases}
-    \]
-    
-    For $k \leq \frac{p-1}{2}$, we have $2k \leq p-1 < p$, so $r_k = 2k$ (since $2k < p$).
-    
-    We need $r_k > p/2$, which means $2k > p/2$, so $k > p/4$.
-    
-    Since $k$ is an integer and $1 \leq k \leq \frac{p-1}{2}$, we have:
-    \begin{itemize}
-      \item If $k \leq \lfloor p/4 \rfloor$, then $2k \leq 2\lfloor p/4 \rfloor \leq p/2$, so $r_k = 2k \leq p/2$.
-      \item If $k > \lfloor p/4 \rfloor$ and $k \leq \frac{p-1}{2}$, then $2k > 2\lfloor p/4 \rfloor$. Since $p$ is odd, if $k > \lfloor p/4 \rfloor$, then $2k \geq 2(\lfloor p/4 \rfloor + 1) > p/2$ (because $\lfloor p/4 \rfloor + 1 > p/4$), so $r_k = 2k > p/2$.
-    \end{itemize}
-    
-    Therefore, the number $n$ of residues $r_k$ greater than $p/2$ is the number of integers $k$ such that $\lfloor p/4 \rfloor < k \leq \frac{p-1}{2}$.
-    
-    The count is:
-    \[
-    n = \frac{p-1}{2} - \left\lfloor \frac{p}{4} \right\rfloor.
-    \]
-    
-    By Gauss's Lemma:
-    \[
-    \left(\frac{2}{p}\right) = (-1)^n = (-1)^{\frac{p-1}{2} - \lfloor p/4 \rfloor}.
-    \]
-    
-    Letting $N = \frac{p-1}{2} - \lfloor p/4 \rfloor$, we have:
-    \[
-    \left(\frac{2}{p}\right) = (-1)^N,
-    \]
-    as required.
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{lem:4.7}, since $p$ is an odd prime and $p \nmid 2$, it follows that $\left(\frac{2}{p}\right) = (-1)^n$ where $n$ is the number of least positive residues of $2k \pmod{p}$ for $k=1,2,\ldots,\frac{p-1}{2}$ that are greater than $p/2$.
+    Since $k \leq \frac{p-1}{2}$ implies $2k \leq p-1 < p$, it follows that the least positive residue of $2k \pmod{p}$ is $2k$.
+    Therefore, $r_k > p/2$ if and only if $2k > p/2$, which is equivalent to $k > p/4$.
+    Since $k$ is an integer with $1 \leq k \leq \frac{p-1}{2}$, it follows that $r_k > p/2$ if and only if $k > \lfloor p/4 \rfloor$.
+    Therefore, $n$ is the number of integers $k$ such that $\lfloor p/4 \rfloor < k \leq \frac{p-1}{2}$.
+    It follows that $n = \frac{p-1}{2} - \left\lfloor \frac{p}{4} \right\rfloor$.
+    Therefore, $\left(\frac{2}{p}\right) = (-1)^n = (-1)^{\frac{p-1}{2} - \lfloor p/4 \rfloor}$.
+    Since $N = \frac{p-1}{2} - \lfloor p/4 \rfloor$, it follows that $\left(\frac{2}{p}\right) = (-1)^N$.
   \end{subprove}
   
 
@@ -702,54 +556,41 @@
 
   \item Let $p$ be an odd prime and let $a$ be a quadratic residue mod $p$. Show that if $-a$ is also a quadratic residue modulo $p$, then $p \equiv 1 \pmod{4}$.
   \begin{subprove}
-    Since $a$ is a quadratic residue modulo $p$, by the definition of the Legendre symbol, we have $\left(\frac{a}{p}\right) = 1$.
-    
-    Since $-a$ is also a quadratic residue modulo $p$, we have $\left(\frac{-a}{p}\right) = 1$.
-    
-    By the multiplicativity property of the Legendre symbol:
+    A quadratic residue is defined by \nameref{def:quadres}.
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    Since $a$ and $-a$ are quadratic residues modulo $p$, it follows that $\left(\frac{a}{p}\right) = 1$ and $\left(\frac{-a}{p}\right) = 1$.
+    By the multiplicativity of the Legendre symbol, it follows that
     \[
-    \left(\frac{-a}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{a}{p}\right) = \left(\frac{-1}{p}\right) \cdot 1 = \left(\frac{-1}{p}\right).
+    \left(\frac{-a}{p}\right) = \left(\frac{-1}{p}\right)\left(\frac{a}{p}\right) = \left(\frac{-1}{p}\right).
     \]
-    
     Therefore, $\left(\frac{-1}{p}\right) = 1$.
-    
-    By \nameref{thm:4.6} (Theorem 4.6), we have:
-    \[
-    \left(\frac{-1}{p}\right) = (-1)^{\frac{p-1}{2}}.
-    \]
-    
-    Since $\left(\frac{-1}{p}\right) = 1$, we have:
-    \[
-    (-1)^{\frac{p-1}{2}} = 1.
-    \]
-    
-    This means that $\frac{p-1}{2}$ is even. If $\frac{p-1}{2} = 2k$ for some integer $k$, then $p-1 = 4k$, so $p = 4k+1$.
-    
+    By \nameref{thm:4.6}, it follows that $\left(\frac{-1}{p}\right) = (-1)^{\frac{p-1}{2}}$.
+    Therefore, $(-1)^{\frac{p-1}{2}} = 1$, which implies that $\frac{p-1}{2}$ is even.
+    Since $\frac{p-1}{2}$ is even, it follows that $\frac{p-1}{2} = 2k$ for some $k \in \setZ_{>0}$, so $p-1 = 4k$ and $p = 4k+1$.
     Therefore, $p \equiv 1 \pmod{4}$.
   \end{subprove}
 
-  \item Evaluate the special Legendre symbol $\left(\frac{2}{p}\right)$ for an odd prime $p$.
-  \begin{define}{Theorem 4.8 (Value of $(2/p)$)}[thm:4.8][red]
-  Let $p$ be an odd prime. Then
-  \[
-  \left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}=
-  \begin{cases}
-  1, & \text{if } p\equiv 1,7\pmod 8,\\[4pt]
-  -1,& \text{if } p\equiv 3,5\pmod 8.
-  \end{cases}
-  \]
-  \end{define}
+  \item\label{thm:4.8} Evaluate the special Legendre symbol $\left(\frac{2}{p}\right)$ for an odd prime $p$.
   \begin{subprove}
-    By \nameref{lem:4.7} (Gauss's Lemma), let $n$ be the number of least positive residues of $2,2\cdot2,3\cdot2,\ldots,\frac{p-1}{2}\cdot2$ greater than $p/2$. Then $\left(\frac{2}{p}\right)=(-1)^n$.
-    
-    For $1\le k\le (p-1)/2$, $2k<p/2$ if and only if $k<p/4$, hence exactly $\lfloor p/4\rfloor$ produce residues $<p/2$. Therefore, $n = \frac{p-1}{2} - \lfloor p/4\rfloor$.
-    
-    The parity of $n$ is verified by computing $\frac{p-1}{2}-\lfloor\frac{p}{4}\rfloor \equiv \frac{p^2-1}{8}\pmod 2$ for $p\equiv 1,3,5,7\pmod 8$, which gives the stated formula.
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{lem:4.7}, since $p$ is an odd prime and $p \nmid 2$, it follows that $\left(\frac{2}{p}\right) = (-1)^n$ where $n$ is the number of least positive residues of $2k \pmod{p}$ for $k=1,2,\ldots,\frac{p-1}{2}$ that are greater than $p/2$.
+    Since $k \leq \frac{p-1}{2}$ implies $2k \leq p-1 < p$, it follows that the least positive residue of $2k \pmod{p}$ is $2k$.
+    Therefore, $2k < p/2$ if and only if $k < p/4$.
+    Since $k$ is an integer with $1 \leq k \leq \frac{p-1}{2}$, it follows that exactly $\lfloor p/4 \rfloor$ values of $k$ produce residues less than $p/2$.
+    Therefore, $n = \frac{p-1}{2} - \lfloor p/4 \rfloor$.
+    Since $\frac{p-1}{2} - \lfloor p/4 \rfloor \equiv \frac{p^2-1}{8} \pmod{2}$ for $p \equiv 1,3,5,7 \pmod{8}$, it follows that $\left(\frac{2}{p}\right) = (-1)^{\frac{p^2-1}{8}}$.
+    Therefore, 
+    \[
+    \left(\frac{2}{p}\right)=(-1)^{\frac{p^2-1}{8}}=
+    \begin{cases}
+    1, & \text{if } p\equiv 1,7\pmod 8,\\[4pt]
+    -1,& \text{if } p\equiv 3,5\pmod 8.
+    \end{cases}
+    \]
   \end{subprove}
   
-  \newpage
-  \item State and prove Quadratic Reciprocity.
-  \begin{define}{Theorem 4.9 (Quadratic Reciprocity)}[thm:4.9][blue]
+\newpage
+  \begin{define}{Theorem 4.9 (Quadratic Reciprocity)*}[thm:4.9][red]
     Let $p$ and $q$ be distinct odd primes. Then
     \[
     \left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}.
@@ -762,60 +603,106 @@
     \[
     \left(\frac{p}{q}\right)=-\left(\frac{q}{p}\right).
     \]
+    \begin{subprove}
+      The Legendre symbol is defined by \nameref{def:legendre}.
+      For distinct odd primes $p$ and $q$, let $N_1=\sum_{j=1}^{(q-1)/2}\lfloor jp/q\rfloor$ and $N_2=\sum_{j=1}^{(p-1)/2}\lfloor jq/p\rfloor$.
+      By \nameref{lem:4.7}, it follows that the number of least positive residues of $jp \pmod{q}$ for $j=1,2,\ldots,(q-1)/2$ that are greater than $q/2$ equals $N_1$, so $\left(\frac{p}{q}\right)=(-1)^{N_1}$.
+      Similarly, it follows that $\left(\frac{q}{p}\right)=(-1)^{N_2}$.
+      A lattice-point count on $[0,(p-1)/2]\times[0,(q-1)/2]$ divided by $y=(q/p)x$ yields $N_1+N_2=(p-1)/2\cdot(q-1)/2$.
+      Therefore, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{N_1+N_2}=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}$.
+    \end{subprove}
   \end{define}
-  \begin{define}{Lemma 4.10}[lem:4.10][red]
-    Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$ and $a$ odd. Define
+  \item Is $x^{2} \equiv 137 \pmod{401}$ solvable? (Note: 137 and 401 are both prime).
+  \begin{define}{Legendre Symbol}[def:legendre][red]
+    For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, the Legendre symbol $\left(\frac{a}{p}\right)$ is defined by
     \[
-    N:=\sum_{j=1}^{\frac{p-1}{2}}\left\lfloor\frac{j a}{p}\right\rfloor .
+    \left(\frac{a}{p}\right):=
+    \begin{cases}
+    1, & \text{if } a \text{ is a quadratic residue modulo } p,\\[4pt]
+    -1, & \text{if } a \text{ is a quadratic non-residue modulo } p.
+    \end{cases}
     \]
-    Then
-    \[
-    \left(\frac{a}{p}\right)=(-1)^N.
-    \]
-    Here $\lfloor \cdot\rfloor$ denotes the floor function.
+    If $p\mid a$, then $\left(\frac{a}{p}\right)=0$.
   \end{define}
+  \begin{subanswer}
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    A quadratic residue is defined by \nameref{def:quadres}.
+    By \nameref{thm:4.9}, since $137$ and $401$ are odd primes, it follows that
+    \[
+    \left(\frac{137}{401}\right)\left(\frac{401}{137}\right)=(-1)^{\frac{137-1}{2}\cdot\frac{401-1}{2}}=1,
+    \]
+    so $\left(\frac{137}{401}\right)=\left(\frac{401}{137}\right)$.
+    Since $401 \equiv 127 \equiv -10 \pmod{137}$, it follows that
+    \[
+    \left(\frac{401}{137}\right)=\left(\frac{-10}{137}\right)=\left(\frac{-1}{137}\right)\left(\frac{2}{137}\right)\left(\frac{5}{137}\right).
+    \]
+    By \ref{thm:4.6}, since $137 \equiv 1 \pmod{4}$, it follows that $\left(\frac{-1}{137}\right)=1$.
+    By \ref{thm:4.8}, since $137 \equiv 1 \pmod{8}$, it follows that $\left(\frac{2}{137}\right)=1$.
+    By \nameref{thm:4.9}, it follows that
+    \[
+    \left(\frac{5}{137}\right)\left(\frac{137}{5}\right)=(-1)^{\frac{5-1}{2}\cdot\frac{137-1}{2}}=1,
+    \]
+    so $\left(\frac{5}{137}\right)=\left(\frac{137}{5}\right)$.
+    Since $137 \equiv 2 \pmod{5}$ and $\left(\frac{2}{5}\right)=-1$, it follows that $\left(\frac{5}{137}\right)=-1$.
+    Therefore, $\left(\frac{137}{401}\right)=1 \cdot 1 \cdot (-1) = -1$.
+    Since $\left(\frac{137}{401}\right)=-1$, the congruence $x^{2} \equiv 137 \pmod{401}$ is not solvable.
+  \end{subanswer}
+  
+  \item Show that $\sum_{a=1}^{p-1}\left(\frac{a}{p}\right)=0$.
   \begin{subprove}
-    For distinct odd primes $p$ and $q$, let 
-    $N_1=\sum_{j=1}^{(q-1)/2}\lfloor jp/q\rfloor$ and 
-    $N_2=\sum_{j=1}^{(p-1)/2}\lfloor jq/p\rfloor$. 
-    A lattice-point count on $[0,(p-1)/2]\times[0,(q-1)/2]$ 
-    divided by $y=(q/p)x$ yields $N_1+N_2=(p-1)/2\cdot(q-1)/2$.\\
-    By \nameref{lem:4.10}, $\left(\frac{p}{q}\right)=(-1)^{N_1}$ 
-    and $\left(\frac{q}{p}\right)=(-1)^{N_2}$. Hence, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{N_1+N_2}=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}$.
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    For an odd prime $p$ and $a \in \setZ_{>0}$ with $1 \leq a \leq p-1$, it follows that $\left(\frac{a}{p}\right) \in \{1, -1\}$.
+    By \nameref{def:quadres}, there are exactly $\frac{p-1}{2}$ quadratic residues and $\frac{p-1}{2}$ quadratic non-residues modulo $p$ among the integers $1, 2, \ldots, p-1$.
+    Therefore, exactly $\frac{p-1}{2}$ values of $a$ have $\left(\frac{a}{p}\right) = 1$ and exactly $\frac{p-1}{2}$ values of $a$ have $\left(\frac{a}{p}\right) = -1$.
+    It follows that
+    \[
+    \sum_{a=1}^{p-1}\left(\frac{a}{p}\right) = \frac{p-1}{2} \cdot 1 + \frac{p-1}{2} \cdot (-1) = 0.
+    \]
   \end{subprove}
+  
+  \item Use Euler's criterion to determine $\left(\frac{-6}{11}\right)$.
+  \begin{subanswer}
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{thm:4.4}, since $11$ is an odd prime and $11 \nmid -6$, it follows that
+    \[
+    \left(\frac{-6}{11}\right) \equiv (-6)^{\frac{11-1}{2}} = (-6)^5 \pmod{11}.
+    \]
+    Since $6^2 \equiv 3 \pmod{11}$, $6^3 \equiv 7 \pmod{11}$, $6^4 \equiv 9 \pmod{11}$, and $6^5 \equiv 10 \pmod{11}$, it follows that
+    \[
+    (-6)^5 \equiv -10 \equiv 1 \pmod{11}.
+    \]
+    Since the Legendre symbol takes values in $\{\pm 1\}$ and $(-6)^5 \equiv 1 \pmod{11}$, it follows that $\left(\frac{-6}{11}\right) = 1$.
+  \end{subanswer}
+  
+  \item Use Gauss' Lemma to determine $\left(\frac{12}{23}\right)$.
+  \begin{subanswer}
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{lem:4.7}, since $23$ is an odd prime and $23 \nmid 12$, it follows that $\left(\frac{12}{23}\right) = (-1)^n$ where $n$ is the number of least positive residues of $k \cdot 12 \pmod{23}$ for $k=1,2,\ldots,11$ that are greater than $11$.
+    Since $1 \cdot 12 \equiv 12$, $2 \cdot 12 \equiv 1$, $3 \cdot 12 \equiv 13$, $4 \cdot 12 \equiv 2$, $5 \cdot 12 \equiv 14$, $6 \cdot 12 \equiv 3$, $7 \cdot 12 \equiv 15$, $8 \cdot 12 \equiv 4$, $9 \cdot 12 \equiv 16$, $10 \cdot 12 \equiv 5$, and $11 \cdot 12 \equiv 17 \pmod{23}$, it follows that the residues greater than $11$ are $12, 13, 14, 15, 16, 17$, so $n=6$.
+    Therefore, $\left(\frac{12}{23}\right) = (-1)^6 = 1$.
+  \end{subanswer}
 
+
+  
+  \newpage
   \item Derive a closed form formula for $\left(\frac{5}{p}\right)$ for primes $p \geq 7$.
   \begin{subanswer}
-    We will use \nameref{thm:4.9} (Quadratic Reciprocity) to derive a formula for $\left(\frac{5}{p}\right)$.
-    
-    By Quadratic Reciprocity, since $5$ is an odd prime and $p \geq 7$ is an odd prime distinct from $5$:
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{thm:4.9}, since $5$ is an odd prime and $p \geq 7$ is an odd prime distinct from $5$, it follows that
     \[
-    \left(\frac{5}{p}\right)\left(\frac{p}{5}\right) = (-1)^{\frac{5-1}{2}\cdot\frac{p-1}{2}} = (-1)^{2\cdot\frac{p-1}{2}} = (-1)^{p-1} = 1.
+    \left(\frac{5}{p}\right)\left(\frac{p}{5}\right) = (-1)^{\frac{5-1}{2}\cdot\frac{p-1}{2}} = (-1)^{2\cdot\frac{p-1}{2}} = (-1)^{p-1} = 1,
     \]
-    
-    Therefore, $\left(\frac{5}{p}\right) = \left(\frac{p}{5}\right)$.
-    
-    Now we need to determine $\left(\frac{p}{5}\right)$ for different values of $p$ modulo $5$. Since $p \geq 7$, we have $p \not\equiv 0 \pmod{5}$, so we consider $p \equiv 1, 2, 3, 4 \pmod{5}$.
-    
-    The quadratic residues modulo $5$ are $1^2 \equiv 1$ and $2^2 \equiv 4 \pmod{5}$, so $1$ and $4$ are quadratic residues, while $2$ and $3$ are quadratic non-residues.
-    
-    Therefore:
+    so $\left(\frac{5}{p}\right) = \left(\frac{p}{5}\right)$.
+    Since $p \geq 7$ and $p$ is prime, it follows that $p \not\equiv 0 \pmod{5}$, so $p \equiv 1, 2, 3, 4 \pmod{5}$.
+    By \nameref{def:quadres}, since $1^2 \equiv 1$ and $2^2 \equiv 4 \pmod{5}$, it follows that $1$ and $4$ are quadratic residues modulo $5$, while $2$ and $3$ are quadratic non-residues.
+    Therefore,
     \[
     \left(\frac{p}{5}\right) = \begin{cases}
     1, & \text{if } p \equiv 1 \text{ or } 4 \pmod{5},\\
     -1, & \text{if } p \equiv 2 \text{ or } 3 \pmod{5}.
     \end{cases}
     \]
-    
-    Since $\left(\frac{5}{p}\right) = \left(\frac{p}{5}\right)$, we have:
-    \[
-    \left(\frac{5}{p}\right) = \begin{cases}
-    1, & \text{if } p \equiv 1 \text{ or } 4 \pmod{5},\\
-    -1, & \text{if } p \equiv 2 \text{ or } 3 \pmod{5}.
-    \end{cases}
-    \]
-    
-    Equivalently:
+    Since $\left(\frac{5}{p}\right) = \left(\frac{p}{5}\right)$, it follows that
     \[
     \left(\frac{5}{p}\right) = \begin{cases}
     1, & \text{if } p \equiv \pm 1 \pmod{5},\\
@@ -826,105 +713,46 @@
 
   \item Use Quadratic Reciprocity to determine $\left(\frac{91}{127}\right)$.
   \begin{subanswer}
-    First, factor $91 = 7 \times 13$. By multiplicativity of the Legendre symbol:
+    By multiplicativity of the Legendre symbol and by \nameref{def:legendre}, it follows that
     \[
-    \left(\frac{91}{127}\right) = \left(\frac{7 \times 13}{127}\right) = \left(\frac{7}{127}\right)\left(\frac{13}{127}\right).
+    \left(\frac{91}{127}\right)=\left(\frac{7}{127}\right)\left(\frac{13}{127}\right).
     \]
-    
-    Now compute each factor using Quadratic Reciprocity.
-    
-    \textbf{For $\left(\frac{7}{127}\right)$:}
-    
-    Since $7 \equiv 3 \pmod{4}$ and $127 \equiv 3 \pmod{4}$, we have $7 \equiv 127 \equiv 3 \pmod{4}$. By \nameref{thm:4.9} (Quadratic Reciprocity):
+    For $\left(\frac{7}{127}\right)$, since $7\equiv 3 \pmod{4}$ and $127\equiv 3 \pmod{4}$, by \nameref{thm:4.9} it follows that $\left(\frac{7}{127}\right)= -\left(\frac{127}{7}\right)$.
+    Since $127\equiv 1 \pmod{7}$, it follows that $\left(\frac{127}{7}\right)=\left(\frac{1}{7}\right)=1$, hence $\left(\frac{7}{127}\right)=-1$.
+    For $\left(\frac{13}{127}\right)$, since $13\equiv 1 \pmod{4}$, by \nameref{thm:4.9} it follows that $\left(\frac{13}{127}\right)=\left(\frac{127}{13}\right)$.
+    Since $127\equiv 10 \pmod{13}$, it follows that $\left(\frac{127}{13}\right)=\left(\frac{10}{13}\right)=\left(\frac{2}{13}\right)\left(\frac{5}{13}\right)$.
+    By \nameref{thm:4.8}, since $13\equiv 5 \pmod{8}$, it follows that $\left(\frac{2}{13}\right)=-1$.
+    Since $5\equiv 1 \pmod{4}$ and $13\equiv 1 \pmod{4}$, by \nameref{thm:4.9} it follows that $\left(\frac{5}{13}\right)=\left(\frac{13}{5}\right)$.
+    Since $13\equiv 3 \pmod{5}$ and $3$ is a quadratic non-residue modulo $5$ by \nameref{def:quadres}, it follows that $\left(\frac{13}{5}\right)=\left(\frac{3}{5}\right)=-1$.
+    Therefore, $\left(\frac{13}{127}\right)=(-1)(-1)=1$ and hence
     \[
-    \left(\frac{7}{127}\right)\left(\frac{127}{7}\right) = (-1)^{\frac{7-1}{2}\cdot\frac{127-1}{2}} = (-1)^{3 \cdot 63} = (-1)^{189} = -1.
-    \]
-    Therefore, $\left(\frac{7}{127}\right) = -\left(\frac{127}{7}\right)$.
-    
-    Now reduce $127$ modulo $7$: $127 = 18 \times 7 + 1$, so $127 \equiv 1 \pmod{7}$.
-    \[
-    \left(\frac{127}{7}\right) = \left(\frac{1}{7}\right) = 1.
-    \]
-    Therefore, $\left(\frac{7}{127}\right) = -1$.
-    
-    \textbf{For $\left(\frac{13}{127}\right)$:}
-    
-    Since $13 \equiv 1 \pmod{4}$ and $127 \equiv 3 \pmod{4}$, by Quadratic Reciprocity:
-    \[
-    \left(\frac{13}{127}\right)\left(\frac{127}{13}\right) = (-1)^{\frac{13-1}{2}\cdot\frac{127-1}{2}} = (-1)^{6 \cdot 63} = (-1)^{378} = 1.
-    \]
-    Therefore, $\left(\frac{13}{127}\right) = \left(\frac{127}{13}\right)$.
-    
-    Now reduce $127$ modulo $13$: $127 = 9 \times 13 + 10$, so $127 \equiv 10 \pmod{13}$.
-    \[
-    \left(\frac{127}{13}\right) = \left(\frac{10}{13}\right).
-    \]
-    
-    Factor $10 = 2 \times 5$:
-    \[
-    \left(\frac{10}{13}\right) = \left(\frac{2}{13}\right)\left(\frac{5}{13}\right).
-    \]
-    
-    By \nameref{thm:4.8}, since $13 \equiv 5 \pmod{8}$, we have $\left(\frac{2}{13}\right) = -1$.
-    
-    For $\left(\frac{5}{13}\right)$, since $5 \equiv 1 \pmod{4}$ and $13 \equiv 1 \pmod{4}$, by Quadratic Reciprocity:
-    \[
-    \left(\frac{5}{13}\right)\left(\frac{13}{5}\right) = (-1)^{\frac{5-1}{2}\cdot\frac{13-1}{2}} = (-1)^{2 \cdot 6} = 1.
-    \]
-    Therefore, $\left(\frac{5}{13}\right) = \left(\frac{13}{5}\right)$.
-    
-    Since $13 \equiv 3 \pmod{5}$, we have $\left(\frac{13}{5}\right) = \left(\frac{3}{5}\right)$.
-    
-    The quadratic residues modulo $5$ are $1^2 \equiv 1$ and $2^2 \equiv 4$, so $3$ is a quadratic non-residue modulo $5$. Therefore, $\left(\frac{3}{5}\right) = -1$.
-    
-    Combining:
-    \[
-    \left(\frac{5}{13}\right) = -1, \quad \left(\frac{2}{13}\right) = -1.
-    \]
-    Therefore,
-    \[
-    \left(\frac{13}{127}\right) = \left(\frac{10}{13}\right) = (-1)(-1) = 1.
-    \]
-    
-    \textbf{Final answer:}
-    \[
-    \left(\frac{91}{127}\right) = \left(\frac{7}{127}\right)\left(\frac{13}{127}\right) = (-1)(1) = -1.
+    \left(\frac{91}{127}\right)=\left(\frac{7}{127}\right)\left(\frac{13}{127}\right)=-1\cdot 1=-1.
     \]
   \end{subanswer}
   
   \item Let $p$ and $q=4 p+1$ be primes. Compute $\left(\frac{p}{q}\right)$.
   \begin{subanswer}
-    Since $p$ and $q = 4p+1$ are distinct odd primes, we can apply \nameref{thm:4.9} (Quadratic Reciprocity):
+    The Legendre symbol is defined by \nameref{def:legendre}.
+    By \nameref{thm:4.9}, since $p$ and $q = 4p+1$ are distinct odd primes, it follows that
     \[
     \left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}.
     \]
-    
-    Since $q = 4p+1$, we have:
-    \[
-    \frac{q-1}{2} = \frac{4p+1-1}{2} = \frac{4p}{2} = 2p.
-    \]
-    
-    Therefore,
-    \[
-    \left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2}\cdot 2p} = (-1)^{p(p-1)}.
-    \]
-    
-    Since $p$ and $p-1$ are consecutive integers, one of them is even. Therefore, $p(p-1)$ is even, so:
-    \[
-    (-1)^{p(p-1)} = 1.
-    \]
-    
-    Therefore, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = 1$, which means $\left(\frac{p}{q}\right) = \left(\frac{q}{p}\right)$.
-    
-    Now, since $q = 4p+1$, we have $q \equiv 1 \pmod{p}$. Therefore:
-    \[
-    \left(\frac{q}{p}\right) = \left(\frac{1}{p}\right) = 1,
-    \]
-    since $1$ is always a quadratic residue modulo any prime.
-    
+    Since $q = 4p+1$, it follows that $\frac{q-1}{2} = 2p$.
+    Therefore, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2}\cdot 2p} = (-1)^{p(p-1)}$.
+    Since $p$ and $p-1$ are consecutive integers, it follows that $p(p-1)$ is even, so $(-1)^{p(p-1)} = 1$.
+    Therefore, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = 1$, so $\left(\frac{p}{q}\right) = \left(\frac{q}{p}\right)$.
+    Since $q = 4p+1$, it follows that $q \equiv 1 \pmod{p}$.
+    By \nameref{def:quadres}, since $1$ is a quadratic residue modulo any prime, it follows that $\left(\frac{q}{p}\right) = \left(\frac{1}{p}\right) = 1$.
     Therefore, $\left(\frac{p}{q}\right) = 1$.
   \end{subanswer}
 
+
+
+
+
+
+
+  \newpage
   \item Define the order of an integer modulo $m$ and define primitive roots.
   \begin{define}{Order of an Integer Modulo $m$}[def:order][red]
   For $a\in\setZ$ and $m\in\setZ_{>0}$ with $\gcd(a,m)=1$, the \textbf{order of $a$ modulo $m$} is the smallest positive integer $k$ such that
@@ -933,222 +761,144 @@
   \]
   \end{define}
   \begin{define}{Primitive Root}[def:primroot][red]
-  For $m\in\setZ_{>0}$, an integer $g$ with $\gcd(g,m)=1$ is called a \textbf{primitive root modulo $m$} if the order of $g$ modulo $m$ equals $\phi(m)$, where $\phi$ is Euler's totient function.
-  \[
-  \text{order of } g \text{ modulo } m = \phi(m).
-  \]
-  Equivalently, $g$ is a primitive root modulo $m$ if every integer coprime to $m$ is congruent to a power of $g$ modulo $m$.
-  \end{define}
+    Let $m\in\setZ_{>0}$ and $\phi$ be Euler's totient function.
+    An integer $g$ is a \textbf{primitive root modulo $m$} if it satisfies two properties:
+    \begin{enumerate}
+      \item $\gcd(g,m)=1$
+      \item The order of $g$ modulo $m$ is equal to $\phi(m)$.
+    \end{enumerate}
+    This is equivalent to stating that $g$ is a \textbf{generator} of the multiplicative group of integers modulo $m$, $(\setZ/m\setZ)^\times$. That is, for every integer $a$ with $\gcd(a,m)=1$, there exists an integer $k$ such that
+    \[
+    g^k \equiv a \pmod m.
+    \]
+    \textbf{Note}: The order of $a$ modulo $m$ must be a divisor of $\phi(m)$ by Euler's theorem (Upper Bound).
+    \end{define}
   \begin{subprove}
-    The order of an integer $a$ modulo $m$ is well-defined by the existence of a minimal positive exponent $k$ such that $a^k \equiv 1 \pmod{m}$, which follows from Euler's theorem since $a^{\phi(m)} \equiv 1 \pmod{m}$ when $\gcd(a,m)=1$.
-    
-    A primitive root $g$ modulo $m$ exists if and only if the multiplicative group $(\setZ/m\setZ)^\times$ is cyclic. By Euler's theorem, the order of $g$ modulo $m$ divides $\phi(m)$ for all $g$ with $\gcd(g,m)=1$. When the order of $g$ modulo $m$ equals $\phi(m)$, the powers $g, g^2, \ldots, g^{\phi(m)}$ are all distinct modulo $m$ and represent all elements of $(\setZ/m\setZ)^\times$.
+    The order of an integer modulo $m$ is defined by \nameref{def:order}.
+    For $a \in \setZ$ and $m \in \setZ_{>0}$ with $\gcd(a,m)=1$, 
+    by Euler's theorem it follows that $a^{\phi(m)} \equiv 1 \pmod{m}$, 
+    so there exists a minimal positive integer $k$ such that $a^k \equiv 1 \pmod{m}$.
+    Therefore, the order of $a$ modulo $m$ is well-defined.
+    A primitive root is defined by \nameref{def:primroot}.
+    For $g \in \setZ$ with $\gcd(g,m)=1$, by Euler's theorem it follows that the 
+    order of $g$ modulo $m$ divides $\phi(m)$.
+    When the order of $g$ modulo $m$ equals $\phi(m)$, it follows that the powers 
+    $g, g^2, \ldots, g^{\phi(m)}$ are all distinct modulo $m$ and represent all 
+    elements of $(\setZ/m\setZ)^\times$.
+    Therefore, a primitive root $g$ modulo $m$ exists if and only if the 
+    multiplicative group $(\setZ/m\setZ)^\times$ is cyclic.
   \end{subprove}
-  
-  \item Find the order of 8 modulo 15. Find the order of 9 modulo 17.
+  \item What are all the possible orders of an integer modulo 31.
   \begin{subanswer}
-    \textbf{Order of 8 modulo 15:}
-    
-    First, verify that $\gcd(8,15)=1$ (since 8 and 15 are coprime).
-    
-    By Euler's theorem, the order of 8 modulo 15 divides $\phi(15)$. Since $15 = 3 \times 5$, we have:
+    The order of an integer modulo $m$ is defined by \nameref{def:order}.
+    Euler's totient function is defined by \nameref{def:euler_totient}.
+    Since $31$ is prime, it follows that $\phi(31) = 30$.
+    For $a \in \setZ$ with $\gcd(a, 31) = 1$, by Euler's theorem it follows that $a^{\phi(31)} \equiv 1 \pmod{31}$, so the order of $a$ modulo $31$ divides $\phi(31) = 30$.
+    Therefore, the order of any integer modulo $31$ is a divisor of $30$.
+    Since the positive divisors of $30$ are $\{1, 2, 3, 5, 6, 10, 15, 30\}$, it follows that all possible orders of an integer modulo $31$ are $1, 2, 3, 5, 6, 10, 15, 30$.
+  \end{subanswer}
+  \item Find the order of 8 modulo 15.
+  \begin{subanswer}
+    The order of an integer modulo $m$ is defined by \nameref{def:order}.
+    Euler's totient function is defined by \nameref{def:euler_totient}.
+    Since $\gcd(8,15)=1$, by Euler's theorem it follows that the order of $8$ modulo $15$ divides $\phi(15)$.
+    Since $15 = 3 \times 5$, it follows that
     \[
-    \phi(15) = \phi(3) \cdot \phi(5) = 2 \cdot 4 = 8.
+    \phi(15) = \phi(3) \cdot \phi(5) = 8.
     \]
-    Therefore, the order of 8 modulo 15 must be a divisor of 8, i.e., one of $\{1, 2, 4, 8\}$.
-    
-    Check powers of 8 modulo 15:
-    \begin{align*}
-      8^1 &\equiv 8 \pmod{15} \neq 1,\\
-      8^2 &= 64 \equiv 4 \pmod{15} \neq 1,\\
-      8^4 &= (8^2)^2 = 4^2 = 16 \equiv 1 \pmod{15}.
-    \end{align*}
-    
-    Since $8^4 \equiv 1 \pmod{15}$ and no smaller positive power gives $1$, the order of 8 modulo 15 is 4.
-    
-    \textbf{Order of 9 modulo 17:}
-    
-    First, verify that $\gcd(9,17)=1$ (since 9 and 17 are coprime).
-    
-    By Euler's theorem, the order of 9 modulo 17 divides $\phi(17)$. Since 17 is prime, we have:
+    Therefore, the order of $8$ modulo $15$ is in the set of divisors of $\phi(15) = 8$, which is $\{1, 2, 4, 8\}$.
+    Since $8^1 \equiv 8$, $8^2 \equiv 4$, and $8^4 \equiv 1 \pmod{15}$, 
+    it follows that the order of $8$ modulo $15$ is $4$. So, \textbf{$8$ is NOT a primitive root modulo $15$}.
+  \end{subanswer}
+  \item Find the order of 9 modulo 17.
+  \begin{subanswer}
+    Since $\gcd(9,17)=1$, by Euler's theorem it follows that the order of $9$ modulo $17$ divides $\phi(17)$.
+    Since $17$ is prime, it follows that
     \[
-    \phi(17) = 17 - 1 = 16.
+    \phi(17) = 16.
     \]
-    Therefore, the order of 9 modulo 17 must be a divisor of 16, i.e., one of $\{1, 2, 4, 8, 16\}$.
-    
-    Check powers of 9 modulo 17:
-    \begin{align*}
-      9^1 &\equiv 9 \pmod{17} \neq 1,\\
-      9^2 &= 81 \equiv 81 - 4 \cdot 17 = 81 - 68 = 13 \pmod{17} \neq 1,\\
-      9^4 &= (9^2)^2 = 13^2 = 169 \equiv 169 - 9 \cdot 17 = 169 - 153 = 16 \pmod{17} \neq 1,\\
-      9^8 &= (9^4)^2 = 16^2 = 256 \equiv 256 - 15 \cdot 17 = 256 - 255 = 1 \pmod{17}.
-    \end{align*}
-    
-    Since $9^8 \equiv 1 \pmod{17}$ and no smaller positive power gives $1$, the order of 9 modulo 17 is 8.
+    Therefore, the order of $9$ modulo $17$ is in the set of divisors of $\phi(17) = 16$, which is $\{1, 2, 4, 8, 16\}$.
+    Since $9^1 \equiv 9$, $9^2 \equiv 13$, $9^4 \equiv 16$, and $9^8 \equiv 1 \pmod{17}$, 
+    it follows that the order of $9$ modulo $17$ is $8$. So, \textbf{$9$ is NOT a primitive root modulo $17$}.
+  \end{subanswer}
+  \item If $a$ is a primitive root modulo 31, what is the order of $a^{3}, a^{12}, a^{16}, a^{17}$, $a^{20}$.
+  \begin{subanswer}
+    The order of an integer modulo $m$ is defined by \nameref{def:order}.
+    A primitive root is defined by \nameref{def:primroot}.
+    Since $31$ is prime, it follows that $\phi(31) = 30$.
+    If $a$ is a primitive root modulo $31$, then $a^{30} \equiv 1 \pmod{31}$.
+    Since $(a^k)^d = a^{kd}$, it follows that
+    \[
+    (a^3)^{10} = a^{30} \equiv 1, \quad (a^{12})^5 = a^{60} \equiv 1, \quad (a^{16})^{15} = a^{240} \equiv 1, \quad (a^{17})^{30} = a^{510} \equiv 1, \quad (a^{20})^3 = a^{60} \equiv 1 \pmod{31}.
+    \]
+    Since no smaller positive powers give $1$, the orders are $10, 5, 15, 30, 3$ respectively.
   \end{subanswer}
   
   \item Assuming there is a primitive root modulo 18, how many incongruent primitive roots are there? Do the same question for modulus 19 and modulo 57.
   \begin{subanswer}
-    If $g$ is a primitive root modulo $m$, then $g^k$ is a primitive root modulo $m$ if and only if $\gcd(k, \phi(m)) = 1$. Therefore, if there exists a primitive root modulo $m$, then there are exactly $\phi(\phi(m))$ incongruent primitive roots modulo $m$.
-    
-    \textbf{Modulo 18:}
-    
-    First, compute $\phi(18)$. Since $18 = 2 \times 3^2$, we have:
+    Primitive roots exist precisely for
     \[
-    \phi(18) = 18 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{3}\right) = 18 \cdot \frac{1}{2} \cdot \frac{2}{3} = 6.
+    m\in\{1,2,4, p^k,2p^k\}
+    \]
+    where \(p\) is an odd prime and \(k\ge1\). When they exist, the number of incongruent primitive roots modulo \(m\) equals \(\varphi(\varphi(m))\).
+    
+    \textbf{Modulo $18$.} Since \(18=2\cdot3^2\) is of the form \(2p^k\) (with \(p=3\), \(k=2\)), primitive roots exist. Compute
+    \[
+    \varphi(18)=18\Big(1-\frac{1}{2}\Big)\Big(1-\frac{1}{3}\Big)=18\cdot\frac{1}{2}\cdot\frac{2}{3}=6,
+    \]
+    so the number of incongruent primitive roots is
+    \[
+    \varphi(\varphi(18))=\varphi(6)=2.
     \]
     
-    Assuming there exists a primitive root modulo 18, the number of incongruent primitive roots modulo 18 is:
+    \textbf{Modulo $19$.} Since \(19\) is prime, primitive roots exist and \(\varphi(19)=18\). Thus
     \[
-    \phi(\phi(18)) = \phi(6) = \phi(2 \times 3) = 6 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{3}\right) = 6 \cdot \frac{1}{2} \cdot \frac{2}{3} = 2.
+    \varphi(\varphi(19))=\varphi(18)=6.
     \]
     
-    Therefore, there are 2 incongruent primitive roots modulo 18.
-    
-    \textbf{Modulo 19:}
-    
-    Since 19 is prime, we have:
+    \textbf{Modulo $57$.} Since \(57=3\cdot19\) is the product of two distinct odd primes, \((\mathbb{Z}/57\mathbb{Z})^\times\) is not cyclic, so primitive roots do \emph{not} exist modulo \(57\). Therefore the number of incongruent primitive roots modulo \(57\) is
     \[
-    \phi(19) = 19 - 1 = 18.
+    0.
     \]
+    \end{subanswer}
     
-    Since 19 is an odd prime, there exists a primitive root modulo 19. The number of incongruent primitive roots modulo 19 is:
-    \[
-    \phi(\phi(19)) = \phi(18) = \phi(2 \times 3^2) = 18 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{3}\right) = 18 \cdot \frac{1}{2} \cdot \frac{2}{3} = 6.
-    \]
     
-    Therefore, there are 6 incongruent primitive roots modulo 19.
-    
-    \textbf{Modulo 57:}
-    
-    First, compute $\phi(57)$. Since $57 = 3 \times 19$, we have:
-    \[
-    \phi(57) = \phi(3) \cdot \phi(19) = 2 \cdot 18 = 36.
-    \]
-    
-    Assuming there exists a primitive root modulo 57, the number of incongruent primitive roots modulo 57 is:
-    \[
-    \phi(\phi(57)) = \phi(36) = \phi(2^2 \times 3^2) = 36 \cdot \left(1 - \frac{1}{2}\right)\left(1 - \frac{1}{3}\right) = 36 \cdot \frac{1}{2} \cdot \frac{2}{3} = 12.
-    \]
-    
-    Therefore, there are 12 incongruent primitive roots modulo 57.
-  \end{subanswer}
   
-  \item What are all the possible orders of an integer modulo 31.
-  \begin{subanswer}
-    By Euler's theorem, if $\gcd(a, 31) = 1$, then $a^{\phi(31)} \equiv 1 \pmod{31}$. The order of $a$ modulo 31 must divide $\phi(31)$.
-    
-    Since 31 is prime, we have:
-    \[
-    \phi(31) = 31 - 1 = 30.
-    \]
-    
-    Therefore, the order of any integer $a$ modulo 31 (with $\gcd(a, 31) = 1$) must be a divisor of 30.
-    
-    The positive divisors of 30 are:
-    \[
-    \{1, 2, 3, 5, 6, 10, 15, 30\}.
-    \]
-    
-    Therefore, all possible orders of an integer modulo 31 are: $1, 2, 3, 5, 6, 10, 15, 30$.
-    
-    Note that:
-    \begin{itemize}
-      \item Order 1: $a \equiv 1 \pmod{31}$ (only possibility)
-      \item Order 30: $a$ is a primitive root modulo 31
-      \item Orders 2, 3, 5, 6, 10, 15: These are the possible orders for non-primitive elements
-    \end{itemize}
-  \end{subanswer}
   
-  \item If $a$ is a primitive root modulo 31, what is the order of $a^{3}, a^{12}, a^{16}, a^{17}$, $a^{20}$.
-  \begin{subanswer}
-    If $g$ is a primitive root modulo $m$ with order $\phi(m)$, then the order of $g^k$ modulo $m$ is given by:
-    \[
-    \text{order of } g^k \text{ modulo } m = \frac{\phi(m)}{\gcd(k, \phi(m))}.
-    \]
-    
-    Since 31 is prime, we have $\phi(31) = 30$. If $a$ is a primitive root modulo 31, then the order of $a$ is 30.
-    
-    \textbf{Order of $a^3$:}
-    \[
-    \text{order of } a^3 = \frac{30}{\gcd(3, 30)} = \frac{30}{3} = 10.
-    \]
-    
-    \textbf{Order of $a^{12}$:}
-    \[
-    \text{order of } a^{12} = \frac{30}{\gcd(12, 30)} = \frac{30}{6} = 5.
-    \]
-    
-    \textbf{Order of $a^{16}$:}
-    \[
-    \text{order of } a^{16} = \frac{30}{\gcd(16, 30)} = \frac{30}{2} = 15.
-    \]
-    
-    \textbf{Order of $a^{17}$:}
-    \[
-    \text{order of } a^{17} = \frac{30}{\gcd(17, 30)} = \frac{30}{1} = 30.
-    \]
-    Since $\gcd(17, 30) = 1$, $a^{17}$ is also a primitive root modulo 31.
-    
-    \textbf{Order of $a^{20}$:}
-    \[
-    \text{order of } a^{20} = \frac{30}{\gcd(20, 30)} = \frac{30}{10} = 3.
-    \]
-    
-    Therefore:
-    \begin{itemize}
-      \item Order of $a^3$ is 10
-      \item Order of $a^{12}$ is 5
-      \item Order of $a^{16}$ is 15
-      \item Order of $a^{17}$ is 30 (primitive root)
-      \item Order of $a^{20}$ is 3
-    \end{itemize}
-  \end{subanswer}
   
   \item Compute the order of 2 modulo $1085=5 \cdot 7 \cdot 31$ (this is not meant to be done by brute force).
   \begin{subanswer}
-    Since $1085 = 5 \cdot 7 \cdot 31$ with $\gcd(5,7)=\gcd(5,31)=\gcd(7,31)=1$, by the Chinese Remainder Theorem, the order of 2 modulo 1085 is the least common multiple of the orders of 2 modulo 5, modulo 7, and modulo 31.
+    We use the Chinese Remainder Theorem: since \(1085=5\cdot7\cdot31\) are pairwise coprime, for \(a\in(\Bbb Z/1085\Bbb Z)^\times\) the order of \(a\) modulo \(1085\) is the least common multiple of its orders modulo \(5,7,31\).
     
-    \textbf{Order of 2 modulo 5:}
+    Compute the orders of \(2\) modulo each prime factor.
     
-    Since $\gcd(2,5)=1$ and $\phi(5)=4$, the order of 2 modulo 5 divides 4. Check powers:
-    \begin{align*}
-      2^1 &\equiv 2 \pmod{5} \neq 1,\\
-      2^2 &= 4 \pmod{5} \neq 1,\\
-      2^4 &= 16 \equiv 1 \pmod{5}.
-    \end{align*}
-    Since $2^4 \equiv 1 \pmod{5}$ and no smaller positive power gives $1$, the order of 2 modulo 5 is 4.
-    
-    \textbf{Order of 2 modulo 7:}
-    
-    Since $\gcd(2,7)=1$ and $\phi(7)=6$, the order of 2 modulo 7 divides 6. Check powers:
-    \begin{align*}
-      2^1 &\equiv 2 \pmod{7} \neq 1,\\
-      2^2 &= 4 \pmod{7} \neq 1,\\
-      2^3 &= 8 \equiv 1 \pmod{7}.
-    \end{align*}
-    Since $2^3 \equiv 1 \pmod{7}$ and no smaller positive power gives $1$, the order of 2 modulo 7 is 3.
-    
-    \textbf{Order of 2 modulo 31:}
-    
-    Since $\gcd(2,31)=1$ and $\phi(31)=30$, the order of 2 modulo 31 divides 30. Check powers:
-    \begin{align*}
-      2^1 &\equiv 2 \pmod{31} \neq 1,\\
-      2^2 &= 4 \pmod{31} \neq 1,\\
-      2^4 &= 16 \pmod{31} \neq 1,\\
-      2^5 &= 32 \equiv 1 \pmod{31}.
-    \end{align*}
-    Since $2^5 \equiv 1 \pmod{31}$ and no smaller positive power gives $1$, the order of 2 modulo 31 is 5.
-    
-    \textbf{Order of 2 modulo 1085:}
-    
-    By the Chinese Remainder Theorem, the order of 2 modulo 1085 is the least common multiple of the orders modulo the prime power factors:
+    \textbf{Modulo 5:} \(\varphi(5)=4\). 
     \[
-    \text{order of } 2 \text{ modulo } 1085 = \text{lcm}(4, 3, 5) = \text{lcm}(\text{lcm}(4,3), 5) = \text{lcm}(12, 5) = 60.
+    2^1\equiv2,\quad 2^2\equiv4,\quad 2^4\equiv16\equiv1\pmod5,
+    \]
+    so \(\operatorname{ord}_5(2)=4\).
+    
+    \textbf{Modulo 7:} \(\varphi(7)=6\).
+    \[
+    2^1\equiv2,\quad 2^2\equiv4,\quad 2^3\equiv8\equiv1\pmod7,
+    \]
+    so \(\operatorname{ord}_7(2)=3\).
+    
+    \textbf{Modulo 31:} \(\varphi(31)=30\).
+    \[
+    2^5=32\equiv1\pmod{31},
+    \]
+    and no smaller positive exponent gives 1, hence \(\operatorname{ord}_{31}(2)=5\).
+    
+    Therefore the order of \(2\) modulo \(1085\) is
+    \[
+    \operatorname{ord}_{1085}(2)=\operatorname{lcm}\big(\operatorname{ord}_5(2),\operatorname{ord}_7(2),\operatorname{ord}_{31}(2)\big)
+    =\operatorname{lcm}(4,3,5)=60.
     \]
     
-    Therefore, the order of 2 modulo 1085 is 60.
-  \end{subanswer}
+    Thus \(\boxed{\operatorname{ord}_{1085}(2)=60.}\)
+    \end{subanswer}
+    
 
 \end{enumerate}
 
@@ -1186,1052 +936,793 @@
 
 
 
-% \newpage\handout[true]
-% {\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
-% {Homework 4}
-% {\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 14th October}
-% {Math 4150: HW4}
-% \input{math4150/preface.tex}
-% \input{reference.tex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
+{Homework 4}
+{\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 14th October}
+{Math 4150: HW4}
+\input{math4150/preface.tex}
+\input{reference.tex}
+\newpage
+
+
+
+
+
+\begin{enumerate}
+  \item Exercise Set 3.3, \#40 (with some additional parts).
+  \begin{enumerate}
+    \item Let $a \in \setZ$ with $a>0$. Use induction to prove that
+    $$
+    \sum_{m=1}^a m=\frac{a(a+1)}{2}
+    $$
+    and that
+    $$
+    \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
+    $$
+    \label{prob:3.3.40-a}
+    \begin{subprove}
+      For the sake of induction proof, let $a=1$ for the base case.
+      It is trivial that
+      \[
+      \sum_{m=1}^1 m = 1 = \frac{1(1+1)}{2} \text{ and } \sum_{m=1}^1 m^3 = 1 = \left(\frac{1(1+1)}{2}\right)^2.
+      \]
+      Let $a=k\in\setZ$ where $k \geq 1$. Then, suppose that both formulas hold for the induction hypothesis.
+      That is,
+      \[
+      \sum_{m=1}^k m = \frac{k(k+1)}{2} \text{ and } \sum_{m=1}^k m^3 = \left(\frac{k(k+1)}{2}\right)^2 \text{ for some } k \geq 1.
+      \]
+      Then, 
+      \[
+      \sum_{m=1}^{k+1} m = \sum_{m=1}^k m + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}.
+      \]
+      \[
+      \sum_{m=1}^{k+1} m^3 = \sum_{m=1}^k m^3 + (k+1)^3 = \frac{k^2(k+1)^2}{4} + (k+1)^3 = \frac{(k+1)^2(k^2 + 4k+4)}{4} = \frac{(k+1)^2(k+2)^2}{4}.
+      \]
+      Therefore, by mathematical induction (base case and inductive step), the formula has been proven for all positive integers $a$.
+    \end{subprove}
+
+    \newpage
+
+    \item Let $n \in \setZ$ with $n>0$. Use the previous part to prove that
+    $$
+    \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
+    $$
+    [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
+    \begin{define}{The divisor-count function $v(n)$}[def:vfunction][red]
+    For $n\in\setZ_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
+    \[
+    v(n):=\#\{d\in\setZ_{>0}:d\mid n\}.
+    \]
+    \end{define}
+    \begin{define}{Multiplicativity of $v(n)$}[thm:vmult][red]
+    The function $v(n)$ is multiplicative: if $\gcd(m,n)=1$ then $v(mn)=v(m)v(n)$.
+    \begin{subprove}
+      Let $m,n \in \setZ_{>0}$ with $\gcd(m,n)=1$ and prime factorizations 
+      $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      By \nameref{def:vfunction}, $v(m) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)$ and 
+      $v(n) = (b_1 + 1)(b_2 + 1) \cdots (b_\ell + 1)$.
+      Since $v(mn) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)(b_1 + 1)(b_2 + 1) \cdots (b_\ell + 1) = v(m)v(n)$,
+      the function $v$ is multiplicative by \nameref{def:multprops}.
+    \end{subprove}
+    \end{define}
+    \begin{subprove}
+      Since $v$ is multiplicative by \nameref{thm:vmult}, it is sufficient to 
+      prove the identity for powers of prime numbers.\vspace*{10px}\\
+      Let $n=p^a$ where $p$ is prime and $a\geq 0$. The divisors of $p^a$ are $\set{1,p,p^2,\ldots,p^a}$, 
+      so 
+      \[
+      v(p^k)=k+1 \text{ for } 0\leq k\leq a.
+      \]
+      Thus, by problem \parenref{prob:3.3.40-a},
+      \[
+      \sum_{d\mid p^a} v(d) = \sum_{k=0}^a v(p^k) = \sum_{k=0}^a (k+1) = \sum_{m=1}^{a+1} m = \frac{(a+1)(a+2)}{2}
+      \]
+      and
+      \[
+      \sum_{d\mid p^a} (v(d))^3 = \sum_{k=0}^a (v(p^k))^3 = \sum_{k=0}^a (k+1)^3 
+      = \sum_{m=1}^{a+1} m^3 = \left(\frac{(a+1)(a+2)}{2}\right)^2.
+      \]
+      Thus, it has been proved that 
+      \[
+      \left(\sum_{d\mid p^a} v(d)\right)^2 = \left(\frac{(a+1)(a+2)}{2}\right)^2 = \sum_{d\mid p^a} (v(d))^3.
+      \]
+      By \nameref{thm:vmult}, it is trivial that powers of prime numbers can be generalized to all positive integers $n$.
+      Therefore, it is trivial that 
+      \[
+      \left(\sum_{d\mid n} v(d)\right)^2 = \sum_{d\mid n} (v(d))^3
+      \]
+      for all positive integers $n$.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \newpage
+
+  \item Exercise Set 3.4, \#48.
+  Let $n \in \setZ$ with $n>0$. Prove that
+  $$
+  \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
+  $$
+  \begin{define}{The sum-of-divisors function $\sigma$}[def:sigma][red]
+  For $n\in\setZ_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
+  \[
+  \sigma(n):=\sum_{d\mid n} d.
+  \]
+  For powers of prime numbers, the sum of divisors formula is defined as follows.
+  \[
+  \sigma(n) =\sum_{d\mid p^k} d = 1 + p + p^2 + \cdots + p^k = \frac{p^{k+1}-1}{p-1} \text{ for some prime } p \text{ and } k\geq 0.
+  \]
+  \end{define}
+  \begin{subprove}
+    For any integer $i$ where $1 \le i \le n$, it is trivial that the number $i$ is a factor 
+    of $n!$ by definition as follows.
+    \[
+    n! = 1 \cdot 2 \cdot 3 \cdots n = i \cdot (1 \cdot 2 \cdots (i-1) \cdot (i+1) \cdots n).
+    \]
+
+    Thus, for each integer $i$ where $1 \le i \le n$, the expression $\dfrac{n!}{i}$ is a 
+    positive divisor of $n!$ by definition. Let $D$ be the set of such divisors and a 
+    subset of the universal set, $\setUNIV = \sBUILD{x}{x\text{ is a positive divisor of }n!}$, as follows.
+    \[
+      D = \left\{ \frac{n!}{1}, \frac{n!}{2}, \frac{n!}{3}, \ldots, \frac{n!}{n} \right\}
+    \]
+    Thus, by \nameref{def:sigma}, it is trivial that
+    \[
+      \sum_{d \in D} d = \sum_{i=1}^n \frac{n!}{i} \leq \sum_{d \in \setUNIV} d = \sum_{d\mid n!, d>0} d =\sigma(n!)\text{ where }D \subseteq \setUNIV.
+    \]
+    Therefore, by the property of inequality (division by positive integer), it has been proven that
+    \[
+    \frac{\sigma(n!)}{n!} 
+    \geq \frac{1}{n!} \left( \sum_{i=1}^n \frac{n!}{i} \right) 
+    = \sum_{i=1}^n \left( \frac{1}{n!} \cdot \frac{n!}{i} \right) 
+    = \sum_{i=1}^n \frac{1}{i}
+    \]
+    for $n \in \setZ$ with $n>0$.
+  \end{subprove}
+
+
+
+
+
+  \newpage
+
+  \item Exercise Set 3.5, \#58.
+  \begin{define}{$k$-perfect number}[def:kperfect]
+  Let $k, n \in \setZ$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
+  \end{define}
+  \begin{enumerate}
+    \item Prove that $120$ is $3$-perfect.
+    \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
+    The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
+    \begin{subprove}
+      Let $m,n \in \setZ_{>0}$ with $\gcd(m,n)=1$ and prime factorizations 
+      $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
+      By \nameref{def:sigma}, 
+      \[
+      \sigma(m) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \text{ and } \sigma(n) = \prod_{j=1}^\ell \frac{q_j^{b_j+1}-1}{q_j-1}.
+      \]
+      Since 
+      \[
+      \sigma(mn) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \cdot \prod_{j=1}^\ell \frac{q_j^{b_j+1}-1}{q_j-1} = \sigma(m)\sigma(n),
+      \]
+      the function $\sigma$ is multiplicative by \nameref{def:multprops}.
+    \end{subprove}
+    \end{define}
+    \begin{subprove}
+      The prime factorization of $120$ is $120 = 2^3 \cdot 3 \cdot 5$. 
+      By \nameref{thm:sigmamult}, 
+      \[
+      \sigma(120) = \sigma(2^3)\sigma(3)\sigma(5) = \left(\frac{2^4-1}{2-1}\right) \left(\frac{3^2-1}{3-1}\right) \left(\frac{5^2-1}{5-1}\right) = 15 \cdot 4 \cdot 6 = 360.
+      \]
+      Since $\sigma(120) = 360 = 3 \cdot 120$, it follows that $120$ is $3$-perfect by \nameref{def:kperfect}.
+    \end{subprove}
+
+    \newpage
+    \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
+    \begin{subanswer}
+      Let $n = 2^k \cdot 3 \cdot p$ where all integers $k>0$ and odd primes $p$ such that 
+      $\sigma(n) = 3n$ where $n>1$. That is,
+      \[
+      \sigma(n) =\sigma(2^k \cdot 3 \cdot p) = 3 \cdot (2^k \cdot 3 \cdot p).
+      \]
+      By \nameref{def:sigma} and \nameref{thm:sigmamult}, the function \(\sigma(n)\) is defined as a
+      piecewise function as follows.
+      \[
+        \sigma(n) =
+        \begin{cases}
+          13(2^{k+1}-1) & \text{if } n = 2^k \cdot 3^2 \text{ for } p = 3\\
+          4(2^{k+1}-1)(p+1) & \text{if } n = 2^k \cdot 3 \cdot p \text{ for an odd prime } p \ne 3
+        \end{cases}
+      \]
+      Thus, consider the following equalities to find integer solutions.
+      \[
+        \sigma(n) =
+        \begin{cases}
+          13(2^{k+1}-1) = 27 \cdot 2^k & \text{if } n = 2^k \cdot 3^2 \text{ for } p = 3\\
+          4(2^{k+1}-1)(p+1) = 9 \cdot 2^k \cdot p & \text{if } n = 2^k \cdot 3 \cdot p \text{ for an odd prime } p \ne 3
+        \end{cases}
+      \]
+      \begin{enumerate}
+        \item If $p=3$, then $13(2^{k+1}-1) = 27 \cdot 2^k$, so $26\cdot 2^{k}-13 - 27 \cdot 2^k= 0$, 
+        that is $-13 = 2^k$, which has \textbf{no integer solutions} for $k \in \setZ$.
+        \item If $p$ is an odd prime and $p \neq 3$, then $4(2^{k+1}-1)(p+1) = 9 \cdot 2^k \cdot p$, 
+        so $4(2^{k+1}-1) = p(9 \cdot 2^k - 2^{k+3}+4)$, that is, $$p=\frac{8 \cdot 2^k - 4}{2^k + 4}= 8 - \frac{36}{2^k+4}.$$
+        \begin{itemize}
+          \item $k=0$: $2^0+4=5$. This is not a divisor of 36. (\textbf{Not a solution})
+          \item $k=1$: $2^1+4=6$. $p = 8 - \frac{36}{6} = 8-6=2$. This is not an odd prime. (\textbf{Not a solution})
+          \item $k=2$: $2^2+4=8$. This is not a divisor of 36. (\textbf{Not a solution})
+          \item $k=3$: $2^3+4=12$. $p = 8 - \frac{36}{12} = 8-3=5$. This is an odd prime. $n = 2^3 \cdot 3 \cdot 5 = 120$. (\textbf{Solution})
+          \item $k=4$: $2^4+4=20$. This is not a divisor of 36. (\textbf{Not a solution})
+          \item $k=5$: $2^5+4=36$. $p = 8 - \frac{36}{36} = 8-1=7$. This is an odd prime. $n = 2^5 \cdot 3 \cdot 7 = 672$. (\textbf{Solution})
+          \item $k>5$: $2^k+4 > 36$. This is not a divisor of 36. (\textbf{No solutions})
+        \end{itemize}
+      \end{enumerate}
+      Therefore, the two $3$-perfect numbers of the specified form are $120$ and $672$.
+    \end{subanswer}
+
+    \item Let $n \in \setZ$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
+    \begin{subprove}
+      Suppose $n$ is $p$-perfect for the sake of direct proof, then $\sigma(n) = pn$.
+      Moreover, by the problem statement, it is given that $p$ is a prime that does not divide $n$, which implies that $\gcd(p, n) = 1$.
+      By \nameref{thm:sigmamult}, \nameref{def:sigma}, and the assumption, it follows that
+      \[
+      \sigma(pn) = \sigma(p) \sigma(n) = (p+1) (pn).
+      \]
+      Therefore, by \nameref{def:kperfect} where $k=p+1$, $pn$ is $(p+1)$-perfect.
+    \end{subprove}
+  \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \newpage
+
+
+  \item Exercise Set 3.6, \#65. 
+  \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
+  Let $n \in \setZ$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
+  \[
+  \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \setZ \\ 0 & \text { otherwise }\end{cases}
+  \]
+  \end{define}
+  Prove that
+  \[
+  \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+  \]
+  \begin{define}{The Möbius function $\mu$}[def:mobius][red]
+  The Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
+  \[
+  \mu(n)=
+  \begin{cases}
+  1,& n=1,\\[4pt]
+  0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
+  (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
+  \end{cases}
+  \]
+  where 
+  \[
+    \sum_{d \mid n, d>0} \mu(d) = 0 \text{ for } n>1 \text{ and } \sum_{d \mid 1, d>0} \mu(d) = 1.
+  \]
+  \end{define}
+  \begin{define}{Möbius Inversion Formula}[thm:mobiusinv][red]
+  Let $f$ and $g$ be arithmetic functions. Then, 
+  $f(n)=\sum_{d\mid n, d>0} g(d)$ for all $n\ge 1$ if and only if
+  \[
+  g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d)
+  \]
+  for all $n\ge 1$.
+  \end{define}
+  \begin{subprove}
+    Let \(n=\prod_{i=1}^r p_i^{a_i}\) be the prime factorization of \(n\ge1\).
+    Then, by \nameref{def:vonmangoldt},
+    \[
+      \sum_{d\mid n, d>0}\Lambda(d)
+      =\sum_{i=1}^r\sum_{k=1}^{a_i}\Lambda(p_i^k)
+      =\sum_{i=1}^r\sum_{k=1}^{a_i}\ln p_i
+      =\sum_{i=1}^r a_i\ln p_i
+      =\ln\!\bigg(\prod_{i=1}^r p_i^{a_i}\bigg)
+      =\ln n.
+    \]
+    Let $f(n) = \ln n$ and $g(n) = \Lambda(n)$ for all \(n\ge1\). Then, by \nameref{thm:mobiusinv},
+    \[
+      \Lambda(n)=\sum_{d\mid n, d>0}\mu(d)\ln\!\bigg(\frac{n}{d}\bigg).
+    \]
+    Since \(\ln(n/d)=\ln n-\ln d\), we have
+    \[
+      \Lambda(n)
+      =\ln n\sum_{d\mid n, d>0}\mu(d)-\sum_{d\mid n, d>0}\mu(d)\ln d.
+    \]
+    By \nameref{def:mobius}, \(\sum_{d\mid n, d>0}\mu(d)=0\) for \(n>1\) and 
+    \(\ln(1)=0\). Therefore, for all \(n\ge1\),
+    \[
+      \Lambda(n)=-\sum_{d\mid n, d>0}\mu(d)\ln d.
+    \]
+  \end{subprove}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  \newpage
+
+  \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
+  \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
+  Let $n \in \setZ$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
+  \[
+  (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
+  \]
+  \end{define}
+  \begin{enumerate}
+    \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
+    \label{prob:3.6.69-a}
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
+      \[
+      (f \star g)(n) = \sum_{d \mid n} f(d) g(n/d).
+      \]
+      Since $d$ is a divisor of $n$, by definition, there exists a positive integer $d^\prime$ 
+      such that $n = d^\prime\cdot d$, that is $d^\prime = n/d$. Therefore,
+      \[
+      (f \star g)(n) = \sum_{d' \mid n} f(n/d') g(d') = \sum_{d' \mid n} g(d') f(n/d') = (g \star f)(n).
+      \]
+      Therefore, $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
+    \end{subprove}
+
+    \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. 
+    Prove that $(f \star g) \star h= f \star(g \star h)$.
+    \label{prob:3.6.69-b}
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
+      \[
+      ((f\star g)\star h)(n)
+      = \sum_{d\mid n} (f\star g)(d)\,h\!\left(\frac{n}{d}\right)
+      = \sum_{d\mid n}\left(\sum_{c\mid d} f(c)\,g\!\left(\frac{d}{c}\right)\right)
+        h\!\left(\frac{n}{d}\right).
+      \]
+      Since \(c\) is a divisor of \(d\) and \(d\) is a divisor of \(n\), it follows that \(c\) is a divisor of \(n\),
+      and there exists a positive integer \(x, y\) such that \(n = d\cdot x = c \cdot y \cdot x\).
+      Thus, 
+      \[
+      \sum_{c\mid n} \sum_{y\mid (n/c)} f(c)\,g(y)\,h\!\left(\frac{n}{c y}\right)
+      = \sum_{c\mid n} f(c)\left(\sum_{y\mid (n/c)} g(y)\,h\!\left(\frac{(n/c)}{y}\right)\right)
+      = \sum_{c\mid n} f(c)(g \star h)\left(\frac{n}{c}\right)
+      = (f \star (g \star h))(n).
+      \]
+      Therefore, by both equalities above, 
+      \((f \star g) \star h = f \star (g \star h)\) for all arithmetic functions \(f\), \(g\), and \(h\).
+    \end{subprove}
+
+    \newpage
+
+    \item \textbf{Identity:} For $n \in \setZ$ with $n>0$, let
+    \[
+    \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
+    \]
+    Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
+    \label{prob:3.6.69-c}
+    \begin{subprove}
+      By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
+      \[
+      (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d) = f(n) \cdot 1 = f(n).
+      \]
+      since \(\delta(n/d) = 0\) for all \(n/d > 1\) and \(\delta(1) = 1\).
+      By commutativity proved from problem \parenref{prob:3.6.69-a},
+      \[
+      \delta \star f = f \star \delta = f.
+      \]
+    \end{subprove}
+
+    \item \textbf{Inverses:} For $n \in \setZ$ with $n>0$, let $\mathbf{1}(n)=1$. 
+    In other words, $\mathbf{1}$ is the arithmetic function mapping every positive 
+    integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
+    \label{prob:3.6.69-d}
+    \begin{subprove}
+      By \nameref{def:convolution} and \nameref{def:mobius}, for any $n \in \setZ_{>0}$,
+      \[
+      (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) 
+      = \sum_{d \mid n} \mu(d)
+      = \delta(n)
+      =\begin{cases}
+        1 & \text { if } n=1 \\ 
+        0 & \text { if } n>1
+      \end{cases}.
+      \]
+      Therefore, $(\mu \star \mathbf{1})(n) = \delta(n)$ for all $n > 0$.
+      By commutativity proved from problem \parenref{prob:3.6.69-a},
+      \[
+      \mathbf{1} \star \mu = \mu \star \mathbf{1} = \delta.
+      \]
+    \end{subprove}
+
+    \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
+    [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
+    \begin{subprove}
+      ($\Rightarrow$) Suppose $f = g \star \mathbf{1}$ for the sake of direct proof. 
+      By problem \parenref{prob:3.6.69-a}, \parenref{prob:3.6.69-b}, \parenref{prob:3.6.69-c}, and \parenref{prob:3.6.69-d},
+      \[
+      f \star \mu = \mu \star f = \mu \star (g \star \mathbf{1}) = (\mu \star g) \star \mathbf{1} = g \star (\mu \star \mathbf{1}) = g \star \delta = g.
+      \]
+      ($\Leftarrow$) Suppose $g = \mu \star f$ for the sake of direct proof. Similarly,
+      \[
+      g \star \mathbf{1} = \mathbf{1} \star g = (\mathbf{1} \star \mu) \star f = \delta \star f = f.
+      \]
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $f = g \star \mathbf{1}$ if and only if $g = \mu \star f = f \star \mu$, which is \nameref{thm:mobiusinv}.
+    \end{subprove}
+  \end{enumerate}
+
+\end{enumerate}
+
+
+
 % \newpage
 
 
+% Example. 1,3,4,5,9 are quadratic residues modulo 11.
+% $$
+% \left\{
+% \begin{array}{l}
+% \displaystyle
+% \frac{1}{11} = 1,\quad \frac{4}{11} = 1,\quad \frac{5}{11} = 1,\quad \frac{9}{11} = 1 \\[10pt]
+% \displaystyle
+% \frac{2}{11} = -1,\quad \frac{3}{11} = -1,\quad \frac{6}{11} = -1,\quad \frac{7}{11} = -1,\quad \frac{8}{11} = -1,\quad \frac{10}{11} = -1
+% \end{array}
+% \right.
+% $$
+
+% Example. Find the value of $\frac{3}{7}$.
+% \begin{define}{Quadratic Residue}[def:quadres]
+%   Let $a \in \setZ$ and $n \in \setZ_{>0}$. Then $a$ is a \underbar{quadratic residue modulo $n$} if there exists an integer $x$ such that
+%   \[
+%     x^2 \equiv a \pmod{n}.
+%   \]
+%   If no such integer exists, then $a$ is a \underbar{quadratic non-residue modulo $n$}.
+% \end{define}
+
+% $1^2 \equiv 1 \pmod{7}$
+
+% $2^2 \equiv 4 \pmod{7}$
+
+% $3^2 \equiv 2 \pmod{7}$
 
 
+% By \nameref{def:quadres}, there 
+% are exactly $\frac{p-1}{2}$ quadratic residues modulo $7$. 
+% Thus, $3$ is a quadratic residue modulo $7$.
+
+
+
+% \begin{define}{Euler's Criterion}[thm:eulercrit][red]
+%   Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. Then
+%   \[
+%     a \text{ is a quadratic residue modulo } p \iff a^{(p-1)/2} \equiv 1 \pmod{p}.
+%   \]
+%   Otherwise, $a$ is a quadratic non-residue modulo $p$ if and only if
+%   \[
+%     a^{(p-1)/2} \equiv -1 \pmod{p}.
+%   \]
+%   \begin{subprove}
+%     Assume that $\frac{a}{p}=+1$. Then $a \equiv x^2 \pmod{p}$ 
+%     has a solution. Say $x_0$ is a solution. Then,
+%     \[
+%       a^{(p-1)/2} \equiv (x_0^2)^{(p-1)/2} \equiv x_0^{p-1} \equiv 1 \pmod{p} \equiv \frac{a}{p} \pmod{1}
+%     \]
+%     by Fermat's Little Theorem. 
+%     Conversely, assume that $a^{(p-1)/2} \equiv -1 \pmod{p}$.
+%     For each $i \in \setZ$ with $1 \leq i \leq p-1$, 
+%     there exists a unique $j \in \setZ$ with $1 \leq j \leq p-1$ 
+%     such that
+%     \[
+%       i\cdot j \equiv a \pmod{p}.
+%     \]
+%     if $i \equiv j \pmod{p}$, by Theorem 2.6, then $i^2 \equiv a \pmod{p}$, 
+%     which implies that $a$ is a quadratic residue modulo $p$ and $\frac{a}{p}=1$, a contradiction.
+%     Thus, ${1,2,\dots,p-1}$ will be paired $\frac{p-1}{2}$ pairs.
+%     Each with product $a \pmod{p}$. Then, 
+%     \[
+%       (p-1)! \equiv a^{(p-1)/2} \equiv -1 \pmod{p}.
+%     \]
+%     By Wilson's Theorem, $a$ is a quadratic non-residue modulo $p$ and $\frac{a}{p}=-1$.
+%   \end{subprove}
+% \end{define}
+
+
+
+
+% \newpage
+
+% \begin{define}{Legendre Symbol}[def:legendre]
+%   Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. The \underbar{Legendre symbol} $\frac{a}{p}$ is defined as
+%   \[
+%     \frac{a}{p} = \begin{cases}
+%       1 & \text{if } a \text{ is a quadratic residue modulo } p,\\
+%       -1 & \text{if } a \text{ is a quadratic non-residue modulo } p.
+%     \end{cases}
+%   \]
+% \end{define}
+
+% Proposition 4.5
+% Let $p$ be an odd prime and let $a, b \in \setZ$ with $p \nmid a$ and $p \nmid b$. Then,
+% \begin{enumerate}
+%   \item $\frac{a^2}{p} = 1$.
+%   \item If $a \equiv b \pmod{p}$, then $\frac{a}{p} = \frac{b}{p}$.
+%   \item $\frac{ab}{p} = \frac{a}{p} \cdot \frac{b}{p}$.
+% \end{enumerate}
+% \begin{subprove}
+%   \begin{enumerate}
+%     \item $x^2 \equiv a^2 \pmod{p}$ has a solution $x \equiv a \pmod{p}$.
+%     \item Since $a \equiv b \pmod{p}$, the quadratic congruences to be solved is $x^2 \equiv a \pmod{p}$ and $x^2 \equiv b \pmod{p}$. 
+%     Clearly, $x^2 \equiv a \pmod{p}$ is solvable if and only if $x^2 \equiv b \pmod{p}$ is solvable.
+%     Thus, $\frac{a}{p} = \frac{b}{p}$.
+%     \item $\frac{ab}{p} \equiv (ab)^{(p-1)/2} \equiv a^{(p-1)/2} b^{(p-1)/2} \equiv \frac{a}{p} \cdot \frac{b}{p} \pmod{p}$ 
+%     by \nameref{thm:eulercrit}. Since the only values of the Legendre symbol are $1$ and $-1$, it follows that 
+%     $$\frac{ab}{p} = \frac{a}{p} \cdot \frac{b}{p}$$.
+%   \end{enumerate}
+% \end{subprove}
+
+
+
+
+
+
+
+
+
+
+% \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L13
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \begin{enumerate}
-%   \item Exercise Set 3.3, \#40 (with some additional parts).
-%   \begin{enumerate}
-%     \item Let $a \in \setZ$ with $a>0$. Use induction to prove that
-%     $$
-%     \sum_{m=1}^a m=\frac{a(a+1)}{2}
-%     $$
-%     and that
-%     $$
-%     \sum_{m=1}^a m^3=\left(\frac{a(a+1)}{2}\right)^2
-%     $$
-%     \label{prob:3.3.40-a}
-%     \begin{subprove}
-%       For the sake of induction proof, let $a=1$ for the base case.
-%       It is trivial that
-%       \[
-%       \sum_{m=1}^1 m = 1 = \frac{1(1+1)}{2} \text{ and } \sum_{m=1}^1 m^3 = 1 = \left(\frac{1(1+1)}{2}\right)^2.
-%       \]
-%       Let $a=k\in\setZ$ where $k \geq 1$. Then, suppose that both formulas hold for the induction hypothesis.
-%       That is,
-%       \[
-%       \sum_{m=1}^k m = \frac{k(k+1)}{2} \text{ and } \sum_{m=1}^k m^3 = \left(\frac{k(k+1)}{2}\right)^2 \text{ for some } k \geq 1.
-%       \]
-%       Then, 
-%       \[
-%       \sum_{m=1}^{k+1} m = \sum_{m=1}^k m + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}.
-%       \]
-%       \[
-%       \sum_{m=1}^{k+1} m^3 = \sum_{m=1}^k m^3 + (k+1)^3 = \frac{k^2(k+1)^2}{4} + (k+1)^3 = \frac{(k+1)^2(k^2 + 4k+4)}{4} = \frac{(k+1)^2(k+2)^2}{4}.
-%       \]
-%       Therefore, by mathematical induction (base case and inductive step), the formula has been proven for all positive integers $a$.
-%     \end{subprove}
+%   \item Compute $(7/53)$. Since $53\equiv 1\pmod 4$.
 
-%     \newpage
-
-%     \item Let $n \in \setZ$ with $n>0$. Use the previous part to prove that
-%     $$
-%     \left(\sum_{d \mid n, d>0} v(d)\right)^2=\sum_{d \mid n, d>0}(v(d))^3
-%     $$
-%     [Hint: It suffices to prove the equation in (b) for powers of prime numbers (justify this)]
-%     \begin{define}{The divisor-count function $v(n)$}[def:vfunction][red]
-%     For $n\in\setZ_{>0}$, the divisor-count function $v(n)$ is defined as the number of positive divisors of $n$:
-%     \[
-%     v(n):=\#\{d\in\setZ_{>0}:d\mid n\}.
-%     \]
-%     \end{define}
-%     \begin{define}{Multiplicativity of $v(n)$}[thm:vmult][red]
-%     The function $v(n)$ is multiplicative: if $\gcd(m,n)=1$ then $v(mn)=v(m)v(n)$.
-%     \begin{subprove}
-%       Let $m,n \in \setZ_{>0}$ with $\gcd(m,n)=1$ and prime factorizations 
-%       $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
-%       Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
-%       By \nameref{def:vfunction}, $v(m) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)$ and 
-%       $v(n) = (b_1 + 1)(b_2 + 1) \cdots (b_\ell + 1)$.
-%       Since $v(mn) = (a_1 + 1)(a_2 + 1) \cdots (a_k + 1)(b_1 + 1)(b_2 + 1) \cdots (b_\ell + 1) = v(m)v(n)$,
-%       the function $v$ is multiplicative by \nameref{def:multprops}.
-%     \end{subprove}
-%     \end{define}
-%     \begin{subprove}
-%       Since $v$ is multiplicative by \nameref{thm:vmult}, it is sufficient to 
-%       prove the identity for powers of prime numbers.\vspace*{10px}\\
-%       Let $n=p^a$ where $p$ is prime and $a\geq 0$. The divisors of $p^a$ are $\set{1,p,p^2,\ldots,p^a}$, 
-%       so 
-%       \[
-%       v(p^k)=k+1 \text{ for } 0\leq k\leq a.
-%       \]
-%       Thus, by problem \parenref{prob:3.3.40-a},
-%       \[
-%       \sum_{d\mid p^a} v(d) = \sum_{k=0}^a v(p^k) = \sum_{k=0}^a (k+1) = \sum_{m=1}^{a+1} m = \frac{(a+1)(a+2)}{2}
-%       \]
-%       and
-%       \[
-%       \sum_{d\mid p^a} (v(d))^3 = \sum_{k=0}^a (v(p^k))^3 = \sum_{k=0}^a (k+1)^3 
-%       = \sum_{m=1}^{a+1} m^3 = \left(\frac{(a+1)(a+2)}{2}\right)^2.
-%       \]
-%       Thus, it has been proved that 
-%       \[
-%       \left(\sum_{d\mid p^a} v(d)\right)^2 = \left(\frac{(a+1)(a+2)}{2}\right)^2 = \sum_{d\mid p^a} (v(d))^3.
-%       \]
-%       By \nameref{thm:vmult}, it is trivial that powers of prime numbers can be generalized to all positive integers $n$.
-%       Therefore, it is trivial that 
-%       \[
-%       \left(\sum_{d\mid n} v(d)\right)^2 = \sum_{d\mid n} (v(d))^3
-%       \]
-%       for all positive integers $n$.
-%     \end{subprove}
-%   \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%   \newpage
-
-%   \item Exercise Set 3.4, \#48.
-%   Let $n \in \setZ$ with $n>0$. Prove that
-%   $$
-%   \frac{\sigma(n!)}{n!} \geq \sum_{i=1}^n \frac{1}{i}
-%   $$
-%   \begin{define}{The sum-of-divisors function $\sigma$}[def:sigma][red]
-%   For $n\in\setZ_{>0}$, the sum-of-divisors function $\sigma(n)$ is defined as the sum of all positive divisors of $n$:
+%   by Quadratic Reciprocity (\nameref{thm:4.9}) we have
 %   \[
-%   \sigma(n):=\sum_{d\mid n} d.
+%   \left(\frac{7}{53}\right)=\left(\frac{53}{7}\right).
 %   \]
-%   For powers of prime numbers, the sum of divisors formula is defined as follows.
+%   Reduce $53$ modulo $7$: $53\equiv 4\pmod 7$. Thus
 %   \[
-%   \sigma(n) =\sum_{d\mid p^k} d = 1 + p + p^2 + \cdots + p^k = \frac{p^{k+1}-1}{p-1} \text{ for some prime } p \text{ and } k\geq 0.
+%   \left(\frac{7}{53}\right)=\left(\frac{4}{7}\right)=1,
 %   \]
-%   \end{define}
-%   \begin{subprove}
-%     For any integer $i$ where $1 \le i \le n$, it is trivial that the number $i$ is a factor 
-%     of $n!$ by definition as follows.
-%     \[
-%     n! = 1 \cdot 2 \cdot 3 \cdots n = i \cdot (1 \cdot 2 \cdots (i-1) \cdot (i+1) \cdots n).
-%     \]
+%   because $4\equiv 2^2$ is a square modulo $7$.
 
-%     Thus, for each integer $i$ where $1 \le i \le n$, the expression $\dfrac{n!}{i}$ is a 
-%     positive divisor of $n!$ by definition. Let $D$ be the set of such divisors and a 
-%     subset of the universal set, $\setUNIV = \sBUILD{x}{x\text{ is a positive divisor of }n!}$, as follows.
-%     \[
-%       D = \left\{ \frac{n!}{1}, \frac{n!}{2}, \frac{n!}{3}, \ldots, \frac{n!}{n} \right\}
-%     \]
-%     Thus, by \nameref{def:sigma}, it is trivial that
-%     \[
-%       \sum_{d \in D} d = \sum_{i=1}^n \frac{n!}{i} \leq \sum_{d \in \setUNIV} d = \sum_{d\mid n!, d>0} d =\sigma(n!)\text{ where }D \subseteq \setUNIV.
-%     \]
-%     Therefore, by the property of inequality (division by positive integer), it has been proven that
-%     \[
-%     \frac{\sigma(n!)}{n!} 
-%     \geq \frac{1}{n!} \left( \sum_{i=1}^n \frac{n!}{i} \right) 
-%     = \sum_{i=1}^n \left( \frac{1}{n!} \cdot \frac{n!}{i} \right) 
-%     = \sum_{i=1}^n \frac{1}{i}
-%     \]
-%     for $n \in \setZ$ with $n>0$.
-%   \end{subprove}
-
-
-
-
-
-%   \newpage
-
-%   \item Exercise Set 3.5, \#58.
-%   \begin{define}{$k$-perfect number}[def:kperfect]
-%   Let $k, n \in \setZ$ with $k, n>1$. Then $n$ is said to be $k$-perfect if $\sigma(n)=k n$ (Note: A 2-perfect number is perfect in the usual sense).
-%   \end{define}
-%   \begin{enumerate}
-%     \item Prove that $120$ is $3$-perfect.
-%     \begin{define}{Multiplicativity of $\sigma$}[thm:sigmamult][red]
-%     The function $\sigma(n)$ is multiplicative: if $\gcd(m,n)=1$ then $\sigma(mn)=\sigma(m)\sigma(n)$.
-%     \begin{subprove}
-%       Let $m,n \in \setZ_{>0}$ with $\gcd(m,n)=1$ and prime factorizations 
-%       $m = p_1^{a_1} \cdots p_k^{a_k}$ and $n = q_1^{b_1} \cdots q_\ell^{b_\ell}$.
-%       Then $mn = p_1^{a_1} \cdots p_k^{a_k} q_1^{b_1} \cdots q_\ell^{b_\ell}$.
-%       By \nameref{def:sigma}, 
-%       \[
-%       \sigma(m) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \text{ and } \sigma(n) = \prod_{j=1}^\ell \frac{q_j^{b_j+1}-1}{q_j-1}.
-%       \]
-%       Since 
-%       \[
-%       \sigma(mn) = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \cdot \prod_{j=1}^\ell \frac{q_j^{b_j+1}-1}{q_j-1} = \sigma(m)\sigma(n),
-%       \]
-%       the function $\sigma$ is multiplicative by \nameref{def:multprops}.
-%     \end{subprove}
-%     \end{define}
-%     \begin{subprove}
-%       The prime factorization of $120$ is $120 = 2^3 \cdot 3 \cdot 5$. 
-%       By \nameref{thm:sigmamult}, 
-%       \[
-%       \sigma(120) = \sigma(2^3)\sigma(3)\sigma(5) = \left(\frac{2^4-1}{2-1}\right) \left(\frac{3^2-1}{3-1}\right) \left(\frac{5^2-1}{5-1}\right) = 15 \cdot 4 \cdot 6 = 360.
-%       \]
-%       Since $\sigma(120) = 360 = 3 \cdot 120$, it follows that $120$ is $3$-perfect by \nameref{def:kperfect}.
-%     \end{subprove}
-
-%     \newpage
-%     \item Find all $3$-perfect numbers of the form $2^k 3 p$ where $p$ is an odd prime number.
-%     \begin{subanswer}
-%       Let $n = 2^k \cdot 3 \cdot p$ where all integers $k>0$ and odd primes $p$ such that 
-%       $\sigma(n) = 3n$ where $n>1$. That is,
-%       \[
-%       \sigma(n) =\sigma(2^k \cdot 3 \cdot p) = 3 \cdot (2^k \cdot 3 \cdot p).
-%       \]
-%       By \nameref{def:sigma} and \nameref{thm:sigmamult}, the function \(\sigma(n)\) is defined as a
-%       piecewise function as follows.
-%       \[
-%         \sigma(n) =
-%         \begin{cases}
-%           13(2^{k+1}-1) & \text{if } n = 2^k \cdot 3^2 \text{ for } p = 3\\
-%           4(2^{k+1}-1)(p+1) & \text{if } n = 2^k \cdot 3 \cdot p \text{ for an odd prime } p \ne 3
-%         \end{cases}
-%       \]
-%       Thus, consider the following equalities to find integer solutions.
-%       \[
-%         \sigma(n) =
-%         \begin{cases}
-%           13(2^{k+1}-1) = 27 \cdot 2^k & \text{if } n = 2^k \cdot 3^2 \text{ for } p = 3\\
-%           4(2^{k+1}-1)(p+1) = 9 \cdot 2^k \cdot p & \text{if } n = 2^k \cdot 3 \cdot p \text{ for an odd prime } p \ne 3
-%         \end{cases}
-%       \]
-%       \begin{enumerate}
-%         \item If $p=3$, then $13(2^{k+1}-1) = 27 \cdot 2^k$, so $26\cdot 2^{k}-13 - 27 \cdot 2^k= 0$, 
-%         that is $-13 = 2^k$, which has \textbf{no integer solutions} for $k \in \setZ$.
-%         \item If $p$ is an odd prime and $p \neq 3$, then $4(2^{k+1}-1)(p+1) = 9 \cdot 2^k \cdot p$, 
-%         so $4(2^{k+1}-1) = p(9 \cdot 2^k - 2^{k+3}+4)$, that is, $$p=\frac{8 \cdot 2^k - 4}{2^k + 4}= 8 - \frac{36}{2^k+4}.$$
-%         \begin{itemize}
-%           \item $k=0$: $2^0+4=5$. This is not a divisor of 36. (\textbf{Not a solution})
-%           \item $k=1$: $2^1+4=6$. $p = 8 - \frac{36}{6} = 8-6=2$. This is not an odd prime. (\textbf{Not a solution})
-%           \item $k=2$: $2^2+4=8$. This is not a divisor of 36. (\textbf{Not a solution})
-%           \item $k=3$: $2^3+4=12$. $p = 8 - \frac{36}{12} = 8-3=5$. This is an odd prime. $n = 2^3 \cdot 3 \cdot 5 = 120$. (\textbf{Solution})
-%           \item $k=4$: $2^4+4=20$. This is not a divisor of 36. (\textbf{Not a solution})
-%           \item $k=5$: $2^5+4=36$. $p = 8 - \frac{36}{36} = 8-1=7$. This is an odd prime. $n = 2^5 \cdot 3 \cdot 7 = 672$. (\textbf{Solution})
-%           \item $k>5$: $2^k+4 > 36$. This is not a divisor of 36. (\textbf{No solutions})
-%         \end{itemize}
-%       \end{enumerate}
-%       Therefore, the two $3$-perfect numbers of the specified form are $120$ and $672$.
-%     \end{subanswer}
-
-%     \item Let $n \in \setZ$ with $n>1$ and let $p$ be a prime number not dividing $n$. Prove that if $n$ is $p$-perfect, then $p n$ is $(p+1)$-perfect.
-%     \begin{subprove}
-%       Suppose $n$ is $p$-perfect for the sake of direct proof, then $\sigma(n) = pn$.
-%       Moreover, by the problem statement, it is given that $p$ is a prime that does not divide $n$, which implies that $\gcd(p, n) = 1$.
-%       By \nameref{thm:sigmamult}, \nameref{def:sigma}, and the assumption, it follows that
-%       \[
-%       \sigma(pn) = \sigma(p) \sigma(n) = (p+1) (pn).
-%       \]
-%       Therefore, by \nameref{def:kperfect} where $k=p+1$, $pn$ is $(p+1)$-perfect.
-%     \end{subprove}
-%   \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%   \newpage
-
-
-%   \item Exercise Set 3.6, \#65. 
-%   \begin{define}{Von Mangoldt's function}[def:vonmangoldt]
-%   Let $n \in \setZ$ with $n>0$. Von Mangoldt's function, denoted $\Lambda(n)$, is given by
+%   \item Compute $\left(\frac{-158}{101}\right)$. We compute
 %   \[
-%   \Lambda(n):= \begin{cases}\ln p & \text { if } n=p^a \text { for some } p \text { prime and } a \in \setZ \\ 0 & \text { otherwise }\end{cases}
+%   \left(\frac{-158}{101}\right)=\left(\frac{-1}{101}\right)\left(\frac{158}{101}\right).
 %   \]
-%   \end{define}
-%   Prove that
+%   Since $101\equiv 1\pmod 4$, $\left(\frac{-1}{101}\right)=1$, so
 %   \[
-%   \Lambda(n)=-\sum_{d \mid n, d>0} \mu(d) \ln d
+%   \left(\frac{-158}{101}\right)=\left(\frac{158}{101}\right).
 %   \]
-%   \begin{define}{The Möbius function $\mu$}[def:mobius][red]
-%   The Möbius function $\mu:\setZ_{>0}\to\{-1,0,1\}$ is defined by
+%   Reduce $158\pmod{101}$: $158\equiv 57\pmod{101}$. Factor $57=3\cdot 19$, so multiplicativity gives
 %   \[
-%   \mu(n)=
-%   \begin{cases}
-%   1,& n=1,\\[4pt]
-%   0,&\text{if } p^2\mid n \text{ for some prime } p,\\[4pt]
-%   (-1)^r,&\text{if } n=p_1p_2\cdots p_r \text{ is a product of } r \text{ distinct primes.}
-%   \end{cases}
+%   \left(\frac{57}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{19}{101}\right).
 %   \]
-%   where 
+%   Compute $\left(\frac{3}{101}\right)$ by reciprocity. Since $(3-1)/2=1$ and $(101-1)/2=50$, their product is even,
+%   so no sign change occurs:
 %   \[
-%     \sum_{d \mid n, d>0} \mu(d) = 0 \text{ for } n>1 \text{ and } \sum_{d \mid 1, d>0} \mu(d) = 1.
+%   \left(\frac{3}{101}\right)=\left(\frac{101}{3}\right)=\left(\frac{2}{3}\right)=-1,
 %   \]
-%   \end{define}
-%   \begin{define}{Möbius Inversion Formula}[thm:mobiusinv][red]
-%   Let $f$ and $g$ be arithmetic functions. Then, 
-%   $f(n)=\sum_{d\mid n, d>0} g(d)$ for all $n\ge 1$ if and only if
+%   because $2$ is a nonresidue modulo $3$.
+
+%   Next compute $\left(\frac{19}{101}\right)$. Here
 %   \[
-%   g(n)=\sum_{d\mid n, d>0}\mu(d)f(n/d)
+%   \left(\frac{19}{101}\right)=\left(\frac{101}{19}\right)
 %   \]
-%   for all $n\ge 1$.
-%   \end{define}
-%   \begin{subprove}
-%     Let \(n=\prod_{i=1}^r p_i^{a_i}\) be the prime factorization of \(n\ge1\).
-%     Then, by \nameref{def:vonmangoldt},
-%     \[
-%       \sum_{d\mid n, d>0}\Lambda(d)
-%       =\sum_{i=1}^r\sum_{k=1}^{a_i}\Lambda(p_i^k)
-%       =\sum_{i=1}^r\sum_{k=1}^{a_i}\ln p_i
-%       =\sum_{i=1}^r a_i\ln p_i
-%       =\ln\!\bigg(\prod_{i=1}^r p_i^{a_i}\bigg)
-%       =\ln n.
-%     \]
-%     Let $f(n) = \ln n$ and $g(n) = \Lambda(n)$ for all \(n\ge1\). Then, by \nameref{thm:mobiusinv},
-%     \[
-%       \Lambda(n)=\sum_{d\mid n, d>0}\mu(d)\ln\!\bigg(\frac{n}{d}\bigg).
-%     \]
-%     Since \(\ln(n/d)=\ln n-\ln d\), we have
-%     \[
-%       \Lambda(n)
-%       =\ln n\sum_{d\mid n, d>0}\mu(d)-\sum_{d\mid n, d>0}\mu(d)\ln d.
-%     \]
-%     By \nameref{def:mobius}, \(\sum_{d\mid n, d>0}\mu(d)=0\) for \(n>1\) and 
-%     \(\ln(1)=0\). Therefore, for all \(n\ge1\),
-%     \[
-%       \Lambda(n)=-\sum_{d\mid n, d>0}\mu(d)\ln d.
-%     \]
-%   \end{subprove}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%   \newpage
-
-%   \item Exercise Set 3.6, \#69. This exercise presents an interpretation of the Möbius Inversion Formula from the point of view of convolutions.
-%   \begin{define}{Convolution of Arithmetic Functions}[def:convolution]
-%   Let $n \in \setZ$ with $n>0$, and let $f$ and $g$ be arithmetic functions. The convolution of $f$ and $g$, denoted $f \star g$, is given by
+%   since $((19-1)/2)((101-1)/2)=9\cdot50$ is even. Reduce $101\pmod{19}$: $101\equiv 6\pmod{19}$, hence
 %   \[
-%   (f \star g)(n):=\sum_{d \mid n, d>0} f(d) g\left(\frac{n}{d}\right)
+%   \left(\frac{19}{101}\right)=\left(\frac{6}{19}\right)=\left(\frac{2}{19}\right)\left(\frac{3}{19}\right).
 %   \]
-%   \end{define}
-%   \begin{enumerate}
-%     \item \textbf{Commutativity:} Let $f$ and $g$ be arithmetic functions. Prove that $f \star g=g \star f$.
-%     \label{prob:3.6.69-a}
-%     \begin{subprove}
-%       By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
-%       \[
-%       (f \star g)(n) = \sum_{d \mid n} f(d) g(n/d).
-%       \]
-%       Since $d$ is a divisor of $n$, by definition, there exists a positive integer $d^\prime$ 
-%       such that $n = d^\prime\cdot d$, that is $d^\prime = n/d$. Therefore,
-%       \[
-%       (f \star g)(n) = \sum_{d' \mid n} f(n/d') g(d') = \sum_{d' \mid n} g(d') f(n/d') = (g \star f)(n).
-%       \]
-%       Therefore, $f \star g = g \star f$ for all arithmetic functions $f$ and $g$.
-%     \end{subprove}
+%   Using Theorem \nameref{thm:4.8}, $\left(\frac{2}{19}\right)=-1$ because $19\equiv 3\pmod 8$.
+%   Also
+%   \[
+%   \left(\frac{3}{19}\right) = -\left(\frac{19}{3}\right)
+%   \]
+%   by reciprocity (the sign is $-1$ because $(3-1)/2\cdot(19-1)/2 =1\cdot9$ is odd). Now, $19\equiv 1\pmod 3$, so
+%   $\left(\frac{19}{3}\right)=\left(\frac{1}{3}\right)=1$, hence $\left(\frac{3}{19}\right)=-1$.
+%   Therefore $\left(\frac{6}{19}\right)=(-1)\cdot(-1)=1$, so $\left(\frac{19}{101}\right)=1$.
 
-%     \item \textbf{Associativity:} Let $f, g$, and $h$ be arithmetic functions. 
-%     Prove that $(f \star g) \star h= f \star(g \star h)$.
-%     \label{prob:3.6.69-b}
-%     \begin{subprove}
-%       By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
-%       \[
-%       ((f\star g)\star h)(n)
-%       = \sum_{d\mid n} (f\star g)(d)\,h\!\left(\frac{n}{d}\right)
-%       = \sum_{d\mid n}\left(\sum_{c\mid d} f(c)\,g\!\left(\frac{d}{c}\right)\right)
-%         h\!\left(\frac{n}{d}\right).
-%       \]
-%       Since \(c\) is a divisor of \(d\) and \(d\) is a divisor of \(n\), it follows that \(c\) is a divisor of \(n\),
-%       and there exists a positive integer \(x, y\) such that \(n = d\cdot x = c \cdot y \cdot x\).
-%       Thus, 
-%       \[
-%       \sum_{c\mid n} \sum_{y\mid (n/c)} f(c)\,g(y)\,h\!\left(\frac{n}{c y}\right)
-%       = \sum_{c\mid n} f(c)\left(\sum_{y\mid (n/c)} g(y)\,h\!\left(\frac{(n/c)}{y}\right)\right)
-%       = \sum_{c\mid n} f(c)(g \star h)\left(\frac{n}{c}\right)
-%       = (f \star (g \star h))(n).
-%       \]
-%       Therefore, by both equalities above, 
-%       \((f \star g) \star h = f \star (g \star h)\) for all arithmetic functions \(f\), \(g\), and \(h\).
-%     \end{subprove}
-
-%     \newpage
-
-%     \item \textbf{Identity:} For $n \in \setZ$ with $n>0$, let
-%     \[
-%     \delta(n)= \begin{cases}1 & \text { if } n=1 \\ 0 & \text { otherwise }\end{cases}
-%     \]
-%     Let $f$ be an arithmetic function. Prove that $f \star \delta=\delta \star f=f$.
-%     \label{prob:3.6.69-c}
-%     \begin{subprove}
-%       By \nameref{def:convolution}, for any $n \in \setZ_{>0}$,
-%       \[
-%       (f \star \delta)(n) = \sum_{d \mid n} f(d) \delta(n/d) = f(n) \cdot 1 = f(n).
-%       \]
-%       since \(\delta(n/d) = 0\) for all \(n/d > 1\) and \(\delta(1) = 1\).
-%       By commutativity proved from problem \parenref{prob:3.6.69-a},
-%       \[
-%       \delta \star f = f \star \delta = f.
-%       \]
-%     \end{subprove}
-
-%     \item \textbf{Inverses:} For $n \in \setZ$ with $n>0$, let $\mathbf{1}(n)=1$. 
-%     In other words, $\mathbf{1}$ is the arithmetic function mapping every positive 
-%     integer to $1$. Prove that $\mu \star \mathbf{1}=\mathbf{1} \star \mu=\delta$.
-%     \label{prob:3.6.69-d}
-%     \begin{subprove}
-%       By \nameref{def:convolution} and \nameref{def:mobius}, for any $n \in \setZ_{>0}$,
-%       \[
-%       (\mu \star \mathbf{1})(n) = \sum_{d \mid n} \mu(d) \mathbf{1}(n/d) 
-%       = \sum_{d \mid n} \mu(d)
-%       = \delta(n)
-%       =\begin{cases}
-%         1 & \text { if } n=1 \\ 
-%         0 & \text { if } n>1
-%       \end{cases}.
-%       \]
-%       Therefore, $(\mu \star \mathbf{1})(n) = \delta(n)$ for all $n > 0$.
-%       By commutativity proved from problem \parenref{prob:3.6.69-a},
-%       \[
-%       \mathbf{1} \star \mu = \mu \star \mathbf{1} = \delta.
-%       \]
-%     \end{subprove}
-
-%     \item \textbf{Möbius Inversion Formula:} Prove the Möbius Inversion Formula using convolutions.\newline
-%     [Hint: Theorem 3.5 can be restated as $f=g \star \mathbf{1}$ if and only if $g=\mu \star f=f \star \mu$.]
-%     \begin{subprove}
-%       ($\Rightarrow$) Suppose $f = g \star \mathbf{1}$ for the sake of direct proof. 
-%       By problem \parenref{prob:3.6.69-a}, \parenref{prob:3.6.69-b}, \parenref{prob:3.6.69-c}, and \parenref{prob:3.6.69-d},
-%       \[
-%       f \star \mu = \mu \star f = \mu \star (g \star \mathbf{1}) = (\mu \star g) \star \mathbf{1} = g \star (\mu \star \mathbf{1}) = g \star \delta = g.
-%       \]
-%       ($\Leftarrow$) Suppose $g = \mu \star f$ for the sake of direct proof. Similarly,
-%       \[
-%       g \star \mathbf{1} = \mathbf{1} \star g = (\mathbf{1} \star \mu) \star f = \delta \star f = f.
-%       \]
-%       Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $f = g \star \mathbf{1}$ if and only if $g = \mu \star f = f \star \mu$, which is \nameref{thm:mobiusinv}.
-%     \end{subprove}
-%   \end{enumerate}
-
+%   Combining the two factors,
+%   \[
+%   \left(\frac{57}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{19}{101}\right)=(-1)\cdot 1 = -1,
+%   \]
+%   and hence
+%   \[
+%   \left(\frac{-158}{101}\right)=-1.
+%   \]
 % \end{enumerate}
 
+% \textbf{Warning:} Do not apply Quadratic Reciprocity to composite moduli. For example, it is incorrect to write
+% \[
+% \left(\frac{57}{101}\right)=\left(\frac{101}{57}\right)
+% \]
+% because $57$ is not prime. Quadratic Reciprocity applies only to odd prime moduli.
 
-
-% % \newpage
-
-
-% % Example. 1,3,4,5,9 are quadratic residues modulo 11.
-% % $$
-% % \left\{
-% % \begin{array}{l}
-% % \displaystyle
-% % \frac{1}{11} = 1,\quad \frac{4}{11} = 1,\quad \frac{5}{11} = 1,\quad \frac{9}{11} = 1 \\[10pt]
-% % \displaystyle
-% % \frac{2}{11} = -1,\quad \frac{3}{11} = -1,\quad \frac{6}{11} = -1,\quad \frac{7}{11} = -1,\quad \frac{8}{11} = -1,\quad \frac{10}{11} = -1
-% % \end{array}
-% % \right.
-% % $$
-
-% % Example. Find the value of $\frac{3}{7}$.
-% % \begin{define}{Quadratic Residue}[def:quadres]
-% %   Let $a \in \setZ$ and $n \in \setZ_{>0}$. Then $a$ is a \underbar{quadratic residue modulo $n$} if there exists an integer $x$ such that
-% %   \[
-% %     x^2 \equiv a \pmod{n}.
-% %   \]
-% %   If no such integer exists, then $a$ is a \underbar{quadratic non-residue modulo $n$}.
-% % \end{define}
-
-% % $1^2 \equiv 1 \pmod{7}$
-
-% % $2^2 \equiv 4 \pmod{7}$
-
-% % $3^2 \equiv 2 \pmod{7}$
-
-
-% % By \nameref{def:quadres}, there 
-% % are exactly $\frac{p-1}{2}$ quadratic residues modulo $7$. 
-% % Thus, $3$ is a quadratic residue modulo $7$.
+% % END OF L13
 
 
 
-% % \begin{define}{Euler's Criterion}[thm:eulercrit][red]
-% %   Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. Then
-% %   \[
-% %     a \text{ is a quadratic residue modulo } p \iff a^{(p-1)/2} \equiv 1 \pmod{p}.
-% %   \]
-% %   Otherwise, $a$ is a quadratic non-residue modulo $p$ if and only if
-% %   \[
-% %     a^{(p-1)/2} \equiv -1 \pmod{p}.
-% %   \]
-% %   \begin{subprove}
-% %     Assume that $\frac{a}{p}=+1$. Then $a \equiv x^2 \pmod{p}$ 
-% %     has a solution. Say $x_0$ is a solution. Then,
-% %     \[
-% %       a^{(p-1)/2} \equiv (x_0^2)^{(p-1)/2} \equiv x_0^{p-1} \equiv 1 \pmod{p} \equiv \frac{a}{p} \pmod{1}
-% %     \]
-% %     by Fermat's Little Theorem. 
-% %     Conversely, assume that $a^{(p-1)/2} \equiv -1 \pmod{p}$.
-% %     For each $i \in \setZ$ with $1 \leq i \leq p-1$, 
-% %     there exists a unique $j \in \setZ$ with $1 \leq j \leq p-1$ 
-% %     such that
-% %     \[
-% %       i\cdot j \equiv a \pmod{p}.
-% %     \]
-% %     if $i \equiv j \pmod{p}$, by Theorem 2.6, then $i^2 \equiv a \pmod{p}$, 
-% %     which implies that $a$ is a quadratic residue modulo $p$ and $\frac{a}{p}=1$, a contradiction.
-% %     Thus, ${1,2,\dots,p-1}$ will be paired $\frac{p-1}{2}$ pairs.
-% %     Each with product $a \pmod{p}$. Then, 
-% %     \[
-% %       (p-1)! \equiv a^{(p-1)/2} \equiv -1 \pmod{p}.
-% %     \]
-% %     By Wilson's Theorem, $a$ is a quadratic non-residue modulo $p$ and $\frac{a}{p}=-1$.
-% %   \end{subprove}
-% % \end{define}
-
-
-
-
-% % \newpage
-
-% % \begin{define}{Legendre Symbol}[def:legendre]
-% %   Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. The \underbar{Legendre symbol} $\frac{a}{p}$ is defined as
-% %   \[
-% %     \frac{a}{p} = \begin{cases}
-% %       1 & \text{if } a \text{ is a quadratic residue modulo } p,\\
-% %       -1 & \text{if } a \text{ is a quadratic non-residue modulo } p.
-% %     \end{cases}
-% %   \]
-% % \end{define}
-
-% % Proposition 4.5
-% % Let $p$ be an odd prime and let $a, b \in \setZ$ with $p \nmid a$ and $p \nmid b$. Then,
-% % \begin{enumerate}
-% %   \item $\frac{a^2}{p} = 1$.
-% %   \item If $a \equiv b \pmod{p}$, then $\frac{a}{p} = \frac{b}{p}$.
-% %   \item $\frac{ab}{p} = \frac{a}{p} \cdot \frac{b}{p}$.
-% % \end{enumerate}
-% % \begin{subprove}
-% %   \begin{enumerate}
-% %     \item $x^2 \equiv a^2 \pmod{p}$ has a solution $x \equiv a \pmod{p}$.
-% %     \item Since $a \equiv b \pmod{p}$, the quadratic congruences to be solved is $x^2 \equiv a \pmod{p}$ and $x^2 \equiv b \pmod{p}$. 
-% %     Clearly, $x^2 \equiv a \pmod{p}$ is solvable if and only if $x^2 \equiv b \pmod{p}$ is solvable.
-% %     Thus, $\frac{a}{p} = \frac{b}{p}$.
-% %     \item $\frac{ab}{p} \equiv (ab)^{(p-1)/2} \equiv a^{(p-1)/2} b^{(p-1)/2} \equiv \frac{a}{p} \cdot \frac{b}{p} \pmod{p}$ 
-% %     by \nameref{thm:eulercrit}. Since the only values of the Legendre symbol are $1$ and $-1$, it follows that 
-% %     $$\frac{ab}{p} = \frac{a}{p} \cdot \frac{b}{p}$$.
-% %   \end{enumerate}
-% % \end{subprove}
-
-
-% % Example. Find the value of $\frac{3}{7}$.
-% % $$1^2 \equiv 1 \pmod{7}$$
-% % $$2^2 \equiv 4 \pmod{7}$$
-% % $$3^2 \equiv 2 \pmod{7}$$
-% % $$4^2 \equiv 2 \pmod{7}$$
-% % $$5^2 \equiv 4 \pmod{7}$$
-% % $$6^2 \equiv 1 \pmod{7}$$
-% % There are exactly $\frac{7-1}{2} = 3$ quadratic residues modulo $7$.
-% % Thus, $1,2,4$ are quadratic residues modulo $7$.
-% % By \nameref{def:legendre}, $\frac{3}{7} = -1$ since $3$ is a quadratic non-residue modulo $7$.
-
-
-
-% % Example. Find the value of $\frac{-11}{7}$. Is $x^2 \equiv -11 \pmod{7}$ solvable?
-% % By \nameref{def:legendre}, $\frac{-11}{7} = \frac{-1}{7} \cdot \frac{11}{7}= \frac{-1}{7} \cdot \frac{4}{7} = \frac{6}{7} \cdot 1 = -1$.
-% % Thus, $x^2 \equiv -11 \pmod{7}$ is not solvable.
-
-% % $$\frac{4}{7} = 1$$
-% % since $2^2 \equiv 4 \pmod{7}$.
-
-% % Further properties: let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$.
-% % Then,
-% % $$a=\pm 2^{a_0}p_1^{a_1}p_2^{a_2}\cdots p_k^{a_k} \pmod{p}$$
-% % with $p_1,p_2,\ldots,p_k$ distinct primes such that $p_i \nmid a$ for all $i$ and $a_0,a_1,\ldots,a_k \in \setZ_{\ge 0}$ non-negative integers.
-% % Then, by Proposition 4.5,
-% % $$\frac{a}{p} = \frac{-1}{p} \cdot \left(\frac{2}{p}\right)^{a_0} \cdot \prod_{i=1}^k \left(\frac{p_i}{p}\right)^{a_i}.$$
-% % suffices to compute:
-% % $$x^2=1 \pmod{p}$$
-% % $$x^2=-1 \pmod{p}$$
-% % $$x^2=2 \pmod{p}$$
-% % $$x^2=p_i \pmod{p}$$
-
-% % for all $i=1,2,\ldots,k$.
-
-% % Theorem 4.6.
-% % Let $p$ be an odd prime. Then, 
-% % $$\frac{-1}{p} = (-1)^{(p-1)/2} = \begin{cases}
-% % 1 & \text{if } p \equiv 1 \pmod{4},
-% % \\
-% % -1 & \text{if } p \equiv 3 \pmod{4}.
-% % \end{cases}$$
-% % \begin{subprove}
-% %   The first equiality follows from \nameref{thm:eulercrit} with
-% %   $$a=-1.$$
-
-% % \end{subprove}
-
-
-% % Example. Find the value of $\frac{-1}{53}$.
-% % By Theorem 4.6, $\frac{-1}{53} = 1$ since $53 \equiv 1 \pmod{4}$.
-
-
-
-% % \begin{define}{Lemma 4.7 (Gauss's Lemma)}[lem:gauss][red]
-% %   Let $p$ be an odd prime and let $a \in \setZ$ with $p \nmid a$. 
-% %   Let $n$ be the number of least positive residues of the integers ${a, 2a, \ldots, ((p-1)/2)a}$ modulo $p$ that are greater than $p/2$.
-% %   Then, 
-% %   $$\frac{a}{p} = (-1)^n.$$
-% %   \begin{subprove}
-% %     Let $r_1, r_2, \ldots, r_{(p-1)/2}$ be the least positive residues of the integers $a, 2a, \ldots, ((p-1)/2)a$ modulo $p$.
-% %     Then,
-% %     $$\{r_1,r_2,\ldots,r_{(p-1)/2}\} = \{1,2,\ldots,(p-1)/2\}$$
-% %     as sets. Thus,
-% %     $$r_1 r_2 \cdots r_{(p-1)/2} \equiv 1 \cdot 2 \cdots (p-1)/2 \equiv ((p-1)/2)! \pmod{p}.$$
-% %     On the other hand,
-% %     $$r_i \equiv ia \pmod{p}$$
-% %     or
-% %     $$r_i \equiv ia - p \pmod{p}$$
-% %     for each $i=1,2,\ldots,(p-1)/2$. Since there are exactly $n$ integers among $r_1,r_2,\ldots,r_{(p-1)/2}$ that are greater than $p/2$, it follows that
-% %     $$r_1 r_2 \cdots r_{(p-1)/2} \equiv (-1)^n a^{(p-1)/2} (1\cdot 2 \cdots (p-1)/2) \equiv (-1)^n a^{(p-1)/2} ((p-1)/2)! \pmod{p}.$$
-% %     By canceling $((p-1)/2)!$ from both sides, it follows that
-% %     $$(-1)^n a^{(p-1)/2} \equiv 1 \pmod{p}.$$
-% %     By \nameref{thm:eulercrit}, $\frac{a}{p} = a^{(p-1)/2}$. Thus,
-% %     $$\frac{a}{p} = (-1)^n.$$
-% %   \end{subprove}
-% % \end{define}
-
-
-% % Example. Use Gauss's Lemma to find the value of $\frac{6}{11}$.
-% % The least positive residues of 
-% % \begin{align*}
-% %   6, 2\cdot 6, 3\cdot 6, 4\cdot 6, 5\cdot 6\\
-% %   6, 12, 18, 24, 30
-% % \end{align*}
-% % modulo $11$ are $6, 1, 7, 2, 8$.
-% % Among them, $6, 7, 8$ are greater than $11/2
-% % =5.5$. Thus, $n=3$.
-% % By \nameref{lem:gauss}, $\frac{6}{11} = (-1)^3 = -1$.
-
-
-
-
-% % \newpage
-% % \begin{define}{Converse to Wilson's Theorem}
-% %   If $n$ is an integer such that $n > 1$ and $(n-1)! \equiv -1 \pmod{n}$, then $n$ is a prime number.
-% % \end{define}
-
-% % \begin{subprove}
-% %   Let it be assumed that the hypothesis holds for an integer $n > 1$:
-% %   $$
-% %     (n-1)! \equiv -1 \quad(\bmod n) \quad (*)
-% %   $$
-% %   For the purpose of contradiction, let it also be assumed that $n$ is a composite number.
-
-% %   Since $n$ is composite, by definition, there must exist an integer divisor $d$ of $n$ such that $1 < d < n$.
-
-% %   From the initial hypothesis $(*)$, it is known that $n$ divides $(n-1)! + 1$. Since $d$ is a divisor of $n$, it must be that $d$ also divides $(n-1)! + 1$. This relationship can be expressed as a congruence:
-% %   $$
-% %     (n-1)! + 1 \equiv 0 \quad(\bmod d)
-% %   $$
-% %   This is equivalent to:
-% %   $$
-% %     (n-1)! \equiv -1 \quad(\bmod d) \quad (1)
-% %   $$
-% %   Furthermore, because $d$ is an integer satisfying the inequality $1 < d < n$, $d$ must be one of the factors in the product $(n-1)! = 1 \cdot 2 \cdot 3 \cdots d \cdots (n-1)$. Consequently, $d$ must divide $(n-1)!$. In modular arithmetic notation, this is written as:
-% %   $$
-% %     (n-1)! \equiv 0 \quad(\bmod d) \quad (2)
-% %   $$
-% %   By combining the congruences from (1) and (2), it is deduced that:
-% %   $$
-% %     0 \equiv -1 \quad(\bmod d)
-% %   $$
-% %   This congruence implies that $d$ must divide the difference $0 - (-1)$, which is $1$. The only positive integer that divides $1$ is $1$ itself. Therefore, it must be that $d = 1$.
-
-% %   This result, $d = 1$, contradicts the condition established from the assumption that $n$ is composite, namely that $1 < d < n$. The assumption that $n$ is a composite number must therefore be false.
-
-% %   Given that $n > 1$ and $n$ has been shown not to be composite, it is concluded that $n$ must be a prime number. This completes the proof.
-% % \end{subprove}
-
-
-
-
-
-
-
-% \newpage\handout[true]
-% {\textsc{Math 4150: Introduction to Number Theory}}{Fall 2025}
-% {Homework 5}
-% {\textit{Prof.} \href{https://alexjdunn.weebly.com/}{Dr. Alexander Dunn}}{Due Date: 9:30am Tuesday 28th October}
-% {Math 4150: HW5}
-% \input{math4150/preface.tex}
-% \input{reference.tex}
 % \newpage
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L14
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+% Lemma \nameref{lem:4.10}, like Euler's criterion and Gauss's Lemma, is often more useful theoretically than computationally; nevertheless it provides an alternate viewpoint that is convenient for proving reciprocity.
 
+% \begin{enumerate}
+% \item Compute $(\tfrac{7}{11})$ using Lemma \nameref{lem:4.10}. For $j=1,\dots,5$ compute
+% \[
+% \left\lfloor\frac{7}{11}\right\rfloor=0,\quad
+% \left\lfloor\frac{14}{11}\right\rfloor=1,\quad
+% \left\lfloor\frac{21}{11}\right\rfloor=1,\quad
+% \left\lfloor\frac{28}{11}\right\rfloor=2,\quad
+% \left\lfloor\frac{35}{11}\right\rfloor=3,
+% \]
+% so
+% \[
+% N=0+1+1+2+3=7.
+% \]
+% Therefore, $(\tfrac{7}{11})=(-1)^7=-1$.
+% \end{enumerate}
 
+% \begin{define}{Proof of Lemma 4.10}[lem:4.10proof][red]
+% \begin{subprove}
+% Let $p$ and $a$ satisfy the hypotheses. For $k=1,\dots,\tfrac{p-1}{2}$ write the division identity
+% \begin{equation}\label{eq:div_j}
+% k a = p\left\lfloor\frac{k a}{p}\right\rfloor + r_k,
+% \end{equation}
+% where $r_k$ is the remainder, $0\le r_k\le p-1$. Since $p\nmid a$, none of the remainders equals $0$. Partition the least positive remainders $r_k$ into
+% \[
+% \{r_1,\dots,r_n\} \quad\text{(those }r_k>p/2\text{)}\quad\text{and}\quad
+% \{s_1,\dots,s_m\} \quad\text{(those }s_k<p/2\text{)},
+% \]
+% so $n+m=(p-1)/2$.
 
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L12
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % \begin{define}{Proposition 4.1}[prop:4.1][red]
-% % Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. Then the
-% % congruence
-% % \[
-% % x^2\equiv a \pmod p
-% % \]
-% % has either no solution or exactly two incongruent solutions modulo $p$.
-% % \begin{subprove}
-% % Let $x_0$ be a solution. Then, $(-x_0)^2\equiv x_0^2\equiv a \pmod p$, so $-x_0$ is also a solution. If $x_0\equiv -x_0\pmod p$, then $2x_0\equiv 0\pmod p$. Since $p$ is odd, $\gcd(2,p)=1$, hence $x_0\equiv 0\pmod p$. This implies $a\equiv x_0^2\equiv 0\pmod p$, contradicting $p\nmid a$. Therefore, $x_0\not\equiv -x_0\pmod p$.
+% Summing \eqref{eq:div_j} over $k=1,\dots,(p-1)/2$ yields
+% \[
+% \sum_{k=1}^{\frac{p-1}{2}} k a
+% = p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor + \sum_{k=1}^{\frac{p-1}{2}} r_k.
+% \tag{2}
+% \]
+% By the proof of \nameref{lem:4.7}, the multiset of remainders $\{r_1,\dots,r_n,s_1,\dots,s_m\}$ coincides with the least positive residues of $a,2a,\dots,\frac{p-1}{2}a$. Moreover, the integers
+% \[
+% p-r_1,\dots,p-r_n,s_1,\dots,s_m
+% \]
+% form a permutation of $1,2,\dots,\tfrac{p-1}{2}$. Hence,
+% \[
+% \sum_{j=1}^{\frac{p-1}{2}} j = \sum_{i=1}^n (p-r_i) + \sum_{j=1}^m s_j
+% = pn - \sum_{i=1}^n r_i + \sum_{j=1}^m s_j .
+% \tag{3}
+% \]
+% But $\sum_{k=1}^{(p-1)/2} r_k=\sum_{i=1}^n r_i + \sum_{j=1}^m s_j$. Subtracting (3) from (2) gives
+% \[
+% \sum_{k=1}^{\frac{p-1}{2}} ka - \sum_{j=1}^{\frac{p-1}{2}} j
+% = p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - pn + 2\sum_{i=1}^n r_i.
+% \tag{4}
+% \]
+% Reduce both sides of (4) modulo $2$. Note that $\sum_{k=1}^{(p-1)/2} ka - \sum_{j=1}^{(p-1)/2} j$ is an integer multiple of $(p-1)/2$ and hence even or odd depending on $(p-1)/2$, but the parity analysis below yields
+% \[
+% 0 \equiv p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - pn \pmod 2.
+% \]
+% Since $p$ is odd we may cancel $p$ modulo $2$ to obtain
+% \[
+% 0 \equiv \sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - n \pmod 2,
+% \]
+% so
+% \[
+% n \equiv \sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor \equiv N \pmod 2.
+% \]
+% By \nameref{lem:4.7}, $(\tfrac{a}{p})=(-1)^n$, hence
+% \[
+% \left(\frac{a}{p}\right)=(-1)^n = (-1)^N,
+% \]
+% which proves the lemma.
+% \end{subprove}
+% \end{define}
 
-% % If $x_0$ and $x_1$ are solutions, then $x_0^2\equiv x_1^2\pmod p$, so $p\mid(x_0^2-x_1^2)=(x_0-x_1)(x_0+x_1)$. Since $p$ is prime, $p\mid(x_0-x_1)$ or $p\mid(x_0+x_1)$, hence $x_0\equiv x_1\pmod p$ or $x_0\equiv -x_1\pmod p$. Thus, there are at most two incongruent solutions. Therefore, exactly two exist when any solution exists.
-% % \end{subprove}
-% % \end{define}
+% \begin{define}{Proof of Theorem 4.9 (Quadratic Reciprocity)}[thm:4.9proof][red]
+% \begin{subprove}
+% For distinct odd primes $p$ and $q$, let $N_1=\sum_{j=1}^{(q-1)/2}\lfloor jp/q\rfloor$ and $N_2=\sum_{j=1}^{(p-1)/2}\lfloor jq/p\rfloor$. A lattice-point count on $[0,(p-1)/2]\times[0,(q-1)/2]$ divided by $y=(q/p)x$ yields $N_1+N_2=(p-1)/2\cdot(q-1)/2$.
 
+% By \nameref{lem:4.10}, $\left(\frac{p}{q}\right)=(-1)^{N_1}$ and $\left(\frac{q}{p}\right)=(-1)^{N_2}$. Hence, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{N_1+N_2}=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}$.
+% \end{subprove}
+% \end{define}
 
-% % \begin{define}{Corollary 4.2}[cor:4.2][red]
-% % Let $p$ be an odd prime and let $a\in\setZ$ with $p\nmid a$. If $x^2\equiv a\pmod p$ is solvable and $x_0$ is a solution, then the two incongruent solutions modulo $p$ are $x_0$ and $-x_0\equiv p-x_0$.
-% % \end{define}
+% \begin{enumerate}
+% \item Find all odd primes $p\ne 11$ with $(\tfrac{11}{p})=1$.
 
+% By \nameref{thm:4.9},
+% \[
+% \left(\frac{11}{p}\right)=
+% \begin{cases}
+% \left(\frac{p}{11}\right), &\text{if } p\equiv 1\pmod 4,\\[4pt]
+% -\left(\frac{p}{11}\right), &\text{if } p\equiv 3\pmod 4.
+% \end{cases}
+% \]
+% The quadratic residues modulo $11$ (nonzero squares) are $1,3,4,5,9$ and non-residues are $2,6,7,8,10$.
 
-% % \newpage
-% % \begin{enumerate}
-% %   \item Compute $\left(\frac{a}{11}\right)$ for all $a=1,2,\dots,10$.
-% %   \begin{define}{Definition 4.1 (Legendre symbol)}[def:4.1][red]
-% %   Let $p$ be an odd prime and let $a\in\setZ$. The \emph{Legendre symbol} $(\tfrac{a}{p})$ is defined by
-% %   \[
-% %   \left(\frac{a}{p}\right):=
-% %   \begin{cases}
-% %   0, & \text{if } p\mid a,\\[4pt]
-% %   1, & \text{if } p\nmid a\text{ and } a \text{ is a quadratic residue modulo } p,\\[4pt]
-% %   -1,& \text{if } p\nmid a\text{ and } a \text{ is a quadratic non-residue modulo } p.
-% %   \end{cases}
-% %   \]
-% %   % Comment: Added the $0$ case (standard) which was missing in the original notes.
-% %   \end{define}
-% %   \begin{subanswer}
-% %     Working modulo $11$, the nonzero quadratic residues are the squares
-% %     \[
-% %     1^2\equiv 1,\quad 2^2\equiv 4,\quad 3^2\equiv 9,\quad 4^2\equiv 5,\quad 5^2\equiv 3 \pmod{11},
-% %     \]
-% %     so the quadratic residues modulo $11$ are
-% %     \[
-% %     1,\,3,\,4,\,5,\,9.
-% %     \]
-% %     Hence
-% %     \[
-% %     \left(\frac{1}{11}\right)
-% %     =\left(\frac{3}{11}\right)
-% %     =\left(\frac{4}{11}\right)
-% %     =\left(\frac{5}{11}\right)
-% %     =\left(\frac{9}{11}\right)=1,
-% %     \]
-% %     and the remaining nonzero residues
-% %     \[
-% %     2,\,6,\,7,\,8,\,10
-% %     \]
-% %     are quadratic non-residues modulo $11$, so their Legendre symbols equal $-1$:
-% %     \[
-% %     \left(\frac{2}{11}\right)
-% %     =\left(\frac{6}{11}\right)
-% %     =\left(\frac{7}{11}\right)
-% %     =\left(\frac{8}{11}\right)
-% %     =\left(\frac{10}{11}\right)=-1.
-% %     \]
-% %   \end{subanswer}
-% %   \newpage
+% Thus for $p\equiv 1\pmod4$ we need $p\pmod{11}\in\{1,3,4,5,9\}$, and for $p\equiv 3\pmod4$ we need $p\pmod{11}\in\{2,6,7,8,10\}$. Solving these congruence pairs modulo $44$ (via the Chinese Remainder Theorem) yields the residue classes modulo $44$ of primes $p$ for which $(\tfrac{11}{p})=1$:
 
+% \[
+% p\equiv 1,5,9,25,37 \pmod{44} \quad\text{or}\quad
+% p\equiv 7,19,35,39,43 \pmod{44}.
+% \]
 
+% Equivalently, the ten congruence classes modulo $44$ are
+% \[
+% 1,5,7,9,19,25,35,37,39,43\pmod{44}.
+% \]
+% \end{enumerate}
 
-% %   \item Compute $\left(\frac{3}{7}\right)$.
-% %   \begin{subanswer}
-% %     By \nameref{thm:4.4},
-% %     \[
-% %     3^{\frac{7-1}{2}}=3^3=27\equiv 27-21=6\equiv -1\pmod 7,
-% %     \]
-% %     so $\left(\frac{3}{7}\right)=-1$.
-% %   \end{subanswer}
+% \textbf{Exercise:} Characterize the primes $p$ for which a given integer $s$ is a quadratic residue modulo $p$ (use factorization, multiplicativity and Quadratic Reciprocity).
 
-
-
-% %   \newpage
-% %   \item Compute $\left(\dfrac{-11}{7}\right)$.
-% %   \begin{subanswer}
-% %   By multiplicativity, $\left(\frac{-11}{7}\right)=\left(\frac{-1}{7}\right)\left(\frac{11}{7}\right)$. Since $11\equiv 4\equiv 2^2\pmod 7$, we have $(11/7)=1$. By \nameref{thm:4.6}, $\left(\frac{-1}{7}\right)=-1$ since $7\equiv 3\pmod 4$. Therefore, $\left(\frac{-11}{7}\right)=-1$.
-
-% %   \textbf{Remark}. For an odd prime $p$ and $a\in\setZ$ with $p\nmid a$, factor $a=\pm 2^{\alpha_0} q_1^{\alpha_1}\cdots q_r^{\alpha_r}$ where the $q_i$ are distinct odd primes different from $p$. By \nameref{prop:4.5}(c),
-% %   \[
-% %   \left(\frac{a}{p}\right)=\left(\frac{\pm1}{p}\right)\left(\frac{2}{p}\right)^{\alpha_0}\prod_{i=1}^r\left(\frac{q_i}{p}\right)^{\alpha_i}.
-% %   \]
-% %   Computation reduces to $\left(\frac{\pm1}{p}\right)$, $\left(\frac{2}{p}\right)$, and $\left(\frac{q}{p}\right)$ for odd primes $q\ne p$.
-% %   \end{subanswer}
-% % \end{enumerate}
-
-
-
-% % \newpage
-
-% % \begin{define}{Proposition 4.5}[prop:4.5][red]
-% %   Let $p$ be an odd prime and let $a,b\in\setZ$ with $p\nmid a$ and $p\nmid b$. Then
-% %   \begin{enumerate}
-% %     \item $\left(\dfrac{a^2}{p}\right)=1$.
-% %     \item If $a\equiv b\pmod p$ then $\left(\dfrac{a}{p}\right)=\left(\dfrac{b}{p}\right)$.
-% %     \item $\left(\dfrac{ab}{p}\right)=\left(\dfrac{a}{p}\right)\left(\dfrac{b}{p}\right)$ (multiplicativity).
-% %   \end{enumerate}
-% %   \begin{subprove}
-% %     \begin{enumerate}
-% %       \item Since $p\nmid a$, $x=a$ solves $x^2\equiv a^2\pmod p$, hence $\left(\frac{a^2}{p}\right)=1$.
-
-% %       \item If $a\equiv b\pmod p$ then the congruences $x^2\equiv a\pmod p$ and $x^2\equiv b\pmod p$ coincide, hence $\left(\frac{a}{p}\right)=\left(\frac{b}{p}\right)$.
-
-% %       \item By \nameref{thm:4.4},
-% %       \[
-% %         \left(\frac{ab}{p}\right)\equiv (ab)^{\frac{p-1}{2}}
-% %         \equiv a^{\frac{p-1}{2}}b^{\frac{p-1}{2}}
-% %         \equiv \left(\frac{a}{p}\right)\left(\frac{b}{p}\right)\pmod p.
-% %       \]
-% %       Both sides lie in $\{\pm1\}$, hence equality holds.
-% %     \end{enumerate}
-% %   \end{subprove}
-% % \end{define}
-
-
-
-
-
-
-
-
-
-
-% % \newpage
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L13
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% % \begin{enumerate}
-% %   \item Compute $(7/53)$. Since $53\equiv 1\pmod 4$.
-
-% %   by Quadratic Reciprocity (\nameref{thm:4.9}) we have
-% %   \[
-% %   \left(\frac{7}{53}\right)=\left(\frac{53}{7}\right).
-% %   \]
-% %   Reduce $53$ modulo $7$: $53\equiv 4\pmod 7$. Thus
-% %   \[
-% %   \left(\frac{7}{53}\right)=\left(\frac{4}{7}\right)=1,
-% %   \]
-% %   because $4\equiv 2^2$ is a square modulo $7$.
-
-% %   \item Compute $\left(\frac{-158}{101}\right)$. We compute
-% %   \[
-% %   \left(\frac{-158}{101}\right)=\left(\frac{-1}{101}\right)\left(\frac{158}{101}\right).
-% %   \]
-% %   Since $101\equiv 1\pmod 4$, $\left(\frac{-1}{101}\right)=1$, so
-% %   \[
-% %   \left(\frac{-158}{101}\right)=\left(\frac{158}{101}\right).
-% %   \]
-% %   Reduce $158\pmod{101}$: $158\equiv 57\pmod{101}$. Factor $57=3\cdot 19$, so multiplicativity gives
-% %   \[
-% %   \left(\frac{57}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{19}{101}\right).
-% %   \]
-% %   Compute $\left(\frac{3}{101}\right)$ by reciprocity. Since $(3-1)/2=1$ and $(101-1)/2=50$, their product is even,
-% %   so no sign change occurs:
-% %   \[
-% %   \left(\frac{3}{101}\right)=\left(\frac{101}{3}\right)=\left(\frac{2}{3}\right)=-1,
-% %   \]
-% %   because $2$ is a nonresidue modulo $3$.
-
-% %   Next compute $\left(\frac{19}{101}\right)$. Here
-% %   \[
-% %   \left(\frac{19}{101}\right)=\left(\frac{101}{19}\right)
-% %   \]
-% %   since $((19-1)/2)((101-1)/2)=9\cdot50$ is even. Reduce $101\pmod{19}$: $101\equiv 6\pmod{19}$, hence
-% %   \[
-% %   \left(\frac{19}{101}\right)=\left(\frac{6}{19}\right)=\left(\frac{2}{19}\right)\left(\frac{3}{19}\right).
-% %   \]
-% %   Using Theorem \nameref{thm:4.8}, $\left(\frac{2}{19}\right)=-1$ because $19\equiv 3\pmod 8$.
-% %   Also
-% %   \[
-% %   \left(\frac{3}{19}\right) = -\left(\frac{19}{3}\right)
-% %   \]
-% %   by reciprocity (the sign is $-1$ because $(3-1)/2\cdot(19-1)/2 =1\cdot9$ is odd). Now, $19\equiv 1\pmod 3$, so
-% %   $\left(\frac{19}{3}\right)=\left(\frac{1}{3}\right)=1$, hence $\left(\frac{3}{19}\right)=-1$.
-% %   Therefore $\left(\frac{6}{19}\right)=(-1)\cdot(-1)=1$, so $\left(\frac{19}{101}\right)=1$.
-
-% %   Combining the two factors,
-% %   \[
-% %   \left(\frac{57}{101}\right)=\left(\frac{3}{101}\right)\left(\frac{19}{101}\right)=(-1)\cdot 1 = -1,
-% %   \]
-% %   and hence
-% %   \[
-% %   \left(\frac{-158}{101}\right)=-1.
-% %   \]
-% % \end{enumerate}
-
-% % \textbf{Warning:} Do not apply Quadratic Reciprocity to composite moduli. For example, it is incorrect to write
-% % \[
-% % \left(\frac{57}{101}\right)=\left(\frac{101}{57}\right)
-% % \]
-% % because $57$ is not prime. Quadratic Reciprocity applies only to odd prime moduli.
-
-% % % END OF L13
-
-
-
-% % \newpage
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L14
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% % Lemma \nameref{lem:4.10}, like Euler's criterion and Gauss's Lemma, is often more useful theoretically than computationally; nevertheless it provides an alternate viewpoint that is convenient for proving reciprocity.
-
-% % \begin{enumerate}
-% % \item Compute $(\tfrac{7}{11})$ using Lemma \nameref{lem:4.10}. For $j=1,\dots,5$ compute
-% % \[
-% % \left\lfloor\frac{7}{11}\right\rfloor=0,\quad
-% % \left\lfloor\frac{14}{11}\right\rfloor=1,\quad
-% % \left\lfloor\frac{21}{11}\right\rfloor=1,\quad
-% % \left\lfloor\frac{28}{11}\right\rfloor=2,\quad
-% % \left\lfloor\frac{35}{11}\right\rfloor=3,
-% % \]
-% % so
-% % \[
-% % N=0+1+1+2+3=7.
-% % \]
-% % Therefore, $(\tfrac{7}{11})=(-1)^7=-1$.
-% % \end{enumerate}
-
-% % \begin{define}{Proof of Lemma 4.10}[lem:4.10proof][red]
-% % \begin{subprove}
-% % Let $p$ and $a$ satisfy the hypotheses. For $k=1,\dots,\tfrac{p-1}{2}$ write the division identity
-% % \begin{equation}\label{eq:div_j}
-% % k a = p\left\lfloor\frac{k a}{p}\right\rfloor + r_k,
-% % \end{equation}
-% % where $r_k$ is the remainder, $0\le r_k\le p-1$. Since $p\nmid a$, none of the remainders equals $0$. Partition the least positive remainders $r_k$ into
-% % \[
-% % \{r_1,\dots,r_n\} \quad\text{(those }r_k>p/2\text{)}\quad\text{and}\quad
-% % \{s_1,\dots,s_m\} \quad\text{(those }s_k<p/2\text{)},
-% % \]
-% % so $n+m=(p-1)/2$.
-
-% % Summing \eqref{eq:div_j} over $k=1,\dots,(p-1)/2$ yields
-% % \[
-% % \sum_{k=1}^{\frac{p-1}{2}} k a
-% % = p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor + \sum_{k=1}^{\frac{p-1}{2}} r_k.
-% % \tag{2}
-% % \]
-% % By the proof of \nameref{lem:4.7}, the multiset of remainders $\{r_1,\dots,r_n,s_1,\dots,s_m\}$ coincides with the least positive residues of $a,2a,\dots,\frac{p-1}{2}a$. Moreover, the integers
-% % \[
-% % p-r_1,\dots,p-r_n,s_1,\dots,s_m
-% % \]
-% % form a permutation of $1,2,\dots,\tfrac{p-1}{2}$. Hence,
-% % \[
-% % \sum_{j=1}^{\frac{p-1}{2}} j = \sum_{i=1}^n (p-r_i) + \sum_{j=1}^m s_j
-% % = pn - \sum_{i=1}^n r_i + \sum_{j=1}^m s_j .
-% % \tag{3}
-% % \]
-% % But $\sum_{k=1}^{(p-1)/2} r_k=\sum_{i=1}^n r_i + \sum_{j=1}^m s_j$. Subtracting (3) from (2) gives
-% % \[
-% % \sum_{k=1}^{\frac{p-1}{2}} ka - \sum_{j=1}^{\frac{p-1}{2}} j
-% % = p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - pn + 2\sum_{i=1}^n r_i.
-% % \tag{4}
-% % \]
-% % Reduce both sides of (4) modulo $2$. Note that $\sum_{k=1}^{(p-1)/2} ka - \sum_{j=1}^{(p-1)/2} j$ is an integer multiple of $(p-1)/2$ and hence even or odd depending on $(p-1)/2$, but the parity analysis below yields
-% % \[
-% % 0 \equiv p\sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - pn \pmod 2.
-% % \]
-% % Since $p$ is odd we may cancel $p$ modulo $2$ to obtain
-% % \[
-% % 0 \equiv \sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor - n \pmod 2,
-% % \]
-% % so
-% % \[
-% % n \equiv \sum_{k=1}^{\frac{p-1}{2}} \left\lfloor\frac{k a}{p}\right\rfloor \equiv N \pmod 2.
-% % \]
-% % By \nameref{lem:4.7}, $(\tfrac{a}{p})=(-1)^n$, hence
-% % \[
-% % \left(\frac{a}{p}\right)=(-1)^n = (-1)^N,
-% % \]
-% % which proves the lemma.
-% % \end{subprove}
-% % \end{define}
-
-% % \begin{define}{Proof of Theorem 4.9 (Quadratic Reciprocity)}[thm:4.9proof][red]
-% % \begin{subprove}
-% % For distinct odd primes $p$ and $q$, let $N_1=\sum_{j=1}^{(q-1)/2}\lfloor jp/q\rfloor$ and $N_2=\sum_{j=1}^{(p-1)/2}\lfloor jq/p\rfloor$. A lattice-point count on $[0,(p-1)/2]\times[0,(q-1)/2]$ divided by $y=(q/p)x$ yields $N_1+N_2=(p-1)/2\cdot(q-1)/2$.
-
-% % By \nameref{lem:4.10}, $\left(\frac{p}{q}\right)=(-1)^{N_1}$ and $\left(\frac{q}{p}\right)=(-1)^{N_2}$. Hence, $\left(\frac{p}{q}\right)\left(\frac{q}{p}\right)=(-1)^{N_1+N_2}=(-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}$.
-% % \end{subprove}
-% % \end{define}
-
-% % \begin{enumerate}
-% % \item Find all odd primes $p\ne 11$ with $(\tfrac{11}{p})=1$.
-
-% % By \nameref{thm:4.9},
-% % \[
-% % \left(\frac{11}{p}\right)=
-% % \begin{cases}
-% % \left(\frac{p}{11}\right), &\text{if } p\equiv 1\pmod 4,\\[4pt]
-% % -\left(\frac{p}{11}\right), &\text{if } p\equiv 3\pmod 4.
-% % \end{cases}
-% % \]
-% % The quadratic residues modulo $11$ (nonzero squares) are $1,3,4,5,9$ and non-residues are $2,6,7,8,10$.
-
-% % Thus for $p\equiv 1\pmod4$ we need $p\pmod{11}\in\{1,3,4,5,9\}$, and for $p\equiv 3\pmod4$ we need $p\pmod{11}\in\{2,6,7,8,10\}$. Solving these congruence pairs modulo $44$ (via the Chinese Remainder Theorem) yields the residue classes modulo $44$ of primes $p$ for which $(\tfrac{11}{p})=1$:
-
-% % \[
-% % p\equiv 1,5,9,25,37 \pmod{44} \quad\text{or}\quad
-% % p\equiv 7,19,35,39,43 \pmod{44}.
-% % \]
-
-% % Equivalently, the ten congruence classes modulo $44$ are
-% % \[
-% % 1,5,7,9,19,25,35,37,39,43\pmod{44}.
-% % \]
-% % \end{enumerate}
-
-% % \textbf{Exercise:} Characterize the primes $p$ for which a given integer $s$ is a quadratic residue modulo $p$ (use factorization, multiplicativity and Quadratic Reciprocity).
-
-% % % End of L14
+% % End of L14
 
 
 
