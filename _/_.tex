@@ -3347,6 +3347,155 @@ Characterize the primes $p$ for which a given integer $s$ is a quadratic residue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L15
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% L15: Primitive Roots — cleaned, corrected, and restructured.
+% Major changes / assumptions:
+% - Fixed numerous typographical errors (e.g., "oit" -> "it", "lenst" -> "least", P/p, etc.).
+% - Standardized notation: \operatorname{ord}_m(a), \varphi(m), congruences with \pmod.
+% - Wrapped all Definitions/Propositions/Examples/Remarks in the 'define' environment with explicit labels.
+% - Used \nameref{thm:4.4} when referring to Euler's theorem (assumes that theorem is labelled thm:4.4).
+% - Clarified proofs (Division Algorithm step, cancellation argument) and corrected arithmetic facts.
+% - Checked examples: 2^6 ≡ -1 (mod 13) so ord_{13}(2)=12, etc.
+
+\section*{L15: Primitive Roots}
+
+\begin{define}{Definition 5.0 (Order of an integer modulo $m$)}[def:order]
+Let $m>0$ be an integer and let $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. The \emph{order} of $a$ modulo $m$, denoted $\operatorname{ord}_m(a)$, is the least positive integer $n$ such that
+\[
+a^n\equiv 1 \pmod m.
+\]
+\end{define}
+
+\begin{define}{Remark}[rem:order-euler]
+% Comment: explain relation to Euler's theorem.
+By Euler's theorem (Theorem \nameref{thm:4.4}), $a^{\varphi(m)}\equiv 1\pmod m$, so the order $\operatorname{ord}_m(a)$ exists and satisfies
+\[
+\operatorname{ord}_m(a)\mid \varphi(m).
+\]
+Thus the order is always a divisor of $\varphi(m)$.
+\end{define}
+
+\begin{define}{Examples (orders modulo 7 and 13)}[ex:orders-7-13]
+\begin{itemize}
+  \item Compute $\operatorname{ord}_7(2)$. One checks
+  \[
+  2^1\equiv 2,\; 2^2\equiv 4,\; 2^3\equiv 8\equiv 1 \pmod 7,
+  \]
+  so $\operatorname{ord}_7(2)=3$.
+
+  \item Compute $\operatorname{ord}_7(3)$. One checks
+  \[
+  3^1\equiv 3,\;3^2\equiv 2,\;3^3\equiv 6,\;3^4\equiv 4,\;3^5\equiv 5,\;3^6\equiv 1 \pmod 7,
+  \]
+  so $\operatorname{ord}_7(3)=6=\varphi(7)$.
+
+  \item Compute $\operatorname{ord}_{13}(2)$. By Proposition \ref{prop:5.1} below the order divides $\varphi(13)=12$. We compute
+  \[
+  2^1\equiv 2,\;2^2\equiv 4,\;2^3\equiv 8,\;2^4\equiv 16\equiv 3,\;2^6\equiv (2^3)^2\equiv 8^2\equiv 64\equiv 12\equiv -1 \pmod{13}.
+  \]
+  Since $2^6\equiv -1\not\equiv 1$, the order is not $1,2,3,$ or $6$, hence must be $12$. Thus $\operatorname{ord}_{13}(2)=12$.
+\end{itemize}
+\end{define}
+
+\bigskip
+
+\begin{define}{Proposition 5.1}[prop:5.1]
+Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. For a positive integer $n$ we have
+\[
+a^n\equiv 1\pmod m \quad\Longleftrightarrow\quad \operatorname{ord}_m(a)\mid n.
+\]
+In particular $\operatorname{ord}_m(a)\mid\varphi(m)$.
+\end{define}
+
+\begin{proof}
+% Comment: Clean Division Algorithm proof.
+\emph{($\Rightarrow$)} Suppose $a^n\equiv 1\pmod m$. Write $n=q\operatorname{ord}_m(a)+r$ with integers $q\ge0$ and $0\le r<\operatorname{ord}_m(a)$ by the Division Algorithm. Then
+\[
+a^n = a^{q\operatorname{ord}_m(a)+r} = \bigl(a^{\operatorname{ord}_m(a)}\bigr)^q a^r \equiv a^r \pmod m.
+\]
+Since $a^n\equiv 1\pmod m$, it follows that $a^r\equiv 1\pmod m$. By minimality of $\operatorname{ord}_m(a)$ we must have $r=0$. Hence $n=q\operatorname{ord}_m(a)$ and $\operatorname{ord}_m(a)\mid n$.
+
+\emph{($\Leftarrow$)} If $\operatorname{ord}_m(a)\mid n$ then $n=\operatorname{ord}_m(a)\,b$ for some $b\in\mathbb{Z}_{>0}$, so
+\[
+a^n=\bigl(a^{\operatorname{ord}_m(a)}\bigr)^b\equiv 1^b\equiv 1\pmod m.
+\]
+This completes the equivalence. The last statement follows from Euler's theorem $a^{\varphi(m)}\equiv 1\pmod m$, hence $\operatorname{ord}_m(a)\mid\varphi(m)$ by the first part.
+\end{proof}
+
+\bigskip
+
+\begin{define}{Proposition 5.2}[prop:5.2]
+Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. For nonnegative integers $i,j$ we have
+\[
+a^i\equiv a^j\pmod m \quad\Longleftrightarrow\quad i\equiv j\pmod{\operatorname{ord}_m(a)}.
+\]
+\end{define}
+
+\begin{proof}
+Assume without loss of generality $i\ge j$.
+
+\emph{($\Rightarrow$)} If $a^i\equiv a^j\pmod m$, then $a^{i-j}\equiv 1\pmod m$. By Proposition \ref{prop:5.1} we have $\operatorname{ord}_m(a)\mid (i-j)$, so $i\equiv j\pmod{\operatorname{ord}_m(a)}$.
+
+\emph{($\Leftarrow$)} If $i\equiv j\pmod{\operatorname{ord}_m(a)}$ then $i-j=t\operatorname{ord}_m(a)$ for some $t$, and hence
+\[
+a^{i}=a^{j+t\operatorname{ord}_m(a)}=a^j\bigl(a^{\operatorname{ord}_m(a)}\bigr)^t\equiv a^j\cdot 1^t\equiv a^j\pmod m.
+\]
+This proves the equivalence.
+\end{proof}
+
+\bigskip
+
+\begin{define}{Definition 5.1 (Primitive root modulo $m$)}[def:primitive]
+Let $m>0$. An integer $r$ with $\gcd(r,m)=1$ is called a \emph{primitive root modulo $m$} if
+\[
+\operatorname{ord}_m(r)=\varphi(m).
+\]
+\end{define}
+
+\begin{define}{Examples (primitive roots)}[ex:primitive-examples]
+\begin{itemize}
+  \item $3$ is a primitive root modulo $7$ since $\operatorname{ord}_7(3)=6=\varphi(7)$.
+  \item $2$ is a primitive root modulo $13$ since $\operatorname{ord}_{13}(2)=12=\varphi(13)$ (see above).
+  \item $2$ is \emph{not} a primitive root modulo $7$ because $\operatorname{ord}_7(2)=3\neq 6$.
+\end{itemize}
+\end{define}
+
+\begin{define}{Nonexistence example (modulo $8$)}[ex:no-primitive-8]
+The reduced residue system modulo $8$ is $\{1,3,5,7\}$ and $\varphi(8)=4$. One checks
+\[
+\operatorname{ord}_8(1)=1,\quad \operatorname{ord}_8(3)=2,\quad \operatorname{ord}_8(5)=2,\quad \operatorname{ord}_8(7)=2,
+\]
+so no element has order $4$. Therefore there are no primitive roots modulo $8$.
+% Comment: Corrected earlier typos and clarified the conclusion.
+\end{define}
+
+\bigskip
+
+\begin{define}{Proposition 5.3}[prop:5.3]
+If $r$ is a primitive root modulo $m$, then the set
+\[
+\{r, r^2, r^3, \dots, r^{\varphi(m)}\}
+\]
+is a reduced residue system modulo $m$ (i.e., a complete set of representatives of the invertible residue classes mod $m$).
+\end{define}
+
+\begin{proof}
+Since $\gcd(r,m)=1$, each $r^k$ is coprime to $m$. There are $\varphi(m)$ elements in the set; to show they are a reduced residue system it suffices to show they are pairwise incongruent modulo $m$. If $r^i\equiv r^j\pmod m$ with $1\le i<j\le\varphi(m)$ then Proposition \ref{prop:5.2} implies $i\equiv j\pmod{\operatorname{ord}_m(r)}$. But $\operatorname{ord}_m(r)=\varphi(m)$, so $0<j-i<\varphi(m)$ cannot be a multiple of $\varphi(m)$; hence no such congruence can occur and the elements are pairwise distinct modulo $m$. Thus the set is a reduced residue system.
+\end{proof}
+
+\begin{define}{Remark}[rem:primitive-multiplicity]
+If a primitive root modulo $m$ exists, it is typically not unique: if $r$ is a primitive root and $\gcd(k,\varphi(m))=1$, then $r^k$ is also a primitive root modulo $m$. In a later lecture we will determine precisely how many primitive roots modulo $m$ exist when they exist at all.
+\end{define}
+
+\bigskip
+
+\begin{define}{Exercises}
+\begin{enumerate}
+  \item Show there are no primitive roots modulo $12$.
+  \item Prove that if $r$ is a primitive root modulo $m$, then exactly $\varphi(\varphi(m))$ of the elements $r^k$ ($1\le k\le\varphi(m)$) are primitive roots modulo $m$ (hint: count $k$ with $\gcd(k,\varphi(m))=1$).
+\end{enumerate}
+\end{define}
+
+% End of L15
 
 
 \newpage
@@ -3356,6 +3505,158 @@ Characterize the primes $p$ for which a given integer $s$ is a quadratic residue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L16
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% L16: The order of an integer (continued) — cleaned and restructured
+% Major changes / assumptions:
+% - Fixed typos and garbled words (e.g., "p-7" -> "p-1", many punctuation/math-mode corrections).
+% - Standardized notation: \operatorname{ord}_m(a), \varphi(m), \mathbb{F}_p, \pmod.
+% - Wrapped every statement in the 'define' environment with explicit labels.
+% - Added short comments where the original text was ambiguous.
+% - Assumes Proposition/Lemma labels from earlier lectures exist (e.g., prop:5.1, prop:5.3).
+
+\section*{L16: The order of an integer (continued)}
+
+\begin{define}{Proposition 5.4}[prop:5.4]
+Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. For any positive integer $i$,
+\[
+\operatorname{ord}_m\!\bigl(a^i\bigr)=\frac{\operatorname{ord}_m(a)}{\gcd\bigl(\operatorname{ord}_m(a),\,i\bigr)}.
+\]
+\end{define}
+
+\begin{define}{Proof}[pf:prop5.4]
+\begin{proof}
+Write $t:=\operatorname{ord}_m(a)$ and set $d=\gcd(t,i)$. Then there exist coprime integers $b,c>0$ with
+\[
+t=db,\qquad i=dc,\qquad \gcd(b,c)=1.
+\]
+Compute
+\[
+\bigl(a^i\bigr)^b = a^{i b} = a^{(dc)(b)} = a^{t c} = \bigl(a^t\bigr)^c \equiv 1 \pmod m,
+\]
+so by Proposition \nameref{prop:5.1} we have $\operatorname{ord}_m(a^i)\mid b$.
+
+Conversely, since $a^{t}\equiv 1\pmod m$ we have
+\[
+a^{i\operatorname{ord}_m(a^i)} \equiv 1\pmod m,
+\]
+so by Proposition \nameref{prop:5.1} it follows that $t\mid i\operatorname{ord}_m(a^i)$. Substituting $t=db$ and $i=dc$ gives
+\[
+db \mid dc\cdot \operatorname{ord}_m(a^i) \quad\Longrightarrow\quad b \mid c\cdot\operatorname{ord}_m(a^i).
+\]
+Because $\gcd(b,c)=1$, this implies $b\mid \operatorname{ord}_m(a^i)$. Combining with the previous divisibility $\operatorname{ord}_m(a^i)\mid b$, we get
+\[
+\operatorname{ord}_m(a^i)=b=\frac{t}{d}=\frac{\operatorname{ord}_m(a)}{\gcd(\operatorname{ord}_m(a),i)}.
+\]
+This completes the proof.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.5}[cor:5.5]
+Let $m>0$ and $a\in\mathbb{Z}$ with $\gcd(a,m)=1$. For a positive integer $i$,
+\[
+\operatorname{ord}_m(a^i)=\operatorname{ord}_m(a) \quad\Longleftrightarrow\quad \gcd\bigl(\operatorname{ord}_m(a),\,i\bigr)=1.
+\]
+\end{define}
+
+\begin{define}{Proof}[pf:cor5.5]
+\begin{proof}
+Immediate from Proposition \nameref{prop:5.4}: $\operatorname{ord}_m(a^i)=\operatorname{ord}_m(a)/\gcd(\operatorname{ord}_m(a),i)$ equals $\operatorname{ord}_m(a)$ iff the denominator is $1$.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.6 (Counting primitive roots)}[cor:5.6]
+If a primitive root modulo $m$ exists, then there are exactly $\varphi(\varphi(m))$ incongruent primitive roots modulo $m$.
+\end{define}
+
+\begin{define}{Proof}[pf:cor5.6]
+\begin{proof}
+Let $r$ be a primitive root modulo $m$, so $\operatorname{ord}_m(r)=\varphi(m)$. By Proposition \nameref{prop:5.3}, the powers
+\[
+r, r^2, \dots, r^{\varphi(m)}
+\]
+form a reduced-residue system modulo $m$ and hence represent all $\varphi(m)$ residue classes coprime to $m$. By Corollary \nameref{cor:5.5}, $r^i$ is a primitive root (i.e. has order $\varphi(m)$) if and only if $\gcd(\varphi(m),i)=1$. The number of integers $i$ in $\{1,\dots,\varphi(m)\}$ satisfying this is $\varphi(\varphi(m))$. Thus there are exactly $\varphi(\varphi(m))$ incongruent primitive roots modulo $m$.
+\end{proof}
+\end{define}
+
+\begin{define}{Example 5.1}[ex:primitive-count-7]
+% Comment: illustrating Corollary 5.6
+We know $3$ is a primitive root modulo $7$. Since $\varphi(7)=6$, Corollary \nameref{cor:5.6} predicts $\varphi(\varphi(7))=\varphi(6)=2$ primitive roots modulo $7$. Indeed, $3^1\equiv 3$ and $3^5\equiv 5\pmod 7$ are the two incongruent primitive roots modulo $7$.
+\end{define}
+
+\begin{define}{Remark}[rem:cor56-caveat]
+Corollary \nameref{cor:5.6} applies only when at least one primitive root modulo $m$ exists. For example, although $\varphi(\varphi(8))=\varphi(4)=2$, there are no primitive roots modulo $8$ (see previous lecture), so the corollary does not apply in that case.
+\end{define}
+
+\bigskip
+
+\begin{define}{Section: Primitive roots for prime moduli}
+% Comment: heading kept as requested
+\end{define}
+
+\begin{define}{Theorem 5.7 (Lagrange's Theorem for polynomials over $\mathbb{F}_p$)}[thm:5.7]
+Let $p$ be a prime and let
+\[
+f(x)=a_n x^n + a_{n-1}x^{n-1} +\cdots + a_1 x + a_0
+\]
+be a polynomial with integer coefficients of degree $n\ge 1$, and assume $p\nmid a_n$. Then the congruence
+\[
+f(x)\equiv 0 \pmod p
+\]
+has at most $n$ incongruent solutions modulo $p$.
+\end{define}
+
+\begin{define}{Proof}[pf:thm5.7]
+\begin{proof}
+We work in the field $\mathbb{F}_p=\mathbb{Z}/p\mathbb{Z}$. Proceed by induction on $n$. The base case $n=1$ is elementary: a nonzero linear polynomial has exactly one root in $\mathbb{F}_p$.
+
+Assume the statement holds for degree $\le k$ and let $f$ have degree $k+1$. If $f$ has no root then the conclusion is trivial. Otherwise let $a\in\mathbb{F}_p$ be a root. Perform polynomial division in $\mathbb{F}_p[x]$:
+\[
+f(x)=(x-a)q(x)+r,
+\]
+with $q(x)\in\mathbb{F}_p[x]$ of degree $k$ and $r\in\mathbb{F}_p$. Evaluating at $x=a$ gives $0=f(a)=r$, so $f(x)=(x-a)q(x)$ in $\mathbb{F}_p[x]$. Any other root $b\not\equiv a$ must satisfy $q(b)=0$, and by the induction hypothesis $q$ has at most $k$ roots. Therefore $f$ has at most $k+1$ roots, completing the induction.
+\end{proof}
+\end{define}
+
+\begin{define}{Proposition 5.8}[prop:5.8]
+Let $p$ be a prime and let $d>0$ be a divisor of $p-1$. Then the congruence
+\[
+x^d \equiv 1 \pmod p
+\]
+has exactly $d$ incongruent solutions modulo $p$.
+\end{define}
+
+\begin{define}{Proof}[pf:prop5.8]
+\begin{proof}
+Write $p-1 = d e$ for some integer $e\ge1$. Factor the polynomial identity
+\[
+x^{p-1}-1 = x^{de}-1 = (x^d-1)\bigl(x^{d(e-1)}+\cdots+x^d+1\bigr).
+\]
+By Fermat's little theorem the congruence $x^{p-1}\equiv 1\pmod p$ holds for each $x\in\{1,2,\dots,p-1\}$, so there are $p-1$ solutions among the nonzero residues. Each such solution is a solution of either
+\[
+x^d\equiv 1\pmod p\quad\text{or}\quad x^{d(e-1)}+\cdots + x^d + 1 \equiv 0\pmod p.
+\]
+The second polynomial has degree $d(e-1)=p-1-d$, hence by Theorem \nameref{thm:5.7} it has at most $p-1-d$ solutions. Thus the congruence $x^d\equiv 1\pmod p$ must have at least
+\[
+(p-1) - (p-1-d) = d
+\]
+solutions. But Theorem \nameref{thm:5.7} also implies $x^d-1$ (a degree-$d$ polynomial) has at most $d$ roots modulo $p$. Combining the two bounds yields exactly $d$ distinct solutions modulo $p$, as required.
+\end{proof}
+\end{define}
+
+\begin{define}{Example / Exercise}[ex:17-primitive]
+\begin{itemize}
+  \item Exercise: Assuming $17$ has a primitive root, determine how many incongruent primitive roots there are modulo $17$. (\emph{Hint:} use Corollary \nameref{cor:5.6}.)
+  \item Do the same for modulus $18$ (be careful: check whether primitive roots modulo $18$ exist before applying Corollary \nameref{cor:5.6}).
+\end{itemize}
+\end{define}
+
+\begin{define}{Further exercises}
+\begin{itemize}
+  \item Prove that $3$ is a primitive root modulo $43$.
+  \item Using the previous part, find all incongruent integers of order $14$ modulo $43$.
+\end{itemize}
+\end{define}
+
+% End of L16
 
 
 
@@ -3368,6 +3669,194 @@ Characterize the primes $p$ for which a given integer $s$ is a quadratic residue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L17
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% L17: Primitive Roots for prime numbers — cleaned, corrected, and restructured
+% Major changes / assumptions:
+% - Corrected many typographical errors (e.g. "d(p-1" -> "d\mid (p-1)", "p-7" -> "p-1").
+% - Standardized notation: \operatorname{ord}_p(a), \varphi(p), \mathbb{F}_p, \pmod.
+% - All statements wrapped in `define` with explicit labels (thm:5.9, cor:5.10, prop:5.11, prop:5.12, cor:5.13).
+% - Used Proposition/Lemma references by \nameref where appropriate.
+% - Comment: this file assumes Proposition 5.8 and Theorem 5.7 from previous lecture exist and are labelled prop:5.8 and thm:5.7.
+
+\section*{L17: Primitive Roots for Prime Numbers}
+
+\begin{define}{Theorem 5.9 (Legendre)}[thm:5.9]
+Let $p$ be a prime and let $d$ be a positive divisor of $p-1$ (i.e. $d\mid (p-1)$). Then the number of incongruent integers modulo $p$ whose order equals $d$ is $\varphi(d)$.
+\end{define}
+
+\begin{define}{Proof}[pf:thm5.9]
+\begin{proof}
+For each positive divisor $d\mid(p-1)$ let $f(d)$ denote the number of integers $a$ with $1\le a\le p-1$ such that $\operatorname{ord}_p(a)=d$. By Proposition \nameref{prop:5.1} every nonzero residue mod $p$ has order dividing $p-1$, hence
+\[
+\sum_{d\mid(p-1)} f(d)=p-1.
+\]
+On the other hand, by elementary properties of the totient function,
+\[
+\sum_{d\mid(p-1)} \varphi(d)=p-1.
+\]
+Thus
+\begin{equation}\label{eq:sumfphis}
+\sum_{d\mid(p-1)} f(d)=\sum_{d\mid(p-1)} \varphi(d).
+\end{equation}
+
+To conclude $f(d)=\varphi(d)$ for every $d\mid(p-1)$ it suffices to show $f(d)\le\varphi(d)$ for each such $d$. If $f(d)=0$ this is trivial, so assume $f(d)>0$. Then there exists $a$ with $\operatorname{ord}_p(a)=d$. The elements
+\[
+a,a^2,\dots,a^d
+\]
+are pairwise incongruent modulo $p$ (if $a^i\equiv a^j$ with $0\le i<j\le d$ then $a^{j-i}\equiv 1$ with $1\le j-i<d$, contradicting minimality of $d$). Hence they are $d$ distinct solutions of
+\[
+x^d\equiv 1 \pmod p.
+\]
+By Proposition \nameref{prop:5.8} the congruence $x^d\equiv1\pmod p$ has exactly $d$ incongruent solutions; therefore the full solution set is precisely $\{a,a^2,\dots,a^d\}$, which forms a cyclic subgroup of order $d$. Among these $d$ solutions exactly $\varphi(d)$ are generators of the cyclic subgroup (i.e. have order $d$) — that is, exactly the integers $a^k$ with $\gcd(k,d)=1$ have order $d$. Therefore $f(d)=\varphi(d)$, as required.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.10}[cor:5.10]
+Let $p$ be a prime. Then the number of incongruent primitive roots modulo $p$ is $\varphi(p-1)$. In particular, primitive roots modulo $p$ exist for every prime $p$.
+\end{define}
+
+\begin{define}{Proof}[pf:cor5.10]
+\begin{proof}
+A primitive root modulo $p$ is precisely an integer of order $p-1$. By Theorem \nameref{thm:5.9}, the number of such incongruent integers is $\varphi(p-1)$. In particular $\varphi(p-1)>0$, so primitive roots exist modulo $p$.
+\end{proof}
+\end{define}
+
+\begin{define}{Example 5.2 (Orders modulo $7$)}[ex:7table]
+Theorem \nameref{thm:5.9} guarantees existence of integers of orders dividing $\varphi(7)=6$, namely orders $1,2,3,6$. The count and classes are:
+
+\medskip
+\begin{center}
+\begin{tabular}{c|c|c}
+order $d$ & \# of residue classes & residue classes (mod 7) \\ \hline
+1 & $\varphi(1)=1$ & $\{1\}$ \\
+2 & $\varphi(2)=1$ & $\{6\}$ \\
+3 & $\varphi(3)=2$ & $\{2,4\}$ \\
+6 & $\varphi(6)=2$ & $\{3,5\}$
+\end{tabular}
+\end{center}
+% Comment: these classes agree with previous computations: ord_7(2)=3, ord_7(3)=6, etc.
+\end{define}
+
+\begin{define}{Example 5.3 (Find integers of order 6 modulo 19)}[ex:19-order6]
+By Corollary \nameref{cor:5.10} there are exactly $\varphi(6)=2$ incongruent integers of order $6$ modulo $19$. One convenient approach is to find a primitive root modulo $19$ and then use Proposition \nameref{prop:5.4}.
+
+First show $2$ is a primitive root modulo $19$. By Proposition \nameref{prop:5.1} it suffices to check $2^d\not\equiv1\pmod{19}$ for each proper divisor $d$ of $18=2\cdot3^2$, i.e. $d\in\{1,2,3,6,9\}$. Computations give
+\[
+2^1\equiv2,\;2^2\equiv4,\;2^3\equiv8,\;2^6\equiv7,\;2^9\equiv 18\pmod{19},
+\]
+none of which are $1$, so $\operatorname{ord}_{19}(2)=18$. Thus $2$ is primitive.
+
+By Proposition \nameref{prop:5.4},
+\[
+\operatorname{ord}_{19}(2^i)=\frac{18}{\gcd(18,i)}.
+\]
+We seek $i$ with $\operatorname{ord}_{19}(2^i)=6$, i.e. $\frac{18}{\gcd(18,i)}=6$, so $\gcd(18,i)=3$. For $1\le i\le 18$ the solutions with $\gcd(18,i)=3$ are $i=3,15$. Hence the elements $2^3$ and $2^{15}$ have order $6$.
+
+Compute:
+\[
+2^3\equiv 8\pmod{19}.
+\]
+Also
+\[
+2^{15} = 2^{12}\cdot 2^3 \equiv (2^{6})^{2}\cdot 8 \equiv 7^2\cdot 8 \equiv 49\cdot 8 \equiv 11\cdot 8 \equiv 88 \equiv 12\pmod{19},
+\]
+so the two incongruent integers with order $6$ modulo $19$ are $\{8,12\}$.
+\end{define}
+
+\begin{define}{Remarks and conjectures}[rem:artin]
+\begin{itemize}
+  \item Table 5.1 (in your text) lists least primitive roots for small primes; $2$ frequently appears as the least primitive root for many primes.
+  \item Conjecture: There are infinitely many primes $p$ for which $2$ is the least positive primitive root modulo $p$ (empirical pattern; open).
+  \item \textbf{Artin's conjecture:} If $r$ is an integer which is not a perfect square and $r\ne -1$, then there are infinitely many primes $p$ for which $r$ is a primitive root modulo $p$. This remains open; however Heath-Brown (1986) proved that at most two integers $r$ can fail Artin's conjecture in a certain strong sense.
+\end{itemize}
+\end{define}
+
+\bigskip
+
+\begin{define}{Proposition 5.11}[prop:5.11]
+For integers $n\ge 3$ there are no primitive roots modulo $2^n$.
+\end{define}
+
+\begin{define}{Proof}[pf:prop5.11]
+\begin{proof}
+If $2^n$ had a primitive root then it would be an odd integer of order $\varphi(2^n)=2^{n-1}$. We show that every odd integer $a$ satisfies
+\[
+a^{2^{n-2}}\equiv 1\pmod{2^n},
+\]
+which implies the order divides $2^{n-2}<2^{n-1}$, hence no primitive root exists.
+
+Proof by induction on $n\ge3$. Base case $n=3$: any odd $a\equiv 1,3,5,7\pmod 8$ satisfies $a^2\equiv1\pmod8$.
+
+Inductive step: suppose $a^{2^{k-2}}\equiv 1\pmod{2^k}$ for some $k\ge3$. Then write
+\[
+a^{2^{k-2}}=1+2^k t
+\]
+for some integer $t$. Squaring both sides gives
+\[
+a^{2^{k-1}}=(1+2^k t)^2 = 1 + 2^{k+1}t + 2^{2k}t^2 \equiv 1 \pmod{2^{k+1}},
+\]
+since $2^{2k}t^2$ is divisible by $2^{k+1}$ when $k\ge3$. This completes the induction and the proof.
+\end{proof}
+\end{define}
+
+\begin{define}{Proposition 5.12}[prop:5.12]
+Let $m,n>2$ be coprime integers. Then there are no primitive roots modulo $mn$.
+\end{define}
+
+\begin{define}{Proof}[pf:prop5.12]
+\begin{proof}
+Let $a$ be any integer with $\gcd(a,mn)=1$. Then $\gcd(a,m)=\gcd(a,n)=1$. Let
+\[
+d:=\gcd\bigl(\varphi(m),\varphi(n)\bigr),\qquad k:=\operatorname{lcm}\bigl(\varphi(m),\varphi(n)\bigr).
+\]
+Since $m,n>2$ we have $\varphi(m)$ and $\varphi(n)$ even, hence $d\ge2$. Then
+\[
+k=\frac{\varphi(m)\varphi(n)}{d} = \frac{\varphi(mn)}{d} \le \frac{\varphi(mn)}{2}.
+\]
+By Euler's theorem $a^{\varphi(m)}\equiv 1\pmod m$, so raising both sides to the $\varphi(n)/d$ power yields
+\[
+a^k\equiv 1 \pmod m.
+\]
+Similarly $a^k\equiv 1\pmod n$. Since $(m,n)=1$, it follows that $a^k\equiv 1\pmod{mn}$. Therefore the order of $a$ modulo $mn$ divides $k\le \varphi(mn)/2$, so cannot equal $\varphi(mn)$. Hence no primitive root modulo $mn$ exists.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.13 (Necessary form for moduli with primitive roots)}[cor:5.13]
+If an integer $n>0$ admits a primitive root then $n$ must be of one of the forms
+\[
+1,\;2,\;4,\;p^m,\;2p^m
+\]
+where $p$ is an odd prime and $m\ge1$.
+\end{define}
+
+\begin{define}{Remark / Proof sketch}[rem:cor5.13]
+The full proof of this corollary uses Propositions \nameref{prop:5.11} and \nameref{prop:5.12} and further elementary reduction arguments: any modulus $n$ decomposes as $2^e\prod p_i^{e_i}$; one checks which local factors allow maximal cyclic multiplicative groups and eliminates mixed composite factors. The complete characterization (the Primitive Root Theorem) will be given in a later lecture.
+\end{define}
+
+\bigskip
+
+\begin{define}{Exercises}
+\begin{enumerate}
+  \item Construct the order/residue table for $p=13$ (analogue of Example \ref{ex:7table}).
+  \item Find all incongruent integers of order $6$ modulo $19$ (exercise solved in Example \ref{ex:19-order6}).
+  \item Prove that $3$ is a primitive root modulo $43$, and list all incongruent integers having order $14$ modulo $43$.
+  \item Prove Corollary \nameref{cor:5.13}.
+\end{enumerate}
+\end{define}
+
+% END OF L17
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \newpage
 \subsection{L18: 5.3 The Primitive Root Theorem}
@@ -3376,6 +3865,168 @@ Characterize the primes $p$ for which a given integer $s$ is a quadratic residue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L18
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% L18: The Primitive Root Theorem continued
+% Major corrections/assumptions:
+% - Fixed typographical errors and standardized notation (\operatorname{ord}_{p^m}, \varphi).
+% - All results wrapped in the `define` environment with labels: lem:5.14, cor:5.15, lem:5.16, prop:5.17, cor:5.18, thm:5.19.
+% - Minor simplifications to binomial expansions modulo p^2 and p^{k+1} noted in comments.
+% - Assumes earlier results (e.g., Proposition 5.1, 5.8) are present and labelled.
+
+\section*{L18: The Primitive Root Theorem (continued)}
+
+\begin{define}{Lemma 5.14}[lem:5.14]
+Let $p$ be an odd prime. There exists a primitive root $r$ modulo $p$ such that
+\[
+r^{p-1}\not\equiv 1 \pmod{p^2}.
+\]
+\end{define}
+
+\begin{define}{Proof}[pf:lem5.14]
+\begin{proof}
+Let $r$ be any primitive root modulo $p$. If $r^{p-1}\not\equiv 1\pmod{p^2}$ we are done. Otherwise assume
+\[
+r^{p-1}\equiv 1\pmod{p^2}.
+\]
+Set $r':=r+p$. Since $r'\equiv r\pmod p$, $r'$ is a primitive root modulo $p$. We will show $r'^{\,p-1}\not\equiv1\pmod{p^2}$.
+
+By the binomial theorem,
+\[
+(r+p)^{p-1}=\sum_{k=0}^{p-1}\binom{p-1}{k}r^{\,p-1-k}p^k.
+\]
+All terms with $k\ge2$ are divisible by $p^2$, so modulo $p^2$ only the $k=0$ and $k=1$ terms contribute:
+\[
+(r+p)^{p-1}\equiv r^{p-1}+\binom{p-1}{1}r^{p-2}p \pmod{p^2}.
+\]
+Since $\binom{p-1}{1}=p-1$, we get
+\[
+(r+p)^{p-1}\equiv r^{p-1}+(p-1)p\,r^{p-2}\equiv r^{p-1}-p\,r^{p-2}\pmod{p^2},
+\]
+because $(p-1)p\equiv -p\pmod{p^2}$. Using the assumption $r^{p-1}\equiv1\pmod{p^2}$ this becomes
+\[
+(r+p)^{p-1}\equiv 1-p\,r^{p-2}\pmod{p^2}.
+\]
+If $(r+p)^{p-1}\equiv1\pmod{p^2}$ then $p\,r^{p-2}\equiv0\pmod{p^2}$, so $p\mid r^{p-2}$ and hence $p\mid r$, contradicting $\gcd(r,p)=1$. Therefore $(r+p)^{p-1}\not\equiv1\pmod{p^2}$, and the lemma is proved.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.15}[cor:5.15]
+Let $p$ be an odd prime and let $r$ be a primitive root modulo $p$. Then either $r$ or $r+p$ is a primitive root modulo $p^2$.
+\end{define}
+
+\begin{define}{Proof}[pf:cor5.15]
+\begin{proof}
+Let $n:=\operatorname{ord}_{p^2}(r)$. By Proposition \nameref{prop:5.1}, $n\mid\varphi(p^2)=p(p-1)$. Reducing modulo $p$ shows $\operatorname{ord}_p(r)=p-1\mid n$. Hence $n$ is either $p-1$ or $p(p-1)$. If $n=p(p-1)$ then $r$ is a primitive root modulo $p^2$ and we are done. If $n=p-1$, then by Lemma \nameref{lem:5.14} the element $r':=r+p$ satisfies $r'^{\,p-1}\not\equiv1\pmod{p^2}$; repeating the divisibility argument above yields $\operatorname{ord}_{p^2}(r')\in\{p-1,p(p-1)\}$, but it cannot be $p-1$ by the lemma, so $\operatorname{ord}_{p^2}(r')=p(p-1)$ and $r'$ is a primitive root modulo $p^2$.
+\end{proof}
+\end{define}
+
+\begin{define}{Lemma 5.16}[lem:5.16]
+Let $p$ be an odd prime and let $r$ be a primitive root modulo $p$ with
+\[
+r^{p-1}\not\equiv 1\pmod{p^2}.
+\]
+For every integer $m\ge2$,
+\[
+r^{p^{m-2}(p-1)}\not\equiv 1\pmod{p^m}.
+\]
+\end{define}
+
+\begin{define}{Proof}[pf:lem5.16]
+\begin{proof}
+We prove the claim by induction on $m\ge2$. The base case $m=2$ is the hypothesis.
+
+Assume the statement holds for $m=k\ge2$, i.e.
+\[
+r^{p^{k-2}(p-1)}\not\equiv 1\pmod{p^k}.
+\]
+Thus there exists an integer $a$ with
+\[
+r^{p^{k-2}(p-1)}=1+a p^{k-1},
+\]
+and necessarily $p\nmid a$ (otherwise $r^{p^{k-2}(p-1)}\equiv1\pmod{p^k}$, contradicting the induction hypothesis).
+
+Raise both sides to the $p$-th power:
+\[
+r^{p^{k-1}(p-1)}=(1+a p^{k-1})^p
+=1+p(a p^{k-1})+\binom{p}{2}(a p^{k-1})^2+\cdots+(a p^{k-1})^p.
+\]
+All terms except the first two are divisible by $p^{k+1}$, hence modulo $p^{k+1}$ we have
+\[
+r^{p^{k-1}(p-1)}\equiv 1 + a p^k \pmod{p^{k+1}}.
+\]
+Since $p\nmid a$, this is not congruent to $1$ modulo $p^{k+1}$. Thus the statement holds for $m=k+1$. By induction it is true for all $m\ge2$.
+\end{proof}
+\end{define}
+
+\begin{define}{Proposition 5.17}[prop:5.17]
+Let $p$ be an odd prime and $m\ge1$ a positive integer. Then there exists a primitive root modulo $p^m$.
+\end{define}
+
+\begin{define}{Proof}[pf:prop5.17]
+\begin{proof}
+The case $m=1$ is Corollary \nameref{cor:5.10}. For $m\ge2$, pick a primitive root $r$ modulo $p$ satisfying Lemma \nameref{lem:5.14}, and hence Lemma \nameref{lem:5.16} (so that
+\[
+r^{p^{m-2}(p-1)}\not\equiv 1\pmod{p^m}\quad\text{for the given }m).
+\]
+Let $n:=\operatorname{ord}_{p^m}(r)$. By Proposition \nameref{prop:5.1}, $n\mid\varphi(p^m)=p^{m-1}(p-1)$. Reducing modulo $p$ gives $\operatorname{ord}_p(r)=p-1\mid n$. Thus $n=p^k(p-1)$ for some integer $0\le k\le m-1$.
+
+If $k\le m-2$, then
+\[
+r^{p^{m-2}(p-1)}=\bigl(r^{p^k(p-1)}\bigr)^{p^{m-2-k}}\equiv 1^{p^{m-2-k}}\equiv 1\pmod{p^m},
+\]
+contradicting Lemma \nameref{lem:5.16}. Therefore $k=m-1$, and so
+\[
+n=p^{m-1}(p-1)=\varphi(p^m),
+\]
+i.e. $r$ is a primitive root modulo $p^m$.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.18}[cor:5.18]
+Let $p$ be an odd prime and $m\ge1$. There exists a primitive root modulo $2p^m$.
+\end{define}
+
+\begin{define}{Proof}[pf:cor5.18]
+\begin{proof}
+By Proposition \nameref{prop:5.17} choose a primitive root $r$ modulo $p^m$. If $r$ is even, replace it by $r+p^m$ (which is still a primitive root mod $p^m$ and is odd); hence we may assume $r$ is odd and therefore $\gcd(r,2p^m)=1$.
+
+Let $n:=\operatorname{ord}_{2p^m}(r)$. Then $r^n\equiv1\pmod{2p^m}$ implies in particular $r^n\equiv1\pmod{p^m}$, so $\varphi(p^m)=p^{m-1}(p-1)\mid n$ by Proposition \nameref{prop:5.1}. On the other hand $n\mid\varphi(2p^m)=\varphi(2)\varphi(p^m)=\varphi(p^m)$, hence $n=\varphi(p^m)=\varphi(2p^m)$ and $r$ is a primitive root modulo $2p^m$.
+\end{proof}
+\end{define}
+
+\begin{define}{Theorem 5.19 (Primitive Root Theorem)}[thm:5.19]
+Let $n\ge1$ be an integer. There exists a primitive root modulo $n$ if and only if
+\[
+n\in\{1,2,4,p^m,2p^m\},
+\]
+where $p$ is an odd prime and $m\ge1$.
+\end{define}
+
+\begin{define}{Proof}[pf:thm5.19]
+\begin{proof}
+($\Rightarrow$) The necessity was proved earlier (Corollary \nameref{cor:5.13}): if a primitive root modulo $n$ exists then $n$ must be $1,2,4,p^m,$ or $2p^m$.
+
+($\Leftarrow$) For each value in the list we exhibit existence.
+\begin{itemize}
+  \item $n=1$: trivial (the residue class $0$).
+  \item $n=2$: $1$ is a primitive root modulo $2$.
+  \item $n=4$: $3$ is a primitive root modulo $4$.
+  \item $n=p^m$ with $p$ odd prime: existence follows from Proposition \nameref{prop:5.17}.
+  \item $n=2p^m$ with $p$ odd prime: existence follows from Corollary \nameref{cor:5.18}.
+\end{itemize}
+This completes the proof.
+\end{proof}
+\end{define}
+
+\bigskip
+
+\begin{define}{Exercises}
+\begin{itemize}
+  \item For each $m\ge1$, find a primitive root modulo $11^m$.
+  \item Do the same for modulus $17^m$.
+\end{itemize}
+\end{define}
+
+% End of L18
 
 
 
@@ -3386,6 +4037,177 @@ Characterize the primes $p$ for which a given integer $s$ is a quadratic residue
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% L19
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% L19: Index Arithmetic and n-th power residues — cleaned and restructured
+% Major changes / notes:
+% - Fixed many typographical errors and standardized notation:
+%   use \operatorname{ind}_r(a), \varphi(m), \pmod, \gcd, \mathbb{Z}.
+% - Wrapped definitions, propositions, theorems, corollaries, examples in `define` with labels.
+% - Clarified proofs and arithmetic in examples (checked all congruences modulo 7,13,9).
+% - Assumes m has a primitive root (so \{r^1,...,r^{\varphi(m)}\} is a reduced residue system).
+
+\section*{L19: Index Arithmetic and \(n\)th-power residues}
+
+\begin{define}{Setup / notation}[def:setup-index]
+Let \(m>0\) be an integer for which a primitive root exists; fix a primitive root \(r\) modulo \(m\). Then
+\[
+\{r, r^2, \dots, r^{\varphi(m)}\}
+\]
+is a complete reduced residue system modulo \(m\).
+\end{define}
+
+\begin{define}{Definition (Index)}[def:index]
+Let \(r\) be a primitive root modulo \(m\). For \(a\in\mathbb{Z}\) with \(\gcd(a,m)=1\) the \emph{index of \(a\) with respect to \(r\)}, denoted \(\operatorname{ind}_r(a)\), is the least positive integer \(n\) such that
+\[
+r^n\equiv a\pmod m.
+\]
+\end{define}
+
+\begin{define}{Remark}[rem:index-range]
+% Comment: existence and range of the index.
+Since \(\{r^1,\dots,r^{\varphi(m)}\}\) is a reduced-residue system, \(\operatorname{ind}_r(a)\) exists and satisfies \(1\le \operatorname{ind}_r(a)\le\varphi(m)\).
+\end{define}
+
+\begin{define}{Example (indices modulo 7)}[ex:indices-mod7]
+Take \(r=3\), a primitive root modulo \(7\). Compute
+\[
+3^1\equiv3,\;3^2\equiv2,\;3^3\equiv6,\;3^4\equiv4,\;3^5\equiv5,\;3^6\equiv1\pmod7,
+\]
+hence
+\[
+\operatorname{ind}_3(3)=1,\;\operatorname{ind}_3(2)=2,\;\operatorname{ind}_3(6)=3,\;
+\operatorname{ind}_3(4)=4,\;\operatorname{ind}_3(5)=5,\;\operatorname{ind}_3(1)=6.
+\]
+\end{define}
+
+\bigskip
+
+\begin{define}{Proposition 5.20 (Properties of indices)}[prop:5.20]
+Let \(r\) be a primitive root modulo \(m\) and let \(a,b\in\mathbb{Z}\) with \(\gcd(a,m)=\gcd(b,m)=1\). Then
+\begin{enumerate}[(a)]
+  \item \(\operatorname{ind}_r(1)=\varphi(m)\) (equivalently \(\operatorname{ind}_r(1)\equiv 0\pmod{\varphi(m)}\)).
+  \item \(\operatorname{ind}_r(r)=1\).
+  \item \(\operatorname{ind}_r(ab)\equiv \operatorname{ind}_r(a)+\operatorname{ind}_r(b)\pmod{\varphi(m)}\).
+  \item For \(n\in\mathbb{Z}_{>0}\): \(\operatorname{ind}_r(a^n)\equiv n\operatorname{ind}_r(a)\pmod{\varphi(m)}\).
+\end{enumerate}
+\end{define}
+
+\begin{define}{Proof}[pf:prop5.20]
+\begin{proof}
+(a) and (b) are immediate from definitions: \(r^{\varphi(m)}\equiv1\pmod m\) and \(r^1\equiv r\pmod m\).
+(c) If \(r^{\operatorname{ind}_r(a)}\equiv a\pmod m\) and \(r^{\operatorname{ind}_r(b)}\equiv b\pmod m\) then multiplying gives
+\[
+r^{\operatorname{ind}_r(a)+\operatorname{ind}_r(b)}\equiv ab\pmod m.
+\]
+By definition \(r^{\operatorname{ind}_r(ab)}\equiv ab\pmod m\), so by Proposition \nameref{prop:5.2} (periodicity mod \(\varphi(m)\)) we obtain the congruence in (c).
+(d) follows similarly: \(r^{\operatorname{ind}_r(a^n)}\equiv a^n\equiv(r^{\operatorname{ind}_r(a)})^n\equiv r^{n\operatorname{ind}_r(a)}\pmod m\), hence the stated congruence.
+\end{proof}
+\end{define}
+
+\bigskip
+
+\begin{define}{Solving multiplicative congruences by indices}[rem:solve-mult]
+Suppose \(\gcd(a,m)=\gcd(b,m)=1\) and \(n>0\). Consider the congruence
+\begin{equation}\label{eq:axn=b}
+a x^n \equiv b \pmod m.
+\end{equation}
+Taking indices (base \(r\)) converts \eqref{eq:axn=b} into the linear congruence
+\[
+\operatorname{ind}_r(a)+n\operatorname{ind}_r(x)\equiv \operatorname{ind}_r(b)\pmod{\varphi(m)},
+\]
+or equivalently
+\begin{equation}\label{eq:linear-ind}
+n\operatorname{ind}_r(x)\equiv \operatorname{ind}_r(b)-\operatorname{ind}_r(a)\pmod{\varphi(m)}.
+\end{equation}
+Thus solving \eqref{eq:axn=b} reduces to solving the linear congruence \eqref{eq:linear-ind} for \(\operatorname{ind}_r(x)\); standard linear congruence theory applies.
+\end{define}
+
+\begin{define}{Example (solve \(6x^4\equiv 3\pmod7\) via indices)}[ex:6x4=3mod7]
+Using the primitive root \(r=3\) modulo \(7\), we have \(\operatorname{ind}_3(6)=3\) and \(\operatorname{ind}_3(3)=1\). The congruence becomes
+\[
+4\operatorname{ind}_3(x)\equiv \operatorname{ind}_3(3)-\operatorname{ind}_3(6)\equiv 1-3\equiv -2\equiv 4\pmod{6}.
+\]
+So \(4\operatorname{ind}_3(x)\equiv 4\pmod 6\). Divide by \(\gcd(4,6)=2\) to obtain
+\[
+2\operatorname{ind}_3(x)\equiv 2\pmod 3 \quad\Longrightarrow\quad \operatorname{ind}_3(x)\equiv 1\pmod 3.
+\]
+Thus \(\operatorname{ind}_3(x)\in\{1,4\}\) (mod \(6\)), giving
+\[
+x\equiv 3^{1}\equiv 3\pmod 7\quad\text{or}\quad x\equiv 3^{4}\equiv 4\pmod7.
+\]
+Hence the two incongruent solutions are \(x\equiv 3,4\pmod7\).
+\end{define}
+
+\bigskip
+
+\begin{define}{Definition ( \(n\)th-power residue )}[def:nth-residue]
+Let \(a,m,n\in\mathbb{Z}\) with \(m>0,n>0\) and \(\gcd(a,m)=1\). We say that \(a\) is an \emph{\(n\)th-power residue modulo \(m\)} if the congruence \(x^n\equiv a\pmod m\) has a solution.
+\end{define}
+
+\begin{define}{Examples}[ex:nth-residues]
+\begin{itemize}
+  \item \(6\) is a 3rd-power residue modulo \(7\) because \(3^3\equiv6\pmod7\).
+  \item \(3\) is a 4th-power residue modulo \(13\) because \(2^4\equiv16\equiv3\pmod{13}\).
+  \item \(3\) is \emph{not} a 4th-power residue modulo \(7\) (one checks there is no solution \(x\) with \(x^4\equiv3\pmod7\)).
+\end{itemize}
+\end{define}
+
+\bigskip
+
+\begin{define}{Theorem 5.21 (Criterion for \(n\)th-power residues)}[thm:5.21]
+Let \(m>0\) have a primitive root \(r\). Fix \(a\in\mathbb{Z}\) with \(\gcd(a,m)=1\) and \(n>0\). Let \(d=\gcd(n,\varphi(m))\). Then \(a\) is an \(n\)th-power residue modulo \(m\) iff
+\[
+a^{\varphi(m)/d}\equiv 1\pmod m.
+\]
+Moreover, if \(a\) is an \(n\)th-power residue then the congruence \(x^n\equiv a\pmod m\) has exactly \(d\) incongruent solutions modulo \(m\).
+\end{define}
+
+\begin{define}{Proof}[pf:thm5.21]
+\begin{proof}
+Write the congruence \(x^n\equiv a\pmod m\) in index form (base \(r\)):
+\[
+n\operatorname{ind}_r(x)\equiv \operatorname{ind}_r(a)\pmod{\varphi(m)}.
+\]
+This linear congruence in \(\operatorname{ind}_r(x)\) has a solution iff \(d=\gcd(n,\varphi(m))\) divides the right-hand side \(\operatorname{ind}_r(a)\). By elementary number theory (Theorem on solvability of linear congruences), this divisibility condition is the solvability criterion.
+
+The divisibility condition \(d\mid \operatorname{ind}_r(a)\) is equivalent to
+\[
+\frac{\varphi(m)}{d}\operatorname{ind}_r(a)\equiv 0\pmod{\varphi(m)},
+\]
+which in turn is equivalent to
+\[
+r^{\frac{\varphi(m)}{d}\operatorname{ind}_r(a)}\equiv 1\pmod m.
+\]
+But \(r^{\operatorname{ind}_r(a)}\equiv a\), so the displayed congruence is exactly \(a^{\varphi(m)/d}\equiv 1\pmod m\). Thus the solvability criterion is equivalent to the condition stated.
+
+When solvable, the linear congruence \(n y\equiv \operatorname{ind}_r(a)\pmod{\varphi(m)}\) has exactly \(d\) incongruent solutions \(y\pmod{\varphi(m)}\), hence yields exactly \(d\) incongruent values of \(x=r^y\) modulo \(m\). This proves the counting statement.
+\end{proof}
+\end{define}
+
+\begin{define}{Corollary 5.22 (Quadratic residues via Euler)}[cor:5.22]
+Let \(p\) be an odd prime and \(a\in\mathbb{Z}\) with \(p\nmid a\). Then \(a\) is a quadratic residue modulo \(p\) iff
+\[
+a^{(p-1)/2}\equiv 1\pmod p.
+\]
+Moreover, if \(a\) is a quadratic residue then \(x^2\equiv a\pmod p\) has exactly two incongruent solutions modulo \(p\).
+\end{define}
+
+\begin{define}{Proof}[pf:cor5.22]
+\begin{proof}
+Apply Theorem \nameref{thm:5.21} with \(m=p\) and \(n=2\). Then \(d=\gcd(2,p-1)=2\), and the criterion becomes \(a^{(p-1)/2}\equiv1\pmod p\). When solvable there are \(d=2\) solutions modulo \(p\).
+\end{proof}
+\end{define}
+
+\bigskip
+
+\begin{define}{Examples and exercises}[ex:more-nth]
+\begin{itemize}
+  \item Example: Take \(a=6,m=7,n=3\). Here \(\varphi(7)=6\) and \(d=\gcd(3,6)=3\). Check \(6^{6/3}=6^2\equiv 36\equiv1\pmod7\), so \(6\) is a 3rd-power residue modulo \(7\). By Theorem \nameref{thm:5.21} the congruence \(x^3\equiv6\pmod7\) has exactly \(3\) incongruent solutions (indeed they are \(x\equiv 3,\,3\cdot 3,\,3^3\) etc., in the corresponding index classes).
+  \item Exercise: Is \(3\) a 4th-power residue modulo \(13\)? If so, how many incongruent solutions does \(x^4\equiv 3\pmod{13}\) have? (\emph{Hint:} \(\varphi(13)=12\), \(d=\gcd(4,12)=4\); check \(3^{12/4}=3^3\pmod{13}\).)
+  \item Example: \(15\)th-power residues modulo \(9\). Since \(9=3^2\) has a primitive root and \(\varphi(9)=6\), we get \(d=\gcd(15,6)=3\). The criterion is \(a^{6/3}=a^2\equiv1\pmod9\), whose coprime solutions are \(a\equiv 1,8\pmod9\). Thus the \(15\)th-power residues mod \(9\) are \(1,8\). (Equivalently, the $15$-th powers coincide with $3$rd powers mod 9 because $15\equiv3\pmod6$.)
+\end{itemize}
+\end{define}
+
+% End of L19
 
 
 

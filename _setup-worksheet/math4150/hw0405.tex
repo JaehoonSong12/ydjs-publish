@@ -773,6 +773,15 @@
     \]
     \textbf{Note}: The order of $a$ modulo $m$ must be a divisor of $\phi(m)$ by Euler's theorem (Upper Bound).
     \end{define}
+  \begin{define}{Index (Discrete Logarithm)}[def:index][red]
+    Let $m\in\setZ_{>0}$ and let $g$ be a primitive root modulo $m$.
+    For any integer $a$ with $\gcd(a,m)=1$, the \textbf{index of $a$ with respect to the base $g$}, denoted $\operatorname{ind}_g(a)$, is the unique integer $k$ with $1 \leq k \leq \phi(m)$ such that
+    \[
+    g^k \equiv a \pmod{m}.
+    \]
+    The index is also called the \textbf{discrete logarithm} of $a$ to the base $g$ modulo $m$.
+    \textbf{Note}: Since $g$ is a primitive root modulo $m$, every integer $a$ with $\gcd(a,m)=1$ has a unique index with respect to $g$.
+  \end{define}
   \begin{subprove}
     The order of an integer modulo $m$ is defined by \nameref{def:order}.
     For $a \in \setZ$ and $m \in \setZ_{>0}$ with $\gcd(a,m)=1$, 
@@ -1921,28 +1930,300 @@
   \item Exercise Set 5.1, \#9. Let $p$ be an odd prime number and let $r$ be an integer with $p \nmid r$. 
   Prove that $r$ is a primitive root modulo $p$ if and only if $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ 
   for all prime divisors $q$ of $p-1$.
+  \begin{subprove}
+    The order of an integer modulo $m$ is defined by \nameref{def:order}.
+    A primitive root is defined by \nameref{def:primroot}.
+    Since $p$ is an odd prime, it follows that $\phi(p) = p-1$.
+    For $r \in \setZ$ with $p \nmid r$, it follows that $\gcd(r, p) = 1$, so the order of $r$ modulo $p$ is well-defined.
+    By Euler's theorem, the order of $r$ modulo $p$ divides $\phi(p) = p-1$.
+    
+    ($\Rightarrow$) Suppose $r$ is a primitive root modulo $p$ for the sake of direct proof.
+    Then, by \nameref{def:primroot}, the order of $r$ modulo $p$ equals $\phi(p) = p-1$.
+    Let $q$ be a prime divisor of $p-1$. It is shown that $r^{(p-1)/q} \not\equiv 1 \pmod{p}$.
+    Suppose, for the sake of contradiction, that $r^{(p-1)/q} \equiv 1 \pmod{p}$.
+    Then, by \nameref{def:order}, the order of $r$ modulo $p$ divides $(p-1)/q$.
+    Since $q$ is a prime divisor of $p-1$, it follows that $(p-1)/q < p-1$.
+    Therefore, the order of $r$ modulo $p$ is at most $(p-1)/q < p-1$, which contradicts the fact that the order of $r$ modulo $p$ equals $p-1$.
+    Hence, $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$.
+    
+    ($\Leftarrow$) Suppose $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$ for the sake of direct proof.
+    It is shown that $r$ is a primitive root modulo $p$, i.e., the order of $r$ modulo $p$ equals $p-1$.
+    Let $d$ be the order of $r$ modulo $p$. By Euler's theorem, $d$ divides $p-1$.
+    Suppose, for the sake of contradiction, that $d < p-1$.
+    Then $p-1 = d \cdot k$ for some integer $k > 1$.
+    Since $k > 1$, there exists a prime divisor $q$ of $k$, and hence $q$ is also a prime divisor of $p-1$.
+    Since $q \mid k$ and $p-1 = d \cdot k$, it follows that $d \mid (p-1)/q$.
+    Therefore, $(p-1)/q = d \cdot \ell$ for some positive integer $\ell$.
+    Since $r^d \equiv 1 \pmod{p}$ by \nameref{def:order}, it follows that
+    \[
+    r^{(p-1)/q} = r^{d \cdot \ell} = (r^d)^\ell \equiv 1^\ell \equiv 1 \pmod{p},
+    \]
+    which contradicts the assumption that $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$.
+    Therefore, $d = p-1$, so the order of $r$ modulo $p$ equals $p-1 = \phi(p)$.
+    Hence, by \nameref{def:primroot}, $r$ is a primitive root modulo $p$.
+    
+    Therefore, by ($\Rightarrow$) and ($\Leftarrow$), $r$ is a primitive root modulo $p$ if and only if $r^{(p-1)/q} \not\equiv 1 \pmod{p}$ for all prime divisors $q$ of $p-1$.
+  \end{subprove}
 
+  \newpage
   \item Exercise Set 5.2, \#11(d). Find all incongruent integers having order 10 modulo 61. 
   [Hint: First find a primitive root modulo 61.]
+  \begin{subanswer}
+    The order of an integer modulo $m$ is defined by \nameref{def:order}.
+    A primitive root is defined by \nameref{def:primroot}.
+    Euler's totient function is defined by \nameref{def:euler_totient}.
+    Since $61$ is prime, it follows that $\phi(61) = 60$.
+    
+    First, a primitive root modulo $61$ is found. Since $60 = 2^2 \cdot 3 \cdot 5$, the prime divisors of $60$ are $2$, $3$, and $5$.
+    By the previous problem (Exercise Set 5.1, \#9), an integer $r$ with $61 \nmid r$ is a primitive root modulo $61$ if and only if $r^{60/2} = r^{30} \not\equiv 1 \pmod{61}$, $r^{60/3} = r^{20} \not\equiv 1 \pmod{61}$, and $r^{60/5} = r^{12} \not\equiv 1 \pmod{61}$.
+    
+    It is verified that $2$ is a primitive root modulo $61$:
+    \begin{itemize}
+      \item $2^{12} = 4096 = 61 \cdot 67 + 9$, so $2^{12} \equiv 9 \pmod{61}$.
+      \item $2^{20} = 2^{12+8} = 2^{12} \cdot 2^8 = 2^{12} \cdot 256$. Since $256 = 61 \cdot 4 + 12$, it follows that $2^8 \equiv 12 \pmod{61}$.
+      Therefore, $2^{20} \equiv 9 \cdot 12 = 108 = 61 \cdot 1 + 47 \equiv 47 \pmod{61}$.
+      \item $2^{30} = 2^{20+10} = 2^{20} \cdot 2^{10}$. Since $2^{10} = 1024 = 61 \cdot 16 + 48$, it follows that $2^{10} \equiv 48 \pmod{61}$.
+      Therefore, $2^{30} \equiv 47 \cdot 48 = 2256 = 61 \cdot 36 + 60 \equiv 60 \equiv -1 \pmod{61}$.
+    \end{itemize}
+    Since $2^{12} \equiv 9 \not\equiv 1$, $2^{20} \equiv 47 \not\equiv 1$, and $2^{30} \equiv 60 \equiv -1 \not\equiv 1 \pmod{61}$, it follows that $2$ is a primitive root modulo $61$.
+    
+    Let $g = 2$ be a primitive root modulo $61$. Then every integer $a$ with $\gcd(a, 61) = 1$ can be written as $a \equiv g^k \pmod{61}$ for some $k$ with $1 \leq k \leq 60$.
+    The order of $g^k$ modulo $61$ is $\frac{60}{\gcd(k, 60)}$.
+    
+    For the order to be $10$, it is required that $\frac{60}{\gcd(k, 60)} = 10$, which implies $\gcd(k, 60) = 6$.
+    The positive integers $k$ with $1 \leq k \leq 60$ and $\gcd(k, 60) = 6$ are those of the form $k = 6m$ where $\gcd(m, 10) = 1$ and $1 \leq 6m \leq 60$, i.e., $1 \leq m \leq 10$ with $\gcd(m, 10) = 1$.
+    The integers $m$ with $1 \leq m \leq 10$ and $\gcd(m, 10) = 1$ are $m \in \{1, 3, 7, 9\}$.
+    Therefore, $k \in \{6, 18, 42, 54\}$.
+    
+    It is verified that $\gcd(6, 60) = 6$, $\gcd(18, 60) = 6$, $\gcd(42, 60) = 6$, and $\gcd(54, 60) = 6$.
+    Therefore, the integers with order $10$ modulo $61$ are $2^6, 2^{18}, 2^{42}, 2^{54} \pmod{61}$.
+    
+    Computing these values:
+    \begin{align*}
+      2^6 &= 64 \equiv 3 \pmod{61},\\
+      2^{18} &= (2^6)^3 \equiv 3^3 = 27 \pmod{61},\\
+      2^{42} &= 2^{60-18} \equiv 2^{-18} \equiv (2^{18})^{-1} \equiv 27^{-1} \pmod{61},\\
+      2^{54} &= 2^{60-6} \equiv 2^{-6} \equiv (2^6)^{-1} \equiv 3^{-1} \pmod{61}.
+    \end{align*}
+    To find $27^{-1} \pmod{61}$, the extended Euclidean algorithm is used.
+    Since $61 = 27 \cdot 2 + 7$, $27 = 7 \cdot 3 + 6$, and $7 = 6 \cdot 1 + 1$, working backwards:
+    \[
+    1 = 7 - 6 = 7 - (27 - 7 \cdot 3) = 7 \cdot 4 - 27 = (61 - 27 \cdot 2) \cdot 4 - 27 = 61 \cdot 4 - 27 \cdot 9.
+    \]
+    Therefore, $27 \cdot (-9) \equiv 1 \pmod{61}$, so $27^{-1} \equiv -9 \equiv 52 \pmod{61}$.
+    Hence, $2^{42} \equiv 52 \pmod{61}$.
+    
+    To find $3^{-1} \pmod{61}$, since $61 = 3 \cdot 20 + 1$, it follows that $1 = 61 - 3 \cdot 20$, so $3 \cdot (-20) \equiv 1 \pmod{61}$.
+    Therefore, $3^{-1} \equiv -20 \equiv 41 \pmod{61}$.
+    Hence, $2^{54} \equiv 41 \pmod{61}$.
+    
+    Therefore, all incongruent integers having order $10$ modulo $61$ are $3, 27, 52, 41 \pmod{61}$.
+  \end{subanswer}
 
   \item Exercise Set 5.2, \#12. Let $p$ be an odd prime number.
   \begin{enumerate}
     \item Prove that any primitive root $r$ modulo $p$ is a quadratic non-residue modulo $p$. 
     Deduce that $r^{(p-1)/2} \equiv -1 \pmod{p}$.
+    \begin{subprove}
+      A primitive root is defined by \nameref{def:primroot}.
+      A quadratic residue is defined by \nameref{def:quadres}.
+      The Legendre symbol is defined by \nameref{def:legendre}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
+      Euler's criterion is given by \nameref{thm:4.4}.
+      
+      Let $r$ be a primitive root modulo $p$. Then, by \nameref{def:primroot}, the order of $r$ modulo $p$ equals $\phi(p) = p-1$.
+      
+      It is shown that $r$ is a quadratic non-residue modulo $p$ by contradiction.
+      Suppose, for the sake of contradiction, that $r$ is a quadratic residue modulo $p$.
+      Then, by \nameref{def:quadres}, there exists $x \in \setZ$ such that $x^2 \equiv r \pmod{p}$.
+      Since $r$ is a primitive root, it follows that $\gcd(r, p) = 1$, so $\gcd(x, p) = 1$ as well.
+      Therefore,
+      \[
+      r^{(p-1)/2} \equiv (x^2)^{(p-1)/2} = x^{p-1} \equiv 1 \pmod{p}
+      \]
+      by Fermat's little theorem.
+      However, since the order of $r$ modulo $p$ is $p-1$ and $(p-1)/2 < p-1$, it follows that $r^{(p-1)/2} \not\equiv 1 \pmod{p}$.
+      This is a contradiction.
+      Therefore, $r$ is not a quadratic residue modulo $p$, so $r$ is a quadratic non-residue modulo $p$.
+      
+      Since $r$ is a quadratic non-residue modulo $p$, by \nameref{def:legendre}, it follows that $\left(\frac{r}{p}\right) = -1$.
+      By \nameref{thm:4.4} (Euler's criterion), it follows that
+      \[
+      r^{(p-1)/2} \equiv \left(\frac{r}{p}\right) = -1 \pmod{p}.
+      \]
+      Therefore, $r^{(p-1)/2} \equiv -1 \pmod{p}$.
+    \end{subprove}
+    
     \item Prove that there are exactly $\frac{p-1}{2}-\phi(p-1)$ incongruent quadratic non-residues 
     modulo $p$ that are not primitive roots modulo $p$.
+    \begin{subprove}
+      A primitive root is defined by \nameref{def:primroot}.
+      A quadratic residue is defined by \nameref{def:quadres}.
+      Euler's totient function is defined by \nameref{def:euler_totient}.
+      
+      Since $p$ is an odd prime, by \nameref{def:quadres}, there are exactly $\frac{p-1}{2}$ quadratic non-residues modulo $p$ among the integers $1, 2, \ldots, p-1$.
+      
+      Since $p$ is prime, primitive roots exist modulo $p$. The number of incongruent primitive roots modulo $p$ is $\phi(\phi(p)) = \phi(p-1)$.
+      
+      By part (a), every primitive root modulo $p$ is a quadratic non-residue modulo $p$.
+      Therefore, all $\phi(p-1)$ primitive roots are among the $\frac{p-1}{2}$ quadratic non-residues.
+      
+      It is shown that no quadratic residue can be a primitive root.
+      If $a$ is a quadratic residue modulo $p$, then by \nameref{thm:4.4}, $a^{(p-1)/2} \equiv 1 \pmod{p}$.
+      Since $(p-1)/2 < p-1 = \phi(p)$, the order of $a$ modulo $p$ divides $(p-1)/2$ and is strictly less than $\phi(p)$.
+      Therefore, by \nameref{def:primroot}, $a$ is not a primitive root modulo $p$.
+      
+      Since all primitive roots are quadratic non-residues and no quadratic residue is a primitive root, it follows that the number of quadratic non-residues that are not primitive roots is
+      \[
+      \frac{p-1}{2} - \phi(p-1).
+      \]
+      Therefore, there are exactly $\frac{p-1}{2}-\phi(p-1)$ incongruent quadratic non-residues modulo $p$ that are not primitive roots modulo $p$.
+    \end{subprove}
   \end{enumerate}
 
   \item Exercise Set 5.3, \#24(c).
   \begin{enumerate}
     \item Find a primitive root that works modulo $13^m$ for every positive integer $m$. 
     Justify your choice.
+    \begin{subanswer}
+      A primitive root is defined by \nameref{def:primroot}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
+      Euler's totient function is defined by \nameref{def:euler_totient}.
+      
+      For an odd prime $p$, if $g$ is a primitive root modulo $p$ and $g^{p-1} \not\equiv 1 \pmod{p^2}$, then $g$ is a primitive root modulo $p^m$ for all $m \geq 1$.
+      If $g^{p-1} \equiv 1 \pmod{p^2}$, then $g+p$ is a primitive root modulo $p^m$ for all $m \geq 1$.
+      
+      For $p = 13$, it follows that $\phi(13) = 12$. The prime divisors of $12$ are $2$ and $3$.
+      By Exercise Set 5.1, \#9, an integer $r$ with $13 \nmid r$ is a primitive root modulo $13$ if and only if $r^{12/2} = r^6 \not\equiv 1 \pmod{13}$ and $r^{12/3} = r^4 \not\equiv 1 \pmod{13}$.
+      
+      It is verified that $2$ is a primitive root modulo $13$:
+      \begin{itemize}
+        \item $2^4 = 16 = 13 \cdot 1 + 3$, so $2^4 \equiv 3 \not\equiv 1 \pmod{13}$.
+        \item $2^6 = 64 = 13 \cdot 4 + 12$, so $2^6 \equiv 12 \equiv -1 \not\equiv 1 \pmod{13}$.
+      \end{itemize}
+      Therefore, $2$ is a primitive root modulo $13$.
+      
+      To check if $2$ works modulo $13^m$ for all $m \geq 1$, it is verified that $2^{12} \not\equiv 1 \pmod{169}$.
+      Since $2^6 \equiv -1 \pmod{13}$, it follows that $2^6 = 13k - 1$ for some integer $k$.
+      Then $2^{12} = (2^6)^2 = (13k - 1)^2 = 169k^2 - 26k + 1 \equiv 1 - 26k \pmod{169}$.
+      Since $2^6 = 64 = 13 \cdot 5 - 1$, it follows that $k = 5$.
+      Therefore, $2^{12} \equiv 1 - 26 \cdot 5 = 1 - 130 = -129 \equiv 40 \pmod{169}$.
+      More directly: $2^{12} = 4096 = 169 \cdot 24 + 40$, so $2^{12} \equiv 40 \not\equiv 1 \pmod{169}$.
+      
+      Since $2$ is a primitive root modulo $13$ and $2^{12} \not\equiv 1 \pmod{169}$, it follows that $2$ is a primitive root modulo $13^m$ for all $m \geq 1$.
+      
+      Therefore, $2$ is a primitive root modulo $13^m$ for every positive integer $m$.
+    \end{subanswer}
   \end{enumerate}
 
+  \newpage
   \item Exercise Set 5.4, \#30(a),(e). Use indices to find all incongruent solutions of each congruence below.
   \begin{enumerate}
     \item $8x^7 \equiv 5 \pmod{13}$
+    \begin{subanswer}
+      A primitive root is defined by \nameref{def:primroot}.
+      The index is defined by \nameref{def:index}.
+      From the previous problem (Exercise Set 5.3, \#24(c)), it is known that $2$ is a primitive root modulo $13$.
+      Let $g = 2$ be a primitive root modulo $13$. Then $\phi(13) = 12$.
+      
+      The congruence $8x^7 \equiv 5 \pmod{13}$ is equivalent to
+      \[
+      \operatorname{ind}_2(8) + 7\operatorname{ind}_2(x) \equiv \operatorname{ind}_2(5) \pmod{12}.
+      \]
+      
+      The indices are computed:
+      \begin{itemize}
+        \item $2^1 = 2 \equiv 2 \pmod{13}$, so $\operatorname{ind}_2(2) = 1$.
+        \item $2^2 = 4 \equiv 4 \pmod{13}$, so $\operatorname{ind}_2(4) = 2$.
+        \item $2^3 = 8 \equiv 8 \pmod{13}$, so $\operatorname{ind}_2(8) = 3$.
+        \item $2^4 = 16 \equiv 3 \pmod{13}$, so $\operatorname{ind}_2(3) = 4$.
+        \item $2^5 = 32 = 13 \cdot 2 + 6 \equiv 6 \pmod{13}$, so $\operatorname{ind}_2(6) = 5$.
+        \item $2^6 = 64 = 13 \cdot 4 + 12 \equiv 12 \equiv -1 \pmod{13}$, so $\operatorname{ind}_2(12) = 6$.
+        \item $2^7 = 2^6 \cdot 2 \equiv (-1) \cdot 2 = -2 \equiv 11 \pmod{13}$, so $\operatorname{ind}_2(11) = 7$.
+        \item $2^8 = 2^7 \cdot 2 \equiv 11 \cdot 2 = 22 = 13 \cdot 1 + 9 \equiv 9 \pmod{13}$, so $\operatorname{ind}_2(9) = 8$.
+        \item $2^9 = 2^8 \cdot 2 \equiv 9 \cdot 2 = 18 = 13 \cdot 1 + 5 \equiv 5 \pmod{13}$, so $\operatorname{ind}_2(5) = 9$.
+      \end{itemize}
+      
+      Therefore, $\operatorname{ind}_2(8) = 3$ and $\operatorname{ind}_2(5) = 9$.
+      The congruence becomes
+      \[
+      3 + 7\operatorname{ind}_2(x) \equiv 9 \pmod{12},
+      \]
+      which simplifies to
+      \[
+      7\operatorname{ind}_2(x) \equiv 6 \pmod{12}.
+      \]
+      
+      Since $\gcd(7, 12) = 1$, the congruence has a unique solution modulo $12$.
+      Since $7 \cdot 7 = 49 = 12 \cdot 4 + 1$, it follows that $7^{-1} \equiv 7 \pmod{12}$.
+      Therefore,
+      \[
+      \operatorname{ind}_2(x) \equiv 6 \cdot 7 = 42 \equiv 6 \pmod{12}.
+      \]
+      
+      Since $\operatorname{ind}_2(x) \equiv 6 \pmod{12}$, it follows that $x \equiv 2^6 \equiv 12 \equiv -1 \pmod{13}$.
+      Therefore, the unique solution is $x \equiv 12 \pmod{13}$, or equivalently, $x \equiv -1 \pmod{13}$.
+    \end{subanswer}
+    
     \item $7x^5 \equiv 2 \pmod{17}$
+    \begin{subanswer}
+      A primitive root is defined by \nameref{def:primroot}.
+      The index is defined by \nameref{def:index}.
+      Since $17$ is prime, it follows that $\phi(17) = 16$. The prime divisors of $16$ are $2$ only.
+      By Exercise Set 5.1, \#9, an integer $r$ with $17 \nmid r$ is a primitive root modulo $17$ if and only if $r^{16/2} = r^8 \not\equiv 1 \pmod{17}$.
+      
+      It is verified that $3$ is a primitive root modulo $17$:
+      \begin{itemize}
+        \item $3^2 = 9 \equiv 9 \pmod{17}$.
+        \item $3^4 = (3^2)^2 = 9^2 = 81 = 17 \cdot 4 + 13 \equiv 13 \pmod{17}$.
+        \item $3^8 = (3^4)^2 = 13^2 = 169 = 17 \cdot 9 + 16 \equiv 16 \equiv -1 \pmod{17}$.
+      \end{itemize}
+      Since $3^8 \equiv -1 \not\equiv 1 \pmod{17}$, it follows that $3$ is a primitive root modulo $17$.
+      
+      Let $g = 3$ be a primitive root modulo $17$. Then $\phi(17) = 16$.
+      The congruence $7x^5 \equiv 2 \pmod{17}$ is equivalent to
+      \[
+      \operatorname{ind}_3(7) + 5\operatorname{ind}_3(x) \equiv \operatorname{ind}_3(2) \pmod{16}.
+      \]
+      
+      The indices are computed:
+      \begin{itemize}
+        \item $3^1 = 3 \equiv 3 \pmod{17}$, so $\operatorname{ind}_3(3) = 1$.
+        \item $3^2 = 9 \equiv 9 \pmod{17}$, so $\operatorname{ind}_3(9) = 2$.
+        \item $3^3 = 27 = 17 \cdot 1 + 10 \equiv 10 \pmod{17}$, so $\operatorname{ind}_3(10) = 3$.
+        \item $3^4 = 81 = 17 \cdot 4 + 13 \equiv 13 \pmod{17}$, so $\operatorname{ind}_3(13) = 4$.
+        \item $3^5 = 3^4 \cdot 3 \equiv 13 \cdot 3 = 39 = 17 \cdot 2 + 5 \equiv 5 \pmod{17}$, so $\operatorname{ind}_3(5) = 5$.
+        \item $3^6 = 3^5 \cdot 3 \equiv 5 \cdot 3 = 15 \equiv 15 \pmod{17}$, so $\operatorname{ind}_3(15) = 6$.
+        \item $3^7 = 3^6 \cdot 3 \equiv 15 \cdot 3 = 45 = 17 \cdot 2 + 11 \equiv 11 \pmod{17}$, so $\operatorname{ind}_3(11) = 7$.
+        \item $3^8 = (3^4)^2 \equiv 13^2 = 169 = 17 \cdot 9 + 16 \equiv 16 \equiv -1 \pmod{17}$, so $\operatorname{ind}_3(16) = 8$.
+        \item $3^9 = 3^8 \cdot 3 \equiv (-1) \cdot 3 = -3 \equiv 14 \pmod{17}$, so $\operatorname{ind}_3(14) = 9$.
+        \item $3^{10} = 3^9 \cdot 3 \equiv 14 \cdot 3 = 42 = 17 \cdot 2 + 8 \equiv 8 \pmod{17}$, so $\operatorname{ind}_3(8) = 10$.
+        \item $3^{11} = 3^{10} \cdot 3 \equiv 8 \cdot 3 = 24 = 17 \cdot 1 + 7 \equiv 7 \pmod{17}$, so $\operatorname{ind}_3(7) = 11$.
+        \item $3^{12} = 3^{11} \cdot 3 \equiv 7 \cdot 3 = 21 = 17 \cdot 1 + 4 \equiv 4 \pmod{17}$, so $\operatorname{ind}_3(4) = 12$.
+        \item $3^{13} = 3^{12} \cdot 3 \equiv 4 \cdot 3 = 12 \equiv 12 \pmod{17}$, so $\operatorname{ind}_3(12) = 13$.
+        \item $3^{14} = 3^{13} \cdot 3 \equiv 12 \cdot 3 = 36 = 17 \cdot 2 + 2 \equiv 2 \pmod{17}$, so $\operatorname{ind}_3(2) = 14$.
+      \end{itemize}
+      
+      Therefore, $\operatorname{ind}_3(7) = 11$ and $\operatorname{ind}_3(2) = 14$.
+      The congruence becomes
+      \[
+      11 + 5\operatorname{ind}_3(x) \equiv 14 \pmod{16},
+      \]
+      which simplifies to
+      \[
+      5\operatorname{ind}_3(x) \equiv 3 \pmod{16}.
+      \]
+      
+      Since $\gcd(5, 16) = 1$, the congruence has a unique solution modulo $16$.
+      Since $5 \cdot 13 = 65 = 16 \cdot 4 + 1$, it follows that $5^{-1} \equiv 13 \pmod{16}$.
+      Therefore,
+      \[
+      \operatorname{ind}_3(x) \equiv 3 \cdot 13 = 39 \equiv 7 \pmod{16}.
+      \]
+      
+      Since $\operatorname{ind}_3(x) \equiv 7 \pmod{16}$, it follows that $x \equiv 3^7 \equiv 11 \pmod{17}$.
+      Therefore, the unique solution is $x \equiv 11 \pmod{17}$.
+    \end{subanswer}
   \end{enumerate}
 
   \item Exercise Set 5.4, \#35. Let $p$ be a prime number and let $r$ and $s$ be primitive roots modulo $p$. 
@@ -1950,16 +2231,141 @@
   \begin{enumerate}
     \item Prove that $\operatorname{ind}_s a \equiv (\operatorname{ind}_r a)(\operatorname{ind}_s r) \pmod{p-1}$. 
     (This corresponds to the change-of-base formula for logarithms.)
+    \begin{subprove}
+      A primitive root is defined by \nameref{def:primroot}.
+      The index is defined by \nameref{def:index}.
+      Since $r$ and $s$ are primitive roots modulo $p$, by \nameref{def:index}, there exist unique integers $\operatorname{ind}_r a$, $\operatorname{ind}_s a$, and $\operatorname{ind}_r s$ such that
+      \[
+      a \equiv r^{\operatorname{ind}_r a} \pmod{p}, \quad a \equiv s^{\operatorname{ind}_s a} \pmod{p}, \quad s \equiv r^{\operatorname{ind}_r s} \pmod{p}.
+      \]
+      
+      Since $s \equiv r^{\operatorname{ind}_r s} \pmod{p}$, it follows that
+      \[
+      s^{\operatorname{ind}_s a} \equiv (r^{\operatorname{ind}_r s})^{\operatorname{ind}_s a} = r^{\operatorname{ind}_r s \cdot \operatorname{ind}_s a} \pmod{p}.
+      \]
+      Since $a \equiv s^{\operatorname{ind}_s a} \pmod{p}$ and $a \equiv r^{\operatorname{ind}_r a} \pmod{p}$, it follows that
+      \[
+      r^{\operatorname{ind}_r s \cdot \operatorname{ind}_s a} \equiv r^{\operatorname{ind}_r a} \pmod{p}.
+      \]
+      
+      Since $r$ is a primitive root modulo $p$, the order of $r$ modulo $p$ is $\phi(p) = p-1$.
+      Therefore, by \nameref{def:order}, it follows that
+      \[
+      \operatorname{ind}_r s \cdot \operatorname{ind}_s a \equiv \operatorname{ind}_r a \pmod{p-1}.
+      \]
+      
+      Since $s$ is a primitive root modulo $p$, it follows that $\gcd(\operatorname{ind}_r s, p-1) = 1$ (because if $\gcd(\operatorname{ind}_r s, p-1) = d > 1$, then the order of $s$ modulo $p$ would divide $(p-1)/d < p-1$, contradicting that $s$ is a primitive root).
+      Therefore, $\operatorname{ind}_r s$ has a multiplicative inverse modulo $p-1$.
+      Multiplying both sides of the congruence by $(\operatorname{ind}_r s)^{-1} \pmod{p-1}$, it follows that
+      \[
+      \operatorname{ind}_s a \equiv \operatorname{ind}_r a \cdot (\operatorname{ind}_r s)^{-1} \pmod{p-1}.
+      \]
+      
+      However, since $r \equiv s^{\operatorname{ind}_s r} \pmod{p}$ and $s \equiv r^{\operatorname{ind}_r s} \pmod{p}$, by the same argument it follows that $\operatorname{ind}_r s \cdot \operatorname{ind}_s r \equiv 1 \pmod{p-1}$.
+      Therefore, $(\operatorname{ind}_r s)^{-1} \equiv \operatorname{ind}_s r \pmod{p-1}$.
+      
+      Substituting, it follows that
+      \[
+      \operatorname{ind}_s a \equiv \operatorname{ind}_r a \cdot \operatorname{ind}_s r \pmod{p-1}.
+      \]
+      Therefore, $\operatorname{ind}_s a \equiv (\operatorname{ind}_r a)(\operatorname{ind}_s r) \pmod{p-1}$.
+    \end{subprove}
+    
     \item Prove that $\operatorname{ind}_r(p-a) \equiv \operatorname{ind}_r a + \frac{p-1}{2} \pmod{p-1}$. 
     (This congruence yields all indices relative to $r$ after half of these indices are computed.)
+    \begin{subprove}
+      A primitive root is defined by \nameref{def:primroot}.
+      The index is defined by \nameref{def:index}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
+      Since $r$ is a primitive root modulo $p$, by \nameref{def:index}, there exists a unique integer $\operatorname{ind}_r a$ such that
+      \[
+      a \equiv r^{\operatorname{ind}_r a} \pmod{p}.
+      \]
+      
+      Since $p-a \equiv -a \pmod{p}$, it follows that
+      \[
+      p-a \equiv -a \equiv -r^{\operatorname{ind}_r a} \pmod{p}.
+      \]
+      
+      Since $r$ is a primitive root modulo $p$, the order of $r$ modulo $p$ is $\phi(p) = p-1$.
+      By part (a) of Exercise Set 5.2, \#12, since $r$ is a primitive root modulo $p$, it follows that $r^{(p-1)/2} \equiv -1 \pmod{p}$.
+      Therefore,
+      \[
+      -r^{\operatorname{ind}_r a} \equiv r^{(p-1)/2} \cdot r^{\operatorname{ind}_r a} = r^{\operatorname{ind}_r a + (p-1)/2} \pmod{p}.
+      \]
+      
+      Since $p-a \equiv r^{\operatorname{ind}_r a + (p-1)/2} \pmod{p}$ and $p-a \equiv r^{\operatorname{ind}_r(p-a)} \pmod{p}$, it follows that
+      \[
+      r^{\operatorname{ind}_r a + (p-1)/2} \equiv r^{\operatorname{ind}_r(p-a)} \pmod{p}.
+      \]
+      
+      Since the order of $r$ modulo $p$ is $p-1$, by \nameref{def:order}, it follows that
+      \[
+      \operatorname{ind}_r a + \frac{p-1}{2} \equiv \operatorname{ind}_r(p-a) \pmod{p-1}.
+      \]
+      Therefore, $\operatorname{ind}_r(p-a) \equiv \operatorname{ind}_r a + \frac{p-1}{2} \pmod{p-1}$.
+    \end{subprove}
   \end{enumerate}
 
   \item Exercise Set 5.4, \#36.
   \begin{enumerate}
     \item Let $p$ be an odd prime number. Prove that the congruence $x^4 \equiv -1 \pmod{p}$ is solvable 
     if and only if $p \equiv 1 \pmod{8}$.
+    \begin{subprove}
+      A quadratic residue is defined by \nameref{def:quadres}.
+      The Legendre symbol is defined by \nameref{def:legendre}.
+      The order of an integer modulo $m$ is defined by \nameref{def:order}.
+      Euler's criterion is given by \nameref{thm:4.4}.
+      The value of $\left(\frac{-1}{p}\right)$ is given by \nameref{thm:4.6}.
+      The value of $\left(\frac{2}{p}\right)$ is given by \nameref{thm:4.8}.
+      
+      ($\Rightarrow$) Suppose $x^4 \equiv -1 \pmod{p}$ is solvable for the sake of direct proof.
+      Then there exists $x \in \setZ$ with $p \nmid x$ such that $x^4 \equiv -1 \pmod{p}$.
+      Since $x^4 \equiv -1 \pmod{p}$, it follows that $(x^2)^2 \equiv -1 \pmod{p}$.
+      Therefore, $-1$ is a quadratic residue modulo $p$.
+      By \nameref{thm:4.6}, it follows that $\left(\frac{-1}{p}\right) = 1$, which implies $p \equiv 1 \pmod{4}$.
+      
+      Since $x^4 \equiv -1 \pmod{p}$, it follows that $x^8 \equiv 1 \pmod{p}$.
+      By \nameref{def:order}, the order of $x$ modulo $p$ divides $8$.
+      Since $x^4 \equiv -1 \not\equiv 1 \pmod{p}$, the order of $x$ modulo $p$ does not divide $4$.
+      Therefore, the order of $x$ modulo $p$ is exactly $8$.
+      Since the order of $x$ modulo $p$ divides $\phi(p) = p-1$ by Euler's theorem, it follows that $8 \mid p-1$.
+      Therefore, $p \equiv 1 \pmod{8}$.
+      
+      ($\Leftarrow$) Suppose $p \equiv 1 \pmod{8}$ for the sake of direct proof.
+      It is shown that $x^4 \equiv -1 \pmod{p}$ is solvable.
+      Since $p \equiv 1 \pmod{8}$, there exists a primitive root $g$ modulo $p$ by \nameref{def:primroot}.
+      Since $8 \mid p-1$, let $h = g^{(p-1)/8}$.
+      Then $h^8 = g^{p-1} \equiv 1 \pmod{p}$ by Fermat's little theorem.
+      Since $g$ is a primitive root modulo $p$, the order of $g$ modulo $p$ is $\phi(p) = p-1$.
+      Therefore, the order of $h = g^{(p-1)/8}$ modulo $p$ is exactly $8$ (since if the order were a proper divisor $d$ of $8$, then $g^{(p-1)/8 \cdot d} \equiv 1 \pmod{p}$, which would imply the order of $g$ divides $(p-1)/8 \cdot d < p-1$, a contradiction).
+      Since the order of $h$ modulo $p$ is $8$ and $h^8 \equiv 1 \pmod{p}$, it follows that $h^4 \not\equiv 1 \pmod{p}$ (otherwise the order would divide $4$).
+      Since $(h^4)^2 = h^8 \equiv 1 \pmod{p}$ and $h^4 \not\equiv 1 \pmod{p}$, it follows that $h^4 \equiv -1 \pmod{p}$.
+      Therefore, $x = h$ is a solution to $x^4 \equiv -1 \pmod{p}$.
+      
+      Therefore, by ($\Rightarrow$) and ($\Leftarrow$), the congruence $x^4 \equiv -1 \pmod{p}$ is solvable if and only if $p \equiv 1 \pmod{8}$.
+    \end{subprove}
+    
     \item Prove that there are infinitely many primes expressible of the form $8n+1$ where $n$ is a positive integer.
     [Hint: Parallel the proof from Question 6 on Homework 5.]
+    \begin{subprove}
+      A quadratic residue is defined by \nameref{def:quadres}.
+      The Legendre symbol is defined by \nameref{def:legendre}.
+      The value of $\left(\frac{-1}{p}\right)$ is given by \nameref{thm:4.6}.
+      The value of $\left(\frac{2}{p}\right)$ is given by \nameref{thm:4.8}.
+      
+      Suppose that only finitely many primes of the form $8n+1$ exist for the sake of contradiction.
+      Let these be $p_1, p_2, \ldots, p_r$. Consider $N = (2p_1p_2\cdots p_r)^4 + 1$.
+      Since $N$ is odd and greater than $1$, it has an odd prime divisor $q$.
+      Since $N \equiv 1 \pmod{8}$ (since $(2p_1\cdots p_r)^4$ is divisible by $16$ and $N = (2p_1\cdots p_r)^4 + 1 \equiv 1 \pmod{8}$), any odd divisor of $N$ satisfies $q \equiv 1, 3, 5, \text{ or } 7 \pmod{8}$.
+      
+      Since $(2p_1\cdots p_r)^4 \equiv -1 \pmod{q}$, it follows that $x^4 \equiv -1 \pmod{q}$ is solvable with $x = 2p_1\cdots p_r$.
+      By part (a), it follows that $q \equiv 1 \pmod{8}$.
+      
+      However, $q$ does not divide any $p_i$ (since $N \equiv 1 \pmod{p_i}$), and $q$ is not among $p_1, \ldots, p_r$.
+      This contradicts the assumption that only finitely many primes of the form $8n+1$ exist.\vspace*{10px}\\
+      Therefore, by contradiction, infinitely many primes of the form $8n+1$ exist.
+    \end{subprove}
   \end{enumerate}
 \end{enumerate}
 
