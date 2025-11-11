@@ -1,0 +1,208 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\begin{document}
+L18 ,
+
+\section*{L18: The Primitive Root Theorem continued...}
+Lemma 5.14: Let $p$ be an odd prime number. Then there exists a primitive root $r$ modulo $p$ such that
+
+$$
+r^{p-1} \not \equiv 1\left(\bmod p^{2}\right) .
+$$
+
+Proof: Let $r$ be any primitive root modulo $p$.\\
+If $r^{p-1} \not \equiv 1\left(\bmod p^{2}\right)$, then the proof is complete.\\
+Assume that $r^{p-1} \equiv 1\left(\bmod p^{2}\right)$. Set $r^{\prime}:=r+p$.\\
+Since $r^{\prime} \equiv r(\bmod p)$, we have that $r^{\prime}$ is a primitive root modulo $p$. We will prove that\\
+$\left(r^{\prime}\right)^{p-1} \not \equiv 1\left(\bmod p^{2}\right)$. Assume by way of contradiction, that $\left(r^{1}\right)^{p-1} \equiv 1\left(\bmod p^{2}\right)$. We have
+
+$$
+\begin{aligned}
+\left(r^{\prime}\right)^{p-1} & =(r+p)^{p-1} \\
+& =r^{p-1}+(p-1) r^{p-2} p+\binom{p-1}{2} r^{p-3} p^{2} \\
+& +\cdots+\binom{p-1}{p-2} r p^{p-2}+p^{p-1} .
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+& \equiv r^{p-1}+(p-1) r^{p-2} p\left(\bmod p^{2}\right) \\
+& \equiv r^{p-1}+p^{2} r^{p-2}-p r^{p-2}\left(\bmod p^{2}\right) \\
+& \equiv r^{p-1}-p r^{p-2}\left(\bmod p^{2}\right) \\
+& \equiv 1-p r^{p-2}\left(\bmod p^{2}\right)\left(\text { since } r^{p-1} \equiv 1\left(\bmod p^{2}\right)\right)
+\end{aligned}
+$$
+
+Since $\left(r^{\prime}\right)^{p-1} \equiv 1\left(\bmod p^{2}\right)$ we have that
+
+$$
+1-p r^{p-2} \equiv 1\left(\bmod p^{2}\right)
+$$
+
+and thus
+
+$$
+p r^{p-2} \equiv O\left(\bmod p^{2}\right) .
+$$
+
+So $p^{2} \mid p r^{p-2}$, which implies that $p \mid r^{p-2}$, and thus $p \mid r$. This is a contradiction since $r$ is a primitive root modulo $p$. Thus $\left(r^{1}\right)^{p-1} \neq 1\left(\bmod p^{2}\right)$, and the proof is complete.
+
+Corollary 5.15: Let $p$ be an odd prime number and $r$ be a primitive root modulo $p$. Then either $r$ or $r+p$ is a primitive root modulo $p^{2}$.
+
+Proof: Since $r$ is a primitive root modulo $p$, (3) we have ord $p^{r}=\phi(p)=p-1$. Let $n=\operatorname{ord}_{p_{2}} r$.\\
+Then
+
+$$
+r^{n} \equiv 1\left(\bmod p^{2}\right),
+$$
+
+and, by Proposition 5.1,
+
+
+\begin{equation*}
+n \mid \phi\left(p^{2}\right)=p(p-1) . \tag{1}
+\end{equation*}
+
+
+Also, $r^{n} \equiv 1\left(\bmod p^{2}\right)$ implies that $r^{n} \equiv 1(\bmod p)$, from which
+
+
+\begin{equation*}
+\phi(p)=p-1 \mid n, \tag{2}
+\end{equation*}
+
+
+by Proposition 5.1. Now, (1) and (2) imply that either $n=p-1$ or $n=p(p-I)=\phi\left(p^{2}\right)$. If $n=p(p-1)=\phi\left(p^{2}\right)$, then $r$ is a primitive root modulo $p^{2}$, and the proof is complete. If $n=p-1$, put $r^{\prime}=r+p$. Since $r^{\prime} \equiv r(\bmod p)$, $r^{\prime}$ is a primitive root modulo $p$, and\\
+by a similar reasoning to the above, we have ord $p^{2} r^{\prime}=p-1$ or ord $p^{2} r^{\prime}=p(p-1)$. The proof of Lemma 5.14 Shows that\\
+$\operatorname{ord}_{p^{2}} r^{\prime} \neq p-1$. Thus ord $p^{2} r^{\prime}=p(p-1)=\phi\left(p^{2}\right),(4)$ and the proof is complete.
+
+Lemma 5.16: Let $p$ be an odd prime and let $r$ be a primitive root modulo $p$ such that $r^{p-1} \not \equiv 1\left(\bmod p^{2}\right)$. If $m \in \mathbb{Z}$ and $m \geqslant 2$, then
+
+$$
+r^{p^{m-2}(p-1)} \not \equiv \mid\left(\bmod p^{m}\right) .
+$$
+
+Proof: We use induction on $m$. If $m=2$, then this is the hypothesis of the Theorem. Assume that $k \geqslant 2$, and that the desired statement holds for $m=k$ so that $r p^{k-2(p-1)} \not \equiv 1\left(\bmod p^{k}\right)$. We must show that $r^{p^{k-1}}(p-1) \not \equiv 1\left(\bmod p^{k+1}\right)$, so that the desired statement holds for $m=k+1$. Since $(r, p)=1$, we have that $\left(s, p^{k-1}\right)=1$, and by Euler's Theorem,
+
+$$
+r^{p^{k-2}(p-1)}=r^{\phi\left(p^{k-1}\right)} \equiv 1\left(\bmod p^{k-1}\right) .
+$$
+
+Thus $p^{k-1} \mid r p^{k-2}(p-1)-1$, and so there exists $a \in \mathbb{Z}$ such that $r^{p^{k-2}(p-1)}-1=a p^{k-1}$.
+
+Furthermore, $p+a$, for otherwise $r^{p^{k-2}(p-1)} \equiv 1\left(\bmod p^{k}\right)$, contrary to the induction hypothesis. We raise each side of the equation
+
+$$
+r^{p^{k-2}(p-1)}=1+a p^{k-1}
+$$
+
+to the pth power. We obtain
+
+$$
+\begin{aligned}
+r^{p^{k-1}(p-1)}= & \left(1+a p^{k-1}\right)^{p} \\
+= & 1+p\left(a p^{k-1}\right)+\binom{p}{2}\left(a p^{k-1}\right)^{2} \\
+& +\cdots+\binom{p}{p-1}\left(a p^{k-1}\right)^{p-1}+\left(a p^{k-1}\right)^{p} \\
+\equiv & 1+a p^{k}\left(\bmod p^{k+1}\right) \\
+\not \equiv & 1\left(\bmod p^{k+1}\right),
+\end{aligned}
+$$
+
+since $p \nmid c e$. The proof is complete.
+
+Proposition 5.17: Let $p$ be an odd prime number and let $m$ be a positive integer. Then there exists a primitive root modulo $p^{m}$.
+
+Proof: The proof for $m=1$ is a\\
+consequence of Corollary 5.10. By Lemma 5.14 and Lemma 5.16, there exists a primitive root $r$ modulo $p$ such that
+
+
+\begin{equation*}
+r^{p^{m-2}(p-1)} \not \equiv 1\left(\bmod p^{m}\right) \tag{3}
+\end{equation*}
+
+
+for all $m \in \mathbb{Z}$ with $m \geqslant 2$. We show that $r$ is a primitive root modulo $p^{m}$. Let $n=\operatorname{ord}_{p m} r$. Then
+
+$$
+r^{n} \equiv l\left(\bmod p^{m}\right),
+$$
+
+and, by Proposition S.I,
+
+
+\begin{equation*}
+n \mid \phi\left(p^{m}\right)=p^{m-1}(p-1) . \tag{4}
+\end{equation*}
+
+
+Since $r^{n} \equiv 1\left(\bmod p^{m}\right)$ implies that $r^{n} \equiv 1(\bmod p)$ we have that
+
+$$
+\phi(p)=p-1 / n
+$$
+
+$(5)$\\
+and (5) imply\\
+by Proposition 5.1. Now,\\
+(4) and (5) imply that $n=p^{k}(p-1)$ for some integer $k$ between 0 and $m-1$ inclusive. If $0 \leqslant k \leqslant m-2$,\\
+then
+
+$$
+\begin{aligned}
+r^{p^{m-2}(p-1)} & =\left(r^{p^{k}(p-1)}\right)^{p^{m-2-k}} \\
+& =\left(r^{n}\right)^{p^{m-2-k}} \\
+& \equiv 1^{p^{m-2-k}} \quad\left(\bmod p^{m}\right) \\
+& \left.\equiv 1 \quad\left(\bmod p^{m}\right)\right)
+\end{aligned}
+$$
+
+which contradicts (3). Thus $k=m-1$, and\\
+ord $p^{m} r=n=p^{m-1}(p-1)=\phi\left(p^{m}\right)$,\\
+from which $n$ is a primitive root modulo $p^{m}$, as desired.
+
+Corollary 5.18: Let $p$ be an odd prime number and let $m$ be a positive integer. Then there exists a primitive root modulo $2 p^{m}$.\\
+Proof: Let $r$ be a primitive root modulo $p^{m}$.\\
+Without loss of generality, we may assume that $r$ is odd (if $r$ is even, then $r+p^{m}$ is odd and a primitive root modulo $p^{m}$ ). do $\left(r, 2 p^{m}\right)=1$. Let $n=\operatorname{ord}_{\left(2 p^{m}\right)} r$. Then\\
+$n^{n} \equiv 1\left(\bmod 2 p^{m}\right)$, and, by Propo sition 5.1, (8)
+
+
+\begin{equation*}
+n \mid \phi\left(2 p^{m}\right)=\phi(2) \phi\left(p^{m}\right)=\phi\left(p^{m}\right) . \tag{6}
+\end{equation*}
+
+
+Also $r^{n} \equiv 1\left(\bmod 2 p^{m}\right)$ implies that\\
+$r^{n} \equiv 1\left(\bmod p^{m}\right)$ (7), from which $\phi\left(p^{m}\right) \mid n$\\
+by Proposition 5.1. Together, (6) and (7) imply that
+
+$$
+\operatorname{ord}_{\left(2 p^{m}\right)} r=n=\phi\left(p^{m}\right)=\phi\left(2 p^{m}\right),
+$$
+
+from which $r$ is a primitive root as desired.\\
+Theorem 5.19 (Primitive Root Theorem):\\
+Let $n$ be a positive integer. Then a primitive root modulo $n$ exists if and only if $n$ is equal to $1,2,4, p^{m}$ or $2 p^{m}$, where $p$ is an odd prime number and $m$ is a positive integer.\\
+Proof: $(\Rightarrow$ divection $)$ This is the last statement\\
+of Corollary 5.13.\\
+( $\Leftarrow$ divection) It is easily checked that 1 is a primitive root modulo 1,1 is a\\
+primitive root modulo 2 , and 3 is a primitive\\
+root modulo 4. Proposition 5.17 and\\
+Corollary 5.18 prove the existence of\\
+primitive roots modulo $p^{m}$ and $2 p^{m}$.
+
+Exercise: - For each positive integer $m \geqslant 1$,\\
+find a primitive root for the modulus $11^{m}$.
+
+\begin{itemize}
+  \item Do the same for the modulus $17^{m}$.
+\end{itemize}
+
+\end{document}

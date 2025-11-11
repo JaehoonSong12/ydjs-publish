@@ -1,0 +1,200 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{bbold}
+
+\begin{document}
+L19 ,
+
+49: Index Arithmetic and nth power residues
+
+\begin{itemize}
+  \item We will give an application of primitive roots to solving certain congruences.
+  \item Let $m \in \mathbb{Z}$ with $m>0$ such that $m$ has a primitive root, say $r$. Then $\left\{r, r^{2}, \ldots, r^{\phi(m)}\right\}$ is a complete reduced residue system modulo m .
+\end{itemize}
+
+Definition: Let $r$ be a primitive root modulo $m$. If $a \in \mathbb{Z}$ with $(a, m)=1$, then the index of a velative to $r$, denoted ind ${ }_{r} a$, is the least positive integer $n$ for which $r^{n} \equiv a(\bmod m)$.
+
+\begin{itemize}
+  \item Note that indra exists and $1 \leq$ ind $a \leq \phi(m)$, by the observation made before the definition.\\
+Example: 3 is a primitive root modulo 7 and\\
+$3^{\prime} \equiv 3(\bmod 7) \Rightarrow \operatorname{ind}_{3} 3=1 ;$\\
+$3^{2} \equiv 2(\bmod 7) \Rightarrow \operatorname{ind}_{3} 2=2 ;$\\
+$3^{3} \equiv 6(\bmod 7) \Rightarrow \operatorname{ind}_{3} 6=3$;\\
+$3^{4} \equiv 4(\bmod 7) \Rightarrow \operatorname{ind}_{3} 4=4$;\\
+$3^{5} \equiv 5(\bmod 7) \Rightarrow \operatorname{ind}_{3} 5=5 ;$\\
+$3^{6} \equiv 1(\bmod 7) \Rightarrow\left|\operatorname{nd}_{3}\right|=6$.
+  \item Also note that if $a$ and $b$ are velatively prime to $m$ and $a \equiv b(\bmod m)$, then indr $a=\operatorname{ind}_{r} b$.
+  \item Indices enjoy a lot a properties in common with logarithms (the primitive root plays the role of the base of the logarithm).\\
+Proposition 5.20: Let $r$ be a primitive root modulo $m$ and let $a, b \in \mathbb{Z}$ with $(a, m)=1$ and $(b, m)=1$. Then\\
+(a) $\operatorname{ind} 1 \equiv 0(\bmod \phi(m))$\\
+(b) ind $r \equiv 1(\bmod \phi(m))$\\
+(c) $\operatorname{ind} r_{r}(a b) \equiv \operatorname{ind} r_{a}+\operatorname{ind} r_{b}(\bmod \phi(m))$\\
+(d) $\operatorname{indr}\left(a^{n}\right) \equiv n \operatorname{ind}, a(\bmod \phi(m))$, if $n$ is a positive integer.\\
+Proof: (a) and (b) are clear, and left as an exercise. For (c), by definition, we have $r^{\text {ind } r^{a}} \equiv a(\bmod m)$ and $r^{\text {ind } r^{b}} \equiv b(\bmod m)$.\\
+Multiplying these congruences gives $r^{\text {ind }} \vec{a}+\operatorname{ind} \vec{r} b \equiv a b(\bmod m)$\\
+Since $r^{\text {ind }}(a b) \equiv a b(\bmod m)$, we have that $r^{\operatorname{ind} r_{r}(a)+\operatorname{ind} r_{r}(b)} \equiv r^{\operatorname{ind} r_{r}(a b)}(\operatorname{modm})$.\\
+Proposition 5.2 gives
+\end{itemize}
+
+$$
+\operatorname{ind}_{r} a+\operatorname{ind}_{r} b \equiv \operatorname{ind}_{r}(a b)(\bmod \phi(m)),
+$$
+
+as desived. For (d), by definition we have $r^{\operatorname{ind}}\left(a^{n}\right) \equiv a^{n}(\bmod m)$. Also we have that
+
+$$
+r^{\text {nind } r^{a}} \equiv\left(r^{\text {ind } r^{a}}\right)^{n} \equiv a^{n}(\bmod m) .
+$$
+
+Thus $r^{i n d_{r}\left(a^{n}\right)} \equiv r^{n i n d_{r} a}(\bmod m)$,\\
+and Proposition 5.2 gives
+
+$$
+\operatorname{ind}_{r}\left(a^{n}\right) \equiv n \operatorname{ind} r_{r}(\bmod \phi(m)),
+$$
+
+as desired.\\
+Example: We illustrate Proposition 5.20(c) with an example. Modulo 7 , we have that ind $d_{3} 2=2$ and ind $_{3} 3=1$. By Proposition 5.20(c), we have
+
+$$
+\begin{aligned}
+\operatorname{ind}_{3} 6=\operatorname{ind}_{3}(2 \cdot 3) & =\operatorname{ind}_{3} 2+\operatorname{ind}_{3} 3(\bmod \phi(7)) \\
+& \equiv 2+1(\bmod 6) \\
+& \equiv 3(\bmod 6)
+\end{aligned}
+$$
+
+So $\operatorname{ind}_{3} 6=3$, which agrees with our previous computation!
+
+\begin{itemize}
+  \item Suppose that $m \in \mathbb{Z}$ with $m>0$ such that $m$ has a primitive root, say $r$. Let $a, b \in \mathbb{Z}$\\
+with $(a, m)=(b, m)=1$. For $n \in \mathbb{Z}$ with $n>0$, Consider the congruence $a x^{n} \equiv b(\bmod m)(1)$.
+\end{itemize}
+
+We have $\operatorname{ind} r_{r}\left(a x^{n}\right)=\operatorname{ind} r_{r}(b)$. Since
+
+$$
+\begin{aligned}
+\operatorname{ind} r_{r}\left(a x^{n}\right) & \equiv \operatorname{ind} r^{a}+\operatorname{ind} r_{r}\left(x^{n}\right)(\bmod \phi(m)) \\
+& \equiv \operatorname{ind} r_{r} a+\operatorname{nind} r_{r}(\bmod \phi(m))
+\end{aligned}
+$$
+
+by Proposition 5.20 (b) and (c) respectively, we obtain,
+
+$$
+\text { indr } a+n \text { indr } x \equiv \operatorname{indr} b(\bmod \phi(m)) \text {. }
+$$
+
+This is equivalent to\\
+nind $\mu x \equiv \operatorname{ind} \beta b-\operatorname{ind} \mu a(\bmod \phi(m))$. (2)\\
+Solving (1) is equivalent to solving (2). Howevers\\
+(2) is a linear congruence in the variable ind $x$ and can be solved using the techniques learned at the start of the course!
+
+Example: Use indices to find all incongruent Solutions to $6 x^{4} \equiv 3(\bmod 7)$.\\
+We previously showed that 3 is a primitive root modulo 7. This is equivalent to the\\
+congruence $4 \operatorname{ind}_{3} x \equiv \operatorname{ind}_{3} 3-\operatorname{ind}_{3} 6(\bmod \phi(7))$.
+
+Since $\operatorname{in} d_{3} 3=1, \operatorname{in} d_{3} 6=3$, and $\phi(7)=6$,\\
+the congruence (3) becomes
+
+$$
+4 \operatorname{lnd}_{3} x \equiv 4(\bmod 6)
+$$
+
+Thus
+
+$$
+2 \operatorname{ind}_{3} x \equiv 2(\bmod 3),
+$$
+
+and $\quad \quad \operatorname{ind}_{3} x \equiv 1(\bmod 3)$.\\
+Thus $\quad \operatorname{lnd}_{3} x \equiv 1(\bmod 6)$\\
+or $\operatorname{lnd}_{3} x \equiv 4(\bmod 6)$\\
+Thus
+
+$$
+x \equiv 3^{\prime} \equiv 3(\bmod 7)
+$$
+
+or $x \equiv 3^{4} \equiv 4(\bmod 7)$.\\
+There are two incongruent solutions to the congruence $6 x^{4} \equiv 3(\bmod 7)$.\\
+Definition: Let $a, m, n \in \mathbb{Z}$ with $m, n>0$ and $(a, m)=1$. Then $a$ is said to be an nth power residue modulo $m$ if the congrnence $x^{n} \equiv a(\bmod m)$ is solvable in $\mathbb{Z}$.
+
+Example: $\cdot 6$ is a third power residue modulo 7 since the congruence $x^{3} \equiv 6(\bmod 7)$ is solvable ( $x=3$ is a solution).
+
+\begin{itemize}
+  \item 3 is a 4th power vesidue modulo 13 since the congruence $x^{4} \equiv 3(\bmod 13)$ is solvable ( $x=2$ is a solution).
+  \item 3 is not a 4th power residue modulo 7 Since the congruence $x^{4} \equiv 3(\bmod 7)$ has no solutions (check this for yourself).\\
+Theorem 5.21: Let $a, m, n \in \mathbb{Z}$ with $m>0$ and $(a, m)=1$. If the modulus $m$ has a primitive root, then $a$ is an $n$th power residue modulo $m$ if and only if
+\end{itemize}
+
+$$
+a^{\phi(m) / d} \equiv 1(\bmod m)
+$$
+
+where $d=(n, \phi(m))$. Furthermove, if $a$ is an $n$th power residue modulo $m$, then the Congruence $x^{n} \equiv a(\bmod m)$ has exactly $d$ incongrnent solutions modulo $m$.
+
+Proof: Let $r$ be a primitive root modulo $m$.
+
+Then the congruence
+
+
+\begin{equation*}
+x^{n} \equiv a(\bmod m) \tag{4}
+\end{equation*}
+
+
+is equivalent to the congruence
+
+
+\begin{equation*}
+n \operatorname{ind} x \text { } x \equiv \operatorname{ind} r a(\bmod \phi(m)) \text {. } \tag{5}
+\end{equation*}
+
+
+If $d=(n, \phi(m))$, then (5) is soluable in indr $x$ if and only if $d$ lind, a by theorem 2.6. Observe that dindra if and only if
+
+$$
+\left(\frac{\phi(m)}{d}\right) \text { ind, } a \equiv 0(\bmod \phi(m))
+$$
+
+which is equivalent to the congruence $\phi(m) / d$
+
+$$
+a^{\phi(m) / d} \equiv 1(\bmod m) .
+$$
+
+This proves the first part of the Theorem. Furthermore, Theorem 2.6 implies that if dlindra, then (5) has exactly ol solutions modulo $\phi(\mathrm{m})$.\\
+Then (4) has exactly $d$ solutions modulo $m$.
+
+Corollary 5-22: Let $p$ be cen odd\\
+prime number and let $a \in \mathbb{Z}$ be such that $p+a$. Then $a$ is a quadratic residue modulo $p$ if and only if
+
+$$
+a^{(p-1) / 2} \equiv 1(\bmod p) .
+$$
+
+Furthermore, if $a$ is a quadratic residue modulo $p$, the congruence $x^{2} \equiv a(\bmod p)$ has exactly two incongrnent solutions modulo $p$. Proof: Let $m=p$ and $n=2$ in Theorem 5.21.\\
+Example: Let $a=6, m=7$, and $n=3$ in Theorem 5.21. A primitive root exists mod 7 by Theorem 5.19. Then $d=(3, \phi(7))=3$. By Theorem 5.21 we have that $b$ is a Brd pover residue modulo 7 if and only if $6^{6 / 3} \equiv 1(\bmod 7)$. Since this Congruence is true, $b$ is a Brd power\\
+residue modulo 7 i.e. $x^{3} \equiv 6(\bmod 7)$\\
+is soluable. It has exactly three incongruent solutions (mod 7) by Theorem 5.21.
+
+Exercise: Is 3 a 4th power vesidne modulo 13? If so, how many incongruent solutions does $x^{4} \equiv 3(\bmod 13)$ have?
+
+Example: Find all 15th power residues modulo 9. A primitive root modulo of exists by Theorem 5.19. Then $d=(15, \phi(9)) =3$, and by Theorem 5.21, we have that $a$ is a $15^{\text {th }}$ pover vesidne modulo 9 if and only if $a^{b / 3} \equiv 1(\bmod 9)$, or equivalently $a^{2} \equiv 1(\bmod 9)$. This has solutions $a \equiv 1,8(\bmod 9)$.\\
+Thus the two 15th power residues $\bmod 9$ are 1 and 8. Also note that the 15th Power residnes mod 9 are precisely the
+
+3rd power residues (nod 9)\\
+ie. by Euler's Theorem we have that\\
+$a^{b} \equiv 1(\bmod 9)$ for all $a \in \mathbb{Z}$ with $(a, q)=1$,\\
+and so $a^{15} \equiv a^{3}(\bmod 9)$.
+
+
+\end{document}
