@@ -2172,315 +2172,9 @@ Here \(\circ\) is a generic product symbol (like \(*\)) and not function composi
 
 
 
-\newpage
-
-\section*{Analysis}
-\begin{enumerate}
-  \item Prove the following properties of \(\setR\) from the definition of \((\setR,+)\) and \((\setR^*,\cdot)\) as abelian groups where multiplication distributes over addition: \(a(b+c)=ab+ac\) for all \(a,b,c\in\setR\).
-  \begin{enumerate}
-    \item \(a\cdot 0=0\).
-    \begin{subprove}
-      Let \(a \in \setR\).
-      It will be proved that \(a \cdot 0 = 0\).
-      
-      Since \(0 + 0 = 0\), by the distributive property, \(a \cdot (0 + 0) = a \cdot 0 + a \cdot 0\).
-      Therefore, \(a \cdot 0 = a \cdot 0 + a \cdot 0\).
-      By adding the additive inverse of \(a \cdot 0\) to both sides, it follows that \(0 = a \cdot 0\).
-      
-      Therefore, \(a \cdot 0 = 0\).
-    \end{subprove}
-    \item \((-a)b=-ab\).
-    \begin{subprove}
-      Let \(a, b \in \setR\).
-      It will be proved that \((-a) b = - (a b)\).
-      
-      Since \(0 = 0 \cdot b\), by the previous result, \(0 = (a + (-a)) b = a b + (-a) b\).
-      By adding the additive inverse of \(a b\) to both sides, it follows that \((-a) b = - (a b)\).
-      
-      Therefore, \((-a) b = - (a b)\).
-    \end{subprove}
-    \item \((-a)(-b)=ab\).
-    \begin{subprove}
-      Let \(a, b \in \setR\).
-      It will be proved that \((-a)(-b) = a b\).
-      
-      Since \(0 = 0 \cdot (-b)\), by the previous result, \(0 = (a + (-a))(-b) = a(-b) + (-a)(-b)\).
-      By adding the additive inverse of \(a(-b)\) to both sides, it follows that \((-a)(-b) = - (a(-b))\).
-      By the previous result again, \(- (a(-b)) = - (-(a b)) = a b\).
-      
-      Therefore, \((-a)(-b) = a b\).
-    \end{subprove}
-    \item If \(ab=0\), then either \(a=0\) or \(b=0\).
-    \begin{subprove}
-      Let \(a, b \in \setR\) such that \(a b = 0\).
-      It will be proved that either \(a = 0\) or \(b = 0\).
-      
-      Suppose that \(a \neq 0\).
-      Since \((\setR^*, \cdot)\) is a group, \(a\) has a multiplicative inverse \(a^{-1} \in \setR^*\).
-      By multiplying both sides of the equation \(a b = 0\) by \(a^{-1}\), it follows that \(b = a^{-1} \cdot 0 = 0\).
-      
-      Therefore, if \(a b = 0\) and \(a \neq 0\), then \(b = 0\).
-      Hence, if \(a b = 0\), then either \(a = 0\) or \(b = 0\).
-    \end{subprove}
-    \item \(-a=(-1)a\).
-    \begin{subprove}
-      Let \(a \in \setR\).
-      It will be proved that \(-a = (-1) a\).
-      
-      Since \(0 = 0 \cdot a\), by the previous result, \(0 = (1 + (-1)) a = 1 \cdot a + (-1) a = a + (-1) a\).
-      By adding the additive inverse of \(a\) to both sides, it follows that \(-a = (-1) a\).
-      
-      Therefore, \(-a = (-1) a\).
-    \end{subprove}
-  \end{enumerate}
-
-  \item Prove the following properties of \(\setR\) from the group definitions above, together with the total order \(\le\) on \(\setR\) satisfying: for all \(a,b,c\in\setR\), if \(a\le b\) then \(a+c\le b+c\); and if \(a\le b\) and \(0\le c\) then \(ac\le bc\).
-  \begin{enumerate}
-    \item If \(a\le b\), then \(-b\le -a\).
-    \begin{subprove}
-      Let \(a, b \in \setR\) such that \(a \le b\).
-      It will be proved that \(-b \le -a\).
-      
-      Since \(a \le b\), by adding \(-b\) to both sides, it follows that \(a + (-b) \le b + (-b)\).
-      Therefore, \(a - b \le 0\).
-      By adding \(-a\) to both sides, it follows that \(-b \le -a\).
-      
-      Therefore, if \(a \le b\), then \(-b \le -a\).
-    \end{subprove}
-    \item If \(a\le b\) and \(c\le 0\), then \(bc\le ac\).
-    \begin{subprove}
-      Let \(a, b, c \in \setR\) such that \(a \le b\) and \(c \le 0\).
-      It will be proved that \(b c \le a c\).
-      
-      Since \(c \le 0\), by multiplying both sides of the inequality \(a \le b\) by \(c\) (which is nonpositive), the direction of the inequality reverses.
-      Therefore, \(b c \le a c\).
-      
-      Therefore, if \(a \le b\) and \(c \le 0\), then \(b c \le a c\).
-    \end{subprove}
-    \item If \(0\le a\) and \(0\le b\), then \(0\le ab\).
-    \begin{subprove}
-      Let \(a, b \in \setR\) such that \(0 \le a\) and \(0 \le b\).
-      It will be proved that \(0 \le a b\).
-      
-      Since \(0 \le a\), by multiplying both sides of the inequality \(0 \le b\) by \(a\) (which is nonnegative), it follows that \(0 \le a b\).
-      
-      Therefore, if \(0 \le a\) and \(0 \le b\), then \(0 \le a b\).
-    \end{subprove}
-    \item \(0\le a^2\).
-    \begin{subprove}
-      Let \(a \in \setR\).
-      It will be proved that \(0 \le a^{2}\).
-      
-      By the trichotomy property of the total order on \(\setR\), either \(a < 0\), \(a = 0\), or \(a > 0\).
-      If \(a = 0\), then \(a^{2} = 0^{2} = 0\), so \(0 \le a^{2}\).
-      If \(a > 0\), then by the previous result, \(0 \le a^{2}\).
-      If \(a < 0\), then \(-a > 0\), so by the previous result, \(0 \le (-a)^{2} = a^{2}\).
-      
-      Therefore, in all cases, \(0 \le a^{2}\).
-    \end{subprove}
-    \item \(0<1\).
-    \begin{subprove}
-      It will be proved that \(0 < 1\).
-      
-      Suppose, for the sake of contradiction, that \(1 \le 0\).
-      By multiplying both sides of the inequality \(1 \le 0\) by \(-1\) (which is negative), the direction of the inequality reverses.
-      Therefore, \(-1 \ge 0\).
-      By adding \(1\) to both sides, it follows that \(0 \ge 1\).
-      This contradicts the assumption that \(1 \le 0\).
-      
-      Therefore, it must be that \(0 < 1\).
-    \end{subprove}
-    \item If \(0<a\), then \(0<a^{-1}\).
-    \begin{subprove}
-      Let \(a \in \setR\) such that \(0 < a\).
-      It will be proved that \(0 < a^{-1}\).
-      
-      Suppose, for the sake of contradiction, that \(a^{-1} \le 0\).
-      By multiplying both sides of the inequality \(a^{-1} \le 0\) by \(a\) (which is positive), it follows that \(1 \le 0\).
-      This contradicts the previous result that \(0 < 1\).
-      
-      Therefore, it must be that \(0 < a^{-1}\).
-    \end{subprove}
-    \item If \(0<a<b\), then \(0<b^{-1}<a^{-1}\).
-    \begin{subprove}
-      Let \(a, b \in \setR\) such that \(0 < a < b\).
-      It will be proved that \(0 < b^{-1} < a^{-1}\).
-      
-      By the previous result, since \(0 < b\), it follows that \(0 < b^{-1}\).
-      Since \(a < b\), by multiplying both sides of the inequality \(a < b\) by \(b^{-1}\) (which is positive), it follows that \(a b^{-1} < 1\).
-      By multiplying both sides of the inequality \(a b^{-1} < 1\) by \(a^{-1}\) (which is positive), it follows that \(b^{-1} < a^{-1}\).
-      
-      Therefore, if \(0 < a < b\), then \(0 < b^{-1} < a^{-1}\).
-    \end{subprove}
-  \end{enumerate}
-
-  \item Let \(a\in\setR\). The absolute value \(|a|\) is defined by \(|a|=a\) if \(a\ge0\) and \(|a|=-a\) if \(a<0\). Explain why the following follow directly from this definition.
-  \begin{enumerate}
-    \item \(|a|\ge0\) and \(|a|=0\) iff \(a=0\).
-    \begin{subprove}
-      Let \(a \in \setR\).
-      It will be proved that \(|a| \ge 0\) and \(|a| = 0\) if and only if \(a = 0\).
-      
-      By the definition of absolute value, if \(a \ge 0\), then \(|a| = a \ge 0\).
-      If \(a < 0\), then \(|a| = -a > 0\).
-      Therefore, in both cases, \(|a| \ge 0\).
-      
-      Furthermore, if \(a = 0\), then \(|a| = |0| = 0\).
-      Conversely, if \(|a| = 0\), then by the definition of absolute value, either \(a = 0\) (if \(a \ge 0\)) or \(-a = 0\) (if \(a < 0\)), which also implies \(a = 0\).
-      
-      Therefore, \(|a| \ge 0\) and \(|a| = 0\) if and only if \(a = 0\).
-    \end{subprove}
-    \item For \(a,b\in\setR\), \(|ab|=|a|\cdot|b|\).
-    \item For \(a\in\setR\), \(|a|^2=a^2\).
-  \end{enumerate}
-
-  \item Prove the following properties of the absolute value.
-  \begin{enumerate}
-    \item For all \(a,b\in\setR\), \(|a+b|\le|a|+|b|\).
-    \item For all \(a,b\in\setR\), \(|b|\le a\) iff \(-a\le b\le a\).
-    \item For all \(a,b\in\setR\), \(||a|-|b||\le|a-b|\).
-    \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
-    \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
-  \end{enumerate}
-\end{enumerate}
 
 
 
-
-
-\newpage
-
-\begin{define}{Completeness Axiom}[def:completeness-axiom][red]
-  $\setR$ is \textbf{complete}, that is, it satisfies the following \textbf{least upper bound property}.\proofstep
-  Let $S\subseteq\setR$ be nonempty and bounded above, 
-  then there exists an element $t\in\setR$ such that
-  \begin{enumerate}
-    \item $s\le t$ for all $s \in S$, and
-    \item $t\le u$ for all any upper bound of $S$, $u\in\setR$, that is, $s\le u$ for all $s \in S$.
-  \end{enumerate}
-  The element $t$ is denoted by $t=\sup(S)$ and is called the \textbf{supremum} (least upper bound) of $S$.
-\end{define}
-
-\begin{define}{Infimum (Greatest Lower Bound)}[def:infimum][red]
-  Let $S\subseteq\setR$ be nonempty and bounded below.
-  Then there exists an element $m\in\setR$ such that
-  \begin{enumerate}
-    \item $m\le s$ for all $s\in S$, and
-    \item if $y\in\setR$ satisfies $y\le s$ for all $s\in S$ then $y\le m$.
-  \end{enumerate}
-  The element $m$ is denoted $m=\inf(S)$ and is called the \textbf{infimum} (greatest lower bound) of $S$.
-    \begin{subprove}
-      Let $S\subseteq\mathbb R$ be nonempty and bounded below. 
-      Let $-S=\{-s:s\in S\}$, then $-S$ is nonempty and bounded above, 
-      hence there exists $t=\sup(-S)$ by \nameref{def:completeness-axiom} and $m=-t$. \proofstep
-      For any $s\in S$, $-s\le t$ and $t \le u$ for all upper bounds, $u$, by definition. 
-      Thus, $m=-t\le s$ and $-u\le -t=m$ for all lower bounds, $-u$, of $S$. \proofstep      
-      Therefore $\inf(S)=m=-\sup(-S)$.
-    \end{subprove}
-\end{define}
-
-In the standard construction of the real numbers the following completeness properties are equivalent:
-\begin{enumerate}
-  \item the least upper bound property (Completeness Axiom),
-  \item the greatest lower bound property,
-  \item Dedekind-type completeness, and
-  \item Cauchy completeness.
-\end{enumerate}
-That is, any one of these statements implies the others when working in \(\setR\).
-
-\begin{define}{Dedekind Completeness}[def:dedekind-completeness][red]
-  $\setR$ is \textbf{Dedekind complete}, that is, it satisfies the following \textbf{Dedekind completeness property}.\proofstep
-  Let $A,B\subseteq\setR$ be nonempty such that $a\le b$ for all $a\in A$ and $b\in B$.
-  Then there exists an element $c\in\setR$ such that $a\le c\le b$ for all $a\in A$ and $b\in B$.
-\end{define}
-
-
-\begin{define}{Cauchy Completeness}[def:cauchy-completeness][red]
-  $\setR$ is \textbf{Cauchy complete}, that is, it satisfies the following \textbf{Cauchy completeness property}.\proofstep
-  Every \nameref{def:cauchy-sequence} in $\setR$ converges to a limit in $\setR$.
-\end{define}
-
-
-\newpage  
-
-
-\begin{define}{Archimedean Property}[def:archimedean-property][red]
-  For any real number \(a, b\), there exists a natural number \(n\) such that \(na > b\).
-  \begin{subprove}
-    Suppose not. Then there exist \(a, b \in \setR\) such that \(na \le b\) for all \(n \in \setN\).
-    Thus, \(b\) is an upper bound for the set \(S = \set{na : n \in \setN}\).
-    Hence, \(S\) has a supremum \(t=\sup(S) \in \setR\) by \nameref{def:completeness-axiom}.
-
-    Since $a>0$, $t - a < t < t + a$. Hence, $t-a$ is not an upper bound for \(S\).
-    Therefore, there exists \(n_0 \in \setN\) such that \(n_0 a > t - a\). But then, 
-    \[
-      t = t - a + a < n_0 a + a = (n_0 + 1)a,
-    \]
-    which contradicts the fact that \(t\) is an upper bound for \(S\).
-    Therefore, the supposition is false, and the Archimedean Property holds.
-  \end{subprove}
-  \textbf{Note}: This property states that the natural numbers are unbounded in the real numbers.
-\end{define}
-
-
-\begin{enumerate}
-  \item Prove the following properties of the absolute value.
-    \begin{enumerate}[label=(\alph*)]
-      \item For all \(a,b\in\setR\), \(|a+b|\le |a|+|b|\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(a,b\in\setR\), \(|b|\le a\) iff \(-a\le b\le a\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(a,b\in\setR\), \( \big||a|-|b|\big|\le |a-b|\).
-      \begin{subprove}
-      \end{subprove}
-      \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
-      \begin{subprove}
-      \end{subprove}
-      \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
-      \begin{subprove}
-      \end{subprove}
-    \end{enumerate}
-
-  \item Prove the following using the completeness axiom and the order of \(\setR\).
-    \begin{enumerate}[label=(\alph*)]
-      \item For all \(x\in\setR\) there exists \(n\in\mathbb{Z}\) with \(n>x\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(\varepsilon>0\) there exists \(n\in\mathbb{N}\) with \(1/n<\varepsilon\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(x\in\setR\) there exists \(n\in\mathbb{Z}\) such that \(n\le x<n+1\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(x\in\setR\) and \(N\in\mathbb{N}\) there exists \(n\in\mathbb{Z}\) such that \(\dfrac{n}{N}\le x<\dfrac{n+1}{N}\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(x\in\setR\) and \(\varepsilon>0\) there exists a rational \(q\in\mathbb{Q}\) with \(|x-q|<\varepsilon\).
-      \begin{subprove}
-      \end{subprove}
-    \end{enumerate}
-
-  \item Prove that for all \(a,b\in\setR\)
-    \[
-      \max\{a,b\}=\frac{a+b+|a-b|}{2}
-      \quad\text{and}\quad
-      \min\{a,b\}=-\max\{-a,-b\}=\frac{a+b-|a-b|}{2}.
-    \]
-    \begin{subprove}
-    \end{subprove}
-
-  \item Prove the Archimedean property:
-    Let \(a,b\in\setR\) with \(a>0\) and \(b>0\). Show there exists \(n\in\mathbb{N}\) with \(n a>b\).
-    \begin{subprove}
-    \end{subprove}
-
-  \item Explain why \(\mathbb{Q}\) is dense in \(\setR\):
-    If \(a,b\in\setR\) and \(a<b\), then there exists \(r\in\mathbb{Q}\) with \(a<r<b\).
-    \begin{subprove}
-    \end{subprove}
-\end{enumerate}
 
 
 
@@ -6404,3 +6098,622 @@ Let $G$ be a group with identity $e$.
     \end{subanswer}
   \end{enumerate}
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section*{Analysis}
+\begin{enumerate}
+  \item Prove the following properties of \(\setR\) from the definition of \((\setR,+)\) and \((\setR^*,\cdot)\) as abelian groups where multiplication distributes over addition: \(a(b+c)=ab+ac\) for all \(a,b,c\in\setR\).
+  \begin{enumerate}
+    \item \(a\cdot 0=0\).
+    \begin{subprove}
+      Let \(a \in \setR\).
+      It will be proved that \(a \cdot 0 = 0\).
+      
+      Since \(0 + 0 = 0\), by the distributive property, \(a \cdot (0 + 0) = a \cdot 0 + a \cdot 0\).
+      Therefore, \(a \cdot 0 = a \cdot 0 + a \cdot 0\).
+      By adding the additive inverse of \(a \cdot 0\) to both sides, it follows that \(0 = a \cdot 0\).
+      
+      Therefore, \(a \cdot 0 = 0\).
+    \end{subprove}
+    \item \((-a)b=-ab\).
+    \begin{subprove}
+      Let \(a, b \in \setR\).
+      It will be proved that \((-a) b = - (a b)\).
+      
+      Since \(0 = 0 \cdot b\), by the previous result, \(0 = (a + (-a)) b = a b + (-a) b\).
+      By adding the additive inverse of \(a b\) to both sides, it follows that \((-a) b = - (a b)\).
+      
+      Therefore, \((-a) b = - (a b)\).
+    \end{subprove}
+    \item \((-a)(-b)=ab\).
+    \begin{subprove}
+      Let \(a, b \in \setR\).
+      It will be proved that \((-a)(-b) = a b\).
+      
+      Since \(0 = 0 \cdot (-b)\), by the previous result, \(0 = (a + (-a))(-b) = a(-b) + (-a)(-b)\).
+      By adding the additive inverse of \(a(-b)\) to both sides, it follows that \((-a)(-b) = - (a(-b))\).
+      By the previous result again, \(- (a(-b)) = - (-(a b)) = a b\).
+      
+      Therefore, \((-a)(-b) = a b\).
+    \end{subprove}
+    \item If \(ab=0\), then either \(a=0\) or \(b=0\).
+    \begin{subprove}
+      Let \(a, b \in \setR\) such that \(a b = 0\).
+      It will be proved that either \(a = 0\) or \(b = 0\).
+      
+      Suppose that \(a \neq 0\).
+      Since \((\setR^*, \cdot)\) is a group, \(a\) has a multiplicative inverse \(a^{-1} \in \setR^*\).
+      By multiplying both sides of the equation \(a b = 0\) by \(a^{-1}\), it follows that \(b = a^{-1} \cdot 0 = 0\).
+      
+      Therefore, if \(a b = 0\) and \(a \neq 0\), then \(b = 0\).
+      Hence, if \(a b = 0\), then either \(a = 0\) or \(b = 0\).
+    \end{subprove}
+    \item \(-a=(-1)a\).
+    \begin{subprove}
+      Let \(a \in \setR\).
+      It will be proved that \(-a = (-1) a\).
+      
+      Since \(0 = 0 \cdot a\), by the previous result, \(0 = (1 + (-1)) a = 1 \cdot a + (-1) a = a + (-1) a\).
+      By adding the additive inverse of \(a\) to both sides, it follows that \(-a = (-1) a\).
+      
+      Therefore, \(-a = (-1) a\).
+    \end{subprove}
+  \end{enumerate}
+
+  \item Prove the following properties of \(\setR\) from the group definitions above, together with the total order \(\le\) on \(\setR\) satisfying: for all \(a,b,c\in\setR\), if \(a\le b\) then \(a+c\le b+c\); and if \(a\le b\) and \(0\le c\) then \(ac\le bc\).
+  \begin{enumerate}
+    \item If \(a\le b\), then \(-b\le -a\).
+    \begin{subprove}
+      Let \(a, b \in \setR\) such that \(a \le b\).
+      It will be proved that \(-b \le -a\).
+      
+      Since \(a \le b\), by adding \(-b\) to both sides, it follows that \(a + (-b) \le b + (-b)\).
+      Therefore, \(a - b \le 0\).
+      By adding \(-a\) to both sides, it follows that \(-b \le -a\).
+      
+      Therefore, if \(a \le b\), then \(-b \le -a\).
+    \end{subprove}
+    \item If \(a\le b\) and \(c\le 0\), then \(bc\le ac\).
+    \begin{subprove}
+      Let \(a, b, c \in \setR\) such that \(a \le b\) and \(c \le 0\).
+      It will be proved that \(b c \le a c\).
+      
+      Since \(c \le 0\), by multiplying both sides of the inequality \(a \le b\) by \(c\) (which is nonpositive), the direction of the inequality reverses.
+      Therefore, \(b c \le a c\).
+      
+      Therefore, if \(a \le b\) and \(c \le 0\), then \(b c \le a c\).
+    \end{subprove}
+    \item If \(0\le a\) and \(0\le b\), then \(0\le ab\).
+    \begin{subprove}
+      Let \(a, b \in \setR\) such that \(0 \le a\) and \(0 \le b\).
+      It will be proved that \(0 \le a b\).
+      
+      Since \(0 \le a\), by multiplying both sides of the inequality \(0 \le b\) by \(a\) (which is nonnegative), it follows that \(0 \le a b\).
+      
+      Therefore, if \(0 \le a\) and \(0 \le b\), then \(0 \le a b\).
+    \end{subprove}
+    \item \(0\le a^2\).
+    \begin{subprove}
+      Let \(a \in \setR\).
+      It will be proved that \(0 \le a^{2}\).
+      
+      By the trichotomy property of the total order on \(\setR\), either \(a < 0\), \(a = 0\), or \(a > 0\).
+      If \(a = 0\), then \(a^{2} = 0^{2} = 0\), so \(0 \le a^{2}\).
+      If \(a > 0\), then by the previous result, \(0 \le a^{2}\).
+      If \(a < 0\), then \(-a > 0\), so by the previous result, \(0 \le (-a)^{2} = a^{2}\).
+      
+      Therefore, in all cases, \(0 \le a^{2}\).
+    \end{subprove}
+    \item \(0<1\).
+    \begin{subprove}
+      It will be proved that \(0 < 1\).
+      
+      Suppose, for the sake of contradiction, that \(1 \le 0\).
+      By multiplying both sides of the inequality \(1 \le 0\) by \(-1\) (which is negative), the direction of the inequality reverses.
+      Therefore, \(-1 \ge 0\).
+      By adding \(1\) to both sides, it follows that \(0 \ge 1\).
+      This contradicts the assumption that \(1 \le 0\).
+      
+      Therefore, it must be that \(0 < 1\).
+    \end{subprove}
+    \item If \(0<a\), then \(0<a^{-1}\).
+    \begin{subprove}
+      Let \(a \in \setR\) such that \(0 < a\).
+      It will be proved that \(0 < a^{-1}\).
+      
+      Suppose, for the sake of contradiction, that \(a^{-1} \le 0\).
+      By multiplying both sides of the inequality \(a^{-1} \le 0\) by \(a\) (which is positive), it follows that \(1 \le 0\).
+      This contradicts the previous result that \(0 < 1\).
+      
+      Therefore, it must be that \(0 < a^{-1}\).
+    \end{subprove}
+    \item If \(0<a<b\), then \(0<b^{-1}<a^{-1}\).
+    \begin{subprove}
+      Let \(a, b \in \setR\) such that \(0 < a < b\).
+      It will be proved that \(0 < b^{-1} < a^{-1}\).
+      
+      By the previous result, since \(0 < b\), it follows that \(0 < b^{-1}\).
+      Since \(a < b\), by multiplying both sides of the inequality \(a < b\) by \(b^{-1}\) (which is positive), it follows that \(a b^{-1} < 1\).
+      By multiplying both sides of the inequality \(a b^{-1} < 1\) by \(a^{-1}\) (which is positive), it follows that \(b^{-1} < a^{-1}\).
+      
+      Therefore, if \(0 < a < b\), then \(0 < b^{-1} < a^{-1}\).
+    \end{subprove}
+  \end{enumerate}
+
+  \item Let \(a\in\setR\). The absolute value \(|a|\) is defined by \(|a|=a\) if \(a\ge0\) and \(|a|=-a\) if \(a<0\). Explain why the following follow directly from this definition.
+  \begin{enumerate}
+    \item \(|a|\ge0\) and \(|a|=0\) iff \(a=0\).
+    \begin{subprove}
+      Let \(a \in \setR\).
+      It will be proved that \(|a| \ge 0\) and \(|a| = 0\) if and only if \(a = 0\).
+      
+      By the definition of absolute value, if \(a \ge 0\), then \(|a| = a \ge 0\).
+      If \(a < 0\), then \(|a| = -a > 0\).
+      Therefore, in both cases, \(|a| \ge 0\).
+      
+      Furthermore, if \(a = 0\), then \(|a| = |0| = 0\).
+      Conversely, if \(|a| = 0\), then by the definition of absolute value, either \(a = 0\) (if \(a \ge 0\)) or \(-a = 0\) (if \(a < 0\)), which also implies \(a = 0\).
+      
+      Therefore, \(|a| \ge 0\) and \(|a| = 0\) if and only if \(a = 0\).
+    \end{subprove}
+    \item For \(a,b\in\setR\), \(|ab|=|a|\cdot|b|\).
+    \item For \(a\in\setR\), \(|a|^2=a^2\).
+  \end{enumerate}
+
+  \item Prove the following properties of the absolute value.
+  \begin{enumerate}
+    \item For all \(a,b\in\setR\), \(|a+b|\le|a|+|b|\).
+    \item For all \(a,b\in\setR\), \(|b|\le a\) iff \(-a\le b\le a\).
+    \item For all \(a,b\in\setR\), \(||a|-|b||\le|a-b|\).
+    \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
+    \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+\begin{define}{Completeness Axiom}[def:completeness-axiom][red]
+  $\setR$ is \textbf{complete}, that is, it satisfies the following \textbf{least upper bound property}.\proofstep
+  Let $S\subseteq\setR$ be nonempty and bounded above, 
+  then there exists an element $t\in\setR$ such that
+  \begin{enumerate}
+    \item $s\le t$ for all $s \in S$, and
+    \item $t\le u$ for all any upper bound of $S$, $u\in\setR$, that is, $s\le u$ for all $s \in S$.
+  \end{enumerate}
+  The element $t$ is denoted by $t=\sup(S)$ and is called the \textbf{supremum} (least upper bound) of $S$.
+\end{define}
+
+\begin{define}{Infimum (Greatest Lower Bound)}[def:infimum][red]
+  Let $S\subseteq\setR$ be nonempty and bounded below.
+  Then there exists an element $m\in\setR$ such that
+  \begin{enumerate}
+    \item $m\le s$ for all $s\in S$, and
+    \item if $y\in\setR$ satisfies $y\le s$ for all $s\in S$ then $y\le m$.
+  \end{enumerate}
+  The element $m$ is denoted $m=\inf(S)$ and is called the \textbf{infimum} (greatest lower bound) of $S$.
+    \begin{subprove}
+      Let $S\subseteq\mathbb R$ be nonempty and bounded below. 
+      Let $-S=\{-s:s\in S\}$, then $-S$ is nonempty and bounded above, 
+      hence there exists $t=\sup(-S)$ by \nameref{def:completeness-axiom} and $m=-t$. \proofstep
+      For any $s\in S$, $-s\le t$ and $t \le u$ for all upper bounds, $u$, by definition. 
+      Thus, $m=-t\le s$ and $-u\le -t=m$ for all lower bounds, $-u$, of $S$. \proofstep      
+      Therefore $\inf(S)=m=-\sup(-S)$.
+    \end{subprove}
+\end{define}
+
+In the standard construction of the real numbers the following completeness properties are equivalent:
+\begin{enumerate}
+  \item the least upper bound property (Completeness Axiom),
+  \item the greatest lower bound property,
+  \item Dedekind-type completeness, and
+  \item Cauchy completeness.
+\end{enumerate}
+That is, any one of these statements implies the others when working in \(\setR\).
+
+\begin{define}{Dedekind Completeness}[def:dedekind-completeness][red]
+  $\setR$ is \textbf{Dedekind complete}, that is, it satisfies the following \textbf{Dedekind completeness property}.\proofstep
+  Let $A,B\subseteq\setR$ be nonempty such that $a\le b$ for all $a\in A$ and $b\in B$.
+  Then there exists an element $c\in\setR$ such that $a\le c\le b$ for all $a\in A$ and $b\in B$.
+\end{define}
+
+
+\begin{define}{Cauchy Completeness}[def:cauchy-completeness][red]
+  $\setR$ is \textbf{Cauchy complete}, that is, it satisfies the following \textbf{Cauchy completeness property}.\proofstep
+  Every \nameref{def:cauchy-sequence} in $\setR$ converges to a limit in $\setR$.
+\end{define}
+
+
+\newpage  
+
+
+\begin{define}{Archimedean Property}[def:archimedean-property][red]
+  For any real number \(a, b\), there exists a natural number \(n\) such that \(na > b\).
+  \begin{subprove}
+    Suppose not. Then there exist \(a, b \in \setR\) such that \(na \le b\) for all \(n \in \setN\).
+    Thus, \(b\) is an upper bound for the set \(S = \set{na : n \in \setN}\).
+    Hence, \(S\) has a supremum \(t=\sup(S) \in \setR\) by \nameref{def:completeness-axiom}.
+
+    Since $a>0$, $t - a < t < t + a$. Hence, $t-a$ is not an upper bound for \(S\).
+    Therefore, there exists \(n_0 \in \setN\) such that \(n_0 a > t - a\). But then, 
+    \[
+      t = t - a + a < n_0 a + a = (n_0 + 1)a,
+    \]
+    which contradicts the fact that \(t\) is an upper bound for \(S\).
+    Therefore, the supposition is false, and the Archimedean Property holds.
+  \end{subprove}
+  \textbf{Note}: This property states that the natural numbers are unbounded in the real numbers.
+\end{define}
+
+
+\begin{enumerate}
+  \item Prove the following properties of the absolute value.
+    \begin{enumerate}[label=(\alph*)]
+      \item For all \(a,b\in\setR\), \(|a+b|\le |a|+|b|\).
+      \begin{subprove}
+      \end{subprove}
+      \item For all \(a,b\in\setR\), \(|b|\le a\) iff \(-a\le b\le a\).
+      \begin{subprove}
+      \end{subprove}
+      \item For all \(a,b\in\setR\), \( \big||a|-|b|\big|\le |a-b|\).
+      \begin{subprove}
+      \end{subprove}
+      \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
+      \begin{subprove}
+      \end{subprove}
+      \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
+      \begin{subprove}
+      \end{subprove}
+    \end{enumerate}
+
+  \item Prove the following using the completeness axiom and the order of \(\setR\).
+    \begin{enumerate}[label=(\alph*)]
+      \item For all \(x\in\setR\) there exists \(n\in\setZ\) with \(n>x\).
+      \begin{subprove}
+      \end{subprove}
+      \item For all \(\varepsilon>0\) there exists \(n\in\mathbb{N}\) with \(1/n<\varepsilon\).
+      \begin{subprove}
+      \end{subprove}
+      \item For all \(x\in\setR\) there exists \(n\in\setZ\) such that \(n\le x<n+1\).
+      \begin{subprove}
+      \end{subprove}
+      \item For all \(x\in\setR\) and \(N\in\mathbb{N}\) there exists \(n\in\setZ\) such that \(\dfrac{n}{N}\le x<\dfrac{n+1}{N}\).
+      \begin{subprove}
+      \end{subprove}
+      \item For all \(x\in\setR\) and \(\varepsilon>0\) there exists a rational \(q\in\mathbb{Q}\) with \(|x-q|<\varepsilon\).
+      \begin{subprove}
+      \end{subprove}
+    \end{enumerate}
+
+  \item Prove that for all \(a,b\in\setR\)
+    \[
+      \max\{a,b\}=\frac{a+b+|a-b|}{2}
+      \quad\text{and}\quad
+      \min\{a,b\}=-\max\{-a,-b\}=\frac{a+b-|a-b|}{2}.
+    \]
+    \begin{subprove}
+    \end{subprove}
+
+  \item Prove the Archimedean property:
+    Let \(a,b\in\setR\) with \(a>0\) and \(b>0\). Show there exists \(n\in\mathbb{N}\) with \(n a>b\).
+    \begin{subprove}
+    \end{subprove}
+
+  \item Explain why \(\mathbb{Q}\) is dense in \(\setR\):
+    If \(a,b\in\setR\) and \(a<b\), then there exists \(r\in\mathbb{Q}\) with \(a<r<b\).
+    \begin{subprove}
+    \end{subprove}
+\end{enumerate}
+
+
+\newpage
+
+
+
+
+\begin{enumerate}
+  \item Let \((P_n)\) be the $n$-th integer in the decimal expansion of \(\pi\), 
+  what are the first five terms of the sequence \((P_n)_{n=1}^\infty\)?
+  \begin{define}{Sequence}[def:sequence][red]
+    A sequence of real numbers is a real-valued function
+    defined on a domain \(D_m=\set{n\in\setZ | n \geq m}\) for some \(m \in \setZ\).
+
+    The outputs are called the \textbf{terms} of the sequence and written as \(s_n\) for \(n \in D_m\).
+
+    Sequences are written as \((s_n)_{n=m}^\infty\), \((s_n)_{n\in\setN}\), or just \((s_n)\)
+    if the domain is arbitrary.
+  \end{define}
+  \begin{subanswer}
+    The first five terms of the sequence \((P_n)_{n=1}^\infty\) are:
+    \[
+      P_1 = 1, \quad P_2 = 4, \quad P_3 = 1, \quad P_4 = 5, \quad P_5 = 9.
+    \]
+  \end{subanswer}
+  \item Prove that 
+  \[
+    \lim_{n\to\infty} \frac{1}{n} = 0.
+  \]
+  \begin{define}{Convergence of a Sequence}[def:convergence-of-a-sequence][red]
+    Let \((s_n)_{n\in\setN}\) be a sequence of \(\setR\).
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{converges} to a limit \(s \in \setR\)
+    if for every \(\varepsilon>0\) there exists \(N\in\setN\) such that 
+    \[
+      \abs{s_n - s} < \varepsilon \quad\text{for all } n \geq N.
+    \]
+    If \((s_n)_{n\in\setN}\) converges to \(s\), then
+    \[
+      \lim_{n\to\infty} s_n = s
+    \]
+    and $s$ is called the \textbf{limit} of the sequence.
+  \end{define}
+  \begin{subprove}
+    Let \(\varepsilon > 0\) be given. 
+    By \nameref{def:archimedean-property}, there exists \(N \in \setN\) such that 
+    \(N\cdot\varepsilon > 1\). Then, for all \(n \geq N\), it follows that
+    \[
+      \abs{\frac{1}{n} - 0} = \frac{1}{n} \leq \frac{1}{N} < \varepsilon.
+    \]
+    Therefore, by \nameref{def:convergence-of-a-sequence},
+    \[
+      \lim_{n\to\infty} \frac{1}{n} = 0.
+    \]
+  \end{subprove}
+
+
+
+  \newpage
+  \item Let $p_n$ be the $n$-th digit in the decimal expansion of $\frac{23}{27}=0.851851\ldots$, 
+  prove that $p_n$ does not converge.
+  \begin{define}{Divergence of a Sequence}[def:divergence-of-a-sequence][red]
+    A sequence \((s_n)_{n\in\setN}\) that does not converge is said to \textbf{diverge}
+  \end{define}
+  \begin{subprove}
+    Suppose, for the sake of contradiction, that \((p_n)\) converges to a limit \(p \in \setR\).
+    Let \(\varepsilon = 0.1\). 
+    By \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that 
+    \[
+      \abs{p_n - p} < 0.1 \quad\text{for all } n \geq N.
+    \]
+    However, the sequence \((p_n)\) alternates between the digits \(8\), \(5\), and \(1\).
+    Thus, for any \(N\), there exist \(n_1, n_2 \geq N\) 
+    such that \(p_{n_1} = 8\) and \(p_{n_2} = 5\) where $n_2=n_1 + 1$. Then,
+    \[
+      \abs{p_{n_1} - p} = \abs{8 - p} \quad\text{and}\quad \abs{p_{n_2} - p} = \abs{5 - p}.
+    \]
+    By the triangle inequality,
+    \[
+      \abs{8 - 5} = 3 \leq \abs{8 - p} + \abs{5 - p} < 2 \cdot \varepsilon = 0.2.
+    \]
+    This is a contradiction. Therefore, 
+    by \nameref{def:convergence-of-a-sequence}, 
+    the sequence \((p_n)\) does not converge, and hence diverges.
+  \end{subprove}
+\end{enumerate}
+
+
+
+\begin{define}{Divergence to Infinity}[def:divergence-to-infinity][red]
+  Let \((s_n)_{n\in\setN}\) be a sequence in \(\setR\).
+  \begin{itemize}
+    \item The sequence \((s_n)\) is said to \textbf{diverge to infinity} (or \textbf{diverge to \(+\infty\)}) if,
+      for every \(M\in\setR\), there exists \(N\in\setN\) such that
+      \[
+      s_n > M \quad\text{for all } n \ge N.
+      \]
+      In this case it is written \(\lim_{n\to\infty} s_n = +\infty\).
+    \item The sequence \((s_n)\) is said to \textbf{diverge to negative infinity} (or \textbf{diverge to \(-\infty\)}) if,
+      for every \(M\in\setR\), there exists \(N\in\setN\) such that
+      \[
+      s_n < M \quad\text{for all } n \ge N.
+      \]
+      In this case it is written \(\lim_{n\to\infty} s_n = -\infty\).
+  \end{itemize}
+  Such a sequence is not convergent to any finite real number.
+\end{define}
+
+
+
+\begin{define}
+  {Has a Limit}[def:has-a-limit][red]
+  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{has a limit} if it either converges to a limit in \(\setR\)
+  or diverges to \(+\infty\) or \(-\infty\).
+\end{define}
+
+
+
+
+\newpage
+
+
+\begin{enumerate}
+  \item Prove the following for \(n \in \mathbb{N}\) from the definitions.
+    \begin{enumerate}
+      \item \(\lim_{n\to\infty}\dfrac{(-1)^n}{n}=0\).
+      \begin{subprove}
+        Let \(\varepsilon>0\). For all \(n\ge N\) with \(N>\dfrac{1}{\varepsilon}\) we have
+        \[
+          \left|\dfrac{(-1)^n}{n}-0\right|=\dfrac{1}{n}\le\dfrac{1}{N}<\varepsilon.
+        \]
+        Thus choose \(N=\left\lceil\dfrac{1}{\varepsilon}\right\rceil\); the definition of limit is satisfied.
+      \end{subprove}
+
+      \item \(\lim_{n\to\infty}\dfrac{1}{n^2}=0\).
+      \begin{subprove}
+        Let \(\varepsilon>0\). Pick \(N>\sqrt{1/\varepsilon}\). Then for \(n\ge N\),
+        \[
+          \left|\dfrac{1}{n^2}-0\right|=\dfrac{1}{n^2}\le\dfrac{1}{N^2}<\varepsilon,
+        \]
+        so the sequence converges to \(0\).
+      \end{subprove}
+
+      \item \(\lim_{n\to\infty}\dfrac{3n+1}{7n-4}=\dfrac{3}{7}\).
+      \begin{subprove}
+        Write
+        \[
+          \dfrac{3n+1}{7n-4}-\dfrac{3}{7}=\dfrac{(3n+1)7-(3)(7n-4)}{7(7n-4)}=\dfrac{19}{7(7n-4)}.
+        \]
+        Hence
+        \[
+          \left|\dfrac{3n+1}{7n-4}-\dfrac{3}{7}\right|=\dfrac{19}{7(7n-4)}\le\dfrac{C}{n}
+        \]
+        for some constant \(C>0\). Given \(\varepsilon>0\) choose \(N>\dfrac{C}{\varepsilon}\); then for \(n\ge N\) the difference is \(<\varepsilon\). Thus the limit is \(3/7\).
+      \end{subprove}
+
+      \item \(\lim_{n\to\infty}\sqrt{n}=+\infty\).
+      \begin{subprove}
+        Let \(M\in\mathbb{R}\) be arbitrary. Choose \(N>\max\{0,\;M^2\}\). For \(n\ge N\) we have \(\sqrt{n}\ge\sqrt{N}>M\). Hence by definition the sequence diverges to \(+\infty\).
+      \end{subprove}
+
+      \item The sequence \(a_n=(-1)^n\) does not converge.
+      \begin{subprove}
+        Suppose it converges to \(L\). Take \(\varepsilon=\tfrac12\). There exists \(N\) with \(|a_n-L|<\tfrac12\) for all \(n\ge N\). But the tail contains both \(1\) and \(-1\), so \(|1-L|<\tfrac12\) and \(|-1-L|<\tfrac12\), which by the triangle inequality gives \(|1-(-1)|\le|1-L|+|-1-L|<1\), contradiction. Thus \(a_n\) does not converge.
+      \end{subprove}
+    \end{enumerate}
+
+  \item Determine the limits of the following sequences \((s_n)_{n\in\mathbb{N}}\), if they exist. Prove your answer.
+    \begin{enumerate}
+      \item \(s_n=\dfrac{n}{n^2+1}\).
+      \begin{subprove}
+        Note \(0\le s_n=\dfrac{1}{n+1/n}\le\dfrac{1}{n}\). Given \(\varepsilon>0\) choose \(N>1/\varepsilon\). Then for \(n\ge N\), \(s_n\le1/n<\varepsilon\). Hence \(s_n\to0\).
+      \end{subprove}
+
+      \item \(s_n=\cos(n\pi/3)\).
+      \begin{subprove}
+        The sequence is periodic with period \(6\) and attains at least two distinct values (e.g. \(1\) and \(-1\)). Since different subsequences have different limits, the sequence does not converge.
+      \end{subprove}
+
+      \item \(s_n=(1/n)\sin n\).
+      \begin{subprove}
+        For all \(n\), \(|s_n|\le 1/n\). Given \(\varepsilon>0\) choose \(N>1/\varepsilon\); then for \(n\ge N\), \(|s_n|\le1/n<\varepsilon\). Thus \(s_n\to0\).
+      \end{subprove}
+
+      \item \(s_n=(-1)^n n\).
+      \begin{subprove}
+        \(|s_n|=n\to\infty\), so the sequence is unbounded and cannot converge to any finite limit. Hence it diverges (in magnitude to infinity, oscillating sign).
+      \end{subprove}
+    \end{enumerate}
+
+  \item Prove that \(\lim_{n\to\infty}\dfrac{n+6}{n^2-6}=0\) from the definition of sequence convergence.
+  \begin{subprove}
+    For \(n\ge 3\) we have \(n^2-6\ge n^2/2\) (since \(n^2-6\ge n^2/2\) for \(n\) large; one may pick \(N\) so this holds). Then
+    \[
+      0\le\dfrac{n+6}{n^2-6}\le\dfrac{n+6}{n^2/2}=\dfrac{2}{n}+\dfrac{12}{n^2}\le\dfrac{C}{n}
+    \]
+    for some constant \(C\) and all \(n\ge N\). Given \(\varepsilon>0\) choose \(M>\frac{C}{\varepsilon}\) and take \(N'=\max\{N,M\}\). For \(n\ge N'\) the expression is \(<\varepsilon\). Hence the limit is \(0\).
+  \end{subprove}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage\handout[true]
+{\textsc{Math 2106-B: Foundations of Mathematical Proof}}{Fall 2025}
+{Homework 8: Completeness and Order in $\setR$}
+{\textit{Prof.} \href{https://ceheitsch.github.io/webpage/}{Dr. Christine Heitsch}}{Due Date: November 20, 2025}
+{Math 2106-B: HW8}
+\input{math2106/preface.tex}
+\input{reference.tex}
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problems Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}
+  \item Let $a_1, a_2, \ldots, a_n \in \setR$ for $n \in \setZ$ with $n \geq 3$. Prove that $\left|\sum_{i=1}^n a_i\right| \leq \sum_{i=1}^n\left|a_i\right|$.
+  \item Let $a, b \in \setR$. Prove that if $a \leq b_1$ for all real numbers $b_1>b$, then $a \leq b$.
+  \item The \textit{completeness axiom} for the real numbers says that a nonempty subset 
+  $S$ of $\setR$ that is bounded from above has a least upper bound; that is, 
+  if $S \subset \setR$, $S \neq \emptyset$, and there exists $b \in \setR$ 
+  such that $t \leq b$ for all $t \in S$, then $\sup S$ exists and is a real number. \\
+  Let $S \subseteq \setR$ be nonempty and bounded from below, and let $-S=\{-s \mid s \in S\}$.
+  \begin{enumerate}
+    \item Prove that $\sup (-S)$ exists.
+    \item Let $s_0=\sup (-S)$. Prove that $-s_0 \leq s$ for all $s \in S$.
+    \item Let $s_0=\sup (-S)$. Prove that if $t \leq s$ for all $s \in S$, then $t \leq -s_0$.
+    \item Prove $\inf S=-\sup (-S)$.
+    \item Conclude that every nonempty set of real numbers that is bounded from below has a greatest lower bound.
+  \end{enumerate}
+  \item Let $S$ be a nonempty subset of $\setR$ that is bounded from above. Prove that if $\sup S$ belongs to $S$, then $\sup S=\max S$.
+  \item Let $S$ be a nonempty bounded 
+  (that is, bounded from above and bounded from below) 
+  subset of $\setR$. \textit{You may assume that Problem 3(e) is true}.
+  \begin{enumerate}
+    \item Prove that $\inf S \leq \sup S$.
+    \item What can be said about $S$ if $\inf S=\sup S$? Justify your answer.
+  \end{enumerate}
+  \item Let $S$ and $T$ be nonempty bounded subsets of $\setR$.
+  \begin{enumerate}
+    \item Prove that if $S \subseteq T$, then $\inf T \leq \inf S \leq \sup S \leq \sup T$.
+    \item Prove that $\sup (S \cup T)=\max \{\sup S, \sup T\}$ without assuming $S \subseteq T$.
+  \end{enumerate}
+  \item \textbf{Complete but do not hand in.} Prove the following properties of the absolute value.
+  \begin{enumerate}
+    \item For all $a, b \in \setR$, $||a|-|b|| \leq |a-b|$.
+    \item If $a, x, \epsilon \in \setR$, then $|x-a|<\epsilon$ if and only if $a-\epsilon<x<a+\epsilon$.
+    \item If $a, b, x, y \in \setR$ and $a<x<b$ with $a<y<b$, then $|y-x|<b-a$.
+  \end{enumerate}
+  \item \textbf{Complete but do not hand in.} Using the completeness axiom and the ordering of real numbers, prove each of the 
+  following statements.
+  \begin{enumerate}
+    \item For all $x \in \setR$, there exists $n \in \setZ$ such that $n>x$.
+    \item For all $\epsilon \in \setR$ with $\epsilon>0$, there exists $n \in \setZ$ with $n>0$ such that $1 / n<\epsilon$.
+    \item For all $x \in \setR$, there exists $n \in \setZ$ such that $n \leq x<n+1$.
+    \item For all $x \in \setR$ and $N \in \setZ$ with $N>0$, there exists $n \in \setZ$ such that $n / N \leq x<(n+1) / N$.
+    \item For all $x, \epsilon \in \setR$ with $\epsilon>0$, there exists a rational number $q \in \mathbb{Q}$ such that $|x-q|<\epsilon$.
+  \end{enumerate}
+\end{enumerate}
+
+
