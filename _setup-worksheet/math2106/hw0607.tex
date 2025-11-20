@@ -6575,11 +6575,12 @@ That is, any one of these statements implies the others when working in \(\setR\
     \begin{enumerate}
       \item \(\lim_{n\to\infty}\dfrac{(-1)^n}{n}=0\).
       \begin{subprove}
-        Let \(\varepsilon>0\). For all \(n\ge N\) with \(N>\dfrac{1}{\varepsilon}\) we have
+        Let \(\varepsilon>0\) and $N=\left\lceil\dfrac{1}{\varepsilon} + 1\right\rceil$.
+        Then, for all \(n\ge N\), \(N>\dfrac{1}{\varepsilon}\) and
         \[
           \left|\dfrac{(-1)^n}{n}-0\right|=\dfrac{1}{n}\le\dfrac{1}{N}<\varepsilon.
         \]
-        Thus choose \(N=\left\lceil\dfrac{1}{\varepsilon}\right\rceil\); the definition of limit is satisfied.
+        Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
       \end{subprove}
 
       \item \(\lim_{n\to\infty}\dfrac{1}{n^2}=0\).
@@ -6646,7 +6647,101 @@ That is, any one of these statements implies the others when working in \(\setR\
     \]
     for some constant \(C\) and all \(n\ge N\). Given \(\varepsilon>0\) choose \(M>\frac{C}{\varepsilon}\) and take \(N'=\max\{N,M\}\). For \(n\ge N'\) the expression is \(<\varepsilon\). Hence the limit is \(0\).
   \end{subprove}
+
+  \item Prove that \(\lim_{n\to\infty}\dfrac{4n^3+3n}{n^3-6}=4\).
+  \begin{subprove}
+    Let \(\varepsilon>0\) be given and 
+    \(N=\max\left\{2, \left\lceil \sqrt{\frac{54}{\varepsilon}} \right\rceil \right\}\).
+    Then, for all \(n\ge N\),
+    \[
+      \left|\dfrac{4n^3+3n}{n^3-6}-4\right|=\left|\dfrac{27n}{n^3-6}\right|\le\dfrac{27n}{n^3/2}=\dfrac{54}{n^2}<\varepsilon.
+    \]
+    Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(4\).
+  \end{subprove}
 \end{enumerate}
+
+
+\begin{define}{Uniqueness of Limits}[lem:uniqueness-of-limits][red]
+  A sequence in \(\setR\) has at most one limit.
+  \begin{subprove}
+    Suppose a sequence \((s_n)_{n\in\setN}\) has two limits \(L_1\) and \(L_2\) with \(L_1 \neq L_2\).
+    Let \(\varepsilon = \frac{|L_1 - L_2|}{3} > 0\).
+    By \nameref{def:convergence-of-a-sequence}, there exist \(N_1, N_2 \in \setN\) such that
+    \[
+      |s_n - L_1| < \varepsilon \quad\text{for all } n \geq N_1,
+    \]
+    and
+    \[
+      |s_n - L_2| < \varepsilon \quad\text{for all } n \geq N_2.
+    \]
+    Let \(N = \max(N_1, N_2)\). Then for all \(n \geq N\),
+    \[
+      |L_1 - L_2| = |(L_1 - s_n) + (s_n - L_2)| \leq |L_1 - s_n| + |s_n - L_2| < 2\varepsilon = \frac{2|L_1 - L_2|}{3},
+    \]
+    that is, \(|L_1 - L_2| < \frac{2|L_1 - L_2|}{3}\), which is a contradiction.
+    
+    Therefore, the assumption that the sequence has two distinct limits is false, and hence a sequence in \(\setR\) has at most one limit.
+  \end{subprove}
+\end{define}
+
+
+% strictly increasing, strictly decreasing
+\begin{define}
+{Strictly Monotone Sequence}[def:strictly-monotone-sequence][red]
+  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{strictly monotone} if it is either
+  \begin{itemize}
+    \item \textbf{strictly increasing}, that is, \(s_n < s_{n+1}\) for all \(n \in \setN\), or
+    \item \textbf{strictly decreasing}, that is, \(s_n > s_{n+1}\) for all \(n \in \setN\).
+  \end{itemize}
+\end{define}
+
+
+\begin{define}{Bounded Sequence}[def:bounded-sequence][red]
+  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{bounded} if there exists a real number \(M>0\) such that
+  \[
+    |s_n| \leq M \quad\text{for all } n \in \setN.
+  \]
+\end{define}
+
+% increasing, decreasing, monotone
+
+\begin{define}{Monotone Sequence}[def:monotone-sequence][red]
+  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{monotone} if it is either
+  \begin{itemize}
+    \item \textbf{increasing}, that is, \(s_n \leq s_{n+1}\) for all \(n \in \setN\), or
+    \item \textbf{decreasing}, that is, \(s_n \geq s_{n+1}\) for all \(n \in \setN\).
+  \end{itemize}
+\end{define}
+
+
+\begin{define}{Monotone Convergence Lemma}[lem:monotone-convergence-theorem][red]
+  Every bounded monotone sequence in \(\setR\) converges.
+  \begin{subprove}
+    Suppose \((s_n)_{n\in\setN}\) is a bounded monotone sequence in \(\setR\).
+    Without loss of generality, assume \((s_n)\) is increasing.
+    By \nameref{def:completeness-axiom}, 
+    the set \(S = \set{s_n : n \in \setN}\) has a supremum \(L = \sup(S) \in \setR\).
+    Let \(\varepsilon > 0\) be given.
+    Since \(L - \varepsilon\) is not an upper bound for \(S\),
+    there exists \(N \in \setN\) such that \(s_N > L - \varepsilon\).
+    Then, for all \(n \geq N\),
+    \[
+      L - \varepsilon < s_N \leq s_n \leq L < L + \varepsilon.,
+    \]
+    which implies
+    \[
+      |s_n - L| < \varepsilon.
+    \]
+    Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(L\).
+
+  \end{subprove}
+\end{define}
+
+
+
+
+
+
 
 
 

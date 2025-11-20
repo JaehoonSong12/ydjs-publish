@@ -1,0 +1,470 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,booktabs,geometry,tabularx}
+\geometry{margin=1in}
+
+
+
+% no indent
+\setlength\parindent{0pt}
+
+
+
+
+
+\title{Normalization from 1NF to 5NF:\\
+Summary Table and Step--by--Step Examples}
+\author{}
+\date{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{document}
+\maketitle
+
+\section*{Summary Table of Normal Forms}
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{@{}l l X X X@{}}
+    \toprule
+    \textbf{NF} & \textbf{What It Removes}
+                & \textbf{Bad Pattern (Easy Notation)}
+                & \textbf{Rule (When OK)}
+                & \textbf{Fix (Decomposition Pattern)} \\
+    \midrule
+    1NF &
+    Non--atomic or multi--valued attributes &
+    (No FD issue; problem is value form) &
+    All attributes must be atomic. &
+    Split repeating groups:
+    $R \rightarrow R_1, R_2$. \\
+    \addlinespace[0.3em]
+    2NF &
+    Partial dependency on a composite key &
+    $(A + B) \to C$ but actually $A \to C$,
+    where $C$ is non--key. &
+    No non--key attribute depends on a proper subset
+    of a candidate key. &
+    For $R(A,B,C)$:
+    $R \rightarrow R_1(A,C),\ R_2(A,B)$. \\
+    \addlinespace[0.3em]
+    3NF &
+    Transitive dependency on a key &
+    $A \to B,\ B \to C$ with $C$ non--key. &
+    For every FD $X \to Y$: $X$ is a key
+    or each attribute in $Y$ is prime. &
+    For $R(A,B,C)$:
+    $R \rightarrow R_1(A,B),\ R_2(B,C)$. \\
+    \addlinespace[0.3em]
+    BCNF &
+    Any FD whose left side is not a key &
+    $X \to Y$ but $X$ is not a key. &
+    Every determinant must be a superkey. &
+    $R \rightarrow R_1(X,Y),\ R_2(\text{rest})$. \\
+    \addlinespace[0.3em]
+    4NF &
+    Independent multivalued dependencies &
+    $A \twoheadrightarrow B$ and
+    $A \twoheadrightarrow C$ with $B$ independent of $C$. &
+    For every nontrivial MVD $A \twoheadrightarrow B$,
+    $A$ must be a superkey. &
+    $R(A,B,C) \rightarrow R_1(A,B),\ R_2(A,C)$. \\
+    \addlinespace[0.3em]
+    5NF &
+    Join dependencies not implied by keys &
+    Nontrivial join dependency
+    $\text{JD}^\ast(R_1,R_2,R_3)$ with no key in any part. &
+    Every nontrivial join dependency must include
+    a projection containing a key. &
+    $R \rightarrow R_1, R_2, R_3$. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Normal forms 1NF--5NF: problem, bad pattern, rule, and typical fix.}
+\end{table}
+
+\clearpage
+\section*{Worked Example: From Non--1NF to BCNF}
+
+We use a single example relation that is gradually transformed.
+
+\subsection*{Step 0: Non--1NF Table (Repeating Group)}
+
+Consider a table \texttt{ENROLL\_RAW}:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+StudentID & StudentName & DeptName & CoursesList \\
+\midrule
+1 & Alice & CS   & \{CS101, CS102\} \\
+2 & Bob   & MATH & \{MATH155\} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Here \texttt{CoursesList} is a set of course codes in one cell, so the table
+is not in 1NF.
+
+\bigskip
+
+\subsection*{Step 1: Convert to 1NF}
+
+We expand the repeating group into one row per student--course pair and
+also add more attributes, so our 1NF table is:
+
+\begin{center}
+\texttt{ENROLL\_1NF(StudentID, StudentName, CourseID, CourseName, DeptID, DeptName, DeptPhone)}
+\end{center}
+
+\begin{center}
+\begin{tabular}{lllllll}
+\toprule
+StudentID & StudentName & CourseID & CourseName & DeptID & DeptName & DeptPhone \\
+\midrule
+1 & Alice & CS101  & Databases    & CS   & Comp.~Sci. & 555--1000 \\
+1 & Alice & CS102  & Algorithms   & CS   & Comp.~Sci. & 555--1000 \\
+2 & Bob   & MATH155 & Calculus I  & MATH & Mathematics & 555--2000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All attributes are atomic, so the relation is in 1NF. Assume the \textbf{primary key} is $(\text{StudentID},\text{CourseID})$.
+
+The following functional dependencies (FDs) hold:
+\begin{align*}
+\text{StudentID} &\to \text{StudentName}, \\
+\text{CourseID} &\to \text{CourseName}, \text{DeptID}, \\
+\text{DeptID} &\to \text{DeptName}, \text{DeptPhone}, \\
+(\text{StudentID},\text{CourseID}) &\to \text{all attributes.}
+\end{align*}
+
+\bigskip
+
+\subsection*{Step 2: Remove Partial Dependencies (2NF)}
+
+In \texttt{ENROLL\_1NF}, some non--key attributes depend on only part of
+the composite key:
+\begin{align*}
+\text{StudentID} &\to \text{StudentName}, \\
+\text{CourseID} &\to \text{CourseName}, \text{DeptID}.
+\end{align*}
+Both right--hand sides are non--key attributes, so the table is not in 2NF.
+
+We remove partial dependencies by separating information about students
+and courses:
+
+\begin{itemize}
+  \item \textbf{STUDENT(StudentID, StudentName)}
+  \item \textbf{COURSE\_TEMP(CourseID, CourseName, DeptID, DeptName, DeptPhone)}
+  \item \textbf{ENROLL\_TEMP(StudentID, CourseID)}
+\end{itemize}
+
+Sample data:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{STUDENT}} \\
+\midrule
+StudentID & StudentName \\
+\midrule
+1 & Alice \\
+2 & Bob \\
+\bottomrule
+\end{tabular}
+\hspace{2em}
+\begin{tabular}{lllll}
+\toprule
+\multicolumn{5}{c}{\textbf{COURSE\_TEMP}} \\
+\midrule
+CourseID & CourseName & DeptID & DeptName & DeptPhone \\
+\midrule
+CS101  & Databases   & CS   & Comp.~Sci.   & 555--1000 \\
+CS102  & Algorithms  & CS   & Comp.~Sci.   & 555--1000 \\
+MATH155 & Calculus I & MATH & Mathematics  & 555--2000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{ENROLL\_TEMP}} \\
+\midrule
+StudentID & CourseID \\
+\midrule
+1 & CS101 \\
+1 & CS102 \\
+2 & MATH155 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Now every non--key attribute in each relation depends on the whole key,
+so these relations are in 2NF.
+
+\bigskip
+
+\subsection*{Step 3: Remove Transitive Dependencies (3NF)}
+
+\textbf{COURSE\_TEMP} still has a transitive dependency:
+\[
+\text{CourseID} \to \text{DeptID} \to
+(\text{DeptName}, \text{DeptPhone}).
+\]
+
+To reach 3NF, we split department information into its own table.
+
+\begin{itemize}
+  \item \textbf{COURSE(CourseID, CourseName, DeptID)}
+  \item \textbf{DEPARTMENT(DeptID, DeptName, DeptPhone)}
+\end{itemize}
+
+Sample data:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\multicolumn{3}{c}{\textbf{COURSE}} \\
+\midrule
+CourseID & CourseName & DeptID \\
+\midrule
+CS101  & Databases   & CS \\
+CS102  & Algorithms  & CS \\
+MATH155 & Calculus I & MATH \\
+\bottomrule
+\end{tabular}
+\hspace{2em}
+\begin{tabular}{lll}
+\toprule
+\multicolumn{3}{c}{\textbf{DEPARTMENT}} \\
+\midrule
+DeptID & DeptName   & DeptPhone \\
+\midrule
+CS   & Comp.~Sci.  & 555--1000 \\
+MATH & Mathematics & 555--2000 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Our full set of tables is now:
+\begin{itemize}
+  \item STUDENT(StudentID, StudentName)
+  \item COURSE(CourseID, CourseName, DeptID)
+  \item DEPARTMENT(DeptID, DeptName, DeptPhone)
+  \item ENROLL\_TEMP(StudentID, CourseID)
+\end{itemize}
+
+Each FD has a key on the left--hand side, or the right--hand side is
+part of a key, so the schema is in 3NF.
+
+\subsection*{Step 4: Check BCNF}
+
+We verify for each relation that every determinant is a superkey:
+\begin{itemize}
+  \item In \textbf{STUDENT}, StudentID is the key and determinant.
+  \item In \textbf{COURSE}, CourseID is the key and determinant.
+  \item In \textbf{DEPARTMENT}, DeptID is the key and determinant.
+  \item In \textbf{ENROLL\_TEMP}, the key is
+        $(\text{StudentID},\text{CourseID})$
+        and there are no nontrivial FDs with a smaller determinant.
+\end{itemize}
+
+Therefore all relations are in BCNF. Our example has now been gradually
+converted from a non--1NF table to BCNF.
+
+\clearpage
+\section*{4NF Example: Multivalued Dependencies}
+
+4NF deals with independent multivalued attributes.
+
+\subsection*{Initial 1NF Table}
+
+Consider the relation:
+
+\[
+\text{MOVIE(Title, Actor, Language)}
+\]
+
+Sample data:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Title & Actor & Language \\
+\midrule
+M1 & A1 & English \\
+M1 & A1 & French \\
+M1 & A2 & English \\
+M1 & A2 & French \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For each movie:
+\begin{itemize}
+  \item It has a set of actors.
+  \item It has a set of languages.
+  \item The choice of actor is independent of the choice of language.
+\end{itemize}
+
+We have multivalued dependencies:
+\[
+\text{Title} \twoheadrightarrow \text{Actor},\quad
+\text{Title} \twoheadrightarrow \text{Language}.
+\]
+
+The key of MOVIE is $(\text{Title}, \text{Actor}, \text{Language})$,
+so \texttt{Title} is \emph{not} a superkey, and the relation violates 4NF.
+
+\subsection*{4NF Decomposition}
+
+We decompose along the MVDs:
+
+\begin{itemize}
+  \item \textbf{MOVIE\_ACTOR(Title, Actor)}
+  \item \textbf{MOVIE\_LANG(Title, Language)}
+\end{itemize}
+
+Sample data:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{MOVIE\_ACTOR}} \\
+\midrule
+Title & Actor \\
+\midrule
+M1 & A1 \\
+M1 & A2 \\
+\bottomrule
+\end{tabular}
+\hspace{2em}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{MOVIE\_LANG}} \\
+\midrule
+Title & Language \\
+\midrule
+M1 & English \\
+M1 & French \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Now the only MVDs have determinants that are keys in their respective
+relations, so both relations are in 4NF.
+
+\clearpage
+\section*{5NF Example: Join Dependencies}
+
+5NF addresses join dependencies not implied by keys.
+
+\subsection*{Initial Relation}
+
+Consider:
+
+\[
+\text{SUPPLY(Supplier, Part, Project)}
+\]
+
+Interpretation:
+Supplier $S$ can supply Part $P$ to Project $J$.
+
+Assume the following business rules:
+\begin{itemize}
+  \item For each Supplier--Part pair $(S,P)$, we know whether the supplier can supply that part.
+  \item For each Supplier--Project pair $(S,J)$, we know whether the supplier works on that project.
+  \item For each Part--Project pair $(P,J)$, we know whether the part is used in that project.
+\end{itemize}
+
+Furthermore, we assume there is \emph{no additional constraint} on specific triples
+$(S,P,J)$: whenever all three pairwise relationships hold, the triple
+is valid.
+
+The key of SUPPLY is $(\text{Supplier},\text{Part},\text{Project})$.
+
+There is a nontrivial join dependency:
+\[
+\text{JD}^\ast\bigl(
+  \{\text{Supplier},\text{Part}\},
+  \{\text{Supplier},\text{Project}\},
+  \{\text{Part},\text{Project}\}
+\bigr)
+\]
+meaning SUPPLY can be reconstructed as the natural join of its three
+binary projections.
+
+However, none of these projections contains a key of the original
+relation, so this violates 5NF.
+
+\subsection*{5NF Decomposition}
+
+We decompose SUPPLY into the three projections:
+
+\begin{itemize}
+  \item \textbf{SP(Supplier, Part)}
+  \item \textbf{SJ(Supplier, Project)}
+  \item \textbf{PJ(Part, Project)}
+\end{itemize}
+
+Sample data (illustrative):
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{SP}} \\
+\midrule
+Supplier & Part \\
+\midrule
+S1 & P1 \\
+S1 & P2 \\
+S2 & P2 \\
+\bottomrule
+\end{tabular}
+\hspace{1.5em}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{SJ}} \\
+\midrule
+Supplier & Project \\
+\midrule
+S1 & J1 \\
+S2 & J1 \\
+\bottomrule
+\end{tabular}
+\hspace{1.5em}
+\begin{tabular}{ll}
+\toprule
+\multicolumn{2}{c}{\textbf{PJ}} \\
+\midrule
+Part & Project \\
+\midrule
+P1 & J1 \\
+P2 & J1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The original triples (Supplier, Part, Project) can be obtained as:
+\[
+\text{SUPPLY} = SP \;\Join\; SJ \;\Join\; PJ.
+\]
+
+There are no remaining nontrivial join dependencies that do not include
+a projection containing a key, so this decomposition is in 5NF.
+
+\end{document}
