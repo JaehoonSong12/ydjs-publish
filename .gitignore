@@ -9,6 +9,10 @@ resume_refs/
 .vscode/
 
 
+remote-*/
+
+
+
 INST.*
 *.exe
 *.docx
