@@ -1,3 +1,4 @@
+_/
 /cli.tex
 /core.tex
 # /preamble.tex
@@ -23,6 +24,7 @@ clba-math/
 _setup-mid_size/
 _setup-small_size/
 # __dummyspace/
+_*/
 %*/
 &*/
 ^_*/
