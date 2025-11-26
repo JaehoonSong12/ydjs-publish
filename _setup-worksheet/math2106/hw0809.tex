@@ -1217,8 +1217,23 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
 
 
 
-
-
+\begin{enumerate}
+  \item \textbf{Definition.} A sequence \((s_n)\) is a \emph{Cauchy sequence} if for every \(\varepsilon>0\) there exists \(N\in\mathbb{N}\) such that for all \(m,n>N\) we have \(\lvert s_n-s_m\rvert<\varepsilon\).
+  \item Prove that the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is not Cauchy. Conclude it is divergent.
+  \item Prove that every real-valued Cauchy sequence is bounded.
+  \item There is a theorem: every real-valued Cauchy sequence converges to a real number. Is it true that every rational-valued Cauchy sequence converges to a rational number? Justify your answer.
+  \item Suppose \((s_n)\) converges.
+    \begin{enumerate}[label=(\alph*)]
+      \item Prove from the definition that if \(s_n\ge a\) for all but finitely many \(n\), then \(\lim s_n\ge a\).
+      \item If all but finitely many \(s_n\) belong to \([a,b]\), what can you conclude about \(\lim s_n\)? Justify your answer.
+    \end{enumerate}
+  \item Suppose there exists \(N_0\in\mathbb{N}\) such that \(s_n\le t_n\) for all \(n>N_0\).
+    \begin{enumerate}[label=(\alph*)]
+      \item Prove that if \(\lim s_n=+\infty\), then \(\lim t_n=+\infty\).
+      \item Prove that if \(\lim t_n=-\infty\), then \(\lim s_n=-\infty\).
+      \item Prove that if \(\lim s_n\) and \(\lim t_n\) exist (finite), then \(\lim s_n\le \lim t_n\).
+    \end{enumerate}
+\end{enumerate}
 
 
 
