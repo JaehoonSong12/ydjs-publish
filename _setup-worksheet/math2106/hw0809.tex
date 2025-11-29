@@ -895,6 +895,7 @@ That is, any one of these statements implies the others when working in \(\setR\
 
 
 
+
 \begin{enumerate}
   \item Let \((P_n)\) be the $n$-th integer in the decimal expansion of \(\pi\), 
   what are the first five terms of the sequence \((P_n)_{n=1}^\infty\)?
@@ -913,201 +914,174 @@ That is, any one of these statements implies the others when working in \(\setR\
       P_1 = 1, \quad P_2 = 4, \quad P_3 = 1, \quad P_4 = 5, \quad P_5 = 9.
     \]
   \end{subanswer}
-  \item Prove that 
-  \[
-    \lim_{n\to\infty} \frac{1}{n} = 0.
-  \]
-  \begin{define}{Convergence of a Sequence}[def:convergence-of-a-sequence][red]
-    Let \((s_n)_{n\in\setN}\) be a sequence of \(\setR\).
-    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{converges} to a limit \(s \in \setR\)
-    if for every \(\varepsilon>0\) there exists \(N\in\setN\) such that 
-    \[
-      \abs{s_n - s} < \varepsilon \quad\text{for all } n \geq N.
-    \]
-    If \((s_n)_{n\in\setN}\) converges to \(s\), then
-    \[
-      \lim_{n\to\infty} s_n = s
-    \]
-    and $s$ is called the \textbf{limit} of the sequence.
-  \end{define}
-  \begin{subprove}
-    Let \(\varepsilon > 0\) be given. 
-    By \nameref{def:archimedean-property}, there exists \(N \in \setN\) such that 
-    \(N\cdot\varepsilon > 1\). Then, for all \(n \geq N\), it follows that
-    \[
-      \abs{\frac{1}{n} - 0} = \frac{1}{n} \leq \frac{1}{N} < \varepsilon.
-    \]
-    Therefore, by \nameref{def:convergence-of-a-sequence},
+  \item Prove the following for \(n \in \setN\) from the definitions.
+  \begin{enumerate}
+    \item Prove that 
     \[
       \lim_{n\to\infty} \frac{1}{n} = 0.
     \]
-  \end{subprove}
-
-
-
-  \newpage
-  \item Let $p_n$ be the $n$-th digit in the decimal expansion of $\frac{23}{27}=0.851851\ldots$, 
-  prove that $p_n$ does not converge.
-  \begin{define}{Divergence of a Sequence}[def:divergence-of-a-sequence][red]
-    A sequence \((s_n)_{n\in\setN}\) that does not converge is said to \textbf{diverge}
-  \end{define}
-  \begin{subprove}
-    Suppose, for the sake of contradiction, that \((p_n)\) converges to a limit \(p \in \setR\).
-    Let \(\varepsilon = 0.1\). 
-    By \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that 
-    \[
-      \abs{p_n - p} < 0.1 \quad\text{for all } n \geq N.
-    \]
-    However, the sequence \((p_n)\) alternates between the digits \(8\), \(5\), and \(1\).
-    Thus, for any \(N\), there exist \(n_1, n_2 \geq N\) 
-    such that \(p_{n_1} = 8\) and \(p_{n_2} = 5\) where $n_2=n_1 + 1$. Then,
-    \[
-      \abs{p_{n_1} - p} = \abs{8 - p} \quad\text{and}\quad \abs{p_{n_2} - p} = \abs{5 - p}.
-    \]
-    By the triangle inequality,
-    \[
-      \abs{8 - 5} = 3 \leq \abs{8 - p} + \abs{5 - p} < 2 \cdot \varepsilon = 0.2.
-    \]
-    This is a contradiction. Therefore, 
-    by \nameref{def:convergence-of-a-sequence}, 
-    the sequence \((p_n)\) does not converge, and hence diverges.
-  \end{subprove}
-\end{enumerate}
-
-
-
-\begin{define}{Divergence to Infinity}[def:divergence-to-infinity][red]
-  Let \((s_n)_{n\in\setN}\) be a sequence in \(\setR\).
-  \begin{itemize}
-    \item The sequence \((s_n)\) is said to \textbf{diverge to infinity} (or \textbf{diverge to \(+\infty\)}) if,
-      for every \(M\in\setR\), there exists \(N\in\setN\) such that
+    \begin{define}{Convergence of a Sequence}[def:convergence-of-a-sequence][red]
+      Let \((s_n)_{n\in\setN}\) be a sequence of \(\setR\).
+      A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{converges} to a limit \(s \in \setR\)
+      if for every \(\varepsilon>0\) there exists \(N\in\setN\) such that 
       \[
-      s_n > M \quad\text{for all } n \ge N.
+        \abs{s_n - s} < \varepsilon \quad\text{for all } n \geq N.
       \]
-      In this case it is written \(\lim_{n\to\infty} s_n = +\infty\).
-    \item The sequence \((s_n)\) is said to \textbf{diverge to negative infinity} (or \textbf{diverge to \(-\infty\)}) if,
-      for every \(M\in\setR\), there exists \(N\in\setN\) such that
+      If \((s_n)_{n\in\setN}\) converges to \(s\), then
       \[
-      s_n < M \quad\text{for all } n \ge N.
+        \lim_{n\to\infty} s_n = s
       \]
-      In this case it is written \(\lim_{n\to\infty} s_n = -\infty\).
-  \end{itemize}
-  Such a sequence is not convergent to any finite real number.
-\end{define}
-
-
-
-\begin{define}
-  {Has a Limit}[def:has-a-limit][red]
-  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{has a limit} if it either converges to a limit in \(\setR\)
-  or diverges to \(+\infty\) or \(-\infty\).
-\end{define}
-
-
-
-
-
-
+      and $s$ is called the \textbf{limit} of the sequence.
+    \end{define}
+    \begin{subprove}
+      Let \(\varepsilon > 0\) be given. 
+      By \nameref{def:archimedean-property}, there exists \(N \in \setN\) such that 
+      \(N\cdot\varepsilon > 1\). Then, for all \(n \geq N\), it follows that
+      \[
+        \abs{\frac{1}{n} - 0} = \frac{1}{n} \leq \frac{1}{N} < \varepsilon.
+      \]
+      Therefore, by \nameref{def:convergence-of-a-sequence},
+      \[
+        \lim_{n\to\infty} \frac{1}{n} = 0.
+      \]
+    \end{subprove}
 
 
 
 
+    \item \(\lim_{n\to\infty}\dfrac{(-1)^n}{n}=0\).
+    \begin{subprove}
+      Let \(\varepsilon>0\) be given and 
+      $N=\left\lceil\dfrac{1}{\varepsilon} + 1\right\rceil$.
+      Then, for all \(n\ge N\), \(N>\dfrac{1}{\varepsilon}\) and
+      \[
+        \left|\dfrac{(-1)^n}{n}-0\right|=\dfrac{1}{n}\le\dfrac{1}{N}<\varepsilon.
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
+    \end{subprove}
+
+    \item \(\lim_{n\to\infty}\dfrac{1}{n^2}=0\).
+    \begin{subprove}
+      Let \(\varepsilon>0\) be given and 
+      $N=\left\lceil\sqrt{\dfrac{1}{\varepsilon}} + 1\right\rceil$. 
+      Then for \(n\ge N\), $N^2>\dfrac{1}{\varepsilon}$ and
+      \[
+        \left|\dfrac{1}{n^2}-0\right|=\dfrac{1}{n^2}\le\dfrac{1}{N^2}<\varepsilon,
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
+    \end{subprove}
 
 
+    \item Prove that \(\lim_{n\to\infty}\dfrac{4n^3+3n}{n^3-6}=4\).
+    \begin{subprove}
+      Let \(\varepsilon>0\) be given and 
+      \(N=\max\left\{3, \left\lceil \sqrt{\frac{54}{\varepsilon}}+1 \right\rceil \right\}\).
+      Then, for all \(n\ge N\ge 3\), \(N^2>\dfrac{54}{\varepsilon}\) and
+      \[
+        \left|\dfrac{4n^3+3n}{n^3-6}-4\right|=\left|\dfrac{3n+24}{n^3-6}\right|\le\dfrac{27n}{n^3/2}=\dfrac{54}{n^2}\le\dfrac{54}{N^2}<\varepsilon
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(4\).
+    \end{subprove}
 
 
+    \item \(\lim_{n\to\infty}\dfrac{3n+1}{7n-4}=\dfrac{3}{7}\).
+    \begin{subprove}
+      
+    \end{subprove}
 
+    \item Let $p_n$ be the $n$-th digit in the decimal expansion of $\frac{23}{27}=0.851851\ldots$, 
+    prove that $p_n$ does not converge.
+    \begin{define}{Divergence of a Sequence}[def:divergence-of-a-sequence][red]
+      A sequence \((s_n)_{n\in\setN}\) that does not converge is said to \textbf{diverge}
+    \end{define}
+    \begin{subprove}
+      Suppose that \((p_n)\) converges to a limit \(p \in \setR\) for the sake of contradiction.
+      Let \(\varepsilon = 0.1\). Then,
+      by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that 
+      \[
+        \abs{p_n - p} < 0.1 \quad\text{for all } n \geq N.
+      \]
+      However, the sequence \((p_n)\) alternates between the digits \(8\), \(5\), and \(1\).
+      Thus, for any \(N\), there exist \(n \geq N\) 
+      such that \(p_{n} = 8\) and \(p_{n+1} = 5\). Then,
+      \[
+        \abs{p_{n} - p} = \abs{8 - p} \quad\text{and}\quad \abs{p_{n+1} - p} = \abs{5 - p}.
+      \]
+      By the triangle inequality,
+      \[
+        3 = \abs{8 - 5} \leq \abs{8 - p} + \abs{5 - p} < 2 \cdot \varepsilon = 0.2.
+      \]
+      This is a contradiction. Therefore, 
+      by \nameref{def:convergence-of-a-sequence}, 
+      the sequence \((p_n)\) does not converge, and hence diverges.
+    \end{subprove}
 
+    \newpage
 
+    \item \(\lim_{n\to\infty}\sqrt{n}=+\infty\).
+    \begin{define}{Divergence to Infinity}[def:divergence-to-infinity][red]
+      Let \((s_n)_{n\in\setN}\) be a sequence in \(\setR\).
+      \begin{itemize}
+        \item The sequence \((s_n)\) is said to \textbf{diverge to infinity} (or \textbf{diverge to \(+\infty\)}) if,
+          for every \(M\in\setR\), there exists \(N\in\setN\) such that
+          \[
+          s_n > M \quad\text{for all } n \ge N.
+          \]
+          In this case it is written \(\lim_{n\to\infty} s_n = +\infty\).
+        \item The sequence \((s_n)\) is said to \textbf{diverge to negative infinity} (or \textbf{diverge to \(-\infty\)}) if,
+          for every \(M\in\setR\), there exists \(N\in\setN\) such that
+          \[
+          s_n < M \quad\text{for all } n \ge N.
+          \]
+          In this case it is written \(\lim_{n\to\infty} s_n = -\infty\).
+      \end{itemize}
+      Such a sequence is not convergent to any finite real number.
+    \end{define}
 
+    \begin{subprove}
+      
+    \end{subprove}
 
-
-
-
-
-
-
-
-\newpage
-
-
-\begin{enumerate}
-  \item Prove the following for \(n \in \setN\) from the definitions.
-    \begin{enumerate}
-      \item \(\lim_{n\to\infty}\dfrac{(-1)^n}{n}=0\).
-      \begin{subprove}
-        Let \(\varepsilon>0\) and $N=\left\lceil\dfrac{1}{\varepsilon} + 1\right\rceil$.
-        Then, for all \(n\ge N\), \(N>\dfrac{1}{\varepsilon}\) and
-        \[
-          \left|\dfrac{(-1)^n}{n}-0\right|=\dfrac{1}{n}<\varepsilon.
-        \]
-        Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
-      \end{subprove}
-
-      \item \(\lim_{n\to\infty}\dfrac{1}{n^2}=0\).
-      \begin{subprove}
-        Let \(\varepsilon>0\). Let $N=\left\lceil\sqrt{\dfrac{1}{\varepsilon}} + 1\right\rceil$. 
-        Then for \(n\ge N\), $N^2>\dfrac{1}{\varepsilon}$ and
-        \[
-          \left|\dfrac{1}{n^2}-0\right|=\dfrac{1}{n^2}<\varepsilon,
-        \]
-        Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
-      \end{subprove}
-
-      \item \(\lim_{n\to\infty}\dfrac{3n+1}{7n-4}=\dfrac{3}{7}\).
-      \begin{subprove}
-        
-      \end{subprove}
-
-      \item \(\lim_{n\to\infty}\sqrt{n}=+\infty\).
-      \begin{subprove}
-        
-      \end{subprove}
-
-      \item The sequence \(a_n=(-1)^n\) does not converge.
-      \begin{subprove}
-        
-      \end{subprove}
-    \end{enumerate}
+    \item The sequence \(a_n=(-1)^n\) does not converge.
+    \begin{subprove}
+      
+    \end{subprove}
+  \end{enumerate}
 
   \item Determine the limits of the following sequences \((s_n)_{n\in\setN}\), if they exist. Prove your answer.
-    \begin{enumerate}
-      \item \(s_n=\dfrac{n}{n^2+1}\).
-      \begin{subprove}
-        
-      \end{subprove}
+  \begin{define}
+    {Has a Limit}[def:has-a-limit][red]
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{has a limit} if it either converges to a limit in \(\setR\)
+    or diverges to \(+\infty\) or \(-\infty\).
+  \end{define}
 
-      \item \(s_n=\cos(n\pi/3)\).
-      \begin{subprove}
-        
-      \end{subprove}
 
-      \item \(s_n=(1/n)\sin n\).
-      \begin{subprove}
-        
-      \end{subprove}
 
-      \item \(s_n=(-1)^n n\).
-      \begin{subprove}
-        
-      \end{subprove}
-    \end{enumerate}
+  \begin{enumerate}
+    \item \(s_n=\dfrac{n}{n^2+1}\).
+    \begin{subprove}
+      
+    \end{subprove}
+
+    \item \(s_n=\cos(n\pi/3)\).
+    \begin{subprove}
+      
+    \end{subprove}
+
+    \item \(s_n=(1/n)\sin n\).
+    \begin{subprove}
+      
+    \end{subprove}
+
+    \item \(s_n=(-1)^n n\).
+    \begin{subprove}
+      
+    \end{subprove}
+  \end{enumerate}
 
   \item Prove that \(\lim_{n\to\infty}\dfrac{n+6}{n^2-6}=0\) from the definition of sequence convergence.
   \begin{subprove}
     
-  \end{subprove}
-
-  \item Prove that \(\lim_{n\to\infty}\dfrac{4n^3+3n}{n^3-6}=4\).
-  \begin{subprove}
-    Let \(\varepsilon>0\) be given and 
-    \(N=\max\left\{3, \left\lceil \sqrt{\frac{54}{\varepsilon}}+1 \right\rceil \right\}\).
-    Then, for all \(n\ge N\ge 3\),
-    \[
-      \left|\dfrac{4n^3+3n}{n^3-6}-4\right|=\left|\dfrac{3n+24}{n^3-6}\right|\le\dfrac{27n}{n^3/2}=\dfrac{54}{n^2}<\varepsilon
-    \]
-    since \(n^2>\dfrac{54}{\varepsilon}\).
-    Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(4\).
   \end{subprove}
 \end{enumerate}
 
@@ -1146,13 +1120,6 @@ That is, any one of these statements implies the others when working in \(\setR\
   \end{itemize}
 \end{define}
 
-
-\begin{define}{Bounded Sequence}[def:bounded-sequence][red]
-  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{bounded} if there exists a real number \(M>0\) such that
-  \[
-    |s_n| \leq M \quad\text{for all } n \in \setN.
-  \]
-\end{define}
 
 % increasing, decreasing, monotone
 
@@ -1197,6 +1164,31 @@ That is, any one of these statements implies the others when working in \(\setR\
 Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, t \in \mathbb{R}$.
 \begin{enumerate}
   \item Suppose \((s_n)\) is convergent. Prove that it is bounded. (Hint: apply the definition with \(\varepsilon = 1\).)
+  \begin{define}{Bounded Sequence}[def:bounded-sequence][red]
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{bounded} if there exists a real number \(M>0\) such that
+    \[
+      |s_n| \leq M \quad\text{for all } n \in \setN.
+    \]
+  \end{define}
+  \begin{subprove}
+    Since \((s_n)\) is convergent, by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+    \[
+      |s_n - s| < 1 \quad\text{for all } n \geq N.
+    \]
+    Thus, for all \(n \geq N\),
+    \[
+      |s_n| = |s_n - s + s| \leq |s_n - s| + |s| < 1 + |s|.
+    \]
+    Let
+    \[
+      M = \max\left\{ |s_1|, |s_2|, \ldots, |s_{N-1}|, 1 + |s| \right\}.
+    \]
+    Then, for all \(n \in \setN\), it follows that
+    \[
+      |s_n| \leq M.
+    \]
+    Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
+  \end{subprove}
   \item Give an example of a bounded divergent sequence other than \(((-1)^n)\).
   \item Give an example of a nonmonotonic convergent sequence other than \(((-1)^n / n)\).
   \item Prove that if \((s_n)\) is an unbounded increasing sequence, then \(\lim s_n = +\infty\).
@@ -1216,9 +1208,17 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
 
 
 
+\begin{define}{Cauchy Sequence}[def:cauchy-sequence][red]
+  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is a \textbf{Cauchy sequence} if,
+  for every \(\varepsilon>0\), there exists \(N\in\setN\) such that
+  \[
+    |s_n - s_m| < \varepsilon \quad\text{for all } n, m \geq N.
+  \]
+\end{define}
+
+
 
 \begin{enumerate}
-  \item \textbf{Definition.} A sequence \((s_n)\) is a \emph{Cauchy sequence} if for every \(\varepsilon>0\) there exists \(N\in\mathbb{N}\) such that for all \(m,n>N\) we have \(\lvert s_n-s_m\rvert<\varepsilon\).
   \item Prove that the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is not Cauchy. Conclude it is divergent.
   \item Prove that every real-valued Cauchy sequence is bounded.
   \item There is a theorem: every real-valued Cauchy sequence converges to a real number. Is it true that every rational-valued Cauchy sequence converges to a rational number? Justify your answer.
