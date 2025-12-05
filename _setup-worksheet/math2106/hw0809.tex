@@ -1303,7 +1303,7 @@
     \item \(\lim_{n\to\infty}\dfrac{3n+1}{7n-4}=\dfrac{3}{7}\).
     \begin{subprove}
       Let \(\varepsilon>0\) be given and 
-      \(N=\max\set{1, \ceil{\dfrac{1}{\varepsilon}}}>0\).
+      \(N=\max\set{1, \ceil{\dfrac{1}{\varepsilon}}}\).
       Then, for all \(n > N \ge \dfrac{1}{\varepsilon}\), 
       it follows that \(\dfrac{1}{n} < \varepsilon\) and
       \(7n-4 > 3n > 0\) since \(n > 1\).
@@ -1318,6 +1318,20 @@
       Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(\dfrac{3}{7}\).
     \end{subprove}
 
+
+    \item Prove that \(\lim_{n\to\infty}\dfrac{n+6}{n^2-6}=0\) from the definition of sequence convergence.
+    \begin{subprove}
+      Let \(\varepsilon>0\) be given and \(N=\max\set{3, \ceil{\dfrac{14}{\varepsilon}}}\).
+      Then, for all \(n > N \ge \dfrac{14}{\varepsilon} > 0\),
+      it follows that \(\dfrac{14}{n} < \varepsilon\) and \(n^2-6 > n^2/2 > 0\) since \(n > 3\).
+      Therefore,
+      \[
+        \abs{\dfrac{n+6}{n^2-6} - 0}
+        <\dfrac{7n}{n^2 / 2} = \dfrac{14}{n}
+        <\varepsilon.
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
+    \end{subprove}
 
     \newpage
 
@@ -1367,7 +1381,32 @@
     \end{subprove}
 
 
+
     \newpage
+      
+    \item Give an example of a bounded divergent sequence other than \(((-1)^n)\).
+    \begin{subanswer}
+      The sequence \(s_n = \frac{n}{n+1}\cdot (-1)^n\) is bounded and divergent.
+      To see that it is bounded, let \(M = 1\). Then, for all \(n \in \setN\),
+      \[
+        \abs{s_n} = \abs{\frac{n}{n+1}} \leq 1.
+      \]
+      Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
+      
+      To see that it is divergent, suppose that \((s_n)\) converges to a limit \(a \in \setR\) for the sake of contradiction.
+      Let \(\varepsilon = 0.1\). Then,
+      by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+      \[
+        \abs{s_n - a} < 0.1 \quad\text{for all } n > N.
+      \]
+      Let \(n > N\) be a large enough even number (at least \(2\)) such that 
+      \(s_{n} = \frac{n}{n+1}\) and \(s_{n+1} = -\frac{n+1}{n+2}\).
+      Then, by the \nameref{def:triangle-inequality},
+      \[
+        \abs{2 - \frac{1}{3} - \frac{1}{4}} < \abs{2 - \frac{1}{n+1} - \frac{1}{n+2}} = \abs{\frac{n}{n+1} + \frac{n+1}{n+2}}=\abs{s_n - s_{n+1}} \leq \abs{s_n - a} + \abs{s_{n+1} - a} < 2 \cdot \varepsilon = 0.2.
+      \]
+      which is a contradiction. Therefore, by contradiction, the sequence \((s_n)\) does not converge, and hence diverges.
+    \end{subanswer}
 
     \item \(\lim_{n\to\infty}\sqrt{n}=+\infty\).
     \begin{define}{Divergence to Infinity}[def:divergence-to-infinity][red]
@@ -1401,41 +1440,111 @@
 
   \end{enumerate}
 
+  \newpage
+
   \item Determine the limits of the following sequences \((s_n)_{n\in\setN}\), if they exist. Prove your answer.
   \begin{define}
-    {Has a Limit}[def:has-a-limit][red]
+    {Existence of Limit}[def:existence-of-limit][red]
     A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{has a limit} if it either converges to a limit in \(\setR\)
     or diverges to \(+\infty\) or \(-\infty\).
   \end{define}
   \begin{enumerate}
     \item \(s_n=\dfrac{n}{n^2+1}\).
     \begin{subprove}
-
+      Let \(\varepsilon>0\) be given and 
+      \(N=\ceil{\dfrac{1}{\varepsilon}}\).
+      Then, for all \(n > N \ge \dfrac{1}{\varepsilon} > 0\), 
+      it follows that \(\dfrac{1}{n} < \varepsilon\).
+      Since \(n^2+1 > n^2 > 0\), it follows that \(\dfrac{n}{n^2+1} < \dfrac{n}{n^2} = \dfrac{1}{n}\).
+      Therefore,
+      \[
+        \abs{\dfrac{n}{n^2+1} - 0} = \dfrac{n}{n^2+1} < \dfrac{1}{n} < \varepsilon.
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
+      Therefore, by the \nameref{def:existence-of-limit}, the sequence \((s_n)\) has a limit.
     \end{subprove}
-
     \item \(s_n=\cos(n\pi/3)\).
     \begin{subprove}
-      
+      Suppose that \((s_n)\) converges to a limit \(s \in \setR\) for the sake of contradiction.
+      Let \(\varepsilon = 0.1\). Then,
+      by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+      \[
+        \abs{s_n - s} < 0.1 \quad\text{for all } n > N.
+      \]
+      Let \(n\) be a multiple of 6 where \(n > N\) such that
+      \[
+        s_n = \cos(n\pi/3) = \cos(2k\pi) = 1 \quad\text{for some } k \in \setN
+      \]
+      and
+      \[
+        s_{n+3} = \cos((n+3)\pi/3) = \cos(2k\pi + \pi) = \cos(\pi) = -1 \quad\text{for some } k \in \setN.
+      \]
+      Then,
+      \[
+        \abs{s_n - s} = \abs{1 - s} \quad\text{and}\quad \abs{s_{n+3} - s} = \abs{-1-s} = \abs{s+1}.
+      \]
+      By the \nameref{def:triangle-inequality}, it follows that
+      \[
+        2 = \abs{(1-s) + (s+1)} \leq \abs{1 - s} + \abs{s+1} < 2 \cdot \varepsilon = 0.2.
+      \]
+      which is a contradiction. Therefore, by contradiction, the sequence \((s_n)\) does not converge. 
+      Furthermore, it follows that \((s_n)\) is bounded since \(\abs{s_n} \leq 1\) 
+      for all \(n \in \setN\) by definition of cosine.
+      Therefore, by the \nameref{def:existence-of-limit}, the sequence \((s_n)\) does not have a limit.
     \end{subprove}
+    \newpage
 
     \item \(s_n=(1/n)\sin n\).
     \begin{subprove}
-      
+      Let \(\varepsilon>0\) be given and 
+      \(N=\ceil{\dfrac{1}{\varepsilon}}\).
+      Then, for all \(n > N \ge \dfrac{1}{\varepsilon} > 0\), 
+      it follows that \(\dfrac{1}{n} < \varepsilon\).
+      Since \(|\sin n| \leq 1\) for all \(n \in \setN\) by definition of sine,
+      it follows that \(\dfrac{1}{n}|\sin n| \leq \dfrac{1}{n}\).
+      Therefore,
+      \[
+        \abs{\dfrac{1}{n}\sin n - 0} = \dfrac{1}{n}|\sin n| \leq \dfrac{1}{n} < \varepsilon.
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
+      Therefore, by the \nameref{def:existence-of-limit}, the sequence \((s_n)\) has a limit.
     \end{subprove}
 
     \item \(s_n=(-1)^n n\).
     \begin{subprove}
-      
+      Suppose that \((s_n)\) converges to \(s \in \setR\).
+      Let \(\varepsilon = 0.1\). Then,
+      by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+      \[
+        \abs{s_n - s} < 0.1 \quad\text{for all } n > N.
+      \]
+      Let \(n > N\) be a large enough even number. Then,
+      \[
+        \abs{s_n - s_{n+1}} = \abs{(-1)^n n - (-1)^{n+1}(n+1)} = \abs{(-1)^n (n + (n+1))} = \abs{2n+1} = 2n+1.
+      \]
+      Then, by the \nameref{def:triangle-inequality},
+      \[
+        3 \le 2n+1 = \abs{s_n - s_{n+1}} \leq \abs{s_n - s} + \abs{s_{n+1} - s} < 0.1 + 0.1 = 0.2.
+      \]
+      which is a contradiction.
+      Thus, \((s_n)\) does not converge to a limit in \(\setR\).
+      Furthermore, suppose that \((s_n)\) diverges to \(+\infty\) for the sake of contradiction without loss of generality.
+      Then, for \(M = 1\), there exists \(N \in \setN\) such that
+      \[
+        s_n > 1 \quad\text{for all } n > N.
+      \]
+      Let \(n > N\) be any possible odd number. Then,
+      \[
+        1 < s_n = (-1)^n n = -n < -1.
+      \]
+      which is a contradiction. Therefore, by contradiction, the sequence \((s_n)\) does not diverge 
+      to \(+\infty\) or \(-\infty\).
+      Therefore, by the \nameref{def:existence-of-limit}, the sequence \((s_n)\) does not have a limit.
     \end{subprove}
   \end{enumerate}
 
 
   \newpage
-
-  \item Prove that \(\lim_{n\to\infty}\dfrac{n+6}{n^2-6}=0\) from the definition of sequence convergence.
-  \begin{subprove}
-    
-  \end{subprove}
 
   \item Prove the following statement, Uniqueness of Limits.
   \begin{define}{Uniqueness of Limits}[lem:uniqueness-of-limits][red]
@@ -1462,7 +1571,6 @@
 
 
 
-\newpage
 Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, t \in \mathbb{R}$.
 \begin{enumerate}
   \item Suppose \((s_n)\) is convergent. Prove that it is bounded. (Hint: apply the definition with \(\varepsilon = 1\).)
@@ -1491,29 +1599,6 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
     \]
     Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
   \end{subprove}
-  \item Give an example of a bounded divergent sequence other than \(((-1)^n)\).
-  \begin{subanswer}
-    The sequence \(s_n = \frac{n}{n+1}\cdot (-1)^n\) is bounded and divergent.
-    To see that it is bounded, let \(M = 1\). Then, for all \(n \in \setN\),
-    \[
-      \abs{s_n} = \abs{\frac{n}{n+1}} \leq 1.
-    \]
-    Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
-    
-    To see that it is divergent, suppose that \((s_n)\) converges to a limit \(a \in \setR\) for the sake of contradiction.
-    Let \(\varepsilon = 0.1\). Then,
-    by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
-    \[
-      \abs{s_n - a} < 0.1 \quad\text{for all } n > N.
-    \]
-    Let \(n > N\) be a large enough even number (at least \(2\)) such that 
-    \(s_{n} = \frac{n}{n+1}\) and \(s_{n+1} = -\frac{n+1}{n+2}\).
-    Then, by the \nameref{def:triangle-inequality},
-    \[
-      1 < \abs{2 - \frac{1}{3} - \frac{1}{4}} < \abs{2 - \frac{1}{n+1} - \frac{1}{n+2}} = \abs{\frac{n}{n+1} + \frac{n+1}{n+2}}=\abs{s_n - s_{n+1}} \leq \abs{s_n - a} + \abs{s_{n+1} - a} < 2 \cdot \varepsilon = 0.2.
-    \]
-    which is a contradiction. Therefore, by contradiction, the sequence \((s_n)\) does not converge, and hence diverges.
-  \end{subanswer}
 
 
   \newpage
@@ -1557,12 +1642,128 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
     Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(L\).
   \end{subprove}
   
-  \item Prove that if \((s_n)\) is an unbounded increasing sequence, then \(\lim s_n = +\infty\).
+  \item Prove that if \((s_n)\) is an unbounded increasing sequence, 
+  then \(\lim s_n = +\infty\).
+  \begin{subprove}
+    Let \(M > 0\) be given.
+    Since \((s_n)\) is increasing, it is bounded below by \(s_1\).
+    Because \((s_n)\) is unbounded, it must therefore be unbounded above.
+    Hence, there must exist \(N \in \setN\) 
+    such that \(s_N > M\).
+    
+    Since the sequence is increasing, for all \(n > N\), 
+    \[
+      s_n \ge s_N > M \quad\text{for all } n > N.
+    \]
+    Thus, by definition of divergence to infinity, \(\lim s_n = +\infty\).
+  \end{subprove}
+  \newpage
   \item How would you modify your previous proof to show that if \((s_n)\) is an unbounded decreasing sequence, then \(\lim s_n = -\infty\)?
+  \begin{subprove}
+    Let \(M > 0\) be given.
+    Since \((s_n)\) is decreasing, it is bounded above by \(s_1\).
+    Because \((s_n)\) is unbounded, it must therefore be unbounded below.
+    Hence, there must exist \(N \in \setN\) 
+    such that \(s_N < -M\).
+    
+    Since the sequence is decreasing, for all \(n > N\), 
+    \[
+      s_n \le s_N < -M \quad\text{for all } n > N.
+    \]
+    Thus, by definition of divergence to negative infinity, \(\lim s_n = -\infty\).
+  \end{subprove}
   \item If \((s_n)\) is monotone, what can you conclude about \(\lim s_n\)? Justify your answer.
-  \item Let \(k \in \setR\). Prove from the definition that if the sequence \((s_n)\) converges to \(s \in \setR\), then the sequence \((k s_n)\) converges to \(k s\).
+  \begin{subanswer}
+    \(\lim s_n\) always exists.
+    \begin{enumerate}
+      \item \textbf{Case 1: \((s_n)\) is bounded.}
+      By \nameref{lem:monotone-convergence-theorem}, every 
+      bounded monotone sequence converges to a limit in \(\setR\).
+      (Specifically, if it is increasing, it converges to 
+      \(\sup\set{s_n : n \in \setN}\); if decreasing, 
+      it converges to \(\inf\set{s_n : n \in \setN}\)).
+      \item \textbf{Case 2: \((s_n)\) is unbounded.}
+      If \((s_n)\) is increasing and unbounded, 
+      then by the previous problem, \(\lim s_n = +\infty\).
+      Similarly, if \((s_n)\) is decreasing and unbounded, 
+      then by the previous problem, \(\lim s_n = -\infty\).
+    \end{enumerate}
+    Therefore, proved by cases, the sequence has a limit if \((s_n)\) is monotone.
+  \end{subanswer}
+  \item Let \(k \in \setR\). Prove from the definition that if the sequence \((s_n)\) 
+  converges to \(s \in \setR\), then the sequence \((k s_n)\) converges to \(k s\).
+  \begin{subprove}
+    Suppose that \((s_n)\) converges to \(s \in \setR\).
+    Let \(\varepsilon > 0\) be given.\proofstep
+    \textbf{Case 1:} Suppose that \(k = 0\).
+    Then, there exists \(N \in \setN\) such that
+    \[
+      \abs{k s_n - k s} = \abs{0 - 0} = 0 < \varepsilon \quad\text{for all } n > N.
+    \]
+    
+    Then, there exists \(N \in \setN\) such that, by \nameref{def:convergence-of-a-sequence}, \(\lim (k s_n)= k s = 0 \).
+    
+    \textbf{Case 2:} Suppose that \(k \neq 0\).
+    \(\frac{\varepsilon}{\abs{k}} > 0\) is also an arbitrary positive real number since \(\abs{k} > 0\).
+    Then, there exists \(N \in \setN\) such that
+    \[
+      \abs{s_n - s} < \frac{\varepsilon}{\abs{k}} \quad\text{for all } n > N.
+    \]
+    Then, for all \(n > N\), it follows that
+    \[
+      \abs{k s_n - k s} = \abs{k} \cdot \abs{s_n - s} < \abs{k} \cdot \frac{\varepsilon}{\abs{k}} = \varepsilon.
+    \]
+    Thus, by definition, \(\lim (k s_n) = k s\).\proofstep
+    Therefore, proved by cases, \(\lim (k s_n) = k s\).
+  \end{subprove}
   \item Prove from the definition that if \((s_n)\) converges to \(s \in \setR\) and \((t_n)\) converges to \(t \in \setR\), then \((s_n + t_n)\) converges to \(s + t\).
+  \begin{subprove}
+    Suppose that \((s_n)\) converges to \(s \in \setR\) and \((t_n)\) converges to \(t \in \setR\).
+    Let \(\varepsilon > 0\) be given. Then, 
+    \(\frac{\varepsilon}{2} > 0\) is also an arbitrary positive real number.
+    By the \nameref{def:convergence-of-a-sequence}, there exists \(N_1, N_2 \in \setN\) such that,
+    \begin{align*}
+      \abs{s_n - s} < \frac{\varepsilon}{2} \quad\text{for all } n > N_1, \\
+      \abs{t_n - t} < \frac{\varepsilon}{2} \quad\text{for all } n > N_2,
+    \end{align*}
+    Let \(N = \max\set{N_1, N_2}\). Then, for all \(n > N\), by \nameref{def:triangle-inequality},
+    \begin{align*}
+      \abs{(s_n + t_n) - (s + t)} = \abs{(s_n - s) + (t_n - t)} \leq \abs{s_n - s} + \abs{t_n - t} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+    \end{align*}
+    Thus, by \nameref{def:convergence-of-a-sequence}, \(\lim (s_n + t_n) = s + t\).
+  \end{subprove}
   \item Prove from the definition that if \((s_n)\) converges to \(s\) and \((t_n)\) converges to \(t\), then \((s_n t_n)\) converges to \(s t\). (Hint: use the triangle inequality, boundedness of convergent sequences, and addition of \(0 = -s_n t + s_n t\).)
+  \begin{subprove}
+    Suppose that \((s_n)\) converges to \(s \in \setR\) and \((t_n)\) converges to \(t \in \setR\).
+    Since \((s_n)\) is convergent, by the previous result, \((s_n)\) is bounded.
+    Then, by \nameref{def:bounded-sequence}, there exists \(M > 0\) such that
+    \[
+      \abs{s_n} \leq M \quad\text{for all } n \in \setN.
+    \]
+    Let \(\varepsilon > 0\) be given.
+    Since \(M > 0\), it follows that \(\frac{\varepsilon}{2M} > 0\) is also an arbitrary positive real number.
+    Thus, by definition, there exists \(N_1 \in \setN\) such that
+    \[
+      \abs{t_n - t} < \frac{\varepsilon}{2M} \quad\text{for all } n > N_1.
+    \]
+    Since \(\max\set{\abs{t}, 1} \geq 1 > 0\), it follows that \(\frac{\varepsilon}{2\max\set{\abs{t}, 1}} > 0\) 
+    is also an arbitrary positive real number.
+    Since \((s_n)\) converges to \(s\), by \nameref{def:convergence-of-a-sequence},
+    there exists \(N_2 \in \setN\) such that
+    \[
+      \abs{s_n - s} < \frac{\varepsilon}{2\max\set{\abs{t}, 1}} \quad\text{for all } n > N_2.
+    \]
+    Let \(N = \max\set{N_1, N_2}\). Then, for all \(n > N\), by \nameref{def:triangle-inequality},
+    \begin{align*}
+      \abs{s_n t_n - s t} &= \abs{s_n t_n - s_n t + s_n t - s t} \\
+      &= \abs{s_n(t_n - t) + t(s_n - s)} \\
+      &\leq \abs{s_n}\abs{t_n - t} + \abs{t}\abs{s_n - s} \\
+      &< M \cdot \frac{\varepsilon}{2M} + \abs{t} \cdot \frac{\varepsilon}{2\max\set{\abs{t}, 1}} \\
+      &= \frac{\varepsilon}{2} + \frac{\abs{t}}{\max\set{\abs{t}, 1}} \cdot \frac{\varepsilon}{2} \\
+      &\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon,
+    \end{align*}
+    Thus, by \nameref{def:convergence-of-a-sequence}, \(\lim (s_n t_n) = s t\).
+  \end{subprove}
 
 
 
@@ -1575,13 +1776,131 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
 
 
   \newpage
+  \item Prove the following Cauchy Criterion (forward direction).
+  \begin{define}{Cauchy Convergence Criterion}[thm:cauchy-convergence-criterion][red]
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) converges if and only if it is a Cauchy sequence.
+  \end{define}
+  \begin{subprove}
+    (\(\Rightarrow\)) Suppose that \((s_n)\) converges to a limit \(s \in \setR\).
+    Let \(\varepsilon > 0\) be given. Then, \(\dfrac{\varepsilon}{2} > 0\) is also an arbitrary positive real number.
+    By \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+    \[
+      \abs{s_k - s} < \dfrac{\varepsilon}{2} \quad\text{for all } k > N.
+    \]
+    Let \(n, m > N\) be arbitrary integers. Then, by the \nameref{def:triangle-inequality},
+    \[
+      \abs{s_n - s_m} \leq \abs{s_n - s} + \abs{s_m - s} < \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon.
+    \]
+    Therefore, by \nameref{def:cauchy-sequence}, \((s_n)\) is a Cauchy sequence.
+
+    % (\(\Leftarrow\)) Suppose that \((s_n)\) is a Cauchy sequence.
+    % Let \(\varepsilon > 0\) be given. Then \(\dfrac{\varepsilon}{2} > 0\).
+    % By \nameref{def:cauchy-sequence}, there exists \(N \in \setN\) such that
+    % \[
+    %   \abs{s_n - s_m} < \dfrac{\varepsilon}{2} \quad\text{for all } n, m > N.
+    % \]
+    % Let \(s = \lim s_n\). Then, by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+    % \[
+    %   \abs{s_n - s} < \dfrac{\varepsilon}{2} \quad\text{for all } n > N.
+    % \]
+    % Then, for all \(n, m > N\), by the \nameref{def:triangle-inequality},
+    % \[
+    %   \abs{s_n - s_m} \leq \abs{s_n - s} + \abs{s_m - s} < \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon.
+    % \]
+    % Therefore, by \nameref{def:convergence-of-a-sequence}, \((s_n)\) converges to \(s\).
+  \end{subprove}
+
+  % \item Prove the following Cauchy Criterion (backward direction).
+  % \begin{define}{Bolzano-Weierstrass Theorem}[thm:bolzano-weierstrass][red]
+  %   Every bounded sequence of real numbers has a convergent subsequence.
+  % \end{define}
+  % \begin{subprove}
+  %   Suppose that \((s_n)\) is a Cauchy sequence.
+  %   First, as proven previously, every Cauchy sequence is bounded.
+  %   Since \((s_n)\) is bounded, by the \nameref{thm:bolzano-weierstrass}, there exists a subsequence \((s_{n_k})\) that converges to some limit \(s \in \setR\).
+  
+  %   We claim that the original sequence \((s_n)\) converges to \(s\).
+  %   Let \(\varepsilon > 0\) be given. Then \(\frac{\varepsilon}{2} > 0\).
+    
+  %   Since \((s_n)\) is Cauchy, by \nameref{def:cauchy-sequence}, there exists \(N_1 \in \setN\) such that
+  %   \[
+  %     \abs{s_n - s_m} < \frac{\varepsilon}{2} \quad\text{for all } n, m > N_1.
+  %   \]
+  %   Since the subsequence \((s_{n_k})\) converges to \(s\), there exists \(K \in \setN\) such that
+  %   \[
+  %     \abs{s_{n_k} - s} < \frac{\varepsilon}{2} \quad\text{for all } k > K.
+  %   \]
+  %   Let \(N = \max\set{N_1, K}\). Let \(n > N\).
+  %   We choose a specific index \(n_k\) from the subsequence such that \(k > N\). 
+  %   Note that \(n_k \ge k > N \ge N_1\).
+    
+  %   Then, by the \nameref{def:triangle-inequality}:
+  %   \begin{align*}
+  %     \abs{s_n - s} 
+  %     &= \abs{(s_n - s_{n_k}) + (s_{n_k} - s)} \\
+  %     &\leq \abs{s_n - s_{n_k}} + \abs{s_{n_k} - s}.
+  %   \end{align*}
+  %   Since \(n > N_1\) and \(n_k > N_1\), the first term \(\abs{s_n - s_{n_k}} < \frac{\varepsilon}{2}\) by the Cauchy property.
+  %   Since \(k > K\), the second term \(\abs{s_{n_k} - s} < \frac{\varepsilon}{2}\) by the subsequence convergence.
+    
+  %   Therefore,
+  %   \[
+  %     \abs{s_n - s} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.
+  %   \]
+  %   Thus, by \nameref{def:convergence-of-a-sequence}, \((s_n)\) converges to \(s\).
+  % \end{subprove}
+
+
+  
+  % \item Prove the Bolzano-Weierstrass Theorem: Every bounded sequence of real numbers has a convergent subsequence.
+  % \begin{define}{Nested Interval Property}[thm:nested-interval-property][red]
+  %   Let \(I_1 \supseteq I_2 \supseteq I_3 \supseteq \dots\) be a sequence of nested closed bounded intervals 
+  %   \(I_k = [a_k, b_k]\). If the lengths of the intervals converge to 0 (i.e., \(\lim (b_k - a_k) = 0\)), 
+  %   then their intersection contains exactly one point: \(\bigcap_{k=1}^{\infty} I_k = \set{x}\).
+  % \end{define}
+  % \begin{subprove}
+  %   Let \((s_n)\) be a bounded sequence. 
+  %   Since it is bounded, there exist \(a, b \in \setR\) such that \(s_n \in [a, b]\) for all \(n \in \setN\).
+  %   Let \(I_1 = [a, b]\).
+    
+  %   We construct a sequence of nested intervals recursively:
+  %   \begin{itemize}
+  %     \item Divide \(I_1\) into two equal sub-intervals: \([a, \frac{a+b}{2}]\) and \([\frac{a+b}{2}, b]\).
+  %     \item Since \(I_1\) contains the infinite set of sequence terms \(\set{s_n : n \in \setN}\), at least one of these two sub-intervals must contain infinitely many terms of the sequence. (If both had finitely many, their union would be finite).
+  %     \item Let \(I_2\) be the half that contains infinitely many terms.
+  %     \item Repeat this process. Given \(I_k\), divide it in half. Choose \(I_{k+1}\) to be the half containing infinitely many terms of the sequence.
+  %   \end{itemize}
+    
+  %   This generates a sequence of nested intervals \(I_1 \supseteq I_2 \supseteq \dots\) with lengths:
+  %   \[
+  %     \text{length}(I_k) = \frac{b-a}{2^{k-1}}.
+  %   \]
+  %   Since \(\lim_{k\to\infty} \frac{b-a}{2^{k-1}} = 0\), by the \nameref{thm:nested-interval-property}, 
+  %   there exists a unique point \(s \in \bigcap_{k=1}^{\infty} I_k\).
+  
+  %   Now, we construct the convergent subsequence \((s_{n_k})\):
+  %   \begin{itemize}
+  %     \item Choose \(n_1\) such that \(s_{n_1} \in I_1\).
+  %     \item Since \(I_2\) contains infinitely many terms, choose \(n_2 > n_1\) such that \(s_{n_2} \in I_2\).
+  %     \item generally, since \(I_k\) contains infinitely many terms, we can always choose \(n_k > n_{k-1}\) such that \(s_{n_k} \in I_k\).
+  %   \end{itemize}
+    
+  %   For any \(k\), both \(s_{n_k}\) and \(s\) are in the interval \(I_k\). Therefore, the distance between them is bounded by the length of the interval:
+  %   \[
+  %     \abs{s_{n_k} - s} \leq \text{length}(I_k) = \frac{b-a}{2^{k-1}}.
+  %   \]
+  %   As \(k \to \infty\), \(\frac{b-a}{2^{k-1}} \to 0\). 
+  %   Thus, by the Squeeze Theorem (or definition of convergence), \(\lim_{k\to\infty} s_{n_k} = s\).
+  %   Therefore, \((s_n)\) has a convergent subsequence.
+  % \end{subprove}
+
   \item Prove that the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is not Cauchy. 
   Conclude it is divergent.
   \begin{define}{Cauchy Sequence}[def:cauchy-sequence][red]
     A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is a \textbf{Cauchy sequence} if,
     for every \(\varepsilon>0\), there exists \(N\in\setN\) such that
     \[
-      \abs{s_n - s_m} < \varepsilon \quad\text{for all } n, m \geq N.
+      \abs{s_n - s_m} < \varepsilon \quad\text{for all } n, m > N.
     \]
   \end{define}  
   \begin{subprove}
@@ -1589,34 +1908,153 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
     for the sake of contradiction.
     Then, by \nameref{def:cauchy-sequence}, for all \(\varepsilon > 0\), there exists \(N \in \setN\) such that
     \[
-      \abs{s_n - s_m} < \varepsilon \quad\text{for all } n, m \geq N.
+      \abs{s_n - s_m} < \varepsilon \quad\text{for all } n, m > N.
     \]
-    Let \(\varepsilon = \dfrac{1}{2}\) and $n=m+1$. Then,
-    \begin{align*}
-      \abs{s_n - s_m} &= \abs{(-1)^{m+2}\dfrac{m+1}{m+2} - (-1)^{m+1}\dfrac{m}{m+1}} \\
-      &= \abs{\dfrac{m+1}{m+2} + \dfrac{m}{m+1}} 
-      \geq \dfrac{2(m+1)}{m+2}.
-    \end{align*}
-    Since \(m \geq N \geq 1\), it follows that
+    Let \(\varepsilon = 0.1\) and \(n=m+1\). Then,
     \[
-      \dfrac{2(m+1)}{m+2} \geq \dfrac{1}{2}.
+      0.5 =\abs{2 - \frac{1}{1} - \frac{1}{2}} \le \abs{2 - \frac{1}{m+1} - \frac{1}{m+2}} = \abs{\dfrac{m+1}{m+2} + \dfrac{m}{m+1}} = \abs{s_n - s_m} < 0.1.
     \]
     which is a contradiction.
-    Therefore, by \nameref{def:cauchy-sequence}, the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is not Cauchy.
-    By \nameref{def:convergence-of-a-sequence}, the sequence is divergent.
+    Thus, by contradiction, the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is not Cauchy.
+    Therefore, by the contrapositive of \nameref{thm:cauchy-convergence-criterion}, the sequence is divergent.
   \end{subprove}
+
+
+  \newpage
   \item Prove that every real-valued Cauchy sequence is bounded.
-  \item There is a theorem: every real-valued Cauchy sequence converges to a real number. Is it true that every rational-valued Cauchy sequence converges to a rational number? Justify your answer.
+  \begin{subprove}
+    Suppose that \((s_n)_{n\in\setN}\) is a Cauchy sequence in \(\setR\) for the sake of direct proof.
+    By \nameref{def:cauchy-sequence}, there exists \(N \in \setN\) such that
+    \[
+      \abs{s_n - s_m} < 1 \quad\text{for all } n, m > N.
+    \]
+    Let \(m = N+1\). Then, for all \(n > N\),
+    \[
+      \abs{s_n - s_{N+1}} < 1.
+    \]
+    Thus, for all \(n > N\), by \nameref{def:triangle-inequality},
+    \[
+      \abs{s_n} = \abs{s_n - s_{N+1} + s_{N+1}} \leq \abs{s_n - s_{N+1}} + \abs{s_{N+1}} < 1 + \abs{s_{N+1}}.
+    \]
+    Let \(M = \max\set{ \abs{s_1}, \abs{s_2}, \ldots, \abs{s_N}, 1 + \abs{s_{N+1}} }\). Then, for all \(n \in \setN\), it follows that
+    \[
+      \abs{s_n} \leq M.
+    \]
+    Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
+  \end{subprove}
+
+  \item There is a theorem: every real-valued Cauchy sequence converges to a real number. 
+  Is it true that every rational-valued Cauchy sequence converges to a rational number? Justify your answer.
+  \begin{subanswer}
+    No, it is not true that every rational-valued Cauchy sequence converges to a rational number.
+    Consider the sequence \((s_n)_{n\in\setN}\) defined by
+    \[
+      s_n = \frac{\floor{\sqrt{2}n}}{n}.
+    \]
+    Then, for all \(n\in \setN\), by the property of the floor function,
+    \[
+      \dfrac{\sqrt{2}n - 1}{n} \le s_n \le \dfrac{\sqrt{2}n}{n} = \sqrt{2}.
+    \]
+    Thus, by the \nameref{thm:squeeze-theorem}, the sequence \((s_n)\) converges to \(\sqrt{2}\).
+    Since \(\sqrt{2}\) is irrational, the sequence \((s_n)\) does not converge to a rational number.
+    Therefore, by counterexample, not every rational-valued Cauchy sequence converges to a rational number.
+  \end{subanswer}
+
+
+
+  \newpage
   \item Suppose \((s_n)\) converges.
-    \begin{enumerate}[label=(\alph*)]
-      \item Prove from the definition that if \(s_n\ge a\) for all but finitely many \(n\), then \(\lim s_n\ge a\).
-      \item If all but finitely many \(s_n\) belong to \([a,b]\), what can you conclude about \(\lim s_n\)? Justify your answer.
+    \begin{enumerate}
+      \item Prove from the definition that if \(s_n\ge a\) 
+      for all but finitely many \(n\), then \(\lim s_n\ge a\).
+      \begin{subprove}
+        Let \(s = \lim s_n\). Suppose for the sake of contradiction that \(s < a\).
+        Let \(\varepsilon = a - s\). Since \(s < a\), it follows that \(\varepsilon > 0\).
+        By \nameref{def:convergence-of-a-sequence}, there exists \(N_1 \in \setN\) such that
+        \[
+          \abs{s_n - s} < \varepsilon \quad\text{for all } n > N_1.
+        \]
+        In particular, this implies \(s_n - s < \varepsilon\), so
+        \[
+          s_n < s + \varepsilon = s + (a - s) = a.
+        \]
+        Thus, \(s_n < a\) for all \(n > N_1\).
+        However, by the assumption,
+        there exists \(N_2 \in \setN\) such that \(s_n \ge a\) for all \(n > N_2\).
+        
+        Let \(n > \max\set{N_1, N_2}\). Then, \(a \le s_n < a\)
+        which is a contradiction. Therefore, \(\lim s_n \ge a\).
+      \end{subprove}
+      \item If all but finitely many \(s_n\) belong to \([a,b]\), 
+      what can you conclude about \(\lim s_n\)? Justify your answer.\begin{subanswer}
+        Conclusion: \(\lim s_n \in [a, b]\).
+    
+        Justification:
+        Let \(s = \lim s_n\).
+        The condition \(s_n \in [a, b]\) for all but finitely many \(n\) is equivalent to saying:
+        \[
+          s_n \ge a \quad\text{and}\quad s_n \le b \quad\text{for all but finitely many } n.
+        \]
+        Using the result proven in part (a):
+        \begin{itemize}
+          \item Since \(s_n \ge a\) eventually, it follows that \(s \ge a\).
+          \item Similarly, since \(s_n \le b\) implies \(-s_n \ge -b\), applying the same logic shows \(-s \ge -b\), or \(s \le b\).
+        \end{itemize}
+        Combining these inequalities, we have \(a \le s \le b\). 
+        Thus, the limit lies in the closed interval \([a, b]\).
+      \end{subanswer}
     \end{enumerate}
   \item Suppose there exists \(N_0\in\mathbb{N}\) such that \(s_n\le t_n\) for all \(n>N_0\).
-    \begin{enumerate}[label=(\alph*)]
+    \begin{enumerate}
       \item Prove that if \(\lim s_n=+\infty\), then \(\lim t_n=+\infty\).
+      \begin{subprove}
+        Let \(M > 0\) be given. Then, by the \nameref{def:divergence-to-infinity}, 
+        there exists \(N_1 \in \setN\) such that
+        \[
+          s_n > M \quad\text{for all } n > N_1.
+        \]
+        Let \(N = \max\set{N_0, N_1}\). Then, for all \(n > N\), by the assumption,
+        \[
+          t_n \ge s_n > M.
+        \]
+        Therefore, by definition, \(\lim t_n = +\infty\).
+      \end{subprove}
+      \newpage
       \item Prove that if \(\lim t_n=-\infty\), then \(\lim s_n=-\infty\).
+      \begin{subprove}
+        Let \(M < 0\) be given. Then, by the \nameref{def:divergence-to-infinity}, 
+        there exists \(N_1 \in \setN\) such that
+        \[
+          t_n < M \quad\text{for all } n > N_1.
+        \]
+        Let \(N = \max\set{N_0, N_1}\). Then, for all \(n > N\), by the assumption,
+        \[
+          s_n \le t_n < M.
+        \]
+        Therefore, by definition, \(\lim s_n = -\infty\).
+      \end{subprove}
       \item Prove that if \(\lim s_n\) and \(\lim t_n\) exist (finite), then \(\lim s_n\le \lim t_n\).
+      \begin{subprove}
+        Suppose that \(\lim s_n = s\) and \(\lim t_n = t\) and \(s - t > 0\) for the sake of contradiction.
+        Let \(\varepsilon > 0\) be given. Then, \(\dfrac{\varepsilon}{2} > 0\) is also an arbitrary positive real number.
+        By \nameref{def:convergence-of-a-sequence}, there exists \(N_1 \in \setN\) such that
+        \[
+          \abs{s_n - s} < \dfrac{\varepsilon}{2} \quad\text{for all } n > N_1
+        \]
+        and there exists \(N_2 \in \setN\) such that
+        \[
+          \abs{t_n - t} < \dfrac{\varepsilon}{2} \quad\text{for all } n > N_2.
+        \]
+        Let \(N = \max\set{N_1, N_2}\). Then, for all \(n > N\), by the assumption,
+        \[
+          s - \dfrac{\varepsilon}{2} < s_n \le t_n < t + \dfrac{\varepsilon}{2}.
+        \]
+        That is, with \(\varepsilon = s - t\), we have
+        \[
+          s - t < s - t.
+        \]
+        This is a contradiction. Therefore, by contradiction, \(\lim s_n\le \lim t_n\).
+      \end{subprove}
     \end{enumerate}
 \end{enumerate}
 
@@ -1835,9 +2273,12 @@ Let \((s_n)\) and \((t_n)\) be real-valued sequences.
   \newpage
   \item 
   \begin{enumerate}
-    \item Consider real-valued sequences \((a_n)\) and \((b_n)\) such that 
-    \(a_n \leq s_n \leq b_n\) for all \(n\) and \(\lim a_n = \lim b_n = s\). 
-    Prove that \(\lim s_n = s\). \\
+    \item Prove the following Squeeze Theorem.
+    \begin{define}{Squeeze Theorem}[thm:squeeze-theorem][red]
+      Let \((a_n)_{n\in\setN}\), \((s_n)_{n\in\setN}\), and \((b_n)_{n\in\setN}\) be sequences in \(\setR\).
+      If \(a_n \leq s_n \leq b_n\) for all \(n \in \setN\) and \(\lim a_n = \lim b_n = s \in \setR\),
+      then \(\lim s_n = s\).
+    \end{define}
     \textit{Hint: show that \(s - \varepsilon < s_n < s + \varepsilon\) for \(n\) sufficiently large.}
     \begin{subprove}
       Suppose that \(a_n \leq s_n \leq b_n\) for all \(n \in \setN\) and \(\lim a_n = \lim b_n = s\) for the sake of direct proof.
@@ -1871,7 +2312,8 @@ Let \((s_n)\) and \((t_n)\) be real-valued sequences.
       \[
         \abs{s_n - s} < \varepsilon \quad\text{for all } n > N.
       \]
-      Therefore, by definition, \(\lim s_n = s\).
+      Therefore, by \nameref{def:convergence-of-a-sequence}, \(\lim s_n = s\).
+      Hence, \nameref{thm:squeeze-theorem} is proved.
     \end{subprove}
     \item Suppose that \(\abs{s_n} \leq t_n\) for all \(n\) and \(\lim t_n = 0\). 
     Prove that \(\lim s_n = 0\).
