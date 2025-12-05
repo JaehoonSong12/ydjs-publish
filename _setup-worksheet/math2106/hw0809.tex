@@ -161,7 +161,58 @@
       Therefore, \(|a| \ge 0\) and \(|a| = 0\) if and only if \(a = 0\).
     \end{subprove}
     \item For \(a,b\in\setR\), \(|ab|=|a|\cdot|b|\).
+    \begin{subprove}
+      Let \(a, b \in \setR\).
+      It will be proved that \(|ab| = |a| \cdot |b|\).
+      
+      By the definition of absolute value, the signs of \(a\) and \(b\) determine the values of \(|a|\) and \(|b|\).
+      The following cases are considered.
+      
+      \textbf{Case 1:} Suppose \(a \ge 0\) and \(b \ge 0\).
+      Then, by the definition of absolute value, \(|a| = a\) and \(|b| = b\).
+      Since \(a \ge 0\) and \(b \ge 0\), it follows that \(ab \ge 0\).
+      Therefore, \(|ab| = ab = |a| \cdot |b|\).
+      
+      \textbf{Case 2:} Suppose \(a \ge 0\) and \(b < 0\).
+      Then, by the definition of absolute value, \(|a| = a\) and \(|b| = -b\).
+      Since \(a \ge 0\) and \(b < 0\), it follows that \(ab < 0\).
+      Therefore, \(|ab| = -(ab) = -ab = a(-b) = |a| \cdot |b|\).
+      
+      \textbf{Case 3:} Suppose \(a < 0\) and \(b \ge 0\).
+      Then, by the definition of absolute value, \(|a| = -a\) and \(|b| = b\).
+      Since \(a < 0\) and \(b \ge 0\), it follows that \(ab < 0\).
+      Therefore, \(|ab| = -(ab) = -ab = (-a)b = |a| \cdot |b|\).
+      
+      \textbf{Case 4:} Suppose \(a < 0\) and \(b < 0\).
+      Then, by the definition of absolute value, \(|a| = -a\) and \(|b| = -b\).
+      Since \(a < 0\) and \(b < 0\), it follows that \(ab > 0\).
+      Therefore, \(|ab| = ab = (-a)(-b) = |a| \cdot |b|\).
+      
+      \textbf{Case 5:} Suppose \(a = 0\) or \(b = 0\).
+      Then \(ab = 0\), so \(|ab| = 0\).
+      If \(a = 0\), then \(|a| = 0\), so \(|a| \cdot |b| = 0 \cdot |b| = 0\).
+      If \(b = 0\), then \(|b| = 0\), so \(|a| \cdot |b| = |a| \cdot 0 = 0\).
+      Therefore, \(|ab| = 0 = |a| \cdot |b|\).
+      
+      Therefore, in all cases, \(|ab| = |a| \cdot |b|\).
+    \end{subprove}
     \item For \(a\in\setR\), \(|a|^2=a^2\).
+    \begin{subprove}
+      Let \(a \in \setR\).
+      It will be proved that \(|a|^2 = a^2\).
+      
+      By the definition of absolute value, two cases are considered.
+      
+      \textbf{Case 1:} Suppose \(a \ge 0\).
+      Then, by the definition of absolute value, \(|a| = a\).
+      Therefore, \(|a|^2 = a^2\).
+      
+      \textbf{Case 2:} Suppose \(a < 0\).
+      Then, by the definition of absolute value, \(|a| = -a\).
+      Therefore, \(|a|^2 = (-a)^2 = a^2\).
+      
+      Therefore, in both cases, \(|a|^2 = a^2\).
+    \end{subprove}
   \end{enumerate}
 
   \item Prove the following properties of the absolute value.
@@ -184,84 +235,365 @@
       Therefore, in both cases, \(|a + b| \le |a| + |b|\).
     \end{subprove}
     \item For all \(a,b\in\setR\), \(|b|\le a\) iff \(-a\le b\le a\).
-    \item For all \(a,b\in\setR\), \(||a|-|b||\le|a-b|\).
-    \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
-    \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
-  \end{enumerate}
-\end{enumerate}
-
-
-
-\newpage
-
-
-
-
-
-
-
-
-
-
-\begin{define}{Completeness Axiom}[def:completeness-axiom][red]
-  $\setR$ is \textbf{complete}, that is, it satisfies the following \textbf{least upper bound property}.\proofstep
-  Let $S\subseteq\setR$ be nonempty and bounded above, 
-  then there exists an element $t\in\setR$ such that
-  \begin{enumerate}
-    \item $s\le t$ for all $s \in S$, and
-    \item $t\le u$ for all any upper bound of $S$, $u\in\setR$, that is, $s\le u$ for all $s \in S$.
-  \end{enumerate}
-  The element $t$ is denoted by $t=\sup(S)$ and is called the \textbf{supremum} (least upper bound) of $S$.
-\end{define}
-
-\begin{define}{Infimum (Greatest Lower Bound)}[def:infimum][red]
-  Let $S\subseteq\setR$ be nonempty and bounded below.
-  Then there exists an element $m\in\setR$ such that
-  \begin{enumerate}
-    \item $m\le s$ for all $s\in S$, and
-    \item if $y\in\setR$ satisfies $y\le s$ for all $s\in S$ then $y\le m$.
-  \end{enumerate}
-  The element $m$ is denoted $m=\inf(S)$ and is called the \textbf{infimum} (greatest lower bound) of $S$.
     \begin{subprove}
-      Let $S\subseteq\mathbb R$ be nonempty and bounded below. 
-      Let $-S=\{-s:s\in S\}$, then $-S$ is nonempty and bounded above, 
-      hence there exists $t=\sup(-S)$ by \nameref{def:completeness-axiom} and $m=-t$. \proofstep
-      For any $s\in S$, $-s\le t$ and $t \le u$ for all upper bounds, $u$, by definition. 
-      Thus, $m=-t\le s$ and $-u\le -t=m$ for all lower bounds, $-u$, of $S$. \proofstep      
-      Therefore $\inf(S)=m=-\sup(-S)$.
+      Let \(a, b \in \setR\).
+      It will be proved that \(|b| \le a\) if and only if \(-a \le b \le a\).
+      
+      Note that if \(|b| \le a\), then \(a \ge 0\) since \(|b| \ge 0\).
+      
+      (\(\Rightarrow\)) Suppose that \(|b| \le a\) for the sake of direct proof.
+      Since \(|b| \ge 0\) and \(|b| \le a\), it follows that \(a \ge 0\).
+      By the definition of absolute value, two cases are considered.
+      
+      \textbf{Case 1:} Suppose \(b \ge 0\).
+      Then, by the definition of absolute value, \(|b| = b\).
+      Since \(|b| \le a\), it follows that \(b \le a\).
+      Since \(b \ge 0\) and \(a \ge 0\), it follows that \(-a \le 0 \le b \le a\).
+      Therefore, \(-a \le b \le a\).
+      
+      \textbf{Case 2:} Suppose \(b < 0\).
+      Then, by the definition of absolute value, \(|b| = -b\).
+      Since \(|b| \le a\), it follows that \(-b \le a\), which implies \(b \ge -a\).
+      Since \(b < 0\) and \(a \ge 0\), it follows that \(-a \le b < 0 \le a\).
+      Therefore, \(-a \le b \le a\).
+      
+      Therefore, if \(|b| \le a\), then \(-a \le b \le a\).
+      
+      (\(\Leftarrow\)) Suppose that \(-a \le b \le a\) for the sake of direct proof.
+      Since \(-a \le b \le a\), it follows that \(a \ge -a\), which implies \(a \ge 0\).
+      By the definition of absolute value, two cases are considered.
+      
+      \textbf{Case 1:} Suppose \(b \ge 0\).
+      Then, by the definition of absolute value, \(|b| = b\).
+      Since \(b \le a\), it follows that \(|b| = b \le a\).
+      
+      \textbf{Case 2:} Suppose \(b < 0\).
+      Then, by the definition of absolute value, \(|b| = -b\).
+      Since \(-a \le b\), it follows that \(-b \le a\).
+      Therefore, \(|b| = -b \le a\).
+      
+      Therefore, if \(-a \le b \le a\), then \(|b| \le a\).
+      
+      Therefore, \(|b| \le a\) if and only if \(-a \le b \le a\).
     \end{subprove}
-\end{define}
+    \item For all \(a,b\in\setR\), \(||a|-|b||\le|a-b|\).
+    \begin{subprove}
+      Let \(a, b \in \setR\).
+      It will be proved that \(||a| - |b|| \le |a - b|\).
+      
+      By the \nameref{def:triangle-inequality}, \(|a| = |(a - b) + b| \le |a - b| + |b|\).
+      It follows that \(|a| - |b| \le |a - b|\).
+      
+      Similarly, by the \nameref{def:triangle-inequality}, \(|b| = |(b - a) + a| \le |b - a| + |a| = |a - b| + |a|\).
+      It follows that \(|b| - |a| \le |a - b|\).
+      Therefore, \(-(|a| - |b|) = |b| - |a| \le |a - b|\).
+      
+      Thus, \(-|a - b| \le |a| - |b| \le |a - b|\).
+      By the previous result, since \(-|a - b| \le |a| - |b| \le |a - b|\), 
+      it follows that \(||a| - |b|| \le |a - b|\).
+      
+      Therefore, for all \(a, b \in \setR\), \(||a| - |b|| \le |a - b|\).
+    \end{subprove}
+    \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
+    \begin{subprove}
+      Let \(a, x, \varepsilon \in \setR\).
+      It will be proved that \(|x-a| < \varepsilon\) if and only if \(a-\varepsilon < x < a+\varepsilon\).
+      
+      (\(\Rightarrow\)) Suppose that \(|x-a| < \varepsilon\) for the sake of direct proof.
+      By the definition of absolute value, \(|x-a| < \varepsilon\) means that either \(x-a < \varepsilon\) and \(x-a \ge 0\), or \(-(x-a) < \varepsilon\) and \(x-a < 0\).
+      
+      \textbf{Case 1:} Suppose \(x-a \ge 0\).
+      Then \(x-a < \varepsilon\), so \(x < a+\varepsilon\).
+      Since \(x-a \ge 0\), it follows that \(x \ge a > a-\varepsilon\).
+      Therefore, \(a-\varepsilon < x < a+\varepsilon\).
+      
+      \textbf{Case 2:} Suppose \(x-a < 0\).
+      Then \(-(x-a) = a-x < \varepsilon\), so \(a-\varepsilon < x\).
+      Since \(x-a < 0\), it follows that \(x < a < a+\varepsilon\).
+      Therefore, \(a-\varepsilon < x < a+\varepsilon\).
+      
+      Therefore, in both cases, if \(|x-a| < \varepsilon\), then \(a-\varepsilon < x < a+\varepsilon\).
+      
+      (\(\Leftarrow\)) Suppose that \(a-\varepsilon < x < a+\varepsilon\) for the sake of direct proof.
+      It follows that \(-\varepsilon < x-a < \varepsilon\).
+      By the definition of absolute value, since \(-\varepsilon < x-a < \varepsilon\), it follows that \(|x-a| < \varepsilon\).
+      
+      Therefore, \(|x-a| < \varepsilon\) if and only if \(a-\varepsilon < x < a+\varepsilon\).
+    \end{subprove}
+    \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
+    \begin{subprove}
+      Let \(a, b, x, y \in \setR\) such that \(a < x < b\) and \(a < y < b\).
+      It will be proved that \(|y-x| < b-a\).
+      
+      By the definition of absolute value, \(|y-x| = y-x\) if \(y \ge x\), and \(|y-x| = x-y\) if \(y < x\).
+      
+      \textbf{Case 1:} Suppose \(y \ge x\).
+      Then \(|y-x| = y-x\).
+      Since \(y < b\) and \(x > a\), it follows that \(y-x < b-a\).
+      Therefore, \(|y-x| = y-x < b-a\).
+      
+      \textbf{Case 2:} Suppose \(y < x\).
+      Then \(|y-x| = x-y\).
+      Since \(x < b\) and \(y > a\), it follows that \(x-y < b-a\).
+      Therefore, \(|y-x| = x-y < b-a\).
+      
+      Therefore, in both cases, \(|y-x| < b-a\).
+    \end{subprove}
+  \end{enumerate}
 
-In the standard construction of the real numbers the following completeness properties are equivalent:
-\begin{enumerate}
-  \item the least upper bound property (Completeness Axiom),
-  \item the greatest lower bound property,
-  \item Dedekind-type completeness, and
-  \item Cauchy completeness.
-\end{enumerate}
-That is, any one of these statements implies the others when working in \(\setR\).
-
-\begin{define}{Dedekind Completeness}[def:dedekind-completeness][red]
-  $\setR$ is \textbf{Dedekind complete}, that is, it satisfies the following \textbf{Dedekind completeness property}.\proofstep
-  Let $A,B\subseteq\setR$ be nonempty such that $a\le b$ for all $a\in A$ and $b\in B$.
-  Then there exists an element $c\in\setR$ such that $a\le c\le b$ for all $a\in A$ and $b\in B$.
-\end{define}
 
 
-\begin{define}{Cauchy Completeness}[def:cauchy-completeness][red]
-  $\setR$ is \textbf{Cauchy complete}, that is, it satisfies the following \textbf{Cauchy completeness property}.\proofstep
-  Every \nameref{def:cauchy-sequence} in $\setR$ converges to a limit in $\setR$.
-\end{define}
+% In the standard construction of the real numbers the following completeness properties are equivalent:
+% \begin{enumerate}
+%   \item the least upper bound property (Completeness Axiom),
+%   \item the greatest lower bound property,
+%   \item Dedekind-type completeness, and
+%   \item Cauchy completeness.
+% \end{enumerate}
+% That is, any one of these statements implies the others when working in \(\setR\).
+
+% \begin{define}{Dedekind Completeness}[def:dedekind-completeness][red]
+%   $\setR$ is \textbf{Dedekind complete}, that is, it satisfies the following \textbf{Dedekind completeness property}.\proofstep
+%   Let $A,B\subseteq\setR$ be nonempty such that $a\le b$ for all $a\in A$ and $b\in B$.
+%   Then there exists an element $c\in\setR$ such that $a\le c\le b$ for all $a\in A$ and $b\in B$.
+% \end{define}
 
 
-\newpage  
+% \begin{define}{Cauchy Completeness}[def:cauchy-completeness][red]
+%   $\setR$ is \textbf{Cauchy complete}, that is, it satisfies the following \textbf{Cauchy completeness property}.\proofstep
+%   Every \nameref{def:cauchy-sequence} in $\setR$ converges to a limit in $\setR$.
+% \end{define}
 
 
-\begin{define}{Archimedean Property}[def:archimedean-property][red]
-  For any real number \(a, b\), there exists a natural number \(n\) such that \(na > b\).
+  \item Prove the following using the completeness axiom and the order of \(\setR\).
+  \begin{define}{Completeness Axiom}[def:completeness-axiom][red]
+    $\setR$ is \textbf{complete}, that is, it satisfies the following \textbf{least upper bound property}.\proofstep
+    Let $S\subseteq\setR$ be nonempty and bounded above, 
+    then there exists an element $t\in\setR$ such that
+    \begin{enumerate}
+      \item $s\le t$ for all $s \in S$, and
+      \item $t\le u$ for all any upper bound of $S$, $u\in\setR$, that is, $s\le u$ for all $s \in S$.
+    \end{enumerate}
+    The element $t$ is denoted by $t=\sup(S)$ and is called the \textbf{supremum} (least upper bound) of $S$.
+  \end{define}    
+    \begin{enumerate}[label=(\alph*)]
+      \item For all \(x\in\setR\) there exists \(n\in\setZ\) with \(n>x\).
+      \begin{subprove}
+        Let \(x \in \setR\) be arbitrary. Suppose that 
+        the set of integers \(\setZ\) is bounded above by some real number \(r \in \setR\)
+        for the sake of contradiction. That is, 
+        \[
+          \exists r \in \setR \text{ such that } \forall n \in \setZ, n \le r.
+        \]
+        Then, by \nameref{def:completeness-axiom}, the nonempty set \(\setZ\) has 
+        a least upper bound, denoted by \(s = \sup \setZ\).
+        Consider \(s - 1\). Since \(s - 1 < s\), the number \(s - 1\) cannot 
+        be an upper bound of \(\setZ\).
+        Hence, by the definition of upper bound, 
+        there exists an integer \(m \in \setZ\) such that
+        \[
+          m > s - 1.
+        \]
+        This implies that \(m + 1 > s\). By closure of the integers under addition, 
+        it follows that \(m + 1 \in \setZ\) 
+        which contradicts the fact that \(s\) is an upper bound of \(\setZ\).
+        Therefore, by contradiction, it is true that 
+        for any real number \(x \in \setR\), there exists an integer \(n \in \setZ\) with \(n > x\).
+      \end{subprove}
+      \item For all \(\varepsilon>0\) there exists \(n\in\setN\) with \(1/n<\varepsilon\).
+      \begin{subprove}
+        Let \(\varepsilon \in \setR\) be such that \(\varepsilon > 0\).
+        It will be proved that there exists \(n \in \setN\) such that \(\frac{1}{n} < \varepsilon\).
+        
+        Since \(\varepsilon > 0\), the real number \(\frac{1}{\varepsilon}\) is well-defined and positive.
+        By part (a), applied to the real number \(x = \frac{1}{\varepsilon}\), there exists an integer \(m \in \setZ\) such that
+        \[
+          m > \frac{1}{\varepsilon}.
+        \]
+        Since \(\frac{1}{\varepsilon} > 0\) and \(m > \frac{1}{\varepsilon}\), it follows that \(m > 0\).
+        Therefore, \(m \in \setN\).
+        Let \(n = m\). Then \(n \in \setN\) and \(n > \frac{1}{\varepsilon} > 0\).
+        
+        Since \(n > \frac{1}{\varepsilon} > 0\), the inequality may be inverted, giving
+        \[
+          0 < \frac{1}{n} < \varepsilon.
+        \]
+        Therefore, there exists \(n \in \setN\) such that \(\frac{1}{n} < \varepsilon\).
+      \end{subprove}
+      \item For all \(x\in\setR\) there exists \(n\in\setZ\) such that \(n\le x<n+1\).
+      \begin{subprove}
+        Let \(x \in \setR\) be arbitrary.
+        It will be proved that there exists \(n \in \setZ\) such that \(n \le x < n + 1\).
+        
+        Consider the set
+        \[
+          A := \{ k \in \setZ : k \le x \}.
+        \]
+        The set \(A\) is nonempty because, for example, \(x - 1 \in \setR\), and by part (a) there exists \(m \in \setZ\) 
+        such that \(m > x - 1\), so \(m - 1 \le x\) and hence \(m - 1 \in A\).
+        Moreover, the set \(A\) is bounded from above by \(x\), since every \(k \in A\) satisfies \(k \le x\) by definition.
+        
+        By \nameref{def:completeness-axiom}, the nonempty set \(A\), which is bounded from above, has a least upper bound.
+        Denote this least upper bound by \(s = \sup A\).
+        It will be shown that \(s \in A\) and that \(s\) is an integer.
+        
+        Since \(A \subseteq \setZ\) and \(A\) is nonempty, all elements of \(A\) are integers.
+        Because \(s = \sup A\) is the least upper bound of \(A\), for every \(\delta > 0\) there exists \(a \in A\) such that
+        \[
+          s - \delta < a \le s.
+        \]
+        In particular, taking \(\delta = 1\), there exists \(a \in A\) such that
+        \[
+          s - 1 < a \le s.
+        \]
+        Since \(a \in A\), it follows that \(a \in \setZ\).
+        Now \(s - 1 < a \le s\) implies
+        \[
+          s - 1 < a \quad\text{and}\quad a \le s.
+        \]
+        Because \(a\) is an integer and \(a \le s\), it must be that \(a \le s < a + 1\).
+        Thus \(s\) lies in the interval \([a, a+1)\), which implies \(a \le x\) (since \(a \in A\)) and \(s \ge a\).
+        But \(s\) is the least upper bound of \(A\), and \(a \in A\) implies \(a \le s\).
+        In particular, \(a\) is the greatest integer in \(A\).
+        
+        Set \(n := a\).
+        Then \(n \in \setZ\) and \(n \le x\) holds because \(n \in A\) by definition.
+        It remains to show that \(x < n + 1\).
+        Since \(n\) is the greatest integer less than or equal to \(x\), the integer \(n + 1\) cannot belong to \(A\).
+        Thus \(n + 1 \nleq x\), i.e., \(n + 1 > x\).
+        Therefore,
+        \[
+          n \le x < n + 1.
+        \]
+        Hence, such an integer \(n\) exists for the given real number \(x\).
+      \end{subprove}
+      \item For all \(x\in\setR\) and \(N\in\setN\) there exists \(n\in\setZ\) such that \(\dfrac{n}{N}\le x<\dfrac{n+1}{N}\).
+      \begin{subprove}
+        Let \(x \in \setR\) and \(N \in \setN\) be given.
+        It will be proved that there exists \(n \in \setZ\) such that
+        \[
+          \frac{n}{N} \le x < \frac{n+1}{N}.
+        \]
+        
+        Consider the real number \(Nx\).
+        By part (c), applied to \(Nx\), there exists an integer \(k \in \setZ\) such that
+        \[
+          k \le Nx < k + 1.
+        \]
+        Define \(n := k\).
+        Then \(n \in \setZ\), and dividing the inequality by \(N > 0\) gives
+        \[
+          \frac{n}{N} \le x < \frac{n+1}{N}.
+        \]
+        Therefore, such an integer \(n\) exists for the given \(x\) and \(N\).
+      \end{subprove}
+      \item For all \(x\in\setR\) and \(\varepsilon>0\) there exists a rational \(q\in\setQ\) with \(|x-q|<\varepsilon\).
+      \begin{subprove}
+        Let \(x \in \setR\) and \(\varepsilon \in \setR\) with \(\varepsilon > 0\) be given.
+        It will be proved that there exists a rational number \(q \in \setQ\) such that \(|x - q| < \varepsilon\).
+        
+        By part (b), there exists a positive integer \(N \in \setN\) such that
+        \[
+          \frac{1}{N} < \varepsilon.
+        \]
+        Now part (d) is applied to the real number \(x\) and this positive integer \(N\).
+        By part (d), there exists an integer \(n \in \setZ\) such that
+        \[
+          \frac{n}{N} \le x < \frac{n+1}{N}.
+        \]
+        Define
+        \[
+          q := \frac{n}{N}.
+        \]
+        Then \(q\) is a rational number since \(n \in \setZ\) and \(N \in \setN\) with \(N > 0\).
+        
+        From the inequality above, it follows that
+        \[
+          0 \le x - q < \frac{1}{N}.
+        \]
+        Hence,
+        \[
+          |x - q| = x - q < \frac{1}{N} < \varepsilon.
+        \]
+        Therefore, there exists a rational number \(q \in \setQ\) such that \(|x - q| < \varepsilon\).
+      \end{subprove}
+    \end{enumerate}
+
+  \item Prove that for all \(a,b\in\setR\)
+  \[
+    \max\{a,b\}=\frac{a+b+|a-b|}{2}
+    \quad\text{and}\quad
+    \min\{a,b\}=-\max\{-a,-b\}=\frac{a+b-|a-b|}{2}.
+  \]
   \begin{subprove}
-    Suppose not. Then there exist \(a, b \in \setR\) such that \(na \le b\) for all \(n \in \setN\).
-    Thus, \(b\) is an upper bound for the set \(S = \set{na : n \in \setN}\).
+    Let \(a, b \in \setR\).
+    It will be proved that \(\max\{a,b\} = \frac{a+b+|a-b|}{2}\) and 
+    \(\min\{a,b\} = -\max\{-a,-b\} = \frac{a+b-|a-b|}{2}\).
+    
+    First, it will be shown that \(\max\{a,b\} = \frac{a+b+|a-b|}{2}\).
+    By the definition of absolute value, two cases are considered.
+    
+    \textbf{Case 1:} Suppose \(a \ge b\).
+    Then \(|a-b| = a-b\).
+    Therefore,
+    \[
+      \frac{a+b+|a-b|}{2} = \frac{a+b+(a-b)}{2} = \frac{2a}{2} = a = \max\{a,b\}.
+    \]
+    
+    \textbf{Case 2:} Suppose \(a < b\).
+    Then \(|a-b| = -(a-b) = b-a\).
+    Therefore,
+    \[
+      \frac{a+b+|a-b|}{2} = \frac{a+b+(b-a)}{2} = \frac{2b}{2} = b = \max\{a,b\}.
+    \]
+    
+    Therefore, in both cases, \(\max\{a,b\} = \frac{a+b+|a-b|}{2}\).
+    
+    Next, it will be shown that \(\min\{a,b\} = -\max\{-a,-b\} = \frac{a+b-|a-b|}{2}\).
+    
+    First, it is established that \(\min\{a,b\} = -\max\{-a,-b\}\).
+    By the definition of minimum, \(\min\{a,b\} = a\) if \(a \le b\), and \(\min\{a,b\} = b\) if \(b \le a\).
+    By the definition of maximum, \(\max\{-a,-b\} = -a\) if \(-a \ge -b\), i.e., if \(a \le b\),
+    and \(\max\{-a,-b\} = -b\) if \(-b \ge -a\), i.e., if \(b \le a\).
+    Therefore, if \(a \le b\), then \(\min\{a,b\} = a = -(-a) = -\max\{-a,-b\}\).
+    If \(b \le a\), then \(\min\{a,b\} = b = -(-b) = -\max\{-a,-b\}\).
+    Therefore, \(\min\{a,b\} = -\max\{-a,-b\}\).
+    
+    Now it will be shown that \(-\max\{-a,-b\} = \frac{a+b-|a-b|}{2}\).
+    By the previous result, \(\max\{-a,-b\} = \frac{(-a)+(-b)+|(-a)-(-b)|}{2} = \frac{-(a+b)+|b-a|}{2}\).
+    Since \(|b-a| = |a-b|\), it follows that
+    \[
+      \max\{-a,-b\} = \frac{-(a+b)+|a-b|}{2}.
+    \]
+    Therefore,
+    \[
+      -\max\{-a,-b\} = -\frac{-(a+b)+|a-b|}{2} = \frac{a+b-|a-b|}{2}.
+    \]
+    
+    Therefore, \(\min\{a,b\} = -\max\{-a,-b\} = \frac{a+b-|a-b|}{2}\).
+    
+    Therefore, for all \(a,b \in \setR\),
+    \[
+      \max\{a,b\} = \frac{a+b+|a-b|}{2} \quad\text{and}\quad
+      \min\{a,b\} = -\max\{-a,-b\} = \frac{a+b-|a-b|}{2}.
+    \]
+  \end{subprove}
+
+    
+  \item Prove the Archimedean property:
+
+  \begin{define}{Archimedean Property}[def:archimedean-property][red]
+    For any real numbers \(a, b\) with \(a>0\) and \(b>0\), there exists 
+    a natural number \(n\) such that 
+    \[
+    na > b.
+    \]
+    \textbf{Note}: This property states that the natural numbers are unbounded in the real numbers.
+  \end{define}
+  \begin{subprove}
+    Suppose that there exist \(a, b \in \setR\) such that \(na \le b\) for all \(n \in \setN\) 
+    for the sake of contradiction.
+    Then, \(b\) is an upper bound for the set \(S = \set{na : n \in \setN}\).
     Hence, \(S\) has a supremum \(t=\sup(S) \in \setR\) by \nameref{def:completeness-axiom}.
 
     Since $a>0$, $t - a < t < t + a$. Hence, $t-a$ is not an upper bound for \(S\).
@@ -270,68 +602,37 @@ That is, any one of these statements implies the others when working in \(\setR\
       t = t - a + a < n_0 a + a = (n_0 + 1)a,
     \]
     which contradicts the fact that \(t\) is an upper bound for \(S\).
-    Therefore, the supposition is false, and the Archimedean Property holds.
+    Therefore, by contradiction, the Archimedean Property is true.
   \end{subprove}
-  \textbf{Note}: This property states that the natural numbers are unbounded in the real numbers.
-\end{define}
-
-
-\begin{enumerate}
-  \item Prove the following properties of the absolute value.
-    \begin{enumerate}[label=(\alph*)]
-      \item For all \(a,b\in\setR\), \(|a+b|\le |a|+|b|\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(a,b\in\setR\), \(|b|\le a\) iff \(-a\le b\le a\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(a,b\in\setR\), \( \big||a|-|b|\big|\le |a-b|\).
-      \begin{subprove}
-      \end{subprove}
-      \item For \(a,x,\varepsilon\in\setR\), \(|x-a|<\varepsilon\) iff \(a-\varepsilon<x<a+\varepsilon\).
-      \begin{subprove}
-      \end{subprove}
-      \item If \(a,b,x,y\in\setR\) and \(a<x<b,\ a<y<b\), then \(|y-x|<b-a\).
-      \begin{subprove}
-      \end{subprove}
-    \end{enumerate}
-
-  \item Prove the following using the completeness axiom and the order of \(\setR\).
-    \begin{enumerate}[label=(\alph*)]
-      \item For all \(x\in\setR\) there exists \(n\in\setZ\) with \(n>x\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(\varepsilon>0\) there exists \(n\in\setN\) with \(1/n<\varepsilon\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(x\in\setR\) there exists \(n\in\setZ\) such that \(n\le x<n+1\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(x\in\setR\) and \(N\in\setN\) there exists \(n\in\setZ\) such that \(\dfrac{n}{N}\le x<\dfrac{n+1}{N}\).
-      \begin{subprove}
-      \end{subprove}
-      \item For all \(x\in\setR\) and \(\varepsilon>0\) there exists a rational \(q\in\setQ\) with \(|x-q|<\varepsilon\).
-      \begin{subprove}
-      \end{subprove}
-    \end{enumerate}
-
-  \item Prove that for all \(a,b\in\setR\)
-    \[
-      \max\{a,b\}=\frac{a+b+|a-b|}{2}
-      \quad\text{and}\quad
-      \min\{a,b\}=-\max\{-a,-b\}=\frac{a+b-|a-b|}{2}.
-    \]
-    \begin{subprove}
-    \end{subprove}
-
-  \item Prove the Archimedean property:
-    Let \(a,b\in\setR\) with \(a>0\) and \(b>0\). Show there exists \(n\in\setN\) with \(n a>b\).
-    \begin{subprove}
-    \end{subprove}
 
   \item Explain why \(\setQ\) is dense in \(\setR\):
     If \(a,b\in\setR\) and \(a<b\), then there exists \(r\in\setQ\) with \(a<r<b\).
     \begin{subprove}
+      Let \(a, b \in \setR\) such that \(a < b\).
+      It will be proved that there exists \(r \in \setQ\) such that \(a < r < b\).
+      
+      Since \(a < b\), it follows that \(b - a > 0\).
+      By the \nameref{def:archimedean-property}, applied to \(b - a > 0\) and \(1 > 0\), 
+      there exists \(n \in \setN\) such that \(n(b - a) > 1\).
+      Therefore, \(b - a > \frac{1}{n}\), which implies \(\frac{1}{n} < b - a\).
+      
+      Consider the set of rational numbers of the form \(\frac{m}{n}\) where \(m \in \setZ\).
+      Since the integers are unbounded in the real numbers (by the \nameref{def:archimedean-property}), 
+      there exists an integer \(m\) such that \(m > na\).
+      Let \(m_0\) be the smallest integer such that \(m_0 > na\).
+      Then \(m_0 - 1 \le na < m_0\), which implies \(\frac{m_0 - 1}{n} \le a < \frac{m_0}{n}\).
+      
+      It will be shown that \(\frac{m_0}{n} < b\).
+      Since \(m_0 > na\), it follows that \(\frac{m_0}{n} > a\).
+      Suppose, for the sake of contradiction, that \(\frac{m_0}{n} \ge b\).
+      Then \(\frac{m_0}{n} \ge b > a\), so \(\frac{m_0}{n} - a \ge b - a > \frac{1}{n}\).
+      This implies \(\frac{m_0 - na}{n} > \frac{1}{n}\), so \(m_0 - na > 1\).
+      Therefore, \(m_0 - 1 > na\), which contradicts that \(m_0\) is the smallest integer greater than \(na\).
+      
+      Therefore, \(a < \frac{m_0}{n} < b\).
+      Since \(m_0 \in \setZ\) and \(n \in \setN\), it follows that \(r = \frac{m_0}{n} \in \setQ\).
+      
+      Therefore, there exists \(r \in \setQ\) such that \(a < r < b\).
     \end{subprove}
 \end{enumerate}
 
@@ -378,7 +679,7 @@ That is, any one of these statements implies the others when working in \(\setR\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{enumerate}
   \item Let $a_1, a_2, \ldots, a_n \in \setR$ for $n \in \setZ$ with $n \geq 3$. 
-  Prove that $\left|\sum_{i=1}^n a_i\right| \leq \sum_{i=1}^n\left|a_i\right|$.
+  Prove that $\abs{\sum_{i=1}^n a_i} \leq \sum_{i=1}^n\abs{a_i}$.
   \begin{define}{Mathematical Induction}[def:mathematical-induction][red]
     \textbf{Mathematical induction} is a method of proof used to prove statements about natural numbers.
     To prove that a statement \(P(n)\) is true for all natural numbers \(n \geq n_{0}\), where \(n_{0}\) is some base value, it suffices to show that
@@ -389,12 +690,8 @@ That is, any one of these statements implies the others when working in \(\setR\
   \end{define}
   \begin{subprove}
     Let $P(n)$ be the proposition that 
-    $\left|\sum_{i=1}^n a_i\right| \leq \sum_{i=1}^n\left|a_i\right|$ 
+    $\abs{\sum_{i=1}^n a_i} \leq \sum_{i=1}^n\abs{a_i}$ 
     for all $a_1, a_2, \ldots, a_n \in \setR$ with $n \geq 2$.
-    \begin{define}{Triangle Inequality}[def:triangle-inequality][red]
-      For all \(a,b\in\setR\), \(|a+b|\le|a|+|b|\).
-      This inequality is called the \textbf{triangle inequality}.
-    \end{define}
     \textbf{Base case:} For $n = 2$, the \nameref{def:triangle-inequality} states that for all $a_1, a_2 \in \setR$,
     \[
       |a_1 + a_2| \leq |a_1| + |a_2|.
@@ -405,19 +702,19 @@ That is, any one of these statements implies the others when working in \(\setR\
     for the sake of direct proof. 
     Let $a_1, a_2, \ldots, a_{k+1} \in \setR$, then
     \[
-      \left|\sum_{i=1}^{k+1} a_i\right| = \left|\sum_{i=1}^k a_i + a_{k+1}\right| \leq \left|\sum_{i=1}^k a_i\right| + |a_{k+1}|.
+      \abs{\sum_{i=1}^{k+1} a_i} = \abs{\sum_{i=1}^k a_i + a_{k+1}} \leq \abs{\sum_{i=1}^k a_i} + |a_{k+1}|.
     \]
     by the \nameref{def:triangle-inequality} for two terms, then by the inductive hypothesis,
     \[
-      \left|\sum_{i=1}^k a_i\right| \leq \sum_{i=1}^k\left|a_i\right|.
+      \abs{\sum_{i=1}^k a_i} \leq \sum_{i=1}^k\abs{a_i}.
     \]
     Therefore,
     \[
-      \left|\sum_{i=1}^{k+1} a_i\right| \leq \sum_{i=1}^k\left|a_i\right| + |a_{k+1}| = \sum_{i=1}^{k+1}\left|a_i\right|.
+      \abs{\sum_{i=1}^{k+1} a_i} \leq \sum_{i=1}^k\abs{a_i} + |a_{k+1}| = \sum_{i=1}^{k+1}\abs{a_i}.
     \]
     Thus, $P(k+1)$ is true.
     By \nameref{def:mathematical-induction}, it follows that $P(n)$ is true for all $n \geq 2$.
-    Therefore, $\left|\sum_{i=1}^n a_i\right| \leq \sum_{i=1}^n\left|a_i\right|$ for all $a_1, a_2, \ldots, a_n \in \setR$ with $n \geq 3$.
+    Therefore, $\abs{\sum_{i=1}^n a_i} \leq \sum_{i=1}^n\abs{a_i}$ for all $a_1, a_2, \ldots, a_n \in \setR$ with $n \geq 3$.
   \end{subprove}
 
 
@@ -453,16 +750,6 @@ That is, any one of these statements implies the others when working in \(\setR\
   Let $S \subseteq \setR$ be nonempty and bounded from below, and let $-S=\{-s \mid s \in S\}$.
   \begin{enumerate}
     \item Prove that $\sup (-S)$ exists.
-    \begin{define}{Completeness Axiom}[def:completeness-axiom][red]
-      $\setR$ is \textbf{complete}, that is, it satisfies the following \textbf{least upper bound property}.\proofstep
-      Let $S\subseteq\setR$ be nonempty and bounded above, 
-      then there exists an element $t\in\setR$ such that
-      \begin{enumerate}
-        \item $s\le t$ for all $s \in S$, and
-        \item $t\le u$ for all any upper bound of $S$, $u\in\setR$, that is, $s\le u$ for all $s \in S$.
-      \end{enumerate}
-      The element $t$ is denoted by $t=\sup(S)$ and is called the \textbf{supremum} (least upper bound) of $S$.
-    \end{define}    
     \begin{subprove}
       Since $S$ is nonempty, there exists $s \in S$.
       Thus, $-s \in -S$, so $-S$ is \underbar{nonempty}.
@@ -492,6 +779,23 @@ That is, any one of these statements implies the others when working in \(\setR\
 
 
     \item Prove $\inf S=-\sup (-S)$.
+    \begin{define}{Infimum (Greatest Lower Bound)}[def:infimum][red]
+      Let $S\subseteq\setR$ be nonempty and bounded below.
+      Then there exists an element $m\in\setR$ such that
+      \begin{enumerate}
+        \item $m\le s$ for all $s\in S$, and
+        \item if $y\in\setR$ satisfies $y\le s$ for all $s\in S$ then $y\le m$.
+      \end{enumerate}
+      The element $m$ is denoted $m=\inf(S)$ and is called the \textbf{infimum} (greatest lower bound) of $S$.
+        \begin{subprove}
+          Let $S\subseteq\mathbb R$ be nonempty and bounded below. 
+          Let $-S=\{-s:s\in S\}$, then $-S$ is nonempty and bounded above, 
+          hence there exists $t=\sup(-S)$ by \nameref{def:completeness-axiom} and $m=-t$. \proofstep
+          For any $s\in S$, $-s\le t$ and $t \le u$ for all upper bounds, $u$, by definition. 
+          Thus, $m=-t\le s$ and $-u\le -t=m$ for all lower bounds, $-u$, of $S$. \proofstep      
+          Therefore $\inf(S)=m=-\sup(-S)$.
+        \end{subprove}
+    \end{define}
     \begin{subprove}
       Let $s_0 = \sup(-S)$.
       By part (b), $-s_0 \leq s$ for all $s \in S$.
@@ -915,47 +1219,51 @@ That is, any one of these statements implies the others when working in \(\setR\
     \]
   \end{subanswer}
   \item Prove the following for \(n \in \setN\) from the definitions.
+  \begin{define}{Convergence of a Sequence}[def:convergence-of-a-sequence][red]
+    Let \((s_n)_{n\in\setN}\) be a sequence of \(\setR\).
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{converges} to a limit \(s \in \setR\)
+    if for every \(\varepsilon>0\) there exists \(N\in\setN\) such that 
+    \[
+      \abs{s_n - s} < \varepsilon \quad\text{for all } n > N.
+    \]
+    If \((s_n)_{n\in\setN}\) converges to \(s\), then
+    \[
+      \lim_{n\to\infty} s_n = s
+    \]
+    and $s$ is called the \textbf{limit} of the sequence.
+  \end{define}
   \begin{enumerate}
     \item Prove that 
     \[
       \lim_{n\to\infty} \frac{1}{n} = 0.
     \]
-    \begin{define}{Convergence of a Sequence}[def:convergence-of-a-sequence][red]
-      Let \((s_n)_{n\in\setN}\) be a sequence of \(\setR\).
-      A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{converges} to a limit \(s \in \setR\)
-      if for every \(\varepsilon>0\) there exists \(N\in\setN\) such that 
-      \[
-        \abs{s_n - s} < \varepsilon \quad\text{for all } n \geq N.
-      \]
-      If \((s_n)_{n\in\setN}\) converges to \(s\), then
-      \[
-        \lim_{n\to\infty} s_n = s
-      \]
-      and $s$ is called the \textbf{limit} of the sequence.
-    \end{define}
     \begin{subprove}
-      Let \(\varepsilon > 0\) be given. 
-      By \nameref{def:archimedean-property}, there exists \(N \in \setN\) such that 
-      \(N\cdot\varepsilon > 1\). Then, for all \(n \geq N\), it follows that
+      Let \(\varepsilon>0\) be given and 
+      \(N=\ceil{\dfrac{1}{\varepsilon}}\).
+      Then, for all \(n > N \ge \dfrac{1}{\varepsilon} > 0\), 
+      it follows that \(\dfrac{1}{n} < \varepsilon\).
+      Therefore,
       \[
-        \abs{\frac{1}{n} - 0} = \frac{1}{n} \leq \frac{1}{N} < \varepsilon.
+        \abs{\frac{1}{n} - 0} = \frac{1}{n} < \varepsilon.
       \]
-      Therefore, by \nameref{def:convergence-of-a-sequence},
-      \[
-        \lim_{n\to\infty} \frac{1}{n} = 0.
-      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
     \end{subprove}
 
 
 
 
+
+    \newpage
+
     \item \(\lim_{n\to\infty}\dfrac{(-1)^n}{n}=0\).
     \begin{subprove}
       Let \(\varepsilon>0\) be given and 
-      $N=\left\lceil\dfrac{1}{\varepsilon} + 1\right\rceil$.
-      Then, for all \(n\ge N\), \(N>\dfrac{1}{\varepsilon}\) and
+      $N=\ceil{\dfrac{1}{\varepsilon}}$.
+      Then, for all \(n > N \ge \dfrac{1}{\varepsilon} > 0\), 
+      it follows that \(\dfrac{1}{n} < \varepsilon\).
+      Therefore,
       \[
-        \left|\dfrac{(-1)^n}{n}-0\right|=\dfrac{1}{n}\le\dfrac{1}{N}<\varepsilon.
+        \abs{\dfrac{(-1)^n}{n}-0}=\dfrac{1}{n}<\varepsilon.
       \]
       Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
     \end{subprove}
@@ -963,10 +1271,12 @@ That is, any one of these statements implies the others when working in \(\setR\
     \item \(\lim_{n\to\infty}\dfrac{1}{n^2}=0\).
     \begin{subprove}
       Let \(\varepsilon>0\) be given and 
-      $N=\left\lceil\sqrt{\dfrac{1}{\varepsilon}} + 1\right\rceil$. 
-      Then for \(n\ge N\), $N^2>\dfrac{1}{\varepsilon}$ and
+      \(N=\ceil{\sqrt{\dfrac{1}{\varepsilon}}}\). 
+      Then, for all \(n > N \ge \sqrt{\dfrac{1}{\varepsilon}} > 0\), 
+      it follows that \(\dfrac{1}{n^2} < \varepsilon\).
+      Therefore,
       \[
-        \left|\dfrac{1}{n^2}-0\right|=\dfrac{1}{n^2}\le\dfrac{1}{N^2}<\varepsilon,
+        \abs{\dfrac{1}{n^2}-0}=\dfrac{1}{n^2}<\varepsilon.
       \]
       Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(0\).
     \end{subprove}
@@ -975,10 +1285,16 @@ That is, any one of these statements implies the others when working in \(\setR\
     \item Prove that \(\lim_{n\to\infty}\dfrac{4n^3+3n}{n^3-6}=4\).
     \begin{subprove}
       Let \(\varepsilon>0\) be given and 
-      \(N=\max\left\{3, \left\lceil \sqrt{\frac{54}{\varepsilon}}+1 \right\rceil \right\}\).
-      Then, for all \(n\ge N\ge 3\), \(N^2>\dfrac{54}{\varepsilon}\) and
+      \(N=\max\set{3, \ceil{\sqrt{\dfrac{54}{\varepsilon}}}}\).
+      Then, for all \(n > N \ge \sqrt{\dfrac{54}{\varepsilon}} > 0\), 
+      it follows that \(\dfrac{54}{n^2} < \varepsilon\) and 
+      \(n^3-6 > n^3/2 > 0\) since \(n > 3\).
+      Therefore,
       \[
-        \left|\dfrac{4n^3+3n}{n^3-6}-4\right|=\left|\dfrac{3n+24}{n^3-6}\right|\le\dfrac{27n}{n^3/2}=\dfrac{54}{n^2}\le\dfrac{54}{N^2}<\varepsilon
+        \abs{\dfrac{4n^3+3n}{n^3-6}-4}
+        =\abs{\dfrac{3n+24}{n^3-6}}
+        <\dfrac{27n}{n^3/2}=\dfrac{54}{n^2}
+        <\varepsilon.
       \]
       Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(4\).
     \end{subprove}
@@ -986,8 +1302,24 @@ That is, any one of these statements implies the others when working in \(\setR\
 
     \item \(\lim_{n\to\infty}\dfrac{3n+1}{7n-4}=\dfrac{3}{7}\).
     \begin{subprove}
-      
+      Let \(\varepsilon>0\) be given and 
+      \(N=\max\set{1, \ceil{\dfrac{1}{\varepsilon}}}>0\).
+      Then, for all \(n > N \ge \dfrac{1}{\varepsilon}\), 
+      it follows that \(\dfrac{1}{n} < \varepsilon\) and
+      \(7n-4 > 3n > 0\) since \(n > 1\).
+      Therefore,
+      \[
+        \abs{\dfrac{3n+1}{7n-4} - \dfrac{3}{7}}
+        =\abs{\dfrac{7(3n+1) - 3(7n-4)}{7(7n-4)}}
+        =\abs{\dfrac{19}{7(7n-4)}}
+        <\dfrac{21}{7(3n)}
+        <\varepsilon.
+      \]
+      Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(\dfrac{3}{7}\).
     \end{subprove}
+
+
+    \newpage
 
     \item Let $p_n$ be the $n$-th digit in the decimal expansion of $\frac{23}{27}=0.851851\ldots$, 
     prove that $p_n$ does not converge.
@@ -999,24 +1331,21 @@ That is, any one of these statements implies the others when working in \(\setR\
       Let \(\varepsilon = 0.1\). Then,
       by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that 
       \[
-        \abs{p_n - p} < 0.1 \quad\text{for all } n \geq N.
+        \abs{p_n - p} < 0.1 \quad\text{for all } n > N.
       \]
       However, the sequence \((p_n)\) alternates between the digits \(8\), \(5\), and \(1\).
-      Thus, for any \(N\), there exist \(n \geq N\) 
-      such that \(p_{n} = 8\) and \(p_{n+1} = 5\). Then,
+      Thus, there must exist an \(n > N\) such that \(p_{n} = 8\) and \(p_{n+1} = 5\). Then,
       \[
         \abs{p_{n} - p} = \abs{8 - p} \quad\text{and}\quad \abs{p_{n+1} - p} = \abs{5 - p}.
       \]
-      By the triangle inequality,
+      By the \nameref{def:triangle-inequality},
       \[
-        3 = \abs{8 - 5} \leq \abs{8 - p} + \abs{5 - p} < 2 \cdot \varepsilon = 0.2.
+        3 = \abs{(8-p) - (5-p)} \leq \abs{8 - p} + \abs{5 - p} < 2 \cdot \varepsilon = 0.2
       \]
-      This is a contradiction. Therefore, 
-      by \nameref{def:convergence-of-a-sequence}, 
+      which is a contradiction. Therefore, by contradiction,
       the sequence \((p_n)\) does not converge, and hence diverges.
     \end{subprove}
 
-    \newpage
 
     \item \(\lim_{n\to\infty}\sqrt{n}=+\infty\).
     \begin{define}{Divergence to Infinity}[def:divergence-to-infinity][red]
@@ -1181,7 +1510,7 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
     \]
     Let
     \[
-      M = \max\left\{ \abs{s_1}, \abs{s_2}, \ldots, \abs{s_{N-1}}, 1 + \abs{s} \right\}.
+      M = \max\set{ \abs{s_1}, \abs{s_2}, \ldots, \abs{s_{N-1}}, 1 + \abs{s} }.
     \]
     Then, for all \(n \in \setN\), it follows that
     \[
@@ -1448,7 +1777,7 @@ Let \((s_n)\) and \((t_n)\) be real-valued sequences.
     For \(n = 1\), let \(s_1 \in S\) such that \(L - 1 < s_1 < L\).
     For \(n \geq 2\), let \(s_n \in S\) such that
     \[
-      \max\left\{s_{n-1}, L - \frac{1}{n}\right\} < s_n < L.
+      \max\set{s_{n-1}, L - \frac{1}{n}} < s_n < L.
     \]
     Such a choice is possible because \(s_{n-1} < L\) implies that \(\max\{s_{n-1}, L - 1/n\} < L\).
     Since \(L\) is the least upper bound, there exists \(s \in S\) strictly between this maximum and \(L\).
