@@ -1346,6 +1346,28 @@
       the sequence \((p_n)\) does not converge, and hence diverges.
     \end{subprove}
 
+    \item The sequence \(a_n=(-1)^n\) does not converge.
+    \begin{subprove}
+      Suppose that \((a_n)\) converges to a limit \(a \in \setR\) for the sake of contradiction.
+      Let \(\varepsilon = 0.1\). Then,
+      by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+      \[
+        \abs{a_n - a} < 0.1 \quad\text{for all } n > N.
+      \]
+      However, the sequence \((a_n)\) alternates between \(1\) and \(-1\).
+      Thus, there must exist an \(n > N\) such that \(a_{n} = 1\) and \(a_{n+1} = -1\). Then,
+      \[
+        \abs{a_n - a} = \abs{1 - a} \quad\text{and}\quad \abs{a_{n+1} - a} = \abs{-1 - a}.
+      \]
+      By the \nameref{def:triangle-inequality},
+      \[
+        2 = \abs{(1-a) - (-1-a)} \leq \abs{1 - a} + \abs{-1 - a} < 2 \cdot \varepsilon = 0.2
+      \]
+      which is a contradiction. Therefore, by contradiction, the sequence \((a_n)\) does not converge, and hence diverges.
+    \end{subprove}
+
+
+    \newpage
 
     \item \(\lim_{n\to\infty}\sqrt{n}=+\infty\).
     \begin{define}{Divergence to Infinity}[def:divergence-to-infinity][red]
@@ -1354,13 +1376,13 @@
         \item The sequence \((s_n)\) is said to \textbf{diverge to infinity} (or \textbf{diverge to \(+\infty\)}) if,
           for every \(M\in\setR\), there exists \(N\in\setN\) such that
           \[
-          s_n > M \quad\text{for all } n \ge N.
+          s_n > M \quad\text{for all } n > N.
           \]
           In this case it is written \(\lim_{n\to\infty} s_n = +\infty\).
         \item The sequence \((s_n)\) is said to \textbf{diverge to negative infinity} (or \textbf{diverge to \(-\infty\)}) if,
           for every \(M\in\setR\), there exists \(N\in\setN\) such that
           \[
-          s_n < M \quad\text{for all } n \ge N.
+          s_n < M \quad\text{for all } n > N.
           \]
           In this case it is written \(\lim_{n\to\infty} s_n = -\infty\).
       \end{itemize}
@@ -1368,13 +1390,15 @@
     \end{define}
 
     \begin{subprove}
-      
+      Let \(M \in \setR\) be given and \(N=\ceil{M^{2}}\).
+      Then, for all \(n > N \ge M^2 > 0\), it follows that \(\sqrt{n} > M\).
+      Therefore,
+      \[
+        \sqrt{n} > M.
+      \]
+      Thus, by \nameref{def:divergence-to-infinity}, the sequence diverges to \(+\infty\).
     \end{subprove}
 
-    \item The sequence \(a_n=(-1)^n\) does not converge.
-    \begin{subprove}
-      
-    \end{subprove}
   \end{enumerate}
 
   \item Determine the limits of the following sequences \((s_n)_{n\in\setN}\), if they exist. Prove your answer.
@@ -1383,13 +1407,10 @@
     A sequence \((s_n)_{n\in\setN}\) in \(\setR\) \textbf{has a limit} if it either converges to a limit in \(\setR\)
     or diverges to \(+\infty\) or \(-\infty\).
   \end{define}
-
-
-
   \begin{enumerate}
     \item \(s_n=\dfrac{n}{n^2+1}\).
     \begin{subprove}
-      
+
     \end{subprove}
 
     \item \(s_n=\cos(n\pi/3)\).
@@ -1408,88 +1429,40 @@
     \end{subprove}
   \end{enumerate}
 
+
+  \newpage
+
   \item Prove that \(\lim_{n\to\infty}\dfrac{n+6}{n^2-6}=0\) from the definition of sequence convergence.
   \begin{subprove}
     
   \end{subprove}
-\end{enumerate}
 
-
-\begin{define}{Uniqueness of Limits}[lem:uniqueness-of-limits][red]
-  A sequence in \(\setR\) has at most one limit.
+  \item Prove the following statement, Uniqueness of Limits.
+  \begin{define}{Uniqueness of Limits}[lem:uniqueness-of-limits][red]
+    A sequence in \(\setR\) has at most one limit.
+  \end{define}
   \begin{subprove}
     Suppose a sequence \((s_n)_{n\in\setN}\) has two limits \(L_1\) and \(L_2\) with \(L_1 \neq L_2\).
     Let \(\varepsilon = \frac{\abs{L_1 - L_2}}{3} > 0\).
     By \nameref{def:convergence-of-a-sequence}, there exist \(N_1, N_2 \in \setN\) such that
     \[
-      \abs{s_n - L_1} < \varepsilon \quad\text{for all } n \geq N_1,
+      \abs{s_n - L_1} < \varepsilon \quad\text{for all } n > N_1,
     \]
     and
     \[
-      \abs{s_n - L_2} < \varepsilon \quad\text{for all } n \geq N_2.
+      \abs{s_n - L_2} < \varepsilon \quad\text{for all } n > N_2.
     \]
-    Let \(N = \max(N_1, N_2)\). Then for all \(n \geq N\),
+    Let \(N = \max(N_1, N_2)\). Then, for all \(n > N\),
     \[
-      \abs{L_1 - L_2} = \abs{(L_1 - s_n) + (s_n - L_2)} \leq \abs{L_1 - s_n} + \abs{s_n - L_2} < 2\varepsilon = \frac{2\abs{L_1 - L_2}}{3},
+      \abs{L_1 - L_2} = \abs{(L_1 - s_n) + (s_n - L_2)} \leq \abs{s_n - L_1} + \abs{s_n - L_2} < 2\varepsilon = \frac{2\abs{L_1 - L_2}}{3},
     \]
-    that is, \(\abs{L_1 - L_2} < \frac{2\abs{L_1 - L_2}}{3}\), which is a contradiction.
-    
-    Therefore, the assumption that the sequence has two distinct limits is false, and hence a sequence in \(\setR\) has at most one limit.
+    which is a contradiction. Therefore, by contradiction, the sequence \((s_n)\) has at most one limit.
   \end{subprove}
-\end{define}
-
-
-% strictly increasing, strictly decreasing
-\begin{define}
-{Strictly Monotone Sequence}[def:strictly-monotone-sequence][red]
-  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{strictly monotone} if it is either
-  \begin{itemize}
-    \item \textbf{strictly increasing}, that is, \(s_n < s_{n+1}\) for all \(n \in \setN\), or
-    \item \textbf{strictly decreasing}, that is, \(s_n > s_{n+1}\) for all \(n \in \setN\).
-  \end{itemize}
-\end{define}
-
-
-% increasing, decreasing, monotone
-
-\begin{define}{Monotone Sequence}[def:monotone-sequence][red]
-  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{monotone} if it is either
-  \begin{itemize}
-    \item \textbf{increasing}, that is, \(s_n \leq s_{n+1}\) for all \(n \in \setN\), or
-    \item \textbf{decreasing}, that is, \(s_n \geq s_{n+1}\) for all \(n \in \setN\).
-  \end{itemize}
-\end{define}
-
-
-\begin{define}{Monotone Convergence Lemma}[lem:monotone-convergence-theorem][red]
-  Every bounded monotone sequence in \(\setR\) converges.
-  \begin{subprove}
-    Suppose \((s_n)_{n\in\setN}\) is a bounded monotone sequence in \(\setR\).
-    Without loss of generality, assume \((s_n)\) is increasing.
-    By \nameref{def:completeness-axiom}, 
-    the set \(S = \set{s_n : n \in \setN}\) has a supremum \(L = \sup(S) \in \setR\).
-    Let \(\varepsilon > 0\) be given.
-    Since \(L - \varepsilon\) is not an upper bound for \(S\),
-    there exists \(N \in \setN\) such that \(s_N > L - \varepsilon\).
-    Then, for all \(n \geq N\),
-    \[
-      L - \varepsilon < s_N \leq s_n \leq L < L + \varepsilon.,
-    \]
-    which implies
-    \[
-      \abs{s_n - L} < \varepsilon.
-    \]
-    Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(L\).
-
-  \end{subprove}
-\end{define}
+\end{enumerate}
 
 
 
-
-
-
-
+\newpage
 Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, t \in \mathbb{R}$.
 \begin{enumerate}
   \item Suppose \((s_n)\) is convergent. Prove that it is bounded. (Hint: apply the definition with \(\varepsilon = 1\).)
@@ -1519,14 +1492,77 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
     Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
   \end{subprove}
   \item Give an example of a bounded divergent sequence other than \(((-1)^n)\).
-  \item Give an example of a nonmonotonic convergent sequence other than \(((-1)^n / n)\).
+  \begin{subanswer}
+    The sequence \(s_n = \frac{n}{n+1}\cdot (-1)^n\) is bounded and divergent.
+    To see that it is bounded, let \(M = 1\). Then, for all \(n \in \setN\),
+    \[
+      \abs{s_n} = \abs{\frac{n}{n+1}} \leq 1.
+    \]
+    Therefore, by \nameref{def:bounded-sequence}, the sequence \((s_n)\) is bounded.
+    
+    To see that it is divergent, suppose that \((s_n)\) converges to a limit \(a \in \setR\) for the sake of contradiction.
+    Let \(\varepsilon = 0.1\). Then,
+    by \nameref{def:convergence-of-a-sequence}, there exists \(N \in \setN\) such that
+    \[
+      \abs{s_n - a} < 0.1 \quad\text{for all } n > N.
+    \]
+    Let \(n > N\) be a large enough even number (at least \(2\)) such that 
+    \(s_{n} = \frac{n}{n+1}\) and \(s_{n+1} = -\frac{n+1}{n+2}\).
+    Then, by the \nameref{def:triangle-inequality},
+    \[
+      1 < \abs{2 - \frac{1}{3} - \frac{1}{4}} < \abs{2 - \frac{1}{n+1} - \frac{1}{n+2}} = \abs{\frac{n}{n+1} + \frac{n+1}{n+2}}=\abs{s_n - s_{n+1}} \leq \abs{s_n - a} + \abs{s_{n+1} - a} < 2 \cdot \varepsilon = 0.2.
+    \]
+    which is a contradiction. Therefore, by contradiction, the sequence \((s_n)\) does not converge, and hence diverges.
+  \end{subanswer}
+
+
+  \newpage
+  
+  \item Give an example of a nonmonotone convergent sequence other than \(((-1)^n / n)\).
+  \begin{define}{Monotone Sequence}[def:monotone-sequence][red]
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{monotone} if it is either
+    \begin{itemize}
+      \item \textbf{increasing}, that is, \(s_n \leq s_{n+1}\) for all \(n \in \setN\), or
+      \item \textbf{decreasing}, that is, \(s_n \geq s_{n+1}\) for all \(n \in \setN\).
+    \end{itemize}
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is \textbf{strictly monotone} if it is either
+    \begin{itemize}
+      \item \textbf{strictly increasing}, that is, \(s_n < s_{n+1}\) for all \(n \in \setN\), or
+      \item \textbf{strictly decreasing}, that is, \(s_n > s_{n+1}\) for all \(n \in \setN\).
+    \end{itemize}
+  \end{define}
+  \begin{subanswer}
+    The sequence \(s_n = \frac{n}{n+1}\cdot (-1)^n\) is nonmonotone and convergent.
+  \end{subanswer}
+  
+  \item Prove the Monotone Convergence Theorem.
+  \begin{define}{Monotone Convergence Lemma}[lem:monotone-convergence-theorem][red]
+    Every bounded monotone sequence in \(\setR\) converges.
+  \end{define}
+  \begin{subprove}
+    Suppose \((s_n)_{n\in\setN}\) is a bounded monotone sequence in \(\setR\).
+    Without loss of generality, assume \((s_n)\) is increasing and bounded above for the sake of direct proof.
+    Then, by \nameref{def:completeness-axiom}, the set \(S = \set{s_n : n \in \setN}\) has a supremum \(L = \sup(S) \in \setR\).
+    Let \(\varepsilon > 0\) be given.
+    Since \(L - \varepsilon\) is not an upper bound for \(S\),
+    there exists \(N \in \setN\) such that \(L - \varepsilon < s_N\).
+    Then, for all \(n > N\), by the \nameref{def:monotone-sequence} and definition of supremum,
+    \[
+      L - \varepsilon < s_N \leq s_n \leq L < L + \varepsilon
+    \]
+    which implies
+    \[
+      \abs{s_n - L} < \varepsilon.
+    \]
+    Thus, by \nameref{def:convergence-of-a-sequence}, the sequence converges to \(L\).
+  \end{subprove}
+  
   \item Prove that if \((s_n)\) is an unbounded increasing sequence, then \(\lim s_n = +\infty\).
   \item How would you modify your previous proof to show that if \((s_n)\) is an unbounded decreasing sequence, then \(\lim s_n = -\infty\)?
   \item If \((s_n)\) is monotone, what can you conclude about \(\lim s_n\)? Justify your answer.
   \item Let \(k \in \setR\). Prove from the definition that if the sequence \((s_n)\) converges to \(s \in \setR\), then the sequence \((k s_n)\) converges to \(k s\).
   \item Prove from the definition that if \((s_n)\) converges to \(s \in \setR\) and \((t_n)\) converges to \(t \in \setR\), then \((s_n + t_n)\) converges to \(s + t\).
   \item Prove from the definition that if \((s_n)\) converges to \(s\) and \((t_n)\) converges to \(t\), then \((s_n t_n)\) converges to \(s t\). (Hint: use the triangle inequality, boundedness of convergent sequences, and addition of \(0 = -s_n t + s_n t\).)
-\end{enumerate}
 
 
 
@@ -1537,19 +1573,17 @@ Let $\left(s_n\right)$ and $\left(t_n\right)$ be real-valued sequences, and $s, 
 
 
 
-\begin{define}{Cauchy Sequence}[def:cauchy-sequence][red]
-  A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is a \textbf{Cauchy sequence} if,
-  for every \(\varepsilon>0\), there exists \(N\in\setN\) such that
-  \[
-    \abs{s_n - s_m} < \varepsilon \quad\text{for all } n, m \geq N.
-  \]
-\end{define}
 
-
-
-\begin{enumerate}
+  \newpage
   \item Prove that the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is not Cauchy. 
   Conclude it is divergent.
+  \begin{define}{Cauchy Sequence}[def:cauchy-sequence][red]
+    A sequence \((s_n)_{n\in\setN}\) in \(\setR\) is a \textbf{Cauchy sequence} if,
+    for every \(\varepsilon>0\), there exists \(N\in\setN\) such that
+    \[
+      \abs{s_n - s_m} < \varepsilon \quad\text{for all } n, m \geq N.
+    \]
+  \end{define}  
   \begin{subprove}
     Suppose that the sequence \(s_n=(-1)^{n+1}\dfrac{n}{n+1}\) is Cauchy 
     for the sake of contradiction.
