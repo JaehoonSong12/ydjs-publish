@@ -1,5 +1,5 @@
 % (1) General Configurations (.tex Project) 
-\documentclass[11pt]{article}
+\documentclass{article}
 \hbadness=10000                       % Suppress Warnings (Horizontal)
 \vbadness=10000                       % Suppress Warnings (Vertical)
 
@@ -27,6 +27,30 @@
 
 
 \newcommand{\proofstep}{\vspace*{10px}\\}
+
+
+
+
+% \theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+
+% \theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\numberwithin{equation}{section}
+
+
+
+
+
+
+
 
 
 % Add necessary macros for mathematical notation
@@ -85,12 +109,19 @@
   % \input{math2106/hw03.tex}\newpage
   % \input{math2106/hw04.tex}\newpage
   % \input{math2106/hw05.tex}\newpage
-  % \input{math2106/hw06.tex}\newpage
-  % \input{math2106/hw07.tex}\newpage
-  % \input{math2106/hw0607.tex}\newpage
-  \input{math2106/hw0809.tex}\newpage
-  % \input{math2106/hw09.tex}\newpage
+  
+  
   % \input{math2106/hwall.tex}\newpage
+
+
+  % \input{math2106/logic01.tex}\newpage
+  % \input{math2106/sets01.tex}\newpage
+  % \input{math2106/abstract_algebra01.tex}\newpage
+  % \input{math2106/analysis01.tex}\newpage
+
+
+
+
 
 
   %% MATH 4150: Number Theory
@@ -104,6 +135,8 @@
   % \input{math4150/hw0607.tex}\newpage
   % \input{math4150/hw07.tex}\newpage
   % \input{math4150/hwall.tex}\newpage
+
+  \input{math4150/number_theory.tex}\newpage
 
 
 
