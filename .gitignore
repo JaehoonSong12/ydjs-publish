@@ -1,4 +1,4 @@
-# --- Generated from ./.gitignores on Tue Dec 30 21:08:06 2025 ---
+# --- Generated from ./.gitignores on Tue Jan  6 11:33:13 2026 ---
 
 #############################################
 # A.gitignore
@@ -11,6 +11,7 @@ tmp*/
 remote*/
 VSLive*/
 vscode*/
+pyright*/
 cursor*/
 
 ################################################################
@@ -268,7 +269,7 @@ build.log
 #############################################
 *.tar
 *.tar.*
-*.jar
+# *.jar
 *.exe
 *.msi
 *.deb
@@ -1406,9 +1407,9 @@ C++.gitignore
 #############################################
 *.class
 
-# Package Files #
-*.jar
-*.war
+# # Package Files #
+# *.jar
+# *.war
 
 # gwt caches and compiled units #
 war/gwt_bree/
@@ -1858,14 +1859,14 @@ jobs/**/*workspace
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# # Package Files #
+# *.jar
+# *.war
+# *.nar
+# *.ear
+# *.zip
+# *.tar.gz
+# *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -2656,13 +2657,13 @@ Libs/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# # Package Files #
+# *.jar
+# *.war
+# *.ear
+# *.zip
+# *.tar.gz
+# *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -2732,14 +2733,14 @@ application/logs/*
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# # Package Files
+# *.jar
+# *.war
+# *.nar
+# *.ear
+# *.zip
+# *.tar.gz
+# *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -2817,7 +2818,7 @@ auth.json
 #############################################
 pom.xml
 pom.xml.asc
-*.jar
+# *.jar
 *.class
 /lib/
 /classes/
@@ -3044,8 +3045,8 @@ junit*.properties
 #############################################
 # ModelSim.gitignore
 #############################################
-# ignore ModelSim generated files and directories (temp files and so on)
-[_@]*
+# # ignore ModelSim generated files and directories (temp files and so on)
+# [_@]*
 
 # ignore compilation output of ModelSim
 *.mti
@@ -4324,7 +4325,7 @@ bin/tmp
 bin/target
 bin/*.ap_
 *.o
-*.jar
+# *.jar
 
 #############################################
 # Ruby.gitignore
