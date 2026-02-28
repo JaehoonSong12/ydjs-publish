@@ -6,28 +6,181 @@
 \input{preface.tex}
 \newpage
 
+
+
+
+
+
+\textbf{Cheat Sheet}\\[0.5em]
+
+\begin{define}{Differential equation}[def:diffeq]
+  A differential equation is an equation that relates an 
+  unknown function, its independent variable(s), and one 
+  or more of its derivatives. A solution is a function 
+  satisfying the equation (often obtained by integration).
+\end{define}
+
+\begin{define}{First order linear ODE}[def:firstorder]
+  The standard form is
+$$
+\frac{dx}{dt} + f(t)\,x = g(t).
+$$
+  The general solution has the form $x = x_h + x_p$, 
+  where $x_h$ satisfies the homogeneous equation 
+  ($g \equiv 0$) and $x_p$ is any particular solution.
+\end{define}
+
+\begin{define}{Integrating factor method}[def:integrating]
+  Define the integrating factor by
+$$
+\mu(t) = \exp\left(\int f(t)\,dt\right).
+$$
+  Then $\frac{d}{dt}\bigl[\mu(t)\,x\bigr] = \mu(t)\,g(t)$, so the general solution is
+  $$
+  x(t) = \frac{1}{\mu(t)}\left(\int \mu(t)\,g(t)\,dt + C\right).
+  $$
+\end{define}
+
+\begin{define}{Exponential growth and decay}[def:exponential]
+  The ODE and its general solution are
+$$
+  \frac{dx}{dt} = k\,x,\qquad x(t) = C\,e^{kt}.
+  $$
+\end{define}
+
+\begin{define}{First-order linear system}[def:linearsystem]
+  The system is
+  $$
+  \frac{d\vec{x}}{dt} = M\vec{x},\quad \vec{x} \in \mathbb{R}^n.
+  $$
+  The general solution is determined by the eigenvalues of $M$:
+
+  \renewcommand{\arraystretch}{1.6}%
+  \begin{center}
+  \small
+  \begin{tabularx}{\textwidth}{|l|X|}
+    \hline
+    \textbf{Eigenvalue type} & \textbf{General solution} \\
+    \hline
+    Real, distinct $\lambda_1,\ldots,\lambda_n$ & 
+    \[
+    \vec{x} = C_1 e^{\lambda_1 t}\vec{v}_1 + C_2 e^{\lambda_2 t}\vec{v}_2 + \cdots + C_n e^{\lambda_n t}\vec{v}_n,
+    \]
+    where $\vec{v}_i$ is an eigenvector for $\lambda_i$. \\
+    \hline
+    Repeated $\lambda$ (one eigenvector $\vec{x}_1$, generalized $\vec{x}_2$) & $(A - \lambda I)\vec{x}_1 = \vec{0}$, $(A - \lambda I)\vec{x}_2 = \vec{x}_1$. Then $\displaystyle \vec{x} = C_1 e^{\lambda t}\vec{x}_1 + C_2 e^{\lambda t}(t\vec{x}_1 + \vec{x}_2)$. \\
+    \hline
+    Complex $\lambda = \alpha \pm i\beta$ & $\displaystyle \vec{x} = e^{\alpha t}\bigl[C_1 \cos(\beta t) + C_2 \sin(\beta t)\bigr]$, or $\vec{x} = e^{\alpha t}\bigl[C_1 \mathrm{Re}(\vec{v}) + C_2 \mathrm{Im}(\vec{v})\bigr]$ for eigenvector $\vec{v}$. Orientation: $\mathrm{Im}(\vec{v}) \to \mathrm{Re}(\vec{v})$. \\
+    \hline
+  \end{tabularx}
+  \end{center}
+\end{define}
+
+
+
+\renewcommand{\arraystretch}{2.4}%
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{|X|l|l|X|>{\centering\arraybackslash}m{2.2cm}|}
+  \hline
+  \textbf{Eigenvalues} & \textbf{Type} & \textbf{Stability} & \textbf{Phase Portrait Shape} & \textbf{Sketch} \\
+  \hline
+  $\lambda_1,\lambda_2$ real, distinct, both $>0$ & Node & Unstable & Straight line trajectories outward &
+  \begin{tikzpicture}[scale=0.32, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[->, thick] (0,0) -- (0.9,0); \draw[->, thick] (0,0) -- (-0.9,0);
+    \draw[->, thick] (0,0) -- (0,0.9); \draw[->, thick] (0,0) -- (0,-0.9);
+    \draw[->] (0.45,0.26) -- (0.7,0.4); \draw[->] (-0.45,-0.26) -- (-0.7,-0.4);
+    \fill (0,0) circle (0.04);
+  \end{tikzpicture}
+  \\ \hline
+  $\lambda_1,\lambda_2$ real, distinct, both $<0$ & Node & Stable & Straight line trajectories inward &
+  \begin{tikzpicture}[scale=0.32, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[->, thick] (0.9,0) -- (0.05,0); \draw[->, thick] (-0.9,0) -- (-0.05,0);
+    \draw[->, thick] (0,0.9) -- (0,0.05); \draw[->, thick] (0,-0.9) -- (0,-0.05);
+    \draw[->] (0.6,0.35) -- (0.35,0.2); \draw[->] (-0.6,-0.35) -- (-0.35,-0.2);
+    \fill (0,0) circle (0.04);
+  \end{tikzpicture}
+  \\ \hline
+  Real, distinct, opposite signs & Saddle & Unstable & Hyperbola-shaped &
+  \begin{tikzpicture}[scale=0.32, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[->, thick] (0.7,0.7) -- (0.05,0.05); \draw[->, thick] (-0.7,-0.7) -- (-0.05,-0.05);
+    \draw[->, thick] (0.05,-0.05) -- (0.7,-0.7); \draw[->, thick] (-0.05,0.05) -- (-0.7,0.7);
+    \draw[thick] (0.5,0) .. controls (0.15,0.15) and (-0.15,-0.15) .. (-0.5,0);
+    \draw[thick] (0.5,0) .. controls (0.15,-0.15) and (-0.15,0.15) .. (-0.5,0);
+    \fill (0,0) circle (0.04);
+  \end{tikzpicture}
+  \\ \hline
+  Real, repeated, two eigenvectors & Proper node & Stable / Unstable by $\lambda$ & Straight lines &
+  \begin{tikzpicture}[scale=0.32, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[->, thick] (0.85,0.5) -- (0.05,0.03); \draw[->, thick] (-0.85,-0.5) -- (-0.05,-0.03);
+    \draw[->, thick] (-0.85,0.5) -- (-0.05,0.03); \draw[->, thick] (0.85,-0.5) -- (0.05,-0.03);
+    \fill (0,0) circle (0.04);
+  \end{tikzpicture}
+  \\ \hline
+  Real, repeated, one eigenvector & Improper node & Stable / Unstable by $\lambda$ & Curved, tangent to eigenvector &
+  \begin{tikzpicture}[scale=0.32, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[->, thick] (0.9,0) -- (0.05,0);
+    \draw[thick, ->] (0.75,0.4) to[bend right=25] (0.1,0.02);
+    \draw[thick, ->] (0.75,-0.4) to[bend left=25] (0.1,-0.02);
+    \draw[thick, ->] (-0.75,0.35) to[bend left=25] (-0.1,0.02);
+    \draw[thick, ->] (-0.75,-0.35) to[bend right=25] (-0.1,-0.02);
+    \fill (0,0) circle (0.04);
+  \end{tikzpicture}
+  \\ \hline
+  Complex: $a \pm bi$, $a > 0$ & Spiral & Unstable & Spiral outward &
+  \begin{tikzpicture}[scale=0.28, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[thick, domain=0:720, smooth, samples=90, ->] plot ({\x/400*cos(\x)*0.95}, {\x/400*sin(\x)*0.95});
+    \fill (0,0) circle (0.05);
+  \end{tikzpicture}
+  \\ \hline
+  Complex: $a \pm bi$, $a < 0$ & Spiral & Stable & Spiral inward &
+  \begin{tikzpicture}[scale=0.28, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[thick, domain=720:0, smooth, samples=90, ->] plot ({\x/400*cos(\x)*0.95}, {\x/400*sin(\x)*0.95});
+    \fill (0,0) circle (0.05);
+  \end{tikzpicture}
+  \\ \hline
+  Complex: $\pm bi$ (pure imaginary) & Center & Neutral & Closed circles / ellipses &
+  \begin{tikzpicture}[scale=0.32, baseline=-0.6ex, line cap=round, >=stealth]
+    \draw[thick] (0,0) ellipse (0.85 and 0.5);
+    \draw[->, thick] (0.6,0.2) arc (18:80:0.65);
+    \draw[->, thick] (-0.6,-0.2) arc (198:260:0.65);
+    \fill (0,0) circle (0.04);
+  \end{tikzpicture}
+  \\ \hline
+\end{tabularx}
+\end{center}
+
+
+
+
+
+
+
+
+\newpage
 \begin{enumerate}
 
   \item \textbf{Phase Plane Matching} (10 points)\\
   Match each initial value problem with the phase plane plot of its solution. (The arrows on the curves indicate how the solution point moves as $t$ increases.)
   \begin{enumerate}[label=\arabic*.]
-    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}0 & -1 \\ 1 & 0\end{array}\right] \overrightarrow{\boldsymbol{y}}, \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
+    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}0 & -1 \\ 1 & 0\end{array}\right] \overrightarrow{\boldsymbol{y}},\quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}-1 & -0.5 \\ 0.5 & -1\end{array}\right] \overrightarrow{\boldsymbol{y}}, \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
+    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}-1 & -0.5 \\ 0.5 & -1\end{array}\right] \overrightarrow{\boldsymbol{y}},\quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $\vec{y}^{\prime}=\left[\begin{array}{rr}0 & 2 \\ -2 & 0\end{array}\right] \vec{y}, \quad \vec{y}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
+    \item $\vec{y}^{\prime}=\left[\begin{array}{rr}0 & 2 \\ -2 & 0\end{array}\right] \vec{y},\quad \vec{y}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}1 & -0.5 \\ 0.5 & 1\end{array}\right] \overrightarrow{\boldsymbol{y}}_{,} \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$\\
+    \item $\overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}1 & -0.5 \\ 0.5 & 1\end{array}\right] \overrightarrow{\boldsymbol{y}},\quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}1 \\ 0\end{array}\right]$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
   \end{enumerate}
+
 
   \insertimage{0.40}{math2552/images/cus01}{reference attached}
 
@@ -36,15 +189,8 @@
   \item \textbf{Repeated Eigenvalues and Generalized Eigenvectors} (10 points)\\
   Suppose that the matrix $A$ has repeated eigenvalue with the following eigenvector and generalized eigenvector:  
   \[
-  \lambda = 2 \quad \text{with eigenvector } \vec{v} = 
-  \begin{bmatrix}
-  -2 \\ -3
-  \end{bmatrix}
-  \quad \text{and generalized eigenvector } 
-  \vec{w} =
-  \begin{bmatrix}
-  0 \\ -4
-  \end{bmatrix}.
+  \lambda = 2 \quad \text{with eigenvector } \vec{v} = \left[\begin{array}{r}-2 \\ -3\end{array}\right]
+  \quad \text{and generalized eigenvector } \vec{w} = \left[\begin{array}{r}0 \\ -4\end{array}\right].
   \]
   Write the solution to the linear system $\vec{r}\,' = A \vec{r}$ in the following forms.
   \begin{enumerate}[label=\textbf{\Alph*.}]
@@ -52,41 +198,18 @@
     \begin{subanswer}
       % your answer here
       \[
-      \begin{bmatrix}
-      x(t) \\ y(t)
-      \end{bmatrix}
-      =
-      c_{1}
-      \begin{bmatrix}
-      -2 \\ -3
-      \end{bmatrix} e^{2t}
-      +
-      c_{2}\left(
-      \begin{bmatrix}
-      0 \\ -4
-      \end{bmatrix}
-      +
-      \begin{bmatrix}
-      -2 \\ -3
-      \end{bmatrix} t
-      \right) e^{2t}.
+      \left[\begin{array}{l}x(t) \\ y(t)\end{array}\right]
+      = c_{1}\left[\begin{array}{r}-2 \\ -3\end{array}\right] e^{2t}
+      + c_{2}\left(\left[\begin{array}{r}0 \\ -4\end{array}\right] + \left[\begin{array}{r}-2 \\ -3\end{array}\right] t\right) e^{2t}.
       \]
     \end{subanswer}
     \item In fundamental matrix form:
     \begin{subanswer}
       % your answer here
       \[
-      \begin{bmatrix}
-      x(t) \\ y(t)
-      \end{bmatrix}
-      =
-      \begin{bmatrix}
-      -2e^{2t} & \; -2t e^{2t} \\[6pt]
-      -3e^{2t} & \; (-4 - 3t)e^{2t}
-      \end{bmatrix}
-      \begin{bmatrix}
-      c_{1} \\ c_{2}
-      \end{bmatrix}.
+      \left[\begin{array}{l}x(t) \\ y(t)\end{array}\right]
+      = \left[\begin{array}{rr}-2e^{2t} & -2t e^{2t} \\ -3e^{2t} & (-4 - 3t)e^{2t}\end{array}\right]
+      \left[\begin{array}{l}c_{1} \\ c_{2}\end{array}\right].
       \]
     \end{subanswer}
     \item As two equations:
@@ -115,21 +238,15 @@
 
   \item \textbf{Repeated Eigenvalues --- Initial Value Problem} (10 points)\\
   Consider the initial value problem
-  $$
-  \overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}
-  -6 & 1 \\
-  0 & -6
-  \end{array}\right] \overrightarrow{\boldsymbol{y}}, \quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{l}
-  -4 \\
-  -2
-  \end{array}\right]
-  $$
+  \[
+  \overrightarrow{\boldsymbol{y}}^{\prime}=\left[\begin{array}{rr}-6 & 1 \\ 0 & -6\end{array}\right] \overrightarrow{\boldsymbol{y}},\quad \overrightarrow{\boldsymbol{y}}(0)=\left[\begin{array}{r}-4 \\ -2\end{array}\right].
+\]
   \begin{enumerate}[label=(\alph*)]
     \item Find the eigenvalue $\lambda$, an eigenvector $\overrightarrow{\boldsymbol{v}_1}$, and a generalized eigenvector $\overrightarrow{\boldsymbol{v}_2}$ for the coefficient matrix of this linear system.
     \begin{subanswer}
       The coefficient matrix is
       \[
-        A=\begin{bmatrix}-6 & 1\\[4pt]0 & -6\end{bmatrix}.
+        A=\left[\begin{array}{rr}-6 & 1 \\ 0 & -6\end{array}\right].
       \]
       By the characteristic polynomial, $(\lambda+6)^2$, the repeated eigenvalue is defined as follows.
       \[
@@ -137,16 +254,16 @@
       \]
       Thus, \(\overrightarrow{v_1}\in\operatorname{null}(A+6I)\) where
       \[
-        A+6I=\begin{bmatrix}0 & 1\\[4pt]0 & 0\end{bmatrix}
+        A+6I=\left[\begin{array}{rr}0 & 1 \\ 0 & 0\end{array}\right]
       \]
       Therefore,
       \[
-        \overrightarrow{v_1}=\begin{bmatrix}1\\[4pt]0\end{bmatrix}.
+        \overrightarrow{v_1}=\left[\begin{array}{r}1 \\ 0\end{array}\right].
       \]
       Moreover, a generalized eigenvector $\overrightarrow{v_2}$ satisfies 
       $(A+6I)\overrightarrow{v_2}=\overrightarrow{v_1}$. Thus,
       \[
-        \overrightarrow{v_2}=\begin{bmatrix}0\\[4pt]1\end{bmatrix}.
+        \overrightarrow{v_2}=\left[\begin{array}{r}0 \\ 1\end{array}\right].
       \]
     \end{subanswer}
 
@@ -158,22 +275,22 @@
       \]
       , that is, 
       \[
-        \overrightarrow{y}(t)=e^{-6t}\Big(C_1\begin{bmatrix}1\\[4pt]0\end{bmatrix}+C_2\Big(t\begin{bmatrix}1\\[4pt]0\end{bmatrix}+\begin{bmatrix}0\\[4pt]1\end{bmatrix}\Big)\Big)
-        =e^{-6t}\begin{bmatrix}C_1+C_2 t\\[6pt]C_2\end{bmatrix},
+        \overrightarrow{y}(t)=e^{-6t}\Big(C_1\left[\begin{array}{r}1 \\ 0\end{array}\right]+C_2\Big(t\left[\begin{array}{r}1 \\ 0\end{array}\right]+\left[\begin{array}{r}0 \\ 1\end{array}\right]\Big)\Big)
+        =e^{-6t}\left[\begin{array}{l}C_1+C_2 t \\ C_2\end{array}\right],
       \]
       where $C_1,C_2\in\mathbb{R}$ are arbitrary constants.
     \end{subanswer}
 
     \item Solve the original initial value problem.
     \begin{subanswer}
-      Apply $\overrightarrow{y}(0)=\begin{bmatrix}-4\\[4pt]-2\end{bmatrix}$. From the general solution at $t=0$,
+      Apply $\overrightarrow{y}(0)=\left[\begin{array}{r}-4 \\ -2\end{array}\right]$. From the general solution at $t=0$,
       \[
-        \overrightarrow{y}(0)=\begin{bmatrix}C_1\\[4pt]C_2\end{bmatrix}=\begin{bmatrix}-4\\[4pt]-2\end{bmatrix},
+        \overrightarrow{y}(0)=\left[\begin{array}{l}C_1 \\ C_2\end{array}\right]=\left[\begin{array}{r}-4 \\ -2\end{array}\right],
       \]
       so $C_1=-4$ and $C_2=-2$. Therefore the IVP solution is
       \[
         \boxed{\displaystyle
-          \overrightarrow{y}(t)=e^{-6t}\begin{bmatrix}-4-2t\\[6pt]-2\end{bmatrix}
+          \overrightarrow{y}(t)=e^{-6t}\left[\begin{array}{r}-4-2t \\ -2\end{array}\right]
           \quad\text{or}\quad
           y_1(t)=(-4-2t)e^{-6t},\; y_2(t)=-2e^{-6t}.
         }
@@ -204,21 +321,9 @@
 
   \begin{enumerate}[label=(\alph*)]
     \item Set up a system of first-order differential equations that models this situation.\\
-    $$
-    \left[\begin{array}{l}
-    Q_1^{\prime} \\
-    Q_2^{\prime}
-    \end{array}\right]=\left[\begin{array}{ll} 
-    & \square \\
-    & \square
-    \end{array}\right]+\left[\begin{array}{l}
-    Q_1 \\
-    Q_2
-    \end{array}\right]+\left[\begin{array}{l}
-    \square \\
-    \square
-    \end{array}\right]
-    $$\\
+    \[
+    \left[\begin{array}{l} Q_1^{\prime} \\ Q_2^{\prime} \end{array}\right]=\left[\begin{array}{rr} \square & \square \\ \square & \square \end{array}\right]\left[\begin{array}{l} Q_1 \\ Q_2 \end{array}\right]+\left[\begin{array}{l} \square \\ \square \end{array}\right]
+    \]\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -287,34 +392,16 @@
     % your answer here
   \end{subanswer}
   Now write the first order system using matrices:
-  $$
-  \frac{d}{d t}\left[\begin{array}{l}
-  u \\
-  v
-  \end{array}\right]=\left[\begin{array}{ll}
-  \square & \square \\
-  \square & \square
-  \end{array}\right] \quad\left[\begin{array}{l}
-  u \\
-  v
-  \end{array}\right]+\left[\begin{array}{l}
-  \square \\
-  \square
-  \end{array}\right]
-  $$
+  \[
+  \frac{d}{dt}\left[\begin{array}{l} u \\ v \end{array}\right]=\left[\begin{array}{rr} \square & \square \\ \square & \square \end{array}\right]\left[\begin{array}{l} u \\ v \end{array}\right]+\left[\begin{array}{l} \square \\ \square \end{array}\right]
+  \]
   \begin{subanswer}
     % your answer here
   \end{subanswer}
   The initial value of the vector valued solution for this system is:
-  $$
-  \left[\begin{array}{l}
-  u(1) \\
-  v(1)
-  \end{array}\right]=\left[\begin{array}{l}
-  \square \\
-  \square
-  \end{array}\right] .
-  $$
+  \[
+  \left[\begin{array}{l} u(1) \\ v(1) \end{array}\right]=\left[\begin{array}{l} \square \\ \square \end{array}\right].
+  \]
   \begin{subanswer}
     % your answer here
   \end{subanswer}
