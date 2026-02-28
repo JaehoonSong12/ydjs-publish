@@ -9,104 +9,115 @@
 
 
 
+\textbf{Definition.} For $f(t)$ defined for $t \ge 0$, piecewise continuous and of exponential order:
+$$
+F(s) = \mathcal{L}\{f(t)\} = \int_{0}^{\infty} e^{-st} f(t) \, dt.
+$$
+\textbf{Functional transforms.}
+\renewcommand{\arraystretch}{1.8}%
+\begin{center}
+\begin{tabularx}{\textwidth}{|X|c|X|}
+  \hline
+  \textbf{$f(t)$} & \textbf{$F(s)=\mathcal{L}\{f(t)\}$} & \textbf{ROC} \\
+  \hline
+  $\displaystyle 1$ & $\displaystyle \frac{1}{s}$ & $\displaystyle s > 0$ \\
+  $\displaystyle t^n$ ($n \in \mathbb{N}$) & $\displaystyle \frac{n!}{s^{n+1}}$ & $\displaystyle s > 0$ \\
+  $\displaystyle e^{at}$ & $\displaystyle \frac{1}{s-a}$ & $\displaystyle s > a$ \\
+  $\displaystyle \sin(at)$ & $\displaystyle \frac{a}{s^2 + a^2}$ & $\displaystyle s > 0$ \\
+  $\displaystyle \cos(at)$ & $\displaystyle \frac{s}{s^2 + a^2}$ & $\displaystyle s > 0$ \\
+  $\displaystyle \sinh(at)$ & $\displaystyle \frac{a}{s^2 - a^2}$ & $\displaystyle s > |a|$ \\
+  $\displaystyle \cosh(at)$ & $\displaystyle \frac{s}{s^2 - a^2}$ & $\displaystyle s > |a|$ \\
+  $\displaystyle t^n e^{at}$ & $\displaystyle \frac{n!}{(s-a)^{n+1}}$ & $\displaystyle s > a$ \\
+  $\displaystyle e^{at} \sin(bt)$ & $\displaystyle \frac{b}{(s-a)^2 + b^2}$ & $\displaystyle s > a$ \\
+  $\displaystyle e^{at} \cos(bt)$ & $\displaystyle \frac{s-a}{(s-a)^2 + b^2}$ & $\displaystyle s > a$ \\
+  \hline
+\end{tabularx}
+\end{center}
+
+\textbf{Operational properties.}
+\begin{itemize}[noitemsep,topsep=2pt]
+  \item \textbf{Linearity:}
+  $$\mathcal{L}\{a f(t) + b g(t)\} = a F(s) + b G(s).$$
+  \item \textbf{First shifting (frequency):}
+  $$\mathcal{L}\{e^{at} f(t)\} = F(s-a).$$
+  \item \textbf{Second shifting (time):} With unit step $u(t-a)$:
+  $$\mathcal{L}\{f(t-a)u(t-a)\} = e^{-as} F(s); \qquad \mathcal{L}\{g(t)u(t-a)\} = e^{-as} \mathcal{L}\{g(t+a)\}.$$
+  \item \textbf{Differentiation of transform:}
+  $$\mathcal{L}\{t^n f(t)\} = (-1)^n \frac{d^n F}{ds^n}(s).$$
+  \item \textbf{Integration of transform:} If $\displaystyle\lim_{t \to 0^+} \frac{f(t)}{t}$ exists:
+  $$\mathcal{L}\left\{\frac{f(t)}{t}\right\} = \int_{s}^{\infty} F(\sigma) \, d\sigma.$$
+\end{itemize}
+
+\textbf{Transforms of derivatives (IVPs).}
+$$
+\mathcal{L}\{f'\} = s F(s) - f(0); \quad \mathcal{L}\{f''\} = s^2 F(s) - s f(0) - f'(0); \quad \mathcal{L}\{f^{(n)}\} = s^n F(s) - s^{n-1} f(0) - \cdots - f^{(n-1)}(0).
+$$
+\textbf{Integral:} $\mathcal{L}\bigl\{\displaystyle\int_0^t f(\tau)\,d\tau\bigr\} = \dfrac{F(s)}{s}$.
+
+\textbf{Convolution \& special.} $(f * g)(t) = \displaystyle\int_0^t f(\tau)g(t-\tau)\,d\tau$; $\mathcal{L}\{f * g\} = F(s)G(s)$. Dirac delta: $\mathcal{L}\{\delta(t - t_0)\} = e^{-s t_0}$ ($t_0 > 0$). Periodic $f$ (period $T$): $\mathcal{L}\{f\} = \dfrac{1}{1 - e^{-sT}} \displaystyle\int_0^T e^{-st} f(t)\,dt$.
+
+\newpage
 \begin{enumerate}
 
 
   \item \textbf{Laplace Transform} (10 points)\\
   \begin{enumerate}[label=(\alph*)]
     \item Set up an integral for finding the Laplace transform of $f(t)=3$.
-    $$
-    F(s)=\mathcal{L}\{f(t)\}=\int_A^B \square
-    $$
-    where $A=$ $\square$ and $B=$ $\square$ .
     \begin{subanswer}
-      % your answer here
+      $$
+      F(s)=\mathcal{L}\{f(t)\}=\int_{A}^{B} 3e^{-st}\,dt
+      $$
+      where $A=\displaystyle 0$ and $B=\displaystyle \infty$.
     \end{subanswer}
-    \item Find the antiderivative (with constant term 0 ) corresponding to the previous part.
-    $\square$
+
+    \item Find the antiderivative (with constant term $0$) corresponding to the previous part.
     \begin{subanswer}
-      % your answer here
+      \[
+        \int 3e^{-st}\,dt = -\frac{3}{s}e^{-st} \quad\text{(choose constant }0\text{).}
+      \]
     \end{subanswer}
     \item Evaluate appropriate limits to compute the Laplace transform of $f(t)$ :
     $$
-    F(s)=\mathcal{L}\{f(t)\}=\square
+    F(s)=\mathcal{L}\{f(t)\}=\frac{3}{s}
     $$
     \begin{subanswer}
-      % your answer here
+      \[
+        F(s)=\lim_{b\to\infty}\Big[-\frac{3}{s}e^{-st}\Big]_{t=0}^{t=b}
+        =\lim_{b\to\infty}\left(-\frac{3}{s}e^{-sb}+\frac{3}{s}\right)
+        =\frac{3}{s},
+      \]
+      provided the limit exists.
     \end{subanswer}
-    \item Where does the Laplace transform you found exist? In other words, what is the domain of $F(s)$ ?
-    $\square$
+    \item Where does the Laplace transform you found exist? In other words, what is the domain of $F(s)$?
+    \[
+      \{\,s\in\mathbb{C}:\operatorname{Re}(s)>0\,\}
+    \]
     \begin{subanswer}
-      % your answer here
+      The integral converges when $e^{-\operatorname{Re}(s)\,t}$ decays as $t\to\infty$, i.e. when $\operatorname{Re}(s)>0$. Hence the domain of $F$ is
+      \[
+        \{s\in\mathbb{C}:\operatorname{Re}(s)>0\},
+      \]
+      and for such $s$ one has $F(s)=\dfrac{3}{s}$.
     \end{subanswer}
   \end{enumerate}
-
-
-
-\begin{enumerate}[label=(\alph*)]
-  \item Set up an integral for finding the Laplace transform of $f(t)=3$.
-  \begin{subanswer}
-    $$
-    F(s)=\mathcal{L}\{f(t)\}=\int_{A}^{B} 3e^{-st}\,dt
-    $$
-    where $A=\displaystyle 0$ and $B=\displaystyle \infty$.
-  \end{subanswer}
-
-  \item Find the anti-derivative (with integral constant term $0$) corresponding to the previous part.
-  \begin{subanswer}
-    \[
-      \int 3e^{-st}\,dt = -\frac{3}{s}e^{-st} \quad\text{(choose constant }0\text{).}
-    \]
-  \end{subanswer}
-
-  \item Evaluate appropriate limits to compute the Laplace transform of $f(t)$ :
-  $$
-  F(s)=\mathcal{L}\{f(t)\}=\frac{3}{s}
-  $$
-  \begin{subanswer}
-    \[
-      F(s)=\lim_{b\to\infty}\Big[-\frac{3}{s}e^{-st}\Big]_{t=0}^{t=b}
-      =\lim_{b\to\infty}\left(-\frac{3}{s}e^{-sb}+\frac{3}{s}\right)
-      =\frac{3}{s},
-    \]
-    provided the limit exists.
-  \end{subanswer}
-
-  \item Where does the Laplace transform you found exist? In other words, what is the domain of $F(s)$ ?
-  \[
-    \{\,s\in\mathbb{C}:\operatorname{Re}(s)>0\,\}
-  \]
-  \begin{subanswer}
-    The integral converges when $e^{-\operatorname{Re}(s)\,t}$ decays as $t\to\infty$, i.e. when $\operatorname{Re}(s)>0$. Hence the domain of $F$ is
-    \[
-      \{s\in\mathbb{C}:\operatorname{Re}(s)>0\},
-    \]
-    and for such $s$ one has $F(s)=\dfrac{3}{s}$.
-  \end{subanswer}
-\end{enumerate}
-
-
-
-
-
-
-
-
+  \newpage
   \item \textbf{Laplace Transform of Trigonometric Functions} (10 points)\\
   Consider $f(t)=\tan (t)$.
   \begin{enumerate}[label=(\alph*)]
     \item The function $f(t)$ is
-    A. continuous on $0 \leq t<\infty$.
-    B. discontinuous but piecewise continuous on $0 \leq t<\infty$.
-    C. neither.
+    \begin{enumerate}[label=(\Roman*)]
+      \item continuous on $0 \leq t<\infty$.
+      \item discontinuous but piecewise continuous on $0 \leq t<\infty$.
+      \item neither.
+    \end{enumerate}
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Is $f(t)$ exponentially bounded on $0 \leq t<\infty$ ? $\square$ ?
+    \item Is $f(t)$ exponentially bounded on $0 \leq t<\infty$?
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Does the Laplace transform of $f(t)$ exist (on some domain, i.e., for some values of s )? $\square$ ?
+    \item Does the Laplace transform of $f(t)$ exist (on some domain, i.e., for some values of $s$)?
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -127,6 +138,8 @@
     % your answer here
   \end{subanswer}
 
+
+  \newpage
   \item \textbf{Laplace Transform of Initial Value Problem} (10 points)\\
   Consider the initial value problem
   $$
@@ -168,14 +181,14 @@
   \begin{subanswer}
     % your answer here
   \end{subanswer}
-  and write the above answer in its partial fraction decomposition, $Y(s)=\frac{A}{s+a}+\frac{B}{s+b}$ where $a<b$
+  and write the above answer in its partial fraction decomposition, $Y(s)=\frac{A}{s+a}+\frac{B}{s+b}$ where $a<b$.
   $$
   Y(s)=\square+\square
   $$
   \begin{subanswer}
     % your answer here
   \end{subanswer}
-  Now by inverting the transform, find $y(t)=$ $\square$ .
+  Now by inverting the transform, find $y(t)=$ $\square$.
   \begin{subanswer}
     % your answer here
   \end{subanswer}
@@ -231,12 +244,15 @@
     % your answer here
   \end{subanswer}
 
+
+
+  \newpage
   \item \textbf{Laplace Transform of Impulse} (10 points)\\
   Solutions to linear differential equations can be written using convolutions as
   $$
   y=y_{\mathrm{IVP}}+(h(t) * f(t))
   $$
-  - $y_{\text {IVP }}$ is the solution to the associated homogeneous differential equation with the given initial values
+  - $y_{\mathrm{IVP}}$ is the solution to the associated homogeneous differential equation with the given initial values
   (ignore the forcing function, keep initial values).
   - $h(t)$ is the impulse response
   (ignore the initial values and forcing function).
@@ -284,7 +300,7 @@
   $$
   y^{\prime \prime}+14 y^{\prime}+74 y=\delta(t-2) \quad y(0)=0, y^{\prime}(0)=0
   $$
-  Use step(t-c) for $u_c(t) . y(t)=$ $\square$
+  Use step(t-c) for $u_c(t)$. $y(t)=$ $\square$
   \begin{subanswer}
     % your answer here
   \end{subanswer}
@@ -299,9 +315,9 @@
   $$
   taking $(x, y)>0$.
   \begin{enumerate}[label=(\alph*)]
-    \item Write an equation for the (non-zero) vertical ( $x$-)nullcline of this system:
+    \item Write an equation for the (non-zero) vertical ($x$-)nullcline of this system:
     (Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)
-    And for the (non-zero) horizontal ( $y$-)nullcline:
+    And for the (non-zero) horizontal ($y$-)nullcline:
     $\square$
     (Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)
     (Note that there are also nullclines lying along the axes.)
@@ -309,19 +325,19 @@
       % your answer here
     \end{subanswer}
     \item What are the equilibrium points for the system?
-    Equilibria = $\square$
+    Equilibria = $\square$\\
     (Enter the points as comma-separated $(x, y)$ pairs, e.g., $(\mathbf{1 , 2}),(\mathbf{3 , 4})$.)
     \begin{subanswer}
       % your answer here
     \end{subanswer}
     \item Use your nullclines to estimate trajectories in the phase plane, completing the following sentence:
-    If we start at the initial position $\left(\frac{3}{2}, \frac{1}{2}\right)$, trajectories $\square$ converge to the point $\square$ .
+    If we start at the initial position $\left(\frac{3}{2}, \frac{1}{2}\right)$, trajectories $\square$ converge to the point $\square$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
   \end{enumerate}
 
-  \item \textbf{Phase Plane Analysis of Robbin-Worms} (10 points)\\
+  \item \textbf{Phase Plane Analysis of Robin–Worms} (10 points)\\
   Consider the equations describing the interactions of robins $r$ and worms $w$,
   $$
   \begin{aligned}
@@ -339,7 +355,7 @@
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Your nullclines divide the phase plane into four regions. Give a sample point in each region, and indicate for that point whether each of the populations is increasing or decreasing (by entering the word increasing or decreasing appropriate blank):
+    \item Your nullclines divide the phase plane into four regions. Give a sample point in each region, and indicate for that point whether each of the populations is increasing or decreasing (by entering the word increasing or decreasing in the appropriate blank):
     (i) $(w, r)=$ $\qquad$ , $\square$ ) is in one region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .
     (ii) $(w, r)=($ $\square$
     $\square$ ) is in a second region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .
@@ -371,13 +387,13 @@
       % your answer here
     \end{subanswer}
     \item What are the equilibrium points for the system?
-    Equilibria = $\square$
+    Equilibria = $\square$\\
     (Enter the points as comma-separated $(x, y)$ pairs, e.g., $(\mathbf{1 , 2}),(\mathbf{3 , 4})$.)
     \begin{subanswer}
       % your answer here
     \end{subanswer}
     \item Use your nullclines to estimate trajectories in the phase plane, completing the following sentence:
-    If we start at the initial position $(3,1)$, trajectories $\square$ converge to the point $\square$ .
+    If we start at the initial position $(3,1)$, trajectories $\square$ converge to the point $\square$.
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -389,13 +405,13 @@
   \frac{d y}{d x}=\frac{x^2}{y} ; \quad y(0.5)=3 .
   $$
   Let $f(x, y)=x^2 / y$.
-  We let $x_0=0.5$ and $y_0=3$ and pick a step size $h=0.2$. Euler's method is the the following algorithm. From $x_n$ and $y_n$, our approximations to the solution of the differential equation at the nth stage, we find the next stage by computing
+  We let $x_0=0.5$ and $y_0=3$ and pick a step size $h=0.2$. Euler's method is the following algorithm. From $x_n$ and $y_n$, our approximations to the solution of the differential equation at the $n$th stage, we find the next stage by computing
   $$
   x_{n+1}=x_n+h, \quad y_{n+1}=y_n+h \cdot f\left(x_n, y_n\right) .
   $$
   Complete the following table. Your answers should be accurate to at least seven decimal places.
   \begin{tabular}{|c|c|c|}
-  \hline$n$ & $x_n$ & $y_n$ \\
+  \hline $n$ & $x_n$ & $y_n$ \\
   \hline 0 & 0.5 & 3 \\
   \hline 1 & & \\
   \hline 2 & & \\
@@ -410,7 +426,7 @@
   $$
   Thus the actual value of the function at the point $x=1.5$
   $$
-  y(1.5)=\square .
+  y(1.5)=\square.
   $$
   \begin{subanswer}
     % your answer here
@@ -527,11 +543,11 @@
     $$
     F(s)=\mathcal{L}\{f(t)\}=\int_A^B \square
     $$\\
-    where $A=$ $\square$ and $B=$ $\square$ .\\
+    where $A=$ $\square$ and $B=$ $\square$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Find the antiderivative (with constant term 0 ) corresponding to the previous part.\\
+    \item Find the antiderivative (with constant term 0) corresponding to the previous part.\\
     $\square$\\
     \begin{subanswer}
       % your answer here
@@ -543,7 +559,7 @@
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Where does the Laplace transform you found exist? In other words, what is the domain of $F(s)$ ?\\
+    \item Where does the Laplace transform you found exist? In other words, what is the domain of $F(s)$?\\
     $\square$\\
     \begin{subanswer}
       % your answer here
@@ -560,11 +576,11 @@
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Is $f(t)$ exponentially bounded on $0 \leq t<\infty$ ? $\square$ ?\\
+    \item Is $f(t)$ exponentially bounded on $0 \leq t<\infty$? $\square$\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Does the Laplace transform of $f(t)$ exist (on some domain, i.e., for some values of s )? $\square$ ?\\
+    \item Does the Laplace transform of $f(t)$ exist (on some domain, i.e., for some values of $s$)? $\square$\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -628,14 +644,14 @@
   \begin{subanswer}
     % your answer here
   \end{subanswer}
-  and write the above answer in its partial fraction decomposition, $Y(s)=\frac{A}{s+a}+\frac{B}{s+b}$ where $a<b$\\
+  and write the above answer in its partial fraction decomposition, $Y(s)=\frac{A}{s+a}+\frac{B}{s+b}$ where $a<b$.
   $$
   Y(s)=\square+\square
   $$
   \begin{subanswer}
     % your answer here
   \end{subanswer}
-  Now by inverting the transform, find $y(t)=$ $\square$ .\\
+  Now by inverting the transform, find $y(t)=$ $\square$.\\
   \begin{subanswer}
     % your answer here
   \end{subanswer}
@@ -701,7 +717,7 @@
   $$
   y=y_{\mathrm{IVP}}+(h(t) * f(t))
   $$
-  - $y_{\text {IVP }}$ is the solution to the associated homogeneous differential equation with the given initial values
+  - $y_{\mathrm{IVP}}$ is the solution to the associated homogeneous differential equation with the given initial values
   (ignore the forcing function, keep initial values).\\
   - $h(t)$ is the impulse response
   (ignore the initial values and forcing function).\\
@@ -748,7 +764,7 @@
   $$
   y^{\prime \prime}+14 y^{\prime}+74 y=\delta(t-2) \quad y(0)=0, y^{\prime}(0)=0
   $$
-  Use step(t-c) for $u_c(t) . y(t)=$ $\square$\\
+  Use step(t-c) for $u_c(t)$. $y(t)=$ $\square$\\
   \begin{subanswer}
     % your answer here
   \end{subanswer}
@@ -765,9 +781,9 @@
   $$
   taking $(x, y)>0$.
   \begin{enumerate}[label=(\alph*)]
-    \item Write an equation for the (non-zero) vertical ( $x$-)nullcline of this system:\\
+    \item Write an equation for the (non-zero) vertical ($x$-)nullcline of this system:\\
     (Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)\\
-    And for the (non-zero) horizontal ( $y$-)nullcline:\\
+    And for the (non-zero) horizontal ($y$-)nullcline:\\
     $\square$\\
     (Enter your equation, e.g., $\boldsymbol{y}=\boldsymbol{x}$.)\\
     (Note that there are also nullclines lying along the axes.)\\
@@ -781,7 +797,7 @@
       % your answer here
     \end{subanswer}
     \item Use your nullclines to estimate trajectories in the phase plane, completing the following sentence:\\
-    If we start at the initial position $\left(\frac{3}{2}, \frac{1}{2}\right)$, trajectories $\square$ converge to the point $\square$ .\\
+    If we start at the initial position $\left(\frac{3}{2}, \frac{1}{2}\right)$, trajectories $\square$ converge to the point $\square$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -803,7 +819,7 @@
     \begin{subanswer}
       % your answer here
     \end{subanswer}
-    \item Your nullclines divide the phase plane into four regions. Give a sample point in each region, and indicate for that point whether each of the populations is increasing or decreasing (by entering the word increasing or decreasing appropriate blank):\\
+    \item Your nullclines divide the phase plane into four regions. Give a sample point in each region, and indicate for that point whether each of the populations is increasing or decreasing (by entering the word increasing or decreasing in the appropriate blank):\\
     (i) $(w, r)=$ $\qquad$ , $\square$ ) is in one region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .\\
     (ii) $(w, r)=($ $\square$ $\square$ ) is in a second region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .\\
     (iii) $(w, r)=$ $\square$ , $\square$ ) is in a third region, where the population of worms, $w$ is $\square$ and the population of robins, $r$ is $\square$ .\\
@@ -840,7 +856,7 @@
       % your answer here
     \end{subanswer}
     \item Use your nullclines to estimate trajectories in the phase plane, completing the following sentence:\\
-    If we start at the initial position $(3,1)$, trajectories $\square$ converge to the point $\square$ .\\
+    If we start at the initial position $(3,1)$, trajectories $\square$ converge to the point $\square$.\\
     \begin{subanswer}
       % your answer here
     \end{subanswer}
@@ -854,7 +870,7 @@
   \frac{d y}{d x}=\frac{x^2}{y} ; \quad y(0.5)=3 .
   $$
   Let $f(x, y)=x^2 / y$.
-  We let $x_0=0.5$ and $y_0=3$ and pick a step size $h=0.2$. Euler's method is the following algorithm. From $x_n$ and $y_n$, our approximations to the solution of the differential equation at the nth stage, we find the next stage by computing
+  We let $x_0=0.5$ and $y_0=3$ and pick a step size $h=0.2$. Euler's method is the following algorithm. From $x_n$ and $y_n$, our approximations to the solution of the differential equation at the $n$th stage, we find the next stage by computing
   $$
   x_{n+1}=x_n+h, \quad y_{n+1}=y_n+h \cdot f\left(x_n, y_n\right) .
   $$
@@ -886,7 +902,7 @@
   $$
   Thus the actual value of the function at the point $x=1.5$
   $$
-  y(1.5)=\square .
+  y(1.5)=\square.
   $$
   \begin{subanswer}
     % your answer here
