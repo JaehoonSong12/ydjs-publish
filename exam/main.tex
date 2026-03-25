@@ -1,0 +1,87 @@
+\documentclass[addpoints]{exam}
+
+% Instructor answer key: uncomment \printanswers (or add class option [answers]).
+% \printanswers
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{letterpaper, margin=1in}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\pointsinrightmargin
+\bracketedpoints
+\marginpointname{pts}
+
+\hqword{Question:}
+\hpword{Points:}
+\hsword{Score:}
+\htword{Total}
+\vqword{Question}
+\vpword{Points}
+\vsword{Score}
+\vtword{Total}
+\gradetablestretch{1.15}
+
+% Inline blanks using \fillin (no \answerline question-number prefix).
+% Space between printed answer and rule: exam default \answerclearance is tight; widen with:
+\newlength{\fillinrulegap}
+\setlength{\fillinrulegap}{0.55ex}
+\makeatletter
+\newcommand{\exam@fillinspaced}[2]{%
+  \begingroup
+  \setlength{\answerclearance}{\fillinrulegap}%
+  \fillin[#1][#2]%
+  \endgroup
+}%
+\newcommand{\labeledfillin}[2]{%
+  \par\nobreak\vskip\answerskip
+  \noindent#1:\ \exam@fillinspaced{#2}{2.3in}%
+}%
+% Optional arg = blank width (default 2.2in); mandatory arg = answer key for \printanswers.
+\newcommand{\rightfillin}[2][2.2in]{%
+  \par\nobreak\vskip\answerskip
+  \noindent\hfill\exam@fillinspaced{#2}{#1}%
+}%
+\makeatother
+
+\pagestyle{headandfoot}
+\firstpageheader{\textbf{Mathematics 6}}{\textbf{Milestone Practice}}{\textbf{\today}}
+\runningheader{Mathematics 6}{Milestone Practice}{Page \thepage\ of \numpages}
+\firstpagefooter{}{}{}
+\runningfooter{}{\small Page \thepage\ of \numpages}{}
+
+\begin{document}
+
+\begin{center}
+  \fbox{% 
+    \begin{minipage}{0.92\linewidth}
+      \vspace{2mm}
+      \textbf{Name:}\ \hrulefill \\
+      \textbf{Student ID:}\ \hrulefill \quad
+      \textbf{Section:}\ \hrulefill
+      \vspace{2mm}
+    \end{minipage}%
+  }
+\end{center}
+\vspace{4mm}
+
+\begin{center}
+  \textbf{Instructions}
+\end{center}
+\begin{itemize}
+  \item Verify that your copy has \textbf{all \numpages\ pages}.
+  \item Show all work where space is provided; partial credit may be awarded.
+  \item Do not use calculators unless your instructor says otherwise.
+  \item Total possible points: \textbf{\numpoints}.
+\end{itemize}
+\vspace{4mm}
+
+\newpage
+\begin{questions}
+  % \input{math-6th/01-algebra}\newpage
+  \input{math-6th/05-stats}\newpage
+\end{questions}
+
+\end{document}
