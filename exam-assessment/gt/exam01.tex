@@ -1,0 +1,70 @@
+% --- Page Style ---
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Course: CS 2110 - Discrete Mathematics}
+\rhead{Exam ID: \underline{\hspace{2cm}}}
+\lfoot{Georgia Institute of Technology}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- Header spanning both columns ---
+\twocolumn[
+  \begin{center}
+    {\huge \textbf{Midterm Examination II}} \\
+    \vspace{0.2cm}
+    {\large \textbf{Topics: Number Theory and Abstract Algebra}} \\
+    \vspace{0.4cm}
+    \begin{tabular}{|l|l|}
+      \hline
+      \textbf{Student Name:} & \hspace{6cm} \\ \hline
+      \textbf{GTID:} & \hspace{6cm} \\ \hline
+    \end{tabular}
+  \end{center}
+  \vspace{0.6cm}
+  \textbf{Instructions:} Answer all questions in the space provided. You may use the back of the pages for scratch work. Calculators are not permitted.
+  \vspace{0.8cm}
+]
+
+% --- Questions ---
+
+\section*{Part I: Number Theory}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}]
+
+  \item Let $n \in \mathbb{Z}^+$. Define the reduced residue system modulo $n$ as $Z_n^x$. If $n = 12$, list all elements of $Z_n^x$. \points{5}
+  \vspace{2cm}
+
+  \item Prove Wilson's Theorem: For any prime $p$, $(p-1)! \equiv -1 \pmod{p}$. \points{10}
+  \vspace{4cm}
+
+  \item Solve the following system of linear congruences using the Chinese Remainder Theorem:
+  \begin{align*}
+    x &\equiv 2 \pmod{3} \\
+    x &\equiv 3 \pmod{5} \\
+    x &\equiv 2 \pmod{7}
+  \end{align*} \points{10}
+  \vspace{4cm}
+
+\end{enumerate}
+
+\section*{Part II: Abstract Algebra}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, resume]
+
+  \item Define a group $(G, \ast)$. Prove that the identity element $e \in G$ is unique. \points{5}
+  \vspace{3cm}
+
+  \item Let $H$ be a subgroup of $G$. Define the left cosets of $H$ in $G$ and state Lagrange's Theorem regarding the order of $H$. \points{10}
+  \vspace{4cm}
+
+  \item \textbf{True/False:} Every cyclic group is Abelian. Briefly justify your answer. \points{5}
+  \vspace{2cm}
+
+\end{enumerate}
+
+\section*{Part III: Bonus}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{\arabic*.}, resume]
+  \item Find the greatest lower bound (infimum) and least upper bound (supremum) for the set $S = \{ \frac{1}{n} : n \in \mathbb{Z}^+ \}$. \points{5}
+\end{enumerate}
