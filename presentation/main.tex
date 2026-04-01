@@ -99,7 +99,42 @@ export PATH="$JDK_HOME/bin:$PYTHON_HOME/bin:$PATH"
   \end{block}
 \end{frame}
 
-% Slide 5: Java Compilation & Execution Workflow (Compilation Diagram)
+
+
+
+% Slide 5: Abstraction example --- Minecraft (visible outcome)
+\begin{frame}{Abstraction: Example of Minecraft Modding}
+  \begin{center}
+    \includegraphics[width=0.98\linewidth,height=0.72\textheight,keepaspectratio]{images/abstraction_of_minecraft_modding_ingame.png}
+  \end{center}
+  \vspace{-0.12cm}
+  \begin{footnotesize}
+    New blocks and items show up in the world long before you worry about rendering meshes or chunk storage---that is the \textbf{player-facing} side of abstraction.
+  \end{footnotesize}
+\end{frame}
+
+% Slide 6: Abstraction example --- mod code (libraries hide engine detail)
+\begin{frame}{Abstraction: Adding Content with Java \& Game Libraries}
+  \begin{center}
+    \includegraphics[width=0.98\linewidth,height=0.72\textheight,keepaspectratio]{images/abstraction_of_minecraft_modding.png}
+  \end{center}
+  \vspace{-0.12cm}
+  \begin{footnotesize}
+    Modding APIs (\texttt{Registry}, block/item types, identifiers) \textbf{abstract} the heavy lifting: the libraries are the abstraction layer for ``adding'' things.
+  \end{footnotesize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+% Slide 7: Java Compilation & Execution Workflow (Compilation Diagram)
 \begin{frame}{Java: Compile-Once, Run-Everywhere}
   \begin{center}
     \resizebox{0.98\linewidth}{!}{%
@@ -138,7 +173,8 @@ export PATH="$JDK_HOME/bin:$PYTHON_HOME/bin:$PATH"
   \end{alertblock}
 \end{frame}
 
-% Slide 6: Python Execution Flow
+
+% Slide 8: Python Execution Flow
 \begin{frame}{Python: Interpreted \& Dynamic}
   \begin{center}
     \begin{tikzpicture}[node distance=1.5cm, tool/.style={pathnode, fill=gray!10}, file/.style={pathnode, fill=white}]
@@ -168,7 +204,7 @@ export PATH="$JDK_HOME/bin:$PYTHON_HOME/bin:$PATH"
   \end{minipage}
 \end{frame}
 
-% Slide 7: The Computational Problem
+% Slide 9: The Computational Problem
 \begin{frame}{Background: The Computational Problem}
   \begin{block}{Hardware Limitations}
     Digital circuits are inherently limited to basic arithmetic operations:
@@ -181,7 +217,7 @@ export PATH="$JDK_HOME/bin:$PYTHON_HOME/bin:$PATH"
   Continuous functions, such as $\sin(x)$, cannot be stored as an infinite lookup table. Instead, these values must be approximated using iterative algorithms.
 \end{frame}
 
-% Slide 8: The Mathematical Theory
+% Slide 10: The Mathematical Theory
 \begin{frame}{Abstraction: The Taylor Series Expansion}
   The $\sin(x)$ function can be represented as an infinite sum of powers:
   \begin{equation*}
@@ -195,7 +231,7 @@ export PATH="$JDK_HOME/bin:$PYTHON_HOME/bin:$PATH"
   Higher accuracy is achieved as more terms are calculated.
 \end{frame}
 
-% Slide 9: Taylor Series of $\sin(x)$
+% Slide 11: Taylor Series of $\sin(x)$
 \begin{frame}{Abstraction: Taylor Series of $\sin(x)$}
   \begin{center}
     \includegraphics[width=0.98\linewidth,height=0.72\textheight,keepaspectratio]{images/sine_taylor_series.jpg}
@@ -205,7 +241,7 @@ export PATH="$JDK_HOME/bin:$PYTHON_HOME/bin:$PATH"
   \vspace{0.3cm}
 \end{frame}
 
-% Slide 10: Implementation in Java
+% Slide 12: Implementation in Java
 \begin{frame}[fragile]{Implementation in Java}
   The mathematical summation is translated into a \texttt{for} loop.
   \begin{block}{Java Logic}
@@ -225,7 +261,7 @@ for (int i = 0; i < 5; i++) {
   \end{block}
 \end{frame}
 
-% Slide 11: Implementation in Python
+% Slide 13: Implementation in Python
 \begin{frame}[fragile]{Implementation in Python}
   The mathematical summation is translated into a \texttt{for} loop.
   \begin{block}{Python Logic}
@@ -247,17 +283,6 @@ for i in range(5):
 
 
 
-
-% Slide 13: Real-world uses of transcendentals and linear algebra
-\begin{frame}{Why This Math Matters: Trig, \texorpdfstring{$\exp$}{exp}, and Linear Algebra}
-  \begin{itemize}
-    \item \textbf{Games and engines (e.g.\ Unity):} Rotations, camera/view transforms, and animation use trig everywhere; lighting and motion often combine trig with linear algebra (vectors, matrices).
-    \item \textbf{Physics simulation:} Springs, waves, and oscillations use $\sin$ and $\cos$; damping, growth, and half-lives use $\exp$ (exponential decay and continuous-time models).
-    \item \textbf{AI and machine learning:} Networks are built from matrix multiplies and linear algebra; softmax and many probabilistic models use $\exp$; classical ML (e.g.\ \textbf{linear regression}) is explicit linear algebra on data matrices.
-    \item \textbf{Shared theme:} Transcendental functions and linear systems are how we turn continuous models into code that runs at finite precision---the same bridge as Taylor series for $\sin(x)$.
-  \end{itemize}
-\end{frame}
-
 % Slide 14: Comparison and conclusion
 \begin{frame}{Validation of Results}
   The approximation is compared against the standard library:
@@ -270,6 +295,17 @@ for i in range(5):
   \begin{alertblock}{Conclusion}
     Mathematical abstraction is bridged by software loops. This logic serves as the foundation for modern computational tools.
   \end{alertblock}
+\end{frame}
+
+
+% Slide 15: Real-world uses of transcendentals and linear algebra
+\begin{frame}{Why This Math Matters: Trig, \texorpdfstring{$\exp$}{exp}, and Linear Algebra}
+  \begin{itemize}
+    \item \textbf{Games and engines (e.g.\ Unity):} Rotations, camera/view transforms, and animation use trig everywhere; lighting and motion often combine trig with linear algebra (vectors, matrices).
+    \item \textbf{Physics simulation:} Springs, waves, and oscillations use $\sin$ and $\cos$; damping, growth, and half-lives use $\exp$ (exponential decay and continuous-time models).
+    \item \textbf{AI and machine learning:} Networks are built from matrix multiplies and linear algebra; softmax and many probabilistic models use $\exp$; classical ML (e.g.\ \textbf{linear regression}) is explicit linear algebra on data matrices.
+    \item \textbf{Shared theme:} Transcendental functions and linear systems are how we turn continuous models into code that runs at finite precision---the same bridge as Taylor series for $\sin(x)$.
+  \end{itemize}
 \end{frame}
 
 
