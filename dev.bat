@@ -754,6 +754,20 @@ call :Install-App "Kitware.CMake" "CMake" "cmake" "CMake"
 call :Install-App "NSIS.NSIS" "NSIS (Installer Creator)" "makensis" "NSIS"
 call :Install-App "MiKTeX.MiKTeX" "MiKTeX" "pdflatex" "MiKTeX"
 
+
+@REM ---------------------------------------------------------------------------
+@REM Platform Dependents - native scripting Tools
+@REM ---------------------------------------------------------------------------
+call :Install-App "AutoHotkey.AutoHotkey" "AutoHotkey" "AutoHotkey64" "AutoHotkey"
+
+
+
+
+
+@REM -----------------------------
+@REM winget search <ID>
+@REM -----------------------------
+
 echo.
 echo.%GREEN%All specified applications have been processed.%RESET%
 

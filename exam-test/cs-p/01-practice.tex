@@ -1,0 +1,671 @@
+% Unit: Computer Science Principles (practice bank for \input inside \begin{questions} in main.tex)
+\runningheader{Computer Science Principles}{AP Practice Exam}{Page \thepage\ of \numpages}
+
+\begingradingrange{csp}
+
+% Pseudocode: \texttt{cspcode} environment (\texttt{listings} + style \texttt{csppseudo} in \texttt{main.tex}).
+
+\question[5]
+Which of the following is an example of a phishing attack?
+\begin{choices}
+  \choice Loading malicious software onto a user's computer in order to secretly gain access to sensitive information
+  \choice Flooding a user's computer with e-mail requests in order to cause the computer to crash
+  \choice Gaining remote access to a user's computer in order to steal user IDs and passwords
+  \CorrectChoice Using fraudulent e-mails in order to trick a user into voluntarily providing sensitive information
+\end{choices}
+\begin{solution}
+  Phishing uses deceptive messages to trick users into revealing sensitive information (answer D).
+\end{solution}
+
+\question[5]
+To be eligible for a particular ride at an amusement park, a person must be at least 12 years old and must be between 50 and 80 inches tall, inclusive.
+Let \texttt{age} represent a person's age, in years, and let \texttt{height} represent the person's height, in inches. Which of the following expressions evaluates to \textbf{true} if and only if the person is eligible for the ride?
+\begin{choices}
+  \CorrectChoice $(\texttt{age} \ge 12)$ \textbf{AND} $((\texttt{height} \ge 50)$ \textbf{AND} $(\texttt{height} \le 80))$
+  \choice $(\texttt{age} \ge 12)$ \textbf{AND} $((\texttt{height} \le 50)$ \textbf{AND} $(\texttt{height} \ge 80))$
+  \choice $(\texttt{age} \ge 12)$ \textbf{AND} $((\texttt{height} \le 50)$ \textbf{OR} $(\texttt{height} \ge 80))$
+  \choice $(\texttt{age} \ge 12)$ \textbf{OR} $((\texttt{height} \ge 50)$ \textbf{AND} $(\texttt{height} \le 80))$
+\end{choices}
+\begin{solution}
+  Both conditions (\(\ge 12\) and height between 50 and 80 inclusive) must hold together.
+\end{solution}
+
+\question[5]
+Consider the following code segment.
+\begin{cspcode}
+first <- 100
+second <- 200
+temp <- first
+second <- temp
+first <- second
+\end{cspcode}
+What are the values of \texttt{first} and \texttt{second} as a result of executing the code segment?
+\begin{choices}
+  \CorrectChoice \texttt{first} = 100, \texttt{second} = 100
+  \choice \texttt{first} = 100, \texttt{second} = 200
+  \choice \texttt{first} = 200, \texttt{second} = 100
+  \choice \texttt{first} = 200, \texttt{second} = 200
+\end{choices}
+\begin{solution}
+  After the swaps, both variables hold 100.
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[5]
+Which of the following best explains the relationship between the Internet and the World Wide Web?
+\begin{choices}
+  \choice Both the Internet and the World Wide Web refer to the same interconnected network of devices.
+  \choice The Internet is an interconnected network of data servers, and the World Wide Web is a network of user devices that communicates with the data servers.
+  \choice The Internet is a local network of interconnected devices, and the World Wide Web is a global network that connects the local networks with each other.
+  \CorrectChoice The Internet is a network of interconnected networks, and the World Wide Web is a system of linked pages, programs, and files that is accessed via the Internet.
+\end{choices}
+\begin{solution}
+  The Web is an application/service that runs over the Internet infrastructure.
+\end{solution}
+
+\question[5]
+Which of the following best exemplifies the use of multifactor authentication to protect an online banking system?
+\begin{choices}
+  \choice When a user resets a password for an online bank account, the user is required to enter the new password twice.
+  \choice When multiple people have a shared online bank account, they are each required to have their own unique username and password.
+  \CorrectChoice After entering a password for an online bank account, a user must also enter a code that is sent to the user's phone via text message.
+  \choice An online bank requires users to change their account passwords multiple times per year without using the same password twice.
+\end{choices}
+\begin{solution}
+  Password plus a separate factor (phone code) is multifactor authentication.
+\end{solution}
+
+
+
+\question[5]
+Which of the following best describes a direct benefit in using redundant routing on the Internet?
+\begin{choices}
+  \choice Redundancy enables messages to be transmitted with as few packets as possible.
+  \choice Redundancy enables network devices to communicate with as few network connections as possible.
+  \CorrectChoice Redundancy often allows messages to be sent on the network even if some network devices or connections have failed.
+  \choice Redundancy prevents network communications from being intercepted by unauthorized individuals.
+\end{choices}
+\begin{solution}
+  Redundant paths improve fault tolerance.
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[5]
+Which of the following best explains how an analog audio signal is typically represented by a computer?
+\begin{choices}
+  \choice An analog audio signal is measured as input parameters to a program or procedure. The inputs are represented at the lowest level as a collection of variables.
+  \CorrectChoice An analog audio signal is measured at regular intervals. Each measurement is stored as a sample, which is represented at the lowest level as a sequence of bits.
+  \choice An analog audio signal is measured as a sequence of operations that describe how the sound can be reproduced. The operations are represented at the lowest level as programming instructions.
+  \choice An analog audio signal is measured as text that describes the attributes of the sound. The text is represented at the lowest level as a string.
+\end{choices}
+\begin{solution}
+  Audio is digitized by sampling; samples are stored as binary.
+\end{solution}
+
+
+
+\question[5]
+Which of the following is \textbf{NOT} a benefit of collaborating to develop a computing innovation?
+\begin{choices}
+  \choice Collaboration can decrease the size and complexity of tasks required of individual team members.
+  \choice Collaboration can make it easier to find and correct errors during the development process.
+  \CorrectChoice Collaboration eliminates the need to resolve differences of opinion.
+  \choice Collaboration facilitates multiple perspectives in developing ideas.
+\end{choices}
+\begin{solution}
+  Teams still must resolve disagreements; collaboration does not remove that need.
+\end{solution}
+
+\question[5]
+A list of numbers is considered increasing if each value after the first is greater than or equal to the preceding value. The following procedure is intended to return true if \texttt{numberList} is increasing and return false otherwise. Assume that \texttt{numberList} contains at least two elements.
+\begin{cspcode}
+PROCEDURE isIncreasing(numberList)
+{
+  count <- 2
+  REPEAT UNTIL(count > LENGTH(numberList))
+  {
+    IF(numberList[count] < numberList[count - 1])
+    {
+      RETURN(true)
+    }
+    count <- count + 1
+  }
+  RETURN(false)
+}
+\end{cspcode}
+Which of the following changes is needed for the program to work as intended?
+\begin{choices}
+  \choice In line 3, 2 should be changed to 1.
+  \choice In line 6, \texttt{<} should be changed to \(\ge\).
+  \CorrectChoice Lines 8 and 12 should be interchanged.
+  \choice Lines 10 and 11 should be interchanged.
+\end{choices}
+\begin{solution}
+  The procedure should return false when a decrease is found and true at the end when no decrease occurs---hence swap the return values.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+
+\question[5]
+The author of an e-book publishes the e-book using a no-rights-reserved Creative Commons license. Which of the following best explains the consequences of publishing the book with this type of license?
+\begin{choices}
+  \choice The contents of the e-book will be encrypted and can only be decrypted by authorized individuals.
+  \CorrectChoice Individuals can freely distribute or use the contents of the e-book without needing to obtain additional permissions from the author.
+  \choice Individuals will be legally prevented from sharing the e-book on a peer-to-peer network.
+  \choice Individuals will be legally prevented from using excerpts from the e-book in another published work.
+\end{choices}
+\begin{solution}
+  CC0 / no rights reserved maximizes reuse without permission.
+\end{solution}
+
+\question[5]
+Which of the following best explains how devices and information can be susceptible to unauthorized access if weak passwords are used?
+\begin{choices}
+  \choice Unauthorized individuals can deny service to a computing system by overwhelming the system with login attempts.
+  \choice Unauthorized individuals can exploit vulnerabilities in compression algorithms to determine a user's password from their decompressed data.
+  \choice Unauthorized individuals can exploit vulnerabilities in encryption algorithms to determine a user's password from their encryption key.
+  \CorrectChoice Unauthorized individuals can use data mining and other techniques to guess a user's password.
+\end{choices}
+\begin{solution}
+  Weak passwords are easier to guess or crack.
+\end{solution}
+
+
+\question[5]
+A local router is configured to limit the bandwidth of guest users connecting to the Internet. Which of the following best explains the result of this configuration as compared to a configuration in which the router does not limit the bandwidth?
+\begin{choices}
+  \choice The amount of time it takes guest users to send and receive large files is likely to decrease.
+  \choice The number of packets required for guest users to send and receive data is likely to decrease.
+  \choice Guest users will be prevented from having fault-tolerant routing on the Internet.
+  \CorrectChoice Guest users will be restricted in the maximum amount of data that they can send and receive per second.
+\end{choices}
+\begin{solution}
+  Bandwidth caps limit data rate (throughput).
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[5]
+A video-streaming Web site keeps count of the number of times each video has been played since it was first added to the site. The count is updated each time a video is played and is displayed next to each video to show its popularity.
+
+At one time, the count for the most popular video was about two million. Sometime later, the same video displayed a seven-digit negative number as its count, while the counts for the other videos displayed correctly. Which of the following is the most likely explanation for the error?
+\begin{choices}
+  \CorrectChoice The count for the video became larger than the maximum value allowed by the data type used to store the count.
+  \choice The mathematical operations used to calculate the count caused a rounding error to occur.
+  \choice The software used to update the count failed when too many videos were played simultaneously by too many users.
+  \choice The software used to update the count contained a sampling error when using digital approximation.
+\end{choices}
+\begin{solution}
+  Integer overflow can wrap counts to negative values in signed representations.
+\end{solution}
+
+
+
+
+
+
+\question[5]
+Which of the following statements about the Internet is true?
+\begin{choices}
+  \choice The Internet is a computer network that uses proprietary communication protocols.
+  \CorrectChoice The Internet is designed to scale to support an increasing number of users.
+  \choice The Internet requires all communications to use encryption protocols.
+  \choice The Internet uses a centralized system to determine how packets are routed.
+\end{choices}
+\begin{solution}
+  The Internet's design emphasizes scalability and distributed operation.
+\end{solution}
+
+\question[5]
+In which of the following situations would it be most appropriate to choose lossy compression over lossless compression?
+\begin{choices}
+  \choice Storing digital photographs to be printed and displayed in a large format in an art gallery
+  \choice Storing a formatted text document to be restored to its original version for a print publication
+  \CorrectChoice Storing music files on a smartphone in order to maximize the number of songs that can be stored
+  \choice Storing a video file on an external device in order to preserve the highest possible video quality
+\end{choices}
+\begin{solution}
+  Lossy compression saves space when perfect fidelity is not required.
+\end{solution}
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+\question[5]
+Which of the following best describes a challenge involved in using a parallel computing solution?
+\begin{choices}
+  \CorrectChoice A parallel computing solution may not be appropriate for an algorithm in which each step requires the output from the preceding step.
+  \choice A parallel computing solution may not be appropriate for an algorithm in which the same formula is applied to many numeric data elements.
+  \choice A parallel computing solution may not be appropriate for an algorithm that can be easily broken down into small independent tasks.
+  \choice A parallel computing solution may not be appropriate for an algorithm that searches for occurrences of a key word in a large number of documents.
+\end{choices}
+\begin{solution}
+  Sequential dependencies limit parallel speedup.
+\end{solution}
+
+\question[5]
+A certain social media application is popular with people across the United States. The developers are updating the algorithm used by the application to introduce a new feature that allows users with similar interests to connect with one another. Which of the following strategies is \textbf{least} likely to introduce bias into the application?
+\begin{choices}
+  \choice Enticing users to spend more time using the application by providing the updated algorithm for users who use the application at least ten hours per week
+  \CorrectChoice Inviting a random sample of all users to try out the new algorithm and provide feedback before it is released to a wider audience
+  \choice Providing the updated algorithm only to teenage users to generate excitement about the new feature
+  \choice Testing the updated algorithm with a small number of users in the city where the developers are located so that immediate feedback can be gathered
+\end{choices}
+\begin{solution}
+  Random sampling reduces selection bias relative to the other options.
+\end{solution}
+
+
+
+
+\question[5]
+Which of the following best explains how data is transmitted on the Internet?
+\begin{choices}
+  \choice Data is broken into packets, which are all sent to the recipient in a specified order along the same path.
+  \CorrectChoice Data is broken into packets, which can be sent along different paths.
+  \choice All data is transmitted in a single packet through a direct connection between the sender and the recipient.
+  \choice Multiple data files are bundled together in a packet and transmitted together.
+\end{choices}
+\begin{solution}
+  Packets may take different routes and be reassembled at the destination.
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[5]
+A binary number is transformed by appending three 0s to the end of the number. For example, \texttt{11101} is transformed to \texttt{11101000}. Which of the following correctly describes the relationship between the transformed number and the original number?
+\begin{choices}
+  \choice The transformed number is 3 times the value of the original number.
+  \choice The transformed number is 4 times the value of the original number.
+  \CorrectChoice The transformed number is 8 times the value of the original number.
+  \choice The transformed number is 1,000 times the value of the original number.
+\end{choices}
+\begin{solution}
+  Appending three binary zeros multiplies by $2^3=8$.
+\end{solution}
+
+
+
+\question[5]
+Which of the following is a true statement about the use of public key encryption in transmitting messages?
+\begin{choices}
+  \CorrectChoice Public key encryption enables parties to initiate secure communications through an open medium, such as the Internet, in which there might be eavesdroppers.
+  \choice Public key encryption is not considered a secure method of communication because a public key can be intercepted.
+  \choice Public key encryption only allows the encryption of documents containing text; documents containing audio and video must use a different encryption method.
+  \choice Public key encryption uses a single key that should be kept secure because it is used for both encryption and decryption.
+\end{choices}
+\begin{solution}
+  Asymmetric (public key) cryptography supports key exchange over insecure channels.
+\end{solution}
+
+\question[5]
+A company delivers packages by truck and would like to minimize route length to $n$ delivery locations. The company considers two algorithms.
+
+\textbf{Algorithm I:} Generate all possible routes, compute their lengths, and select the shortest. This algorithm does not run in reasonable time.
+
+\textbf{Algorithm II:} Starting from an arbitrary location, repeatedly visit the nearest unvisited location until all are visited. This algorithm does not guarantee the shortest route and runs in time proportional to $n^2$.
+
+Which of the following best categorizes Algorithm II?
+\begin{choices}
+  \choice Algorithm II attempts to use an algorithmic approach to solve an otherwise undecidable problem.
+  \CorrectChoice Algorithm II uses a heuristic approach to provide an approximate solution in reasonable time.
+  \choice Algorithm II uses a brute-force approach that always produces a correct result in reasonable time.
+  \choice Algorithm II uses linear search to find the optimal route with certainty.
+\end{choices}
+\begin{solution}
+  Nearest-neighbor-style routing is a classic heuristic for hard optimization problems.
+\end{solution}
+
+
+
+
+
+
+\newpage
+
+
+
+
+\question[5]
+A city maintains a database of traffic tickets issued over ten years (moving / nonmoving). Each record has only month and year issued, and category.
+
+Which question \textbf{cannot} be answered using only this database?
+\begin{choices}
+  \choice Have total tickets per year increased each year?
+  \CorrectChoice In the past ten years, were nonmoving violations more likely on a weekend than a weekday?
+  \choice Were there months when moving violations exceeded nonmoving violations?
+  \choice In how many years were there more than one million moving violations?
+\end{choices}
+\begin{solution}
+  Weekend vs.\ weekday is not in the schema.
+\end{solution}
+
+
+\question[5]
+Individuals sometimes attempt to remove personal information from the Internet. Which of the following is the \textbf{least} likely reason the information is hard to remove?
+\begin{choices}
+  \choice Copies may be redistributed without permission.
+  \choice Extremely many devices may store the information.
+  \choice Automated systems may collect information without users' knowledge.
+  \CorrectChoice All personal information is stored using authentication, making it hard to access.
+\end{choices}
+\begin{solution}
+  Much personal data is broadly replicated and not ``locked'' solely behind auth.
+\end{solution}
+
+\question[5]
+A scientist wants to investigate several problems. When is using a simulation \textbf{least} suitable?
+\begin{choices}
+  \choice Many trials must be run very quickly.
+  \choice Simplifying assumptions in a model are acceptable.
+  \choice Real experiments would be too costly or dangerous.
+  \CorrectChoice The solution requires real-world inputs measured continuously over time without a closed-form model.
+\end{choices}
+\begin{solution}
+  Continuous live measurement problems may need direct sensing more than offline simulation.
+\end{solution}
+
+
+
+\question[5]
+A store assigns a unique binary code to each inventory item. What is the minimum number of bits per code if the store has between 75 and 100 items?
+\begin{choices}
+  \choice 5
+  \choice 6
+  \CorrectChoice 7
+  \choice 8
+\end{choices}
+\begin{solution}
+  Need $\lceil\log_2(100)\rceil = 7$ bits.
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[5]
+A state government wants to reduce the digital divide. Which activity most likely \textbf{widens} the divide?
+\begin{choices}
+  \choice Technology literacy programs at libraries
+  \CorrectChoice Requiring online-only applications for government jobs
+  \choice Discounted devices for lower-income residents
+  \choice Building network infrastructure in remote areas
+\end{choices}
+\begin{solution}
+  Online-only access requirements exclude people without connectivity or skills.
+\end{solution}
+
+\question[5]
+An online gaming company introduces initiatives for respectful chat. Which option best describes \textbf{crowdsourcing}?
+\begin{choices}
+  \CorrectChoice Players endorse courteous peers; enough endorsements unlock rewards.
+  \choice Chat is off by default; players opt in.
+  \choice Automated moderation bans offenders.
+  \choice Updated guidelines require electronic signature to adhere to community standards.
+\end{choices}
+\begin{solution}
+  Peer endorsements leverage the community (crowd) as part of governance.
+\end{solution}
+
+
+
+\question[5]
+Which of the following best exemplifies \textbf{keylogging}?
+\begin{choices}
+  \CorrectChoice Malware records keystrokes and exfiltrates them; an attacker later uses the captured data.
+  \choice Guessing a weak banking password after a few tries.
+  \choice Sniffing credentials on an unencrypted site and reusing them elsewhere.
+  \choice A fraudulent e-mail linking to a fake login page (phishing).
+\end{choices}
+\begin{solution}
+  Keylogging specifically captures keyboard input.
+\end{solution}
+
+\question[5]
+A Web store represents balances with floating-point approximations. Some values look mathematically imprecise. What is the most likely cause?
+\begin{choices}
+  \choice Fixed-width representation causes overflow only.
+  \CorrectChoice Fixed-width representation causes round-off error.
+  \choice Unlimited precision causes overflow.
+  \choice Unlimited precision causes round-off.
+\end{choices}
+\begin{solution}
+  IEEE-style floats have finite precision \(\Rightarrow\) rounding.
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+
+\question[5]
+A spreadsheet lists restaurants: column B uses price codes \texttt{lo} (under \$10), \texttt{med} (\$11--\$30), and \texttt{hi} (over \$30). For each row, \texttt{prcRange} is the price code and \texttt{avgRating} is the average rating. Which expression is true exactly when the row should be counted if the rule is ``price at most \$30 (\texttt{lo} or \texttt{med}) and \texttt{avgRating} $\ge 4.0$''?
+\begin{choices}
+  \choice $(\texttt{avgRating} \ge 4.0)$ \textbf{AND} $((\texttt{prcRange} = \texttt{"lo"})$ \textbf{AND} $(\texttt{prcRange} = \texttt{"med"}))$
+  \CorrectChoice $(\texttt{avgRating} \ge 4.0)$ \textbf{AND} $((\texttt{prcRange} = \texttt{"lo"})$ \textbf{OR} $(\texttt{prcRange} = \texttt{"med"}))$
+  \choice $(\texttt{avgRating} \ge 4.0)$ \textbf{OR} $((\texttt{prcRange} = \texttt{"lo"})$ \textbf{AND} $(\texttt{prcRange} = \texttt{"med"}))$
+  \choice $(\texttt{avgRating} \ge 4.0)$ \textbf{OR} $((\texttt{prcRange} = \texttt{"lo"})$ \textbf{OR} $(\texttt{prcRange} = \texttt{"med"}))$
+\end{choices}
+\begin{solution}
+  Need rating threshold AND (lo OR med).
+\end{solution}
+
+\question[5]
+Which is an example of an attack using a \textbf{rogue access point}?
+\begin{choices}
+  \CorrectChoice An attacker lures victims to connect through a masquerading wireless access point (e.g., Evil Twin) and can observe traffic.
+  \choice Physically unplugging a router (availability attack).
+  \choice Pretending to be an administrator to elicit secrets (social engineering / phishing-style).
+  \choice Flooding a router with traffic (DoS).
+\end{choices}
+\begin{solution}
+  Rogue AP tricks clients into joining an attacker-controlled network segment.
+\end{solution}
+
+\question[5]
+Which best explains the ability to solve problems algorithmically?
+\begin{choices}
+  \choice Every problem has an algorithmic solution (with human validation).
+  \choice Every problem has an algorithmic solution needing parallel hardware.
+  \choice Every problem has an algorithmic solution needing vast storage.
+  \CorrectChoice Some problems cannot be solved algorithmically by any computer.
+\end{choices}
+\begin{solution}
+  Undecidability / limits of computation.
+\end{solution}
+
+\question[5]
+How are \textbf{symmetric} encryption algorithms typically used?
+\begin{choices}
+  \CorrectChoice One secret key is used for both encryption and decryption.
+  \choice One \emph{public} key is used for both directions.
+  \choice Two secret keys---one encrypts, one decrypts (describes asymmetric wrongly).
+  \choice Public encrypt key and private decrypt key (asymmetric).
+\end{choices}
+\begin{solution}
+  Symmetric = shared secret key.
+\end{solution}
+
+
+
+
+
+\newpage
+
+
+
+\question[5]
+Which research proposal is most suitable as a \textbf{citizen science} project?
+\begin{choices}
+  \CorrectChoice Collect bird photos worldwide to study how location relates to size.
+  \choice Lab cell monitoring with controlled temperatures (professional lab).
+  \choice Simulation-only chemical impact study (no public data collection).
+  \choice Specialized 3D protein scans (equipment-heavy, expert lab).
+\end{choices}
+\begin{solution}
+  Broad public contribution of observations \(\Rightarrow\) citizen science.
+\end{solution}
+
+\question[5]
+A sorted list has 128 elements. What is closest to the \textbf{maximum} number of elements examined in a binary search?
+\begin{choices}
+  \choice 2
+  \CorrectChoice 8
+  \choice 64
+  \choice 128
+\end{choices}
+\begin{solution}
+  \(\lceil\log_2 128\rceil = 7\) comparisons in the usual counting; ``closest'' option among given is 8 in original key.
+\end{solution}
+
+\question[5]
+Trucks enter/leave a depot; the database logs truck id, weight, timestamp, and direction. Which question \textbf{cannot} be answered from this alone?
+\begin{choices}
+  \choice Day with most gate crossings in a date range.
+  \CorrectChoice Average customer deliveries per truck on a given day.
+  \choice Weight change for one truck between entry and exit.
+  \choice Truck with shortest average depot time on a given day.
+\end{choices}
+\begin{solution}
+  Deliveries per customer are not logged.
+\end{solution}
+
+
+
+
+
+\newcommand{\runroutrstem}{%
+RunRoutr tracks runs with GPS, speed, distance, profiles, and friend lists. Users request a target distance; the app suggests a route and shares it with ``compatible'' nearby users (mutual contacts or similar speeds).
+A basic RunRoutr account is free; premium accounts add features.
+}
+
+\question[5]
+\runroutrstem
+
+Adrianna starts a run; compatible nearby users see her route. Which datum is \textbf{not} obtained from Adrianna's phone but is still needed to share her route with others?
+\begin{choices}
+  \choice Adrianna's average running speed
+  \choice Adrianna's preferred distance
+  \CorrectChoice Current locations of other RunRoutr users
+  \choice Usernames on Adrianna's contact list
+\end{choices}
+\begin{solution}
+  Others' positions come from their devices / servers, not only Adrianna's phone.
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[5]
+\runroutrstem
+
+Which is most likely a \textbf{benefit}?
+\begin{choices}
+  \choice The app identifies \emph{all} users in an area.
+  \choice Compatibility logic lets users easily identify \emph{all} nearby users.
+  \CorrectChoice Social exercise may improve health outcomes.
+  \choice Rural users fully use all features without Internet or GPS.
+\end{choices}
+\begin{solution}
+  Encouraging joint exercise supports wellness.
+\end{solution}
+
+
+
+\question[5]
+\runroutrstem
+
+Which is most likely a \textbf{privacy} concern?
+\begin{choices}
+  \choice Phones must be carried for full features.
+  \CorrectChoice Users may infer locations of people not on their contact list.
+  \choice Shared phones distort personal history.
+  \choice Some users have no compatible runners nearby.
+\end{choices}
+\begin{solution}
+  Location sharing can expose non-friends' whereabouts indirectly.
+\end{solution}
+
+\question[5]
+\runroutrstem
+
+Advertisers can target user groups. Which group is \textbf{least} likely to be targeted?
+\begin{choices}
+  \choice Mutual contacts
+  \choice Running/fitness interest
+  \CorrectChoice Premium subscribers
+  \choice Routes starting/ending near a business
+\end{choices}
+\begin{solution}
+  Original key C (smallest / least likely cohort per exam).
+\end{solution}
+
+
+
+
+
+\question[5]
+Booleans: \texttt{hot} = true, \texttt{humid} = false. Which two snippets \textbf{display true}? \textbf{Select two.}
+\begin{checkboxes}
+  \choice \texttt{IF hot DISPLAY (hot OR humid)}
+  \CorrectChoice \texttt{IF NOT humid DISPLAY (hot OR humid)}
+  \CorrectChoice \texttt{IF hot OR humid DISPLAY hot}
+  \choice \texttt{IF hot AND humid DISPLAY hot}
+\end{checkboxes}
+\begin{solution}
+  B and C per original key.
+\end{solution}
+
+\question[5]
+Photos store per-pixel RGB \emph{data} and metadata (timestamp, location). For which two goals is metadata \textbf{more} appropriate than pixel data? \textbf{Select two.}
+\begin{checkboxes}
+  \CorrectChoice Chronological ordering of photos
+  \choice Counting clouds in an image
+  \choice Suitability for black-and-white printing from pixels
+  \CorrectChoice Same location on different days
+\end{checkboxes}
+\begin{solution}
+  Time and location live in metadata (A and D).
+\end{solution}
+
+\endgradingrange{csp}
