@@ -123,6 +123,16 @@
   \clearpage
 }
 
+% Spacer before the next repetition of practice (e.g.\ second practice pass). No header/footer; ends with \newpage.
+\newcommand{\exampracticerepetitionpage}{%
+  \newpage
+  \thispagestyle{empty}%
+  \null\vfill
+  \begin{center}\textit{Transition to the next practice section.}\end{center}
+  \vfill\null
+  \newpage
+}
+
 \pagestyle{headandfoot}
 % Global headers are neutral; each module file sets \runningheader{...}{...}{...} for question pages.
 \firstpageheader{}{}{}
@@ -132,14 +142,29 @@
 
 \begin{document} 
 
-\exammodulecover{Computer Science Principles}{AP Practice Exam (Set 1)}{College Board style practice questions.}
+\exammodulecover{Computer Science Principles}{AP Practice Exam}{College Board style practice questions.}
 \begin{questions}
-  \input{cs-p/01-practice} 
+  \input{cs-p/01-practice}
+  \exampracticerepetitionpage
+  \input{cs-p/02-practice}
 \end{questions}
 
-\exammodulecover{Computer Science Principles}{AP Practice Exam (Set 2)}{College Board style practice questions.}
+
+
+\exammodulecover{Computer Science A}{AP Practice Exam}{College Board style practice questions.}
+
 \begin{questions}
-  \input{cs-p/02-practice}
+  \input{cs-a/01-practice}
+  \exampracticerepetitionpage
+  \input{cs-a/02-practice}
+  \exampracticerepetitionpage
+  \input{cs-a/03-practice}
+  \exampracticerepetitionpage
+  \input{cs-a/04-practice}
+  \exampracticerepetitionpage
+  \input{cs-a/05-practice}
+  \exampracticerepetitionpage
+  \input{cs-a/06-practice}
 \end{questions}
 
 % \exammodulecover{Mathematics 6}{Statistics}{Unit assessment: data and statistics.}
