@@ -1,4 +1,4 @@
-# --- Generated from ./.gitignores on Wed Apr  8 01:19:22 2026 ---
+# --- Generated from ./.gitignores on Fri Apr 10 00:34:20 2026 ---
 
 #############################################
 # A.gitignore
@@ -16,7 +16,8 @@ python-lang*/
 *.key
 *.key.pub
 
-log-*/
+log*/
+playwright*/
 
 ################################################################
 # General Ignores (Large Media Files & Common File Types)
@@ -2820,8 +2821,8 @@ auth.json
 #############################################
 # Leiningen.gitignore
 #############################################
-pom.xml
-pom.xml.asc
+# pom.xml
+# pom.xml.asc
 # *.jar
 *.class
 /lib/
