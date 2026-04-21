@@ -1,0 +1,76 @@
+% Unit: Computer Science A --- testing, mocks, and logging (\input after \texttt{cs-a/03-practice.tex}; lambdas in \texttt{cs-a/lambda.tex}, REST/Javalin in \texttt{cs-a/rest.tex}).
+
+\runningheader{Computer Science A}{Unit 4: Testing, mocks, and logging}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau4}
+
+\uplevel{\par\textbf{Testing and mocks}\par}
+
+\question[4]
+What is Mockito and why would we use it?
+\makeemptybox{1.25in}
+\begin{solution}
+  Popular Java mocking library: stub dependencies, verify interactions, isolate the class under test without slow or brittle real I/O or databases.
+\end{solution}
+
+\question[4]
+What is a mock?
+\makeemptybox{1.05in}
+\begin{solution}
+  A test double with programmed behavior and expectations: returns canned values, records calls, and fails tests if expected interactions do not occur.
+\end{solution}
+
+\question[4]
+What is test driven development?
+\makeemptybox{1.2in}
+\begin{solution}
+  Write a failing test first, implement minimal code to pass, refactor; repeats in short cycles to drive design and regression safety.
+\end{solution}
+
+\question[4]
+Why are unit tests important?
+\makeemptybox{1.25in}
+\begin{solution}
+  Catch regressions early, document expected behavior, enable safe refactoring, shorten debug loops, and support continuous integration.
+\end{solution}
+
+\question[4]
+How can JUnit annotations help with running our tests?
+\makeemptybox{1.35in}
+\begin{solution}
+  Mark lifecycle (\texttt{@BeforeEach}, \texttt{@AfterEach}), identify tests (\texttt{@Test}), disable/skip, parameterize, order, tag for suites, and set timeouts or expected exceptions.
+\end{solution}
+
+\question[4]
+Give me an example of how you would test a method that takes in two integers as input and returns an integer representing the sum.
+\makeemptybox{1.55in}
+\begin{solution}
+  Call the method with known pairs and assert the result, e.g.\ \texttt{assertEquals(5, add(2, 3));} plus edge cases (\texttt{0}, negatives) using JUnit \texttt{assertions}.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Logging}\par}
+
+\question[4]
+What is logging and what are the benefits of it?
+\makeemptybox{1.25in}
+\begin{solution}
+  Recording runtime events (errors, timing, decisions) to appenders (console, files, aggregators). Benefits: production diagnosis without debugger, audit trails, and structured observability.
+\end{solution}
+
+\question[4]
+Describe the different logging levels and how they should be used.
+\makeemptybox{1.45in}
+\begin{solution}
+  Typical levels (e.g.\ SLF4J): \texttt{ERROR}/\texttt{WARN} for problems, \texttt{INFO} for high-signal lifecycle events, \texttt{DEBUG}/\texttt{TRACE} for developer detail---tune thresholds per environment to limit noise and cost.
+\end{solution}
+
+\question[4]
+How would we configure logging in an application?
+\makeemptybox{1.35in}
+\begin{solution}
+  Use a facade (\texttt{slf4j}) with a binding (Logback, Log4j2): \texttt{logback.xml} or \texttt{log4j2.xml} for appenders, levels per logger, patterns, and optional env-specific profiles.
+\end{solution}
+
+\endgradingrange{csau4}

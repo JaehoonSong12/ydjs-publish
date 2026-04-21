@@ -1,0 +1,256 @@
+% Unit: Computer Science A --- Spring Core/Boot, Web/MVC, Data JPA, Actuator, Lombok (\input after \texttt{cs-a/05-practice.tex} in \texttt{main.tex}).
+
+\runningheader{Computer Science A}{Unit 6: Spring ecosystem}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau6}
+
+\uplevel{\par\textbf{Spring core: IoC and beans}\par}
+
+\question[4]
+What is Inversion of Control? What are its advantages?
+\makeemptybox{1.45in}
+\begin{solution}
+  Framework calls your code and supplies dependencies instead of your code \emph{new}-ing collaborators. Advantages: looser coupling, easier testing (inject mocks), centralized wiring, and clearer separation of concerns.
+\end{solution}
+
+\question[4]
+What is Dependency Injection?
+\makeemptybox{1.2in}
+\begin{solution}
+  Objects receive collaborators from outside (constructor/setter/field injection) rather than creating them internally; Spring's IoC container resolves and injects beans.
+\end{solution}
+
+\question[4]
+What is the difference between XML-based and annotation-based configuration?
+\makeemptybox{1.35in}
+\begin{solution}
+  XML externalizes bean definitions in files; annotations (\texttt{@Component}, \texttt{@Configuration}, \texttt{@Bean}) colocate metadata with code. Modern Spring favors Java config and annotations with optional XML for legacy or cross-cutting wiring.
+\end{solution}
+
+\question[4]
+What is a Bean?
+\makeemptybox{1.05in}
+\begin{solution}
+  In Spring, a managed object instantiated, assembled, and lifecycle-managed by the IoC container, identified by name/type and wired per configuration.
+\end{solution}
+
+\question[4]
+What is the Spring Framework? What are its benefits?
+\makeemptybox{1.35in}
+\begin{solution}
+  Mature Java ecosystem for enterprise apps: IoC/DI, AOP, data access, web stack, integration. Benefits include portability, batteries-included modules, large community, and consistent programming model.
+\end{solution}
+
+\question[4]
+What does the Spring Core module provide?
+\makeemptybox{1.2in}
+\begin{solution}
+  IoC container, bean lifecycle, \texttt{ApplicationContext}, resource abstraction, SpEL, and foundational utilities other modules build on.
+\end{solution}
+
+\question[4]
+How could you create an IoC Container?
+\makeemptybox{1.2in}
+\begin{solution}
+  Use an \texttt{ApplicationContext} implementation: Java-config or XML context classes, or call \texttt{SpringApplication.run} in Boot to build the context from your configuration and component scan.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Spring Boot and configuration}\par}
+
+\question[4]
+What is Spring Boot?
+\makeemptybox{1.25in}
+\begin{solution}
+  Opinionated layer on Spring: dependency starters, auto-configuration, embedded HTTP servers, and sensible defaults so apps start with little boilerplate.
+\end{solution}
+
+\question[4]
+Tell me about the \texttt{@SpringBootApplication} annotation.
+\makeemptybox{1.35in}
+\begin{solution}
+  Composes \texttt{@Configuration}, \texttt{@EnableAutoConfiguration}, and \texttt{@ComponentScan}: marks the main class, enables Boot auto-config, and scans for Spring components in the package hierarchy.
+\end{solution}
+
+\question[4]
+What is Spring Initializr?
+\makeemptybox{1.1in}
+\begin{solution}
+  Web service/UI (start.spring.io) that generates a Boot project skeleton with chosen dependencies, build tool, and Java version.
+\end{solution}
+
+\question[4]
+What is the use of a \texttt{.properties} or \texttt{.yaml} file?
+\makeemptybox{1.35in}
+\begin{solution}
+  Externalize configuration (ports, URLs, credentials via env, feature flags) without recompiling; Boot binds prefixed keys to beans and supports profiles (\texttt{application-dev.yml}).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Spring Web and MVC}\par}
+
+\question[4]
+Describe MVC architecture.
+\makeemptybox{1.35in}
+\begin{solution}
+  Model holds data/state, View renders output (or API representation), Controller handles input, delegates to services, and chooses view/response; Spring MVC maps HTTP to controllers with clear separation.
+\end{solution}
+
+\question[4]
+Describe commonly used Spring Web annotations.
+\makeemptybox{1.55in}
+\begin{solution}
+  Map URLs to methods with mapping annotations; bind inputs with parameter annotations; mark REST controllers; set status and bodies with response helpers.
+\end{solution}
+
+\question[4]
+What does the Spring Web module provide?
+\makeemptybox{1.2in}
+\begin{solution}
+  DispatcherServlet, handler mapping, view resolution (for MVC), REST support, HTTP message conversion, filters, CORS, and integration with servlet containers or reactive stacks.
+\end{solution}
+
+\question[4]
+What are some annotations that can be used to get information from the request?
+\makeemptybox{1.35in}
+\begin{solution}
+  \texttt{@RequestParam}, \texttt{@PathVariable}, \texttt{@RequestHeader}, \texttt{@CookieValue}, \texttt{@RequestBody}, and sometimes \texttt{HttpServletRequest} parameters for low-level access.
+\end{solution}
+
+\question[4]
+What can we use to customize the response sent back to the client?
+\makeemptybox{1.25in}
+\begin{solution}
+  Return types (\texttt{ResponseEntity}), \texttt{@ResponseBody}/\texttt{@RestController}, HTTP status annotations, message converters, headers, and exception handlers that map errors to bodies/status.
+\end{solution}
+
+\question[4]
+How does the \texttt{@ExceptionHandler} annotation work?
+\makeemptybox{1.3in}
+\begin{solution}
+  Methods in a \texttt{@Controller}/\texttt{@RestController} (or \texttt{@ControllerAdvice}) handle specific exception types, build an error response, and avoid generic 500 pages for API clients.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Spring Data JPA}\par}
+
+\question[4]
+What configuration is needed in the \texttt{.properties} or \texttt{.yaml} file to use the Spring Data module?
+\makeemptybox{1.35in}
+\begin{solution}
+  Data source keys (URL, user, password, driver) and JPA/Hibernate settings (DDL mode, dialect). Boot builds a \texttt{DataSource} and \texttt{EntityManagerFactory} from them.
+\end{solution}
+
+\question[4]
+What is the JPA API? What does it provide?
+\makeemptybox{1.3in}
+\begin{solution}
+  Java Persistence API: standard ORM mapping (\texttt{@Entity}, relationships), \texttt{EntityManager} for CRUD/query, and portability across providers (Hibernate, EclipseLink, etc.).
+\end{solution}
+
+\question[4]
+What is an ORM?
+\makeemptybox{1.05in}
+\begin{solution}
+  Object-Relational Mapping: maps classes to tables and object graphs to SQL, reducing hand-written JDBC for common persistence patterns.
+\end{solution}
+
+\question[4]
+What is Spring Data JPA?
+\makeemptybox{1.2in}
+\begin{solution}
+  Spring Data module that reduces repository boilerplate: derive queries from method names, \texttt{@Query}, paging/sorting, and integrates \texttt{EntityManager} with Spring transactions.
+\end{solution}
+
+\question[4]
+How do you create a repository with Spring Data JPA?
+\makeemptybox{1.2in}
+\begin{solution}
+  Declare an interface extending \texttt{JpaRepository<Entity, Id>} (or related) in a scanned package; Spring generates the implementation at runtime---no manual DAO class.
+\end{solution}
+
+\question[4]
+What methods does the \texttt{JpaRepository} interface provide?
+\makeemptybox{1.35in}
+\begin{solution}
+  Inherits CRUD and paging/sorting (\texttt{save}, \texttt{findById}, \texttt{deleteAll}, etc.) and adds JPA-oriented helpers like flush and batched persistence APIs (exact extras vary by Spring Data version).
+\end{solution}
+
+\question[4]
+What are custom queries and give me an example of how you would write a custom method.
+\makeemptybox{1.45in}
+\begin{solution}
+  JPQL or native SQL declared with \texttt{@Query} on a repository method, named queries, or \texttt{Specification}/Criteria when you cannot express the rule with derived method names alone.
+\end{solution}
+
+\question[4]
+What is the \texttt{@Transactional} annotation? What are its benefits?
+\makeemptybox{1.35in}
+\begin{solution}
+  Declares a transactional boundary (often on services): rollback on errors, configurable propagation and isolation, delegated to Spring's transaction manager instead of hand-written JDBC \texttt{commit}/\texttt{rollback}.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Lombok and Actuator}\par}
+
+\question[4]
+What is Lombok and its benefits?
+\makeemptybox{1.25in}
+\begin{solution}
+  Annotation processor that generates getters, constructors, \texttt{equals}/\texttt{hashCode}, builders, etc., cutting POJO noise; teams should enable IDE support for accurate navigation.
+\end{solution}
+
+\question[4]
+What is the Spring Actuator module?
+\makeemptybox{1.2in}
+\begin{solution}
+  Production endpoints for health, metrics, environment, logging levels, and integration with monitoring systems; complements Boot's operational defaults.
+\end{solution}
+
+\question[4]
+What are actuator endpoints?
+\makeemptybox{1.1in}
+\begin{solution}
+  HTTP or JMX operations under \texttt{/actuator} (by default) such as health and metrics; each has an id, can be enabled or exposed separately, and should be secured in production.
+\end{solution}
+
+\question[4]
+What does enabling an endpoint mean?
+\makeemptybox{1.05in}
+\begin{solution}
+  The endpoint exists in the application and can run its logic if invoked---controlled via \texttt{management.endpoint.<id>.enabled} properties.
+\end{solution}
+
+\question[4]
+What does exposing an endpoint mean?
+\makeemptybox{1.05in}
+\begin{solution}
+  Making an enabled endpoint reachable over a technology (commonly HTTP or JMX) via \texttt{management.endpoints.web.exposure.include} or related settings.
+\end{solution}
+
+\question[4]
+What does it mean when an endpoint is ``available''?
+\makeemptybox{1.1in}
+\begin{solution}
+  Boot considers it both enabled and exposed on the chosen interface so clients can call it subject to security rules.
+\end{solution}
+
+\question[4]
+What are some endpoints that actuator provides and their use?
+\makeemptybox{1.45in}
+\begin{solution}
+  Examples: \texttt{health} for load balancers, \texttt{info} for build metadata, \texttt{metrics} for observability, \texttt{env}/\texttt{configprops} for debugging configuration (lock down in production).
+\end{solution}
+
+\question[4]
+How can you create a custom actuator endpoint?
+\makeemptybox{1.25in}
+\begin{solution}
+  Implement \texttt{Endpoint} or \texttt{@Endpoint} / \texttt{@ReadOperation} (Boot 2+) beans, register with a unique id, secure them, and optionally expose over HTTP via management configuration.
+\end{solution}
+
+\endgradingrange{csau6}

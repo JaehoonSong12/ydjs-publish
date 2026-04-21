@@ -1,0 +1,429 @@
+% Computer Science A --- SDLC, Agile/Scrum, SOLID/Java bridges, Linux, Maven (\input from \texttt{main.tex}).
+
+\runningheader{Computer Science A}{SDLC, Agile, Linux, \& Maven}{Page \thepage\ of \numpages}
+
+\begingradingrange{csasdlc}
+
+\uplevel{\par\textbf{Software development lifecycle}\par}
+
+\question[4]
+Specify the order of the steps in the software development lifecycle. In the table below, write the correct \textbf{phase name} for each position from first (row~1) to last (row~7). (Spelling should match the usual textbook labels.)
+
+\begin{center}
+\footnotesize
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{|c|p{0.58\linewidth}|}
+  \hline
+  \textbf{Order} & \textbf{Lifecycle phase (fill in)} \\
+  \hline
+  1 & \fillin[Planning][0.52\linewidth] \\
+  \hline
+  2 & \fillin[Analysis][0.52\linewidth] \\
+  \hline
+  3 & \fillin[Design][0.52\linewidth] \\
+  \hline
+  4 & \fillin[Development][0.52\linewidth] \\
+  \hline
+  5 & \fillin[Testing][0.52\linewidth] \\
+  \hline
+  6 & \fillin[Deployment][0.52\linewidth] \\
+  \hline
+  7 & \fillin[Maintenance][0.52\linewidth] \\
+  \hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}
+\end{center}
+\begin{solution}
+  The usual linear ordering is:
+  \begin{enumerate}
+    \item Planning
+    \item Analysis
+    \item Design
+    \item Development
+    \item Testing
+    \item Deployment
+    \item Maintenance
+  \end{enumerate}
+  Agile teams still revisit these activities in iterations; the labels describe the classic lifecycle story.
+\end{solution}
+
+\question[4]
+Which stage of the SDLC usually covers decisions such as choosing technologies and creating UML diagrams?
+\begin{choices}
+  \choice Build
+  \CorrectChoice Design
+  \choice Maintain
+  \choice Deploy
+\end{choices}
+\begin{solution}
+  \textbf{Design} specifies architecture, interfaces, and major technology choices; UML diagrams (class, sequence, etc.) are typical design artifacts. \textbf{Build/development} implements the design; \textbf{deploy} releases; \textbf{maintain} sustains after release.
+\end{solution}
+
+\question[4]
+Which of the following best matches a common textbook ordering of \textbf{Software Development Life Cycle} activities?
+\begin{choices}
+  \CorrectChoice Planning, Requirements, Design, Build, Document, Test, Deploy, Maintain
+  \choice Validate, Compile, Test, Package, Integration, Verify, Install, Deploy
+  \choice Planning, Code, Test, Design, Build, Maintain, Ship
+  \choice Requirements, Planning, Develop, Validate, Deploy, Document, Maintain
+\end{choices}
+\begin{solution}
+  The second list mirrors a \textbf{Maven} lifecycle, not SDLC. The third scrambles order and labels. The fourth permutes planning/requirements. The first option reflects a common expanded linear story (names vary by text: ``Analysis'' vs ``Requirements,'' ``Implementation'' vs ``Build,'' etc.).
+\end{solution}
+
+\question[4]
+Which of the following is the core difference between the Agile and Waterfall methodologies of software development?
+\begin{choices}
+  \CorrectChoice Agile is an iterative style and adapts well to change; Waterfall follows a rigid planned schedule
+  \choice Waterfall is an iterative style and adapts well to change; Agile follows a rigid planned schedule
+  \choice Agile is a team-based approach; Waterfall is used for individual or solo projects
+  \choice Agile is used for individual or solo projects; Waterfall is a team-based approach
+\end{choices}
+\begin{solution}
+  \textbf{Waterfall} emphasizes phased, sequential delivery with upfront planning; \textbf{Agile} favors short feedback loops, working increments, and responding to change.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Agile and Scrum}\par}
+
+\question[4]
+Which of these is \emph{not} one of the core role titles on a typical \textbf{Scrum} team?
+\begin{choices}
+  \CorrectChoice Marketer
+  \choice Product Owner
+  \choice Developer
+  \choice Scrum Master
+\end{choices}
+\begin{solution}
+  Scrum names three accountabilities: \textbf{Product Owner} (value/ordering), \textbf{Developers} (who create the increment), and \textbf{Scrum Master} (coaching the Scrum process). Marketing stakeholders may collaborate, but ``Marketer'' is not one of those three core roles in the framework.
+\end{solution}
+
+\question[4]
+An Agile workflow \emph{always} produces a better end product than a Waterfall workflow.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Outcomes depend on context, skill, requirements stability, and execution. Agile reduces some risks (late feedback, change cost) but does not \textbf{guarantee} a ``better'' product in every situation.
+\end{solution}
+
+\question[4]
+Why was the \textbf{Agile} model created?
+\begin{choices}
+  \choice Managers wanted a way to better track employee performance
+  \CorrectChoice Allowed clients to see where their end product was at all times
+  \choice Developers wanted to put client needs first
+  \choice Agile allowed everyone to easily focus on multiple tasks at a time
+\end{choices}
+\begin{solution}
+  Course treatments tie Agile's rise to heavy, slow feedback cycles in plan-driven work: short iterations, demos, and reviews make \textbf{visible progress} and cheaper changes. The Manifesto also stresses customer collaboration and working software; ``multiple tasks at once'' is a distractor (flow/WIP limits are closer to Lean/Kanban). ``Developers put clients first'' is partially true in spirit but less specific than incremental visibility as the quiz's intended contrast to the other distractors.
+\end{solution}
+
+\question[4]
+Which of the following Agile / Scrum events is \emph{typically} time-boxed to about \textbf{15 minutes}?
+\begin{choices}
+  \choice Sprint Planning
+  \CorrectChoice Daily Stand-up (Daily Scrum)
+  \choice Sprint Review
+  \choice All of the above (``it's Agile, so everything is 15 minutes'')
+\end{choices}
+\begin{solution}
+  The \textbf{Daily Scrum} is commonly capped at fifteen minutes to synchronize and surface impediments. Sprint Planning, Sprint Review, and Sprint Retrospective are longer, structured events.
+\end{solution}
+
+\question[4]
+Which artifact is most often used to \textbf{track progress} toward completing the work selected for the current sprint (for example, remaining work over time)?
+\begin{choices}
+  \choice Sprint Backlog
+  \choice UML diagram
+  \CorrectChoice Burndown chart
+  \choice Product Backlog
+\end{choices}
+\begin{solution}
+  The \textbf{Sprint Backlog} is the team's plan for the sprint (selected Product Backlog items plus an actionable plan). A \textbf{sprint burndown} (or burnup) chart plots remaining work versus time and is the usual teaching answer for ``tracking sprint progress.'' The \textbf{Product Backlog} orders work for the whole product, not sprint burn-down tracking.
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} an advantage of the Agile development methodology?
+\begin{choices}
+  \choice It provides a responsible approach to the development of software since it involves user and customer input
+  \choice The customer is involved throughout the development of the product, which leads to better relations and satisfaction
+  \CorrectChoice Agile is intended for everyone to focus on one task at a time before moving to the next phase
+  \choice When compared to Waterfall, the Agile model has a reduced scope which results in better time allocation and estimation
+\end{choices}
+\begin{solution}
+  The first two are common claimed benefits (collaboration and feedback). The third mis-describes Agile as strict phase-gating with one task at a time---that is closer to a linear/waterfall mental model, not iterative increments. The fourth is at least debatable (Agile does not inherently ``reduce scope''), but the third is the clearest non-advantage because it is a \textbf{false characterization}.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{SOLID and Java types (bridging topics)}\par}
+
+\question[4]
+The Open/Closed principle states that classes should be open for modification but closed for extension.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \textbf{Open/Closed} (from SOLID) is usually stated the other way: open for \textbf{extension} (new behavior without editing old code) and closed for \textbf{modification} (avoid fragile edits to stable types), often via polymorphism and abstractions.
+\end{solution}
+
+\question[4]
+What is a valid difference between an \textbf{abstract class} and an \textbf{interface} in Java (typical CS-A simplification)?
+\begin{choices}
+  \choice Abstract classes are fully abstract while interfaces only have concrete methods
+  \choice Abstract classes are fully abstract while interfaces can have abstract and concrete methods
+  \CorrectChoice Interfaces are fully abstract while abstract classes can have abstract and concrete methods
+  \choice Interfaces are fully abstract while abstract classes can only have concrete methods
+\end{choices}
+\begin{solution}
+  In introductory Java, interfaces specify abstract instance methods (since Java~8, \texttt{default}/\texttt{static} methods complicate the slogan, but exams often keep: interface contracts vs.\ abstract classes that mix abstract and concrete members). Abstract classes need not be ``fully abstract'' (they may provide shared code); they cannot be instantiated when still abstract.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Linux command line}\par}
+
+\question[4]
+The command to create a new directory in Linux is:
+\begin{choices}
+  \CorrectChoice \texttt{mkdir}
+  \choice \texttt{touch}
+  \choice \texttt{nano}
+  \choice \texttt{vi}
+  \choice \texttt{rm}
+\end{choices}
+\begin{solution}
+  \texttt{mkdir} creates directories; \texttt{touch} updates/creates empty files; \texttt{nano}/\texttt{vi} are editors; \texttt{rm} removes files.
+\end{solution}
+
+\question[4]
+To copy a file in Linux, you use the command:
+\begin{choices}
+  \CorrectChoice \texttt{cp}
+  \choice \texttt{mv}
+  \choice \texttt{rm}
+  \choice \texttt{cat}
+  \choice \texttt{mkdir}
+\end{choices}
+\begin{solution}
+  \texttt{cp} copies; \texttt{mv} moves/renames; \texttt{rm} deletes; \texttt{cat} prints file contents; \texttt{mkdir} makes directories.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Maven}\par}
+
+\question[4]
+Which is the correct format of a minimal POM file?
+\begin{choices}
+  \CorrectChoice
+  \begin{minipage}[t]{0.88\linewidth}
+\begin{lstlisting}[style=pomxml]
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany.app</groupId>
+    <artifactId>my-app</artifactId>
+    <version>1</version>
+</project>
+\end{lstlisting}
+  \end{minipage}
+  \choice
+  \begin{minipage}[t]{0.88\linewidth}
+\begin{lstlisting}[style=pomxml]
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany.app</groupId>
+    <version>1</version>
+</project>
+\end{lstlisting}
+  \end{minipage}
+  \choice
+  \begin{minipage}[t]{0.88\linewidth}
+\begin{lstlisting}[style=pomxml]
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>my-app</artifactId>
+    <version>1</version>
+</project>
+\end{lstlisting}
+  \end{minipage}
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  A valid project coordinates block includes \texttt{modelVersion}, \texttt{groupId}, \texttt{artifactId}, and \texttt{version}. \texttt{groupId} + \texttt{artifactId} + \texttt{version} identify the artifact (GAV).
+\end{solution}
+
+\question[4]
+Which is the correct format of dependencies in a \texttt{pom.xml} file?
+\begin{choices}
+  \choice
+  \begin{minipage}[t]{0.88\linewidth}
+\begin{lstlisting}[style=pomxml]
+<dependency>
+    <groupId>.......</groupId>
+    <artifactId>.......</artifactId>
+</dependency>
+\end{lstlisting}
+  \end{minipage}
+  \CorrectChoice
+  \begin{minipage}[t]{0.88\linewidth}
+\begin{lstlisting}[style=pomxml]
+<dependency>
+    <groupId>.......</groupId>
+    <artifactId>.......</artifactId>
+    <version>......</version>
+</dependency>
+\end{lstlisting}
+  \end{minipage}
+  \choice
+  \begin{minipage}[t]{0.88\linewidth}
+\begin{lstlisting}[style=pomxml]
+<dependency>
+    <groupId>.......</groupId>
+    <artifactId>.......</artifactId>
+    <Archetype>.......</Archetype>
+    <version>......</version>
+</dependency>
+\end{lstlisting}
+  \end{minipage}
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Each \texttt{dependency} needs \texttt{groupId}, \texttt{artifactId}, and \texttt{version} so Maven can resolve the library. \texttt{Archetype} is not a dependency element (archetypes scaffold new projects).
+
+  The POM (\textbf{Project Object Model}) in \texttt{pom.xml} describes the project and build; coordinates uniquely identify artifacts.
+\end{solution}
+
+\question[4]
+A project with packaging set to \blank[3em] will produce a typical standalone Java archive artifact (as in ``a Java file'' in the sense of a deployable JAR).
+\begin{choices}
+  \CorrectChoice JAR
+  \choice WAR
+  \choice XML
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \textbf{JAR} packages classes and resources for libraries or runnable apps (\texttt{java -jar \ldots}). \textbf{WAR} is a web layout for servlet containers, not the usual standalone ``Java archive'' answer in this stem.
+\end{solution}
+
+\question[4]
+Which of the following is an advantage of using Maven?
+\begin{choices}
+  \CorrectChoice Automatically track dependencies, build and deploy your project
+  \choice Track source code version history of your project in a central location
+  \choice Use Maven annotations to test your project code
+  \choice Improve the quality of your code
+\end{choices}
+\begin{solution}
+  Maven resolves dependencies from repositories and runs a standard lifecycle (\texttt{clean}, \texttt{compile}, \texttt{test}, \texttt{package}, \ldots). Version control is Git/SVN, etc.; quality tools may plug in but are not ``what Maven is'' in one line.
+\end{solution}
+
+\question[4]
+Which of the following is true about the Maven build lifecycle?
+\begin{enumerate}
+  \item A build lifecycle is a well-defined sequence of phases which define the order in which goals are executed.
+  \item A phase represents a stage in the lifecycle.
+\end{enumerate}
+\begin{choices}
+  \choice Only (i) is true
+  \choice Only (ii) is true
+  \CorrectChoice Both of the above
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Phases (\texttt{validate}, \texttt{compile}, \texttt{test}, \ldots) are ordered stages; plugin goals bind to phases to perform work.
+\end{solution}
+
+\question[4]
+Which of the following statements about Maven are true?
+\begin{choices}
+  \choice Only this statement: the development team can automate the project's build infrastructure in almost no time using Maven
+  \choice Only this statement: Maven uses a standard directory layout and a default build lifecycle
+  \CorrectChoice Both of the above statements are true
+  \choice Neither statement is true
+\end{choices}
+\begin{solution}
+  Both claims are standard teaching points: convention over configuration (\texttt{src/main/java}, \texttt{src/test/java}, etc.) and the default lifecycle make new projects quick to build and automate.
+\end{solution}
+
+\question[4]
+Which phase in the Maven lifecycle runs checks to verify the package is valid and meets quality criteria?
+\begin{choices}
+  \choice \texttt{integration-test}
+  \CorrectChoice \texttt{verify}
+  \choice \texttt{install}
+  \choice \texttt{deploy}
+\end{choices}
+\begin{solution}
+  \texttt{verify} runs checks (e.g.\ integration tests, quality plugins) after \texttt{package} and before \texttt{install}/\texttt{deploy}.
+\end{solution}
+
+\question[4]
+Which phase in the Maven lifecycle tests the compiled source code using a suitable unit testing framework?
+\begin{choices}
+  \choice \texttt{validate}
+  \choice \texttt{compile}
+  \CorrectChoice \texttt{test}
+  \choice \texttt{package}
+\end{choices}
+\begin{solution}
+  The \texttt{test} phase runs unit tests (e.g.\ JUnit) against compiled production and test classes.
+\end{solution}
+
+\question[4]
+Which phase in the Maven lifecycle copies the final package to the \textbf{remote} repository for sharing with other developers and projects?
+\begin{choices}
+  \choice \texttt{integration-test}
+  \choice \texttt{verify}
+  \choice \texttt{install}
+  \CorrectChoice \texttt{deploy}
+\end{choices}
+\begin{solution}
+  \texttt{deploy} publishes to a remote repository; \texttt{install} only puts the artifact in the \textbf{local} repository.
+\end{solution}
+
+\question[4]
+Which phase in the Maven lifecycle installs the package into the \textbf{local} repository for use as a dependency in other projects on your machine?
+\begin{choices}
+  \choice \texttt{integration-test}
+  \choice \texttt{verify}
+  \CorrectChoice \texttt{install}
+  \choice \texttt{deploy}
+\end{choices}
+\begin{solution}
+  \texttt{install} copies the built artifact into \texttt{\textasciitilde/.m2/repository} (by default) so other local builds can depend on it.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Java vocabulary}\par}
+
+\question[4]
+Which of these does \emph{not} describe Java (in the usual CS-A sense)?
+\begin{choices}
+  \choice Object-oriented
+  \choice Statically typed
+  \choice Platform-independent (via the JVM)
+  \CorrectChoice Can run in the browser (like typical client-side web scripts)
+\end{choices}
+\begin{solution}
+  Java bytecode runs on the JVM; it is not the default language for browser scripting (that role belongs to JavaScript). Historical Java applets are obsolete for practical purposes.
+\end{solution}
+
+\question[4]
+A parameter is a \blank[3.5em] that is passed into a \blank[3.5em] and declared in the \blank[3.5em].
+\begin{choices}
+  \choice \texttt{method}; \texttt{class}; \texttt{constructor}
+  \choice \texttt{variable}; \texttt{package}; \texttt{class}
+  \choice \texttt{annotation}; \texttt{class}; \texttt{package}
+  \CorrectChoice \texttt{variable}; \texttt{method}; \texttt{method signature}
+\end{choices}
+\begin{solution}
+  Parameters are variables declared in the method signature; arguments are the values supplied at the call site.
+\end{solution}
+
+\endgradingrange{csasdlc}

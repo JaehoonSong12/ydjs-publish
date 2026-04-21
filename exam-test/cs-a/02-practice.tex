@@ -1,0 +1,290 @@
+% Unit: Computer Science A --- continuation after Unit 1 (short answer; \input after \texttt{cs-a/01-practice.tex} in \texttt{main.tex}).
+
+\runningheader{Computer Science A}{Unit 2: OOP, exceptions, and tooling}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau2}
+
+\uplevel{\par\textbf{Classes, objects, and memory}\par}
+
+\question[4]
+What are classes used for?
+\makeemptybox{1.2in}
+\begin{solution}
+  Blueprints for objects: they group fields (state) and methods (behavior), define types, encapsulate implementation, and support reuse and modeling of real-world concepts.
+\end{solution}
+
+\question[4]
+Describe what an object is.
+\makeemptybox{1.15in}
+\begin{solution}
+  A runtime instance of a class: a specific chunk of state in memory with a reference identity, whose behavior is defined by the class's methods.
+\end{solution}
+
+\question[4]
+What is the role of garbage collection in Java?
+\makeemptybox{1.2in}
+\begin{solution}
+  The JVM reclaims memory occupied by objects that are no longer reachable, so programmers rarely \texttt{free} manually; it reduces leaks and dangling pointers at the cost of pauses and tuning complexity.
+\end{solution}
+
+\question[4]
+Describe the difference between the stack and the heap.
+\makeemptybox{1.45in}
+\begin{solution}
+  The stack holds frames for active method calls (locals, parameters, partial execution state), typically LIFO and size-known; the heap stores objects and grows dynamically; references on the stack often point to heap objects.
+\end{solution}
+
+\question[4]
+What is a constructor and how is it different from a method?
+\makeemptybox{1.35in}
+\begin{solution}
+  A constructor initializes a new instance; its name matches the class, it has no return type, and it runs when \texttt{new} is used. Ordinary methods can have any name, a return type (or \texttt{void}), and are invoked on an instance (or statically).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Collections, casting, and wrapper types}\par}
+
+\question[4]
+What is the difference between an array and an \texttt{ArrayList}?
+\makeemptybox{1.45in}
+\begin{solution}
+  Arrays have fixed length and can hold primitives or references; \texttt{ArrayList} is a resizable list implementation of \texttt{List} holding references (wrappers for primitives), with convenient add/remove and growth.
+\end{solution}
+
+\question[4]
+What is explicit and implicit casting?
+\makeemptybox{1.25in}
+\begin{solution}
+  Implicit casting is an automatic widening conversion (e.g.\ \texttt{int} to \texttt{long}) when safe; explicit casting uses parentheses and may narrow or cross types (e.g.\ \texttt{(int) d}), possibly losing precision or requiring runtime checks for references.
+\end{solution}
+
+\question[4]
+What is autoboxing and unboxing?
+\makeemptybox{1.2in}
+\begin{solution}
+  Compiler-inserted conversion between primitives and their wrapper types (e.g.\ \texttt{int} \(\leftrightarrow\) \texttt{Integer}) when assigning or passing to generic collections expecting objects.
+\end{solution}
+
+\question[4]
+What are some operations you can perform on a \texttt{List}?
+\makeemptybox{1.35in}
+\begin{solution}
+  Add/remove, get/set by index, \texttt{size}, iteration, \texttt{contains}/\texttt{indexOf}, sublists, sort, clear---details depend on the concrete \texttt{List} class.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Exceptions}\par}
+
+\question[4]
+What is the difference between an \texttt{Error} and an \texttt{Exception}?
+\makeemptybox{1.35in}
+\begin{solution}
+  Both extend \texttt{Throwable}. \texttt{Error} types (e.g.\ \texttt{OutOfMemoryError}) are serious JVM problems you generally do not catch. \texttt{Exception} types represent conditions an application might catch and recover from (or declare).
+\end{solution}
+
+\question[4]
+How would you handle an exception?
+\makeemptybox{1.35in}
+\begin{solution}
+  Use \texttt{try}/\texttt{catch} (and \texttt{finally} or \texttt{try-with-resources} for cleanup); declare \texttt{throws} when propagating checked exceptions. Avoid empty catches.
+\end{solution}
+
+\question[4]
+What is the difference between a checked and an unchecked exception?
+\makeemptybox{1.35in}
+\begin{solution}
+  Checked exceptions extend \texttt{Exception} but not \texttt{RuntimeException}; callers must handle or declare them. Unchecked (\texttt{RuntimeException} and subclasses) need not be declared; they often indicate programming bugs or unrecoverable states.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Inheritance and polymorphism}\par}
+
+\question[4]
+Describe inheritance and how would you use it in a project?
+\makeemptybox{1.55in}
+\begin{solution}
+  A subclass extends a superclass, inheriting fields/methods and adding or overriding behavior. Use it to model ``is-a'' relationships, share common implementation, and enable polymorphic references to superclass types.
+\end{solution}
+
+\question[4]
+Describe polymorphism and how would you use it in a project?
+\makeemptybox{1.5in}
+\begin{solution}
+  Same interface or superclass type, different runtime behavior: overridden methods dispatch on the actual object type. Use it to write generic code (e.g.\ process a \texttt{List} of \texttt{Shape} without branching on concrete classes).
+\end{solution}
+
+\question[4]
+How is method overriding different from method overloading?
+\makeemptybox{1.25in}
+\begin{solution}
+  Overriding replaces a superclass \emph{instance} method implementation with the same signature in a subclass (runtime dispatch). Overloading defines multiple methods with the \emph{same name} but different parameter lists in one class (compile-time resolution).
+\end{solution}
+
+\question[4]
+What methods are commonly overridden from the \texttt{Object} class and why?
+\makeemptybox{1.45in}
+\begin{solution}
+  \texttt{equals}/\texttt{hashCode} for value equality and hash-based collections; \texttt{toString} for debugging and logging; sometimes \texttt{clone} or \texttt{finalize} (rare today). Contracts must stay consistent (e.g.\ equal objects \(\Rightarrow\) same hash).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Designing class hierarchies}\par}
+
+\question[4]
+What state and behavior would you define in a parent class but not a subclass?
+\makeemptybox{1.45in}
+\begin{solution}
+  Shared data and logic common to all specializations (e.g.\ name/ID for all employees, generic validation), while keeping the type general enough that subclasses add specifics rather than duplicating the common core.
+\end{solution}
+
+\question[4]
+What state and behavior would you define in a subclass but not in the parent class?
+\makeemptybox{1.45in}
+\begin{solution}
+  Details only for that subtype (hourly wage vs.\ annual salary, etc.), so the base class is not cluttered with fields irrelevant to every sibling.
+\end{solution}
+
+\question[4]
+How does upcasting an object work?
+\makeemptybox{1.15in}
+\begin{solution}
+  Assign a subclass reference to a superclass type (implicit); the object stays the same; only the compile-time type narrows what members are visible without a cast.
+\end{solution}
+
+\question[4]
+How does downcasting an object work?
+\makeemptybox{1.2in}
+\begin{solution}
+  Use an explicit cast from superclass to subclass when you know the runtime type; it can throw \texttt{ClassCastException} if wrong. Prefer \texttt{instanceof} (pattern matching) before casting when uncertain.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Abstraction, encapsulation, and access}\par}
+
+\question[4]
+Describe abstraction and how would you use it in a project?
+\makeemptybox{1.45in}
+\begin{solution}
+  Hiding complexity behind simple interfaces (abstract types, APIs, layers). Use abstract classes/interfaces to express ``what'' without ``how,'' so implementations can change without affecting clients.
+\end{solution}
+
+\question[4]
+Describe encapsulation and how would you use it in a project?
+\makeemptybox{1.45in}
+\begin{solution}
+  Hide internal state behind methods (private fields, public accessors/mutators) so invariants and validation stay centralized and dependencies on representation do not leak.
+\end{solution}
+
+\question[4]
+What are the four levels of access we can give to class members? How are they different from one another?
+\makeemptybox{1.55in}
+\begin{solution}
+  \texttt{private} (enclosing class), package/default, \texttt{protected} (package + subclasses), \texttt{public}. Narrower access hides implementation details.
+\end{solution}
+
+\question[4]
+What is the purpose of using getter and setter methods?
+\makeemptybox{1.25in}
+\begin{solution}
+  Control reads/writes to fields (validation, lazy init, logging), preserve encapsulation, and allow evolving internal storage without breaking callers.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Interfaces and abstract types}\par}
+
+\question[4]
+Why would you use an interface over an abstract class?
+\makeemptybox{1.35in}
+\begin{solution}
+  Java allows multiple interface implementation but single inheritance; interfaces define capability contracts without state (pre--Java~8) or with default/static methods; good for cross-cutting roles and test doubles.
+\end{solution}
+
+\uplevel{\par\textit{The following items are often taught in later modules; assign according to your course pacing.}\par}
+
+\uplevel{\par\textbf{Design principles and lifecycle}\par}
+
+\question[4]
+What are the SOLID design principles and are they important?
+\makeemptybox{1.55in}
+\begin{solution}
+  Single responsibility, Open/closed, Liskov substitution, Interface segregation, Dependency inversion. They guide maintainable, testable OO design though they are guidelines, not laws.
+\end{solution}
+
+\question[4]
+What is the SDLC? Why is it important?
+\makeemptybox{1.25in}
+\begin{solution}
+  Software Development Life Cycle: phases from planning/requirements through design, implementation, testing, deployment, and maintenance. It structures risk, quality, and communication.
+\end{solution}
+
+\question[4]
+When would you use an Agile methodology versus Waterfall?
+\makeemptybox{1.45in}
+\begin{solution}
+  Agile fits changing requirements, incremental delivery, and tight feedback loops. Waterfall suits well-defined, stable specs and regulated phases where rework is costly---less adaptive to change.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Maven and build automation}\par}
+
+\question[4]
+What is Maven? Why would we use it?
+\makeemptybox{1.25in}
+\begin{solution}
+  A build and dependency tool: declarative \texttt{pom.xml}, standard directory layout, dependency resolution from repositories, plugins for compile/test/package, and reproducible builds.
+\end{solution}
+
+\question[4]
+What are the Maven build lifecycle phases?
+\makeemptybox{1.35in}
+\begin{solution}
+  Default lifecycle includes \texttt{validate}, \texttt{compile}, \texttt{test}, \texttt{package}, \texttt{verify}, \texttt{install}, \texttt{deploy} (and \texttt{clean}, \texttt{site} are separate lifecycles). Phases run bound plugin goals in order.
+\end{solution}
+
+\question[4]
+Describe the \texttt{pom.xml} file and its importance.
+\makeemptybox{1.45in}
+\begin{solution}
+  Project Object Model: coordinates (\texttt{groupId}, \texttt{artifactId}, \texttt{version}), dependencies, plugins, properties, modules, and build settings; it is the single source of truth for Maven builds.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Source control, Git, and the command line}\par}
+
+\question[4]
+What is source control management? Why is it useful?
+\makeemptybox{1.25in}
+\begin{solution}
+  Systems (e.g.\ Git) that record history of changes, enable collaboration, branches, review, rollback, and traceability---reducing loss of work and coordinating teams.
+\end{solution}
+
+\question[4]
+What are the main sections of a Git project?
+\makeemptybox{1.25in}
+\begin{solution}
+  Working tree (edited files), staging area (index), local repository (\texttt{.git} commits), and remotes (shared repos such as origin); data moves via add/commit/push/pull.
+\end{solution}
+
+\question[4]
+What are some common Linux commands? Why are they useful?
+\makeemptybox{1.45in}
+\begin{solution}
+  Examples: \texttt{ls}, \texttt{cd}, \texttt{pwd}, \texttt{cp}, \texttt{mv}, \texttt{rm}, \texttt{mkdir}, \texttt{grep}, \texttt{chmod}, \texttt{ssh}. They navigate filesystems, search logs, set permissions, and automate server/CI tasks.
+\end{solution}
+
+\question[4]
+What are some common operations you would be performing when using Git?
+\makeemptybox{1.45in}
+\begin{solution}
+  Clone, pull/fetch, branch/checkout, status, diff, add, commit, merge or rebase, push, tag, and resolve conflicts---daily workflow for integrating changes safely.
+\end{solution}
+
+\endgradingrange{csau2}

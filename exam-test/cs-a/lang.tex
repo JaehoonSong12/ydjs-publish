@@ -1,0 +1,313 @@
+% Computer Science A --- Java language rules, types, and platform (JVM / JRE / JDK).
+% \input from \texttt{main.tex} before \texttt{cs-a/procedural.tex}.
+
+\runningheader{Computer Science A}{Java language \& platform}{Page \thepage\ of \numpages}
+
+\begingradingrange{csalang} 
+
+\uplevel{\par\textbf{Java platform (JVM, JRE, JDK)}\par}
+
+\question[4]
+Java uses a virtual machine (JVM) to execute code, providing platform independence.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Bytecode runs on the JVM, which is implemented for each platform so the same \texttt{.class} files can run cross-platform.
+\end{solution}
+
+\question[4]
+The code that the developer writes is also known as \blank[5em].
+\begin{choices}
+  \CorrectChoice Source code
+  \choice Binary
+  \choice Bytecode
+  \choice An application
+\end{choices}
+\begin{solution}
+  Human-readable Java source is compiled to bytecode for the JVM.
+\end{solution}
+
+\question[4]
+In order to run Java code, you need the \blank[3em].
+\begin{choices}
+  \choice JVM
+  \CorrectChoice JRE
+  \choice JIT
+  \choice JDK
+\end{choices}
+\begin{solution}
+  \textbf{Deployment view:} end users need a \textbf{JRE} (JVM plus standard libraries such as \texttt{java.base}) so bytecode can run against the Java API. A bare JVM without those libraries cannot run a typical application.
+
+  \textbf{Roles:}
+  \begin{itemize}
+    \item \textbf{JVM:} executes bytecode.
+    \item \textbf{JRE:} runnable environment (JVM + standard library modules).
+    \item \textbf{JDK:} developer kit (compiler \texttt{javac}, tools, plus a JRE for development).
+  \end{itemize}
+
+  \textbf{Distribution:} \texttt{jlink} builds a custom runtime image with only needed modules; \texttt{jpackage} bundles an app with a runtime into installers.
+
+  \begin{center}
+  \small
+  \begin{tabular}{@{}p{0.42\linewidth}p{0.48\linewidth}@{}}
+  \hline
+  \textbf{If you want to\ldots} & \textbf{You need\ldots} \\
+  \hline
+  Run a Java program & JRE (includes the JVM) \\
+  Develop a Java program & JDK (includes the JRE and JVM) \\
+  Understand the core engine & JVM \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{solution}
+
+\question[4]
+How does Java compile your code?
+\begin{choices}
+  \choice Source code converted to bytecode by JRE; then the bytecode is converted to machine code by the JDK
+  \choice Source code is converted to bytecode by the JDK; then the bytecode is compiled line by line via the JRE; then bytecode is converted to machine code
+  \choice Source code is converted to bytecode by the JRE; then the bytecode is converted line by line using the JDK's JIT; the JIT converts the bytecode to machine code
+  \CorrectChoice Source code is converted to bytecode by the JDK; then JIT compilation is performed by the JVM which processes the bytecode line by line for execution
+\end{choices}
+\begin{solution}
+  \texttt{javac} (JDK) produces bytecode; the JVM loads and executes it, with the JIT compiling frequently executed code to native instructions.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Language syntax, types, and program structure}\par}
+
+\question[4]
+What is the purpose of the \texttt{static} keyword in Java?
+\begin{choices}
+  \choice It makes a variable constant
+  \CorrectChoice It indicates that a method belongs to the class, not to an instance of the class
+  \choice To make a variable mutable
+  \choice It prevents a class from being extended
+\end{choices}
+\begin{solution}
+  \texttt{static} fields and methods are shared by the class; call static members with \texttt{ClassName.member} without an instance.
+\end{solution}
+
+\question[4]
+The \blank[5em]\ keyword is used for sharing a variable or a method that is the same for every instance; it belongs to the class rather than to an instance of the class.
+\begin{choices}
+  \choice \lstinline!final!
+  \choice \lstinline!new!
+  \CorrectChoice \lstinline!static!
+  \choice \lstinline!abstract!
+\end{choices}
+\begin{solution}
+  \texttt{static} members are per-class; \texttt{final} controls reassignment/immutability patterns; \texttt{new} creates instances; \texttt{abstract} marks incomplete members or types.
+\end{solution}
+
+\question[4]
+Which of the following is the correct way to declare a variable in Java?
+\begin{choices}
+  \choice \lstinline!variable name;!
+  \choice \lstinline!declare name;!
+  \CorrectChoice \lstinline!int name;!
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{variable} and \texttt{declare} are not types; \lstinline!int name;! declares (but does not initialize) an \texttt{int}.
+\end{solution}
+
+\question[4]
+How should you compare two strings for equality in Java?
+\begin{choices}
+  \choice Using the \lstinline!==! operator
+  \CorrectChoice Using the \lstinline!equals()! method
+  \choice Using the \lstinline!compare()! method
+  \choice Using the \lstinline!compareTo()! method
+\end{choices}
+\begin{solution}
+  \texttt{==} compares references; \texttt{equals} compares character content. \texttt{compare}/\texttt{compareTo} relate to ordering, not value equality.
+\end{solution}
+
+\question[4]
+How do you separate statements in Java?
+\begin{choices}
+  \choice \lstinline!,!
+  \choice \lstinline!.!
+  \CorrectChoice \lstinline!;!
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Statements end with a semicolon; blocks use braces without semicolons after the closing brace (except in special cases).
+\end{solution}
+
+\question[4]
+An expression can be made up of variables, constants, and/or operators.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Expressions evaluate to values: literals, variables, operators, and method calls combine into larger expressions.
+\end{solution}
+
+\question[4]
+Is \lstinline!com._12example! a valid package name?
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Segments may contain underscores; a segment must not \emph{start} with a digit---here \texttt{\_12example} starts with underscore, which is allowed.
+\end{solution}
+
+\newpage
+
+\question[4]
+There is no need to create an object for the class to access a static variable or static method.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Access via \texttt{ClassName.staticMember}; an instance is not required (though \texttt{instance.static} is legal but discouraged).
+\end{solution}
+
+\question[4]
+How do you get the size of an array \lstinline!myArray!?
+\begin{choices}
+  \choice \lstinline!myArray.size!
+  \CorrectChoice \lstinline!myArray.length!
+  \choice \lstinline!myArray.size()!
+  \choice \lstinline!myArray.length()!
+\end{choices}
+\begin{solution}
+  Arrays use the \texttt{length} field; \texttt{List} and similar use \texttt{size()}.
+\end{solution}
+
+\question[4]
+In which scope is \texttt{x} declared?
+\begin{lstlisting}[style=javaexam]
+public class MyClass {
+  // What is the variable scope for x?
+  static String x = "test string 1";
+  String y = "test string 2";
+  void perform() {
+    String z = "test string 4";
+    for (int i = 0; i < 4; i++) {
+      System.out.println(i);
+    }
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Static (class) scope
+  \choice Instance scope
+  \choice Method scope
+  \choice Block scope
+\end{choices}
+\begin{solution}
+  \texttt{static} fields belong to the class, not to any one instance; \texttt{y} is instance scope, \texttt{z} is method-local, \texttt{i} is loop block scope.
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} a primitive type in Java?
+\begin{choices}
+  \CorrectChoice \lstinline!String!
+  \choice \lstinline!int!
+  \choice \lstinline!double!
+  \choice \lstinline!short!
+\end{choices}
+\begin{solution}
+  \texttt{String} is a reference type (class); the eight primitives include \texttt{int}, \texttt{double}, \texttt{short}, etc.
+\end{solution}
+
+\question[4]
+What are the benefits of packages?
+\begin{choices}
+  \choice Packages enable you to hide your classes
+  \choice Packages help make code visible to all other parts of the program
+  \CorrectChoice Allow you to group like classes and interfaces together to assist with organizing your projects
+  \choice Allows developers to write their code in a file
+\end{choices}
+\begin{solution}
+  Packages provide namespaces, organize source trees, and help avoid name collisions across libraries.
+\end{solution}
+
+\question[4]
+What is the correct syntax for the \texttt{main} method in Java?
+\begin{choices}
+  \choice \lstinline!public static main(String[] args) {}!
+  \choice \lstinline!public static int main(String[] args) {}!
+  \choice \lstinline!static void main(String[] args) {}!
+  \CorrectChoice \lstinline!public static void main(String[] args) {}!
+\end{choices}
+\begin{solution}
+  The entry point must be \texttt{public static void main(String[] args)} (or \texttt{String... args}).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JVM memory: heap and stack}\par}
+% Threads, reflection, and the Stream API are covered in \texttt{cs-a/distributed\_computing.tex}.
+
+\question[4]
+New objects are always created in \blank[8em].
+\begin{choices}
+  \choice Stack memory
+  \choice The \texttt{main} method
+  \CorrectChoice Heap memory
+  \choice The string pool only
+\end{choices}
+\begin{solution}
+  Object instances (and arrays) live on the \textbf{heap}; local variables holding references reside in stack frames. The string pool holds interned literals/interned strings, not all objects.
+\end{solution}
+
+\question[4]
+The heap is where method invocations and their local frames are stored.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Each thread's \textbf{call stack} holds frames for active method invocations (locals, operand stack, etc.). The \textbf{heap} stores object data; the JVM moves between bytecode instructions and the heap through references in those frames.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Types, wrappers, and memory (practice bank)}\par}
+
+\question[4]
+You can assign a variable of a larger capacity to a smaller variable without casting.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Narrowing primitive assignments require an explicit cast in Java (e.g.\ \texttt{int} to \texttt{byte}).
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} a wrapper class?
+\begin{choices}
+  \choice \texttt{Boolean}
+  \choice \texttt{Long}
+  \choice \texttt{Double}
+  \choice \texttt{Short}
+  \CorrectChoice All of these are wrapper classes
+\end{choices}
+\begin{solution}
+  Each listed type has a wrapper in \texttt{java.lang}; the intended ``none of the above'' answer is that they are \emph{all} wrappers.
+\end{solution}
+
+\question[4]
+What does \emph{not} belong in the Java heap (in the usual CS-A teaching model)?
+\begin{choices}
+  \CorrectChoice Methods
+  \choice Objects
+  \choice String pool
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Method bytecode lives in \textbf{Metaspace}/method area (not the object heap). Object instances and the string pool (for interned strings) are heap-related concepts in coursework.
+\end{solution}
+
+\endgradingrange{csalang}
