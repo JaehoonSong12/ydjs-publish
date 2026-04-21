@@ -1,0 +1,89 @@
+% Unit: Computer Science A --- logging and testing (MC; \input after \texttt{cs-a/lambda.tex} in \texttt{main.tex}).
+
+\runningheader{Computer Science A}{Unit 10: Testing and logging}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau10}
+
+\question[4]
+Henry came up with a few options for logging and presented it to Eric the SRE team lead. Which of the following option would be of highest priority to log?
+\begin{choices}
+  \choice 200 status codes
+  \choice When the application is on low usage
+  \CorrectChoice When the end user experiences a slow-down of the application
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  User-visible latency and errors usually trump routine success metrics for incident response.
+\end{solution}
+
+\question[4]
+When you write a test case, you should test every single method of an application.
+\begin{choices}
+  \CorrectChoice False
+  \choice True
+\end{choices}
+\begin{solution}
+  Prefer focused tests: one behavior or rule per test; use several \texttt{@Test} methods rather than one mega-test per production method.
+\end{solution}
+
+\question[4]
+\texttt{@BeforeEach} will run every time, before each unit test.
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  JUnit~5 \texttt{@BeforeEach} (JUnit~4 \texttt{@Before}) runs before each test method in that class.
+\end{solution}
+
+\question[4]
+What is the package for JUnit?
+\begin{choices}
+  \choice \texttt{java.junit}
+  \CorrectChoice \texttt{org.junit}
+  \choice \texttt{javax.junit}
+  \choice \texttt{org.oracle.java.junit}
+  \choice \texttt{java.test.unit}
+\end{choices}
+\begin{solution}
+  JUnit~4 lives under \texttt{org.junit}; JUnit~5 APIs are primarily \texttt{org.junit.jupiter}.
+\end{solution}
+
+\newpage
+
+\question[4]
+Predict the output of the following test:
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,frame=single,breaklines=true,aboveskip=4pt,belowskip=4pt]
+public class ExpenseApprover {
+  public boolean approveOrDenyExpense(Expense e) {
+    if (e.amount < 100 && e.hasReceipt) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+public class Test {
+  ExpenseApprover ea = new ExpenseApprover();
+
+  @Test
+  public void testExpense() {
+    Expense exp = new Expense();
+    exp.setAmount(105);
+    exp.setReceipt(true);
+    Assert.assertFalse(ea.approveOrDenyExpense(exp));
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Pass
+  \choice Fail
+  \choice Compilation error
+  \choice Test doesn't run
+\end{choices}
+\begin{solution}
+  Amount 105 fails \texttt{amount < 100}, so the method returns \texttt{false}; assertion expects \texttt{false}---passes.
+\end{solution}
+
+\endgradingrange{csau10}

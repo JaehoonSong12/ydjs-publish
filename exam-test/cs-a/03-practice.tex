@@ -1,0 +1,356 @@
+% Unit: Computer Science A --- SQL, JDBC, HTTP, streams, and concurrency (\input after \texttt{cs-a/02-practice.tex} in \texttt{main.tex}).
+
+\runningheader{Computer Science A}{Unit 3: Data access, HTTP, and concurrency}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau3}
+
+\uplevel{\par\textbf{SQL and relational data}\par}
+
+\question[4]
+What is SQL and why would we use this language?
+\makeemptybox{1.25in}
+\begin{solution}
+  Structured Query Language: declarative language for defining, querying, and manipulating relational data. Use it to persist and retrieve data in RDBMS products with a standard, portable syntax.
+\end{solution}
+
+\question[4]
+What are the SQL sublanguages and their purpose?
+\makeemptybox{1.45in}
+\begin{solution}
+  Common split: DDL (define schema), DML (insert/update/delete/select data), DCL (grant/revoke privileges), TCL (transactions: commit/rollback/savepoint). Purposes vary by vendor but these buckets organize commands.
+\end{solution}
+
+\question[4]
+What is a RDBMS?
+\makeemptybox{1.05in}
+\begin{solution}
+  Relational Database Management System: software that stores data as tables with keys and constraints, enforces relational rules, and processes SQL.
+\end{solution}
+
+\question[4]
+Describe relational database tables.
+\makeemptybox{1.25in}
+\begin{solution}
+  Two-dimensional relations: named columns (attributes) and rows (tuples/records); each row is unique (often via a primary key); tables link via foreign keys.
+\end{solution}
+
+\question[4]
+What are constraints and can you describe a few constraints?
+\makeemptybox{1.45in}
+\begin{solution}
+  Rules enforced by the DBMS: e.g.\ \texttt{PRIMARY KEY}, \texttt{FOREIGN KEY}, \texttt{UNIQUE}, \texttt{NOT NULL}, \texttt{CHECK}. They protect data quality and relationships.
+\end{solution}
+
+\question[4]
+Why would I use the \texttt{WHERE} clause?
+\makeemptybox{1.05in}
+\begin{solution}
+  To filter rows in \texttt{SELECT}, \texttt{UPDATE}, or \texttt{DELETE} so only rows matching a predicate are read or changed.
+\end{solution}
+
+\question[4]
+What are some operators that can be used in SQL?
+\makeemptybox{1.35in}
+\begin{solution}
+  Comparison (\texttt{=}, \texttt{<>}, \texttt{<}, \texttt{LIKE}, \texttt{IN}, \texttt{BETWEEN}), logical (\texttt{AND}, \texttt{OR}, \texttt{NOT}), arithmetic, string ops, and \texttt{IS NULL}---plus set operators in some contexts.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JDBC and application data access}\par}
+
+\question[4]
+What is the JDBC API and the benefits of using it?
+\makeemptybox{1.35in}
+\begin{solution}
+  Java Database Connectivity: standard API for connecting to databases, executing SQL, and reading results. Benefits: vendor-neutral code, connection pooling integration, tooling, and alignment with Java types.
+\end{solution}
+
+\question[4]
+What is the DAO Design Pattern and why should we use it?
+\makeemptybox{1.35in}
+\begin{solution}
+  Data Access Object: separate persistence logic (SQL/JDBC) from domain/services. Easier testing (mocks), swapping storage, and keeping SQL changes localized.
+\end{solution}
+
+\question[4]
+What information would you need in order to successfully connect to a database?
+\makeemptybox{1.35in}
+\begin{solution}
+  JDBC URL, driver class, credentials (user/password), optional pool settings, schema name, and SSL options as required by the deployment.
+\end{solution}
+
+\question[4]
+What is the difference between a Simple and Prepared JDBC statement?
+\makeemptybox{1.35in}
+\begin{solution}
+  \texttt{Statement} sends fixed SQL text. \texttt{PreparedStatement} precompiles a template with \texttt{?} placeholders, binds parameters safely, improves reuse, and helps prevent SQL injection.
+\end{solution}
+
+\question[4]
+What is SQL Injection and how can we prevent it using the JDBC?
+\makeemptybox{1.45in}
+\begin{solution}
+  Attacker embeds malicious SQL via untrusted input. Prevent with parameterized queries (\texttt{PreparedStatement}), validation, least-privilege DB users, and avoiding string concatenation for SQL.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Keys, design, and relationships}\par}
+
+\question[4]
+What is a foreign key?
+\makeemptybox{1.1in}
+\begin{solution}
+  A column (or set) in one table referencing a primary (or unique) key in another, encoding a relationship and enabling joins with referential checks.
+\end{solution}
+
+\question[4]
+What is referential integrity?
+\makeemptybox{1.15in}
+\begin{solution}
+  DB-enforced consistency: foreign key values must match existing parent keys (or be null), so orphans are blocked or cascades apply per policy.
+\end{solution}
+
+\question[4]
+What is normalization?
+\makeemptybox{1.35in}
+\begin{solution}
+  Organizing tables to reduce redundancy and anomalies (typically through normal forms), separating facts so each depends on the key, whole key, and nothing but the key.
+\end{solution}
+
+\question[4]
+What is multiplicity?
+\makeemptybox{1.2in}
+\begin{solution}
+  Cardinality of a relationship between entities (e.g.\ one-to-one, one-to-many, many-to-many), often modeled with keys and junction tables for $n$:$m$ cases.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Joins, views, and set operations}\par}
+
+\question[4]
+Describe what a join is and explain the different types of joins we can create.
+\makeemptybox{1.65in}
+\begin{solution}
+  Combine rows from two (or more) tables on a related column. Common kinds: \texttt{INNER} (matches only), \texttt{LEFT}/\texttt{RIGHT}/\texttt{FULL} outer (keep non-matching sides with nulls), \texttt{CROSS} (cartesian).
+\end{solution}
+
+\question[4]
+What is the difference between a join and a set operation?
+\makeemptybox{1.25in}
+\begin{solution}
+  Joins combine columns from related tables horizontally on predicates. Set ops (\texttt{UNION}, \texttt{INTERSECT}, \texttt{EXCEPT}) combine result sets of compatible queries vertically by rows.
+\end{solution}
+
+\question[4]
+What is a view and why is it useful?
+\makeemptybox{1.25in}
+\begin{solution}
+  A named, stored query (virtual table): simplifies complex SQL, can enforce column-level access, and stabilizes an API over underlying schema changes (implementation varies by DB).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{HTTP}\par}
+
+\question[4]
+What is HTTP? Why is it important to know about?
+\makeemptybox{1.25in}
+\begin{solution}
+  Hypertext Transfer Protocol: request/response protocol underlying the Web and many APIs. Important for building clients/servers, debugging APIs, caching, auth, and status handling.
+\end{solution}
+
+\question[4]
+What are common HTTP verbs used when a client application is making a request?
+\makeemptybox{1.15in}
+\begin{solution}
+  \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{PATCH}, \texttt{DELETE}, often \texttt{HEAD}/\texttt{OPTIONS}; semantics express safe/idempotent reads vs resource creation/update/removal.
+\end{solution}
+
+\question[4]
+What are some common HTTP status codes that can be included in a response?
+\makeemptybox{1.35in}
+\begin{solution}
+  Examples: \texttt{200} OK, \texttt{201} Created, \texttt{204} No Content, \texttt{400} Bad Request, \texttt{401}/\texttt{403} auth/forbidden, \texttt{404} Not Found, \texttt{500} server error---clients branch on these.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{SQL: control, grouping, and programmability}\par}
+
+\question[4]
+What is DCL?
+\makeemptybox{1in}
+\begin{solution}
+  Data Control Language: privilege commands such as \texttt{GRANT} and \texttt{REVOKE} to manage who may access which database objects.
+\end{solution}
+
+\question[4]
+What is TCL?
+\makeemptybox{1.05in}
+\begin{solution}
+  Transaction Control Language: \texttt{COMMIT}, \texttt{ROLLBACK}, \texttt{SAVEPOINT}---boundaries that make a set of changes atomic and durable per policy.
+\end{solution}
+
+\question[4]
+What is the difference between an aggregate and a scalar function?
+\makeemptybox{1.2in}
+\begin{solution}
+  Aggregates collapse many rows (\texttt{COUNT}, \texttt{SUM}, \texttt{AVG}) often with \texttt{GROUP BY}. Scalar functions compute per row (\texttt{UPPER}, \texttt{LENGTH}, \texttt{COALESCE}).
+\end{solution}
+
+\question[4]
+What is the \texttt{GROUP BY} clause used for?
+\makeemptybox{1.05in}
+\begin{solution}
+  Partition rows sharing grouping expressions so aggregates apply per group rather than over the whole table.
+\end{solution}
+
+\question[4]
+What is the \texttt{ORDER BY} clause used for?
+\makeemptybox{1in}
+\begin{solution}
+  Sort result rows by one or more columns/expressions, ascending or descending, optionally with collation-specific rules.
+\end{solution}
+
+\question[4]
+What is a stored procedure in SQL?
+\makeemptybox{1.2in}
+\begin{solution}
+  Named routine stored in the database (procedural SQL), invoked by apps; can encapsulate logic, reduce round trips, and centralize validation (trade-offs: portability, testing).
+\end{solution}
+
+\question[4]
+What is a trigger in SQL?
+\makeemptybox{1.2in}
+\begin{solution}
+  Procedure fired automatically on \texttt{INSERT}/\texttt{UPDATE}/\texttt{DELETE} (or DDL in some systems) to enforce rules, audit, or denormalized maintenance.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Transactions, functions, and indexes}\par}
+
+\question[4]
+What is a transaction?
+\makeemptybox{1.05in}
+\begin{solution}
+  A logical unit of work: a sequence of operations committed as one atomic bundle or rolled back on failure, isolating concurrent sessions per isolation level.
+\end{solution}
+
+\question[4]
+What are the properties of a transaction?
+\makeemptybox{1.25in}
+\begin{solution}
+  ACID: Atomicity (all-or-nothing), Consistency (valid state), Isolation (concurrent effects controlled), Durability (committed data survives crashes).
+\end{solution}
+
+\question[4]
+What is a function in SQL?
+\makeemptybox{1.15in}
+\begin{solution}
+  Named routine that typically returns a single value (scalar or table-valued) and can be used in expressions; may be built-in or user-defined depending on the DBMS.
+\end{solution}
+
+\question[4]
+What is an index in SQL?
+\makeemptybox{1.2in}
+\begin{solution}
+  Auxiliary structure (often B-tree) on column(s) to speed lookups and some joins/sorts at the cost of storage and write overhead; unique indexes also enforce uniqueness.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{\texttt{Optional}, streams, and reflection}\par}
+
+\question[4]
+What is the \texttt{Optional} class?
+\makeemptybox{1.2in}
+\begin{solution}
+  A container for zero or one non-null value, encouraging explicit handling of absence instead of \texttt{null} for return types (use carefully in fields/params).
+\end{solution}
+
+\question[4]
+What is the Stream API and what is it used for?
+\makeemptybox{1.35in}
+\begin{solution}
+  Functional-style pipeline over collections/IO for map/filter/reduce-style operations, often lazy, enabling parallel streams and cleaner data transformations.
+\end{solution}
+
+\question[4]
+What are intermediate stream operations?
+\makeemptybox{1.2in}
+\begin{solution}
+  Lazy ops that return another stream (\texttt{map}, \texttt{filter}, \texttt{sorted}, etc.); they run when a terminal operation executes the pipeline.
+\end{solution}
+
+\question[4]
+What are terminal stream operations?
+\makeemptybox{1.2in}
+\begin{solution}
+  Operations that finish the pipeline and produce a non-stream result or side effect: e.g.\ \texttt{collect}, \texttt{forEach}, \texttt{reduce}, \texttt{count}, \texttt{findFirst}, \texttt{anyMatch}.
+\end{solution}
+
+\question[4]
+What is the Reflection API and what is it used for?
+\makeemptybox{1.35in}
+\begin{solution}
+  Inspecting or instantiating classes, methods, fields, and annotations at runtime; frameworks use it for DI and tooling, with performance and encapsulation trade-offs.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Threads and concurrency}\par}
+
+\question[4]
+What is a thread?
+\makeemptybox{1in}
+\begin{solution}
+  A lightweight unit of execution within a process sharing memory with peers; the JVM maps Java threads to OS threads (platform-dependent).
+\end{solution}
+
+\question[4]
+How can we create a thread?
+\makeemptybox{1.2in}
+\begin{solution}
+  Subclass \texttt{Thread} and override \texttt{run}, or implement \texttt{Runnable}/\texttt{Callable} and pass to a \texttt{Thread} or executor; prefer executors for production pools.
+\end{solution}
+
+\question[4]
+How can we implement multithreading in Java?
+\makeemptybox{1.25in}
+\begin{solution}
+  Use threads, \texttt{ExecutorService}, parallel streams, \texttt{CompletableFuture}, or reactive stacks; protect shared mutable state with correct coordination.
+\end{solution}
+
+\question[4]
+What are some states a thread can be in?
+\makeemptybox{1.2in}
+\begin{solution}
+  E.g.\ \texttt{NEW}, \texttt{RUNNABLE}, blocked or waiting states while parked on locks or \texttt{wait}/\texttt{sleep}, and \texttt{TERMINATED} when \texttt{run} finishes.
+\end{solution}
+
+\question[4]
+What is synchronization?
+\makeemptybox{1.2in}
+\begin{solution}
+  Coordinating access to shared resources: \texttt{synchronized} blocks/methods, locks, atomics, or concurrent collections to prevent races and ensure visibility.
+\end{solution}
+
+\question[4]
+What is the difference between deadlock and livelock?
+\makeemptybox{1.25in}
+\begin{solution}
+  Deadlock: threads block forever waiting on each other's locks. Livelock: threads keep changing state in response but make no progress (often ``polite'' retry loops).
+\end{solution}
+
+\question[4]
+Describe the Producer Consumer problem.
+\makeemptybox{1.35in}
+\begin{solution}
+  Producers enqueue work/items; consumers dequeue; a bounded buffer needs coordination so producers wait when full and consumers when empty---classic use of queues and condition variables/\texttt{BlockingQueue}.
+\end{solution}
+
+\endgradingrange{csau3}

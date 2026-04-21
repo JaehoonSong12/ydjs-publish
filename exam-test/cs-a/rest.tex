@@ -1,0 +1,1206 @@
+% Computer Science A --- HTTP (JSON), REST, and Javalin (\input inside \texttt{main.tex} after \texttt{cs-a/06-practice.tex}).
+
+\runningheader{Computer Science A}{RESTful APIs (Javalin)}{Page \thepage\ of \numpages}
+
+\begingradingrange{csarest}
+
+\uplevel{\par\textbf{HTTP (Hypertext Transfer Protocol)}\par}
+
+
+\question[4]
+What does \textbf{API} stand for?
+\begin{choices}
+  \choice Advanced Programming Interface
+  \choice Application Programming Infrastructure
+  \CorrectChoice Application Programming Interface
+  \choice Apply Programming Interfaces
+\end{choices}
+\begin{solution}
+  \textbf{API} expands to \textbf{Application Programming Interface}: the documented surface (endpoints, types, auth) through which programs call another system.
+\end{solution}
+
+\question[4]
+What is JSON? When would we work with JSON in our application?
+\makeemptybox{1.00in}
+\begin{solution}
+  JavaScript Object Notation: text format for nested objects/arrays. Common for REST request/response bodies, config, and browser--server data exchange.
+\end{solution}
+
+\question[4]
+What is XML? When would we work with XML in our application?
+\makeemptybox{1.00in}
+\begin{solution}
+  Extensible Markup Language: text format with nested elements and attributes (often a single root). Used for some REST/SOAP payloads, configuration, feeds, and interoperability with systems that already standardize on XML.
+\end{solution}
+
+
+\question[4]
+What is HTML? When would we work with HTML in our application?
+\makeemptybox{1.00in}
+\begin{solution}
+  HyperText Markup Language: markup for documents with structure, links, and embedded media, meant for browsers to render. Typical for web pages and some hypermedia-style APIs; less often the main machine-to-machine API body than JSON, but common for human-readable responses or mixed content.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+Which of these is \textbf{not} a common \uline{state representation format} for data sent to or returned from a REST-style HTTP API?
+\begin{choices}
+  \choice JSON
+  \choice XML
+  \choice HTML
+  \CorrectChoice CSS
+\end{choices}
+\begin{solution}
+  JSON, XML, and HTML can carry resource representations over HTTP. 
+  \uline{CSS} styles documents; 
+  it is not used as the primary API payload format for resource state.
+\end{solution}
+
+\question[4]
+HTTP responses with status codes in the \textbf{100--199} range are generally classified as which category?
+\begin{choices}
+  \CorrectChoice Informational
+  \choice Success
+  \choice Redirection
+  \choice Client error
+\end{choices}
+\begin{solution}
+  The 1xx class is informational (e.g.\ request received, processing continues).
+\end{solution}
+
+\question[4]
+HTTP responses with status codes in the \textbf{200--299} range are generally classified as which category?
+\begin{choices}
+  \choice Informational
+  \CorrectChoice Success
+  \choice Redirection
+  \choice Client error
+\end{choices}
+\begin{solution}
+  The 2xx class indicates successful processing (\texttt{200 OK}, \texttt{201 Created}, etc.).
+\end{solution}
+
+
+\question[4]
+HTTP responses with status codes in the \textbf{300--399} range are generally classified as which category?
+\begin{choices}
+  \choice Informational
+  \choice Success
+  \CorrectChoice Redirection
+  \choice Client error
+\end{choices}
+\begin{solution}
+  The 3xx class signals redirection or further action needed to complete the request.
+\end{solution}
+
+
+
+\question[4]
+HTTP responses with status codes in the \textbf{400--499} range are generally classified as which category?
+\begin{choices}
+  \choice Informational
+  \choice Success
+  \choice Redirection
+  \CorrectChoice Client error
+\end{choices}
+\begin{solution}
+  The 4xx class indicates a problem with the request from the client's perspective (\texttt{404 Not Found}, \texttt{400 Bad Request}, etc.).
+\end{solution}
+
+
+\newpage
+
+\question[4]
+HTTP responses with status codes in the \textbf{500--599} range are generally classified as which category?
+\begin{choices}
+  \choice Informational
+  \choice Success
+  \choice Redirection
+  \CorrectChoice Server error
+\end{choices}
+\begin{solution}
+  The 5xx class indicates the server failed to fulfill an apparently valid request (\texttt{500}, \texttt{503}, etc.).
+\end{solution}
+
+\question[4]
+Which option correctly describes two common HTTP methods and their typical roles?
+\begin{choices}
+  \choice GET submits data, and POST retrieves data
+  \choice PUT retrieves data, and DELETE submits data
+  \CorrectChoice PUT updates (or replaces) a resource, and DELETE removes a resource
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  PUT commonly updates or replaces representations; DELETE removes resources. GET retrieves; POST often creates or submits data.
+\end{solution}
+
+
+\question[4]
+Which HTTP method is commonly used for submitting HTML form data to the server?
+\begin{choices}
+  \choice GET
+  \CorrectChoice POST
+  \choice PUT
+  \choice DELETE
+\end{choices}
+\begin{solution}
+  POST carries a body and is the usual choice for form submissions (GET may be used for idempotent lookups with query strings).
+\end{solution}
+
+
+
+\question[4]
+Which HTTP status code most directly indicates that the server is \emph{currently} unable to handle the request (e.g.\ overload or maintenance)?
+\begin{choices}
+  \choice 500
+  \choice 404
+  \CorrectChoice 503
+  \choice 302
+\end{choices}
+\begin{solution}
+  \texttt{503 Service Unavailable} signals temporary inability to handle traffic; \texttt{500} is a generic server error; \texttt{404} is client-visible ``not found.''
+\end{solution}
+
+
+\newpage
+
+\question[4]
+In the raw request below, what is the client primarily doing?
+\begin{lstlisting}[style=http]
+POST /echo/post/json HTTP/1.1
+Host: oracle.com
+Accept: application/json
+Content-Type: application/json
+Content-Length: 81
+{
+    "Id": 78912,
+    "Customer": "Frederick Smith",
+    "Quantity": 1,
+    "Price": 20.00
+}
+\end{lstlisting}
+\begin{choices}
+  \choice Retrieving a JSON object from the server
+  \CorrectChoice Sending a body to create or add a resource (or invoke a processing endpoint)
+  \choice Updating an existing resource with PUT semantics
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  A \texttt{POST} with a JSON body typically submits data for the server to accept or create; it is not a retrieval.
+\end{solution}
+
+
+
+\question[4]
+What does this HTTP response indicate?
+\begin{lstlisting}[style=http]
+HTTP/1.1 404 Not Found
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Connection: Closed
+Content-Type: text/html; charset=iso-8859-1
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html>
+<head>
+    <title>404 Not Found</title>
+</head>
+<body>
+    <h1>Not Found</h1>
+    <p>The requested URL /t.html was not found on this server.</p>
+</body>
+</html>
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice The requested resource was not found (client-visible error; 4xx)
+  \choice There was a server-side error (5xx)
+  \choice The response returned the expected successful payload
+  \choice The server redirected the client to another URL (3xx)
+\end{choices}
+\begin{solution}
+  \texttt{404 Not Found} is a client error: the URI did not map to a resource on the server.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+What does this HTTP response indicate?
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Content-Type: text/html
+<html>
+    <body>
+        <h1>Hello World</h1>
+    <body>
+</html>
+\end{lstlisting}
+\begin{choices}
+  \choice There was an error on the server side
+  \choice The server redirected the client to another URL
+  \choice The request was invalid and could not be completed
+  \CorrectChoice The request succeeded and the body is an HTML document
+\end{choices}
+\begin{solution}
+  \texttt{200 OK} with \texttt{text/html} means success; the payload is HTML for the client to render.
+\end{solution}
+
+\question[4]
+An HTTP \emph{request} message does not include a status line with a numeric status code (that appears on the response).
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  Requests have a request line (method, path, version); status codes belong in the response status line.
+\end{solution}
+
+
+\question[4]
+What is correct about HTTP status codes?
+\begin{choices}
+  \choice They range from the 100s through the 900s as standard classes
+  \CorrectChoice They tell the client whether the exchange succeeded, failed, or needs follow-up (and often why)
+  \choice They are unimportant for API development
+  \choice They are defined by CSS
+\end{choices}
+\begin{solution}
+  Standard classes are 1xx--5xx; they are central to debugging clients, servers, and proxies.
+\end{solution}
+
+\question[4]
+If a response has status \texttt{500 Internal Server Error}, that typically means an unexpected error occurred on the server; such outcomes should be rare and investigated in production.
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  \texttt{500} indicates a server failure; good operations and tests aim to avoid surfacing unhandled errors to clients.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+In the code snippet below, what kind of payload is shown?
+\begin{lstlisting}[style=http]
+{
+  "employee": {
+    "name": "Alfred",
+    "salary": 45000,
+    "married": false
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice A JSON object
+  \choice An XML document
+  \choice An HTML page
+  \choice A C\# object
+\end{choices}
+\begin{solution}
+  The payload is JSON (object with nested \texttt{employee} object).
+\end{solution}
+
+
+
+\question[4]
+Where is the inconsistency in the JSON structure below?
+\begin{lstlisting}[style=http]
+{
+  "employees": [
+    {
+      "id": 1,
+      "first_name": "Sebastian",
+      "last_name": "Eschweiler",
+      "email": "sebastianE@gmail.com"
+    },
+    {
+      "id": 2,
+      "first_name": "Steve",
+      "lastName": "Palmer",
+      "email": "steveP@gmail.com"
+    }
+  ]
+}
+\end{lstlisting}
+\begin{choices}
+  \choice in a value
+  \CorrectChoice in a property
+  \choice in an object
+  \choice in a method
+\end{choices}
+\begin{solution}
+  Property naming is inconsistent (\texttt{last\_name} vs.\ \texttt{lastName})---a schema/style issue among sibling objects.
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+\uplevel{\par\textbf{REST}\par}
+
+\question[4]
+What is REST and what are its key constraints?
+\makeemptybox{1.00in}
+\begin{solution}
+  \textbf{REST} (Representational State Transfer) is an \uline{architectural style} for building networked systems on top of HTTP: clients and servers exchange representations of \textbf{resources} through a small, uniform set of operations.
+
+  \noindent\textbf{Typical constraints (as usually taught):}
+  \begin{itemize}
+    \item \textbf{Resources and URIs:} important things are named with stable identifiers. A \textbf{URI} (Uniform Resource Identifier, RFC~3986) is the general term; a \textbf{URL} is a URI that also \emph{locates} a resource (e.g.\ an \texttt{https://\ldots} address is both). HTTP targets a resource via a URI (path and query on the wire, often embedded in a full URL).
+    \item \textbf{Stateless requests:} each call should carry what the server needs to understand it; the server does not rely on hidden per-client session state between requests.
+    \item \textbf{Uniform interface:} use standard HTTP methods and status codes with consistent, documented semantics (\texttt{GET} read, \texttt{POST} create/submit, \texttt{PUT}/\texttt{PATCH} update, \texttt{DELETE} remove, etc.).
+    \item \textbf{Representations:} payloads are serializations of a resource (often JSON or XML), not the underlying storage row-for-row.
+  \end{itemize}
+
+  \noindent\textbf{Note:} Production APIs often relax or extend pure REST; the goals are interoperability, predictability, and clear separation of concerns.
+\end{solution}
+
+\question[4]
+\textbf{True or false:} REST (\textbf{RE}presentational \textbf{S}tate \textbf{T}ransfer) is an \uline{architectural style}, not a wire protocol by itself.
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  REST describes constraints and patterns used \textbf{on top of} protocols such as HTTP; it is not a replacement for HTTP in the way a separate transport protocol would be.
+\end{solution}
+
+\question[4]
+What is REST?
+\begin{choices}
+  \choice a application framework
+  \CorrectChoice architectural style (convention)
+  \choice a programming protocol
+  \choice a testing framework
+\end{choices}
+\begin{solution}
+  REST is an \textbf{architectural style} (a set of conventions), not a framework or testing tool.
+\end{solution}
+
+\question[4]
+\textbf{True or false:} REST technology is preferred in the field because it uses less bandwidth, and is simple and flexible, making it more suitable for internet usage.
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  Text-based formats, statelessness, and standard verbs help REST-style APIs stay practical for web and mobile clients.
+\end{solution}
+
+\question[4]
+In API design vocabulary, \blank[7em] means giving clients a controlled way to access and manipulate resources (objects) through operations and representations.
+\begin{choices}
+  \choice Revealing
+  \choice Providing
+  \choice RESTing
+  \CorrectChoice Exposing
+\end{choices}
+\begin{solution}
+  \textbf{Exposing} an API means publishing an interface so clients can access and manipulate resources.
+\end{solution}
+
+
+
+
+\question[4]
+What is an endpoint?
+\makeemptybox{1.00in}
+\begin{solution}
+  An \textbf{endpoint} is a concrete \textbf{HTTP method with path} (and usual headers/body rules) that clients call for one operation; the server answers with a status line, headers, and often a JSON body.
+  \begin{lstlisting}[style=http]
+GET /api/orders/42 HTTP/1.1
+POST /api/orders HTTP/1.1
+GET /api/orders?status=open HTTP/1.1
+  \end{lstlisting}
+  Changing the method or the path (including query) defines a different endpoint even on the same server.
+\end{solution}
+
+
+\question[4]
+What are some best practices for naming resource URIs (paths and queries) using REST?
+\makeemptybox{1.00in}
+\begin{solution}
+  Paths should identify \textbf{resources} (nouns). \textbf{What to do} with a resource is expressed with HTTP methods, status codes, and bodies---not by turning the URI path into an RPC-style ``command.'' (In documentation people often say ``URL'' for the full \texttt{https://\ldots} string; the path/query portion is still URI design.)
+
+  \noindent\textbf{Common practices:}
+  \begin{itemize}
+    \item \textbf{Collections vs.\ items:} plural collection segments (\texttt{/employees}) and stable item paths (\texttt{/employees/42}) are easy to read and to evolve.
+    \item \textbf{Nesting:} reflect ownership or containment (\texttt{/departments/3/employees}) when it matches the domain; avoid needlessly deep trees.
+    \item \textbf{Methods, not path verbs:} prefer \texttt{POST /orders} over \texttt{/createOrder}; use queries for filters (\texttt{/orders?status=open}) instead of inventing new ``action'' paths.
+    \item \textbf{Consistent style:} one casing and separator rule (often lowercase with hyphens) across the whole surface.
+    \item \textbf{Versioning:} when breaking changes ship, version deliberately (path, header, or media type) and write the policy down.
+  \end{itemize}
+
+  \noindent\textbf{Note:} Clarity and consistency for clients beat strict REST purity in most product APIs.
+\end{solution}
+
+\question[4]
+Following REST-style conventions, what is the client most likely trying to do with\\
+\texttt{GET http://localhost:8080/user}?
+\begin{choices}
+  \choice the client is expecting to partially update a user on the server
+  \choice the client is expecting to fully update a user on the server
+  \CorrectChoice the client expecting to retrieve all users from the server
+  \choice the client is expecting to delete a user on the server
+\end{choices}
+\begin{solution}
+  \texttt{GET} is for \textbf{safe reads}. The precise payload (one user vs.\ a list) is defined by that API; the key idea is \textbf{no server-side state change} from a successful \texttt{GET}.
+\end{solution}
+
+
+\question[4]
+Following REST-style conventions, what is the client most likely trying to do with\\
+\texttt{PUT http://localhost:8080/user}?
+\begin{choices}
+  \choice The client is expecting to partially update a user on the server
+  \CorrectChoice The client is expecting to fully update a user on the server
+  \choice The client expecting to retrieve all users from the server
+  \choice The client is expecting to delete a user on the server
+\end{choices}
+\begin{solution}
+  \texttt{PUT} is usually \textbf{idempotent full replacement} (or creation at a known URI if the API documents upsert). Compare with \texttt{PATCH} for partial updates.
+\end{solution}
+
+\question[4]
+Following REST-style conventions, what is the client most likely trying to do with\\
+\texttt{PATCH http://localhost:8080/user}?
+\begin{choices}
+  \CorrectChoice The client is expecting to partially update a user on the server
+  \choice The client is expecting to fully update a user on the server
+  \choice The client expecting to retrieve all users from the server
+  \choice The client is expecting to delete a user on the server
+\end{choices}
+\begin{solution}
+  \texttt{PATCH} carries a \textbf{partial} change set (merge patch, JSON Patch, or vendor-specific rules). Full replacement is more often associated with \texttt{PUT}.
+\end{solution}
+
+\question[4]
+What is the purpose of the \texttt{PUT} method in RESTful APIs?
+\begin{choices}
+  \choice Delete data on the server
+  \choice Create new data on the server
+  \CorrectChoice Replace or update the resource at the target URI
+  \choice Retrieve data from the server
+\end{choices}
+\begin{solution}
+  \texttt{PUT} sends a representation to a \textbf{known resource URI}; the server stores it as the resource state---usually a \textbf{full replace}. Some APIs document ``upsert'' (\texttt{PUT} creates if missing); always follow the service's contract.
+
+  \noindent\textbf{Contrast (typical teaching):}
+  \begin{itemize}
+    \item \textbf{vs.\ \texttt{GET}:} safe read; no body meant to change server state.
+    \item \textbf{vs.\ \texttt{POST}:} often creates with server-assigned id or triggers processing on a collection URI, not necessarily idempotent.
+    \item \textbf{vs.\ \texttt{PATCH}:} partial update; \texttt{PUT} usually carries the whole resource document.
+  \end{itemize}
+
+  \noindent\textbf{Note:} Frameworks vary; correctness is defined by your API documentation and HTTP semantics you advertise.
+\end{solution}
+
+\newpage
+
+\question[4]
+What is the primary purpose of the \texttt{GET} method in RESTful APIs?
+\begin{choices}
+  \CorrectChoice Retrieve (read) a representation of a resource
+  \choice Create a new resource on the server
+  \choice Replace the entire resource at the URI
+  \choice Delete the resource at the URI
+\end{choices}
+\begin{solution}
+  \texttt{GET} is a \textbf{safe, read-only} request: fetch a representation (JSON, HTML, etc.). It should not be used to change persistent state; use \texttt{POST}, \texttt{PUT}/\texttt{PATCH}, or \texttt{DELETE} for writes.
+\end{solution}
+
+\question[4]
+What is a typical purpose of \texttt{POST} to a collection URI (e.g.\ \texttt{POST /orders}) in RESTful APIs?
+\begin{choices}
+  \choice Delete every order in the collection
+  \choice Replace all orders with the request body
+  \CorrectChoice Create a new resource (or start processing)---the server often assigns the id and may return \texttt{201 Created}
+  \choice List all orders without side effects
+\end{choices}
+\begin{solution}
+  \texttt{POST} is the usual ``\textbf{submit to collection}'' verb: create a subordinate resource, enqueue work, or accept a body whose meaning is defined by the API. It is \textbf{not} assumed idempotent---repeating the same \texttt{POST} may create duplicates unless the API is explicitly designed otherwise.
+\end{solution}
+
+\question[4]
+What is the purpose of the \texttt{DELETE} method on a resource URI in RESTful APIs?
+\begin{choices}
+  \choice Retrieve the resource one last time
+  \choice Update only selected fields
+  \CorrectChoice Remove the resource (or mark it deleted, per API policy)
+  \choice Create a copy of the resource
+\end{choices}
+\begin{solution}
+  \texttt{DELETE} asks the server to drop the resource at that URI (or to perform an application-level delete). A \texttt{204 No Content} or \texttt{200 OK} with a body are common success patterns; \texttt{404} applies if it is already gone.
+\end{solution}
+
+\question[4]
+A client must change \emph{only a few fields} of an existing resource. Which verb is \emph{most} associated with a \textbf{partial update} in REST-style APIs?
+\begin{choices}
+  \choice \texttt{GET}
+  \choice \texttt{POST}
+  \CorrectChoice \texttt{PATCH}
+  \choice \texttt{PUT} (always, in every API)
+\end{choices}
+\begin{solution}
+  \texttt{PATCH} carries a \textbf{partial} change (JSON Patch, merge patch, or API-specific diff). \texttt{PUT} is often taught as ``replace the whole representation at this URI''; some stacks overload it, but \texttt{PATCH} is the usual label for field-level edits.
+\end{solution}
+
+
+\question[4]
+Which HTTP verbs are commonly used in a REST-based architecture?
+\begin{choices}
+  \choice \texttt{POST}, \texttt{TRACE}, \texttt{PUT}, \texttt{READ}, \texttt{DELETE}
+  \CorrectChoice \texttt{PUT}, \texttt{POST}, \texttt{PATCH}, \texttt{GET}, \texttt{DELETE}
+  \choice \texttt{PUT}, \texttt{POST}, \texttt{READ}, \texttt{PATCH}, \texttt{TRACE}
+  \choice \texttt{PUT}, \texttt{PATCH}, \texttt{POST}, \texttt{UPDATE}, \texttt{DELETE}
+\end{choices}
+\begin{solution}
+  The usual REST teaching set includes \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{PATCH}, and \texttt{DELETE}. \texttt{READ} and \texttt{UPDATE} are not standard HTTP method names; \texttt{TRACE} is rarely emphasized for resource APIs.
+\end{solution}
+
+
+\newpage
+
+
+\uplevel{\par\textbf{Javalin}\par}
+
+\question[4]
+Describe Javalin.
+\makeemptybox{1.00in}
+\begin{solution}
+  Javalin is a \textbf{lightweight Java/Kotlin} library or web framework for HTTP \textbf{APIs} and small services: embedded server, little ceremony.
+
+  \begin{lstlisting}[style=javaexam]
+  Javalin app = Javalin.create();                    // embedded app / server setup
+  app.get("/hello", ctx -> ctx.result("Hi"));       // verb + path + handler; ctx writes body
+  app.get("/users/{id}", ctx -> {                   // path params in {braces}
+    String id = ctx.pathParam("id");               // read segment from URL
+    ctx.json(id);                                  // send JSON (e.g. quoted string here)
+  });
+  app.start(7070);                                  // listen on port
+  \end{lstlisting}
+  Filters, WebSockets, and static assets are optional add-ons on the same model. Also, larger ecosystems (e.g.\ Spring) add more integration out of the box. 
+
+  \noindent\textbf{Example HTTP exchanges:}\par
+  \noindent The first \texttt{app.get} registers \texttt{GET /hello}. The handler uses \texttt{ctx.result} for a \textbf{plain text} body.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /hello HTTP/1.1
+Host: localhost:7070
+Accept: */*
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+Hi
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent The second route matches \texttt{GET /users/\{id\}}. \texttt{pathParam} reads the segment; \texttt{ctx.json} sets a \texttt{JSON} body (here the Java \texttt{String} becomes a JSON string literal).\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /users/42 HTTP/1.1
+Host: localhost:7070
+Accept: application/json
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+"42"
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent\textbf{Wrong verb:}\par
+  \noindent Only \texttt{GET} is registered for these paths. \texttt{POST /hello} does not match any handler and typically yields \texttt{404 Not Found} (unless you add another route or a catch-all).\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /hello HTTP/1.1
+Host: localhost:7070
+Content-Type: text/plain
+Content-Length: 0
+
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 404 Not Found
+Content-Type: text/plain
+
+Not found
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent\textbf{Note:}
+  \texttt{*/*} means ``any media type'' in the request header.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+What is a route handler?
+\makeemptybox{1.00in}
+\begin{solution}
+  A \textbf{route handler} is the code the framework runs when an incoming request \textbf{matches} a registered route (HTTP method + path). It reads the request, calls domain logic, and finishes by setting the HTTP result.
+
+  \begin{lstlisting}[style=javaexam]
+  app.post("/orders", ctx -> {                // this lambda is the handler for POST /orders
+    // read body, validate, call services...
+    ctx.status(201).result("created");         // finish: status line + body (often .json(...))
+  });
+  \end{lstlisting}
+
+  \noindent\textbf{Example HTTP exchange:}\par
+  \noindent Client \texttt{POST}s to \texttt{/orders} with a JSON body (example payload below).\par
+  \noindent The handler sets status \texttt{201~Created}; the body text comes from \texttt{ctx.result}.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /orders HTTP/1.1
+Host: localhost:7070
+Content-Type: application/json
+
+{"item":"tea"}
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 201 Created
+Content-Type: text/plain
+
+created
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent\textbf{Note:} Names vary (\texttt{@GetMapping} method, ``controller action''); the idea is the same: \textbf{one entry point per route pattern}.
+\end{solution}
+
+
+\newpage
+
+
+\question[4]
+Which method is used to access path parameters in a Javalin handler?
+\begin{choices}
+  \CorrectChoice \texttt{ctx.pathParam()}
+  \choice \texttt{ctx.queryParam()}
+  \choice \texttt{ctx.param()}
+  \choice \texttt{ctx.getParam()}
+\end{choices}
+\begin{solution}
+  Segments declared in the route template with \texttt{\{name\}} are \textbf{path parameters}. In Javalin you read them with \texttt{ctx.pathParam("name")}.
+
+  \begin{lstlisting}[style=javaexam] 
+  app.get("/users/{id}", ctx -> {
+    String id = ctx.pathParam("id");   // binds to /users/42 -> "42"
+    ctx.result("user " + id);
+  });
+  \end{lstlisting}
+
+  \noindent\textbf{Example HTTP exchanges:}\par
+  \noindent The \texttt{\{id\}} segment in the route pattern is filled by whatever appears in that position in the URL; \texttt{pathParam("id")} returns it as a string.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /users/42 HTTP/1.1
+Host: localhost:7070
+Accept: */*
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+user 42
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent Same route, different path segment---the handler runs again with a new \texttt{id} value.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /users/7 HTTP/1.1
+Host: localhost:7070
+Accept: */*
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+user 7
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent\textbf{Wrong verb or no matching route:}\par
+  \noindent Only \texttt{GET /users/\{id\}} is registered. \texttt{POST /users/42} (or another verb) does not invoke this handler; neither does \texttt{GET /users} if your app never registered a collection route for that exact path.\par
+  \noindent Unmatched method\,+\,path pairs fall through to Javalin's default error handling (\texttt{404 Not Found} is typical unless you add routes or a custom handler).\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /users/42 HTTP/1.1
+Host: localhost:7070
+Content-Type: application/json
+Content-Length: 2
+
+{}
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 404 Not Found
+Content-Type: text/plain
+
+Not found
+\end{lstlisting}
+  \end{httpexchange}
+\end{solution}
+
+\newpage
+
+\question[4]
+Which \texttt{Context} method reads values from the \textbf{query string} (the part after \texttt{?})? \\
+\textit{e.g.} \texttt{/search?q=tea\&sort=name}
+\begin{choices}
+  \choice \texttt{ctx.pathParam()}
+  \CorrectChoice \texttt{ctx.queryParam()}
+  \choice \texttt{ctx.param()} 
+  \choice \texttt{ctx.getParam()}
+\end{choices}
+\begin{solution}
+  Query parameters are \texttt{name=value} pairs in the URL after \texttt{?}. Javalin exposes them with \texttt{ctx.queryParam("name")} (optional default overload when the key is absent).
+
+  \begin{lstlisting}[style=javaexam]
+  app.get("/search", ctx -> {
+    String q = ctx.queryParam("q");           // /search?q=tea -> "tea"
+    String sort = ctx.queryParam("sort", "id"); // default if missing
+    ctx.result(q + " sorted by " + sort);
+  });
+  \end{lstlisting}
+
+  \noindent\textbf{Example HTTP exchanges:}\par
+  \noindent Both \texttt{q} and \texttt{sort} present---\texttt{ctx.queryParam} reads each value from the query string.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /search?q=tea&sort=name HTTP/1.1
+Host: localhost:7070
+Accept: */*
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+tea sorted by name
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent Missing \texttt{sort}: the two-argument call \texttt{queryParam("sort", "id")} supplies the default \texttt{id}.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /search?q=tea HTTP/1.1
+Host: localhost:7070
+Accept: */*
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: text/plain
+
+tea sorted by id
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent\textbf{Wrong verb or no matching route:}\par
+  \noindent Only \texttt{GET /search} is registered above. A \texttt{POST} (or \texttt{PUT}, \texttt{DELETE}, \ldots) to the same path, or \texttt{GET} to a path you never registered, does \emph{not} run that lambda.\par
+  \noindent Javalin's default is an error response for unmatched method\,+\,path pairs; you usually see \texttt{404 Not Found} unless you add another route or a custom error handler.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /search HTTP/1.1
+Host: localhost:7070
+Content-Type: application/json
+Content-Length: 2
+
+{}
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 404 Not Found
+Content-Type: text/plain
+
+Not found
+\end{lstlisting}
+  \end{httpexchange}
+\end{solution}
+
+\newpage
+
+\question[4]
+In Javalin, what is the purpose of the context object parameter in route handlers?
+\begin{choices}
+  \choice It represents the request body sent by the client
+  \CorrectChoice It provides access to the HTTP request and sets the response objects
+  \choice It defines the route path for the handler
+  \choice It specifies the HTTP method for the handler
+\end{choices}
+\begin{solution}
+  \texttt{Context} (\texttt{ctx}) is created \textbf{per request}: one object that exposes the \textbf{incoming} HTTP message (path, query, headers, body, cookies, \ldots) and helpers to build the \textbf{outgoing} response (status, headers, body, redirect).
+
+  \begin{lstlisting}[style=javaexam]
+  app.get("/demo", ctx -> {
+    String q = ctx.queryParam("q");           // read request inputs
+    ctx.header("X-App", "demo");              // response header
+    ctx.status(200).result("search=" + q);    // status + body
+  });
+  \end{lstlisting}
+
+  \noindent\textbf{Example HTTP exchange:}\par
+  \noindent The client sends \texttt{q} in the query string; \texttt{ctx} supplies that value to the handler. The handler adds a response header, sets \texttt{200}, and writes the body built from \texttt{q}.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+GET /demo?q=tea HTTP/1.1
+Host: localhost:7070
+Accept: */*
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Content-Type: text/plain
+X-App: demo
+
+search=tea
+\end{lstlisting}
+  \end{httpexchange}
+\end{solution}
+
+\newpage
+
+\question[4]
+In Javalin, how do you read the raw \textbf{request body} (for example JSON as text) inside a handler?
+\begin{choices}
+  \choice The \texttt{ctx} parameter is the request body
+  \CorrectChoice \texttt{ctx.body()} (often followed by parsing, e.g.\ \texttt{bodyAsClass(...)} for JSON)
+  \choice \texttt{ctx.pathParam(...)}
+  \choice \texttt{ctx.queryParam(...)}
+\end{choices}
+\begin{solution}
+  The body is a \textbf{stream of bytes} the client sent; \texttt{ctx} is the whole request/response facade. Use \texttt{ctx.body()} for the payload as a \texttt{String}, or mapping helpers for typed JSON.
+
+  \begin{lstlisting}[style=javaexam]
+  app.post("/items", ctx -> {
+    String raw = ctx.body();                  // raw body text
+    // ctx.bodyAsClass(Item.class);           // typed JSON (method name varies by Javalin version)
+    ctx.status(raw.isEmpty() ? 400 : 201).result("ok");
+  });
+  \end{lstlisting}
+
+  \noindent\textbf{Example HTTP exchanges:}\par
+  \noindent \texttt{ctx.body()} returns the request payload as text (here JSON). The handler treats an empty body as a client error; otherwise it answers \texttt{201~Created}.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /items HTTP/1.1
+Host: localhost:7070
+Content-Type: application/json
+
+{"name":"mug","qty":2}
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 201 Created
+Content-Type: text/plain
+
+ok
+\end{lstlisting}
+  \end{httpexchange}
+
+  \noindent Same route with \textbf{no} message body: \texttt{ctx.body()} is the empty string, so the sample handler picks \texttt{400~Bad Request}.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /items HTTP/1.1
+Host: localhost:7070
+Content-Length: 0
+
+
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain
+
+ok
+\end{lstlisting}
+  \end{httpexchange}
+\end{solution}
+
+\question[4]
+Where is the \textbf{route path} (e.g.\ \texttt{/orders/\{id\}}) specified for a Javalin handler?
+\begin{choices}
+  \CorrectChoice In the route registration call---first argument to \texttt{app.get(...)}, \texttt{app.post(...)}, etc.
+  \choice Inside the handler by assigning to \texttt{ctx}
+  \choice Only in a separate XML configuration file
+  \choice Implicitly from the name of the handler method
+\end{choices}
+\begin{solution}
+  Javalin wires \texttt{method + path pattern + handler} together at registration time. The string \texttt{"/orders/\{id\}"} belongs next to \texttt{app.get} or \texttt{app.post}, not inside \texttt{ctx}.
+
+  \begin{lstlisting}[style=javaexam]
+  app.get("/orders/{id}", ctx -> {             // path pattern fixed here
+    ctx.result(ctx.pathParam("id"));          // ctx only reads matched values
+  });
+  \end{lstlisting}
+\end{solution}
+
+
+\newpage
+
+\question[4]
+What determines which \textbf{HTTP method} (e.g.\ \texttt{GET} vs.\ \texttt{POST}) a given handler accepts?
+\begin{choices}
+  \choice The handler sets it with \texttt{ctx.method(...)} before returning
+  \CorrectChoice Which registrar you use: \texttt{app.get}, \texttt{app.post}, \texttt{app.put}, \texttt{app.delete}, \ldots
+  \choice The filename of the Java source file
+  \choice The return type of the lambda
+\end{choices}
+\begin{solution}
+  Each fluent call registers one verb for that path pattern. A \texttt{GET} request never runs a handler attached only with \texttt{app.post}; you need a matching registration (or a shared handler pattern you configure per verb).
+
+  \begin{lstlisting}[style=javaexam]
+  app.get("/ping", ctx -> ctx.result("GET"));   // handles GET /ping
+  app.post("/ping", ctx -> ctx.result("POST")); // same path, different method -> different handler
+  \end{lstlisting}
+\end{solution}
+
+\question[4]
+Which of the following is a valid way to define a Javalin route handler for handling HTTP POST requests?
+\begin{choices}
+  \choice \texttt{@PostMapping("/path", ctx -> \{ \})}
+  \choice \texttt{@Route("/path", ctx -> \{ \})}
+  \CorrectChoice \texttt{post("/path", ctx -> \{ \});}
+  \choice \texttt{handler.post("/path", ctx -> \{ \})}
+\end{choices}
+\begin{solution}
+  Javalin registers routes with \textbf{fluent calls} on the \texttt{Javalin} instance. 
+  The pattern is \texttt{app.post(path, ctx -> \{ \ldots\ \})}: HTTP verb as the method name, 
+  path string, then a lambda that receives the per-request \texttt{Context}. 
+
+  \texttt{@PostMapping} is \textbf{Spring MVC}: annotations on controller methods, not Javalin's registration style. \texttt{@Route(...)} with a lambda is not how Javalin wires handlers (other stacks use different \texttt{@Route} meanings). \texttt{handler.post(...)} suggests the wrong object; you call \texttt{post} on the \texttt{Javalin} app, not on an unrelated \texttt{handler} variable.
+
+  \begin{lstlisting}[style=javaexam]
+  app.post("/path", ctx -> {
+    ctx.status(201).result("ok");   // POST /path -> this lambda
+  });
+  \end{lstlisting}
+\end{solution}
+
+\newpage
+
+\question[4]
+How do you send a JSON response with status code 201 (Created) in Javalin?
+\begin{choices}
+  \CorrectChoice \texttt{ctx.json(data).status(201)}
+  \choice \texttt{ctx.result(data).status(201)}
+  \choice \texttt{ctx.send(data, "application/json", 201)}
+  \choice \texttt{ctx.returnJson(data).status(201)}
+\end{choices}
+\begin{solution}
+  Use \texttt{ctx.json(data)} so Javalin \textbf{serializes} \texttt{data} to JSON (via the configured mapper, often Jackson) and sets an appropriate \texttt{Content-Type} (typically \texttt{application/json}). Chain \texttt{.status(201)} to send \textbf{201~Created}, the usual success code after a \texttt{POST} that creates a resource. The fluent methods return \texttt{ctx}, so \texttt{ctx.json(data).status(201)} and \texttt{ctx.status(201).json(data)} are both common orderings.
+
+  \texttt{ctx.result(\ldots)} writes the argument as the \textbf{raw response body} (often \texttt{text/plain}); it does not treat a Java object as JSON unless you stringify it yourself, so it is the wrong tool for a typed JSON payload. \texttt{ctx.send(\ldots)} and \texttt{returnJson} are not the usual \texttt{Context} API in Javalin (method names and signatures differ from these distractors).
+
+  \begin{lstlisting}[style=javaexam]
+  app.post("/items", ctx -> {
+    Item created = service.create(/* ... parse body ... */);
+    ctx.json(created).status(201);   // JSON body + 201 Created
+  });
+  \end{lstlisting}
+
+  \noindent\textbf{Example HTTP exchange:}\par
+  \noindent Client \texttt{POST}s JSON; the handler builds \texttt{created}, then \texttt{ctx.json} becomes the response body and \texttt{status(201)} sets the status line.\par
+  \begin{httpexchange}
+\begin{lstlisting}[style=http]
+POST /items HTTP/1.1
+Host: localhost:7070
+Content-Type: application/json
+
+{"name":"mug","qty":1}
+\end{lstlisting}
+\httpmidarrows
+\begin{lstlisting}[style=http]
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{"id":7,"name":"mug","qty":1}
+\end{lstlisting}
+  \end{httpexchange}
+\end{solution}
+
+\question[4]
+What is the purpose of Javalin's \texttt{ExceptionHandler} interface?
+\begin{choices}
+  \choice It provides methods for generating custom exceptions.
+  \CorrectChoice It defines a contract for classes that handle exceptions in Javalin applications.
+  \choice It automatically handles all exceptions thrown by route handlers.
+  \choice It enables logging of exceptions without affecting application flow.
+\end{choices}
+\begin{solution}
+  \texttt{ExceptionHandler} is a \textbf{functional interface}: one method that takes the thrown exception and the request \texttt{Context}. You implement it (often with a lambda) to turn failures into \textbf{HTTP status lines, JSON error bodies, headers}, or side effects such as logging---instead of leaking a raw stack trace to the client.
+
+  Register handlers on the \texttt{Javalin} instance with \texttt{app.exception(ExceptionType.class, handler)}. Javalin picks the \textbf{most specific} matching type for an uncaught exception from a route or filter. Anything you do not register still falls through to the framework's \textbf{default} error behavior (commonly \texttt{500} with a generic body unless you override it with a broad \texttt{Exception.class} handler).
+
+  \begin{lstlisting}[style=javaexam]
+  app.exception(IllegalArgumentException.class, (e, ctx) -> {
+    ctx.status(400).result("bad request: " + e.getMessage());
+  });
+  app.exception(Exception.class, (e, ctx) -> {   // broader fallback
+    ctx.status(500).result("internal error");
+  });
+  \end{lstlisting}
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{HTTP and REST (practice bank)}\par}
+
+\question[4]
+\blank[3.5em] retrieves a representation of a resource.
+\begin{choices}
+  \CorrectChoice \texttt{GET}
+  \choice \texttt{POST}
+  \choice \texttt{DELETE}
+  \choice \texttt{PUT}
+\end{choices}
+\begin{solution}
+  \textbf{GET} requests a read-only representation (safe/idempotent in typical REST teaching). \texttt{POST} often creates or submits; \texttt{PUT}/\texttt{PATCH} replace or update; \texttt{DELETE} removes.
+\end{solution}
+
+\question[4]
+What does this HTTP response mean that was returned from a server?
+\begin{lstlisting}[style=http]
+HTTP/1.1 404 Not Found
+Date: Sun, 18 Oct 2012 10:36:20 GMT
+Server: Apache/2.2.14 (Win32)
+Content-Length: 230
+Connection: Closed
+Content-Type: text/html; charset=iso-8859-1
+
+
+    404 Not Found
+
+    Not Found
+    The requested URL /t.html was not found on this server.
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice There was a client-side error
+  \choice There was a server-side error
+  \choice The response returned the results we expected
+  \choice There was a redirect to another web page
+\end{choices}
+\begin{solution}
+  \texttt{404 Not Found} is a \textbf{4xx} client error: the server understood the request but the resource path was not found (from the server's point of view).
+\end{solution}
+
+\newpage
+
+
+\question[4]
+What, if anything, is wrong with this endpoint when designing a REST API?
+\begin{center}
+  \texttt{mylibrarydemo.com/api/getAllBooks}
+\end{center}
+\begin{choices}
+  \CorrectChoice RESTful endpoints should refer to nouns, not verbs. The HTTP method in the request should instead specify the action to be taken.
+  \choice There is nothing wrong with this RESTful endpoint
+  \choice Query or path parameters should be used to retrieve all books
+  \choice Retrieval of a resource (a \texttt{GET} operation) is not allowed in a REST API
+\end{choices}
+\begin{solution}
+  The issue is the verb in the path (\texttt{getAllBooks}). In REST, the \textbf{URI names the resource} (noun), and the \textbf{HTTP method expresses the action}.
+
+  \textbf{Less RESTful:}
+  \begin{itemize}
+    \item \texttt{GET /api/getAllBooks}
+    \item \texttt{POST /api/createBook}
+    \item \texttt{DELETE /api/deleteBook/42}
+  \end{itemize}
+
+  \textbf{REST-style equivalent:}
+  \begin{itemize}
+    \item \texttt{GET /api/books} \quad (list all books)
+    \item \texttt{GET /api/books/42} \quad (fetch one book)
+    \item \texttt{POST /api/books} \quad (create a book)
+    \item \texttt{PUT /api/books/42} or \texttt{PATCH /api/books/42} \quad (update)
+    \item \texttt{DELETE /api/books/42} \quad (delete)
+  \end{itemize}
+
+  So the precise fix is: use \texttt{/api/books} (and \texttt{/api/books/\{id\}}) as noun-based endpoints, and rely on HTTP verbs for behavior.
+\end{solution}
+
+\question[4]
+This is an HTTP response received from a server. What does this mean?
+\begin{lstlisting}[style=http]
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+Content-Type: text/html
+
+    Hello World
+\end{lstlisting}
+\begin{choices}
+  \choice There was an error on the server side
+  \choice The server redirected the client to another URL
+  \choice There was an error with the request itself and it could not be completed
+  \CorrectChoice The request was completed successfully and the server returned an HTML page to the client
+\end{choices}
+\begin{solution}
+  \texttt{200 OK} means success. \texttt{Content-Type: text/html} and the body indicate an HTML response. (Some banks incorrectly also mark a ``request error'' choice; that contradicts \texttt{200}.)
+\end{solution}
+
+
+\newpage
+
+\question[4]
+You want a REST API so clients can create a new book by sending JSON like this:
+\begin{lstlisting}[style=javaexam]
+{
+    "ISBN": 182037184371,
+    "Title": "Adventures of Huckleberry Finn",
+    "Author": "Mark Twain"
+}
+\end{lstlisting}
+What kind of HTTP method should be used, and where does this data belong?
+\begin{choices}
+  \choice Use a \texttt{GET} request; data should be in the body
+  \choice Use a \texttt{POST} request; data should be in the header
+  \CorrectChoice Use a \texttt{POST} request; data should be in the body
+  \choice Use a \texttt{GET} request; data should be in the header
+\end{choices}
+\begin{solution}
+  Creating a resource usually uses \textbf{POST} (sometimes \texttt{PUT} to a known URL) with the representation in the \textbf{message body} (often \texttt{application/json}). Headers carry metadata, not the full JSON document.
+\end{solution}
+
+\endgradingrange{csarest}

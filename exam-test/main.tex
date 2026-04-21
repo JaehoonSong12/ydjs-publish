@@ -1,7 +1,5 @@
 \documentclass[addpoints]{exam}
 
-% Instructor answer key: uncomment \printanswers (or add class option [answers]).
-\printanswers
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -71,6 +69,87 @@
   aboveskip=4pt,
   belowskip=4pt,
 }
+
+% Inline \verb|\lstinline|: same Java lexer and colors as \texttt{javaexam}, without block-only options
+% (frame, line numbers, margins). A typical article preamble uses \verb|\lstset{...}| globally so inline
+% code picks up \texttt{basicstyle} / \texttt{keywordstyle}; we set \texttt{javainline} as the default.
+% Block listings still pass \texttt{[style=javaexam]} (or \texttt{http}, etc.) explicitly.
+\lstdefinestyle{javainline}{%
+  language=Java,
+  basicstyle=\ttfamily,
+  keywordstyle=\bfseries\color{blue!55!black},
+  commentstyle=\ttfamily\color{black!50},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+}
+
+% SQL snippets in \texttt{cs-a/sql.tex}: use \verb|\lstinline[style=sqlinline]| so keywords are not Java.
+\lstdefinelanguage{SQLEXAM}{%
+  morekeywords={%
+    SELECT,FROM,WHERE,INSERT,INTO,VALUES,DELETE,UPDATE,ALTER,TABLE,ADD,DROP,%
+    CREATE,TRUNCATE,VIEW,GROUP,BY,ORDER,HAVING,AND,OR,NOT,NULL,PRIMARY,KEY,%
+    FOREIGN,REFERENCES,JOIN,INNER,LEFT,RIGHT,FULL,OUTER,CROSS,NATURAL,ON,AS,%
+    CHECK,UNIQUE,DEFAULT,SERIAL,CASCADE,SET,COMMIT,ROLLBACK,SAVEPOINT,INDEX,%
+    MODIFY,COLUMN,DISTINCT,LIMIT,OFFSET,LIKE,IN,BETWEEN,IS,%
+  },%
+  sensitive=false,%
+  morecomment=[l]--,%
+  morestring=[b]',%
+}%
+\lstdefinestyle{sqlinline}{%
+  language=SQLEXAM,
+  basicstyle=\ttfamily,
+  keywordstyle=\bfseries\color{blue!55!black},
+  commentstyle=\ttfamily\color{black!50},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+}%
+% Multi-line SQL in \texttt{cs-a/sql.tex} (same lexer as \texttt{sqlinline}, block-friendly frame).
+\lstdefinestyle{sqlexam}{%
+  language=SQLEXAM,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{blue!55!black},
+  commentstyle=\ttfamily\color{black!50},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  rulecolor=\color{black!35},
+  backgroundcolor=\color{black!4},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}%
+
+% Maven \texttt{pom.xml} snippets (\texttt{cs-a/software\_dev\_life\_cycle.tex}).
+\lstdefinestyle{pomxml}{%
+  language=XML,
+  numbers=none,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{blue!55!black},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=4,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  rulecolor=\color{black!35},
+  backgroundcolor=\color{black!4},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}%
 
 % HTML / CSS / JavaScript (CS-A: \texttt{cs-a/web.tex}). HTML uses built-in \texttt{language=HTML}.
 \lstdefinelanguage{CSSEXAM}{%
@@ -162,7 +241,7 @@
   frame=single,
   framerule=0.4pt,
   framesep=3pt,
-  xleftmargin=2pt,
+  xleftmargin=2pt, 
   xrightmargin=2pt,
   breaklines=true,
   breakatwhitespace=true,
@@ -171,6 +250,8 @@
   aboveskip=4pt,
   belowskip=4pt,
 }
+
+\lstset{style=javainline}
 
 % Side-by-side request/response with \texttt{lstlisting} (CS-A: \texttt{rest.tex}). One tabular
 % row (\texttt{m} columns); \verb|\httpmidarrows| sits between listings. Middle strip: \textbf{REQ}
@@ -307,6 +388,11 @@
 \firstpagefooter{}{}{}
 \runningfooter{}{\small Page \thepage\ of \numpages}{}
 
+
+
+% Instructor answer key: uncomment \printanswers (or add class option [answers]).
+\printanswers
+
 \begin{document} 
 
 
@@ -324,7 +410,7 @@
 
 
 
-\exammodulecover{Computer Science A}{AP Practice Exam}{College Board style practice questions.}
+\exammodulecover{Computer Science A}{AP Practice Exam}{College Board styled practice questions.}
 \begin{questions}
   % \input{cs-a/01-practice} 
   % \exampracticerepetitionpage
@@ -338,27 +424,36 @@
   % \exampracticerepetitionpage
   % \input{cs-a/06-practice}
   % \exampracticerepetitionpage
-  % \input{cs-a/functional} 
-  % \exampracticerepetitionpage
-  % \input{cs-a/rest}
-  % \exampracticerepetitionpage
-  % \input{cs-a/spring}
-  % \exampracticerepetitionpage
-  % \input{cs-a/springboot}
-  % \exampracticerepetitionpage
-  % \input{cs-a/web}
-  % \exampracticerepetitionpage
   % \input{cs-a/10-practice}
 
 
 
   
+  % \input{cs-a/lang}
   % \exampracticerepetitionpage
+  % \input{cs-a/git}
+  % \exampracticerepetitionpage
+  \input{cs-a/procedural}
+  \exampracticerepetitionpage
+  \input{cs-a/object_oriented}
+  \exampracticerepetitionpage
+  \input{cs-a/software_dev_life_cycle}
+  \exampracticerepetitionpage
   \input{cs-a/dsa}
   \exampracticerepetitionpage
   \input{cs-a/sql}
   \exampracticerepetitionpage
+  \input{cs-a/functional}
+  \exampracticerepetitionpage
   \input{cs-a/distributed_computing}
+  \exampracticerepetitionpage
+  \input{cs-a/rest}
+  \exampracticerepetitionpage
+  \input{cs-a/spring}
+  \exampracticerepetitionpage
+  \input{cs-a/springboot}
+  \exampracticerepetitionpage
+  \input{cs-a/web}
 \end{questions}
 
 
