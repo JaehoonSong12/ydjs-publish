@@ -1,6 +1,7 @@
 % Computer Science A --- functional interfaces, lambda expressions, method references, and Stream API
 % (streams follow lambdas: pipelines use \texttt{Predicate}/\texttt{Function} and lambda syntax).
 % Loaded from \texttt{main.tex}; place this file before \texttt{distributed\_computing.tex} so streams sit after SAM/lambda groundwork.
+% Optional/stream-pipeline FRQs migrated from \texttt{cs-a/03-practice.tex} open the \textbf{Stream API} section (before stream MCQs); parallel execution via \texttt{parallelStream()} ties to fork/join pools in \texttt{distributed\_computing.tex}.
 
 \runningheader{Computer Science A}{Lambdas, streams, \& functional Java}{Page \thepage\ of \numpages}
 
@@ -296,6 +297,38 @@ xs.replaceAll(String::toLowerCase);
 \uplevel{\par\textbf{Stream API} (\texttt{java.util.stream})\par}
 
 \noindent\footnotesize\textit{Streams apply the functional style above: intermediate ops take lambdas or method references; terminals finish the pipeline.}\par
+
+\uplevel{\par\textbf{Optional, streams, and parallel execution}\par}
+
+\question[4]
+What is the \texttt{Optional} class?
+\makeemptybox{1.2in}
+\begin{solution}
+  A container for zero or one non-null value, encouraging explicit handling of absence instead of \texttt{null} for return types (use carefully in fields/params).
+\end{solution}
+
+\question[4]
+What is the Stream API and what is it used for?
+\makeemptybox{1.35in}
+\begin{solution}
+  Functional-style pipeline over collections/IO for map/filter/reduce-style operations, often lazy, enabling parallel streams and cleaner data transformations.
+\end{solution}
+
+\question[4]
+What are intermediate stream operations?
+\makeemptybox{1.2in}
+\begin{solution}
+  Lazy ops that return another stream (\texttt{map}, \texttt{filter}, \texttt{sorted}, etc.); they run when a terminal operation executes the pipeline.
+\end{solution}
+
+\question[4]
+What are terminal stream operations?
+\makeemptybox{1.2in}
+\begin{solution}
+  Operations that finish the pipeline and produce a non-stream result or side effect: e.g.\ \texttt{collect}, \texttt{forEach}, \texttt{reduce}, \texttt{count}, \texttt{findFirst}, \texttt{anyMatch}.
+\end{solution}
+
+\newpage
 
 \question[4]
 Which API operates on a collection of objects to process it and get the desired result?

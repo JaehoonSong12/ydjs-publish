@@ -1,6 +1,112 @@
 % Computer Science A --- Data structures, collections, and algorithm basics (\input from \texttt{main.tex}).
+% Free-response bank at the front is migrated from \texttt{cs-a/05-practice.tex} (Collections Framework, DSA basics). Design-pattern FRQs live in \texttt{object\_oriented.tex}.
 
 \runningheader{Computer Science A}{Data structures \& algorithms}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau5}
+
+\uplevel{\par\textbf{The Java Collections Framework}\par}
+
+\question[4]
+What is a \texttt{Collection}?
+\makeemptybox{1.15in}
+\begin{solution}
+  Root interface in the Java Collections Framework for groups of objects (\texttt{add}, \texttt{remove}, \texttt{size}, iteration); \texttt{Map} is not a \texttt{Collection} but is part of the same library.
+\end{solution}
+
+\question[4]
+What is the Collection API?
+\makeemptybox{1.2in}
+\begin{solution}
+  The set of interfaces and implementations in \texttt{java.util} (and related) for lists, sets, queues, maps, sorting, and utilities such as \texttt{Collections} and \texttt{Arrays}.
+\end{solution}
+
+\question[4]
+What are the major differences between a \texttt{List}, \texttt{Queue}, \texttt{Set}, and \texttt{Map}?
+\makeemptybox{1.65in}
+\begin{solution}
+  \texttt{List}: ordered, indexed, duplicates allowed. \texttt{Queue}: FIFO (or priority) processing order. \texttt{Set}: no duplicates, often unordered (\texttt{TreeSet} sorted). \texttt{Map}: key--value pairs, keys unique; not a \texttt{Collection} of entries in the same sense.
+\end{solution}
+
+\question[4]
+What is the difference between a \texttt{Stack} and a \texttt{Queue}?
+\makeemptybox{1.2in}
+\begin{solution}
+  Stack is LIFO (last in, first out); queue is FIFO (first in, first out). Prefer \texttt{Deque} over legacy \texttt{Stack} in modern Java.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Data structures and algorithms}\par}
+
+\question[4]
+Describe a linked list.
+\makeemptybox{1.35in}
+\begin{solution}
+  Nodes where each holds data and a reference to the next (and previous for doubly linked); supports \(O(1)\) insert/delete at a known node but \(O(n)\) indexed access unless optimized.
+\end{solution}
+
+\question[4]
+What is an algorithm?
+\makeemptybox{1.05in}
+\begin{solution}
+  A finite, well-defined procedure that transforms input into output; analyzable for correctness and resource use.
+\end{solution}
+
+\question[4]
+How would you describe time complexity?
+\makeemptybox{1.35in}
+\begin{solution}
+  Big-\(O\) (and related) notation for how runtime grows with input size \(n\), ignoring constants and lower-order terms; describes worst/average cases as appropriate.
+\end{solution}
+
+\question[4]
+What is the difference between linear search and binary search?
+\makeemptybox{1.35in}
+\begin{solution}
+  Linear scans each element in order---\(O(n)\). Binary search halves a sorted range each step---\(O(\log n)\) but requires sorted (or indexed) data.
+\end{solution}
+
+\question[4]
+What is the difference between Bubble Sort and Merge Sort?
+\makeemptybox{1.45in}
+\begin{solution}
+  Bubble sort repeatedly swaps adjacent out-of-order elements; simple but typically \(O(n^2)\). Merge sort divides and merges sorted halves; \(O(n\log n)\) time, uses extra space for merging.
+\end{solution}
+
+\endgradingrange{csau5}
+
+\uplevel{\par\textbf{Collections, casting, and wrapper types}\par}
+
+\question[4]
+What is the difference between an array and an \texttt{ArrayList}?
+\makeemptybox{1.45in}
+\begin{solution}
+  Arrays have fixed length and can hold primitives or references; \texttt{ArrayList} is a resizable list implementation of \texttt{List} holding references (wrappers for primitives), with convenient add/remove and growth.
+\end{solution}
+
+\question[4]
+What is explicit and implicit casting?
+\makeemptybox{1.25in}
+\begin{solution}
+  Implicit casting is an automatic widening conversion (e.g.\ \texttt{int} to \texttt{long}) when safe; explicit casting uses parentheses and may narrow or cross types (e.g.\ \texttt{(int) d}), possibly losing precision or requiring runtime checks for references.
+\end{solution}
+
+\question[4]
+What is autoboxing and unboxing?
+\makeemptybox{1.2in}
+\begin{solution}
+  Compiler-inserted conversion between primitives and their wrapper types (e.g.\ \texttt{int} \(\leftrightarrow\) \texttt{Integer}) when assigning or passing to generic collections expecting objects.
+\end{solution}
+
+\question[4]
+What are some operations you can perform on a \texttt{List}?
+\makeemptybox{1.35in}
+\begin{solution}
+  Add/remove, get/set by index, \texttt{size}, iteration, \texttt{contains}/\texttt{indexOf}, sublists, sort, clear---details depend on the concrete \texttt{List} class.
+\end{solution}
+
+\newpage
 
 \begingradingrange{csadsa}
 

@@ -1,6 +1,7 @@
 % Computer Science A --- \texttt{java.lang.Class}, reflection (\texttt{java.lang.reflect}),
 % and concurrency (\texttt{java.lang.Thread} / \texttt{Runnable}).
-% Stream API questions live in \texttt{cs-a/functional.tex} (after lambdas/method references).
+% Stream API questions live in \texttt{cs-a/functional.tex} (after lambdas/method references); stream pipelines tie to parallel execution (\texttt{parallelStream}, fork/join) alongside threads here.
+% Reflection and thread \emph{free-response} prompts migrated from \texttt{cs-a/03-practice.tex} sit just before the matching MCQ blocks below.
 % Order: class metadata, reflection types, threads.
 % Heap/stack basics: \texttt{cs-a/lang.tex}; streams + lambdas: \texttt{cs-a/functional.tex}.
 
@@ -93,6 +94,66 @@ import java.lang.reflect.Method;
 
 Method[] methods = String.class.getDeclaredMethods();
 \end{lstlisting}
+\end{solution}
+
+\question[4]
+What is the Reflection API and what is it used for?
+\makeemptybox{1.35in}
+\begin{solution}
+  Inspecting or instantiating classes, methods, fields, and annotations at runtime; frameworks use it for DI and tooling, with performance and encapsulation trade-offs.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Threads and concurrency}\par}
+
+\question[4]
+What is a thread?
+\makeemptybox{1in}
+\begin{solution}
+  A lightweight unit of execution within a process sharing memory with peers; the JVM maps Java threads to OS threads (platform-dependent).
+\end{solution}
+
+\question[4]
+How can we create a thread?
+\makeemptybox{1.2in}
+\begin{solution}
+  Subclass \texttt{Thread} and override \texttt{run}, or implement \texttt{Runnable}/\texttt{Callable} and pass to a \texttt{Thread} or executor; prefer executors for production pools.
+\end{solution}
+
+\question[4]
+How can we implement multithreading in Java?
+\makeemptybox{1.25in}
+\begin{solution}
+  Use threads, \texttt{ExecutorService}, parallel streams, \texttt{CompletableFuture}, or reactive stacks; protect shared mutable state with correct coordination.
+\end{solution}
+
+\question[4]
+What are some states a thread can be in?
+\makeemptybox{1.2in}
+\begin{solution}
+  E.g.\ \texttt{NEW}, \texttt{RUNNABLE}, blocked or waiting states while parked on locks or \texttt{wait}/\texttt{sleep}, and \texttt{TERMINATED} when \texttt{run} finishes.
+\end{solution}
+
+\question[4]
+What is synchronization?
+\makeemptybox{1.2in}
+\begin{solution}
+  Coordinating access to shared resources: \texttt{synchronized} blocks/methods, locks, atomics, or concurrent collections to prevent races and ensure visibility.
+\end{solution}
+
+\question[4]
+What is the difference between deadlock and livelock?
+\makeemptybox{1.25in}
+\begin{solution}
+  Deadlock: threads block forever waiting on each other's locks. Livelock: threads keep changing state in response but make no progress (often ``polite'' retry loops).
+\end{solution}
+
+\question[4]
+Describe the Producer Consumer problem.
+\makeemptybox{1.35in}
+\begin{solution}
+  Producers enqueue work/items; consumers dequeue; a bounded buffer needs coordination so producers wait when full and consumers when empty---classic use of queues and condition variables/\texttt{BlockingQueue}.
 \end{solution}
 
 \newpage

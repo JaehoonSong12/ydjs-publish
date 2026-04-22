@@ -3,6 +3,31 @@
 
 \runningheader{Computer Science A}{Java control flow \& operators}{Page \thepage\ of \numpages}
 
+\uplevel{\par\textbf{Exceptions}\par}
+
+\question[4]
+What is the difference between an \texttt{Error} and an \texttt{Exception}?
+\makeemptybox{1.35in}
+\begin{solution}
+  Both extend \texttt{Throwable}. \texttt{Error} types (e.g.\ \texttt{OutOfMemoryError}) are serious JVM problems you generally do not catch. \texttt{Exception} types represent conditions an application might catch and recover from (or declare).
+\end{solution}
+
+\question[4]
+How would you handle an exception?
+\makeemptybox{1.35in}
+\begin{solution}
+  Use \texttt{try}/\texttt{catch} (and \texttt{finally} or \texttt{try-with-resources} for cleanup); declare \texttt{throws} when propagating checked exceptions. Avoid empty catches.
+\end{solution}
+
+\question[4]
+What is the difference between a checked and an unchecked exception?
+\makeemptybox{1.35in}
+\begin{solution}
+  Checked exceptions extend \texttt{Exception} but not \texttt{RuntimeException}; callers must handle or declare them. Unchecked (\texttt{RuntimeException} and subclasses) need not be declared; they often indicate programming bugs or unrecoverable states.
+\end{solution}
+
+\newpage
+
 \begingradingrange{csaproc}
 
 \uplevel{\par\textbf{Procedural Java (control flow and operators)}\par}
