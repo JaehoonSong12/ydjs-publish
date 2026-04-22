@@ -372,7 +372,7 @@
 }
 
 % Spacer before the next repetition of practice (e.g.\ second practice pass). No header/footer; ends with \newpage.
-\newcommand{\exampracticerepetitionpage}{%
+\newcommand{\emptypage}{%
   \newpage
   \thispagestyle{empty}%
   \null\vfill
@@ -402,7 +402,7 @@
 % \exammodulecover{Computer Science Principles}{AP Practice Exam}{College Board style practice questions.}
 % \begin{questions}
 %   \input{cs-p/01-practice}
-%   \exampracticerepetitionpage
+%   \emptypage
 %   \input{cs-p/02-practice}
 % \end{questions}
 
@@ -412,48 +412,60 @@
 
 \exammodulecover{Computer Science A}{AP Practice Exam}{College Board styled practice questions.}
 \begin{questions}
-  % \input{cs-a/01-practice} 
-  % \exampracticerepetitionpage
+  % Intro/OOP/tooling short-answer material has been migrated directly into topical \texttt{cs-a/*.tex} modules. Optional archive stubs remain in \texttt{cs-a/01-practice.tex} and \texttt{cs-a/02-practice.tex}.
+  % \input{cs-a/01-practice}
+  % \emptypage
   % \input{cs-a/02-practice}
-  % \exampracticerepetitionpage
-  % \input{cs-a/03-practice}
-  % \exampracticerepetitionpage
-  % \input{cs-a/04-practice}
-  % \exampracticerepetitionpage
-  % \input{cs-a/05-practice}
-  % \exampracticerepetitionpage
-  % \input{cs-a/06-practice}
-  % \exampracticerepetitionpage
-  % \input{cs-a/10-practice}
-
-
-
   
-  % \input{cs-a/lang}
-  % \exampracticerepetitionpage
-  % \input{cs-a/git}
-  % \exampracticerepetitionpage
+  
+  \input{cs-a/git}
+  \emptypage
+  \input{cs-a/lang}
+
+
+
+
+  \emptypage
+
+
+
+
   \input{cs-a/procedural}
-  \exampracticerepetitionpage
+  \emptypage
   \input{cs-a/object_oriented}
-  \exampracticerepetitionpage
+  \emptypage
   \input{cs-a/software_dev_life_cycle}
-  \exampracticerepetitionpage
+  \emptypage
   \input{cs-a/dsa}
-  \exampracticerepetitionpage
-  \input{cs-a/sql}
-  \exampracticerepetitionpage
+  \emptypage
   \input{cs-a/functional}
-  \exampracticerepetitionpage
-  \input{cs-a/distributed_computing}
-  \exampracticerepetitionpage
-  \input{cs-a/rest}
-  \exampracticerepetitionpage
-  \input{cs-a/spring}
-  \exampracticerepetitionpage
-  \input{cs-a/springboot}
-  \exampracticerepetitionpage
-  \input{cs-a/web}
+
+
+  \emptypage
+
+  \input{cs-a/testing_logging}
+  \emptypage
+
+
+  \input{cs-db/sql}
+  \emptypage
+  \input{cs-db/distributed_computing}
+  
+
+  \emptypage
+
+
+  \input{cs-web/rest}
+  \emptypage
+  \input{cs-web/spring}
+  \emptypage
+  \input{cs-web/springboot}
+
+
+  \emptypage
+
+
+  \input{cs-web/web}
 \end{questions}
 
 
@@ -462,7 +474,9 @@
 
 % \exammodulecover{Mathematics 6}{Statistics}{Unit assessment: data and statistics.}
 % \begin{questions}
-%   \input{math-6th/05-stats}
+%   % \input{math-6th/05-stats}
+%   % \emptypage
+%   \input{math-6th/99-all}
 % \end{questions}
 
 \end{document}

@@ -1,8 +1,140 @@
 % Computer Science A --- Spring Boot (\texttt{application.*}, auto-config, actuator, packaging, Boot testing). See \texttt{spring.tex} for the core framework.
+% Free-response bank at the front is migrated from \texttt{cs-a/06-practice.tex} (Spring Boot/configuration, Lombok, Actuator).
 
 \runningheader{Computer Science A}{Spring Boot}{Page \thepage\ of \numpages}
 
 \begingradingrange{csaspringboot}
+
+\uplevel{\par\textbf{Free response: Spring Boot, configuration, Lombok, and Actuator}\par
+\textit{These items mirror the unit bank; use the boxed space for student work. The printed key expands each idea for study.}\par}
+
+\uplevel{\par\textbf{Spring Boot and configuration}\par}
+
+\question[4]
+What is Spring Boot?
+\makeemptybox{1.25in}
+\begin{solution}
+  \textbf{Spring Boot} is an opinionated layer \emph{on top of} the Spring Framework: \textbf{dependency starters} pull coordinated libraries, \textbf{auto-configuration} wires common beans when classpath and properties match, and an \textbf{embedded HTTP server} (Tomcat by default) lets you run \texttt{java -jar} with minimal XML or Java config boilerplate.
+
+  It does \textbf{not} replace Spring concepts (beans, DI, MVC, Data); it accelerates getting to a working application and standardizes production concerns (metrics, health, externalized config, executable JAR packaging).
+\end{solution}
+
+\question[4]
+Tell me about the \texttt{@SpringBootApplication} annotation.
+\makeemptybox{1.35in}
+\begin{solution}
+  \texttt{@SpringBootApplication} is a \textbf{convenience composed annotation} used on the class that contains \texttt{public static void main}. It bundles:
+  \begin{itemize}
+    \item \texttt{@Configuration} --- the class can declare \texttt{@Bean} methods.
+    \item \texttt{@EnableAutoConfiguration} --- pull in Boot's conditional auto-configuration classes.
+    \item \texttt{@ComponentScan} (by default from the package of the annotated class downward) --- discover \texttt{@Component}, \texttt{@Service}, \texttt{@Repository}, \texttt{@Controller}, etc.
+  \end{itemize}
+  Together, these bootstrap a Boot application's application context the way the course expects you to describe ``the main class.''
+\end{solution}
+
+\question[4]
+What is Spring Initializr?
+\makeemptybox{1.1in}
+\begin{solution}
+  \textbf{Spring Initializr} (\texttt{start.spring.io}, also integrated into IDEs) generates a \textbf{new project skeleton}: build file (\texttt{pom.xml} or \texttt{build.gradle}), default package layout, main application class, test stub, and chosen \textbf{dependencies} (Web, Data JPA, Validation, Actuator, etc.).
+
+  It encodes sensible defaults (Java version, Spring Boot BOM, plugin configuration) so learners start from a compiling project instead of hand-assembling classpath coordinates.
+\end{solution}
+
+\question[4]
+What is the use of a \texttt{.properties} or \texttt{.yaml} file?
+\makeemptybox{1.35in}
+\begin{solution}
+  Files such as \texttt{application.properties} or \texttt{application.yml} \textbf{externalize configuration}: ports, context paths, datasource URLs, feature flags, logging levels, and third-party API keys (often \emph{referenced} here but supplied via environment variables in real deployments).
+
+  Boot maps dotted keys (or YAML hierarchies) onto beans via relaxed binding and \texttt{@ConfigurationProperties}. \textbf{Profiles} (\texttt{application-dev.yml}, \texttt{spring.profiles.active}) let you swap whole configuration bundles per environment without recompiling.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Lombok and Actuator}\par}
+
+\question[4]
+What is Lombok and its benefits?
+\makeemptybox{1.25in}
+\begin{solution}
+  \textbf{Project Lombok} is an annotation processor that generates repetitive Java bytecode at compile time: getters/setters, constructors, \texttt{equals}/\texttt{hashCode}, \texttt{toString}, builders (\texttt{@Builder}), and logging fields (\texttt{@Slf4j}).
+
+  \noindent\textbf{Benefits:} less boilerplate in entities and DTOs, fewer merge conflicts in giant hand-written methods, and readable domain classes.
+
+  \noindent\textbf{Caveat:} IDEs and CI must enable annotation processing so navigation and refactoring stay accurate; some teams limit Lombok features (e.g.\ avoid \texttt{@Data} on JPA entities) to reduce surprising behavior.
+\end{solution}
+
+\question[4]
+What is the Spring Actuator module?
+\makeemptybox{1.2in}
+\begin{solution}
+  \textbf{Spring Boot Actuator} adds \textbf{production-ready operational endpoints}: health checks for orchestrators, application \texttt{info}, metrics for Prometheus/Micrometer, environment and configuration introspection, thread dumps, loggers control, and more---depending on what you include and expose.
+
+  It complements your business REST API: think \emph{how is the process behaving in production?} rather than \emph{what does a customer transaction do?}
+\end{solution}
+
+\question[4]
+What are actuator endpoints?
+\makeemptybox{1.1in}
+\begin{solution}
+  An \textbf{actuator endpoint} is a named operational capability (each has an \texttt{id} like \texttt{health}, \texttt{metrics}, \texttt{env}) implemented as a bean behind Spring's management infrastructure.
+
+  Endpoints can be reached over \textbf{HTTP} (commonly under \texttt{/actuator/\ldots} with Boot defaults), \textbf{JMX}, or other technologies if configured. They should be \textbf{secured} in production because they reveal internals.
+\end{solution}
+
+\question[4]
+What does enabling an endpoint mean?
+\makeemptybox{1.05in}
+\begin{solution}
+  \textbf{Enabling} means the endpoint's implementation is \textbf{active in the application context}: its operations exist and can execute when invoked, subject to security.
+
+  Boot controls this with properties such as \texttt{management.endpoint.<id>.enabled} (defaults differ by endpoint and version). Disabled endpoints are absent or inert even if their code is on the classpath.
+\end{solution}
+
+\question[4]
+What does exposing an endpoint mean?
+\makeemptybox{1.05in}
+\begin{solution}
+  \textbf{Exposing} selects \emph{which transport} may reach an enabled endpoint---for example, including an endpoint id in \texttt{management.endpoints.web.exposure.include} so it appears on the HTTP management port/prefix.
+
+  An endpoint can be \textbf{enabled but not exposed} over HTTP (still reachable via JMX if exposed there), which is the modern default posture for sensitive introspection endpoints.
+\end{solution}
+
+\question[4]
+What does it mean when an endpoint is ``available''?
+\makeemptybox{1.1in}
+\begin{solution}
+  In Boot documentation, \textbf{available} colloquially means the endpoint is both \textbf{enabled} and \textbf{exposed} on the interface you are using (HTTP or JMX), so a client \emph{can} call it assuming security permits.
+
+  If an endpoint is disabled or not included for web exposure, clients receive \texttt{404} on the web adapter even though related beans might exist elsewhere.
+\end{solution}
+
+\question[4]
+What are some endpoints that actuator provides and their use?
+\makeemptybox{1.45in}
+\begin{solution}
+  Representative endpoints (exact availability depends on classpath and configuration):
+  \begin{itemize}
+    \item \texttt{/actuator/health} --- liveness/readiness for load balancers and Kubernetes probes.
+    \item \texttt{/actuator/info} --- static build or git metadata for dashboards.
+    \item \texttt{/actuator/metrics} / Micrometer registry --- throughput, latency, JVM, and custom timers.
+    \item \texttt{/actuator/env} and \texttt{/actuator/configprops} --- debug configuration drift (high sensitivity).
+    \item \texttt{/actuator/loggers} --- adjust log levels at runtime (use with care).
+  \end{itemize}
+  Treat anything beyond \texttt{health} (and maybe \texttt{info}) as \textbf{privileged operations} in production.
+\end{solution}
+
+\question[4]
+How can you create a custom actuator endpoint?
+\makeemptybox{1.25in}
+\begin{solution}
+  Define a \texttt{@Endpoint} bean (Boot 2+ style) with a unique id, expose read/write operations with \texttt{@ReadOperation}, \texttt{@WriteOperation}, or \texttt{@DeleteOperation}, and register it so the actuator infrastructure can adapt it to HTTP/JMX.
+
+  \noindent\textbf{Contrast:} a normal \texttt{@RestController} serves \emph{application} APIs; actuator endpoints follow the management model so they participate in global enable/expose/security policies. For Boot 3/Jakarta, use the \texttt{org.springframework.boot.actuate.endpoint.annotation} package; secure custom endpoints like you would \texttt{/actuator/env}.
+\end{solution}
+
+\newpage
 
 \question[4]
 Overall project configuration can be provided to a Spring application using which files?
@@ -252,6 +384,82 @@ Which statement about externalized configuration precedence is generally correct
 \end{choices}
 \begin{solution}
   Boot combines multiple property sources with precedence rules; command-line options are high-priority and commonly override defaults from files.
+\end{solution}
+
+\uplevel{\par\textbf{Additional Spring Boot Concepts: Core Annotations}\par}
+
+\question[4]
+Which of the following annotations serves as the primary entry point for a Spring Boot application, bundling auto-configuration, component scanning, and extra configuration?
+\begin{choices}
+  \CorrectChoice \texttt{@SpringBootApplication}
+  \choice \texttt{@EnableAutoConfiguration}
+  \choice \texttt{@ComponentScan}
+  \choice \texttt{@Configuration}
+\end{choices}
+\begin{solution}
+  \texttt{@SpringBootApplication} is a convenience annotation that bundles \texttt{@Configuration}, \texttt{@EnableAutoConfiguration}, and \texttt{@ComponentScan}, serving as the starting point for most Spring Boot apps.
+\end{solution}
+
+\question[4]
+Which annotation tells Spring Boot to automatically configure the application context based on the jar dependencies present on the classpath (e.g., setting up a DataSource if an H2 jar is found)?
+\begin{choices}
+  \choice \texttt{@SpringBootApplication}
+  \CorrectChoice \texttt{@EnableAutoConfiguration}
+  \choice \texttt{@ComponentScan}
+  \choice \texttt{@Configuration}
+\end{choices}
+\begin{solution}
+  \texttt{@EnableAutoConfiguration} drives Spring Boot's intelligent guessing mechanism to automatically configure beans that you are likely to need based on your classpath.
+\end{solution}
+
+\question[4]
+Which annotation tells Spring to scan the current package and its sub-packages to find and register other Spring components (like \texttt{@Controller}, \texttt{@Service}, \texttt{@Repository})?
+\begin{choices}
+  \choice \texttt{@SpringBootApplication}
+  \choice \texttt{@EnableAutoConfiguration}
+  \CorrectChoice \texttt{@ComponentScan}
+  \choice \texttt{@Configuration}
+\end{choices}
+\begin{solution}
+  \texttt{@ComponentScan} instructs Spring to look for classes annotated with stereotypes and register them as beans in the application context.
+\end{solution}
+
+\question[4]
+Which annotation marks a class as a source of bean definitions, allowing developers to manually register beans using \texttt{@Bean} methods?
+\begin{choices}
+  \choice \texttt{@SpringBootApplication}
+  \choice \texttt{@EnableAutoConfiguration}
+  \choice \texttt{@ComponentScan}
+  \CorrectChoice \texttt{@Configuration}
+\end{choices}
+\begin{solution}
+  \texttt{@Configuration} indicates that a class declares one or more \texttt{@Bean} methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime.
+\end{solution}
+
+\uplevel{\par\textbf{Additional Spring Boot Concepts: Data and Properties}\par}
+
+\question[4]
+How does Spring Boot natively support executing database initialization scripts (like creating tables or inserting default data) upon application startup?
+\begin{choices}
+  \choice By requiring the developer to write a custom \texttt{CommandLineRunner} that reads text files.
+  \choice By executing any \texttt{.txt} file found in the project's root directory.
+  \CorrectChoice By automatically detecting and running files named \texttt{schema.sql} and \texttt{data.sql} placed in the classpath.
+  \choice Database initialization scripts are not supported and must be run manually via a database client.
+\end{choices}
+\begin{solution}
+  Spring Boot's auto-configuration will automatically pick up \texttt{schema.sql} (for DDL) and \texttt{data.sql} (for DML) from the root of the classpath (e.g., \texttt{src/main/resources}) and execute them against the configured datasource.
+\end{solution}
+
+\question[4]
+In Spring Boot, how do you typically configure a connection to an embedded or external relational database without writing boilerplate configuration classes?
+\begin{choices}
+  \choice By modifying the Tomcat \texttt{server.xml} configuration file.
+  \CorrectChoice By providing standardized \texttt{spring.datasource.*} properties (like \texttt{url}, \texttt{username}, \texttt{password}) in the \texttt{application.properties} or \texttt{application.yml} file.
+  \choice By hardcoding the database credentials directly into the repository interfaces.
+  \choice Spring Boot cannot connect to a database without writing custom \texttt{@Bean} definitions for the \texttt{DataSource}.
+\end{choices}
+\begin{solution}
+  Spring Boot's auto-configuration automatically creates a \texttt{DataSource} bean using properties prefixed with \texttt{spring.datasource} defined in the externalized configuration.
 \end{solution}
 
 \endgradingrange{csaspringboot}

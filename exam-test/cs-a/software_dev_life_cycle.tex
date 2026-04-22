@@ -2,6 +2,33 @@
 
 \runningheader{Computer Science A}{SDLC, Agile, Linux, \& Maven}{Page \thepage\ of \numpages}
 
+\uplevel{\par\textit{The following items are often taught in later modules; assign according to your course pacing.}\par}
+
+\uplevel{\par\textbf{Design principles and lifecycle}\par}
+
+\question[4]
+What are the SOLID design principles and are they important?
+\makeemptybox{1.55in}
+\begin{solution}
+  Single responsibility, Open/closed, Liskov substitution, Interface segregation, Dependency inversion. They guide maintainable, testable OO design though they are guidelines, not laws.
+\end{solution}
+
+\question[4]
+What is the SDLC? Why is it important?
+\makeemptybox{1.25in}
+\begin{solution}
+  Software Development Life Cycle: phases from planning/requirements through design, implementation, testing, deployment, and maintenance. It structures risk, quality, and communication.
+\end{solution}
+
+\question[4]
+When would you use an Agile methodology versus Waterfall?
+\makeemptybox{1.45in}
+\begin{solution}
+  Agile fits changing requirements, incremental delivery, and tight feedback loops. Waterfall suits well-defined, stable specs and regulated phases where rework is costly---less adaptive to change.
+\end{solution}
+
+\newpage
+
 \begingradingrange{csasdlc}
 
 \uplevel{\par\textbf{Software development lifecycle}\par}
@@ -185,35 +212,30 @@ What is a valid difference between an \textbf{abstract class} and an \textbf{int
 
 \newpage
 
-\uplevel{\par\textbf{Linux command line}\par}
-
-\question[4]
-The command to create a new directory in Linux is:
-\begin{choices}
-  \CorrectChoice \texttt{mkdir}
-  \choice \texttt{touch}
-  \choice \texttt{nano}
-  \choice \texttt{vi}
-  \choice \texttt{rm}
-\end{choices}
-\begin{solution}
-  \texttt{mkdir} creates directories; \texttt{touch} updates/creates empty files; \texttt{nano}/\texttt{vi} are editors; \texttt{rm} removes files.
-\end{solution}
-
-\question[4]
-To copy a file in Linux, you use the command:
-\begin{choices}
-  \CorrectChoice \texttt{cp}
-  \choice \texttt{mv}
-  \choice \texttt{rm}
-  \choice \texttt{cat}
-  \choice \texttt{mkdir}
-\end{choices}
-\begin{solution}
-  \texttt{cp} copies; \texttt{mv} moves/renames; \texttt{rm} deletes; \texttt{cat} prints file contents; \texttt{mkdir} makes directories.
-\end{solution}
-
 \newpage
+
+\uplevel{\par\textbf{Maven and build automation}\par}
+
+\question[4]
+What is Maven? Why would we use it?
+\makeemptybox{1.25in}
+\begin{solution}
+  A build and dependency tool: declarative \texttt{pom.xml}, standard directory layout, dependency resolution from repositories, plugins for compile/test/package, and reproducible builds.
+\end{solution}
+
+\question[4]
+What are the Maven build lifecycle phases?
+\makeemptybox{1.35in}
+\begin{solution}
+  Default lifecycle includes \texttt{validate}, \texttt{compile}, \texttt{test}, \texttt{package}, \texttt{verify}, \texttt{install}, \texttt{deploy} (and \texttt{clean}, \texttt{site} are separate lifecycles). Phases run bound plugin goals in order.
+\end{solution}
+
+\question[4]
+Describe the \texttt{pom.xml} file and its importance.
+\makeemptybox{1.45in}
+\begin{solution}
+  Project Object Model: coordinates (\texttt{groupId}, \texttt{artifactId}, \texttt{version}), dependencies, plugins, properties, modules, and build settings; it is the single source of truth for Maven builds.
+\end{solution}
 
 \uplevel{\par\textbf{Maven}\par}
 

@@ -1,8 +1,34 @@
 % Computer Science A --- HTTP (JSON), REST, and Javalin (\input inside \texttt{main.tex} after \texttt{cs-a/06-practice.tex}).
+% HTTP free-response prompts at the front are migrated from \texttt{cs-a/03-practice.tex}.
 
 \runningheader{Computer Science A}{RESTful APIs (Javalin)}{Page \thepage\ of \numpages}
 
 \begingradingrange{csarest}
+
+\uplevel{\par\textbf{HTTP}\par}
+
+\question[4]
+What is HTTP? Why is it important to know about?
+\makeemptybox{1.25in}
+\begin{solution}
+  Hypertext Transfer Protocol: request/response protocol underlying the Web and many APIs. Important for building clients/servers, debugging APIs, caching, auth, and status handling.
+\end{solution}
+
+\question[4]
+What are common HTTP verbs used when a client application is making a request?
+\makeemptybox{1.15in}
+\begin{solution}
+  \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{PATCH}, \texttt{DELETE}, often \texttt{HEAD}/\texttt{OPTIONS}; semantics express safe/idempotent reads vs resource creation/update/removal.
+\end{solution}
+
+\question[4]
+What are some common HTTP status codes that can be included in a response?
+\makeemptybox{1.35in}
+\begin{solution}
+  Examples: \texttt{200} OK, \texttt{201} Created, \texttt{204} No Content, \texttt{400} Bad Request, \texttt{401}/\texttt{403} auth/forbidden, \texttt{404} Not Found, \texttt{500} server error---clients branch on these.
+\end{solution}
+
+\newpage
 
 \uplevel{\par\textbf{HTTP (Hypertext Transfer Protocol)}\par}
 
