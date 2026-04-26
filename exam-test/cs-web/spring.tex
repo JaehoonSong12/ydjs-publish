@@ -792,4 +792,474 @@ In a JPA entity class, what is the purpose of the \texttt{@GeneratedValue} annot
   \texttt{@GeneratedValue} specifies the generation strategy for primary keys (like auto-increment columns), allowing the database or persistence provider to automatically assign an ID when a new entity is saved.
 \end{solution}
 
+\uplevel{\par\textbf{Additional practice: Spring Framework (polished Q\&A bank)}\par}
+
+\question[4]
+What is the purpose of \texttt{ResponseEntity} in the following \texttt{RestTemplate} example?
+\begin{lstlisting}[style=javaexam]
+RestTemplate rest = new RestTemplate();
+HttpEntity<DataModel> request = new HttpEntity<>(new DataModel("value"));
+String resourceUrl = "http://localhost:8080/myservice/data";
+ResponseEntity<DataModel> response =
+    rest.exchange(resourceUrl, HttpMethod.POST, request, DataModel.class);
+\end{lstlisting}
+\begin{choices}
+  \choice \texttt{ResponseEntity} represents only the HTTP response body.
+  \choice \texttt{ResponseEntity} specifies only the expected Java type of the request entity.
+  \choice It is only used to set custom HTTP headers on the outgoing request.
+  \CorrectChoice It represents the full HTTP response (status, headers, and body), and the type parameter describes the deserialized response body.
+\end{choices}
+\begin{solution}
+  \texttt{ResponseEntity<T>} wraps the complete client-side (or server-side) HTTP outcome: status line, headers, and typed body. The \texttt{Class}/\texttt{ParameterizedTypeReference} argument to \texttt{exchange} tells \texttt{RestTemplate} how to convert the response body.
+\end{solution}
+
+\question[4]
+When injecting property placeholders from a file such as \texttt{jdbc.properties} into fields in a \texttt{@Configuration} class, which annotation fills the blank?
+\begin{lstlisting}[style=javaexam]
+@Configuration
+@ImportResource("classpath:/com/example/resources/properties-config.xml")
+public class AppConfig {
+
+    @________("${jdbc.url}")
+    private String url;
+
+    @________("${jdbc.username}")
+    private String username;
+
+    @________("${jdbc.password}")
+    private String password;
+
+    @Bean
+    public DataSource dataSource() {
+        return new DriverManagerDataSource(url, username, password);
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{@Value}
+  \choice \texttt{@Inject}
+  \choice \texttt{@Qualifier}
+  \choice \texttt{@Resource}
+\end{choices}
+\begin{solution}
+  \texttt{@Value("\${...}")} injects scalar values from the environment, property sources, or SpEL. \texttt{@Qualifier} disambiguates beans by name; \texttt{@Resource} is the JSR-250 annotation; \texttt{@Inject} is the JSR-330 counterpart to \texttt{@Autowired}.
+\end{solution}
+
+\question[4]
+Which XML snippet correctly performs \textbf{setter injection} of \texttt{orderDao} into \texttt{OrderServiceImpl}?
+\begin{choices}
+  \CorrectChoice \texttt{<bean id="orderServ" class="com.example.services.OrderServiceImpl"><property name="orderDao" ref="orderDao"/></bean>}
+  \choice \texttt{<bean id="orderServ" class="com.example.services.OrderServiceImpl"></bean>}
+  \choice Both snippets are equally correct for setter injection.
+  \choice Neither snippet can work in Spring XML wiring.
+\end{choices}
+\begin{solution}
+  The \texttt{<property name="..." ref="..."/>} form calls the matching \texttt{setOrderDao} mutator (by JavaBeans conventions). An empty \texttt{<bean>} can still construct the object but does not inject collaborators.
+\end{solution}
+
+\question[4]
+Which injection style is most appropriate when you want minimal boilerplate and are least concerned about testability and explicit dependencies?
+\begin{choices}
+  \CorrectChoice Field injection
+  \choice Setter injection
+  \choice Constructor injection
+  \choice All of the above are equivalent for that goal
+\end{choices}
+\begin{solution}
+  Field injection (\texttt{@Autowired} on fields) is terse but hides dependencies, complicates unit tests, and makes immutability harder. Constructor injection remains the default recommendation for required dependencies.
+\end{solution}
+
+\question[4]
+Explain the transaction semantics of the method below.
+\begin{lstlisting}[style=javaexam]
+@Service
+@Transactional
+public class MyService {
+    @Transactional(
+        isolation = Isolation.SERIALIZABLE,
+        rollbackFor = { ConstraintViolationException.class },
+        propagation = Propagation.REQUIRES_NEW)
+    public Integer createNewData(...) { ... }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice A new transaction starts for \texttt{createNewData}; an existing transaction is suspended; \texttt{ConstraintViolationException} triggers rollback.
+  \choice A new transaction starts only if none exists; otherwise the call throws immediately.
+  \choice The annotations create a JVM checkpoint so failures always resume the prior program counter.
+  \choice Rollback applies to every checked exception except \texttt{ConstraintViolationException}.
+\end{choices}
+\begin{solution}
+  \texttt{Propagation.REQUIRES\_NEW} always opens a new physical transaction and suspends the surrounding one if present. \texttt{rollbackFor} extends rollback behavior to the listed checked exceptions. \texttt{SERIALIZABLE} is the strictest isolation level.
+\end{solution}
+
+\question[4]
+Consider a controller declared as follows. Which statement is true, and what single-annotation alternative preserves the behavior?
+\begin{lstlisting}[style=javaexam]
+@Controller
+@ResponseBody
+public class MyController { ... }
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Handler return values are written to the HTTP response body; \texttt{@RestController} can replace both class-level annotations.
+  \choice Handler return values are written to the HTTP response body; there is no equivalent composed annotation.
+  \choice Return values always select a view name; replace \texttt{@ResponseBody} with \texttt{@View}.
+  \choice The combination is invalid in Spring MVC.
+\end{choices}
+\begin{solution}
+  Class-level \texttt{@ResponseBody} applies to every handler method on the controller. \texttt{@RestController} is meta-annotated with \texttt{@Controller} and \texttt{@ResponseBody}, so it is the idiomatic replacement.
+\end{solution}
+
+\question[4]
+What does this code accomplish?
+\begin{lstlisting}[style=javaexam]
+@RestController
+@RequestMapping("/api")
+public class API {
+    @GetMapping
+    public String getData() {
+        return "Hello from API!";
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \choice It issues an outbound GET request automatically at startup.
+  \CorrectChoice It exposes an HTTP GET endpoint (by default on \texttt{/api}) that returns the given \texttt{String} body.
+  \choice It registers a POST handler because \texttt{@GetMapping} without a path implies POST.
+  \choice \texttt{@RequestMapping} cannot be applied at class level.
+\end{choices}
+\begin{solution}
+  Class-level \texttt{@RequestMapping("/api")} prefixes member mappings; a method-level \texttt{@GetMapping} without a path maps to the class path, so clients \texttt{GET /api} receive the literal greeting (subject to content negotiation defaults).
+\end{solution}
+
+\question[4]
+In the controller fragment below, what is the URI template variable name, and what does the code demonstrate?
+\begin{lstlisting}[style=javaexam]
+@Controller
+@RequestMapping("my_controller")
+@ResponseBody
+public class MyController {
+    @GetMapping(path = "my_data/{id}")
+    public ResponseEntity<?> getDataById(
+            @PathVariable(name = "id", required = false) Integer dataId) {
+        if (dataId != null) {
+            // id segment present
+        } else {
+            // id omitted or not parseable
+        }
+        return ResponseEntity.ok().build();
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice The template variable is \texttt{id}; the class is mapped under \texttt{/my\_controller} and the handler under \texttt{/my\_data/\{id\}}; \texttt{@PathVariable} binds \texttt{id} to \texttt{dataId}.
+  \choice The template variable is \texttt{dataId}; \texttt{@GetMapping} supplies the base path for every CRUD verb automatically.
+  \choice The template variable is \texttt{id}; \texttt{@GetMapping} alone defines the entire servlet path without class-level mapping.
+  \choice The template variable is \texttt{dataId}; \texttt{@PathVariable} matches only the \texttt{type} attribute, not \texttt{name}.
+\end{choices}
+\begin{solution}
+  The brace name in \texttt{\{id\}} is the path variable. The method parameter may use any Java identifier; \texttt{name = "id"} binds it to that segment. \texttt{required = false} allows missing segments in some routing setups, though a missing template segment usually yields no match---the keyed teaching item stresses naming vs.\ parameter identifier.
+\end{solution}
+
+\question[4]
+Given this bean declaration, which line correctly retrieves the bean from an \texttt{ApplicationContext} named \texttt{context}?
+\begin{lstlisting}[style=javaexam]
+@Bean(name = "myBeanName")
+public Student student() {
+    return new Student();
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{Student s = context.getBean("myBeanName", Student.class);}
+  \choice \texttt{Student s = (Student) context.getBean("student");}
+  \choice \texttt{Student s = context.getBean("Student", Student.class);}
+  \choice \texttt{Student s = (Student) context.getBean("mybeanname");}
+\end{choices}
+\begin{solution}
+  Explicit bean names are case-sensitive; \texttt{"myBeanName"} matches the \texttt{@Bean} name. Prefer the typed overload \texttt{getBean(String, Class)} over casting. The default method name \texttt{student} would register \texttt{"student"} only if no \texttt{name} were given.
+\end{solution}
+
+\question[4]
+\textit{(Select all that apply.)} What are some ways to resolve ambiguity when Spring wires constructor arguments for a \texttt{@Bean} method or component?
+\begin{checkboxes}
+  \CorrectChoice Index (argument position when combined with other disambiguators)
+  \CorrectChoice Type (distinct parameter types)
+  \CorrectChoice Parameter name (retained names or explicit \texttt{@Qualifier} metadata)
+  \choice \texttt{Value} alone without qualifiers
+\end{checkboxes}
+\begin{solution}
+  Spring uses types, ordering metadata, qualifiers, and parameter names (when available) to select collaborators. A bare \texttt{@Value} does not address multiple bean candidates of the same type.
+\end{solution}
+
+\question[4]
+What does the following Spring Data JPA arrangement accomplish?
+\begin{lstlisting}[style=javaexam]
+public interface MyRepoBase<T, ID> extends JpaRepository<T, ID> {
+    List<T> findAllByPrice(Double price);
+}
+
+@Repository
+public interface BookRepo extends MyRepoBase<Book, Long> { }
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{MyRepoBase} is a reusable contract; Spring creates a proxy only for concrete repository interfaces such as \texttt{BookRepo}, which inherits \texttt{JpaRepository} and \texttt{findAllByPrice}.
+  \choice Spring instantiates both \texttt{MyRepoBase} and \texttt{BookRepo} as separate beans.
+  \choice Spring ignores \texttt{BookRepo} and only creates \texttt{MyRepoBase}.
+  \choice None of the above.
+\end{choices}
+\begin{solution}
+  Intermediate interfaces are not beans unless annotated with \texttt{@NoRepositoryBean}. Declared repositories (\texttt{BookRepo}) receive generated implementations that include custom finder methods declared on shared parents.
+\end{solution}
+
+\question[4]
+Why is \texttt{@Transactional} commonly applied at the \texttt{@Service} layer instead of on entities or controllers alone?
+\begin{choices}
+  \CorrectChoice A transaction encapsulates application-level use cases that may span multiple repositories and rules, not just persistence mapping.
+  \choice Transactions should be tied exclusively to JPA entity lifecycle callbacks.
+  \choice Services are the only layer allowed to open JDBC connections.
+  \choice Controllers cannot participate in Spring's transaction proxy infrastructure.
+\end{choices}
+\begin{solution}
+  Services orchestrate domain operations and coordinate repositories; that is the natural boundary for atomic business transactions. Controllers should stay thin; entities map state, not workflow.
+\end{solution}
+
+\question[4]
+Why is specifying \texttt{defaultValue} on \texttt{@RequestParam} useful?
+\begin{lstlisting}[style=javaexam]
+@GetMapping(path = "my_data")
+public ResponseEntity<?> getData(
+        @RequestParam(name = "tag", required = false, defaultValue = "none") String tag) {
+    ...
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice When the query parameter is omitted, Spring still binds the argument using the supplied default string after type conversion.
+  \choice It lazily constructs domain objects without any HTTP interaction.
+  \choice It forces every client to send identical query strings regardless of input.
+  \choice It replaces the need for \texttt{required = false}.
+\end{choices}
+\begin{solution}
+  \texttt{defaultValue} implies \texttt{required = false} in typical usage: missing parameters fall back to the literal string before conversion to the target type. Values must be compile-time constant strings; dynamic defaults belong in method logic.
+\end{solution}
+
+\question[4]
+\textit{(Select all that apply.)} Which items are part of the Spring \textbf{Core} container story (as commonly grouped in courses)?
+\begin{checkboxes}
+  \CorrectChoice Spring IoC container
+  \choice Model--View--Controller support (\texttt{DispatcherServlet})
+  \CorrectChoice \texttt{ApplicationContext} as the richer \texttt{BeanFactory}
+  \choice JDBC template module by itself
+  \CorrectChoice Managed Spring beans
+\end{checkboxes}
+\begin{solution}
+  Core focuses on the IoC container, bean lifecycle, and \texttt{ApplicationContext}. MVC lives in Spring Web; JDBC support is its own module even though apps combine them constantly.
+\end{solution}
+
+\question[4]
+Which option is \textbf{not} a benefit of adopting the Spring Framework?
+\begin{choices}
+  \choice Modularity across starters and modules
+  \choice Emphasis on plain Java objects for business code
+  \choice Inversion of Control and declarative middleware
+  \CorrectChoice ``Complexity of the framework'' as an inherent benefit
+\end{choices}
+\begin{solution}
+  Spring's breadth can add learning curve, but that complexity is a trade-off, not a marketed advantage. Modularity, POJO-centric design, and IoC are the usual positives.
+\end{solution}
+
+\question[4]
+\textit{(Select all that apply.)} Which styles are common Spring dependency injection mechanisms?
+\begin{checkboxes}
+  \CorrectChoice Constructor injection
+  \choice Object injection (not a Spring term)
+  \choice Container injection (not a Spring term)
+  \CorrectChoice Setter injection
+\end{checkboxes}
+\begin{solution}
+  Spring supports constructor and setter injection as first-class patterns, plus field injection via \texttt{@Autowired}. ``Object injection'' and ``container injection'' are distractors.
+\end{solution}
+
+\question[4]
+What kind of injection does this XML fragment configure?
+\begin{lstlisting}[style=javaexam]
+<property name="orderDao" ref="orderDaoBean"/>
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Setter injection
+  \choice Property injection (distinct from Spring's setter wiring)
+  \choice Constructor injection
+  \choice Container injection
+\end{choices}
+\begin{solution}
+  The \texttt{<property>} element invokes JavaBeans-style setters on the bean instance after construction.
+\end{solution}
+
+\question[4]
+What kind of injection does this XML fragment configure?
+\begin{lstlisting}[style=javaexam]
+<constructor-arg name="orderDao" ref="orderDaoBean"/>
+\end{lstlisting}
+\begin{choices}
+  \choice Property injection
+  \CorrectChoice Constructor injection
+  \choice Setter injection
+  \choice Object injection
+\end{choices}
+\begin{solution}
+  \texttt{<constructor-arg>} supplies arguments to a chosen constructor or factory method, which is constructor-based DI.
+\end{solution}
+
+\question[4]
+What does the \texttt{@Repository} stereotype communicate?
+\begin{choices}
+  \CorrectChoice It is a \texttt{@Component} specialization marking persistence/dao-style components and enables exception translation.
+  \choice It is primarily for Spring MVC handler mapping alongside \texttt{@RequestMapping}.
+  \choice It marks service-layer orchestration beans.
+  \choice It replaces \texttt{@Component} for every bean in the application.
+\end{choices}
+\begin{solution}
+  \texttt{@Repository} signals data access responsibilities, enables classpath scanning, and (with persistence providers) supports Spring's \texttt{DataAccessException} translation machinery.
+\end{solution}
+
+\question[4]
+What does the \texttt{@Controller} stereotype communicate?
+\begin{choices}
+  \choice It is a DAO specialization for CRUD operations.
+  \CorrectChoice It marks a Spring MVC controller whose \texttt{@RequestMapping}-style methods are dispatched by \texttt{DispatcherServlet}.
+  \choice It marks transactional service facades.
+  \choice It is unrelated to web request handling.
+\end{choices}
+\begin{solution}
+  \texttt{@Controller} is a web stereotype discovered by component scanning; handler methods map HTTP to service calls or view names.
+\end{solution}
+
+\question[4]
+Which annotations are Spring stereotype markers at the component level?
+\begin{choices}
+  \choice Only \texttt{@Service}
+  \choice Only \texttt{@Controller} and \texttt{@Repository}
+  \choice Only \texttt{@Component}
+  \CorrectChoice \texttt{@Service}, \texttt{@Controller}, \texttt{@Repository}, and \texttt{@Component}
+\end{choices}
+\begin{solution}
+  Each stereotype is meta-annotated with \texttt{@Component} (directly or transitively), enabling shared scanning semantics with specialized semantics per alias.
+\end{solution}
+
+\question[4]
+In MVC, what role does the \textbf{Model} play?
+\begin{choices}
+  \choice It is the front controller that dispatches requests.
+  \CorrectChoice It captures domain data and business rules the user cares about.
+  \choice It owns view rendering and templates exclusively.
+  \choice It terminates TCP connections for HTTP keep-alive.
+\end{choices}
+\begin{solution}
+  The model is state and behavior the application manipulates; controllers update it and views (or serializers) present it.
+\end{solution}
+
+\question[4]
+In MVC, what role does the \textbf{View} play?
+\begin{choices}
+  \choice It maps URLs to controller methods.
+  \choice It stores transactional isolation levels.
+  \CorrectChoice It presents model data to users (HTML templates, PDFs, JSON serializers in API-style MVC, etc.).
+  \choice It replaces the need for controllers entirely.
+\end{choices}
+\begin{solution}
+  Views render output for clients. In REST-style apps, the ``view'' is often the serialized representation produced by message converters.
+\end{solution}
+
+\question[4]
+In MVC, what role does the \textbf{Controller} play?
+\begin{choices}
+  \CorrectChoice It translates incoming requests into operations on the model and selects the appropriate response or view.
+  \choice It defines database indexes and migration scripts.
+  \choice It is only responsible for static resource caching headers.
+  \choice It replaces the model with DTOs in every application.
+\end{choices}
+\begin{solution}
+  Controllers orchestrate request flow, delegate to services, and return views or bodies without embedding all business rules.
+\end{solution}
+
+\question[4]
+In Spring MVC, what is the \textbf{DispatcherServlet}?
+\begin{choices}
+  \choice A JDBC connection pool implementation.
+  \choice A JPA \texttt{EntityManagerFactory} facade.
+  \CorrectChoice The front controller servlet that routes HTTP requests to Spring-managed handlers.
+  \choice A Tomcat valve for gzip compression only.
+\end{choices}
+\begin{solution}
+  \texttt{DispatcherServlet} is the central servlet entry point that consults handler mappings, invokes controllers, and applies view resolution or message conversion.
+\end{solution}
+
+\question[4]
+Regarding ACID transactions, what does \textbf{Atomicity} guarantee?
+\begin{choices}
+  \choice The database moves between consistent states obeying all constraints at every intermediate statement.
+  \choice Committed work survives power loss.
+  \CorrectChoice Either all operations in the transaction complete successfully or none of their effects remain.
+  \choice Concurrent transactions cannot observe each other's partial results.
+\end{choices}
+\begin{solution}
+  Atomicity is the ``all or nothing'' guarantee for the transaction's operations.
+\end{solution}
+
+\question[4]
+Regarding ACID transactions, what does \textbf{Consistency} mean?
+\begin{choices}
+  \CorrectChoice A successful transaction moves the database from one valid state to another valid state with respect to declared rules.
+  \choice Committed work survives power loss.
+  \choice Either every sub-operation completes or none do.
+  \choice Transactions are hidden from one another.
+\end{choices}
+\begin{solution}
+  Consistency ties to integrity constraints and business rules---illegal states cannot be committed.
+\end{solution}
+
+\question[4]
+Regarding ACID transactions, what does \textbf{Isolation} mean?
+\begin{choices}
+  \choice It guarantees durability on disk.
+  \choice It guarantees atomic rollback segments.
+  \CorrectChoice Concurrent transactions are shielded according to the chosen isolation level so interactions are controlled.
+  \choice It automatically shards data across nodes.
+\end{choices}
+\begin{solution}
+  Isolation defines visibility/interaction rules (read committed, repeatable read, serializable, etc.) between overlapping transactions.
+\end{solution}
+
+\question[4]
+Regarding ACID transactions, what does \textbf{Durability} mean?
+\begin{choices}
+  \choice It ensures logical schema validity after each statement.
+  \CorrectChoice After a transaction commits, its effects survive subsequent failures (assuming storage honors the guarantee).
+  \choice It ensures mutual exclusion of threads inside the JVM.
+  \choice It implies infinite storage capacity.
+\end{choices}
+\begin{solution}
+  Durability is the ``once committed, stays committed'' property modulo storage subsystem behavior.
+\end{solution}
+
+\question[4]
+Spring Web is used primarily to handle arbitrary POJOs and register them as singleton services with no HTTP involvement.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Spring Web centers on HTTP, servlets, MVC, WebClient/WebFlux, and related integrations---not on replacing the core container's general-purpose bean registration story.
+\end{solution}
+
+\question[4]
+\textit{(Select all that apply.)} Which statements describe advantages of Spring's inversion of control?
+\begin{checkboxes}
+  \CorrectChoice It decouples components from concrete implementations by injecting collaborators.
+  \choice It requires every class to manually \texttt{new} its dependencies for clarity.
+  \CorrectChoice It simplifies testing by substituting mocks or stubs through the container or direct constructor injection.
+  \choice It mandates tight coupling between layers to improve performance.
+\end{checkboxes}
+\begin{solution}
+  IoC/DI promotes flexible wiring and test doubles; it discourages hard-coded \texttt{new} for every collaborator and reduces coupling rather than increasing it.
+\end{solution}
+
 \endgradingrange{csaspring}

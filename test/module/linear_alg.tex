@@ -1,0 +1,67 @@
+\begin{center}
+\textbf{\Large Linear Algebra Cheatsheet: Eigenvalues \& Diagonalization}
+\end{center}
+
+\begin{multicols}{3}
+\raggedright
+
+% Section: Basic Definitions
+\section*{1. Eigenvalues and Eigenvectors}
+An \textbf{eigenvector} of an $n \times n$ matrix $A$ is a nonzero vector $x$ such that $Ax = \lambda x$ for some scalar $\lambda$. The scalar $\lambda$ is called an \textbf{eigenvalue}.
+
+\begin{itemize}
+  \item \textbf{Characteristic Equation:} To find $\lambda$, solve $\det(A - \lambda I) = 0$.
+  \item \textbf{Characteristic Polynomial:} The polynomial $p(\lambda) = \det(A - \lambda I)$.
+  \item \textbf{Eigenspace:} The set of all solutions to $(A - \lambda I)x = 0$ is the null space of $(A - \lambda I)$. This is a subspace of $\mathbb{R}^n$.
+\end{itemize}
+
+% Section: Calculation Steps
+\section*{2. Step-by-Step Procedure}
+
+\subsection*{Finding Eigenvalues}
+1. Subtract $\lambda$ from the diagonal entries of $A$ to get $(A - \lambda I)$.
+2. Calculate the determinant $\det(A - \lambda I)$.
+3. Factor the resulting polynomial to find the roots (eigenvalues).
+
+\subsection*{Finding Eigenvectors}
+1. For each eigenvalue $\lambda_i$, set up the system $(A - \lambda_i I)x = 0$.
+2. Row reduce the matrix $(A - \lambda_i I)$ to Reduced Row Echelon Form (RREF).
+3. Express the general solution in parametric vector form to identify the basis for the eigenspace.
+
+% Section: Diagonalization
+\section*{3. Diagonalization}
+A square matrix $A$ is \textbf{diagonalizable} if there exists an invertible matrix $P$ and a diagonal matrix $D$ such that $A = PDP^{-1}$.
+
+\begin{itemize}
+  \item \textbf{The Diagonal Matrix Theorem:} An $n \times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvectors.
+  \item \textbf{Construction of D:} The diagonal entries of $D$ are the eigenvalues of $A$.
+  \item \textbf{Construction of P:} The columns of $P$ are the corresponding eigenvectors in the same order as the eigenvalues in $D$.
+\end{itemize}
+
+\subsection*{Diagonalization Steps}
+1. Find the eigenvalues of $A$.
+2. Find the basis for each eigenspace (eigenvectors).
+3. If the total number of linearly independent eigenvectors is less than $n$, $A$ is not diagonalizable.
+4. Construct $P$ using eigenvectors as columns and $D$ using eigenvalues on the diagonal.
+
+% Section: Useful Properties
+\section*{4. Key Properties}
+\begin{itemize}
+  \item \textbf{Trace:} $\text{tr}(A) = \sum \lambda_i$ (sum of eigenvalues).
+  \item \textbf{Determinant:} $\det(A) = \prod \lambda_i$ (product of eigenvalues).
+  \item \textbf{Triangular Matrices:} The eigenvalues of a triangular matrix are the entries on its main diagonal.
+  \item \textbf{Invertibility:} $A$ is invertible if and only if $0$ is not an eigenvalue of $A$.
+\end{itemize}
+
+% Section: 2x2 and 3x3 Determinants
+\section*{5. Determinant Formulas}
+\textbf{2x2 Matrix:}
+$\det \begin{bmatrix} a & b \\ c & d \end{bmatrix} = ad - bc$
+
+\textbf{3x3 Matrix (Cofactor Expansion):}
+$\det \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} = a(ei-fh) - b(di-fg) + c(dh-eg)$
+
+\end{multicols}
+
+
+\newpage
