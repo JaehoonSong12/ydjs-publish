@@ -1,0 +1,335 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.1in]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+% Java listings: same options as \lstdefinestyle{javaexam} in exam-test/main.tex
+\lstset{
+  language=Java,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{blue!55!black},
+  commentstyle=\ttfamily\color{black!50},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=2,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  rulecolor=\color{black!35},
+  backgroundcolor=\color{black!4},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}
+
+\title{Java Coding Challenge Cheatsheet}
+\author{Software Engineering Technical Reference}
+\date{}
+
+\begin{document}
+
+% \maketitle
+
+\begin{multicols}{2}
+
+
+
+
+\section{Collections: List, Set, Map, PQ}
+
+\subsection{List (ArrayList)}
+\begin{lstlisting}
+// mutable
+List<Integer> list = new ArrayList<>(List.of(1, 2, 3));
+list.add(4);                          // O(1) amort.; [1,2,3,4]
+list.remove(list.size() - 1);         // O(1); [1,2,3]
+int head = list.get(0);               // O(1); head == 1
+list.set(0, 5);                       // O(1); [5,2,3]
+list.contains(5);                     // O(n); true
+list.isEmpty();                       // O(1); false
+list.size();                          // O(1); 3
+list.sort(Comparator.naturalOrder()); // O(n log n); [2,3,5]
+\end{lstlisting}
+
+\subsection{PriorityQueue (running min / max)}
+\begin{lstlisting}
+// min-heap (default Comparator)
+PriorityQueue<Integer> minPq = new PriorityQueue<>();
+minPq.offer(5);                   // O(log n)
+minPq.offer(1);
+minPq.offer(3);
+int runningMin = minPq.peek();    // O(1); 1
+minPq.poll();                     // O(log n); removes returns 1
+
+// max-heap
+Comparator<Integer> reverse = Comparator.reverseOrder();
+PriorityQueue<Integer> maxPq = new PriorityQueue<>(reverse);
+maxPq.offer(5);
+maxPq.offer(1);
+maxPq.offer(3);
+int runningMax = maxPq.peek();    // O(1); 5
+\end{lstlisting}
+
+\subsection{Set (HashSet / TreeSet)}
+\begin{lstlisting}
+Set<Integer> set = new HashSet<>();
+set.add(1);                       // O(1); {1}
+set.remove(1);                    // O(1); {}
+set.contains(1);                  // O(1); false
+
+// TreeSet<Integer> (sorted unique)
+TreeSet<Integer> tSet = new TreeSet<>(List.of(1, 3, 5, 10));
+int lo = tSet.first();            // O(log n); 1
+int hi = tSet.last();             // O(log n); 10
+Integer sup = tSet.higher(5);     // least upper bound of 5 -> 10
+Integer inf = tSet.lower(5);      // greatest lower bound of 5 -> 3
+\end{lstlisting}
+
+\subsection{Map (HashMap)}
+\begin{lstlisting}
+Map<Integer, String> map = new HashMap<>();
+map.put(1, "A");                  // O(1); {1->"A"}
+String v1 = map.get(1);           // O(1); "A"
+String v2 = map.getOrDefault(2, "N/A"); // O(1); "N/A"
+map.containsKey(1);               // O(1); true
+map.putIfAbsent(1, "B");          // O(1); leaves "A"
+map.remove(1);                    // O(1); {}
+
+map.put(2, "X");
+Set<Integer> keys = map.keySet();       // {2};
+Collection<String> vals = map.values(); // {"X"};
+for (Integer k : map.keySet()) {
+  String s = map.get(k);                // "X" when k == 2
+}
+for (String v : map.values()) {
+  boolean ok = v.startsWith("X");       // true
+}
+\end{lstlisting}
+
+
+
+
+\columnbreak
+\section{Comparator (lambda)}
+
+\begin{lstlisting}
+// Comparator<Integer>
+Comparator<Integer> desc = (a, b) -> Integer.compare(b, a);
+Comparator<Integer> byAbs = Comparator.comparingInt(Math::abs);
+Comparator<Integer> natural = Comparator.naturalOrder();
+Comparator<Integer> reverse = Comparator.reverseOrder();
+
+int[] arr = {3, -1, -4, 2};
+Arrays.sort(arr); // arr == {-4, -1, 2, 3} ascending
+
+arr = Arrays.stream(arr)
+            .boxed() // IntStream -> Stream<Integer>
+            .sorted(byAbs)
+            .mapToInt(Integer::intValue)
+            .toArray();
+// by absolute value: {-1, 2, 3, -4}
+\end{lstlisting}
+
+\section{Type Conversions}
+
+\subsection{List/Set to Array}
+\begin{lstlisting}
+// List<Integer> -> int[]
+List<Integer> nums = new ArrayList<>(List.of(10, 20, 30));
+// mutable (deep copy semantics)
+int[] prim = nums.stream()
+                 .mapToInt(i -> i) // primitive returns deep copy
+                 .toArray();
+
+// List<String> -> String[]
+List<String> words = new ArrayList<>(List.of("hi", "bye"));
+// mutable (shallow copy semantics)
+String[] arr = words.toArray(new String[0]);
+// mutable (shallow copy semantics)
+String[] array = words.stream()
+                      .toArray(String[]::new);
+// arr and array both {"hi","bye"}; different array objects
+\end{lstlisting}
+
+\subsection{Array to List/Set}
+\begin{lstlisting}
+// int[] -> List / Set
+int[] pArr = {1, 2, 2, 3};
+// mutable (deep copy semantics)
+List<Integer> l4 = Arrays.stream(pArr)
+                         .boxed() // IntStream -> Stream<Integer>
+                         .collect(Collectors.toList());
+// mutable (deep copy semantics)
+Set<Integer> sInt = Arrays.stream(pArr)
+                          .boxed()
+                          .collect(Collectors.toSet());
+
+// Object[] -> List
+String[] arr = {"A", "B"};
+// mutable wrapper (move semantics)
+List<String> l1 = Arrays.asList(arr); arr = null;
+// mutable (shallow copy semantics)
+List<String> l2 = new ArrayList<>(Arrays.asList(arr));
+// immutable, read-only (shallow copy semantics)
+List<String> l3 = List.of(arr);
+
+// Object[] -> Set (unique)
+String[] arrDup = {"A", "A", "B"};
+Set<String> sObj = new HashSet<>(Arrays.asList(arrDup));
+// sObj == {"A", "B"} (order not fixed)
+\end{lstlisting}
+
+\subsection{List and Set}
+\begin{lstlisting}
+// List -> Set
+List<Integer> sourceList = new ArrayList<>(List.of(1, 1, 2));
+Set<Integer> targetSet = new HashSet<>(sourceList); // {1, 2}
+
+// Set -> List
+Set<Integer> sourceSet = new HashSet<>(List.of(3, 2));
+List<Integer> targetList = new ArrayList<>(sourceSet); // {3, 2}
+\end{lstlisting}
+
+
+
+
+
+\columnbreak
+\section{Array Initialization}
+
+\subsection{Primitive Arrays}
+\begin{lstlisting}
+int[] arr = new int[3];          // {0, 0, 0}
+Arrays.fill(arr, -1);            // {-1, -1, -1}
+
+int[][] matrix = new int[2][2];
+for (int[] row : matrix) {
+  Arrays.fill(row, 7);
+}
+// matrix[0] == {7,7}; matrix[1] == {7,7}
+
+// int[] literal
+int[] staticArr = {1, 2, 3, 4, 5};
+\end{lstlisting}
+
+\section{Stream API Usage}
+
+\subsection{Common Operations}
+\begin{lstlisting}
+// Stream<String> pipeline -> List<String>
+List<String> list = new ArrayList<>(
+    List.of("Alpha", "ax", "Beta", "Atlas"));
+// mutable (copy semantics, terminal collect)
+List<String> result = list.stream()
+                          .filter(s -> s.startsWith("A")) // Alpha, Atlas
+                          .map(String::toLowerCase)
+                          .distinct()
+                          .sorted()
+                          .limit(5)
+                          .collect(Collectors.toList());
+// result == ["alpha", "atlas"]
+\end{lstlisting}
+
+\subsection{Primitive Streams (IntStream)}
+\begin{lstlisting}
+// IntStream reductions
+int sum = IntStream.of(1, 2, 3).sum();              // 6
+int max = IntStream.range(0, 10).max().getAsInt(); // 9 (end exclusive)
+int min = IntStream.rangeClosed(0, 10).min().getAsInt(); // 0
+
+// Stream<Integer> -> IntStream -> summary
+List<Integer> nums = List.of(10, 20, 30);
+IntSummaryStatistics stats = nums.stream()
+                                 .mapToInt(i -> i) // Stream<Integer> -> IntStream
+                                 .summaryStatistics();
+// stats.getAverage() == 20.0; getCount() == 3
+\end{lstlisting}
+
+\subsection{Matching and Finding}
+\begin{lstlisting}
+// short-circuit terminal predicates
+List<String> list = new ArrayList<>(List.of("", "abc", "ab"));
+boolean any = list.stream()
+                  .anyMatch(String::isEmpty);       // true ("")
+boolean all = list.stream()
+                  .allMatch(s -> s.length() > 2); // false ("ab")
+Optional<String> first = list.stream()
+                             .findFirst();         // Optional.of("")
+\end{lstlisting}
+
+\columnbreak
+
+
+\section{Generic Methods}
+\begin{lstlisting}
+// type parameter T scoped to method
+public static <T> void printList(List<T> list) {
+  for (T item : list) {
+    System.out.println(item);
+  }
+}
+\end{lstlisting}
+
+\section{Generic Classes}
+\begin{lstlisting}
+// type parameter T scoped to class
+public class Box<T> {
+  private T value;
+
+  public void set(T value) {
+    this.value = value;
+  }
+}
+\end{lstlisting}
+
+
+\section{String}
+\begin{lstlisting}
+// immutable
+String raw = "  /api/v1/users  ";
+String t = raw.trim();                  // "/api/v1/users"
+boolean hit = t.startsWith("/api");     // true
+String[] parts = t.split("/");          // {"", "api","v1","users"}
+String seg = t.substring(5, 7);         // "v1" [i, j)
+int at = t.indexOf("v1");               // 5
+char c = t.charAt(at);                  // 'v'
+"API".equalsIgnoreCase(parts[1]);       // true
+int n = t.length();                     // 13
+boolean empty = t.isEmpty();            // false
+\end{lstlisting}
+
+\subsection{String and \texttt{char[]}}
+\begin{lstlisting}
+String msg = "hello";
+char[] buf = msg.toCharArray();         // mutable (copy semantics)
+buf[0] = 'H';
+String out = new String(buf);           // "Hello"
+String share = String.valueOf(buf);     // "Hello"
+buf[1] = 'i';                           // buf -> "Hillo"
+                                        // out -> "Hello"
+                                        // share -> "Hello"
+\end{lstlisting}
+
+\subsection{StringBuilder (mutable)}
+\begin{lstlisting}
+// mutable
+StringBuilder sb = new StringBuilder("items=");
+sb.append(10).append(',').append(20);   // O(1); "items=10,20"
+sb.setLength(sb.length() - 1);          // O(1); drop trailing char
+String csv = sb.toString();             // O(1); immutable snapshot
+sb.append(',').append(30);              // O(1); "items=10,2,30"
+String longer = sb.toString();          // O(1); "items=10,2,30"
+int len = sb.length();                  // O(1); 13
+\end{lstlisting}
+
+
+
+
+\end{multicols}
+
+\end{document}

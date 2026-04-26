@@ -1,38 +1,30 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage{geometry}
-\usepackage{charter}
-\geometry{letterpaper, margin=1in}
+\documentclass{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+% Keep closing/signature at a stable left position.
+\longindentation=0pt
 
-% Letter-style paragraphs: space between blocks, no indent
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.65\baselineskip plus 2pt minus 1pt}
+\address{
+  \begin{tabular}{@{}r@{}}
+    Jaehoon Song \\
+    School of Computing \\
+    Georgia Institute of Technology (Alumnus) \\
+    Atlanta, GA, USA \\
+    \href{mailto:jsong421@gatech.edu}{jsong421@gatech.edu} \\
+    \href{tel:470-350-8926}{470-350-8926} \\
+    \href{https://www.linkedin.com/in/jaehoon-song-847422233/}{LinkedIn (Jaehoon Song)} \\
+    \\[0.5em]
+    \today
+  \end{tabular}
+}
+
+\signature{Jaehoon Song}
+\date{}
 
 \begin{document}
 
-% --- Letterhead (sender) ---
-\begin{flushright}
-  {\large\textbf{Jaehoon Song}} \\[0.35em]
-  Software Engineer at Revature \\
-  Mathematics Tutor at Columbia Academy \\
-  School of Computing, Georgia Institute of Technology, Alumnus \\
-  Atlanta, GA, USA \\[1em]
-  \today
-\end{flushright}
-
-\vspace{1.25em}
-
-\input{recipient/danny_lee.tex}
-
-\vspace{1.25em}
-
-Sincerely,
-
-\vspace{1.25em}
-
-Jaehoon Song \\
-\texttt{jsong421@gatech.edu} \\
-470-350-8926 \\
-Atlanta, GA, USA
+% \input{recipient/danny_lee.tex}
+\input{recipient/visa-samuel_cook.tex}
 
 \end{document}

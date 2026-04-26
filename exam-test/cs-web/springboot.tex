@@ -462,4 +462,30 @@ In Spring Boot, how do you typically configure a connection to an embedded or ex
   Spring Boot's auto-configuration automatically creates a \texttt{DataSource} bean using properties prefixed with \texttt{spring.datasource} defined in the externalized configuration.
 \end{solution}
 
+\uplevel{\par\textbf{Additional practice: Spring Boot (polished Q\&A bank)}\par}
+
+\question[4]
+After you build an executable Spring Boot artifact (for example with \texttt{mvn package} or \texttt{gradle bootJar}), which command typically \textbf{runs} the fat JAR?
+\begin{choices}
+  \choice \texttt{java -run myapp.jar}
+  \choice \texttt{maven -jar myapp.jar}
+  \choice \texttt{maven run -jar myapp.jar}
+  \CorrectChoice \texttt{java -jar myapp.jar}
+\end{choices}
+\begin{solution}
+  Executable Spring Boot JARs ship a manifest \texttt{Main-Class} that delegates to \texttt{SpringApplication}; the JVM launches them with \texttt{java -jar}. Build tools produce the JAR but do not replace the runtime command shown in the bank.
+\end{solution}
+
+\question[4]
+\textit{(Select all that apply.)} Which capabilities are associated with Spring Boot \textbf{DevTools}?
+\begin{checkboxes}
+  \CorrectChoice Automatic restart on classpath changes during development
+  \choice Built-in Model--View--Controller scaffolding for every controller
+  \choice A replacement IoC container separate from the main \texttt{ApplicationContext}
+  \CorrectChoice Optional remote update/restart workflows for supported setups
+\end{checkboxes}
+\begin{solution}
+  DevTools adds developer ergonomics such as restart and LiveReload integration; it is unrelated to MVC scaffolding or a second container. Remote restart support exists for specialized workflows but should be secured carefully.
+\end{solution}
+
 \endgradingrange{csaspringboot}

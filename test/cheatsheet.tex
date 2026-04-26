@@ -6,274 +6,41 @@
 \usepackage{geometry}
 \usepackage{listings}
 \usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
 
-\geometry{top=0.4in,bottom=0.4in,left=0.4in,right=0.4in}
+\geometry{top=0.35in,bottom=0.35in,left=0.38in,right=0.38in}
 
 \lstset{
-  basicstyle=\ttfamily\small,
+  basicstyle=\ttfamily\footnotesize,
   breaklines=true,
-  columns=fullflexible
+  columns=fullflexible,
+  frame=none,
+  aboveskip=1pt,
+  belowskip=1pt
 }
 
-
+% Tight \section*{} (modules use starred headings only)
+\titleformat{name=\section,numberless}{\normalfont\bfseries\normalsize}{}{0em}{}
+\titlespacing*{name=\section,numberless}{0pt}{0.55ex plus 0.12ex minus 0.08ex}{0.28ex plus 0.1ex minus 0.06ex}
 
 % Indentation set to 2 spaces per user instruction
 \setlength{\parindent}{0pt}
-\setlength{\columnsep}{12pt}
+\setlength{\parskip}{0pt plus 0.07\baselineskip}
+\setlength{\lineskip}{0pt}
+\setlength{\lineskiplimit}{0pt}
+\setlength{\columnsep}{9pt}
 \setlength{\premulticols}{0pt}
 \setlength{\postmulticols}{0pt}
-\setlength{\multicolsep}{4pt}
-\setlength{\emergencystretch}{1.5em}
+\setlength{\multicolsep}{0pt}
+\setlength{\emergencystretch}{2em}
 \raggedbottom
+\setlist[itemize]{leftmargin=*, topsep=0pt, itemsep=0pt, parsep=0pt, partopsep=0pt}
+\setlength{\belowcaptionskip}{0pt}
 \pagestyle{empty}
 
 \begin{document}
-
-% The following document provides a summary of Linear Algebra concepts
-% specifically targeting Eigenvalues, Eigenvectors, and Diagonalization.
-
-\begin{center}
-  \textbf{\Large Linear Algebra Cheatsheet: Eigenvalues \& Diagonalization}
-\end{center}
-
-\begin{multicols}{3}
-\raggedright
-
-% Section: Basic Definitions
-\section*{1. Eigenvalues and Eigenvectors}
-An \textbf{eigenvector} of an $n \times n$ matrix $A$ is a nonzero vector $x$ such that $Ax = \lambda x$ for some scalar $\lambda$. The scalar $\lambda$ is called an \textbf{eigenvalue}.
-
-\begin{itemize}
-  \item \textbf{Characteristic Equation:} To find $\lambda$, solve $\det(A - \lambda I) = 0$.
-  \item \textbf{Characteristic Polynomial:} The polynomial $p(\lambda) = \det(A - \lambda I)$.
-  \item \textbf{Eigenspace:} The set of all solutions to $(A - \lambda I)x = 0$ is the null space of $(A - \lambda I)$. This is a subspace of $\mathbb{R}^n$.
-\end{itemize}
-
-% Section: Calculation Steps
-\section*{2. Step-by-Step Procedure}
-
-\subsection*{Finding Eigenvalues}
-1. Subtract $\lambda$ from the diagonal entries of $A$ to get $(A - \lambda I)$.
-2. Calculate the determinant $\det(A - \lambda I)$.
-3. Factor the resulting polynomial to find the roots (eigenvalues).
-
-\subsection*{Finding Eigenvectors}
-1. For each eigenvalue $\lambda_i$, set up the system $(A - \lambda_i I)x = 0$.
-2. Row reduce the matrix $(A - \lambda_i I)$ to Reduced Row Echelon Form (RREF).
-3. Express the general solution in parametric vector form to identify the basis for the eigenspace.
-
-% Section: Diagonalization
-\section*{3. Diagonalization}
-A square matrix $A$ is \textbf{diagonalizable} if there exists an invertible matrix $P$ and a diagonal matrix $D$ such that $A = PDP^{-1}$.
-
-\begin{itemize}
-  \item \textbf{The Diagonal Matrix Theorem:} An $n \times n$ matrix $A$ is diagonalizable if and only if $A$ has $n$ linearly independent eigenvectors.
-  \item \textbf{Construction of D:} The diagonal entries of $D$ are the eigenvalues of $A$.
-  \item \textbf{Construction of P:} The columns of $P$ are the corresponding eigenvectors in the same order as the eigenvalues in $D$.
-\end{itemize}
-
-\subsection*{Diagonalization Steps}
-1. Find the eigenvalues of $A$.
-2. Find the basis for each eigenspace (eigenvectors).
-3. If the total number of linearly independent eigenvectors is less than $n$, $A$ is not diagonalizable.
-4. Construct $P$ using eigenvectors as columns and $D$ using eigenvalues on the diagonal.
-
-% Section: Useful Properties
-\section*{4. Key Properties}
-\begin{itemize}
-  \item \textbf{Trace:} $\text{tr}(A) = \sum \lambda_i$ (sum of eigenvalues).
-  \item \textbf{Determinant:} $\det(A) = \prod \lambda_i$ (product of eigenvalues).
-  \item \textbf{Triangular Matrices:} The eigenvalues of a triangular matrix are the entries on its main diagonal.
-  \item \textbf{Invertibility:} $A$ is invertible if and only if $0$ is not an eigenvalue of $A$.
-\end{itemize}
-
-% Section: 2x2 and 3x3 Determinants
-\section*{5. Determinant Formulas}
-\textbf{2x2 Matrix:}
-$\det \begin{bmatrix} a & b \\ c & d \end{bmatrix} = ad - bc$
-
-\textbf{3x3 Matrix (Cofactor Expansion):}
-$\det \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} = a(ei-fh) - b(di-fg) + c(dh-eg)$
-
-\end{multicols}
-
-
-
-\newpage
-
-
-
-\begin{center}
-  \textbf{\Large Spring Framework Reference: Core, MVC, and Data JPA}
-\end{center}
-
-\begin{multicols}{3}
-\raggedright
-
-% Section: Spring Core
-\section*{1. Spring Core: IoC and Beans}
-\textbf{Inversion of Control (IoC):} The framework manages the application flow and object lifecycle. Advantages include looser coupling, easier testing via mocks, and centralized configuration.
-
-\textbf{Dependency Injection (DI):} Collaborators are received from the outside rather than constructed internally.
-\begin{itemize}
-  \item \textbf{Constructor:} Preferred for mandatory dependencies; ensures immutability.
-  \item \textbf{Setter:} Used for optional dependencies.
-  \item \textbf{Field:} Injected via \texttt{@Autowired}.
-\end{itemize}
-
-\textbf{Spring Beans:} Objects managed by the IoC container.
-\begin{itemize}
-  \item \textbf{Singleton (Default):} One instance per container.
-  \item \textbf{Prototype:} New instance per request.
-\end{itemize}
-
-\textbf{Configuration Styles:}
-\begin{itemize}
-  \item \textbf{XML:} Metadata is kept separate from Java source.
-  \item \textbf{Annotation-based:} Stereotypes like \texttt{@Component}, \texttt{@Service}, \texttt{@Repository}, and \texttt{@Controller} are used.
-  \item \textbf{Java Config:} Classes are marked with \texttt{@Configuration} and methods with \texttt{@Bean}.
-\end{itemize}
-
-\columnbreak
-
-% Section: Spring Web/MVC
-\section*{2. Spring Web and MVC}
-\textbf{MVC Pattern:}
-\begin{itemize}
-  \item \textbf{Model:} Domain data and business rules.
-  \item \textbf{View:} Presentation (HTML/JSON).
-  \item \textbf{Controller:} Translates HTTP requests into model operations.
-\end{itemize}
-
-\textbf{Key Web Annotations:}
-\begin{itemize}
-  \item \texttt{@RestController}: Combines \texttt{@Controller} and \texttt{@ResponseBody}.
-  \item \texttt{@RequestMapping}: Maps URLs to methods for any HTTP verb.
-  \item \texttt{@GetMapping}, \texttt{@PostMapping}: Verb-specific shortcuts.
-  \item \texttt{@PathVariable}: Binds URI segments (e.g., \verb|/{id}|).
-  \item \texttt{@RequestParam}: Binds query parameters.
-  \item \texttt{@RequestBody}: Deserializes request body into a Java object.
-\end{itemize}
-
-\textbf{Exception Handling:}
-\begin{itemize}
-  \item \texttt{@ExceptionHandler}: Localized exception handling.
-  \item \texttt{@RestControllerAdvice}: Centralized, global exception handling for APIs.
-  \item \texttt{@ResponseStatus}: Sets specific HTTP status codes.
-\end{itemize}
-
-\columnbreak
-
-% Section: Spring Data JPA
-\section*{3. Spring Data JPA}
-\textbf{ORM:} Object-Relational Mapping bridges object graphs and relational tables. 
-JPA (\textbf{J}akarta \textbf{P}ersistence \textbf{A}PI) is the standard API (e.g., Hibernate).
-
-\textbf{JPA Annotations:}
-\begin{itemize}
-  \item \texttt{@Entity}: Marks a class for persistence.
-  \item \texttt{@Id}: Designates the primary key.
-  \item \texttt{@GeneratedValue}: Configures key generation strategies.
-  \item \texttt{@Transient}: Marks fields to be ignored by the database.
-\end{itemize}
-
-\textbf{Repositories:}
-\begin{itemize}
-  \item \texttt{JpaRepository<T, ID>}: Provides CRUD, paging, and flushing.
-  \item \textbf{Derived Queries:} Methods are generated from names (e.g., \texttt{findByEmail}).
-  \item \texttt{@Query}: Used for manual JPQL or native SQL.
-  \item \texttt{@NoRepositoryBean}: Prevents Spring from instantiating base interfaces.
-\end{itemize}
-
-\textbf{Transactions:}
-\begin{itemize}
-  \item \texttt{@Transactional}: Defines a transaction boundary.
-  \item \textbf{Rollback:} Occurs on \texttt{RuntimeException} and \texttt{Error} by default; checked exceptions are committed.
-\end{itemize}
-
-% Section: Testing
-\section*{4. Testing}
-\textbf{MockMvc:} Utilized to test controllers without starting a full servlet container. It exercises mappings and serialization in a mock environment.
-
-\end{multicols}
-
-
-
-
-
-\newpage
-
-\begin{center}
-  \textbf{\Large Spring Boot Reference: Configuration, Actuator, and Testing}
-\end{center}
-
-\begin{multicols}{3}
-\raggedright
-
-% Section: Fundamentals
-\section*{1. Spring Boot Fundamentals}
-\textbf{Spring Boot} is defined as an opinionated layer atop the Spring Framework. It facilitates rapid development through:
-\begin{itemize}
-  \item \textbf{Starters:} Coordinated dependency descriptors.
-  \item \textbf{Auto-configuration:} Automatic bean wiring based on the classpath.
-  \item \textbf{Embedded Server:} Inclusion of Tomcat, Jetty, or Undertow.
-  \item \textbf{Executable JARs:} Packaging as "fat" JARs for standalone execution.
-\end{itemize}
-
-\textbf{@SpringBootApplication:} A composed annotation including:
-\begin{itemize}
-  \item \texttt{@Configuration}: Marks the class as a bean source.
-  \item \texttt{@EnableAutoConfiguration}: Activates conditional bean setup.
-  \item \texttt{@ComponentScan}: Scans the package for stereotype beans.
-\end{itemize}
-
-\columnbreak
-
-% Section: Configuration
-\section*{2. Configuration and Externalization}
-Configuration is externalized via \texttt{application.properties} or \texttt{application.yml}.
-\begin{itemize}
-  \item \textbf{Precedence:} Command-line arguments typically override file-based properties.
-  \item \textbf{Profiles:} Activated via \texttt{@ActiveProfiles} or \texttt{spring.profiles.active} to load specific environments (e.g., \texttt{application-dev.yml}).
-  \item \textbf{Common Keys:} \texttt{server.port} is used to set the HTTP port; \texttt{spring.datasource.*} is used for database credentials.
-  \item \textbf{Data Initialization:} Files named \texttt{schema.sql} and \texttt{data.sql} are automatically executed upon startup if placed in the classpath root.
-\end{itemize}
-
-% Section: Lombok
-\section*{3. Project Lombok}
-Lombok is utilized as an annotation processor to reduce boilerplate:
-\begin{itemize}
-  \item \texttt{@Getter} / \texttt{@Setter}: Generates accessors.
-  \item \texttt{@NoArgsConstructor} / \texttt{@AllArgsConstructor}: Generates constructors.
-  \item \texttt{@Data}: Combines getters, setters, \texttt{toString}, \texttt{equals}, and \texttt{hashCode}.
-  \item \texttt{@Builder}: Implements the builder pattern.
-  \item \texttt{@Slf4j}: Injects a logger field.
-\end{itemize}
-
-\columnbreak
-
-
-% Section: Actuator
-\section*{4. Spring Boot Actuator}
-Actuator provides operational endpoints for monitoring:
-\begin{itemize}
-  \item \textbf{Health:} \texttt{/actuator/health} (Liveness/Readiness).
-  \item \textbf{Metrics:} \texttt{/actuator/metrics} (Performance data).
-  \item \textbf{Env:} \texttt{/actuator/env} (Configuration introspection).
-  \item \textbf{Loggers:} \texttt{/actuator/loggers} (Runtime level adjustment).
-\end{itemize}
-\textbf{Management:} Endpoints must be \textbf{Enabled} (bean activation) and \textbf{Exposed} (transport accessibility, e.g., via \texttt{management.endpoints.web.exposure.include}). \textbf{Custom Endpoints} are created using the \texttt{@Endpoint} annotation and \texttt{@ReadOperation}.
-
-% Section: Testing
-\section*{5. Spring Boot Testing}
-The \texttt{spring-boot-starter-test} includes JUnit 5 and Mockito.
-\begin{itemize}
-  \item \texttt{@SpringBootTest}: Loads the full application context for integration tests.
-  \item \texttt{@WebMvcTest}: Slices the context for web-layer testing (controllers and JSON).
-  \item \texttt{@AutoConfigureMockMvc}: Injects \texttt{MockMvc} for faking HTTP requests.
-  \item \texttt{@MockBean}: Replaces a bean in the context with a Mockito mock.
-\end{itemize}
-
-\end{multicols}
-
+  % \input{module/linear_alg.tex}
+  \input{module/spring.tex}
+  \input{module/springboot.tex}
 \end{document}
