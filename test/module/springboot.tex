@@ -1,0 +1,164 @@
+{\centering\bfseries Spring Boot (config, actuator, testing) -- exam quick map\par}
+\vspace{0.35ex}
+\begin{multicols}{3}
+\raggedright
+\small
+
+\section*{Boot fundamentals}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Spring Boot:} opinionated layer over Spring for faster setup and fewer manual configs.
+  \item \textbf{Starters:} curated dependency sets that reduce version mismatch boilerplate.
+  \item \textbf{Auto-configuration:} conditional bean setup from classpath, properties, and environment.
+  \item \textbf{Embedded server:} Tomcat default; Jetty/Undertow are alternatives.
+  \item \textbf{Packaging:} fat JAR (\textbf{J}ava \textbf{AR}chive), run with \texttt{java -jar app.jar}.
+  \item \textbf{Defaults:} sensible out-of-box behavior, but override through config when needed.
+  \item \textbf{Initializr:} \texttt{start.spring.io} quickly generates project skeleton.
+  \item \textbf{Entry annotation:} \texttt{@SpringBootApplication} = \texttt{@Configuration} + \texttt{@EnableAutoConfiguration} + \texttt{@ComponentScan}.
+\end{itemize}
+
+\section*{Externalized config}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Files:} \texttt{application.properties} / \texttt{application.yml} (+ profile variants).
+  \item \textbf{Precedence cue:} command-line args usually override packaged values.
+  \item \textbf{Key props:} \texttt{server.port}, \texttt{spring.datasource.*}, \texttt{spring.profiles.active}.
+  \item \textbf{Profiles in tests:} activate with \texttt{@ActiveProfiles("test")}.
+  \item \textbf{Startup SQL:} \texttt{schema.sql} (DDL) and \texttt{data.sql} (DML) can auto-run.
+\end{itemize}
+
+\begin{lstlisting}[aboveskip=2pt,belowskip=2pt]
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app
+    username: appuser
+\end{lstlisting}
+
+
+
+\section*{Auto-config logic}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item Uses conditions: classpath, property values, env, existing/missing beans.
+  \item Example: DB driver + datasource properties -> auto \texttt{DataSource} bean.
+  \item Exam trap: Boot does not instantiate every possible auto-config bean.
+\end{itemize}
+
+\section*{Actuator}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Purpose:} runtime operational visibility and management via HTTP/JMX.
+  \item \textbf{Enabled:} endpoint bean active in context.
+  \item \textbf{Exposed:} endpoint reachable over selected transport.
+  \item \textbf{Available:} enabled + exposed (+ security allows access).
+  \item \textbf{Common endpoints:} \texttt{health}, \texttt{info}, \texttt{metrics}, \texttt{env}, \texttt{loggers}.
+  \item \textbf{Default trap:} modern web exposure is usually minimal unless explicitly configured.
+\end{itemize}
+
+\begin{lstlisting}[aboveskip=2pt,belowskip=2pt]
+management.endpoints.web.exposure.include=health,metrics,env,loggers
+\end{lstlisting}
+
+\textbf{Custom endpoint:} \texttt{@Endpoint(id="...")} + \texttt{@ReadOperation}/\texttt{@WriteOperation}/\texttt{@DeleteOperation}, then expose and secure.
+
+
+
+\section*{DevTools + Lombok}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{DevTools:} restart on classpath changes; optional remote workflows.
+  \item DevTools is not MVC scaffolding and not a second IoC container.
+  \item \textbf{Lombok:} \texttt{@Getter}, \texttt{@Setter}, \texttt{@Data}, \texttt{@Builder}, constructors, \texttt{@Slf4j}.
+  \item DTO-friendly; use care on JPA entities where generated methods can affect behavior.
+\end{itemize}
+
+\section*{Testing}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \texttt{spring-boot-starter-test}: JUnit (Jupiter), Mockito, AssertJ, \texttt{spring-test}.
+  \item \texttt{@WebMvcTest}: web slice (controllers + JSON + MockMvc), not full app.
+  \item \texttt{@SpringBootTest}: broad/full integration context.
+  \item \texttt{@AutoConfigureMockMvc}: injects \texttt{MockMvc} for request-style tests.
+  \item \texttt{@MockBean}: replaces context bean with Mockito mock.
+  \item Async tests: verify \texttt{CompletableFuture} completion and timeout behavior.
+\end{itemize}
+
+\end{multicols}
+{\centering\bfseries Spring Boot (config, actuator, testing) -- exam quick map\par}
+\vspace{0.35ex}
+\begin{multicols}{3}
+\raggedright
+\small
+
+\section*{Boot core}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Spring Boot:} opinionated layer over Spring.
+  \item \textbf{Starters:} curated dependencies.
+  \item \textbf{Auto-config:} conditional config from classpath/properties.
+  \item \textbf{Embedded server:} Tomcat default (or Jetty/Undertow).
+  \item \textbf{Packaging:} fat JAR (\textbf{J}ava \textbf{AR}chive), run \texttt{java -jar}.
+  \item \textbf{Defaults:} sensible out-of-box, fully overridable.
+  \item \textbf{Initializr:} \texttt{start.spring.io} project generator.
+  \item \textbf{Entry annotation:} \texttt{@SpringBootApplication} = \texttt{@Configuration} + \texttt{@EnableAutoConfiguration} + \texttt{@ComponentScan}.
+\end{itemize}
+
+\section*{Configuration}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Files:} \texttt{application.properties} / \texttt{application.yml}.
+  \item \textbf{Precedence:} command-line usually overrides packaged file values.
+  \item \textbf{Key props:} \texttt{server.port}, \texttt{spring.datasource.*}, \texttt{spring.profiles.active}.
+  \item \textbf{Profiles in tests:} \texttt{@ActiveProfiles("test")}.
+  \item \textbf{Init scripts:} \texttt{schema.sql} (DDL), \texttt{data.sql} (DML).
+\end{itemize}
+
+\begin{lstlisting}[aboveskip=2pt,belowskip=2pt]
+server:
+  port: 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app
+    username: appuser
+\end{lstlisting}
+
+
+
+\section*{Auto-config logic}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item Uses conditions: classpath, properties, env, existing/missing beans.
+  \item Example: DB driver + datasource props -> auto \texttt{DataSource}.
+  \item It does not create every possible bean.
+\end{itemize}
+
+\section*{Actuator}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Goal:} runtime ops visibility via HTTP/JMX.
+  \item \textbf{Enabled:} endpoint bean active.
+  \item \textbf{Exposed:} reachable on selected transport.
+  \item \textbf{Available:} enabled + exposed (+ security allows).
+  \item \textbf{Common endpoints:} \texttt{health}, \texttt{info}, \texttt{metrics}, \texttt{env}, \texttt{loggers}.
+  \item \textbf{Default trap:} modern web exposure often minimal (\texttt{health}); older keys may differ.
+\end{itemize}
+
+\begin{lstlisting}[aboveskip=2pt,belowskip=2pt]
+management.endpoints.web.exposure.include=health,metrics,env,loggers
+\end{lstlisting}
+
+\textbf{Custom endpoint:} \texttt{@Endpoint(id="...")} + \texttt{@Read/\allowbreak Write/\allowbreak DeleteOperation}; then expose + secure.
+
+
+
+\section*{Dev + productivity}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{DevTools:} restart on classpath change; optional remote workflows.
+  \item Not MVC scaffolding; not a second IoC container.
+  \item \textbf{Lombok:} \texttt{@Getter}, \texttt{@Setter}, \texttt{@Data}, \texttt{@Builder}, constructors, \texttt{@Slf4j}.
+  \item DTO (\textbf{D}ata \textbf{T}ransfer \textbf{O}bject) friendly; use care on entities.
+\end{itemize}
+
+\section*{Testing}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \texttt{spring-boot-starter-test}: JUnit (Jupiter), Mockito, AssertJ, \texttt{spring-test}.
+  \item \texttt{@WebMvcTest}: web slice only.
+  \item \texttt{@SpringBootTest}: broad integration/full context.
+  \item \texttt{@AutoConfigureMockMvc}: inject \texttt{MockMvc}.
+  \item \texttt{@MockBean}: replace bean with Mockito mock.
+  \item Async tests: verify \texttt{CompletableFuture} completion/timeouts.
+\end{itemize}
+
+\end{multicols}

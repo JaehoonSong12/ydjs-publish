@@ -1,0 +1,461 @@
+% Computer Science A --- functional interfaces, lambda expressions, method references, and Stream API
+% (streams follow lambdas: pipelines use \texttt{Predicate}/\texttt{Function} and lambda syntax).
+% Loaded from \texttt{main.tex}; place this file before \texttt{distributed\_computing.tex} so streams sit after SAM/lambda groundwork.
+% Optional/stream-pipeline FRQs migrated from \texttt{cs-a/03-practice.tex} open the \textbf{Stream API} section (before stream MCQs); parallel execution via \texttt{parallelStream()} ties to fork/join pools in \texttt{distributed\_computing.tex}.
+
+\runningheader{Computer Science A}{Lambdas, streams, \& functional Java}{Page \thepage\ of \numpages}
+
+\begingradingrange{csaulambda}
+
+
+
+
+\uplevel{\par\textbf{Functional interfaces}\par}
+
+\question[4]
+What is a functional interface and why would we use one?
+\makeemptybox{1.00in}
+\begin{solution}
+  A functional interface is defined as an interface with a \textbf{Single Abstract Method (SAM)}.
+  It is utilized as a \textbf{target type} for lambda expressions and method references to
+  facilitate functional programming.
+  \begin{lstlisting}[style=javaexam]
+  @FunctionalInterface
+  interface Validator {
+    boolean isValid(String s); // the SAM
+  }
+
+  final class Rules {
+    static boolean hasAt(String s) {
+      return s != null && s.contains("@");
+    }
+  }
+
+  public class Demo {
+    void example() {
+      // lambda: implements the SAM inline
+      Validator notBlank = s -> (s != null && !s.isBlank());
+      // method reference: static method with matching (String -> boolean) shape
+      Validator emailish = Rules::hasAt;
+
+      boolean ok1 = notBlank.isValid("  hi  "); // true
+      boolean ok2 = emailish.isValid("a@b");   // true
+    }
+  }
+  \end{lstlisting} 
+  \textbf{Anonymous inner classes} are replaced by concise syntax, enabling behavior to be passed as data and concise callbacks and   stream-style APIs.
+
+  \noindent\textbf{Note (\texttt{@FunctionalInterface}):}
+  The annotation documents that the type is intended as a SAM; if a second abstract method is added, the compiler reports an error.
+  \begin{lstlisting}[style=javaexam]
+  @FunctionalInterface
+  interface Calculation {
+    int op(int a, int b);
+    // void error(); // adding another abstract method: compile error
+  }
+  \end{lstlisting}
+  An interface still counts as functional \emph{without} the annotation when it already satisfies the SAM rule.
+\end{solution}
+
+\newpage
+
+\question[6]
+Identify and describe the primary categories within the \texttt{java.util.function} package.
+\makeemptybox{1.00in}
+\begin{solution}
+  Standardized logic is provided via four core descriptor shapes:
+  \begin{itemize}
+    \item \textbf{Predicate}: Accepts \texttt{T}, returns \texttt{boolean}. Used for filtering.
+      \begin{lstlisting}[style=javaexam]
+      Predicate<Integer> isEven = n -> n \% 2 == 0;
+      boolean a = isEven.test(4);     // true
+      \end{lstlisting}
+    \item \textbf{Function}: Accepts \texttt{T}, returns \texttt{R}. Used for transformation.
+      \begin{lstlisting}[style=javaexam]
+      Function<String, Integer> toLen = s -> s.length();
+      int n = toLen.apply("hello");   // 5
+      \end{lstlisting}
+    \item \textbf{Consumer}: Accepts \texttt{T}, returns \texttt{void}. Used for side effects.
+      \begin{lstlisting}[style=javaexam]
+      Consumer<String> printer = System.out::println;
+      printer.accept("first line");   // runs println for side effect
+      \end{lstlisting}
+    \item \textbf{Supplier}: Accepts nothing, returns \texttt{T}. Used for lazy generation.
+      \begin{lstlisting}[style=javaexam]
+      Supplier<Double> random = () -> Math.random();
+      double a = random.get();        // each call can produce a new value
+      \end{lstlisting}
+  \end{itemize}
+\end{solution}
+
+
+\question[4]
+Functional interfaces are\ldots
+\begin{choices}
+  \choice Interfaces with only one abstract method
+  \choice Used with lambda expressions
+  \choice A way of introducing functional programming to Java
+  \CorrectChoice All of the above
+\end{choices}
+\begin{solution}
+  \textbf{All of the above} is correct as follows:
+  \begin{itemize}
+    \item \textbf{SAM:} a functional interface has exactly one \emph{abstract} method (other \texttt{default}/\texttt{static} methods are allowed).
+    \item \textbf{Lambdas:} that method's signature is the \textbf{target type} the compiler uses to type-check and assign a lambda or method reference.
+    \item \textbf{Functional style:} APIs such as \texttt{Stream} and \texttt{java.util.function} take those interfaces so behavior is passed as data.
+  \end{itemize}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\uplevel{\par\textbf{Lambda expressions}\par}
+
+\question[4]
+Which of the following is \emph{not} a new language feature in Java~8?
+\begin{choices}
+  \choice The introduction of lambda expressions
+  \choice Method references
+  \choice Default methods for interfaces
+  \CorrectChoice The keyword \lstinline!var!
+\end{choices}
+\begin{solution}
+  Lambda expressions, method references, and interface default methods are Java~8 features. The keyword \lstinline!var! (local variable type inference) was introduced in Java~10; the compiler infers the type of a local variable from its initializer, e.g.\ \lstinline!var list = new ArrayList<String>();!.
+\end{solution}
+
+\question[4]
+What is a lambda? Give an example of how we can use one.
+\makeemptybox{1.45in}
+\begin{solution}
+  Anonymous function syntax \texttt{(args) -> body} implementing a functional interface. Example: \texttt{list.removeIf(x -> x.isEmpty());} or \texttt{btn.setOnAction(e -> save());}
+\end{solution}
+
+\question[4]
+Which of the following statements are correct about Java~8 lambda expressions?
+\begin{choices}
+  \choice Lambda expressions are used primarily to define inline implementations of a functional interface.
+  \choice Lambda expressions reduce the need for anonymous classes and add concise functional-style callbacks to Java.
+  \CorrectChoice Both of the above.
+  \choice None of the above.
+\end{choices}
+\begin{solution}
+  Both statements capture common teaching points about lambdas and SAM types.
+\end{solution}
+
+\question[4]
+Which of the following are correct lambda expressions that add two numbers and return their sum?
+\begin{choices}
+  \choice \texttt{(int a, int b) -> \{ return a + b; \};}
+  \choice \texttt{(a, b) -> \{ return a + b; \};}
+  \CorrectChoice Both of the above.
+  \choice None of the above.
+\end{choices}
+\begin{solution}
+  Typed or inferred parameter lists are both valid for a binary lambda returning a sum (when the target type supplies enough context for inference).
+\end{solution}
+
+\newpage
+
+\question[4]
+Which of the following is correct about Java~8 lambda expressions?
+\begin{choices}
+  \choice Optional type declaration: the compiler can often infer parameter types from the target functional interface.
+  \choice Optional parentheses around a single parameter; multiple parameters require parentheses.
+  \CorrectChoice Both of the above.
+  \choice None of the above.
+\end{choices}
+\begin{solution}
+  Both optional typing and optional parentheses for a single parameter are standard lambda rules.
+\end{solution}
+
+\question[4]
+Which of the following is correct about Java~8 lambda expressions?
+\begin{choices}
+  \choice Optional curly braces: a single-expression body can omit \texttt{\{\}}.
+  \choice Optional \texttt{return} keyword: a single expression without braces is treated as the value returned.
+  \CorrectChoice Both of the above.
+  \choice None of the above.
+\end{choices}
+\begin{solution}
+  Expression-style lambdas omit \texttt{\{\}} and explicit \texttt{return}.
+\end{solution}
+
+\question[4]
+Which expression correctly assigns a \texttt{Funky} implementation?
+\begin{lstlisting}[style=javaexam]
+interface Funky {
+  void method();
+}
+class Main {
+  public static void main(String[] args) {
+    Funky f = ______ ;
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \choice \lstinline!new funky()!
+  \CorrectChoice \lstinline!() -> System.out.println("Funk")!
+  \choice \lstinline!(input a) -> { System.out.println(a + "100"); }!
+  \choice \lstinline!(funk) => System.out.println(funk)!
+\end{choices}
+\begin{solution}
+  \texttt{Funky} is a functional interface (\texttt{void method()}). A no-arg lambda \texttt{() -> \ldots} matches. You cannot \texttt{new} an interface; Java uses \texttt{->}, not \texttt{=>}; the parameter list must match the SAM (here, no parameters).
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\uplevel{\par\textbf{Method references}\par}
+
+\question[4]
+What is a method reference?
+\makeemptybox{1.15in}
+\begin{solution}
+  Shorthand for a lambda that only forwards to an existing method: static \texttt{Type::staticMethod}, bound instance \texttt{recv::meth}, unbound instance \texttt{Type::meth} (receiver is the first SAM argument), and constructor \texttt{Type::new}.
+
+\begin{lstlisting}[style=javaexam]
+import java.util.ArrayList;
+import java.util.function.*;
+
+Consumer<String> log = System.out::println;     // bound instance
+Function<String, Integer> len = String::length; // unbound on String
+Supplier<ArrayList<String>> mk = ArrayList::new;
+ToIntFunction<String> n = Integer::parseInt;    // static 
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Can you pass extra parameters directly inside a method reference (beyond what the functional interface supplies when it is invoked)?
+\begin{choices}
+  \choice True
+  \CorrectChoice False
+\end{choices}
+\begin{solution} 
+  \textbf{FALSE.} \texttt{::} only selects the method; arguments come from the SAM at call time (or from a bound receiver). You cannot embed extra literals---\texttt{String::substring(0, 2)} does not compile. Use a lambda instead:
+
+\begin{lstlisting}[style=javaexam]
+import java.util.function.Function;
+Function<String, String> head = s -> s.substring(0, 2);
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Method references let you refer to an existing method by name (as shorthand for a lambda that calls it).
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  \textbf{True.} Same meaning as an equivalent lambda when the SAM shape matches, e.g.\ \texttt{xs.replaceAll(String::toLowerCase)} for \texttt{s -> s.toLowerCase()}.
+
+\begin{lstlisting}[style=javaexam]
+import java.util.Arrays;
+import java.util.List;
+List<String> xs = Arrays.asList("a", "B");
+xs.replaceAll(String::toLowerCase);
+\end{lstlisting}
+\end{solution}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\uplevel{\par\textbf{Stream API} (\texttt{java.util.stream})\par}
+
+\noindent\footnotesize\textit{Streams apply the functional style above: intermediate ops take lambdas or method references; terminals finish the pipeline.}\par
+
+\uplevel{\par\textbf{Optional, streams, and parallel execution}\par}
+
+\question[4]
+What is the \texttt{Optional} class?
+\makeemptybox{1.2in}
+\begin{solution}
+  A container for zero or one non-null value, encouraging explicit handling of absence instead of \texttt{null} for return types (use carefully in fields/params).
+\end{solution}
+
+\question[4]
+What is the Stream API and what is it used for?
+\makeemptybox{1.35in}
+\begin{solution}
+  Functional-style pipeline over collections/IO for map/filter/reduce-style operations, often lazy, enabling parallel streams and cleaner data transformations.
+\end{solution}
+
+\question[4]
+What are intermediate stream operations?
+\makeemptybox{1.2in}
+\begin{solution}
+  Lazy ops that return another stream (\texttt{map}, \texttt{filter}, \texttt{sorted}, etc.); they run when a terminal operation executes the pipeline.
+\end{solution}
+
+\question[4]
+What are terminal stream operations?
+\makeemptybox{1.2in}
+\begin{solution}
+  Operations that finish the pipeline and produce a non-stream result or side effect: e.g.\ \texttt{collect}, \texttt{forEach}, \texttt{reduce}, \texttt{count}, \texttt{findFirst}, \texttt{anyMatch}.
+\end{solution}
+
+\newpage
+
+\question[4]
+Which API operates on a collection of objects to process it and get the desired result?
+\begin{choices}
+  \CorrectChoice \texttt{Stream API}
+  \choice \texttt{Collection API}
+  \choice \texttt{DateTime API}
+  \choice \texttt{String API}
+\end{choices}
+\begin{solution}
+  \texttt{java.util.Collection} (e.g.\ \texttt{List}) \textbf{stores} elements. The \textbf{Stream API} (\texttt{java.util.stream}) processes a \textbf{sequence}---often \texttt{list.stream()}---with a pipeline ending in a terminal operation:
+
+\begin{lstlisting}[style=javaexam]
+import java.util.Arrays;
+
+long n = Arrays.asList(10, 20, 30).stream().filter(x -> x > 15).count();
+\end{lstlisting}
+
+  \texttt{java.time} and \texttt{String} APIs solve other problems (dates/times, text), not general collection pipelines.
+\end{solution}
+
+\question[4]
+How many types of operations can be performed in the Stream API to process data?
+\begin{choices}
+  \choice Three
+  \CorrectChoice Two
+  \choice Four
+  \choice Five
+\end{choices}
+\begin{solution}
+  The usual split is \textbf{two} kinds: \textbf{intermediate} (return another \texttt{Stream}, lazy) and \textbf{terminal} (finish the pipeline). Example:
+
+\begin{lstlisting}[style=javaexam]
+import java.util.stream.Stream;
+
+Stream<String> s = Stream.of("a", "bb", "ccc")
+    .filter(x -> x.length() > 1)   // intermediate
+    .map(String::toUpperCase);      // intermediate
+long count = s.count();             // terminal
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Stream API Terminal Operations. What happens if you do \textbf{not} call a terminal operation on a \texttt{Stream}?
+\begin{choices}
+  \CorrectChoice The \texttt{Stream} will just do nothing until you call a terminal operation.
+  \choice The \texttt{Stream} will throw an exception.
+  \choice The \texttt{Stream} will be garbage collected.
+\end{choices}
+\begin{solution}
+  Streams are \textbf{lazy}: intermediate operations (\texttt{map}, \texttt{filter}, \texttt{sorted}, \ldots) return a new stream and only \textbf{describe} work. A \textbf{terminal} operation (\texttt{forEach}, \texttt{collect}, \texttt{count}, \texttt{reduce}, \ldots) triggers the pipeline. Until then, almost nothing runs:
+
+\begin{lstlisting}[style=javaexam]
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+List<String> names = Arrays.asList("ada", "bob");
+Stream<String> upper = names.stream().map(String::toUpperCase);
+// Pipeline not executed yet (no terminal op).
+\end{lstlisting}
+
+  (Some sources like \texttt{Files.lines} should be closed in real code; this illustrates laziness only.)
+\end{solution}
+
+\question[4]
+Which operation can be used when we need to return the stream of elements in sorted order (like sorting arrays)?
+\begin{choices}
+  \choice \texttt{map()}
+  \choice \texttt{flatMap()}
+  \CorrectChoice \texttt{sorted()}
+  \choice \texttt{filter()}
+\end{choices}
+\begin{solution}
+  \texttt{sorted()} is an intermediate operation (natural order, or \texttt{sorted(Comparator)}). \texttt{map}/\texttt{flatMap} transform structure; \texttt{filter} drops elements.
+
+\begin{lstlisting}[style=javaexam]
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+List<String> out = Arrays.asList("zebra", "ant")
+    .stream()
+    .sorted(Comparator.naturalOrder())
+    .collect(Collectors.toList());
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+You already have \lstinline!import java.util.*;!. Do you still need to \lstinline!import java.util.stream.*;! (or import specific stream types) to use \texttt{java.util.stream} APIs?
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  \textbf{TRUE.} Here ``TRUE'' means \textbf{yes, you still need} something beyond \texttt{import java.util.*;}---not that \texttt{java.util.*} is sufficient on its own. A star import names \textbf{one} package only; \texttt{java.util.stream} is a \textbf{different} package, so simple names like \texttt{Stream} and \texttt{Collectors} do not resolve unless you add the stream import(s) or spell the type out with its full package prefix.
+
+\begin{lstlisting}[style=javaexam]
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+List<Integer> nums = Arrays.asList(3, 1, 2);
+String joined = nums.stream()
+    .sorted()
+    .map(String::valueOf)
+    .collect(Collectors.joining(","));
+\end{lstlisting}
+
+  \texttt{FALSE} would mean ``\texttt{java.util.*} alone is enough,'' which is wrong: delete the two \texttt{java.util.stream} lines and the file will not compile if you keep \texttt{Stream} / \texttt{Collectors} as short names.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Lambdas (practice bank)}\par}
+
+\question[4]
+Which of the following is the correct lambda expression which adds two numbers and returns their sum?
+\begin{choices}
+  \choice \texttt{(int a, int b) -> \{ return a + b; \};}
+  \choice \texttt{(a, b) -> \{ return a + b; \};}
+  \CorrectChoice Both of the above
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Explicit parameter types and inferred types are both valid when the context supplies the functional interface's method signature.
+\end{solution}
+
+\endgradingrange{csaulambda}

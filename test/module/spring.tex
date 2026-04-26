@@ -1,0 +1,83 @@
+{\centering\bfseries Spring (Core, Web/MVC, Data JPA) -- exam quick map\par}
+\vspace{0.35ex}
+\begin{multicols}{3}
+\raggedright
+\small
+
+\section*{Core container}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Spring:} modular JVM framework; Boot is convenience layer, not replacement.
+  \item \textbf{IoC (\textbf{I}nversion of \textbf{C}ontrol):} container creates/wires objects and controls lifecycle.
+  \item \textbf{DI (\textbf{D}ependency \textbf{I}njection):} dependencies come from container; avoid hard-coded \texttt{new}.
+  \item \textbf{Bean:} object managed in \texttt{ApplicationContext}/\texttt{BeanFactory}, identified by type and bean name.
+  \item \textbf{Get bean:} preferred via injection; explicit via \texttt{getBean(...)}; \texttt{@Aspect} is unrelated.
+  \item \textbf{Core module:} DI, scopes, events, i18n, resource abstraction, SpEL.
+  \item \textbf{Context boot:} Boot \texttt{SpringApplication.run}; plain \texttt{AnnotationConfigApplicationContext}; XML \texttt{ClassPathXmlApplicationContext}.
+  \item \textbf{Scope exam cue:} singleton is default; prototype returns a new instance each resolve.
+\end{itemize}
+
+\section*{DI + config}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{Constructor:} required deps, explicit API, best unit-test ergonomics.
+  \item \textbf{Setter:} optional deps when partial wiring is acceptable.
+  \item \textbf{Field:} shortest syntax, weakest testability/visibility.
+  \item \textbf{Config styles:} XML, Java config, and annotations can be mixed in one app.
+  \item \textbf{Stereotypes:} \texttt{@Component}, \texttt{@Service}, \texttt{@Repository}, \texttt{@Controller}.
+  \item \textbf{\texttt{@Bean}:} method-level factory registration, not class stereotype.
+  \item \textbf{Disambiguation:} type, ordering, \texttt{@Qualifier}, and parameter names.
+\end{itemize}
+
+\columnbreak
+
+\section*{Web + MVC}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{MVC (\textbf{M}odel-\textbf{V}iew-\textbf{C}ontroller):} model = state/rules, view = representation, controller = request flow.
+  \item \textbf{\texttt{@Controller}:} classic MVC handler dispatched by \texttt{DispatcherServlet}.
+  \item \textbf{\texttt{@RestController}:} \texttt{@Controller} + default \texttt{@ResponseBody} for API responses.
+  \item \textbf{Mappings:} \texttt{@RequestMapping}, \texttt{@Get/Post/Delete/PatchMapping}.
+  \item \textbf{Path combine:} class-level path prefixes method-level path.
+  \item \textbf{Response control:} \texttt{ResponseEntity} controls status+headers+body; \texttt{@ResponseStatus} sets status.
+\end{itemize}
+
+\section*{Request binding}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \texttt{@PathVariable} -- URI (\textbf{U}niform \textbf{R}esource \textbf{I}dentifier) template segment.
+  \item \texttt{@RequestParam} -- query/form value; supports \texttt{defaultValue}.
+  \item \texttt{@RequestBody} -- deserialize JSON/XML payload to object.
+  \item \texttt{@RequestHeader}, \texttt{@CookieValue} -- metadata.
+\end{itemize}
+
+\section*{Exception handling}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \texttt{@ExceptionHandler} -- method-level exception mapper.
+  \item \texttt{@ControllerAdvice} -- global MVC advice.
+  \item \texttt{@RestControllerAdvice} -- global API advice.
+  \item \texttt{@ResponseStatus} -- set HTTP status.
+\end{itemize}
+
+\columnbreak
+
+\section*{JPA + Spring Data}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \textbf{ORM (\textbf{O}bject-\textbf{R}elational \textbf{M}apping):} maps object graph to relational tables.
+  \item \textbf{JPA (\textbf{J}ava \textbf{P}ersistence \textbf{A}PI):} \texttt{@Entity}, \texttt{@Id}, \texttt{@GeneratedValue}, relationships.
+  \item \texttt{@Transient} marks field excluded from persistence mapping.
+  \item \texttt{JpaRepository<T, ID>} provides generated CRUD/paging implementation.
+  \item \textbf{Derived queries:} method-name parsing, e.g. \texttt{findByEmail}.
+  \item \textbf{Custom query:} \texttt{@Query} (JPQL/native SQL) with \texttt{@Param}.
+  \item \texttt{@NoRepositoryBean} for base repo interfaces.
+  \item \textbf{Boot JPA props:} \texttt{spring.datasource.*}, \texttt{spring.jpa.*}.
+\end{itemize}
+
+\section*{Transactions + testing}
+\begin{itemize}[leftmargin=*, nosep, topsep=0pt]
+  \item \texttt{@Transactional} defines transaction boundary for service operations.
+  \item Default rollback: unchecked exceptions; checked exceptions need \texttt{rollbackFor}.
+  \item Typical placement: service layer (use-case boundary), not controller/entity.
+  \item ACID: Atomicity, Consistency, Isolation, Durability.
+  \item \texttt{MockMvc}: tests controller mapping/serialization without full servlet container.
+\end{itemize}
+
+\end{multicols}
+\vspace{0.25ex}
+\newpage

@@ -1,0 +1,1953 @@
+% Computer Science A --- SQL language, modeling, DDL/DML, and transactions (\input from \texttt{main.tex}).
+% SQL fragments: \verb|\lstinline[style=sqlinline]| (see \texttt{SQLEXAM} in \texttt{main.tex}).
+% Free-response bank \texttt{csau3} at the front is migrated from \texttt{cs-a/03-practice.tex} (SQL, JDBC, keys, joins, advanced SQL, transactions/indexes).
+
+\runningheader{Computer Science A}{SQL \& transactions}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau3}
+
+\uplevel{\par\textbf{SQL and relational data}\par}
+
+\question[4]
+What is SQL and why would we use this language?
+\makeemptybox{1.25in}
+\begin{solution}
+  Structured Query Language: declarative language for defining, querying, and manipulating relational data. Use it to persist and retrieve data in RDBMS products with a standard, portable syntax.
+\end{solution}
+
+\question[4]
+What are the SQL sublanguages and their purpose?
+\makeemptybox{1.45in}
+\begin{solution}
+  Common split: DDL (define schema), DML (insert/update/delete/select data), DCL (grant/revoke privileges), TCL (transactions: commit/rollback/savepoint). Purposes vary by vendor but these buckets organize commands.
+\end{solution}
+
+\question[4]
+What is a RDBMS?
+\makeemptybox{1.05in}
+\begin{solution}
+  Relational Database Management System: software that stores data as tables with keys and constraints, enforces relational rules, and processes SQL.
+\end{solution}
+
+\question[4]
+Describe relational database tables.
+\makeemptybox{1.25in}
+\begin{solution}
+  Two-dimensional relations: named columns (attributes) and rows (tuples/records); each row is unique (often via a primary key); tables link via foreign keys.
+\end{solution}
+
+\question[4]
+What are constraints and can you describe a few constraints?
+\makeemptybox{1.45in}
+\begin{solution}
+  Rules enforced by the DBMS: e.g.\ \texttt{PRIMARY KEY}, \texttt{FOREIGN KEY}, \texttt{UNIQUE}, \texttt{NOT NULL}, \texttt{CHECK}. They protect data quality and relationships.
+\end{solution}
+
+\question[4]
+Why would I use the \texttt{WHERE} clause?
+\makeemptybox{1.05in}
+\begin{solution}
+  To filter rows in \texttt{SELECT}, \texttt{UPDATE}, or \texttt{DELETE} so only rows matching a predicate are read or changed.
+\end{solution}
+
+\question[4]
+What are some operators that can be used in SQL?
+\makeemptybox{1.35in}
+\begin{solution}
+  Comparison (\texttt{=}, \texttt{<>}, \texttt{<}, \texttt{LIKE}, \texttt{IN}, \texttt{BETWEEN}), logical (\texttt{AND}, \texttt{OR}, \texttt{NOT}), arithmetic, string ops, and \texttt{IS NULL}---plus set operators in some contexts.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JDBC and application data access}\par}
+
+\question[4]
+What is the JDBC API and the benefits of using it?
+\makeemptybox{1.35in}
+\begin{solution}
+  Java Database Connectivity: standard API for connecting to databases, executing SQL, and reading results. Benefits: vendor-neutral code, connection pooling integration, tooling, and alignment with Java types.
+\end{solution}
+
+\question[4]
+What is the DAO Design Pattern and why should we use it?
+\makeemptybox{1.35in}
+\begin{solution}
+  Data Access Object: separate persistence logic (SQL/JDBC) from domain/services. Easier testing (mocks), swapping storage, and keeping SQL changes localized.
+\end{solution}
+
+\question[4]
+What information would you need in order to successfully connect to a database?
+\makeemptybox{1.35in}
+\begin{solution}
+  JDBC URL, driver class, credentials (user/password), optional pool settings, schema name, and SSL options as required by the deployment.
+\end{solution}
+
+\question[4]
+What is the difference between a Simple and Prepared JDBC statement?
+\makeemptybox{1.35in}
+\begin{solution}
+  \texttt{Statement} sends fixed SQL text. \texttt{PreparedStatement} precompiles a template with \texttt{?} placeholders, binds parameters safely, improves reuse, and helps prevent SQL injection.
+\end{solution}
+
+\question[4]
+What is SQL Injection and how can we prevent it using the JDBC?
+\makeemptybox{1.45in}
+\begin{solution}
+  Attacker embeds malicious SQL via untrusted input. Prevent with parameterized queries (\texttt{PreparedStatement}), validation, least-privilege DB users, and avoiding string concatenation for SQL.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Keys, design, and relationships}\par}
+
+\question[4]
+What is a foreign key?
+\makeemptybox{1.1in}
+\begin{solution}
+  A column (or set) in one table referencing a primary (or unique) key in another, encoding a relationship and enabling joins with referential checks.
+\end{solution}
+
+\question[4]
+What is referential integrity?
+\makeemptybox{1.15in}
+\begin{solution}
+  DB-enforced consistency: foreign key values must match existing parent keys (or be null), so orphans are blocked or cascades apply per policy.
+\end{solution}
+
+\question[4]
+What is normalization?
+\makeemptybox{1.35in}
+\begin{solution}
+  Organizing tables to reduce redundancy and anomalies (typically through normal forms), separating facts so each depends on the key, whole key, and nothing but the key.
+\end{solution}
+
+\question[4]
+What is multiplicity?
+\makeemptybox{1.2in}
+\begin{solution}
+  Cardinality of a relationship between entities (e.g.\ one-to-one, one-to-many, many-to-many), often modeled with keys and junction tables for $n$:$m$ cases.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Joins, views, and set operations}\par}
+
+\question[4]
+Describe what a join is and explain the different types of joins we can create.
+\makeemptybox{1.65in}
+\begin{solution}
+  Combine rows from two (or more) tables on a related column. Common kinds: \texttt{INNER} (matches only), \texttt{LEFT}/\texttt{RIGHT}/\texttt{FULL} outer (keep non-matching sides with nulls), \texttt{CROSS} (cartesian).
+\end{solution}
+
+\question[4]
+What is the difference between a join and a set operation?
+\makeemptybox{1.25in}
+\begin{solution}
+  Joins combine columns from related tables horizontally on predicates. Set ops (\texttt{UNION}, \texttt{INTERSECT}, \texttt{EXCEPT}) combine result sets of compatible queries vertically by rows.
+\end{solution}
+
+\question[4]
+What is a view and why is it useful?
+\makeemptybox{1.25in}
+\begin{solution}
+  A named, stored query (virtual table): simplifies complex SQL, can enforce column-level access, and stabilizes an API over underlying schema changes (implementation varies by DB).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{SQL: control, grouping, and programmability}\par}
+
+\question[4]
+What is DCL?
+\makeemptybox{1in}
+\begin{solution}
+  Data Control Language: privilege commands such as \texttt{GRANT} and \texttt{REVOKE} to manage who may access which database objects.
+\end{solution}
+
+\question[4]
+What is TCL?
+\makeemptybox{1.05in}
+\begin{solution}
+  Transaction Control Language: \texttt{COMMIT}, \texttt{ROLLBACK}, \texttt{SAVEPOINT}---boundaries that make a set of changes atomic and durable per policy.
+\end{solution}
+
+\question[4]
+What is the difference between an aggregate and a scalar function?
+\makeemptybox{1.2in}
+\begin{solution}
+  Aggregates collapse many rows (\texttt{COUNT}, \texttt{SUM}, \texttt{AVG}) often with \texttt{GROUP BY}. Scalar functions compute per row (\texttt{UPPER}, \texttt{LENGTH}, \texttt{COALESCE}).
+\end{solution}
+
+\question[4]
+What is the \texttt{GROUP BY} clause used for?
+\makeemptybox{1.05in}
+\begin{solution}
+  Partition rows sharing grouping expressions so aggregates apply per group rather than over the whole table.
+\end{solution}
+
+\question[4]
+What is the \texttt{ORDER BY} clause used for?
+\makeemptybox{1in}
+\begin{solution}
+  Sort result rows by one or more columns/expressions, ascending or descending, optionally with collation-specific rules.
+\end{solution}
+
+\question[4]
+What is a stored procedure in SQL?
+\makeemptybox{1.2in}
+\begin{solution}
+  Named routine stored in the database (procedural SQL), invoked by apps; can encapsulate logic, reduce round trips, and centralize validation (trade-offs: portability, testing).
+\end{solution}
+
+\question[4]
+What is a trigger in SQL?
+\makeemptybox{1.2in}
+\begin{solution}
+  Procedure fired automatically on \texttt{INSERT}/\texttt{UPDATE}/\texttt{DELETE} (or DDL in some systems) to enforce rules, audit, or denormalized maintenance.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Transactions, functions, and indexes}\par}
+
+\question[4]
+What is a transaction?
+\makeemptybox{1.05in}
+\begin{solution}
+  A logical unit of work: a sequence of operations committed as one atomic bundle or rolled back on failure, isolating concurrent sessions per isolation level.
+\end{solution}
+
+\question[4]
+What are the properties of a transaction?
+\makeemptybox{1.25in}
+\begin{solution}
+  ACID: Atomicity (all-or-nothing), Consistency (valid state), Isolation (concurrent effects controlled), Durability (committed data survives crashes).
+\end{solution}
+
+\question[4]
+What is a function in SQL?
+\makeemptybox{1.15in}
+\begin{solution}
+  Named routine that typically returns a single value (scalar or table-valued) and can be used in expressions; may be built-in or user-defined depending on the DBMS.
+\end{solution}
+
+\question[4]
+What is an index in SQL?
+\makeemptybox{1.2in}
+\begin{solution}
+  Auxiliary structure (often B-tree) on column(s) to speed lookups and some joins/sorts at the cost of storage and write overhead; unique indexes also enforce uniqueness.
+\end{solution}
+
+\endgradingrange{csau3}
+
+\newpage
+
+\begingradingrange{csasql}
+
+\uplevel{\par\textbf{SQL language basics}\par}
+
+\question[4]
+What is SQL?
+\begin{choices}
+  \choice A database for storing and maintaining state for data
+  \choice A tool used solely for statistical analysis
+  \choice A mentality for creating databases to be as least redundant as possible
+  \CorrectChoice A language for interacting with a database
+\end{choices}
+\begin{solution}
+  SQL (\textbf{Structured Query Language}) is the standard language for working with relational databases: querying, updating, and (with DDL) defining structure.
+\end{solution}
+
+\question[4]
+What is the syntax to alter a table in SQL?
+\begin{choices}
+  \CorrectChoice \lstinline[style=sqlinline]!ALTER TABLE table_name ADD column_name data_type;!
+  \choice \lstinline[style=sqlinline]!ALTER table_name ADD column_name data_type;!
+  \choice \lstinline[style=sqlinline]!ALTER TABLE ADD column_name data_type;!
+  \choice \lstinline[style=sqlinline]!ALTER TABLE table_name ADD column_name;!
+\end{choices}
+\begin{solution}
+  \texttt{ALTER TABLE} names the table, then \texttt{ADD} introduces the new column and its type; dialects may add \texttt{IF NOT EXISTS}, constraints, or \texttt{AFTER} placement.
+\end{solution}
+
+\question[4]
+An SQL \lstinline[style=sqlinline]!INSERT! statement inserts \blank[5em] record(s) into any single table in a relational database.
+\begin{choices}
+  \choice One
+  \choice Two
+  \CorrectChoice One or more
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{INSERT\ldots VALUES} can insert one row or several row tuples; \texttt{INSERT\ldots SELECT} can insert many rows from a query.
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} considered part of a database's schema?
+\begin{choices}
+  \choice Tables
+  \choice Columns
+  \choice Table relationships
+  \CorrectChoice Rows
+\end{choices}
+\begin{solution}
+  The \textbf{schema} describes structure (tables, columns, keys, constraints, relationships). \textbf{Rows} are data instances, not structural metadata.
+\end{solution}
+
+\question[4]
+Which of the following is true about DQL (Data Query Language)?
+\begin{choices}
+  \choice It is used to modify database structure
+  \CorrectChoice It is used to retrieve data from a database
+  \choice It controls access to database objects
+  \choice It manages transactions within the database
+\end{choices}
+\begin{solution}
+  DQL centers on \texttt{SELECT} (and related read-only retrieval). Structure changes are DDL; privilege changes are DCL; \texttt{COMMIT}/\texttt{ROLLBACK} are TCL.
+\end{solution}
+
+\question[4]
+What does DDL stand for?
+\begin{choices}
+  \CorrectChoice Data Definition Language
+  \choice Database Definition Language
+  \choice Data Description Language
+  \choice Data Define Language
+\end{choices}
+\begin{solution}
+  \textbf{DDL} defines or changes schema: \texttt{CREATE}, \texttt{ALTER}, \texttt{DROP}, \texttt{TRUNCATE} (classification varies slightly by textbook/DBMS).
+\end{solution}
+
+\question[4]
+What are the SQL sublanguages?
+\begin{choices}
+  \CorrectChoice DDL, DML, DQL, DCL, and TCL
+  \choice DDL, DML, TQL, DCL, and RCL
+  \choice TDL, DGL, DQL, DCL, and PCL
+  \choice RDL, DML, DQL, QCL, and TCL
+\end{choices}
+\begin{solution}
+  Common teaching split: \textbf{DDL} (schema), \textbf{DML} (row changes), \textbf{DQL} (\texttt{SELECT}), \textbf{DCL} (grants/revokes), \textbf{TCL} (transactions).
+\end{solution}
+
+\question[4]
+Which join returns all records from the \emph{second} (right-hand) table, with matching rows from the other side when possible?
+\begin{choices}
+  \choice Inner join
+  \choice Left join
+  \CorrectChoice Right join
+  \choice Self join
+\end{choices}
+\begin{solution}
+  \texttt{RIGHT OUTER JOIN} keeps every row from the right operand; non-matches get \texttt{NULL}s on the left side. (Some teams prefer to rewrite as \texttt{LEFT JOIN} for consistency.)
+\end{solution}
+
+\question[4]
+Which join returns all records from \emph{both} tables, filling with \texttt{NULL}s where there is no match?
+\begin{choices}
+  \choice Self join
+  \choice Cross join
+  \choice Natural join
+  \CorrectChoice Full (outer) join
+\end{choices}
+\begin{solution}
+  \texttt{FULL OUTER JOIN} is the usual answer; not every DBMS supports it (e.g.\ MySQL historically used workarounds).
+\end{solution}
+
+\question[4]
+Which keyword introduces the join predicate between tables?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!IN!
+  \CorrectChoice \lstinline[style=sqlinline]!ON!
+  \choice \lstinline[style=sqlinline]!AT!
+  \choice \lstinline[style=sqlinline]!AND!
+\end{choices}
+\begin{solution}
+  \texttt{JOIN\ldots ON condition} specifies how rows relate; \texttt{AND} can extend the predicate but does not replace \texttt{ON}.
+\end{solution}
+
+\newpage
+
+\question[4]
+A foreign key must reference a primary key.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  In practice a foreign key usually references a \textbf{primary key} or another \textbf{UNIQUE} candidate key on the parent table---not strictly ``primary key only'' in the general SQL model.
+\end{solution}
+
+\question[4]
+In an RDBMS, a foreign key is\ldots
+\begin{choices}
+  \choice A value used to uniquely identify a row
+  \choice A virtual column which shows data from another table
+  \CorrectChoice A constraint: a column (or columns) whose values reference a key in another table
+  \choice Data loaded from an external database
+\end{choices}
+\begin{solution}
+  A \textbf{foreign key} enforces referential integrity: child values must match an existing parent key (or be \texttt{NULL} if allowed).
+\end{solution}
+
+\question[4]
+What is a foreign key?
+\begin{choices}
+  \choice The identifier for the database
+  \choice A column or group of columns that uniquely identify a row in the same table
+  \choice A key used to access a secured database table
+  \CorrectChoice A column that references a column of another table to establish a relationship between rows
+\end{choices}
+\begin{solution}
+  Foreign keys model parent/child relationships; the DBMS can enforce actions such as \texttt{ON DELETE CASCADE} or \texttt{SET NULL}.
+\end{solution}
+
+\question[4]
+What is a primary key?
+\begin{choices}
+  \choice A constraint that requires uniqueness only
+  \choice A constraint that requires a logical check only
+  \CorrectChoice A constraint that combines \texttt{UNIQUE} and \texttt{NOT NULL}
+  \choice A constraint that requires a reference to pre-existing data from another column
+\end{choices}
+\begin{solution}
+  A table has at most one primary key; its columns are non-null and uniquely identify rows (often backed by a unique index).
+\end{solution}
+
+\question[4]
+The \lstinline[style=sqlinline]!AS! keyword specifies an alias for a column or table.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Example: \lstinline[style=sqlinline]!SELECT first_name AS fname FROM employees e!---aliases simplify reading and joins.
+\end{solution}
+
+\question[4]
+An alias is an alternate name for a column or table to make it easier to reference.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Aliases are especially useful in self-joins and when expressions appear in the \texttt{SELECT} list.
+\end{solution}
+
+\question[4]
+What is the purpose of SQL constraints?
+\begin{choices}
+  \CorrectChoice To restrict which values may appear in a column (or across columns)
+  \choice A limitation to the size of a table
+  \choice To limit which operations a user may perform
+  \choice A cap on how many operations the database may run per time period
+\end{choices}
+\begin{solution}
+  Examples: \texttt{NOT NULL}, \texttt{UNIQUE}, \texttt{PRIMARY KEY}, \texttt{FOREIGN KEY}, \texttt{CHECK}, and \texttt{DEFAULT}.
+\end{solution}
+
+\question[4]
+In PostgreSQL, \texttt{SERIAL} is\ldots
+\begin{choices}
+  \CorrectChoice A pseudotype that sets up an auto-incrementing integer column (via a sequence)
+  \choice A constraint that column data must be serializable for transactions
+  \choice A datatype meant only for human-readable serial numbers
+  \choice An isolation level vulnerable to phantom reads
+\end{choices}
+\begin{solution}
+  \texttt{SERIAL} is convenient syntax; modern PostgreSQL style often prefers identity columns (\texttt{GENERATED AS IDENTITY}) for clarity.
+\end{solution}
+
+\question[4]
+Which constraint lets you declare a custom boolean condition on column values?
+\begin{choices}
+  \CorrectChoice \lstinline[style=sqlinline]!CHECK!
+  \choice \texttt{SPECIAL}
+  \choice \texttt{NOT NULL} (as the only answer)
+  \choice \texttt{UNIQUE} (as the only answer)
+\end{choices}
+\begin{solution}
+  \texttt{CHECK (condition)} rejects inserts/updates that violate the predicate, \\
+  e.g.\ \lstinline[style=sqlinline]!CHECK (age >= 0)!.
+\end{solution}
+
+\newpage
+
+\question[4]
+Which is a valid \texttt{INSERT} statement?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]|INSERT INTO employee(id,firstname,lastname) VALUES[75,'Edgar','Stephens'];|
+  \choice \lstinline[style=sqlinline]!INSERT INTO TABLE employee(id,firstname,lastname) VALUES(48,'Adam','Parker');!
+  \CorrectChoice \lstinline[style=sqlinline]!INSERT INTO employee(id,firstname,lastname) VALUES(39,'Margeret','Sampson');!
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Standard SQL uses parentheses for \texttt{VALUES}, not square brackets; \texttt{TABLE} does not belong between \texttt{INTO} and the table name.
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} a conventional SQL sublanguage?
+\begin{choices}
+  \choice DML --- Data Manipulation Language
+  \choice TCL --- Transaction Control Language
+  \choice DQL --- Data Querying Language
+  \CorrectChoice DPL --- Data Persistence Language
+\end{choices}
+\begin{solution}
+  ``DPL'' is a distractor; persistence is an application/ORM concern, not a standard fifth SQL sublanguage label.
+\end{solution}
+
+\question[4]
+DML statements include commands like \texttt{CREATE}, \texttt{DROP}, and \texttt{ALTER}.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{CREATE}/\texttt{DROP}/\texttt{ALTER} are \textbf{DDL}. \textbf{DML} is typically \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}, and sometimes \texttt{SELECT} depending on the textbook.
+\end{solution}
+
+\question[4]
+Which statement retrieves all columns and all rows from \texttt{Customers}?
+\begin{choices}
+  \CorrectChoice \lstinline[style=sqlinline]!SELECT * FROM Customers;!
+  \choice \lstinline[style=sqlinline]!SELECT all FROM Customers;!
+  \choice \lstinline[style=sqlinline]!SELECT % FROM Customers;!
+  \choice \lstinline[style=sqlinline]!SELECT all columns FROM Customers;!
+\end{choices}
+\begin{solution}
+  \texttt{*} projects every column; there is no standard \texttt{ALL} keyword for that purpose. \texttt{\%} is for \texttt{LIKE} patterns, not column lists.
+\end{solution}
+
+\question[4]
+Which SQL sublanguage is used to create and change \emph{rows} in tables?
+\begin{choices}
+  \CorrectChoice DML
+  \choice DQL
+  \choice DCL
+  \choice DDL
+\end{choices}
+\begin{solution}
+  Row-level changes are \textbf{DML}; defining tables is \textbf{DDL}; reading with \texttt{SELECT} is often labeled \textbf{DQL}.
+\end{solution}
+
+\question[4]
+What does SQL stand for?
+\begin{choices}
+  \choice Standalone Query Language
+  \choice Standalone Query Lambdas
+  \CorrectChoice Structured Query Language
+  \choice Structured Query Lambdas
+\end{choices}
+\begin{solution}
+  Originally ``SEQUEL'' historically; today \textbf{Structured Query Language} is the expansion students memorize.
+\end{solution}
+
+\question[4]
+Which SQL sublanguage defines tables, schema, and databases?
+\begin{choices}
+  \choice DML
+  \choice DQL
+  \choice DCL
+  \CorrectChoice DDL
+\end{choices}
+\begin{solution}
+  \texttt{CREATE TABLE}, \texttt{CREATE DATABASE}, \texttt{ALTER}, and \texttt{DROP} are classic DDL examples.
+\end{solution}
+
+\question[4]
+Which statement removes all rows from \texttt{table1} where \texttt{FirstName} is \texttt{'Mike'}?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!DROP FROM table1 WHERE FirstName = 'Mike';!
+  \CorrectChoice \lstinline[style=sqlinline]!DELETE FROM table1 WHERE FirstName = 'Mike';!
+  \choice \lstinline[style=sqlinline]!DROP FirstName = 'Mike' FROM table1;!
+  \choice \lstinline[style=sqlinline]!DELETE FirstName = 'Mike' FROM table1;!
+\end{choices}
+\begin{solution}
+  \texttt{DELETE FROM\ldots WHERE\ldots} removes matching rows. \texttt{DROP} drops objects (tables, views), not row predicates in this form.
+\end{solution}
+
+\question[4]
+Which clause sorts the result of a \texttt{SELECT}?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!HAVING!
+  \CorrectChoice \lstinline[style=sqlinline]!ORDER BY!
+  \choice \lstinline[style=sqlinline]!GROUP BY!
+  \choice \lstinline[style=sqlinline]!WHERE!
+\end{choices}
+\begin{solution}
+  \texttt{ORDER BY} controls presentation order; 
+  \texttt{WHERE} filters before grouping; \texttt{HAVING} filters grouped results.
+\end{solution}
+
+\question[4]
+What does this query return?
+\par\noindent\lstinline[style=sqlinline]!SELECT * FROM table1 WHERE firstname = 'Brad' OR firstname = 'Ana';!
+\begin{choices}
+  \choice All rows except the first \texttt{Brad} or \texttt{Ana} match
+  \choice It is not valid SQL
+  \choice Rows that are neither \texttt{Brad} nor \texttt{Ana}
+  \CorrectChoice Only rows whose \texttt{firstname} is \texttt{Brad} or \texttt{Ana}
+\end{choices}
+\begin{solution}
+  The \texttt{OR} combines two equality predicates; \texttt{*} returns all columns for matching rows.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Grouping, keys, DDL, and modeling}\par}
+
+\question[4]
+Which clause is used with aggregate functions to partition rows into groups?
+\begin{choices}
+  \choice \texttt{ORDER BY}
+  \CorrectChoice \texttt{GROUP BY}
+  \choice \texttt{HAVING}
+  \choice \texttt{WHERE}
+\end{choices}
+\begin{solution}
+  \texttt{GROUP BY} collapses rows sharing the same grouping keys so aggregates (\texttt{COUNT}, \texttt{SUM}, \ldots) apply per group. \texttt{ORDER BY} only sorts; \texttt{HAVING} filters \emph{after} grouping; \texttt{WHERE} filters before grouping and cannot reference aggregates directly.
+\end{solution}
+
+\question[4]
+Which two constraints are implicit when a column is declared \texttt{PRIMARY KEY}?
+\begin{choices}
+  \choice \texttt{UNIQUE} and \texttt{DEFAULT}
+  \choice \texttt{NOT NULL} and \texttt{CHECK}
+  \CorrectChoice \texttt{UNIQUE} and \texttt{NOT NULL}
+  \choice \texttt{FOREIGN KEY} and \texttt{UNIQUE}
+\end{choices}
+\begin{solution}
+  Primary keys must be non-null and unique; \texttt{DEFAULT} and arbitrary \texttt{CHECK} rules are not implied unless you add them.
+\end{solution}
+
+\question[4]
+What is the correct syntax to add column \texttt{email} \texttt{VARCHAR(100)} to table \texttt{users}?
+\begin{choices}
+  \CorrectChoice \lstinline[style=sqlinline]!ALTER TABLE users ADD email VARCHAR(100);!
+  \choice \lstinline[style=sqlinline]!MODIFY TABLE users ADD email VARCHAR(100);!
+  \choice \lstinline[style=sqlinline]!UPDATE users ADD COLUMN email VARCHAR(100);!
+  \choice \lstinline[style=sqlinline]!INSERT INTO users (email) VALUES (VARCHAR(100));!
+\end{choices}
+\begin{solution}
+  \texttt{ALTER TABLE\ldots ADD} changes schema. \texttt{UPDATE} changes data; \texttt{INSERT} adds rows, not columns.
+\end{solution}
+
+\question[4]
+What is the main difference between \texttt{TRUNCATE} and \texttt{DROP}?
+\begin{choices}
+  \choice \texttt{TRUNCATE} is DML and \texttt{DROP} is DDL
+  \choice \texttt{DROP} removes only rows; \texttt{TRUNCATE} removes the table object
+  \CorrectChoice \texttt{TRUNCATE} removes all rows but keeps the table; \texttt{DROP} removes the table object (and its rows)
+  \choice They are synonyms
+\end{choices}
+\begin{solution}
+  Both are destructive at different levels: \texttt{TRUNCATE} fast-empty (permissions and logging differ by engine); \texttt{DROP TABLE} removes definition and data. Classification as DDL vs DML varies slightly by product---focus on structural effect.
+\end{solution}
+
+\question[4]
+What is the primary purpose of a \texttt{FOREIGN KEY} constraint?
+\begin{choices}
+  \choice To uniquely identify each row in one table
+  \choice To forbid \texttt{NULL} in a column
+  \choice To auto-increment integers
+  \CorrectChoice To link rows in two tables and enforce referential integrity
+\end{choices}
+\begin{solution}
+  The child column(s) must reference existing parent key values (subject to \texttt{ON DELETE}/\texttt{ON UPDATE} actions).
+\end{solution}
+
+\question[4]
+When a parent row referenced by a child foreign key is deleted, what does \texttt{ON DELETE CASCADE} do?
+\begin{choices}
+  \choice Prevents deleting the parent
+  \choice Sets the child's foreign key columns to \texttt{NULL}
+  \CorrectChoice Deletes matching child rows automatically
+  \choice Always raises a foreign-key error
+\end{choices}
+\begin{solution}
+  \texttt{CASCADE} propagates the delete; \texttt{SET NULL} and \texttt{RESTRICT}/\texttt{NO ACTION} describe other common policies.
+\end{solution}
+
+\question[4]
+Which command is a classic \textbf{DDL} example?
+\begin{choices}
+  \choice \texttt{SELECT}
+  \choice \texttt{INSERT}
+  \CorrectChoice \texttt{CREATE}
+  \choice \texttt{UPDATE}
+\end{choices}
+\begin{solution}
+  \texttt{CREATE} defines schema objects. \texttt{SELECT} is DQL; \texttt{INSERT}/\texttt{UPDATE} are DML in the usual split.
+\end{solution}
+
+\question[4]
+In PostgreSQL, which type is a common shortcut for an auto-incrementing integer primary key?
+\begin{choices}
+  \choice \texttt{AUTO\_INCREMENT}
+  \choice \texttt{IDENTITY}
+  \choice \texttt{VARCHAR}
+  \CorrectChoice \texttt{SERIAL}
+\end{choices}
+\begin{solution}
+  \texttt{AUTO\_INCREMENT} is MySQL-flavored; \texttt{IDENTITY} is common in SQL Server; PostgreSQL traditionally uses \texttt{SERIAL} or identity columns.
+\end{solution}
+
+\question[4]
+Sort primarily by \texttt{last\_name} ascending, using \texttt{first\_name} descending as a tie-breaker.
+\begin{choices}
+  \CorrectChoice \lstinline[style=sqlinline]!ORDER BY last_name ASC, first_name DESC!
+  \choice \lstinline[style=sqlinline]!ORDER BY last_name, first_name!
+  \choice \lstinline[style=sqlinline]!SORT BY last_name ASC, first_name DESC!
+  \choice \lstinline[style=sqlinline]!GROUP BY last_name ASC, first_name DESC!
+\end{choices}
+\begin{solution}
+  \texttt{ASC}/\texttt{DESC} apply per sort key; omitted direction defaults to ascending. \texttt{SORT BY} is not standard SQL; \texttt{GROUP BY} aggregates rather than sorts the final projection.
+\end{solution}
+
+\question[4]
+In \texttt{SELECT}, which symbol selects all columns?
+\begin{choices}
+  \choice \texttt{\%}
+  \CorrectChoice \texttt{*}
+  \choice \texttt{\#}
+  \choice \texttt{\&}
+\end{choices}
+\begin{solution}
+  \texttt{*} means ``all columns'' in the \texttt{SELECT} list; \texttt{\%} is a wildcard for \texttt{LIKE} patterns.
+\end{solution}
+
+\question[4]
+Which is a graphical representation of a database's entities and relationships?
+\begin{choices}
+  \choice Class and table structure only
+  \choice Entity Framework
+  \CorrectChoice Entity Relationship Diagram (ERD)
+  \choice A generic configuration file
+\end{choices}
+\begin{solution}
+  An \textbf{ERD} shows entities, attributes, and cardinalities; ORM tools may import from or export to ERDs.
+\end{solution}
+
+\question[4]
+An ERD illustrates entities and the relationships between them.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  ERDs support logical/physical modeling before \texttt{CREATE TABLE} scripts.
+\end{solution}
+
+\question[4]
+Views are normally used to make databases more complex to use.
+\begin{choices}
+  \CorrectChoice FALSE
+  \choice TRUE
+\end{choices}
+\begin{solution}
+  Views simplify access (hiding joins, enforcing column subsets) and can centralize security for read-only roles.
+\end{solution}
+
+\question[4]
+Creating a view is done with which sublanguage?
+\begin{choices}
+  \CorrectChoice DDL
+  \choice DML
+  \choice DCL
+  \choice TCL
+\end{choices}
+\begin{solution}
+  \lstinline[style=sqlinline]!CREATE VIEW! defines a stored query object---schema/metadata, hence DDL in the usual curriculum.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Database normalization}\par}
+
+\question[4]
+In the \blank[5em] normal form, it is ensured that a record's data for a specific column is atomic.
+\begin{choices}
+  \CorrectChoice First
+  \choice Second
+  \choice Third
+  \choice Fourth
+\end{choices}
+\begin{solution}
+  \textbf{First Normal Form (1NF)} requires atomic (indivisible) column values---no repeating groups or multi-valued cells in the relational model taught in most courses.
+\end{solution}
+
+\question[4]
+What is a unique key?
+\begin{choices}
+  \choice A unique key is one or more columns that do \emph{not} uniquely identify a row in a table
+  \CorrectChoice A unique key is one or more columns that uniquely identify a row in a table
+  \choice Both are correct
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  A \textbf{UNIQUE} constraint (or unique key) forbids duplicate combinations of values, like a primary key but you may allow multiple \texttt{NULL}s depending on the DBMS.
+\end{solution}
+
+\question[4]
+What is 1NF?
+\begin{choices}
+  \CorrectChoice A table is referred to as being in First Normal Form if the column values are atomic
+  \choice The table should not possess partial dependency
+  \choice Normal Form ensures the reduction of data duplication
+  \choice NONE
+\end{choices}
+\begin{solution}
+  1NF is the ``atomic columns'' requirement; higher normal forms add further dependency rules on top of 1NF.
+\end{solution}
+
+\question[4]
+A table is in \textbf{Second Normal Form (2NF)} when which of the following holds?
+\begin{choices}
+  \choice The table is in 1NF and no non-key attribute depends on another non-key attribute (no transitive dependencies)
+  \CorrectChoice The table is in 1NF and every non-key attribute is fully functionally dependent on the whole primary key (no partial dependency on part of the key)
+  \choice The table is in 1NF and column values are atomic only
+  \choice The table removes all many-to-many relationships by using foreign keys
+\end{choices}
+\begin{solution}
+  2NF rules out \textbf{partial} dependencies on a \textbf{composite} key: every non-key attribute must depend on the \emph{entire} key, not just a subset.
+\end{solution}
+
+\question[4]
+In the context of 2NF, a \textbf{partial dependency} means:
+\begin{choices}
+  \choice Two different rows share the same foreign key value
+  \CorrectChoice A non-key attribute can be determined from only \emph{part} of a composite primary key
+  \choice A primary key is made of more than one column
+  \choice A column allows \texttt{NULL} values
+\end{choices}
+\begin{solution}
+  Partial dependency is the classic 2NF violation: some attribute depends on only a \textbf{proper subset} of the composite key.
+\end{solution}
+
+\question[4]
+A table is in \textbf{Third Normal Form (3NF)} when which of the following holds?
+\begin{choices}
+  \choice The table is in 1NF and column values are atomic
+  \choice The table is in 2NF and every non-key attribute depends only on candidate keys (Boyce\textendash Codd wording)
+  \CorrectChoice The table is in 2NF and there are no transitive dependencies of non-key attributes on the primary key
+  \choice The table is in 2NF and there are no multi-valued attributes left
+\end{choices}
+\begin{solution}
+  3NF removes \textbf{transitive} chains where a non-key attribute determines another non-key attribute (unless the determinant is a superkey/candidate key, depending on definition).
+\end{solution}
+
+\question[4]
+Which situation is a classic example of a \textbf{transitive dependency} (relevant to 3NF)?
+\begin{choices}
+  \choice A composite primary key has two columns
+  \CorrectChoice A non-key attribute determines another non-key attribute (e.g.\ zip $\rightarrow$ city when neither is the primary key)
+  \choice Two unrelated many-to-many relationships are stored in one table
+  \choice A column stores multiple phone numbers separated by commas
+\end{choices}
+\begin{solution}
+  If \texttt{zip} functionally determines \texttt{city} and both are non-keys, \texttt{city} is transitively dependent on the key through \texttt{zip}---a textbook 3NF violation.
+\end{solution}
+
+\question[4]
+A table is in \textbf{Fourth Normal Form (4NF)} when which of the following holds (typical definition)?
+\begin{choices}
+  \choice It is in 3NF and every determinant is a candidate key
+  \CorrectChoice It is in Boyce\textendash Codd Normal Form (BCNF) and independent multi-valued facts about the same entity are removed (no problematic multi-valued dependencies)
+  \choice It is in 2NF and partial dependencies are removed
+  \choice It is in 1NF and every attribute depends on the key, the whole key, and nothing but the key
+\end{choices}
+\begin{solution}
+  4NF targets \textbf{multi-valued dependencies} (independent ``multi-valued facts'') beyond BCNF; wording varies by text but the MVD story is the core idea.
+\end{solution}
+
+\question[4]
+Which issue is 4NF mainly designed to address that 3NF does \emph{not} fully cover?
+\begin{choices}
+  \choice Non-atomic column values (repeating groups)
+  \choice Partial dependency on part of a composite key
+  \choice Transitive dependency among non-key attributes
+  \CorrectChoice Independent multi-valued relationships among attributes (multi-valued dependencies)
+\end{choices}
+\begin{solution}
+  3NF/BCNF focus on functional dependencies; 4NF addresses cases where one key value is associated with \textbf{independent sets} of values that should be decomposed.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Aggregates, transactions, and isolation}\par}
+
+\question[4]
+What is the difference between scalar functions and aggregate functions?
+\begin{choices}
+  \choice Aggregate functions return a single value, and scalar functions return a single value calculated from values in a column
+  \CorrectChoice Scalar functions return a value per row; aggregate functions summarize many rows (often with \texttt{GROUP BY})
+  \choice Aggregate functions cannot use a \texttt{GROUP BY} clause
+\end{choices}
+\begin{solution}
+  \textbf{Scalar} functions (\texttt{UPPER}, \texttt{LENGTH}, \ldots) operate row-by-row. \textbf{Aggregates} (\texttt{COUNT}, \texttt{SUM}, \ldots) combine rows; they are commonly paired with \texttt{GROUP BY}.
+\end{solution}
+
+\question[4]
+Which TCL command undoes work that has not been committed?
+\begin{choices}
+  \choice \texttt{CANCEL}
+  \choice \texttt{REVERT}
+  \CorrectChoice \texttt{ROLLBACK}
+  \choice \texttt{ABORT}
+\end{choices}
+\begin{solution}
+  \textbf{TCL} includes \texttt{COMMIT}, \texttt{ROLLBACK}, and often \texttt{SAVEPOINT}. \texttt{ROLLBACK} discards uncommitted changes (subject to engine rules).
+\end{solution}
+
+\question[4]
+What is the use of the \texttt{SAVEPOINT} command from Transaction Control Language?
+\begin{choices}
+  \choice Load a file into the database
+  \choice Update a file in the database
+  \CorrectChoice Mark a point in a transaction to which you can roll back later
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{SAVEPOINT name} lets you \texttt{ROLLBACK TO SAVEPOINT name} without undoing the whole transaction.
+\end{solution}
+
+\question[4]
+Larry loaded mismatched rows during an exam and time is running out. What is the quickest fix if nothing was committed?
+\begin{choices}
+  \choice \texttt{REVOKE}
+  \choice \texttt{GRANT}
+  \choice \texttt{ALTER}
+  \CorrectChoice \texttt{ROLLBACK}
+\end{choices}
+\begin{solution}
+  \texttt{ROLLBACK} drops uncommitted DML in the current transaction. Privilege and schema commands are the wrong tool for mistaken inserts.
+\end{solution}
+
+\newpage 
+
+
+\question[4]
+Several rows were inserted into the \texttt{Students} table in the current transaction. Which command makes those changes \textbf{durable} (persisted) so they survive connection loss?
+\begin{choices}
+  \choice \texttt{GRANT}
+  \choice \texttt{SELECT}
+  \CorrectChoice \texttt{COMMIT}
+  \choice \texttt{ROLLBACK}
+\end{choices}
+\begin{solution}
+  \texttt{COMMIT} ends the transaction and makes its effects permanent (until further DML). \texttt{ROLLBACK} discards uncommitted work. \texttt{GRANT}/\texttt{SELECT} do not end a DML transaction in this sense.
+\end{solution}
+
+\question[4]
+What does the following do (assuming autocommit is off and a transaction is open)?
+\begin{lstlisting}[style=sqlexam]
+DELETE FROM STUDENTS
+WHERE AGE = 16;
+ROLLBACK;
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Undoes the \texttt{DELETE} within the transaction (no durable removal if nothing was committed before \texttt{ROLLBACK})
+  \choice Permanently deletes rows where \texttt{AGE = 16}
+  \choice Drops the entire \texttt{STUDENTS} table
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{DELETE} removes matching rows in the transaction; \texttt{ROLLBACK} aborts the transaction and restores the pre-transaction state for uncommitted work (engine-dependent details aside, this is the textbook story).
+\end{solution}
+
+\question[4]
+ACID stands for\ldots
+\begin{choices}
+  \CorrectChoice Atomicity, Consistency, Isolation, Durability
+  \choice Authentic, Consistency, Immutable, Duplicable
+  \choice Atomicity, Compatable, Immutable, Durability
+  \choice Automated, Compatable, Isolation, Deterministic
+\end{choices}
+\begin{solution}
+  \textbf{A}tomicity, \textbf{C}onsistency, \textbf{I}solation, \textbf{D}urability describe guarantees transactions aim to provide.
+\end{solution}
+
+\question[4]
+What are transactions?
+\begin{choices}
+  \choice Only when you add information to a table
+  \choice Only when you make changes to tables
+  \CorrectChoice Commonly taught as bundling DML against table data with commit boundaries
+  \choice Only when you create or delete tables
+\end{choices}
+\begin{solution}
+  A \textbf{transaction} is a sequence of DML steps against table rows that ends with \texttt{COMMIT} (make durable) or \texttt{ROLLBACK} (discard). Example: table \texttt{orders(order\_id, total)}---you \texttt{INSERT} a new order line, \texttt{UPDATE} the customer's loyalty points, and \texttt{UPDATE} stock; either \textbf{all} of those changes become visible to others after \texttt{COMMIT}, or \textbf{none} of them do after \texttt{ROLLBACK}. DDL may or may not follow the same rules depending on the DBMS; coursework usually stresses DML + commit boundaries.
+\end{solution}
+
+\question[4]
+What is a dirty read?
+\begin{choices}
+  \choice Reading data without a primary key
+  \choice Reading data that is not normalized
+  \choice Reading data you lack permission to read
+  \CorrectChoice Reading another transaction's uncommitted data
+\end{choices}
+\begin{solution}
+  \textbf{Dirty read} means Txn~B read a value that was \textbf{never committed}---only present in another session's in-flight transaction.
+
+  \medskip
+  \noindent\textbf{Committed starting state} (\texttt{accounts}):
+
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{|r|r|}
+    \hline
+    \textbf{id} & \textbf{balance} \\
+    \hline
+    1 & 100 \\
+    \hline
+  \end{tabular}
+  \end{center}
+
+  \noindent\textbf{Interleaving} (A writes \texttt{50} but does \textbf{not} \texttt{COMMIT}; B reads while A still holds the change):
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{|c|p{0.40\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Step} & \textbf{Txn A} & \textbf{Txn B} \\
+    \hline
+    1 &
+    \texttt{UPDATE accounts SET balance = 50 WHERE id = 1;}\newline
+    (\textbf{no} \texttt{COMMIT} yet) &
+    (idle) \\
+    \hline
+    2 &
+    (still uncommitted) &
+    \texttt{SELECT balance FROM accounts WHERE id = 1;}\newline
+    Sees \textbf{50} $\leftarrow$ \textbf{dirty} (A may still roll back) \\
+    \hline
+    3 &
+    \texttt{ROLLBACK;} $\Rightarrow$ row is \textbf{100} again in the database &
+    B already believed \texttt{50} was real \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \begin{center}
+  \footnotesize
+  \begin{tikzpicture}[
+    x=1.02cm, y=0.8cm,
+    ax/.style={-Stealth, semithick},
+    bar/.style={draw, rounded corners=2pt, minimum height=0.48cm, align=center, inner xsep=3pt, inner ysep=2pt}
+  ]
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.15, 1.35) {Txn A};
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.15, 0.35) {Txn B};
+    \node[bar, fill=red!10, minimum width=3.0cm] (aup) at (1.85, 1.35) {\scriptsize \texttt{UPDATE} $\to$ 50 (open)};
+    \node[bar, fill=black!8, minimum width=1.35cm] (brd) at (1.85, 0.35) {\scriptsize \texttt{SELECT}};
+    \node[bar, fill=gray!15, minimum width=1.25cm] (arb) at (4.55, 1.35) {\scriptsize \texttt{ROLLBACK}};
+    \draw[ax] (0,-0.55) -- (6.2,-0.55) node[right, font=\scriptsize] {time $\to$};
+    \foreach \x in {0,2,4,6} \draw (\x,-0.55) -- (\x,-0.62);
+    \draw[dashed, black!45] (aup.south) -- (1.85,-0.55);
+    \draw[dashed, black!45] (brd.south) -- (1.85,-0.55);
+    \draw[dashed, black!45] (arb.south) -- (4.55,-0.55);
+    \node[anchor=north, align=left, font=\scriptsize, text width=0.92\linewidth] at (3.1,-0.95) {B's \texttt{SELECT} lines up under A's open \texttt{UPDATE}: B observes \textbf{uncommitted} work. After \texttt{ROLLBACK}, the durable value is still \texttt{100}.};
+  \end{tikzpicture}
+  \end{center}
+\end{solution}
+
+\question[4]
+Which isolation level allows dirty reads?
+\begin{choices}
+  \choice \texttt{SERIALIZABLE}
+  \choice \texttt{REPEATABLE READ}
+  \choice \texttt{READ COMMITTED}
+  \CorrectChoice \texttt{READ UNCOMMITTED}
+\end{choices}
+\begin{solution}
+  Only \texttt{READ UNCOMMITTED} is the rung that \textbf{permits dirty reads} in the textbook ladder: the engine may show you another transaction's \textbf{uncommitted} row versions (like \texttt{balance = 50} in the diagram above).
+
+  \medskip
+  \noindent\textbf{How this fits the ladder} (same story as the phantom section): each step up hides more anomalies. At \texttt{READ COMMITTED} and above, a normal read is expected to see only \textbf{committed} data, so the dirty \texttt{SELECT} during A's open transaction should not happen.
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{|l|c|}
+    \hline
+    \textbf{Isolation level} & \textbf{Dirty reads allowed?} \\
+    \hline
+    \texttt{READ UNCOMMITTED}  & \textbf{Yes} \\
+    \texttt{READ COMMITTED}    & No \\
+    \texttt{REPEATABLE READ}   & No \\
+    \texttt{SERIALIZABLE}      & No \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+\end{solution}
+
+\question[4]
+In transaction theory, what is a \textbf{non-repeatable read}?
+\begin{choices}
+  \choice Reading another transaction's \textbf{uncommitted} data (a dirty read)
+  \choice Seeing \textbf{new matching rows} in a repeated query because of concurrent \texttt{INSERT}s (a phantom read)
+  \CorrectChoice Reading the \textbf{same row} twice in one transaction and getting \textbf{different values} because another transaction \textbf{committed} an update \textbf{between} your two reads
+  \choice An error that happens only when a table has no primary key
+\end{choices}
+\begin{solution}
+  \textbf{Non-repeatable read} = your \textbf{second} read of the \textbf{same row} (same key / same \texttt{WHERE}) returns a \textbf{different} value than the first, and \textbf{both} values were already \textbf{committed} at the times you read them. Another session changed the row and \texttt{COMMIT}ted in between---no ``uncommitted peek'' required (that would be a \textbf{dirty read}).
+
+  \medskip
+  \noindent\textbf{One row, stable identity} (\texttt{products}):
+
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{|l|r|}
+    \hline
+    \textbf{sku} & \textbf{price} \\
+    \hline
+    ABC & 10 \\
+    \hline
+  \end{tabular}
+  \end{center}
+
+  \noindent\textbf{Timeline} (Txn~A never reads uncommitted data from B; B's \texttt{UPDATE} is \textbf{committed} before A's second read):
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{|c|p{0.40\textwidth}|p{0.40\textwidth}|}
+    \hline
+    \textbf{Step} & \textbf{Txn A (you)} & \textbf{Txn B} \\
+    \hline
+    1 &
+    \texttt{SELECT price FROM products WHERE sku = 'ABC';}\newline
+    Result: \textbf{10} &
+    (idle) \\
+    \hline
+    2 &
+    (still in the same transaction) &
+    \texttt{UPDATE products SET price = 12 WHERE sku = 'ABC';}\newline
+    \texttt{COMMIT;} \\
+    \hline
+    3 &
+    Same \texttt{SELECT} again:\newline
+    Result: \textbf{12} $\leftarrow$ first and second read \textbf{disagree} &
+    (done) \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \begin{center}
+  \footnotesize
+  \begin{tikzpicture}[
+    x=1.02cm, y=0.8cm,
+    ax/.style={-Stealth, semithick},
+    bar/.style={draw, rounded corners=2pt, minimum height=0.48cm, align=center, inner xsep=3pt, inner ysep=2pt}
+  ]
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.15, 1.35) {Txn A};
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.15, 0.35) {Txn B};
+    \node[bar, fill=blue!8, minimum width=1.45cm] (a1) at (1.0, 1.35) {\scriptsize read \texttt{10}};
+    \node[bar, fill=orange!12, minimum width=2.05cm] (bup) at (3.15, 0.35) {\scriptsize \texttt{UPDATE}+\texttt{COMMIT}};
+    \node[bar, fill=blue!8, minimum width=1.45cm] (a2) at (5.5, 1.35) {\scriptsize read \texttt{12}};
+    \draw[ax] (0,-0.55) -- (6.6,-0.55) node[right, font=\scriptsize] {time $\to$};
+    \foreach \x in {0,2,4,6} \draw (\x,-0.55) -- (\x,-0.62);
+    \draw[dashed, black!45] (a1.south) -- (1.0,-0.55);
+    \draw[dashed, black!45] (bup.south) -- (3.15,-0.55);
+    \draw[dashed, black!45] (a2.south) -- (5.5,-0.55);
+    \node[anchor=north, align=left, font=\scriptsize, text width=0.92\linewidth] at (3.3,-0.95) {Contrast: \textbf{Dirty read} = see another txn's \textbf{uncommitted} value. \textbf{Phantom} = repeated query returns \textbf{different row count} because of \texttt{INSERT}/\texttt{DELETE}. Here the \textbf{row count stays 1}; only the column \texttt{price} changes.};
+  \end{tikzpicture}
+  \end{center}
+\end{solution}
+
+\newpage
+
+\question[4]
+Which isolation level allows non-repeatable reads (in the classic textbook ladder)?
+\begin{choices}
+  \choice \texttt{SERIALIZABLE}
+  \choice \texttt{REPEATABLE READ}
+  \CorrectChoice \texttt{READ COMMITTED}
+  \choice \texttt{READ UNCOMMITTED}
+\end{choices}
+\begin{solution}
+  In the \textbf{classic ladder}, \texttt{READ COMMITTED} lets each statement see the \textbf{latest committed} row. That is exactly the \texttt{products} / \texttt{10} then \texttt{12} story in the previous question: two reads in one transaction can observe two different committed versions, so reads are \textbf{not repeatable}.
+ 
+  \medskip
+  \noindent\textbf{Where non-repeatable reads stop} (textbook model): at \texttt{REPEATABLE READ} and \texttt{SERIALIZABLE}, your transaction is supposed to see a \textbf{stable} snapshot of rows it already read---so the second \texttt{SELECT} would still show \texttt{10} until you end your transaction (details vary by product).
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{|l|c|c|}
+    \hline
+    \textbf{Isolation level} & \textbf{Dirty read?} & \textbf{Non-repeatable read?} \\
+    \hline
+    \texttt{READ UNCOMMITTED}  & Yes & Yes \\
+    \texttt{READ COMMITTED}    & No  & \textbf{Yes} \\
+    \texttt{REPEATABLE READ}   & No  & No (row snapshot) \\
+    \texttt{SERIALIZABLE}      & No  & No \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \noindent\footnotesize\textit{Exam tip:} phantoms (new rows) are a separate column in the full matrix; \texttt{REPEATABLE READ} can still allow phantoms in the pure ladder even when \textbf{row} values look stable.
+\end{solution}
+
+
+\newpage 
+
+\question[4]
+In transaction theory, what is a \textbf{phantom read}?
+\begin{choices}
+  \CorrectChoice Seeing \textbf{new rows} that match your query predicate because another transaction inserted (and committed) them while yours runs
+  \choice Seeing new \textbf{tables} created during your transaction
+  \choice Seeing \textbf{updated} values in rows you already read (non-repeatable read)
+  \choice Seeing updated \textbf{table names} during your transaction
+\end{choices}
+\begin{solution}
+  A \textbf{phantom} is about the \textbf{shape of a query result} (how many rows match), not ``this one cell changed'' on a row you already pinned down (that is closer to a \textbf{non-repeatable read}).
+
+  \medskip
+  \noindent\textbf{Snapshot of committed rows} (\texttt{major = 'CS'}) at the start:
+
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{|r|l|}
+    \hline
+    \textbf{id} & \textbf{major} \\
+    \hline
+    101 & CS \\
+    102 & CS \\
+    103 & CS \\
+    \hline
+  \end{tabular}
+  \end{center}
+
+  \noindent\textbf{Timeline} (Txn~A keeps running; Txn~B commits an \texttt{INSERT} in the middle):
+
+  \begin{center} 
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{|c|p{0.42\textwidth}|p{0.42\textwidth}|}
+    \hline
+    \textbf{Step} & \textbf{Txn A (you)} & \textbf{Txn B (other session)} \\
+    \hline
+    1 &
+    \texttt{SELECT COUNT(*) FROM students WHERE major = 'CS';}\newline
+    Result: \textbf{3} (three rows above) &
+    (idle) \\
+    \hline
+    2 &
+    (still open) &
+    \texttt{INSERT INTO students (id, major) VALUES (104, 'CS');}\newline
+    \texttt{COMMIT;} $\Rightarrow$ fourth committed CS row exists \\
+    \hline
+    3 &
+    Same query again:\newline
+    \texttt{SELECT COUNT(*) \ldots}\newline
+    Result: \textbf{4} --- a \textbf{new matching row} ``appeared'' in your result &
+    (done) \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \begin{center}
+  \footnotesize
+  \begin{tikzpicture}[
+    x=1.05cm, y=0.85cm,
+    every node/.style={font=\footnotesize},
+    ax/.style={-Stealth, semithick},
+    bar/.style={draw, rounded corners=2pt, minimum height=0.5cm, align=center, inner xsep=3pt, inner ysep=2pt}
+  ]
+    % Swimlanes: Txn A (top) and Txn B (middle); time axis at bottom (no stacked bars on one row).
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.15, 1.35) {Txn A};
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.15, 0.35) {Txn B};
+    \node[bar, fill=black!6, minimum width=2.0cm] (a1) at (1.1, 1.35) {\scriptsize 1st \texttt{COUNT}$=3$};
+    \node[bar, fill=black!6, minimum width=2.1cm] (a2) at (6.5, 1.35) {\scriptsize 2nd \texttt{COUNT}$=4$};
+    \node[bar, fill=orange!12, minimum width=2.2cm] (b1) at (3.6, 0.35) {\scriptsize \texttt{INSERT}+\texttt{COMMIT}};
+    \draw[ax] (0,-0.55) -- (8.2,-0.55) node[right, font=\scriptsize] {time $\to$};
+    \foreach \x in {0,2,4,6,8} \draw (\x,-0.55) -- (\x,-0.62);
+    \draw[dashed, black!45] (a1.south) -- (1.1,-0.55);
+    \draw[dashed, black!45] (b1.south) -- (3.6,-0.55);
+    \draw[dashed, black!45] (a2.south) -- (6.5,-0.55);
+    \node[align=left, anchor=north, font=\scriptsize, text width=0.92\linewidth] at (4.1,-0.95) {The higher second count is a \textbf{phantom}: a new committed row matched your \texttt{WHERE} clause between the two counts.};
+  \end{tikzpicture}
+  \end{center}
+\end{solution}
+
+
+\newpage 
+
+\question[4]
+Which isolation level is associated with phantom reads in the classic SQL ladder?
+\begin{choices}
+  \choice \texttt{SERIALIZABLE}
+  \CorrectChoice \texttt{REPEATABLE READ}
+  \choice Snapshot Isolation
+  \choice Read Stability
+\end{choices}
+\begin{solution}
+  Courseware often draws isolation as a \textbf{ladder} of strength (weakest at the bottom):
+
+  \begin{center}
+  \footnotesize
+  \begin{tikzpicture}[
+    box/.style={draw, minimum width=3.6cm, minimum height=0.62cm, align=center},
+    arr/.style={-Stealth, thick}
+  ]
+    \node[box, fill=black!5] (ru) at (0,0) {\texttt{READ UNCOMMITTED}};
+    \node[box, fill=black!5] (rc) at (0,-1.0) {\texttt{READ COMMITTED}};
+    \node[box, fill=blue!10] (rr) at (0,-2.0) {\texttt{REPEATABLE READ}};
+    \node[box, fill=black!5] (se) at (0,-3.0) {\texttt{SERIALIZABLE}};
+    \draw[arr] (ru.south) -- (rc.north);
+    \draw[arr] (rc.south) -- (rr.north);
+    \draw[arr] (rr.south) -- (se.north);
+    \node[anchor=west, align=left] at (4.0, -1.5) {\textbf{Stronger}$\;\to\;$fewer anomalies\\\small (more locking or stricter checks)};
+  \end{tikzpicture}
+  \end{center}
+
+  \noindent\textbf{Classic textbook anomaly matrix} (what \emph{may} still happen at each rung). Use this for the exam story; real products deviate (especially MySQL/InnoDB \texttt{REPEATABLE READ}):
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{|l|c|c|c|}
+    \hline
+    \textbf{Isolation level} & \textbf{Dirty read?} & \textbf{Non-repeatable read?} & \textbf{Phantom read?} \\
+    \hline
+    \texttt{READ UNCOMMITTED}  & Yes & Yes & Yes \\
+    \texttt{READ COMMITTED}    & No  & Yes & Yes \\
+    \texttt{REPEATABLE READ}   & No  & No  & \textbf{Yes} \\
+    \texttt{SERIALIZABLE}      & No  & No  & No \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \noindent So \textbf{phantom reads} are still ``on the table'' at \texttt{REPEATABLE READ} in the \textbf{pure ladder}; only \texttt{SERIALIZABLE} removes them in that simplified model. The earlier \texttt{students} / \texttt{COUNT(*)} picture is exactly a phantom: repeated scans can see \textbf{new committed rows} that match your predicate.
+\end{solution}
+
+
+\newpage 
+
+
+\question[4]
+Which isolation level is typically the \textbf{strictest} (strongest guarantees) and therefore often the \textbf{slowest} due to extra locking or equivalent mechanisms?
+\begin{choices}
+  \CorrectChoice \texttt{SERIALIZABLE}
+  \choice \texttt{REPEATABLE READ}
+  \choice \texttt{READ COMMITTED}
+  \choice \texttt{READ UNCOMMITTED}
+\end{choices}
+\begin{solution}
+  \texttt{SERIALIZABLE} aims for results as if transactions ran \textbf{one after another} (no unsafe interleavings). Concretely, consider one row: \texttt{tickets(event\_id, seats\_left)} with \texttt{seats\_left = 1}.
+
+  \medskip
+  \noindent\textbf{Table before any sale}
+
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{|l|r|}
+    \hline
+    \textbf{event\_id} & \textbf{seats\_left} \\
+    \hline
+    Concert-A & 1 \\
+    \hline
+  \end{tabular}
+  \end{center}
+
+  \noindent\textbf{Dangerous interleaving} under weaker isolation (both clerks ``see'' one seat and both sell):
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{|c|p{0.42\textwidth}|p{0.42\textwidth}|}
+    \hline
+    \textbf{Step} & \textbf{Txn T1 (clerk 1)} & \textbf{Txn T2 (clerk 2)} \\
+    \hline
+    1 & \texttt{SELECT seats\_left} $\Rightarrow$ \textbf{1} & \\
+    2 & & \texttt{SELECT seats\_left} $\Rightarrow$ \textbf{1} \\
+    3 & \texttt{UPDATE tickets SET seats\_left = 0 \ldots};\ \texttt{COMMIT}; & \\
+    4 & & \texttt{UPDATE tickets SET seats\_left = 0 \ldots};\ \texttt{COMMIT}; \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \noindent After step~4 the row shows \texttt{0}, but \textbf{two sales} were allowed---\textbf{oversell}. The diagram below shows the overlap of the two reads on the same committed value:
+
+  \begin{center}
+  \footnotesize
+  \begin{tikzpicture}[
+    x=1.0cm, y=0.75cm,
+    ax/.style={-Stealth, thick},
+    every node/.style={font=\footnotesize}
+  ]
+    % T1 and T2 on separate tracks; bars are sequential in time so rectangles do not overlap.
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.2, 1.45) {T1};
+    \node[anchor=east, font=\scriptsize\bfseries] at (-0.2, 0.35) {T2};
+    \draw[fill=blue!12, draw=black, rounded corners=1pt] (0.0,1.25) rectangle (1.9,1.65) node[midway, font=\scriptsize] {read $=1$};
+    \draw[fill=blue!12, draw=black, rounded corners=1pt] (4.0,1.25) rectangle (5.4,1.65) node[midway, font=\scriptsize] {write $0$};
+    \draw[fill=orange!15, draw=black, rounded corners=1pt] (1.5,0.15) rectangle (3.4,0.55) node[midway, font=\scriptsize] {read $=1$};
+    \draw[fill=orange!15, draw=black, rounded corners=1pt] (5.2,0.15) rectangle (6.8,0.55) node[midway, font=\scriptsize] {write $0$};
+    \draw[ax] (0,-0.55) -- (7.4,-0.55) node[right, font=\scriptsize] {time};
+    \foreach \x/\lbl in {0/1,1.5/2,4/3,5.2/4} \draw (\x,-0.55) -- (\x,-0.62) node[below, font=\tiny, yshift=-1pt] {\lbl};
+    \draw[dashed, black!40] (0.95,1.25) -- (0.95,-0.55);
+    \draw[dashed, black!40] (2.45,0.15) -- (2.45,-0.55);
+    \draw[dashed, black!40] (4.7,1.25) -- (4.7,-0.55);
+    \draw[dashed, black!40] (6.0,0.15) -- (6.0,-0.55);
+    \node[anchor=north, font=\scriptsize, text width=0.92\linewidth, align=left] at (3.7,-1.15) {Dashed drops mark the ordering from the step table: both reads see \texttt{1}, then both commits write \texttt{0}---\textbf{oversell}.};
+  \end{tikzpicture}
+  \end{center}
+
+  \noindent\footnotesize\textbf{SERIALIZABLE} blocks unsafe interleavings like the one above: the engine enforces a serializable schedule (waits, conflict detection, retries or aborts). That extra synchronization is why it is often the \textbf{slowest} rung in practice.
+\end{solution}
+
+
+\newpage 
+
+\uplevel{\par\textbf{Tables, SQL classification, JDBC, and design patterns}\par}
+
+\question[4]
+Which of the following terms is used to describe records in a database?
+\begin{choices}
+  \CorrectChoice Rows
+  \choice Columns
+  \choice Attributes
+  \choice Properties
+\end{choices}
+\begin{solution}
+  A \textbf{row} (tuple) is one record; \textbf{columns} (often called attributes) are fields of that record.
+\end{solution}
+
+\question[4] 
+\textit{(Select all that apply.)} A column declared \lstinline[style=sqlinline]!PRIMARY KEY! is implicitly\ldots
+\begin{checkboxes}
+  \CorrectChoice \lstinline[style=sqlinline]!UNIQUE!
+  \choice \lstinline[style=sqlinline]!FINAL!
+  \choice \lstinline[style=sqlinline]!SERIAL! 
+  \choice \lstinline[style=sqlinline]!FOREIGN KEY!
+  \CorrectChoice \lstinline[style=sqlinline]!NOT NULL!
+\end{checkboxes}
+\begin{solution}
+  A primary key must identify rows uniquely and cannot be null; hence it implies \textbf{UNIQUE} and \textbf{NOT NULL}. \texttt{FINAL}, \texttt{SERIAL}, and \texttt{FOREIGN KEY} are unrelated distractors (exact enforcement details vary slightly by DBMS).
+\end{solution}
+
+
+\newpage
+
+
+\question[4]
+\textit{(Select all that apply.)} Which of the following assertions about \texttt{CHAR}, \texttt{VARCHAR}, and \texttt{TEXT} are \emph{incorrect}?
+\begin{checkboxes}
+  \choice Strings inserted into a \texttt{CHAR} column will be padded, while strings inserted into a \texttt{VARCHAR} column will not be.
+  \choice The \texttt{TEXT} type has a limited size according to the SQL standard, but can hold a string of any arbitrary size in PostgreSQL.
+  \CorrectChoice A length can be defined for \texttt{CHAR}, \texttt{VARCHAR}, and \texttt{TEXT} columns.
+  \CorrectChoice A length must be defined for \texttt{CHAR} and \texttt{VARCHAR} columns.
+\end{checkboxes}
+\begin{solution}
+  The first two bullets are \textbf{correct} facts (so do \emph{not} select them). You should mark the last two bullets: they over-generalize how lengths work across \texttt{CHAR}, \texttt{VARCHAR}, and \texttt{TEXT}.
+
+  \medskip\noindent\textbf{Portable DDL shape (PostgreSQL-style).} Fixed-width \texttt{CHAR(\textit{n})} and capped \texttt{VARCHAR(\textit{n})} declare a length in parentheses; \texttt{TEXT} is written \emph{without} \texttt{(\textit{n})}.
+\begin{lstlisting}[style=sqlexam]
+CREATE TABLE labels (
+  country_code CHAR(2),        -- always two logical characters; may pad on store/compare
+  city         VARCHAR(64),   -- up to 64 characters; no CHAR-style padding
+  blurb        TEXT            -- unbounded string type in PG; no VARCHAR-style "(n)" here
+);
+\end{lstlisting}
+  In PostgreSQL, \texttt{TEXT(\textit{n})} is not valid syntax, so ``you can always slap \texttt{(\textit{n})} on \texttt{TEXT} like \texttt{VARCHAR}'' is a bad mental model.
+
+  \medskip\noindent\textbf{Padding vs variable width (conceptual ``tape'' view).} Same logical insert \texttt{'AB'}:
+\begin{center}
+{\ttfamily\small
+\begin{tabular}{@{}r@{ }l@{}}
+  \texttt{CHAR(5)}     & \texttt{[A][B][\_][\_][\_]} \quad $\leftarrow$ fixed width 5 (pads) \\
+  \texttt{VARCHAR(5)}  & \texttt{[A][B]} \quad $\leftarrow$ variable length up to cap 5 (no pads) \\
+\end{tabular}\par}
+\end{center}
+\begin{lstlisting}[style=sqlexam]
+-- same idea as literal strings (illustrative):
+-- CHAR(5)    -> 'AB   '
+-- VARCHAR(5) -> 'AB'
+\end{lstlisting}
+
+  \medskip\noindent\textbf{Why ``\texttt{VARCHAR} \emph{must} declare a length'' is false (product-dependent).} PostgreSQL happily accepts \texttt{VARCHAR} with no \texttt{(\textit{n})} (unlimited length, same storage class as \texttt{TEXT} in practice):
+\begin{lstlisting}[style=sqlexam]
+CREATE TABLE ex (
+  title VARCHAR   -- legal in PostgreSQL: no "(n)" required
+);
+\end{lstlisting}
+  Other engines (for example SQL Server) often require \texttt{VARCHAR(\textit{n})} or \texttt{VARCHAR(MAX)} instead, so there is no single universal ``must declare length'' rule.
+
+  \medskip\noindent\textbf{On the \texttt{TEXT} bullet you left unselected.} SQL's large character types and vendor \texttt{TEXT} types have implementation limits even when the type name suggests ``big string''; PostgreSQL still cannot store an infinitely long value in one row. The exam contrast is about \textbf{type syntax and portability}, not infinite storage.
+\end{solution}
+
+\newpage 
+
+
+\question[4]
+What is the purpose of a \texttt{ResultSet}?
+\begin{choices}
+  \choice To create new records
+  \CorrectChoice To use data retrieved from the database
+  \choice To convert a row from a table into a Java \texttt{Set}
+  \choice To check if there are duplicates in a table
+\end{choices}
+\begin{solution}
+  A \texttt{ResultSet} is the JDBC cursor for reading query results (\texttt{next()}, getters, etc.). Inserts/updates use \texttt{executeUpdate} (or similar), not the result set itself.
+\end{solution}
+
+\question[4]
+Which JDBC interface is used to create an instance of a \texttt{Statement}?
+\begin{choices}
+  \CorrectChoice \texttt{Connection}
+  \choice \texttt{Statement}
+  \choice \texttt{PreparedStatement}
+  \choice \texttt{ResultSet}
+\end{choices}
+\begin{solution}
+  Call \texttt{conn.createStatement()} or \texttt{conn.prepareStatement(\ldots)} on a \texttt{Connection} (from \texttt{DriverManager} or a \texttt{DataSource}). The UML-style map below matches the official JDBC API structure (core \texttt{java.sql}/\texttt{javax.sql} types):
+
+  \begin{center}
+  \begin{tikzpicture}[
+      interface/.style={
+          rectangle,
+          draw,
+          minimum width=3.0cm, 
+          minimum height=0.95cm,
+          align=center,
+          font=\ttfamily\small
+      },
+      class/.style={
+          rectangle,
+          draw,
+          line width=1.0pt,
+          minimum width=3.0cm,
+          minimum height=0.95cm,
+          font=\ttfamily\small
+      },
+      extends/.style={
+          ->,
+          >=Triangle,
+          thick
+      },
+      interface-extends/.style={
+          ->,
+          >=Triangle,
+          thick,
+          dashed
+      },
+      uses/.style={
+          ->
+      }
+  ]
+    % Row 1: connection entry points
+    \node[class] (drivermanager) at (-0.2,0) {DriverManager};
+    \node[interface] (connection) at (6.6,0) {$\ll$interface$\gg$\\\textit{Connection}};
+
+    % Row 2: statement family root + result output
+    \node[interface] (statement) at (2.5,-2.4) {$\ll$interface$\gg$\\\textit{Statement}};
+    \node[interface] (resultset) at (-3.0,-2.4) {$\ll$interface$\gg$\\\textit{ResultSet}};
+
+    % Row 3: specialized statements
+    \node[interface] (prepared) at (2.5,-4.8) {$\ll$interface$\gg$\\\textit{PreparedStatement}};
+    \node[interface] (callable) at (2.5,-7.2) {$\ll$interface$\gg$\\\textit{CallableStatement}};
+
+    % Factory / usage relations (dashed like temp2's interface links)
+    \draw[uses] (drivermanager.east) -- node[above, font=\scriptsize, align=center] {$\ll$create$\gg$\\\texttt{getConnection()}} (connection.west);
+    \draw[uses] (connection.south east) to[out=250, in=20] node[pos=0.28, above left, font=\scriptsize, align=center] {$\ll$create$\gg$\\\texttt{createStatement()}} (statement.east);
+    \draw[uses] (connection.south east) to[out=265, in=20] node[left, font=\scriptsize, align=center] {$\ll$create$\gg$\\\texttt{prepareStatement()}} (prepared.east);
+    \draw[uses] (connection.south east) to[out=285, in=20] node[left, font=\scriptsize, align=center] {$\ll$create$\gg$\\\texttt{prepareCall()}} (callable.east);
+    \draw[uses] (statement) -- node[above, font=\scriptsize, align=center] {$\ll$create$\gg$\\\texttt{executeQuery()}} (resultset);
+
+    % Interface inheritance (PreparedStatement extends Statement, CallableStatement extends PreparedStatement)
+    \draw[interface-extends] (prepared) -- (statement);
+    \draw[interface-extends] (callable) -- (prepared);
+  \end{tikzpicture}
+  \end{center}
+\end{solution}
+
+\question[4]
+\texttt{DriverManager} is the first interface you need to use in order to set up JDBC functionality.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{DriverManager} is a \textbf{class}, not an interface; JDBC also does not mandate it as the literal first step (e.g.\ \texttt{DataSource} is common in applications).
+\end{solution}
+
+\question[4]
+In SQL, which \lstinline[style=sqlinline]!JOIN! will return the matching rows plus the ones that are null in the first table?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!INNER JOIN!
+  \CorrectChoice \lstinline[style=sqlinline]!LEFT JOIN!
+  \choice \lstinline[style=sqlinline]!RIGHT JOIN!
+  \choice \lstinline[style=sqlinline]!CROSS JOIN!
+\end{choices}
+\begin{solution}
+  \texttt{LEFT OUTER JOIN} keeps every row from the left (first) table; non-matches get \texttt{NULL}s from the right side. (The stem follows the original quiz wording: ``null in the first table'' means nulls \emph{filled in} for missing right-hand columns.)
+\end{solution}
+
+
+
+\question[4]
+What is the difference between \lstinline[style=sqlinline]!INNER JOIN! and \lstinline[style=sqlinline]!OUTER JOIN!?
+\begin{choices}
+  \choice An outer join will return only the rows that match based on the join predicate.
+  \choice An outer join will return all rows in the left table and those that match in the right table.
+  \choice An inner join will return rows that are not common between both tables.
+  \CorrectChoice Inner join will return only the rows that match based on the join predicate.
+\end{choices}
+\begin{solution}
+  An \textbf{inner join} keeps only rows satisfying the \texttt{ON} predicate. \textbf{Outer} joins also preserve non-matching rows from the left, right, or both sides (with \texttt{NULL}s), depending on \texttt{LEFT}/\texttt{RIGHT}/\texttt{FULL}.
+\end{solution}
+
+\question[4]
+In the statement \lstinline[style=sqlinline]!SELECT * FROM users!, what's the \lstinline[style=sqlinline]!*! referring to?
+\begin{choices}
+  \CorrectChoice Columns
+  \choice Rows
+  \choice Tables
+  \choice Records
+\end{choices}
+\begin{solution}
+  \texttt{*} projects all \textbf{columns}; it does not mean ``all rows''---row filtering is \texttt{WHERE}/\texttt{HAVING}.
+\end{solution}
+
+\question[4]
+The \lstinline[style=sqlinline]!UPDATE! operation is categorized under which SQL sublanguage?
+\begin{choices}
+  \CorrectChoice DML
+  \choice DQL
+  \choice DDL
+  \choice DCL
+\end{choices}
+\begin{solution}
+  \texttt{UPDATE} changes stored rows---classic \textbf{DML} alongside \texttt{INSERT} and \texttt{DELETE}. (Some courses label \texttt{SELECT} as \textbf{DQL}.)
+\end{solution}
+
+\newpage
+
+\question[4]
+\textit{(Select all that apply.)} Select the operations which are a part of DDL.
+\begin{checkboxes}
+  \choice \lstinline[style=sqlinline]!SELECT!
+  \CorrectChoice \lstinline[style=sqlinline]!CREATE!
+  \CorrectChoice \lstinline[style=sqlinline]!ALTER!
+  \choice \lstinline[style=sqlinline]!UPDATE!
+  \CorrectChoice \lstinline[style=sqlinline]!TRUNCATE!
+\end{checkboxes}
+\begin{solution}
+  \texttt{CREATE}, \texttt{ALTER}, and \texttt{TRUNCATE} are commonly grouped with \textbf{DDL} in coursework (along with \texttt{DROP}). \texttt{SELECT} and \texttt{UPDATE} are not DDL. Classification of \texttt{TRUNCATE} varies by text/DBMS but matches the source quiz here.
+\end{solution}
+ 
+\newpage
+
+\question[4]
+What is the difference between the simple and prepared statement?
+\begin{lstlisting}[style=javaexam]
+Connection conn = getConnection();
+String userInput = getInput(); 
+Statement st = conn.createStatement();
+st.executeQuery("SELECT * FROM " + userInput);
+PreparedStatement ps = conn.prepareStatement("SELECT * FROM ?");
+ps.setString(1, userInput);
+ps.executeQuery();
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice The \texttt{PreparedStatement} prevents SQL injection by parameterizing and pre-compiling the query string.
+  \choice There is no difference
+  \choice The \texttt{Statement} cannot take user input, but \texttt{PreparedStatement} can.
+  \choice Only \texttt{PreparedStatement} is a part of JDBC; \texttt{Statement} is not.
+\end{choices}
+\begin{solution}
+  The key idea in the course material is \textbf{parameterization} vs string concatenation for untrusted input (\textbf{SQL injection}). The sample \texttt{SELECT * FROM ?} is not valid portable JDBC for binding a \emph{table} name---placeholders are for values; use a fixed SQL shape or validated identifiers separately.
+\end{solution}
+
+\question[4]
+Which of the following are used in the Data Access Object design pattern?
+\begin{choices}
+  \CorrectChoice Abstraction via interfaces
+  \choice Singleton pattern via private constructor
+  \choice Polymorphism via method overloading
+  \choice Recursion
+\end{choices}
+\begin{solution}
+  DAOs centralize persistence behind an API (often an \textbf{interface}) so callers stay decoupled from JDBC/SQL details. The other options are unrelated distractors.
+\end{solution}
+
+\question[4]
+Identify the correct syntax to retrieve all attributes of the \texttt{employees} table who have a salary over \$50{,}000 and do not work in \texttt{Sales}:
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!QUERY id FROM employees GIVEN salary > 50000 AND dept != 'Sales';!
+  \CorrectChoice \lstinline[style=sqlinline]!SELECT * FROM employees WHERE salary > 50000 AND dept <> 'Sales';!
+  \choice \lstinline[style=sqlinline]!SELECT * FROM employees HAVING salary GREATER THAN 50000 OR dept <> 'Sales';!
+  \choice \lstinline[style=sqlinline]!QUERY FROM employees WHERE salary > 50000 AND dept != 'Sales';!
+\end{choices}
+\begin{solution}
+  Row filters use \texttt{WHERE}; \texttt{HAVING} applies after \texttt{GROUP BY}. Use standard \\
+  \texttt{SELECT\ldots FROM\ldots WHERE}. (SQL string literals use single quotes; \texttt{<>} or \texttt{!=} for ``not equal'' depends on dialect---both are common.)
+\end{solution}
+
+\newpage
+
+
+\question[4]
+Which of the following is \emph{not} a command in the DML sublanguage of SQL?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!INSERT INTO!
+  \choice \lstinline[style=sqlinline]!UPDATE!
+  \choice \lstinline[style=sqlinline]!DELETE!
+  \CorrectChoice \lstinline[style=sqlinline]!QUERY!
+\end{choices}
+\begin{solution}
+  \texttt{INSERT}, \texttt{UPDATE}, and \texttt{DELETE} are classic \textbf{DML}. Retrieval is \texttt{SELECT}; \texttt{QUERY} is not a SQL keyword in that sense.
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} a command in the DDL sublanguage of SQL?
+\begin{choices}
+  \choice \lstinline[style=sqlinline]!CREATE!
+  \CorrectChoice \lstinline[style=sqlinline]!DELETE!
+  \choice \lstinline[style=sqlinline]!ALTER!
+  \choice \lstinline[style=sqlinline]!DROP!
+\end{choices}
+\begin{solution}
+  \texttt{DELETE} removes rows (\textbf{DML}); \texttt{CREATE}, \texttt{ALTER}, and \texttt{DROP} are classic \textbf{DDL}.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JDBC (quiz bank)}\par}
+
+\question[4]
+In JDBC, results from an SQL query are returned in\ldots
+\begin{choices}
+  \CorrectChoice \texttt{ResultSet}
+  \choice \texttt{HashSet}
+  \choice \texttt{SortedSet}
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{executeQuery} returns a \texttt{ResultSet} cursor over rows; collection types are not the JDBC query return type.
+\end{solution}
+
+\question[4]
+In JDBC, in \texttt{PreparedStatement}, data is replaced with\ldots
+\begin{choices}
+  \CorrectChoice Question marks (\texttt{?})
+  \choice Variable names
+  \choice Dollar signs
+  \choice Exclamation points
+\end{choices}
+\begin{solution}
+  Placeholders \texttt{?} are bound with \texttt{setString}, \texttt{setInt}, etc., keeping literals out of the SQL string.
+\end{solution}
+
+\question[4]
+Which of these is \emph{not} an interface in JDBC?
+\begin{choices}
+  \choice \texttt{Connection}
+  \choice \texttt{Statement}
+  \choice \texttt{PreparedStatement}
+  \choice \texttt{CallableStatement}
+  \CorrectChoice \texttt{ExecutableStatement}
+\end{choices}
+\begin{solution}
+  \texttt{java.sql} defines \texttt{Connection}, \texttt{Statement}, \texttt{PreparedStatement}, and \texttt{CallableStatement}; \texttt{ExecutableStatement} is a distractor name.
+\end{solution}
+
+\question[4]
+Which of the following is correct about the \texttt{ResultSet} class of JDBC?
+\begin{choices}
+  \choice \texttt{ResultSet} holds data retrieved from a database after you execute an SQL query using \texttt{Statement} objects
+  \choice It acts as an iterator to allow you to move through its data
+  \choice The \texttt{java.sql.ResultSet} interface represents the result of a database query
+  \CorrectChoice All of the above
+\end{choices}
+\begin{solution}
+  \texttt{ResultSet} is an \textbf{interface} (the stem says ``class'' in some banks) for tabular query results; you traverse rows with \texttt{next()} and read columns with getters.
+\end{solution}
+
+\question[4]
+In JDBC, which statement type is the usual choice to bind parameters with \texttt{?} and reduce SQL injection risk?
+\begin{choices}
+  \choice \texttt{Statement}
+  \CorrectChoice \texttt{PreparedStatement}
+  \choice \texttt{CallableStatement}
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{PreparedStatement} separates SQL structure from user-supplied data; never concatenate untrusted input into raw SQL strings.
+\end{solution}
+
+\question[4]
+A \texttt{CallableStatement} protects a statement from SQL injection.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{CallableStatement} is for calling procedures; safety still depends on how parameters are bound and how dynamic SQL is built. \texttt{PreparedStatement} is the usual teaching answer for bound parameters on arbitrary SQL.
+\end{solution}
+
+\question[4]
+What does JDBC provide?
+\begin{choices}
+  \choice A way to automatically back up databases
+  \choice A way to map tables to an ER diagram
+  \choice A way to turn database tables into Plain Old Java Objects (POJOs)
+  \CorrectChoice An API to communicate with a database
+\end{choices}
+\begin{solution}
+  JDBC is the standard Java \textbf{API} for relational DB access; ORMs and backups are separate concerns.
+\end{solution}
+
+\question[4]
+JDBC operations typically throw which type of exception?
+\begin{choices}
+  \choice \texttt{IOException}
+  \choice \texttt{JDBCConnectionException}
+  \CorrectChoice \texttt{SQLException}
+  \choice \texttt{SQLSyntaxException}
+\end{choices}
+\begin{solution}
+  Checked \texttt{SQLException} (and often subclasses) wraps database errors; \texttt{SQLSyntaxException} is a subclass in some drivers, not the umbrella type named in every textbook.
+\end{solution}
+
+\question[4]
+Which of the following correctly executes a \textbf{query} (DQL) using JDBC?
+\begin{choices}
+  \CorrectChoice Call \texttt{executeQuery()} on a \texttt{Statement} (or \texttt{PreparedStatement})
+  \choice Call \texttt{executeQuery()} on a \texttt{ResultSet}
+  \choice Call \texttt{executeStatement()} on a \texttt{Statement}
+  \choice Call \texttt{executeStatement()} on a \texttt{ResultSet}
+\end{choices}
+\begin{solution}
+  \texttt{Statement}/\texttt{PreparedStatement} expose \texttt{executeQuery} for \texttt{SELECT}-style commands; there is no standard \texttt{executeStatement} on \texttt{ResultSet}.
+\end{solution}
+
+\question[4]
+Which Java package contains the core JDBC interfaces and classes?
+\begin{choices}
+  \choice \texttt{java.lang}
+  \CorrectChoice \texttt{java.sql}
+  \choice \texttt{java.util}
+  \choice \texttt{java.io}
+\end{choices}
+\begin{solution}
+  Core JDBC types live in \texttt{java.sql}; \texttt{javax.sql} adds pooling, \texttt{DataSource}, and related APIs.
+\end{solution}
+
+\question[4]
+What is the purpose of the \texttt{DriverManager} class?
+\begin{choices}
+  \choice To manage \texttt{Statement} objects
+  \CorrectChoice To obtain connections to a database (via a JDBC URL and registered drivers)
+  \choice To manage \texttt{ResultSet} objects
+  \choice To run the database server process on your machine
+\end{choices}
+\begin{solution}
+  \texttt{DriverManager.getConnection(url, user, password)} is the classic entry point in coursework; applications often prefer a \texttt{DataSource} instead.
+\end{solution}
+
+\question[4]
+What does JDBC stand for?
+\begin{choices}
+  \choice Java Database Collector
+  \choice Java Data Bean Connectivity
+  \CorrectChoice Java Database Connectivity
+  \choice Java Database Communicator
+\end{choices}
+\begin{solution}
+  \textbf{J}ava \textbf{D}atabase \textbf{C}onnectivity: the bridge between Java and relational databases through drivers.
+\end{solution}
+
+\question[4]
+You should use \texttt{PreparedStatement} over \texttt{Statement} when binding user input because \texttt{PreparedStatement} helps protect against SQL injection.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Parameter binding avoids interpreting user text as SQL syntax; combine with validation and least privilege for defense in depth.
+\end{solution}
+
+\question[4]
+You need a \texttt{ResultSet} for typical DML statements (\texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}).
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  JDBC uses two common execution paths: \textbf{read} vs \textbf{write}. Queries (\texttt{SELECT}) return rows via \texttt{executeQuery()} $\rightarrow$ \texttt{ResultSet}; DML typically uses \texttt{executeUpdate()} and returns an affected-row \texttt{int}.
+
+  \begin{center}
+  \footnotesize
+  \renewcommand{\arraystretch}{1.15}
+  \begin{tabular}{@{}lll@{}}
+    \hline
+    \textbf{SQL kind} & \textbf{Call} & \textbf{You get} \\
+    \hline
+    DQL (\texttt{SELECT}) & \texttt{executeQuery()} & \texttt{ResultSet} (iterate rows) \\
+    DML (\texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}) & \texttt{executeUpdate()} & \texttt{int} (affected row count) \\
+    \hline
+  \end{tabular}
+  \renewcommand{\arraystretch}{1}
+  \end{center}
+
+  \noindent\textit{Example:} \texttt{executeUpdate("DELETE FROM flights WHERE status = 'cancelled'")} might return \texttt{5} if five rows were deleted---a row count, not the deleted rows as a \texttt{ResultSet}.
+
+\begin{lstlisting}[style=javaexam]
+// DQL: ask for data -> ResultSet
+ResultSet rs = ps.executeQuery(
+    "SELECT id FROM flights WHERE status = 'open'");
+
+// DML: change data -> int row count
+int removed = ps.executeUpdate(
+    "DELETE FROM flights WHERE status = 'cancelled'");
+\end{lstlisting}
+
+\begin{lstlisting}[style=javaexam]
+// Advanced: generated keys after INSERT (still executeUpdate first)
+PreparedStatement ps = conn.prepareStatement(
+    "INSERT INTO flights (code) VALUES (?)",
+    java.sql.Statement.RETURN_GENERATED_KEYS);
+ps.setString(1, "AA123");
+int rows = ps.executeUpdate(); // still executeUpdate, not executeQuery
+ResultSet newIds = ps.getGeneratedKeys(); // optional key(s)
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What layer should JDBC persistence logic usually live in?
+\begin{choices}
+  \choice Controller layer
+  \CorrectChoice DAO (data access) layer
+  \choice Service layer only
+  \choice All of the above
+\end{choices}
+\begin{solution}
+  The \textbf{DAO} isolates SQL/JDBC from UI and business rules; services orchestrate use cases and may call DAOs.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JDBC and stored procedures}\par}
+
+\question[4]
+Stored procedures can be invoked from Java using \texttt{java.sql.CallableStatement}.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{CallableStatement} is the JDBC interface for calling database procedures/functions (often with \texttt{\{call ...\}} style escape syntax). \texttt{PreparedStatement} is for parameterized SQL; \texttt{Statement} is the basic executor.
+\end{solution}
+
+\endgradingrange{csasql}

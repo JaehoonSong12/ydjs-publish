@@ -1,0 +1,622 @@
+% Computer Science A --- Java language rules, types, and platform (JVM / JRE / JDK).
+% \input from \texttt{main.tex} before \texttt{cs-a/procedural.tex}.
+
+\runningheader{Computer Science A}{Java language \& platform}{Page \thepage\ of \numpages}
+
+\uplevel{\par\textbf{Variables, types, and operators}\par}
+
+\question[4]
+What is the difference between assigning and declaring a variable?
+\makeemptybox{1.15in}
+\begin{solution}
+  Declaring introduces the variable (name and type) in the program; assigning stores a value in an already-declared variable (or updates it).
+\end{solution}
+
+\question[4]
+What is a variable?
+\makeemptybox{1in}
+\begin{solution}
+  A named location in memory that holds a value of a particular type; the value can change during execution.
+\end{solution}
+
+\question[4]
+What is a primitive datatype? Please list a few and explain them.
+\makeemptybox{1.6in}
+\begin{solution}
+  A type built into Java stored directly as a value (not an object reference). Examples: \texttt{int} (whole numbers), \texttt{double} (floating-point), \texttt{boolean} (true/false), \texttt{char} (single character).
+\end{solution}
+
+\question[4]
+Which datatype represents text in Java?
+\makeemptybox{0.85in}
+\begin{solution}
+  \texttt{String} (reference type used for text).
+\end{solution}
+
+\question[4]
+What are shorthand assignment operators?
+\makeemptybox{1.1in}
+\begin{solution}
+  Operators that combine an operation with assignment, e.g.\ \texttt{+=}, \texttt{-=}, \texttt{*=}, \texttt{/=}, \texttt{\%=}, as in \texttt{x += 3} meaning \texttt{x = x + 3}.
+\end{solution}
+
+\question[4]
+How do you use increment and decrement operators?
+\makeemptybox{1.1in}
+\begin{solution}
+  \texttt{++} adds 1 and \texttt{--} subtracts 1; prefix (\texttt{++x}) vs postfix (\texttt{x++}) differ in the value of the expression when used inside a larger expression.
+\end{solution}
+
+\question[4]
+What is the modulo operator? How is it useful?
+\makeemptybox{1.2in}
+\begin{solution}
+  \texttt{\%} gives the remainder after division (e.g.\ \texttt{17 \% 5} is \texttt{2}). Useful for wrap-around, parity (even/odd), cycling indices, etc.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Methods and program structure}\par}
+
+\question[4]
+What is a method?
+\makeemptybox{1.1in}
+\begin{solution}
+  A named block of code that can take parameters, perform actions, and optionally return a value; it organizes behavior and can be called (invoked) when needed.
+\end{solution}
+
+\question[4]
+Explain the main method.
+\makeemptybox{1.35in}
+\begin{solution}
+  \texttt{public static void main(String[] args)} is the entry point the JVM calls when the program starts; it must have that signature (for a standard Java application).
+\end{solution}
+
+\question[4]
+What is the difference in syntax between calling a method and creating a method?
+\makeemptybox{1.25in}
+\begin{solution}
+  Defining/creating uses a header with return type, name, parameters, and a body in braces; calling uses the method name followed by parentheses with arguments (if any), often as a statement or within an expression.
+\end{solution}
+
+\question[4]
+Give an example of why you would need to create a method other than the \texttt{main} method.
+\makeemptybox{1.2in}
+\begin{solution}
+  Reuse (same logic in several places), readability (name a subtask), testing one piece of logic, or separating concerns so \texttt{main} stays a thin coordinator.
+\end{solution}
+
+\question[4]
+Can you describe some of the basic entities of a Java program?
+\makeemptybox{1.45in}
+\begin{solution}
+  Classes, methods, fields/variables, statements, expressions, packages, and (for apps) a class with \texttt{main}; code lives in \texttt{.java} files compiled to bytecode.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Syntax, blocks, and flow of control}\par}
+
+\question[4]
+What do a pair of opening and closing curly braces represent?
+\makeemptybox{1in}
+\begin{solution}
+  A block: a compound statement grouping zero or more statements; used for class bodies, method bodies, and blocks scoped to loops/\texttt{if}/\texttt{switch}.
+\end{solution}
+
+\question[4]
+What is a conditional statement?
+\makeemptybox{1.05in}
+\begin{solution}
+  A statement that chooses which code runs based on a boolean condition, e.g.\ \texttt{if}, \texttt{if}/\texttt{else}, or \texttt{switch}.
+\end{solution}
+
+\question[4]
+Explain the different kinds of loops you can create and use in a program.
+\makeemptybox{1.5in}
+\begin{solution}
+  Common Java loops: \texttt{while} (test before each iteration), \texttt{do}-\texttt{while} (test after), \texttt{for} (compact init/test/update), and enhanced \texttt{for} over arrays/collections.
+\end{solution}
+
+\question[4]
+What is a flow control statement?
+\makeemptybox{1.1in}
+\begin{solution}
+  Statements that alter sequential execution: conditionals, loops, and jumps such as \texttt{break}, \texttt{continue}, and \texttt{return}.
+\end{solution}
+
+\question[4]
+When would you use an \texttt{if} statement over a \texttt{switch} statement?
+\makeemptybox{1.2in}
+\begin{solution}
+  When conditions are ranges, compound booleans, or non-discrete values; when checking unrelated conditions; or when \texttt{switch} does not fit the value type / pattern (pre--Java~21 style).
+\end{solution}
+
+\question[4]
+When would you use a \texttt{switch} statement over an \texttt{if} statement?
+\makeemptybox{1.2in}
+\begin{solution}
+  When comparing one expression against many constant discrete values (e.g.\ same integer or \texttt{String} cases) and a multi-branch structure reads clearer than a long \texttt{if}-\texttt{else} chain.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JDK, JVM, compilation, and the Java platform}\par}
+
+\question[4]
+What is the difference between the JDK, JRE, and JVM?
+\makeemptybox{1.45in}
+\begin{solution}
+  JVM executes bytecode; JRE (historically) bundled JVM + libraries for running apps; JDK includes the compiler (\texttt{javac}), tools, and libraries for developing (and usually running) Java programs.
+\end{solution}
+
+\question[4]
+What is the difference between source code and bytecode?
+\makeemptybox{1.15in}
+\begin{solution}
+  Source code is human-readable \texttt{.java} text; bytecode is the platform-independent intermediate form (\texttt{.class}) the JVM executes after compilation.
+\end{solution}
+
+\question[4]
+How would you describe the compilation process for Java?
+\makeemptybox{1.35in}
+\begin{solution}
+  The compiler translates \texttt{.java} source into \texttt{.class} bytecode; the JVM loads classes and interprets/JIT-compiles bytecode to machine code at runtime.
+\end{solution}
+
+\question[4]
+What are some of the benefits of Java?
+\makeemptybox{1.35in}
+\begin{solution}
+  Portability (``write once, run anywhere'' on a JVM), strong ecosystem, garbage collection, mature tooling, wide use in industry/education, and rich standard libraries.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Arrays}\par}
+
+\question[4]
+What is an array? Why is it useful?
+\makeemptybox{1.25in}
+\begin{solution}
+  A fixed-size ordered collection indexed from zero holding elements of one type; useful for storing many related values without separate variables per item.
+\end{solution}
+
+\question[4]
+How can you iterate over an array?
+\makeemptybox{1.15in}
+\begin{solution}
+  Indexed \texttt{for} loop with an index from \texttt{0} to \texttt{length - 1}, or an enhanced \texttt{for} (\texttt{for (T x : arr)}).
+\end{solution}
+
+\question[4]
+How would you access the last value in an array if you do not know the size of the array?
+\makeemptybox{1in}
+\begin{solution}
+  Index with \texttt{array.length - 1}. If the array may be empty, check \texttt{length > 0} first.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Input, \texttt{Scanner}, and strings}\par}
+
+\question[4]
+What is the \texttt{Scanner} class used for? Give an example of how you would use it.
+\makeemptybox{1.45in}
+\begin{solution}
+  Parsing primitive types and strings from an input stream (e.g.\ keyboard). Example: \texttt{Scanner s = new Scanner(System.in); int n = s.nextInt();}
+\end{solution}
+
+\question[4]
+If you received text input from the user, how would you go about comparing it to a value, like \texttt{"yes"} or \texttt{"no"}?
+\makeemptybox{1.15in}
+\begin{solution}
+  Compare with \texttt{String} methods \texttt{equals} or \texttt{equalsIgnoreCase}; do not use \texttt{==} on reference types for content equality.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Debugging}\par}
+
+\question[4]
+What is a stack trace? How can you use it to debug your application?
+\makeemptybox{1.35in}
+\begin{solution}
+  A report of active stack frames at an exception (or thread dump), showing call order and line numbers; use it to find which method threw and the chain of calls that led there.
+\end{solution}
+
+\question[4]
+What steps would you take to debug your program if it crashed with an error message in the console?
+\makeemptybox{1.45in}
+\begin{solution}
+  Read the exception type and message, find the topmost frame in your code, inspect that line, reproduce reliably, then fix logic or add guards/logging.
+\end{solution}
+
+\question[4]
+What steps would you take to debug your program if it runs, but gives you the wrong results?
+\makeemptybox{1.45in}
+\begin{solution}
+  Trace expected vs actual with small inputs, use logging/breakpoints, narrow which step first diverges, verify assumptions and formulas, check types and edge cases.
+\end{solution}
+
+\question[4]
+If there was an error in the console when you tried to run your program, how would you debug?
+\makeemptybox{1.35in}
+\begin{solution}
+  Same general approach as a crash: read the error, locate the failing line from the stack trace, fix the cause (syntax, null, bounds, logic), recompile, and retest.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Packages, scope, static vs.\ instance}\par}
+
+\question[4]
+What is a package and why would we use one?
+\makeemptybox{1.2in}
+\begin{solution}
+  A namespace for related classes (folder-like hierarchy); avoids name clashes, organizes large projects, and controls visibility with access modifiers.
+\end{solution}
+
+\question[4]
+What is a fully qualified class name?
+\makeemptybox{1.05in}
+\begin{solution}
+  The package plus simple class name, e.g.\ \texttt{java.util.Scanner}, uniquely identifying the class on the classpath.
+\end{solution}
+
+\question[4]
+What are the different scopes in Java?
+\makeemptybox{1.35in}
+\begin{solution}
+  Common scopes: class/static fields, instance fields, local variables in a method or block, and parameters; inner classes/lambdas add nested lexical scope rules.
+\end{solution}
+
+\question[4]
+If I define a variable within a method, how can I access its value outside of the method?
+\makeemptybox{1.05in}
+\begin{solution}
+  You cannot access a local variable outside its declaring block; return it, store it in a field, or pass it via parameters to code that needs it.
+\end{solution}
+
+\question[4]
+What is the difference between using an instance variable and a static variable?
+\makeemptybox{1.35in}
+\begin{solution}
+  Each object has its own instance fields; static fields belong to the class and are shared by all instances (one storage location per class loader).
+\end{solution}
+
+\question[4]
+What is the difference between calling an instance method and a static method?
+\makeemptybox{1.35in}
+\begin{solution}
+  Instance methods run on a specific object and can use \texttt{this} and instance state; static methods belong to the class, are called via the class name, and cannot access instance fields/\texttt{this} directly.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Computing vocabulary}\par}
+
+\question[4]
+What is an operating system?
+\makeemptybox{1.15in}
+\begin{solution}
+  System software that manages hardware, processes, memory, filesystems, and devices, and provides services so applications can run (e.g.\ scheduling, I/O).
+\end{solution}
+
+\question[4]
+What does the term ``full stack'' mean?
+\makeemptybox{1.15in}
+\begin{solution}
+  Typically end-to-end development across layers: front end (UI), back end (server, APIs, database), and deployment---``full stack developer'' works across those areas.
+\end{solution}
+
+\newpage
+
+\begingradingrange{csalang} 
+
+\uplevel{\par\textbf{Java platform (JVM, JRE, JDK)}\par}
+
+\question[4]
+Java uses a virtual machine (JVM) to execute code, providing platform independence.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Bytecode runs on the JVM, which is implemented for each platform so the same \texttt{.class} files can run cross-platform.
+\end{solution}
+
+\question[4]
+The code that the developer writes is also known as \blank[5em].
+\begin{choices}
+  \CorrectChoice Source code
+  \choice Binary
+  \choice Bytecode
+  \choice An application
+\end{choices}
+\begin{solution}
+  Human-readable Java source is compiled to bytecode for the JVM.
+\end{solution}
+
+\question[4]
+In order to run Java code, you need the \blank[3em].
+\begin{choices}
+  \choice JVM
+  \CorrectChoice JRE
+  \choice JIT
+  \choice JDK
+\end{choices}
+\begin{solution}
+  \textbf{Deployment view:} end users need a \textbf{JRE} (JVM plus standard libraries such as \texttt{java.base}) so bytecode can run against the Java API. A bare JVM without those libraries cannot run a typical application.
+
+  \textbf{Roles:}
+  \begin{itemize}
+    \item \textbf{JVM:} executes bytecode.
+    \item \textbf{JRE:} runnable environment (JVM + standard library modules).
+    \item \textbf{JDK:} developer kit (compiler \texttt{javac}, tools, plus a JRE for development).
+  \end{itemize}
+
+  \textbf{Distribution:} \texttt{jlink} builds a custom runtime image with only needed modules; \texttt{jpackage} bundles an app with a runtime into installers.
+
+  \begin{center}
+  \small
+  \begin{tabular}{@{}p{0.42\linewidth}p{0.48\linewidth}@{}}
+  \hline
+  \textbf{If you want to\ldots} & \textbf{You need\ldots} \\
+  \hline
+  Run a Java program & JRE (includes the JVM) \\
+  Develop a Java program & JDK (includes the JRE and JVM) \\
+  Understand the core engine & JVM \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{solution}
+
+\question[4]
+How does Java compile your code?
+\begin{choices}
+  \choice Source code converted to bytecode by JRE; then the bytecode is converted to machine code by the JDK
+  \choice Source code is converted to bytecode by the JDK; then the bytecode is compiled line by line via the JRE; then bytecode is converted to machine code
+  \choice Source code is converted to bytecode by the JRE; then the bytecode is converted line by line using the JDK's JIT; the JIT converts the bytecode to machine code
+  \CorrectChoice Source code is converted to bytecode by the JDK; then JIT compilation is performed by the JVM which processes the bytecode line by line for execution
+\end{choices}
+\begin{solution}
+  \texttt{javac} (JDK) produces bytecode; the JVM loads and executes it, with the JIT compiling frequently executed code to native instructions.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Language syntax, types, and program structure}\par}
+
+\question[4]
+What is the purpose of the \texttt{static} keyword in Java?
+\begin{choices}
+  \choice It makes a variable constant
+  \CorrectChoice It indicates that a method belongs to the class, not to an instance of the class
+  \choice To make a variable mutable
+  \choice It prevents a class from being extended
+\end{choices}
+\begin{solution}
+  \texttt{static} fields and methods are shared by the class; call static members with \texttt{ClassName.member} without an instance.
+\end{solution}
+
+\question[4]
+The \blank[5em]\ keyword is used for sharing a variable or a method that is the same for every instance; it belongs to the class rather than to an instance of the class.
+\begin{choices}
+  \choice \lstinline!final!
+  \choice \lstinline!new!
+  \CorrectChoice \lstinline!static!
+  \choice \lstinline!abstract!
+\end{choices}
+\begin{solution}
+  \texttt{static} members are per-class; \texttt{final} controls reassignment/immutability patterns; \texttt{new} creates instances; \texttt{abstract} marks incomplete members or types.
+\end{solution}
+
+\question[4]
+Which of the following is the correct way to declare a variable in Java?
+\begin{choices}
+  \choice \lstinline!variable name;!
+  \choice \lstinline!declare name;!
+  \CorrectChoice \lstinline!int name;!
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{variable} and \texttt{declare} are not types; \lstinline!int name;! declares (but does not initialize) an \texttt{int}.
+\end{solution}
+
+\question[4]
+How should you compare two strings for equality in Java?
+\begin{choices}
+  \choice Using the \lstinline!==! operator
+  \CorrectChoice Using the \lstinline!equals()! method
+  \choice Using the \lstinline!compare()! method
+  \choice Using the \lstinline!compareTo()! method
+\end{choices}
+\begin{solution}
+  \texttt{==} compares references; \texttt{equals} compares character content. \texttt{compare}/\texttt{compareTo} relate to ordering, not value equality.
+\end{solution}
+
+\question[4]
+How do you separate statements in Java?
+\begin{choices}
+  \choice \lstinline!,!
+  \choice \lstinline!.!
+  \CorrectChoice \lstinline!;!
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Statements end with a semicolon; blocks use braces without semicolons after the closing brace (except in special cases).
+\end{solution}
+
+\question[4]
+An expression can be made up of variables, constants, and/or operators.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Expressions evaluate to values: literals, variables, operators, and method calls combine into larger expressions.
+\end{solution}
+
+\question[4]
+Is \lstinline!com._12example! a valid package name?
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Segments may contain underscores; a segment must not \emph{start} with a digit---here \texttt{\_12example} starts with underscore, which is allowed.
+\end{solution}
+
+\newpage
+
+\question[4]
+There is no need to create an object for the class to access a static variable or static method.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Access via \texttt{ClassName.staticMember}; an instance is not required (though \texttt{instance.static} is legal but discouraged).
+\end{solution}
+
+\question[4]
+How do you get the size of an array \lstinline!myArray!?
+\begin{choices}
+  \choice \lstinline!myArray.size!
+  \CorrectChoice \lstinline!myArray.length!
+  \choice \lstinline!myArray.size()!
+  \choice \lstinline!myArray.length()!
+\end{choices}
+\begin{solution}
+  Arrays use the \texttt{length} field; \texttt{List} and similar use \texttt{size()}.
+\end{solution}
+
+\question[4]
+In which scope is \texttt{x} declared?
+\begin{lstlisting}[style=javaexam]
+public class MyClass {
+  // What is the variable scope for x?
+  static String x = "test string 1";
+  String y = "test string 2";
+  void perform() {
+    String z = "test string 4";
+    for (int i = 0; i < 4; i++) {
+      System.out.println(i);
+    }
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Static (class) scope
+  \choice Instance scope
+  \choice Method scope
+  \choice Block scope
+\end{choices}
+\begin{solution}
+  \texttt{static} fields belong to the class, not to any one instance; \texttt{y} is instance scope, \texttt{z} is method-local, \texttt{i} is loop block scope.
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} a primitive type in Java?
+\begin{choices}
+  \CorrectChoice \lstinline!String!
+  \choice \lstinline!int!
+  \choice \lstinline!double!
+  \choice \lstinline!short!
+\end{choices}
+\begin{solution}
+  \texttt{String} is a reference type (class); the eight primitives include \texttt{int}, \texttt{double}, \texttt{short}, etc.
+\end{solution}
+
+\question[4]
+What are the benefits of packages?
+\begin{choices}
+  \choice Packages enable you to hide your classes
+  \choice Packages help make code visible to all other parts of the program
+  \CorrectChoice Allow you to group like classes and interfaces together to assist with organizing your projects
+  \choice Allows developers to write their code in a file
+\end{choices}
+\begin{solution}
+  Packages provide namespaces, organize source trees, and help avoid name collisions across libraries.
+\end{solution}
+
+\question[4]
+What is the correct syntax for the \texttt{main} method in Java?
+\begin{choices}
+  \choice \lstinline!public static main(String[] args) {}!
+  \choice \lstinline!public static int main(String[] args) {}!
+  \choice \lstinline!static void main(String[] args) {}!
+  \CorrectChoice \lstinline!public static void main(String[] args) {}!
+\end{choices}
+\begin{solution}
+  The entry point must be \texttt{public static void main(String[] args)} (or \texttt{String... args}).
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{JVM memory: heap and stack}\par}
+% Threads, reflection, and the Stream API are covered in \texttt{cs-a/distributed\_computing.tex}.
+
+\question[4]
+New objects are always created in \blank[8em].
+\begin{choices}
+  \choice Stack memory
+  \choice The \texttt{main} method
+  \CorrectChoice Heap memory
+  \choice The string pool only
+\end{choices}
+\begin{solution}
+  Object instances (and arrays) live on the \textbf{heap}; local variables holding references reside in stack frames. The string pool holds interned literals/interned strings, not all objects.
+\end{solution}
+
+\question[4]
+The heap is where method invocations and their local frames are stored.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Each thread's \textbf{call stack} holds frames for active method invocations (locals, operand stack, etc.). The \textbf{heap} stores object data; the JVM moves between bytecode instructions and the heap through references in those frames.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Types, wrappers, and memory (practice bank)}\par}
+
+\question[4]
+You can assign a variable of a larger capacity to a smaller variable without casting.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Narrowing primitive assignments require an explicit cast in Java (e.g.\ \texttt{int} to \texttt{byte}).
+\end{solution}
+
+\question[4]
+Which of the following is \emph{not} a wrapper class?
+\begin{choices}
+  \choice \texttt{Boolean}
+  \choice \texttt{Long}
+  \choice \texttt{Double}
+  \choice \texttt{Short}
+  \CorrectChoice All of these are wrapper classes
+\end{choices}
+\begin{solution}
+  Each listed type has a wrapper in \texttt{java.lang}; the intended ``none of the above'' answer is that they are \emph{all} wrappers.
+\end{solution}
+
+\question[4]
+What does \emph{not} belong in the Java heap (in the usual CS-A teaching model)?
+\begin{choices}
+  \CorrectChoice Methods
+  \choice Objects
+  \choice String pool
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  Method bytecode lives in \textbf{Metaspace}/method area (not the object heap). Object instances and the string pool (for interned strings) are heap-related concepts in coursework.
+\end{solution}
+
+\endgradingrange{csalang}

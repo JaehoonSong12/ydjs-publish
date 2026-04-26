@@ -1,0 +1,166 @@
+% Computer Science A --- testing, mocks, logging, and SRE/JUnit literacy (not Spring-specific).
+% Free-response block migrated from \texttt{cs-a/04-practice.tex}; multiple-choice block from \texttt{cs-a/10-practice.tex}.
+% Included from \texttt{main.tex} in the CS-A block (after \texttt{functional}, before \texttt{cs-db}).
+
+\runningheader{Computer Science A}{Testing, mocks, and logging}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau4}
+
+\uplevel{\par\textbf{Testing and mocks}\par}
+
+\question[4]
+What is Mockito and why would we use it?
+\makeemptybox{1.25in}
+\begin{solution}
+  Popular Java mocking library: stub dependencies, verify interactions, isolate the class under test without slow or brittle real I/O or databases.
+\end{solution}
+
+\question[4]
+What is a mock?
+\makeemptybox{1.05in}
+\begin{solution}
+  A test double with programmed behavior and expectations: returns canned values, records calls, and fails tests if expected interactions do not occur.
+\end{solution}
+
+\question[4]
+What is test driven development?
+\makeemptybox{1.2in}
+\begin{solution}
+  Write a failing test first, implement minimal code to pass, refactor; repeats in short cycles to drive design and regression safety.
+\end{solution}
+
+\question[4]
+Why are unit tests important?
+\makeemptybox{1.25in}
+\begin{solution}
+  Catch regressions early, document expected behavior, enable safe refactoring, shorten debug loops, and support continuous integration.
+\end{solution}
+
+\question[4]
+How can JUnit annotations help with running our tests?
+\makeemptybox{1.35in}
+\begin{solution}
+  Mark lifecycle (\texttt{@BeforeEach}, \texttt{@AfterEach}), identify tests (\texttt{@Test}), disable/skip, parameterize, order, tag for suites, and set timeouts or expected exceptions.
+\end{solution}
+
+\question[4]
+Give me an example of how you would test a method that takes in two integers as input and returns an integer representing the sum.
+\makeemptybox{1.55in}
+\begin{solution}
+  Call the method with known pairs and assert the result, e.g.\ \texttt{assertEquals(5, add(2, 3));} plus edge cases (\texttt{0}, negatives) using JUnit \texttt{assertions}.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Logging}\par}
+
+\question[4]
+What is logging and what are the benefits of it?
+\makeemptybox{1.25in}
+\begin{solution}
+  Recording runtime events (errors, timing, decisions) to appenders (console, files, aggregators). Benefits: production diagnosis without debugger, audit trails, and structured observability.
+\end{solution}
+
+\question[4]
+Describe the different logging levels and how they should be used.
+\makeemptybox{1.45in}
+\begin{solution}
+  Typical levels (e.g.\ SLF4J): \texttt{ERROR}/\texttt{WARN} for problems, \texttt{INFO} for high-signal lifecycle events, \texttt{DEBUG}/\texttt{TRACE} for developer detail---tune thresholds per environment to limit noise and cost.
+\end{solution}
+
+\question[4]
+How would we configure logging in an application?
+\makeemptybox{1.35in}
+\begin{solution}
+  Use a facade (\texttt{slf4j}) with a binding (Logback, Log4j2): \texttt{logback.xml} or \texttt{log4j2.xml} for appenders, levels per logger, patterns, and optional env-specific profiles.
+\end{solution}
+
+\endgradingrange{csau4}
+
+\newpage
+
+\begingradingrange{csau10}
+
+\question[4]
+Henry came up with a few options for logging and presented it to Eric the SRE team lead. Which of the following option would be of highest priority to log?
+\begin{choices}
+  \choice 200 status codes
+  \choice When the application is on low usage
+  \CorrectChoice When the end user experiences a slow-down of the application
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  User-visible latency and errors usually trump routine success metrics for incident response.
+\end{solution}
+
+\question[4]
+When you write a test case, you should test every single method of an application.
+\begin{choices}
+  \CorrectChoice False
+  \choice True
+\end{choices}
+\begin{solution}
+  Prefer focused tests: one behavior or rule per test; use several \texttt{@Test} methods rather than one mega-test per production method.
+\end{solution}
+
+\question[4]
+\texttt{@BeforeEach} will run every time, before each unit test.
+\begin{choices}
+  \CorrectChoice True
+  \choice False
+\end{choices}
+\begin{solution}
+  JUnit~5 \texttt{@BeforeEach} (JUnit~4 \texttt{@Before}) runs before each test method in that class.
+\end{solution}
+
+\question[4]
+What is the package for JUnit?
+\begin{choices}
+  \choice \texttt{java.junit}
+  \CorrectChoice \texttt{org.junit}
+  \choice \texttt{javax.junit}
+  \choice \texttt{org.oracle.java.junit}
+  \choice \texttt{java.test.unit}
+\end{choices}
+\begin{solution}
+  JUnit~4 lives under \texttt{org.junit}; JUnit~5 APIs are primarily \texttt{org.junit.jupiter}.
+\end{solution}
+
+\newpage
+
+\question[4]
+Predict the output of the following test:
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,frame=single,breaklines=true,aboveskip=4pt,belowskip=4pt]
+public class ExpenseApprover {
+  public boolean approveOrDenyExpense(Expense e) {
+    if (e.amount < 100 && e.hasReceipt) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+public class Test {
+  ExpenseApprover ea = new ExpenseApprover();
+
+  @Test
+  public void testExpense() {
+    Expense exp = new Expense();
+    exp.setAmount(105);
+    exp.setReceipt(true);
+    Assert.assertFalse(ea.approveOrDenyExpense(exp));
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice Pass
+  \choice Fail
+  \choice Compilation error
+  \choice Test doesn't run
+\end{choices}
+\begin{solution}
+  Amount 105 fails \texttt{amount < 100}, so the method returns \texttt{false}; assertion expects \texttt{false}---passes.
+\end{solution}
+
+\endgradingrange{csau10}

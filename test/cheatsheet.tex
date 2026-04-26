@@ -1,0 +1,46 @@
+\documentclass[10pt,landscape]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\geometry{top=0.35in,bottom=0.35in,left=0.38in,right=0.38in}
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  frame=none,
+  aboveskip=1pt,
+  belowskip=1pt
+}
+
+% Tight \section*{} (modules use starred headings only)
+\titleformat{name=\section,numberless}{\normalfont\bfseries\normalsize}{}{0em}{}
+\titlespacing*{name=\section,numberless}{0pt}{0.55ex plus 0.12ex minus 0.08ex}{0.28ex plus 0.1ex minus 0.06ex}
+
+% Indentation set to 2 spaces per user instruction
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.07\baselineskip}
+\setlength{\lineskip}{0pt}
+\setlength{\lineskiplimit}{0pt}
+\setlength{\columnsep}{9pt}
+\setlength{\premulticols}{0pt}
+\setlength{\postmulticols}{0pt}
+\setlength{\multicolsep}{0pt}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+\setlist[itemize]{leftmargin=*, topsep=0pt, itemsep=0pt, parsep=0pt, partopsep=0pt}
+\setlength{\belowcaptionskip}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+  % \input{module/linear_alg.tex}
+  \input{module/spring.tex}
+  \input{module/springboot.tex}
+\end{document}
