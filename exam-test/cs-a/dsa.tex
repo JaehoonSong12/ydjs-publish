@@ -1,0 +1,512 @@
+% Computer Science A --- Data structures, collections, and algorithm basics (\input from \texttt{main.tex}).
+% Free-response bank at the front is migrated from \texttt{cs-a/05-practice.tex} (Collections Framework, DSA basics). Design-pattern FRQs live in \texttt{object\_oriented.tex}.
+
+\runningheader{Computer Science A}{Data structures \& algorithms}{Page \thepage\ of \numpages}
+
+\begingradingrange{csau5}
+
+\uplevel{\par\textbf{The Java Collections Framework}\par}
+
+\question[4]
+What is a \texttt{Collection}?
+\makeemptybox{1.15in}
+\begin{solution}
+  Root interface in the Java Collections Framework for groups of objects (\texttt{add}, \texttt{remove}, \texttt{size}, iteration); \texttt{Map} is not a \texttt{Collection} but is part of the same library.
+\end{solution}
+
+\question[4]
+What is the Collection API?
+\makeemptybox{1.2in}
+\begin{solution}
+  The set of interfaces and implementations in \texttt{java.util} (and related) for lists, sets, queues, maps, sorting, and utilities such as \texttt{Collections} and \texttt{Arrays}.
+\end{solution}
+
+\question[4]
+What are the major differences between a \texttt{List}, \texttt{Queue}, \texttt{Set}, and \texttt{Map}?
+\makeemptybox{1.65in}
+\begin{solution}
+  \texttt{List}: ordered, indexed, duplicates allowed. \texttt{Queue}: FIFO (or priority) processing order. \texttt{Set}: no duplicates, often unordered (\texttt{TreeSet} sorted). \texttt{Map}: key--value pairs, keys unique; not a \texttt{Collection} of entries in the same sense.
+\end{solution}
+
+\question[4]
+What is the difference between a \texttt{Stack} and a \texttt{Queue}?
+\makeemptybox{1.2in}
+\begin{solution}
+  Stack is LIFO (last in, first out); queue is FIFO (first in, first out). Prefer \texttt{Deque} over legacy \texttt{Stack} in modern Java.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Data structures and algorithms}\par}
+
+\question[4]
+Describe a linked list.
+\makeemptybox{1.35in}
+\begin{solution}
+  Nodes where each holds data and a reference to the next (and previous for doubly linked); supports \(O(1)\) insert/delete at a known node but \(O(n)\) indexed access unless optimized.
+\end{solution}
+
+\question[4]
+What is an algorithm?
+\makeemptybox{1.05in}
+\begin{solution}
+  A finite, well-defined procedure that transforms input into output; analyzable for correctness and resource use.
+\end{solution}
+
+\question[4]
+How would you describe time complexity?
+\makeemptybox{1.35in}
+\begin{solution}
+  Big-\(O\) (and related) notation for how runtime grows with input size \(n\), ignoring constants and lower-order terms; describes worst/average cases as appropriate.
+\end{solution}
+
+\question[4]
+What is the difference between linear search and binary search?
+\makeemptybox{1.35in}
+\begin{solution}
+  Linear scans each element in order---\(O(n)\). Binary search halves a sorted range each step---\(O(\log n)\) but requires sorted (or indexed) data.
+\end{solution}
+
+\question[4]
+What is the difference between Bubble Sort and Merge Sort?
+\makeemptybox{1.45in}
+\begin{solution}
+  Bubble sort repeatedly swaps adjacent out-of-order elements; simple but typically \(O(n^2)\). Merge sort divides and merges sorted halves; \(O(n\log n)\) time, uses extra space for merging.
+\end{solution}
+
+\endgradingrange{csau5}
+
+\uplevel{\par\textbf{Collections, casting, and wrapper types}\par}
+
+\question[4]
+What is the difference between an array and an \texttt{ArrayList}?
+\makeemptybox{1.45in}
+\begin{solution}
+  Arrays have fixed length and can hold primitives or references; \texttt{ArrayList} is a resizable list implementation of \texttt{List} holding references (wrappers for primitives), with convenient add/remove and growth.
+\end{solution}
+
+\question[4]
+What is explicit and implicit casting?
+\makeemptybox{1.25in}
+\begin{solution}
+  Implicit casting is an automatic widening conversion (e.g.\ \texttt{int} to \texttt{long}) when safe; explicit casting uses parentheses and may narrow or cross types (e.g.\ \texttt{(int) d}), possibly losing precision or requiring runtime checks for references.
+\end{solution}
+
+\question[4]
+What is autoboxing and unboxing?
+\makeemptybox{1.2in}
+\begin{solution}
+  Compiler-inserted conversion between primitives and their wrapper types (e.g.\ \texttt{int} \(\leftrightarrow\) \texttt{Integer}) when assigning or passing to generic collections expecting objects.
+\end{solution}
+
+\question[4]
+What are some operations you can perform on a \texttt{List}?
+\makeemptybox{1.35in}
+\begin{solution}
+  Add/remove, get/set by index, \texttt{size}, iteration, \texttt{contains}/\texttt{indexOf}, sublists, sort, clear---details depend on the concrete \texttt{List} class.
+\end{solution}
+
+\newpage
+
+\begingradingrange{csadsa}
+
+\question[4]
+Fill in the code from given choices.
+\begin{lstlisting}[style=javaexam]
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<Integer> al = new ArrayList<>();
+        al.add(1);
+        al.add(13);
+        al.add(2);
+        al.add(0);
+        //fill here
+        {
+            System.out.println(i);
+        }
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{for(Integer i:al)}
+  \choice \texttt{for(String i: al)}
+  \choice \texttt{foreach(int i:al)}
+  \choice \texttt{foreach(Integer i:al)}
+\end{choices}
+\begin{solution}
+  Java's enhanced \texttt{for} loop (``for-each'') iterates over \texttt{al} with element type \texttt{Integer}. The loop variable type must match the collection's element type; \texttt{String} is wrong. Java has no \texttt{foreach} keyword---use \texttt{for} with a type and identifier before the colon.
+\end{solution}
+
+\question[4]
+The methods that can be used by an iterator when traversing a collection are\ldots?
+\begin{choices}
+  \choice \texttt{hasNext()}
+  \choice \texttt{next()}
+  \choice \texttt{remove()}
+  \CorrectChoice All of the above
+\end{choices}
+\begin{solution}
+  \texttt{Iterator} supports \texttt{hasNext()} and \texttt{next()} on all collections that return an iterator. \texttt{remove()} is optional in the sense that it removes the last element returned by \texttt{next()} and may throw \texttt{UnsupportedOperationException} for read-only views, but it is part of the \texttt{Iterator} API for mutable traversals.
+\end{solution}
+
+\question[4]
+True or False: Because sets have no ordering, there is no way to retrieve a specific object from a Set immediately.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{Set} has no index-based access like \texttt{list.get(i)}. You can test membership with \texttt{contains} or remove by value, but you cannot ``fetch the $k$-th element'' or random-access a chosen slot the way you can with a \texttt{List}. The statement is interpreted in that sense (no immediate positional retrieval).
+\end{solution}
+
+
+\newpage
+
+\question[4]
+``Collections'' is?
+\begin{choices}
+  \choice The interface that all java collections implement
+  \CorrectChoice A class filled with static methods used to manipulate collections
+\end{choices}
+\begin{solution}
+  \texttt{java.util.Collections} is a \textbf{utility class} of static helpers: sort, binary search, unmodifiable wrappers, synchronized wrappers, etc. The root interface for many collection types is \texttt{Collection}; \texttt{Collections} (with an \texttt{s}) is not that interface.
+\end{solution}
+
+\question[4]
+True or False: An array is a type of \texttt{Collection} in Java.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Arrays are objects with \texttt{length} and index syntax \texttt{[ ]}, but they do not implement \texttt{Collection}. Use \texttt{Arrays.asList(\ldots)} or copy into an \texttt{ArrayList} when you need the \texttt{Collection} API.
+\end{solution}
+
+\question[4]
+What should be the output?
+\begin{lstlisting}[style=javaexam,numbers=left]
+import java.util.*;
+class SetTest
+{
+  public static void main(String args[])
+  {
+    Set<Object> s = new HashSet<Object>();
+
+    s.add("java");
+    s.add(new String("java"));
+    System.out.println(s);
+  }
+}
+\end{lstlisting}
+\begin{choices}
+  \choice Code will compile and print java twice
+  \choice Code will not compile as duplicates in set are not allowed
+  \CorrectChoice Code will compile and put java as output
+  \choice Code will not compile because of line 8,9 as in set of type object, we cannot add string objects
+\end{choices}
+\begin{solution}
+  \texttt{String} equality uses value equality: \texttt{"java"} and \texttt{new String("java")} are \texttt{equals}, so the set holds \textbf{one} element. \texttt{HashSet} allows \texttt{String} instances in an \texttt{Set<Object>}. Output is typically a single-line set representation such as \texttt{[java]} (order not guaranteed).
+\end{solution}
+
+
+\newpage
+
+\question[4]
+What should be the output of this code snippet?
+\begin{lstlisting}[style=javaexam]
+import java.util.ArrayList;
+import java.util.List;
+public class MyClass {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(2);
+        list.add(3);
+        m(list);
+    }
+    public static void m(List<Number> list) {
+        System.out.println(list);
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \choice Prints \texttt{[2,3]}
+  \choice Runtime Exception
+  \CorrectChoice Compile time error
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  \texttt{List<Integer>} is \textbf{not} a subtype of \texttt{List<Number>} in Java (generics are invariant). Passing \texttt{list} into \texttt{m} is a compile-time error. Intuitively, if it compiled, \texttt{m} could add a \texttt{Double} into a \texttt{List<Integer>}.
+\end{solution}
+
+\question[4]
+What are Java \textbf{generics}?
+\begin{choices}
+  \choice They reduce the amount of compile-time checking
+  \choice They add capabilities when defining \emph{only} primitive variables
+  \CorrectChoice They let types (classes and interfaces) be parameters when defining classes, interfaces, and methods
+  \choice They give collections the ability to catch exceptions automatically
+\end{choices}
+\begin{solution}
+  Generics parameterize types (\texttt{List<String>}, \texttt{Optional<T>}, \ldots) so the compiler can enforce type safety and eliminate many casts. They apply to reference types; primitives use wrappers in generic positions.
+\end{solution}
+
+\question[4]
+What should be the output for this code snippet?
+\begin{lstlisting}[style=javaexam]
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+public class SortSet {
+    public static void main(String...a){
+        Collection<Integer> collection = new HashSet<Integer>();
+        collection.add(3);
+        collection.add(1);
+        collection.add(2);
+        Set<Integer> treeSet = new TreeSet<Integer>(collection);
+        System.out.println(treeSet);
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{[1,2,3]}
+  \choice \texttt{ClassCastException}
+  \choice \texttt{[3,2,1]}
+  \choice Compile time error
+\end{choices}
+\begin{solution}
+  \texttt{HashSet} insertion order is not the answer here: the set is passed to the \texttt{TreeSet} constructor. \texttt{TreeSet} sorts elements in \textbf{natural order} (for \texttt{Integer}, ascending), so printing yields \texttt{[1, 2, 3]}.
+\end{solution}
+
+\question[4]
+Pick the correct definition for \texttt{Queue}.
+\begin{choices}
+  \CorrectChoice A \texttt{Collection} interface that holds \& processes elements in FIFO (first in, first out) order.
+  \choice A \texttt{Collection} interface that holds \& processes elements in FILO (first in, last out) order.
+  \choice A \texttt{Collection} interface that holds \& processes elements in LIFO (last in, first out) order.
+  \choice A \texttt{Collection} interface that holds \& processes elements in FIRO (first in, random out) order.
+\end{choices}
+\begin{solution}
+  A queue is \textbf{FIFO}: enqueue at one end, dequeue from the other (conceptually). LIFO describes a \textbf{stack}. FILO matches stack behavior; FIRO is not a standard term for queues.
+\end{solution}
+
+\question[4]
+What is the difference between \texttt{ArrayDeque} and \texttt{PriorityQueue}?
+\begin{choices}
+  \CorrectChoice \texttt{ArrayDeque} is an implementation of a pure double-ended queue (elements can be added or removed from either end of the queue). \texttt{PriorityQueue} is an implementation of a queue that does not have specified ends (addition or removal of elements doesn't happen on any specific end of the queue).
+  \choice \texttt{ArrayDeque} is an implementation of a queue that does not have specified ends (addition or removal of elements doesn't happen on any specific end of the queue). \texttt{PriorityQueue} is an implementation of a pure double-ended queue (elements can be added or removed from either end of the queue).
+  \choice \texttt{ArrayDeque} is an implementation of a pure single-ended queue (elements can be added or removed from only one end of the queue). \texttt{PriorityQueue} is an implementation of a queue that does have specified ends (addition or removal of elements can happen on any specific end of the queue).
+  \choice \texttt{ArrayDeque} is an implementation of a queue that does have specified ends (addition or removal of elements can happen on any specific end of the queue). \texttt{PriorityQueue} is an implementation of a pure single-ended queue (elements can be added or removed from only one end of the queue).
+\end{choices}
+\begin{solution}
+  \texttt{ArrayDeque} is an efficient \textbf{deque}: \texttt{addFirst}/\texttt{addLast}, 
+  \texttt{removeFirst}/\texttt{removeLast}. On the other hand, 
+  \texttt{PriorityQueue} is heap-based: the ``next'' element is the 
+  \textbf{highest (or lowest) priority} by comparator or natural order, 
+  not strictly front or back in a spatial sense.
+\end{solution}
+
+\newpage
+
+\question[4]
+In linked list implementation of queue, if only front pointer is maintained, which of the following operation take worst case linear time?
+\begin{choices}
+  \choice Insertion
+  \choice Deletion
+  \choice To empty a queue
+  \CorrectChoice Both Insertion and To empty a queue
+\end{choices}
+\begin{solution}
+  With only a \texttt{front} pointer, enqueue at the tail requires walking the whole list to find the last node---\textbf{O(n)}. Dequeue at the front is \textbf{O(1)}. Emptying the queue by repeated dequeues is \textbf{O(n)} total (linear in size). The option pairing insertion and emptying matches the intended worst-case linear characterization for this design.
+\end{solution}
+
+\question[4]
+Which of the following methods is highly time efficient? Both methods return fibonacci series.
+
+\noindent Code a:
+\begin{lstlisting}[style=javaexam]
+int Fib(int n)
+{
+    if (n <= 1)
+        return n;
+
+    return recurssion(n - 1) + recurssion(n - 2);
+}
+\end{lstlisting}
+
+\noindent Code b:
+\begin{lstlisting}[style=javaexam]
+int Fib(int n)
+{
+    int f[] = new int[n + 1];
+    f[0] = 0;
+    f[1] = 1;
+    for (int i = 2; i <= n; i++)
+        f[i] = f[i - 1] + f[i - 2];
+    return f[n];
+}
+\end{lstlisting}
+\begin{choices}
+  \choice Method a
+  \CorrectChoice Method b
+  \choice Both method a and b
+  \choice none of the above
+\end{choices}
+\begin{solution}
+  Code~a (naive recursion without memoization) recomputes the same subproblems exponentially---time roughly exponential in $n$. Code~b fills an array in one pass: \textbf{O(n)} time and \textbf{O(n)} extra space. (The identifier \texttt{recurssion} stands in for a recursive call in the original prompt.)
+\end{solution}
+
+\question[4]
+Divide and conquer algorithms use recursion.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Classic divide and conquer (mergesort, binary search structure, etc.) \textbf{expresses} the pattern by splitting the problem, solving subproblems (often recursively), and combining. Iterative versions exist, but the paradigm is closely tied to recursive formulation.
+\end{solution}
+
+\question[4]
+Time Complexity. What is time complexity? (choose all that apply)
+\begin{checkboxes}
+  \choice The actual amount of time it takes an algorithm to execute
+  \CorrectChoice A representation of the number of times a block of code need be executed.
+  \choice A representation of the amount of memory required to execute an algorithm.
+  \CorrectChoice A represntation of how the performance of an algorithm changes as the size of its input scales.
+\end{checkboxes}
+\begin{solution}
+  Time complexity abstracts away wall-clock time and machine details. One view is \textbf{how many times} a dominant operation or block runs as a function of input size $n$. Another (asymptotic) view is \textbf{how running time grows} when $n$ increases---the idea behind Big-O and related notation. The first keyed line matches the step-count view; the second (typo \textit{represntation} preserved) matches the scaling view. Clock time is not the definition; memory growth is \textbf{space} complexity.
+\end{solution}
+
+\question[4]
+What is the time complexity of a linear search?
+\begin{choices}
+  \choice $O(1)$
+  \CorrectChoice $O(n)$
+  \choice $O(\log n)$
+  \choice $O(n^2)$
+\end{choices}
+\begin{solution}
+  Scanning an unsorted array or list element by element may examine all $n$ items in the worst case, hence \textbf{linear} time $O(n)$.
+\end{solution}
+
+\question[4]
+Big-O notation is an example of asymptotic notation that represents the worst case performance for an algorithm.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Big-O upper-bounds growth; it is standard to state \textbf{worst-case} $O(f(n))$ unless a problem specifies average or best case. (Other notations: $\Omega$ for lower bounds, $\Theta$ for tight bounds.)
+\end{solution}
+
+\question[4]
+What is the best case time complexity of bubble sort?
+\begin{choices}
+  \choice $O(n^2)$
+  \choice $O(1)$
+  \CorrectChoice $O(n)$
+  \choice $O(\log n)$
+\end{choices}
+\begin{solution}
+  With an implementation that detects \textbf{no swaps} on a pass and stops early, an already-sorted array is handled in one pass---\textbf{$O(n)$} comparisons. Without that optimization, best case is still often stated as $O(n^2)$; this question assumes the adaptive variant.
+\end{solution}
+
+\question[4]
+What is the time complexity of merge sort?
+\begin{choices}
+  \choice $O(\log n)$
+  \CorrectChoice $O(n \log n)$
+  \choice $O(n^2)$
+  \choice $O(n)$
+\end{choices}
+\begin{solution}
+  Merge sort divides the array in half recursively ($O(\log n)$ levels) and merges linearly at each level, giving \textbf{$O(n \log n)$} in the worst case---a hallmark of efficient comparison sorting.
+\end{solution}
+
+\question[4]
+In linked list implementation of a queue, front and rear pointers are tracked. Which of these pointers will change during an insertion into a \textbf{NONEMPTY} queue?
+\begin{choices}
+  \choice Only front pointer
+  \choice No pointer will be changed
+  \CorrectChoice Only rear pointer
+  \choice Both front and rear pointer
+\end{choices}
+\begin{solution}
+  Enqueue links a new node after the current tail and updates \textbf{rear}. \textbf{Front} still points at the first element to be dequeued. For the \textbf{first} insertion into an empty queue, both front and rear typically move; the question restricts to a nonempty queue.
+\end{solution}
+
+\question[4]
+Entries in a stack are ``ordered''. What is the meaning of this statement?
+\begin{choices}
+  \CorrectChoice Elements in a stack are added one after another in a specific sequence.
+  \choice A collection of stacks is sortable
+  \choice Stack entries may be compared with the \texttt{<} operation
+  \choice The entries are stored in a linked list
+\end{choices}
+\begin{solution}
+  ``Ordered'' here means there is a \textbf{definite sequence} determined by the order of pushes (LIFO when you pop): later pushes sit above earlier ones. That is not about numeric comparison (\texttt{<}), not about sorting collections of stacks, and not tied to linked lists versus arrays---an implementation detail.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Lists, maps, sets, and queues (practice bank)}\par}
+
+\question[4]
+\textit{(Select all that apply.)} What are some differences between a \texttt{LinkedList} and an \texttt{ArrayList}?
+\begin{checkboxes}
+  \choice A \texttt{LinkedList} and an \texttt{ArrayList} both only implement the \texttt{List} interface
+  \choice An \texttt{ArrayList} is the same as a \texttt{LinkedList}
+  \CorrectChoice A \texttt{LinkedList} has nodes with pointers to the next node
+  \CorrectChoice A \texttt{LinkedList} has faster insertion and deletion time than an \texttt{ArrayList}
+\end{checkboxes}
+\begin{solution}
+  Both implement \texttt{List} (and \texttt{ArrayList} also implements \texttt{RandomAccess}); they are not the same structure. Linked lists use node chaining; insert/delete in the middle is often cheaper than shifting a large backing array, though big-O depends on how you locate the index.
+\end{solution}
+
+\question[4]
+The \texttt{Map} interface defines an \texttt{iterator()} method.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{Map} is not \texttt{Iterable}; you iterate \texttt{keySet()}, \texttt{values()}, or \texttt{entrySet()}.
+\end{solution}
+
+\question[4]
+Pick the correct definition for \texttt{Queue}:
+\begin{choices}
+  \CorrectChoice A \texttt{Collection} that holds and processes elements in FIFO (first in, first out) order
+  \choice A \texttt{Collection} that holds and processes elements in FILO (first in, last out) order
+  \choice A \texttt{Collection} that holds and processes elements in LIFO (last in, first out) order
+  \choice A \texttt{Collection} that holds and processes elements in LILO (last in, last out) order
+\end{choices}
+\begin{solution}
+  A queue is \textbf{FIFO}; a stack is \textbf{LIFO}. FILO matches a stack, not a queue.
+\end{solution}
+
+\question[4]
+If you add three times the \emph{same} object reference to a \texttt{HashSet}, how many entries are stored?
+\begin{choices}
+  \CorrectChoice 1
+  \choice 2
+  \choice 3
+  \choice None of the above
+\end{choices}
+\begin{solution}
+  A set keeps unique elements per \texttt{equals}/\texttt{hashCode}; the same reference is duplicate and stored once.
+\end{solution}
+
+\question[4]
+\texttt{HashSet} is sorted.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{HashSet} does not define iteration order (unless using a sorted variant such as \texttt{TreeSet}).
+\end{solution}
+
+\endgradingrange{csadsa}

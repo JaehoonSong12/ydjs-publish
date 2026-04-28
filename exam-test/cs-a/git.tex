@@ -1,0 +1,255 @@
+% Computer Science A --- Git version control basics (\input from \texttt{main.tex}).
+
+\runningheader{Computer Science A}{Git version control}{Page \thepage\ of \numpages}
+
+\uplevel{\par\textbf{Source control and Git (free response)}\par}
+
+\question[4]
+What is source control management? Why is it useful?
+\makeemptybox{1.25in}
+\begin{solution}
+  Systems (e.g.\ Git) that record history of changes, enable collaboration, branches, review, rollback, and traceability---reducing loss of work and coordinating teams.
+\end{solution}
+
+\question[4]
+What are the main sections of a Git project?
+\makeemptybox{1.25in}
+\begin{solution}
+  Working tree (edited files), staging area (index), local repository (\texttt{.git} commits), and remotes (shared repos such as origin); data moves via add/commit/push/pull.
+\end{solution}
+
+\question[4]
+What are some common operations you would be performing when using Git?
+\makeemptybox{1.45in}
+\begin{solution}
+  Clone, pull/fetch, branch/checkout, status, diff, add, commit, merge or rebase, push, tag, and resolve conflicts---daily workflow for integrating changes safely.
+\end{solution}
+
+\uplevel{\par\textbf{Linux command line}\par}
+
+\question[4]
+What are some common Linux commands? Why are they useful?
+\makeemptybox{1.45in}
+\begin{solution}
+  Examples: \texttt{ls}, \texttt{cd}, \texttt{pwd}, \texttt{cp}, \texttt{mv}, \texttt{rm}, \texttt{mkdir}, \texttt{grep}, \texttt{chmod}, \texttt{ssh}. They navigate filesystems, search logs, set permissions, and automate server/CI tasks.
+\end{solution}
+
+\question[4]
+The command to create a new directory in Linux is:
+\begin{choices}
+  \CorrectChoice \texttt{mkdir}
+  \choice \texttt{touch}
+  \choice \texttt{nano}
+  \choice \texttt{vi}
+  \choice \texttt{rm}
+\end{choices}
+\begin{solution}
+  \texttt{mkdir} creates directories; \texttt{touch} updates/creates empty files; \texttt{nano}/\texttt{vi} are editors; \texttt{rm} removes files.
+\end{solution}
+
+\question[4]
+To copy a file in Linux, you use the command:
+\begin{choices}
+  \CorrectChoice \texttt{cp}
+  \choice \texttt{mv}
+  \choice \texttt{rm}
+  \choice \texttt{cat}
+  \choice \texttt{mkdir}
+\end{choices}
+\begin{solution}
+  \texttt{cp} copies; \texttt{mv} moves/renames; \texttt{rm} deletes; \texttt{cat} prints file contents; \texttt{mkdir} makes directories.
+\end{solution}
+
+\newpage
+
+\begingradingrange{csagit}
+
+\uplevel{\par\textbf{Git}\par}
+
+\question[4]
+What is the \texttt{git push} command used for?
+\begin{choices}
+  \choice To add all the files to the given folder
+  \choice It is used to create a new empty repository or directory consisting of files with the hidden directory
+  \CorrectChoice It is used to upload local repository content to a remote repository
+  \choice It places all of the revision information in one place
+\end{choices}
+\begin{solution}
+  \texttt{git push} sends commits from your local branch to the configured \textbf{remote} (e.g.\ \texttt{origin}).
+\end{solution}
+
+\question[4]
+A developer working on the same project as you just made an official commit to the remote repository. What command gives you the updated changes?
+\begin{choices}
+  \CorrectChoice \texttt{git pull}
+  \choice \texttt{git log}
+  \choice \texttt{git push}
+  \choice \texttt{git sync}
+\end{choices}
+\begin{solution}
+  \texttt{git pull} typically fetches remote updates and integrates them into your current branch (\texttt{fetch} + \texttt{merge} or \texttt{rebase}, depending on configuration). \texttt{git sync} is not a standard Git command.
+\end{solution}
+
+\question[4]
+\blank[7em] is the practice of tracking and managing changes to software code. Git is one of the most popular tools used to achieve this.
+\begin{choices}
+  \choice Revision tracking
+  \choice Code review
+  \choice Project control
+  \CorrectChoice Version control
+\end{choices}
+\begin{solution}
+  \textbf{Version control} records changes over time so teams can collaborate, review history, and revert when needed.
+\end{solution}
+
+\question[4]
+What is a Git repository?
+\begin{choices}
+  \choice A project pipeline that helps automate the deployment process of applications
+  \CorrectChoice A directory that contains a \texttt{.git} folder which tracks changes made to files within that directory
+  \choice A place to plan out the requirements of specific projects between different teams working on a client project
+  \choice A communication platform for developers to talk to each other about code and build projects that allow the client to see the code
+\end{choices}
+\begin{solution}
+  The \texttt{.git} directory stores objects, refs, and config for that project; the working tree holds your files.
+\end{solution}
+
+\question[4]
+What is Git?
+\begin{choices}
+  \choice A website
+  \CorrectChoice A version control system
+  \choice An operating system
+  \choice Programming language
+\end{choices}
+\begin{solution}
+  Git is a \textbf{distributed version control system} for tracking changes to files (especially source code). GitHub is a hosting service that uses Git, not Git itself.
+\end{solution}
+
+\question[4]
+Which of the following statements best describes Git?
+\begin{choices}
+  \CorrectChoice Git is version control software that allows developers to manage changes to source code over time
+  \choice Git is a tool used by development teams to write code anywhere in the world
+  \choice Git is another name for GitHub, an online repository tool
+  \choice Git is a database used to store data for web applications
+\end{choices}
+\begin{solution}
+  Git is a \textbf{distributed} version control system. GitHub hosts Git repositories but is not the same as Git.
+\end{solution}
+
+\question[4]
+Which of the following does \emph{not} describe git?
+\begin{choices}
+  \choice It is a version control software for source code
+  \choice Unlike Subversion or Mercurial, git is designed to be distributed instead of centralized
+  \CorrectChoice Another name for git is GitHub
+  \choice The units of work that are tracked in git are called commits
+\end{choices}
+\begin{solution}
+  Git is the tool; \textbf{GitHub} (GitLab, Bitbucket, etc.) are services built around Git repositories.
+\end{solution}
+
+\question[4]
+Which of the following best describes the command \texttt{git commit}?
+\begin{choices}
+  \choice It pulls the changes from the remote repository to the local repository
+  \choice It stages changes made in the working directory for the next commit
+  \choice It creates a new branch in your repository
+  \CorrectChoice It saves the staged changes to the local repository
+\end{choices}
+\begin{solution}
+  \texttt{git commit} records a snapshot of the \textbf{index} (staged changes) in the local object database; use \texttt{git add} first to stage.
+\end{solution}
+
+\question[4]
+Which of the following best describes a merge conflict?
+\begin{choices}
+  \CorrectChoice It is a situation where two branches have made changes to the same part of a file and Git does not know which changes to keep
+  \choice It is when Git fails to merge two branches because one is older than the other
+  \choice It is the conflict that occurs when two users try to push to the same remote repository at the same time
+  \choice It is a state in Git where a file is marked for deletion but is still present in the staging area
+\end{choices}
+\begin{solution}
+  Conflicts appear when overlapping edits must be reconciled; you resolve markers in the working tree, then stage and commit.
+\end{solution}
+
+\question[4]
+What are the appropriate steps to update unstaged changes to a local commit and send those changes to a remote repository?
+\begin{choices}
+  \choice \texttt{git add .} then \texttt{git commit -m "new commit"}
+  \CorrectChoice \texttt{git add .}, then \texttt{git commit -m "new commit"}, then \texttt{git push}
+  \choice \texttt{git commit -m "new commit"} then \texttt{git push}
+  \choice \texttt{git commit -m "new commit"} then \texttt{git add .} then \texttt{git push}
+\end{choices}
+\begin{solution}
+  Stage (\texttt{add}), commit locally, then \texttt{push} to publish. Committing with nothing staged (or wrong order) does not match this workflow.
+\end{solution}
+
+\question[4]
+Which of the following best describes the Git workflow?
+\begin{choices}
+  \choice \texttt{git clone}, make changes to files, \texttt{git commit}, \texttt{git add}, \texttt{git push}
+  \choice \texttt{git clone}, \texttt{git add}, make changes to files, \texttt{git push}, \texttt{git commit}
+  \CorrectChoice \texttt{git clone}, make changes to files, \texttt{git add}, \texttt{git commit}, \texttt{git push}
+  \choice \texttt{git add}, \texttt{git commit}, make changes to files, \texttt{git push}, \texttt{git clone}
+\end{choices}
+\begin{solution}
+  Clone a repo, edit files, \textbf{stage} changes, \textbf{commit} locally, then \textbf{push} to share.
+\end{solution}
+
+\question[4]
+What does the command \texttt{git add} do?
+\begin{choices}
+  \choice Creates a new repository in the current directory
+  \choice Deletes the changes in your working directory
+  \CorrectChoice It stages changes made in the working directory for the next commit
+  \choice It connects your local repository to a remote repository
+\end{choices}
+\begin{solution}
+  \texttt{git add} updates the \textbf{index} (staging area) so the next \texttt{git commit} includes those paths.
+\end{solution}
+
+\question[4]
+Git Bash is an application for Microsoft Windows environments which provides an emulation of a bash shell and has the Git CLI preinstalled.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Git for Windows bundles \textbf{Git Bash}, a shell environment for running \texttt{git} and Unix-style commands on Windows.
+\end{solution}
+
+\question[4]
+Git is a centralized version control system.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Git is a \textbf{distributed} version control system (DVCS): every clone carries a full copy of history; remotes add collaboration, but there is no single required central server for the tool itself.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Branches and remotes (practice)}\par}
+
+\question[4]
+Identify the correct series of commands to:
+\begin{enumerate}
+  \item switch to the \texttt{main} branch;
+  \item inspect the working tree;
+  \item stage and commit a change; and
+  \item update the remote repository.
+\end{enumerate}
+\begin{choices}
+  \choice \texttt{git pull}; \texttt{git add}; \texttt{git commit}; \texttt{git push}
+  \choice \texttt{git edit}; \texttt{git add}; \texttt{git checkout main}; \texttt{git commit}
+  \CorrectChoice \texttt{git checkout main}; \texttt{git status}; \texttt{git add}; \texttt{git commit}; \texttt{git push}
+  \choice \texttt{git commit main}; \texttt{git status}; \texttt{git add}; \texttt{git push}
+\end{choices}
+\begin{solution}
+  \texttt{checkout} (or modern \texttt{git switch}) selects the branch; \texttt{status} shows changes; \texttt{add} stages; \texttt{git commit} records a snapshot; \texttt{git push} publishes commits to the remote. (Teams often \texttt{pull} first, but the stem asks for this sequence.)
+\end{solution}
+
+\endgradingrange{csagit}

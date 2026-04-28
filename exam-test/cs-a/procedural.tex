@@ -1,0 +1,306 @@
+% Computer Science A --- Procedural Java (control flow, loops, operators).
+% \input from \texttt{main.tex} after \texttt{cs-a/lang.tex}.
+
+\runningheader{Computer Science A}{Java control flow \& operators}{Page \thepage\ of \numpages}
+
+\uplevel{\par\textbf{Exceptions}\par}
+
+\question[4]
+What is the difference between an \texttt{Error} and an \texttt{Exception}?
+\makeemptybox{1.35in}
+\begin{solution}
+  Both extend \texttt{Throwable}. \texttt{Error} types (e.g.\ \texttt{OutOfMemoryError}) are serious JVM problems you generally do not catch. \texttt{Exception} types represent conditions an application might catch and recover from (or declare).
+\end{solution}
+
+\question[4]
+How would you handle an exception?
+\makeemptybox{1.35in}
+\begin{solution}
+  Use \texttt{try}/\texttt{catch} (and \texttt{finally} or \texttt{try-with-resources} for cleanup); declare \texttt{throws} when propagating checked exceptions. Avoid empty catches.
+\end{solution}
+
+\question[4]
+What is the difference between a checked and an unchecked exception?
+\makeemptybox{1.35in}
+\begin{solution}
+  Checked exceptions extend \texttt{Exception} but not \texttt{RuntimeException}; callers must handle or declare them. Unchecked (\texttt{RuntimeException} and subclasses) need not be declared; they often indicate programming bugs or unrecoverable states.
+\end{solution}
+
+\newpage
+
+\begingradingrange{csaproc}
+
+\uplevel{\par\textbf{Procedural Java (control flow and operators)}\par}
+
+\question[4]
+What would be the output of this code?
+\begin{lstlisting}[style=javaexam]
+String name = "Warwick";
+int i = 0;
+do {
+   System.out.println(name.charAt(i++));
+} while (i >= name.length());
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{W}
+  \choice \texttt{Warwick} will print vertically
+  \choice \texttt{Warwick} will print horizontally
+  \choice \texttt{Warwick} with a \texttt{StringIndexOutOfBoundsException}
+\end{choices}
+\begin{solution}
+  The body runs once with \texttt{i == 0}, printing \texttt{W} and incrementing \texttt{i} to \texttt{1}. Then \texttt{i >= name.length()} is \texttt{1 >= 7}, false, so the loop stops.
+\end{solution}
+
+\question[4]
+What does this control-flow code print?
+\begin{lstlisting}[style=javaexam]
+String food = "Pizza";
+if (food == "pizza") {
+  System.out.println("Cheese Pizza");
+} else if (food.equals("pizza")) {
+  System.out.println("Veggie Pizza");
+} else if (food.equals("pizza") || food.equals("Pizza")) {
+  System.out.println("Pepperoni Pizza");
+} else {
+  System.out.println("You ordered a pizza?");
+}
+\end{lstlisting}
+\begin{choices}
+  \choice \texttt{Cheese Pizza}
+  \CorrectChoice \texttt{Pepperoni Pizza}
+  \choice Both \texttt{Veggie Pizza} and \texttt{Pepperoni Pizza}
+  \choice \texttt{You ordered a pizza?}
+\end{choices}
+\begin{solution}
+  \texttt{food == "pizza"} is false (reference comparison). \texttt{food.equals("pizza")} is false (case). The third condition matches \texttt{"Pizza"}.
+\end{solution}
+
+\newpage
+
+\question[4]
+What would the following \texttt{switch} print if the user enters \texttt{red}?
+\begin{lstlisting}[style=javaexam]
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a color to see an item of that color");
+String color = sc.next();
+
+switch (color) {
+case "blue":
+  System.out.println("I am the sky and can "
+    + "be the most beautiful shades of blue");
+  break;
+case "red":
+  System.out.println("I am a fire truck! Big and Red and hard to miss");
+case "yellow":
+  System.out.println("I am a banana before going bad");
+  break;
+default:
+  System.out.println("I wasn't programmed to recognize that color");
+  break;
+}
+\end{lstlisting}
+\begin{choices}
+  \choice Only the fire-truck line
+  \choice \texttt{I wasn't programmed to recognize that color}
+  \CorrectChoice The fire-truck line, then the banana line (fall-through; no \texttt{break} after \texttt{red})
+  \choice The code will not compile
+\end{choices}
+\begin{solution}
+  After \texttt{case "red":} prints, execution falls through to \texttt{case "yellow":} until \texttt{break}.
+\end{solution}
+
+\question[4]
+The code below produces \texttt{error: variable i is already defined}. Why?
+\begin{lstlisting}[style=javaexam]
+for (int i = 0; i < array1.length; i++) {
+   System.out.println(array1[i]);
+   for (int i = 0; i < words.length; i++) {
+     System.out.println(words[i]);
+   }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice This error is caused by the second \lstinline!for! loop being inside of the first \lstinline!for! loop. If you move the last curly brace above the second loop it will fix the error.
+  \choice It's coded correctly. Java must be broken
+  \choice You are not allowed to put two \lstinline!for! loops next to each other. Use a \lstinline!while! loop
+  \choice The variable \lstinline!i! is not static
+\end{choices}
+\begin{solution}
+  The inner \texttt{for (int i = \ldots)} redeclares \texttt{i} in the outer loop's block, which is a compile error in Java; renaming the inner index (e.g.\ \texttt{j}) or restructuring braces fixes it.
+\end{solution}
+
+\question[4]
+True or false: The \texttt{break} statement skips the current iteration and continues with the next iteration.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{break} exits the innermost \texttt{switch} or loop. Use \texttt{continue} to skip to the next loop iteration.
+\end{solution}
+
+\question[4]
+Consider these statements about \texttt{while} and \texttt{do...while} loops:
+
+\noindent\textbf{(i)} A \texttt{while} loop runs at least once even if the condition is initially false.
+
+\noindent\textbf{(ii)} A \texttt{do...while} loop runs at least once even if the condition is initially false.
+
+\noindent Which is correct?
+\begin{choices}
+  \choice Only (i) is true
+  \CorrectChoice Only (ii) is true
+  \choice Both are true
+  \choice Both are false
+\end{choices}
+\begin{solution}
+  \texttt{while} tests before each iteration (zero or more times). \texttt{do...while} tests after, so the body runs at least once.
+\end{solution}
+
+\newpage
+
+\question[4]
+Predict the return value of \texttt{toPositive(10)}.
+\begin{lstlisting}[style=javaexam]
+public static int toPositive(int value) {
+  if (value < 0) {
+    return -value;
+  }
+  return value;
+}
+\end{lstlisting}
+\begin{choices}
+  \choice \texttt{null}
+  \choice \texttt{-10}
+  \choice No value is returned
+  \CorrectChoice \texttt{10}
+\end{choices}
+\begin{solution}
+  For non-negative \texttt{value}, the method returns \texttt{value} unchanged.
+\end{solution}
+
+\question[4]
+What is the output of the following code?
+\begin{choices}
+  \choice \texttt{01XXXX}
+  \choice \texttt{01X}
+  \choice \texttt{01XX}
+  \CorrectChoice \texttt{01XXX}
+\end{choices}
+\begin{solution}
+  The source fragment did not include the listing; the keyed answer is \texttt{01XXX}.
+\end{solution}
+
+\question[4]
+What is the output of the following code?
+\begin{lstlisting}[style=javaexam]
+int a = 4;
+System.out.println(a++);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{4}
+  \choice \texttt{5}
+\end{choices}
+\begin{solution}
+  Post-increment prints the old value (\texttt{4}), then sets \texttt{a} to \texttt{5}.
+\end{solution}
+
+\question[4]
+What is the output of the following code?
+\begin{lstlisting}[style=javaexam]
+public class Example {
+    public static void main(String[] args) {
+        int a = 3;
+        System.out.println(a++);
+        System.out.println(a);
+        System.out.println(--a);
+        a *= 2;
+        System.out.println(a);
+    }
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{3436}
+  \choice \texttt{4436}
+  \choice \texttt{3448}
+  \choice \texttt{4548}
+\end{choices}
+\begin{solution}
+  Post-increment prints \texttt{3}, then \texttt{a} is \texttt{4}; next line prints \texttt{4}; \texttt{--a} prints \texttt{3} and leaves \texttt{a} at \texttt{3}; \texttt{a *= 2} yields \texttt{6} on the last line.
+\end{solution}
+
+\newpage
+
+\question[4]
+Which loop produces the output \lstinline!ACEG!?
+\begin{choices}
+  \choice \lstinline!for (int i = 0; i < 10; i++) { System.out.print(i); }!
+  \choice \lstinline!for (char a = 'a'; a < 'i'; a++) { System.out.print(a); }!
+  \CorrectChoice \lstinline!for (char a = 'A'; a < 'I'; a += 2) { System.out.print(a); }!
+  \choice \lstinline!for (char a = 'A'; a < 'Z'; a++) { System.out.print(a); }!
+\end{choices}
+\begin{solution}
+  Characters \texttt{'A'}, \texttt{'C'}, \texttt{'E'}, \texttt{'G'} are every second letter from \texttt{'A'} while below \texttt{'I'}.
+\end{solution}
+
+\question[4]
+Predict the output:
+\begin{lstlisting}[style=javaexam]
+boolean flag = true;
+int x = 0;
+while (flag) {
+    x++;
+    if (x == 10) {
+        x++;
+        flag = false;
+    }
+}
+System.out.println(x);
+\end{lstlisting}
+\begin{choices}
+  \choice Compilation error
+  \CorrectChoice \texttt{11}
+  \choice \texttt{9}
+  \choice \texttt{10}
+\end{choices}
+\begin{solution}
+  When \texttt{x} reaches \texttt{10}, it increments to \texttt{11} and \texttt{flag} becomes false; the loop exits with \texttt{x == 11}.
+\end{solution}
+
+\question[4]
+When does the \texttt{else} block run?
+\begin{lstlisting}[style=javaexam]
+boolean b = getBooleanValue();
+if (b) {
+    foo();
+} else {
+    bar();
+}
+\end{lstlisting}
+\begin{choices}
+  \choice Always, immediately after the \texttt{if} block
+  \choice Only when \lstinline!getBooleanValue()! is \lstinline!true!
+  \CorrectChoice Only when \lstinline!getBooleanValue()! is \lstinline!false!
+  \choice The \texttt{else} block never runs
+\end{choices}
+\begin{solution}
+  \texttt{else} runs when the \texttt{if} condition is false.
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Libraries and I/O (practice bank)}\par}
+
+\question[4]
+What is the \texttt{Scanner} class used for?
+\begin{choices}
+  \choice Serializing objects
+  \choice Communicating over a network via HTTP
+  \CorrectChoice Parsing input from text into primitives and strings, from a \texttt{File} or \texttt{InputStream}
+  \choice Writing to files
+\end{choices}
+\begin{solution}
+  \texttt{java.util.Scanner} tokenizes text input (often from \texttt{System.in}, a \texttt{File}, or a stream) into typed values via \texttt{nextInt()}, \texttt{nextLine()}, etc.
+\end{solution}
+
+\endgradingrange{csaproc}

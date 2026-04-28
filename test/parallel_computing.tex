@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Technical Summary: Parallel and Distributed Computing}
+\author{Documentation Synthesis}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The field of Parallel and Distributed Computing (PDC) encompasses the study and application of multiple simultaneous computing resources to solve a task. This document outlines the fundamental distinctions between concurrency and parallelism, explores the execution model of multi-threading, and identifies common synchronization challenges and solutions.
+
+\section{Concurrency vs. Parallelism}
+A fundamental distinction exists between how tasks are managed and how they are executed.
+
+\subsection{Concurrency}
+Concurrency is the property of a system where multiple tasks are in progress at the same time. It is a structural approach to software design, allowing the system to deal with multiple things at once. In a single-core environment, this is achieved through context switching, where the CPU interleaves the execution of different tasks.
+
+\subsection{Parallelism}
+Parallelism is the property where multiple tasks are physically executed at the exact same moment. This requires hardware with multiple processing units, such as multi-core CPUs or GPUs. Parallelism is a subset of concurrency focused on increasing execution speed.
+
+\subsection{Comparative Analysis}
+\begin{center}
+  \begin{tabular}{|l|p{5cm}|p{5cm}|}
+    \hline
+    \textbf{Feature} & \textbf{Concurrency} & \textbf{Parallelism} \\
+    \hline
+    Focus & Task management and structure. & Task execution and performance. \\
+    \hline
+    Hardware & Possible on a single-core CPU. & Requires multi-core or multi-processor hardware. \\
+    \hline
+    Mechanism & Interleaving/Context switching. & Simultaneous execution. \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\section{The Multi-threading Model}
+Multi-threading is an execution model that allows a single process to contain multiple sequences of instructions (threads) running in the same address space.
+
+\begin{itemize}
+  \item \textbf{Process:} An instance of a computer program that is being executed, containing its own memory space.
+  \item \textbf{Thread:} The smallest unit of processing that can be performed in an OS. Threads within the same process share the heap but have their own stack and registers.
+  \item \textbf{Context Switch:} The process of storing the state of a process or thread so that it can be restored and execution resumed from the same point later.
+\end{itemize}
+
+\section{Challenges in Concurrent Systems}
+Writing software that manages shared state across multiple threads introduces several critical failure modes.
+
+\subsection{Race Conditions}
+A race condition occurs when the output of a program depends on the relative timing of threads. If two threads access and modify the same variable concurrently without proper synchronization, the final value may be inconsistent.
+
+\subsection{Deadlock}
+A deadlock is a state where a set of threads are blocked because each thread is waiting for a resource held by another thread in the set. The four necessary conditions for deadlock are:
+\begin{enumerate}
+  \item Mutual Exclusion
+  \item Hold and Wait
+  \item No Preemption
+  \item Circular Wait
+\end{enumerate}
+
+\section{Synchronization Primitives}
+To mitigate the risks of concurrent execution, various synchronization mechanisms are employed.
+
+\subsection{Mutex (Mutual Exclusion)}
+A mutex is a locking mechanism used to synchronize access to a resource. Only one thread can acquire the mutex at a time. Other threads attempting to acquire it will block until it is released.
+
+\subsection{Semaphores}
+A semaphore is a signaling mechanism that uses a counter to control access to a shared resource.
+\begin{itemize}
+  \item \textbf{Binary Semaphore:} Operates similarly to a mutex (values 0 or 1).
+  \item \textbf{Counting Semaphore:} Allows a set number of threads to access a resource pool.
+\end{itemize}
+
+\subsection{Atomic Operations}
+Atomic operations are instructions that complete in a single step relative to other threads. They are uninterruptible, ensuring that no thread sees the operation in a partially completed state.
+
+\section{Conclusion}
+While concurrency provides a way to structure programs to handle multiple tasks efficiently (particularly I/O-bound tasks), parallelism provides the means to accelerate computation-heavy (CPU-bound) tasks. Understanding the interplay between these concepts, the underlying threading models, and the necessary synchronization primitives is essential for systems-level development.
+
+\end{document}
