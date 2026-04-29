@@ -392,6 +392,11 @@
 
 % Instructor answer key: uncomment \printanswers (or add class option [answers]).
 \printanswers
+\ifprintanswers
+  \SolutionEmphasis{\color{blue}}
+  \CorrectChoiceEmphasis{\color{blue}}
+  % Any other global changes for the answer key version
+\fi
 
 \begin{document} 
 
@@ -408,63 +413,82 @@
 
 
 
-% \exammodulecover{Computer Science Principles}{AP Practice Exam}{College Board style practice questions.}
-% \begin{questions}
-%   \input{cs-p/01-practice}
+\exammodulecover{Computer Science Principles}{AP Practice Exam}{College Board style practice questions.}
+\begin{questions}
+  \input{cs-p/01-practice}
+  \emptypage
+  \input{cs-p/02-practice}
+\end{questions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \exammodulecover{Computer Science A}{AP Practice Exam}{College Board styled practice questions.}
+% \begin{questions} 
+%   % \input{cs-a/git}
+%   % \emptypage
+%   % \input{cs-a/lang}
+
+
+%   % \emptypage
+
+
+%   % \input{cs-a/procedural}
+%   % \emptypage
+%   % \input{cs-a/object_oriented}
+%   % \emptypage
+%   % \input{cs-a/software_dev_life_cycle}
+%   % \emptypage
+%   % \input{cs-a/dsa}
+%   % \emptypage
+%   % \input{cs-a/testing_logging}
+%   % \emptypage
+%   % \input{cs-a/functional}
+
+
+%   % \emptypage
+
+
+%   % \input{cs-db/sql}
+%   % \emptypage
+%   % \input{cs-db/distributed_computing}
+  
+
+%   % \emptypage
+
+
+%   \input{cs-web/rest}
 %   \emptypage
-%   \input{cs-p/02-practice}
+%   \input{cs-web/spring}
+%   \emptypage
+%   \input{cs-web/springboot}
+
+
+%   % \emptypage
+
+
+%   % \input{cs-web/web}
 % \end{questions}
 
 
 
 
 
-\exammodulecover{Computer Science A}{AP Practice Exam}{College Board styled practice questions.}
-\begin{questions} 
-  % \input{cs-a/git}
-  % \emptypage
-  % \input{cs-a/lang}
 
 
-  % \emptypage
 
 
-  % \input{cs-a/procedural}
-  % \emptypage
-  % \input{cs-a/object_oriented}
-  % \emptypage
-  % \input{cs-a/software_dev_life_cycle}
-  % \emptypage
-  % \input{cs-a/dsa}
-  % \emptypage
-  % \input{cs-a/testing_logging}
-  % \emptypage
-  % \input{cs-a/functional}
 
 
-  % \emptypage
-
-
-  % \input{cs-db/sql}
-  % \emptypage
-  % \input{cs-db/distributed_computing}
-  
-
-  % \emptypage
-
-
-  \input{cs-web/rest}
-  \emptypage
-  \input{cs-web/spring}
-  \emptypage
-  \input{cs-web/springboot}
-
-
-  % \emptypage
-
-
-  % \input{cs-web/web}
-\end{questions}
 
 
 
@@ -477,9 +501,9 @@
 %   \input{math-6th/99-all}
 % \end{questions}
 
-\exammodulecover{Multivariable Calculus}{Practice Exam}{Multivariable calculus; show all work. Suggested time 170 minutes.}
-\begin{questions}
-  \input{calculus/test03}
-\end{questions}
+% \exammodulecover{Multivariable Calculus}{Practice Exam}{Multivariable calculus; show all work. Suggested time 170 minutes.}
+% \begin{questions}
+%   \input{calculus/test03}
+% \end{questions}
 
 \end{document}
