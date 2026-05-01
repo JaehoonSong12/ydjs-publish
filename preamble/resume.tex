@@ -72,15 +72,15 @@
 %   \end{resume-header}
 
 % ------------------------------------------------------------------------------
-\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{0.80em}{#1}}}
 \NewDocumentEnvironment{resume-header}{m m m m m}{%
 \begin{center}
-    {\LARGE\bfseries \textbf{#1}} \\ \vspace{0.5em}%\Huge?
+    {\LARGE\bfseries \textbf{#1}} \\ \vspace{0.30em}%\Huge?
     {\small #2 | 
       \socialicon{\faIcon{mobile-alt}} #3 | 
       \socialicon{\faIcon{envelope}} \href{mailto:#4}{#4} | 
       \socialicon{\faIcon{github}} \href{#5}{GitHub}
-    } \\ \vspace{0.5em}
+    } \\ \vspace{0.40em}
 }{%
 \end{center}
 }
