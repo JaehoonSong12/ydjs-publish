@@ -28,9 +28,6 @@
 \makeatother
 
 
-
-
-
 % ------------------------------------------------------------------------------
 % Logical Operators
 % ------------------------------------------------------------------------------
@@ -102,10 +99,6 @@
 \newcommand{\JOIN@singleerror}[1]{%
   \@latex@error{`\string\JOIN' expects either no arguments or two braced arguments. Use `\string\JOIN{A}{B}'}\@ehc
 }
-
-
-
-
 
 
 % BINARY operator: none or 2 braced arguments (error if exactly 1)
@@ -190,9 +183,6 @@
 }
 
 
-
-
-
 % BINARY operator: none or 2 braced arguments (error if exactly 1)
 \newcommand{\sMINUS}{\@ifnextchar\bgroup{\sMINUS@with}{\sMINUS@noarg}}
 \newcommand{\sMINUS@noarg}{\ensuremath{\mathbin{\setminus}}\xspace}
@@ -243,9 +233,6 @@
 \makeatother % "DISABLE" internal \@... macros
 
 
-
-
-
 % ------------------------------------------------------------------------------
 % Indexed Set Operations
 % ------------------------------------------------------------------------------
@@ -290,15 +277,7 @@
 \newcommand{\sBUILD}[2]{\ensuremath{\{\,#1 \mid #2\,\}}} % Set builder: {x | P(x)}
 
 
-
-
-
-
 %%%
-
-
-
-
 
 
 % ------------------------------------------------------------------------------
@@ -434,7 +413,6 @@
 }
 
 
-
 % relationinv
 \newcommand{\relationinv}{\@ifnextchar\bgroup{\relationinv@with}{\relationinv@noargerror}}
 \newcommand{\relationinv@with}[1]{%
@@ -447,7 +425,6 @@
 \newcommand{\relationinv@singleerror}[1]{%
   \@latex@error{`\string\relationinv' requires exactly two braced arguments. Use `\string\relationinv{a}{b}'}\@ehc
 }
-
 
 
 \makeatother % "DISABLE" internal \@... macros
