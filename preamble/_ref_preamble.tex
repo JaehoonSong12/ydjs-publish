@@ -1,12 +1,15 @@
+% ------------------------------------------------------------------------------
+% preamble/_ref_preamble.tex
+% ------------------------------------------------------------------------------
 
-% paragraph - indentation
+% ------------------------------------------------------------------------------
+% Paragraph - Indentation
+% ------------------------------------------------------------------------------
 \setlength{\parindent}{0pt}                         % default: 18pt
 
-
-
-
-
-% paragraph - code
+% ------------------------------------------------------------------------------
+% Paragraph - Code
+% ------------------------------------------------------------------------------
 \usepackage{listings, lmodern}                               % \begin{lstlisting}\end{lstlisting}
 \lstset{
   language=Python,
@@ -29,30 +32,16 @@
             {9}{{{\color{blue}9}}}1
 }
 
-
-
+% ------------------------------------------------------------------------------
 % Tabular Data (Tables)
+% ------------------------------------------------------------------------------
 \usepackage{array}
 \usepackage{lipsum}
 \usepackage{longtable}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%% CUSTOM DOCUMENT %%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%5%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------------------
+% Custom Document
+% ------------------------------------------------------------------------------
 % title pages
 \usepackage{outline} 
 \usepackage{pmgraph} 
@@ -61,18 +50,11 @@
 \usepackage{pgffor}
 \usepackage{xstring}
 \usepackage{xparse} % for advanced argument parsing
+
 % Signature Fields for Agreement
 \usepackage{textcomp} % for \TextField
 \usepackage{ifthen}   % for conditional checks
 \newcounter{nameCounter}
-
-
-
-
-
-
-
-
 
 % ------------------------------------------------------------------------------
 % \signField[<Printed Name>][<Width Factor>]: Generates a signature field
@@ -230,7 +212,6 @@
     \newpage
 }
 
-
 % \convertarraytostring
 % {\titleauthors}                                                                       % Authors
 % {Jaehoon Song (lead), Manya Jain, Devika Papal, Yashman P Singh}
@@ -243,90 +224,21 @@
 % {Georgia Institute of Technology}                                                     % Institution (e.g., "Georgia Institute of Technology")
 % {Professor: Yalong Yang}                                                              % Professor name (e.g., "Yalong Yang")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------------------
 % Mathematics
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% ------------------------------------------------------------------------------
 \newtheorem{definition}{Definition}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------------------
 % Bibliographies (with Citations)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------------------
 \usepackage[backend=biber,style=apa]{biblatex}      % \newpage\printbibliography\end{document}
 \addbibresource{../references.bib}                      % \cite{reference1}
 % \addbibresource{references.bib}                         % \cite{reference1}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% DEFAULT
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ------------------------------------------------------------------------------
+% Default
+% ------------------------------------------------------------------------------
                                                     % \textbf{boldfaced}
                                                     % \textit{intalicized}
 %%%% MATH underbrace
@@ -338,34 +250,12 @@
 %         }
 % \]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \usepackage[table]{xcolor}
 \usepackage{caption}
 
-
-
-
-
-
-
-
-
-%%macros for Alg and Uncertainty
+% ------------------------------------------------------------------------------
+% Macros for Algorithm and Uncertainty
+% ------------------------------------------------------------------------------
 \newcommand\p{\mbox{\bf P}\xspace}
 \newcommand\np{\mbox{\bf NP}\xspace}
 \newcommand{\Alg}{\text{Alg}}
@@ -387,15 +277,15 @@
 
 \newcommand\OPT{\text{OPT}\xspace}
 
-
-%%Computational problems
-
+% ------------------------------------------------------------------------------
+% Computational Problems
+% ------------------------------------------------------------------------------
 \newcommand\sat{\mbox{SAT}\xspace}
-
 \newcommand\numsat{\mbox{$\sharp$ SAT}\xspace}
-%% Notation for integers, natural numbers, reals, fractions, sets, cardinalities
-%%and so on
 
+% ------------------------------------------------------------------------------
+% Notation for Integers, Natural Numbers, Reals, etc.
+% ------------------------------------------------------------------------------
 \newcommand{\IGNORE}[1]{}
 \newcommand\bz{\mbox{\bf Z}}
 \newcommand{\R}{\mathbb{R}}
@@ -424,22 +314,19 @@
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}}
 \newcommand{\bits}{\set{0,1}}
 
-
-
+% ------------------------------------------------------------------------------
 % Ordinals
+% ------------------------------------------------------------------------------
 % \newcommand{\st}{\textsuperscript{st}\ }
 % \newcommand{\nd}{\textsuperscript{nd}\ }
 % \newcommand{\rd}{\textsuperscript{rd}\ }
 \newcommand{\thsup}{\textsuperscript{th}\ }
 
-
 \usepackage{qtree} % `\Tree` for simple tree graphing!
-
 
 \newenvironment{algo}{\vspace{0.07in} \noindent \begin{minipage}	{5.5in}%\begin{quote}
 \hrule\vspace{0.01in}\hrule \vspace{0.05in}}{\vspace{-0.0in}\hrule\vspace{0.01in}\hrule \vspace{0.07in}%\end{quote} 
 \end{minipage}}%
-
 
 \usepackage{arydshln} % For dashed/dotted lines
 \usepackage{cellspace} % Extra padding in table cells
@@ -447,10 +334,6 @@
 
 \usepackage{xspace}
 \usepackage{braket}
-
-
-
-
 
 \usepackage{algorithm}
 \usepackage{algorithmic}

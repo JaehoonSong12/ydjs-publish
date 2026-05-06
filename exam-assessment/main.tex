@@ -1,66 +1,237 @@
-\documentclass[twocolumn]{article}
+\documentclass[addpoints]{exam}
+\hbadness=10000                       % Suppress Warnings (Horizontal)
+\vbadness=10000                       % Suppress Warnings (Vertical)
+% Built-in exam hook for vertical spacing between \question items.
+\renewcommand{\questionshook}{\setlength{\itemsep}{6.0\baselineskip}}
 
-% --- Packages ---
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[margin=0.6in, top=1in]{geometry}
-\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{letterpaper, margin=0.5in}
+\usepackage{amsmath, amssymb}
 \usepackage{xcolor}
-\usepackage{fancyhdr}
-\usepackage{enumitem}
-\usepackage{tasks}
-\usepackage{titlesec}
-\settasks{label=(\Alph*), label-width=2.2em, item-indent=2.2em, before-skip=0.4em, after-skip=0.6em}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
+\setlength{\emergencystretch}{1em}
 
-% --- Custom Commands ---
-% Command for question points in the margin
-\newcommand{\points}[1]{\newline \phantom{ } \hfill \textbf{(#1 pts)} \newline \vspace{0.4cm}}
-% Answer blank (label on left, line on right). Optional: \blank[4em]. Default 3.5em.
-\newcommand{\blank}[1][4.5em]{\hfill\underline{\hspace{#1}}}
-% Vertical gaps (more p's = larger gap)
-\newcommand{\vgap}{\vspace{0.4cm}}
-\newcommand{\vgapp}{\vspace{1.2cm}}
-\newcommand{\vgappp}{\vspace{2.4cm}}
 
-% Red answer box: command (one-line) and environment (multi-line)
-\newcommand{\answerbox}[1]{%
-  \par\smallskip\noindent%
-  \fcolorbox{red}{red!8}{%
-    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
-      \textbf{\textcolor{red}{Answer:}} #1%
+
+
+
+
+
+% Per-module cover before each \begin{questions}. Args: course, module title, blurb (use {} if none).
+\newcommand{\exammodulecover}[3]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \vspace*{0.35in}%
+  \begin{center}
+    {\Large \textbf{#1}\par}
+    \vspace{1.1em}
+    {\LARGE \textbf{#2}\par}
+    \vspace{0.65em}
+    {\large \textbf{\today}\par}
+    \if\relax\detokenize{#3}\relax\else
+      \vspace{0.9em}
+      {\normalsize #3\par}%
+    \fi
+  \end{center}
+  \vspace{1.1cm}
+  \begin{center}
+    \fbox{%
+      \begin{minipage}{0.92\linewidth}
+        \vspace{2mm}
+        \textbf{Name:}\ \hrulefill \\
+        \textbf{Student ID:}\ \hrulefill \quad
+        \textbf{Section:}\ \hrulefill
+        \vspace{2mm}
+      \end{minipage}%
     }%
-  }\par\smallskip%
-}
-\newenvironment{answerboxenv}{%
-  \par\smallskip\noindent%
-  \fcolorbox{red}{red!8}{%
-    \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule}%
-    \textbf{\textcolor{red}{Answer:}}\par\noindent\ignorespaces
-}{%
-    \end{minipage}%
-  }\par\smallskip%
+  \end{center}
+  \vspace{4mm}
+  \begin{center}
+    \textbf{Instructions}
+  \end{center}
+  \begin{itemize}
+    \item Verify that your copy has \textbf{all \numpages\ pages}.
+    \item Show all work where space is provided; partial credit may be awarded.
+    \item Do not use calculators unless your instructor says otherwise.
+    \item Total possible points: \textbf{\numpoints}.
+  \end{itemize}
+  \clearpage
 }
 
-% Column separation line
-\setlength{\columnseprule}{0.4pt}
-\setlength{\columnsep}{30pt}
+\newcommand{\emptypage}{%
+  \onecolumn{%
+  \newpage
+  \thispagestyle{empty}%
+  \null\vfill
+  \begin{center}\textit{Transition to the next practice section.}\end{center}
+  \vfill\null
+  \newpage
+  }
+}
+
+% Local transition page helper: only vary the middle title argument.
+\newcommand{\transitionpage}[1]{%
+  \onecolumn{%
+    \newpage\handout
+    {\textsc{Scholastic Aptitude Test (SAT) Mathematics}}
+    {\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA 4.0 license}}
+    {#1}
+    {Author: \BookAuthor}{Release: \generatedOn}
+    \input{../disclaimer-ColumbiaAcademy.tex}
+  }%
+}
+
+
+
+
+
+
+
+% Listings/TikZ/HTTP (optional for non--CS exams).
+\input{preamble-cs.tex}
+\input{../preamble/core.tex}
+ 
+\newcommand{\WorksheetAuthor}{Jaehoon Song}
+%================ Metadata ======================
+\newcommand{\BookTitle}{2025 SAT Summer Class}
+\newcommand{\BookSubtitle}{Assessment}
+% \newcommand{\BookAuthor}{Jaehoon Song (Lecturer)}
+% \newcommand{\BookInstitution}{Hans edu LLC (Columbia Academy)}
+\newcommand{\BookAuthor}{Jaehoon Song}
+\newcommand{\BookInstitution}{Institution Name}
+\newcommand{\BookEmblem}{./images/emblem.png} % Path to emblem image file
+%\newcommand{\BookSubtitle}{Subtitle (optional)} % uncomment if needed
+
+
+
+
+
+
+
+% Student PDF: comment out \printanswers. Answer-key PDF: uncomment (or use class option [answers]).
+\printanswers
+\ifprintanswers
+  \SolutionEmphasis{\color{blue}}
+  \CorrectChoiceEmphasis{\color{blue}}
+\fi
+
+
+
+
 
 \begin{document}
 
+\exammodulecover{SAT Mathematics}{Scholastic Aptitude Test}{Practice set: rewriting and manipulating algebraic expressions.}
+\setlength{\columnsep}{0.5in}%
 
-  % --- Switch module below (exam or answer key) ---
-  % \input{gt/exam01}
-  % \input{algebra/unit01}
-  % \input{algebra/unit02}
-  % \input{algebra/unit06}
-  % \input{algebra/unit07}
-  % \input{algebra/unit08}
-  % \input{algebra/unit09}
-  \input{algebra/unit11}
-  % \input{sat/exam01}
-  % \input{sat/exam01_answer}
+\twocolumn{
+  \begin{questions}
+    \input{sat/01-equivalent_expressions}
+    \input{sat/02-nonlinear_equations_and_systems_of_equations}
+  \end{questions}
+}
+\emptypage
+\twocolumn{
+  \begin{questions}
+    \input{sat/02-nonlinear_equations_and_systems_of_equations}
+  \end{questions}
+}
+
+\transitionpage{Drill Problems 1}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill01-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 2}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill02-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 3}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill03-sat}
+  \end{questions}
+}
+% \transitionpage{Drill Problems 4}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill04-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 5}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill05-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 6}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill06-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 7}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill07-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 8}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill08-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 9}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill09-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 10}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill10-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 11}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill11-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 12}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill12-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 13}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill13-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 14}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill14-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 15}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill15-sat}
+%   \end{questions}
+% }
+
+
+
 
 
 \end{document}

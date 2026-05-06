@@ -23,26 +23,23 @@
 \@ifpackageloaded{datetime2}{}{\usepackage{datetime2}}   % date/time formatting
 \@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}     % hyperlinks in PDF
 \@ifpackageloaded{enumitem}{}{\usepackage{enumitem}}     % custom enumerate/itemize labels
-\@ifpackageloaded{fancyhdr}{}{\usepackage{fancyhdr}}     % custom headers/footers
+\@ifpackageloaded{fancyhdr}{}{%
+  \@ifundefined{lhead}{%
+    \usepackage{fancyhdr}%
+  }{%
+    \PackageInfo{core}{Skipping fancyhdr; \string\lhead already defined by class/package}%
+  }%
+} % custom headers/footers
 \@ifpackageloaded{microtype}{}{\usepackage{microtype}}   % improved typography
 \@ifpackageloaded{lipsum}{}{\usepackage{lipsum}}         % dummy text for examples
-\@ifpackageloaded{xcolor}{}{\usepackage[table]{xcolor}   % colors for text, tables, tikz
-  \definecolor{redcolor}{rgb}{1.0, 0.0, 0.0}          
-  \definecolor{greencolor}{rgb}{0.3, 1.0, 0.3}        
-  \definecolor{bluecolor}{rgb}{0.0, 0.0, 1.0}         
-  \definecolor{yellowcolor}{rgb}{1.0, 1.0, 0.0}       
-  \definecolor{cyancolor}{rgb}{0.0, 1.0, 1.0}         
-  \definecolor{magentacolor}{rgb}{1.0, 0.0, 1.0}      
-  \definecolor{blackcolor}{rgb}{0, 0, 0}              
-  \definecolor{graycolor}{rgb}{0.2, 0.2, 0.2}         
-  \definecolor{darkgreen}{RGB}{0,128,0}               
-}
+\@ifpackageloaded{xcolor}{}{\usepackage{xcolor}}         % colors for text, tables, tikz
 \@ifpackageloaded{changepage}{}{\usepackage{changepage}} % adjust margins (adjustwidth)
 \@ifpackageloaded{etoolbox}{}{\usepackage{etoolbox}}     % programming tools for LaTeX
 \@ifpackageloaded{xparse}{}{\usepackage{xparse}}         % define flexible macros
 % =============== Tabular Data (Tables) ===============
 \@ifpackageloaded{tabularx}{}{\usepackage{tabularx}}     % tables with adjustable-width columns
 \@ifpackageloaded{array}{}{\usepackage{array}}           % extended array/tabular features
+\@ifpackageloaded{colortbl}{}{\usepackage{colortbl}}     % row/column colors in tables
 \@ifpackageloaded{longtable}{}{\usepackage{longtable}}   % multipage tables
 \@ifpackageloaded{caption}{}{\usepackage{caption}}       % customize captions
 \@ifpackageloaded{arydshln}{}{\usepackage{arydshln}}     % dashed/dotted lines in tables
@@ -53,10 +50,6 @@
 \usetikzlibrary{arrows.meta}
 % =====================================================
 \makeatother
-
-
-
-
 
 
 % ------------------------------------------------------------------------------
@@ -156,9 +149,6 @@
 }
 
 
-
-
-
 % ------------------------------------------------------------------------------
 % \generatedOn
 % ------------------------------------------------------------------------------
@@ -232,14 +222,18 @@
 %   {Prof. Smith}{Scribe: John}
 %   {}
 % ------------------------------------------------------------------------------
-\newcommand{\handout}[7][false]{%
+\NewDocumentCommand{\handout}{O{false} m m m m m g}{%
   % Only change page numbering if handout number (#7) is provided and not empty
-  \ifthenelse{\equal{#7}{}}{%
+  \IfNoValueTF{#7}{%
     % No handout number provided - keep default page numbering
   }{%
-    % Handout number provided - temporarily change page numbering
-    \let\oldthepage\thepage
-    \renewcommand{\thepage}{#7-\arabic{page}}%
+    \ifthenelse{\equal{#7}{}}{%
+      % Empty handout number provided - keep default page numbering
+    }{%
+      % Handout number provided - temporarily change page numbering
+      \let\oldthepage\thepage
+      \renewcommand{\thepage}{#7-\arabic{page}}%
+    }%
   }%
   
   \noindent
@@ -276,7 +270,6 @@
   \end{center}%
   \vspace*{4mm}%
 }
-
 
 
 % ------------------------------------------------------------------------------
@@ -355,8 +348,5 @@
     \vspace{3pt}\noindent\rule{\linewidth}{1pt}\vspace{10pt}%
   \endgroup
 }
-
-
-
 
 

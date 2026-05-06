@@ -1,0 +1,66 @@
+\documentclass[twocolumn]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.6in, top=1in]{geometry}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tasks}
+\usepackage{titlesec}
+\settasks{label=(\Alph*), label-width=2.2em, item-indent=2.2em, before-skip=0.4em, after-skip=0.6em}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% --- Custom Commands ---
+% Command for question points in the margin
+\newcommand{\points}[1]{\newline \phantom{ } \hfill \textbf{(#1 pts)} \newline \vspace{0.4cm}}
+% Answer blank (label on left, line on right). Optional: \blank[4em]. Default 3.5em.
+\newcommand{\blank}[1][4.5em]{\hfill\underline{\hspace{#1}}}
+% Vertical gaps (more p's = larger gap)
+\newcommand{\vgap}{\vspace{0.4cm}}
+\newcommand{\vgapp}{\vspace{1.2cm}}
+\newcommand{\vgappp}{\vspace{2.4cm}}
+
+% Red answer box: command (one-line) and environment (multi-line)
+\newcommand{\answerbox}[1]{%
+  \par\smallskip\noindent%
+  \fcolorbox{red}{red!8}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{%
+      \textbf{\textcolor{red}{Answer:}} #1%
+    }%
+  }\par\smallskip%
+}
+\newenvironment{answerboxenv}{%
+  \par\smallskip\noindent%
+  \fcolorbox{red}{red!8}{%
+    \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule}%
+    \textbf{\textcolor{red}{Answer:}}\par\noindent\ignorespaces
+}{%
+    \end{minipage}%
+  }\par\smallskip%
+}
+
+% Column separation line
+\setlength{\columnseprule}{0.4pt}
+\setlength{\columnsep}{30pt}
+
+\begin{document}
+
+
+  % --- Switch module below (exam or answer key) ---
+  % \input{gt/exam01}
+  % \input{algebra/unit01}
+  % \input{algebra/unit02}
+  % \input{algebra/unit06}
+  % \input{algebra/unit07}
+  % \input{algebra/unit08}
+  % \input{algebra/unit09}
+  \input{algebra/unit11}
+  % \input{sat/exam01}
+  % \input{sat/exam01_answer}
+
+
+\end{document}
