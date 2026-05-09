@@ -63,6 +63,161 @@ Which fragment correctly represents an \textbf{unordered} list with two items?
 \end{lstlisting}
 \end{solution}
 
+\question[4]
+In HTML, which pair correctly matches document metadata and visible page content?
+\begin{choices}
+  \CorrectChoice \texttt{<head>} for metadata and \texttt{<body>} for visible content
+  \choice \texttt{<body>} for metadata and \texttt{<head>} for visible content
+  \choice \texttt{<title>} for metadata and \texttt{<main>} for all visible content
+  \choice \texttt{<meta>} for metadata and \texttt{<html>} for visible content only
+\end{choices}
+\begin{solution}
+  \texttt{<head>} stores metadata (title, meta tags, stylesheet links), while \texttt{<body>} contains what users see in the rendered page.
+\end{solution}
+
+\question[4]
+What syntax is HTML primarily made of?
+\begin{choices}
+  \CorrectChoice Tags (elements and attributes)
+  \choice SQL clauses
+  \choice Java bytecode
+  \choice CSS declarations only
+\end{choices}
+\begin{solution}
+  HTML is markup composed of tags such as \texttt{<p>}, \texttt{<a>}, and \texttt{<div>}, with attributes for additional semantics and behavior.
+\end{solution}
+
+\question[4]
+What should appear first in a standard HTML5 document?
+\begin{choices}
+  \choice \texttt{<html>}
+  \CorrectChoice \texttt{<!DOCTYPE html>}
+  \choice \texttt{<head>}
+  \choice \texttt{<meta charset="utf-8">}
+\end{choices}
+\begin{solution}
+  The doctype declaration tells the browser to render in HTML5 standards mode.
+\end{solution}
+
+\question[4]
+In which parent element(s) are \texttt{<li>} list items valid?
+\begin{choices}
+  \choice Only \texttt{<ul>}
+  \choice Only \texttt{<ol>}
+  \CorrectChoice Both \texttt{<ul>} and \texttt{<ol>}
+  \choice \texttt{<table>}
+\end{choices}
+\begin{solution}
+  List items belong inside ordered lists (\texttt{<ol>}) or unordered lists (\texttt{<ul>}).
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} a semantic HTML element?
+\begin{choices}
+  \choice \texttt{<article>}
+  \choice \texttt{<nav>}
+  \CorrectChoice \texttt{<div>}
+  \choice \texttt{<section>}
+\end{choices}
+\begin{solution}
+  \texttt{<div>} is non-semantic and primarily used as a generic container; semantic elements convey structure and meaning.
+\end{solution}
+
+\question[4]
+Which HTML element is a void element (does not require a closing tag)?
+\begin{choices}
+  \CorrectChoice \texttt{<img>}
+  \choice \texttt{<p>}
+  \choice \texttt{<li>}
+  \choice \texttt{<table>}
+\end{choices}
+\begin{solution}
+  \texttt{<img>} is a void element. In HTML5, void elements do not wrap content and do not use a separate closing tag.
+\end{solution}
+
+\question[4]
+Which markup is the most correct table structure?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <tr><th>Header 1</th><th>Header 2</th></tr>
+  <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
+  <tr><td>Row 2, Cell 1</td><td>Row 2, Cell 2</td></tr>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <tr><th>Header 1</th><th>Header 2
+  <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
+  <td>Row 2, Cell 1</td><td>Row 2, Cell 2</td>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <thead>Header 1 Header 2</thead>
+  <tbody>Row 1, Cell 1 Row 1, Cell 2</tbody>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <td>Header 1</td><td>Header 2</td>
+</table>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  Proper tables use row containers (\texttt{<tr>}) and then header/data cells (\texttt{<th>} / \texttt{<td>}) within each row.
+\end{solution}
+
+\question[4]
+Which syntax is correct for an image element with source and alternate text?
+\begin{choices}
+  \CorrectChoice \texttt{<img src="image.jpg" alt="Description">}
+  \choice \texttt{<img href="image.jpg" alt="Description"></img>}
+  \choice \texttt{<image src="image.jpg" alt="Description">}
+  \choice \texttt{<img>image.jpg</img>}
+\end{choices}
+\begin{solution}
+  Use \texttt{src} for the image URL/path and \texttt{alt} for accessible fallback text.
+\end{solution}
+
+\question[4]
+Which fragment is a correct minimal HTML5 boilerplate skeleton?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlexam]
+<!DOCTYPE html>
+<html>
+  <head><title>Page Title</title></head>
+  <body><!-- Content goes here --></body>
+</html>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<html>
+  <title>Page Title</title>
+  <body>Content</body>
+</html>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<!DOCTYPE html>
+<head><body>Content</body></head>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<body>
+  <head><title>Page Title</title></head>
+</body>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  A correct skeleton starts with HTML5 doctype, then \texttt{<html>}, then separate \texttt{<head>} and \texttt{<body>} sections.
+\end{solution}
+
 
 \newpage
 
@@ -113,6 +268,155 @@ In the lab progression, \textbf{inline CSS} is applied by placing declarations w
 \begin{lstlisting}[style=htmlexam]
 <p style="color: navy; font-size: 14px;">Styled in place</p>
 \end{lstlisting}
+\end{solution}
+
+\question[4]
+Which option shows the most correct syntax for a basic login-style HTML form?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlexam]
+<form>
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username">
+  <label for="password">Password:</label>
+  <input id="password" type="password" name="password">
+  <input type="submit" value="Submit">
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<form>
+  <label username>Username</label>
+  <input text="username">
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<form>
+  <input id="username">
+  <input id="password">
+  <button>
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<form action>
+  <label>Username</label>
+  <input>
+  <submit>Submit</submit>
+</form>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  A well-formed example uses explicit \texttt{label}--\texttt{for}/\texttt{id} linkage and valid input \texttt{type} and \texttt{name} attributes.
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} part of the CSS box model?
+\begin{choices}
+  \choice Content
+  \choice Padding
+  \choice Border
+  \CorrectChoice Whitespace
+\end{choices}
+\begin{solution}
+  The canonical box model layers are content, padding, border, and margin.
+\end{solution}
+
+\question[4]
+Which style source has the highest normal cascade precedence (ignoring \texttt{!important})?
+\begin{choices}
+  \CorrectChoice Inline styles (style attribute)
+  \choice Embedded stylesheet rules only
+  \choice External stylesheet rules only
+  \choice Browser default stylesheet
+\end{choices}
+\begin{solution}
+  Inline styles are typically strongest in normal cascade order, then selector specificity and source order resolve ties among stylesheet rules.
+\end{solution}
+
+\question[4]
+In CSS, which selector targets a class?
+\begin{choices}
+  \CorrectChoice \texttt{.myClass}
+  \choice \texttt{\#myClass}
+  \choice \texttt{myClass}
+  \choice \texttt{*myClass}
+\end{choices}
+\begin{solution}
+  Class selectors begin with a period; ID selectors begin with \texttt{\#}.
+\end{solution}
+
+\question[4]
+In CSS, which selector targets an element with a specific id?
+\begin{choices}
+  \choice \texttt{.myId}
+  \CorrectChoice \texttt{\#myId}
+  \choice \texttt{myId()}
+  \choice \texttt{*myId}
+\end{choices}
+\begin{solution}
+  The hash prefix identifies ID selectors.
+\end{solution}
+
+\question[4]
+Given \texttt{.container \{ background-color: lightblue; \}}, what is the div background color?
+\begin{choices}
+  \CorrectChoice Light blue
+  \choice Green
+  \choice Transparent only
+  \choice Browser default gray
+\end{choices}
+\begin{solution}
+  The declaration explicitly sets the rendered background to light blue.
+\end{solution}
+
+\question[4]
+Given \texttt{.text \{ color: green; font-size: 16px; \}}, what is the paragraph text color?
+\begin{choices}
+  \choice Blue
+  \CorrectChoice Green
+  \choice Black
+  \choice Inherited and therefore unknown
+\end{choices}
+\begin{solution}
+  \texttt{color: green;} directly sets the text color to green.
+\end{solution}
+
+\question[4]
+Given \texttt{.center-text \{ text-align: center; \}}, how is the paragraph text aligned?
+\begin{choices}
+  \choice Left
+  \CorrectChoice Center
+  \choice Right
+  \choice Justified
+\end{choices}
+\begin{solution}
+  \texttt{text-align: center;} centers inline text content within the element's box.
+\end{solution}
+
+\question[4]
+Given \texttt{.box \{ border: 2px solid red; \}}, what is the border color?
+\begin{choices}
+  \choice Blue
+  \choice Black
+  \CorrectChoice Red
+  \choice Transparent
+\end{choices}
+\begin{solution}
+  The shorthand \texttt{border} sets width, style, and color in one declaration; here the color token is red.
+\end{solution}
+
+\question[4]
+Given the snippet with a yellow container and inner text styled as blue with margin/padding/red border, which description is most accurate?
+\begin{choices}
+  \CorrectChoice Yellow container background with blue text; the text element also has 20px margin, 10px padding, and a 2px red border
+  \choice Blue container background with yellow text and no spacing
+  \choice Yellow text with blue border on the container
+  \choice No visible style differences because classes do not apply to nested elements
+\end{choices}
+\begin{solution}
+  The outer class styles the container's dimensions and yellow background, while the inner class styles text color and spacing/border around that paragraph element.
 \end{solution}
 
 
@@ -524,6 +828,366 @@ You need a counter that increments on each button click. Which declaration is mo
 let count = 0;
 btn.onclick = () => { count += 1; };
 \end{lstlisting}
+\end{solution}
+
+\question[4]
+What happens when you access a \texttt{var} variable before its declaration line executes?
+\begin{choices}
+  \CorrectChoice Its value is \texttt{undefined} (due to hoisting of the declaration)
+  \choice It causes a ReferenceError in all cases
+  \choice It always returns \texttt{null}
+  \choice The script stops at parse time with syntax error
+\end{choices}
+\begin{solution}
+  \texttt{var} declarations are hoisted and initialized to \texttt{undefined} before execution reaches the assignment statement.
+\end{solution}
+
+\question[4]
+What is the output of the code with \texttt{x = 0}, \texttt{y = '0'}, \texttt{z = false}, and this condition chain?
+\begin{choices}
+  \CorrectChoice \texttt{A}
+  \choice \texttt{B}
+  \choice \texttt{C}
+  \choice \texttt{D}
+\end{choices}
+\begin{solution}
+  Loose equality makes both comparisons true: \texttt{0 == '0'} and \texttt{'0' == false}. Therefore the first branch runs and logs \texttt{A}.
+\end{solution}
+
+\question[4]
+What is logged by this loop?
+\begin{lstlisting}[style=jsexam]
+let result = '';
+for (let i = 5; i > 0; i--) {
+  if (i % 2 === 0) {
+    result += i;
+  }
+}
+console.log(result);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{42}
+  \choice \texttt{24}
+  \choice \texttt{54321}
+  \choice \texttt{""}
+\end{choices}
+\begin{solution}
+  Iteration visits 5,4,3,2,1 and appends only even values in that order, producing string \texttt{"42"}.
+\end{solution}
+
+\question[4]
+What happens when you access a \texttt{let} variable before its declaration line executes?
+\begin{choices}
+  \CorrectChoice A ReferenceError occurs (temporal dead zone)
+  \choice It evaluates to \texttt{undefined}
+  \choice It evaluates to \texttt{null}
+  \choice JavaScript silently creates a global variable
+\end{choices}
+\begin{solution}
+  \texttt{let} and \texttt{const} bindings exist in a temporal dead zone until their declaration is evaluated.
+\end{solution}
+
+\question[4]
+Which statement about JavaScript arrays is \textbf{false}?
+\begin{choices}
+  \CorrectChoice Arrays are fixed in size
+  \choice Arrays can hold mixed value types
+  \choice Arrays have a \texttt{length} property
+  \choice Arrays support methods like \texttt{push} and \texttt{pop}
+\end{choices}
+\begin{solution}
+  JavaScript arrays are dynamic and can grow or shrink.
+\end{solution}
+
+\question[4]
+Which is valid JSON syntax?
+\begin{choices}
+  \CorrectChoice \texttt{\{"name":"John Doe","age":30,"city":"New York"\}}
+  \choice \texttt{\{name:"John Doe", age:30, city:"New York"\}}
+  \choice \texttt{\{name='John Doe'; age=30; city='New York'\}}
+  \choice \texttt{[name: "John Doe", age: 30]}
+\end{choices}
+\begin{solution}
+  Standard JSON requires double-quoted property names and string values.
+\end{solution}
+
+\question[4]
+Which is a correct JavaScript object literal declaration?
+\begin{choices}
+  \CorrectChoice \texttt{let obj = \{ name: "John", age: 30 \};}
+  \choice \texttt{let obj = [ name: "John", age: 30 ];}
+  \choice \texttt{let obj = ( name: "John", age: 30 );}
+  \choice \texttt{let obj = \{ "name" = "John", "age" = 30 \};}
+\end{choices}
+\begin{solution}
+  Object literals use braces with key-value pairs separated by colons.
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} a falsy value in JavaScript?
+\begin{choices}
+  \CorrectChoice \texttt{[]}
+  \choice \texttt{0}
+  \choice \texttt{""}
+  \choice \texttt{null}
+\end{choices}
+\begin{solution}
+  Empty arrays are truthy, even though they may feel "empty" conceptually.
+\end{solution}
+
+\question[4]
+What is the result of this code?
+\begin{lstlisting}[style=jsexam]
+function addOne(value) {
+  value + 1;
+}
+let x = 5;
+addOne(x);
+console.log(x);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{5}
+  \choice \texttt{6}
+  \choice \texttt{undefined}
+  \choice ReferenceError
+\end{choices}
+\begin{solution}
+  Numbers are passed by value and the function does not return/assign the computed expression, so \texttt{x} stays 5.
+\end{solution}
+
+\question[4]
+What is logged after calling \texttt{changeUsername(user)}?
+\begin{lstlisting}[style=jsexam]
+function changeUsername(user) {
+  user.username = 'new-username';
+}
+let user = { username: 'first-username' };
+changeUsername(user);
+console.log(user.username);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{new-username}
+  \choice \texttt{first-username}
+  \choice \texttt{undefined}
+  \choice TypeError
+\end{choices}
+\begin{solution}
+  The object reference is shared; mutating its property inside the function updates the same object observed afterward.
+\end{solution}
+
+\question[4]
+What is the result of this \texttt{switch} code when \texttt{day = 3}?
+\begin{lstlisting}[style=jsexam]
+let day = 3;
+let message = "";
+switch (day) {
+  case 1:
+    message = "Monday";
+  case 2:
+    message += " Tuesday";
+  case 3:
+    message += " Wednesday";
+    break;
+  case 4:
+    message += " Thursday";
+  case 5:
+    message += " Friday";
+  default:
+    message += " Weekend";
+}
+console.log(message);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{Wednesday}
+  \choice \texttt{Monday Tuesday Wednesday}
+  \choice \texttt{Friday Weekend}
+  \choice \texttt{Weekend}
+\end{choices}
+\begin{solution}
+  Execution jumps to case 3, appends \texttt{" Wednesday"}, then breaks. No later cases run.
+\end{solution}
+
+\question[4]
+What is the result of this \texttt{switch} code when \texttt{day = 5}?
+\begin{lstlisting}[style=jsexam]
+let day = 5;
+let message = "";
+switch (day) {
+  case 1:
+    message = "Monday";
+  case 2:
+    message += " Tuesday";
+  case 3:
+    message += " Wednesday";
+    break;
+  case 4:
+    message += " Thursday";
+  case 5:
+    message += " Friday";
+  default:
+    message += " Weekend";
+}
+console.log(message);
+\end{lstlisting}
+\begin{choices}
+  \choice \texttt{Wednesday}
+  \CorrectChoice \texttt{Friday Weekend}
+  \choice \texttt{Monday Tuesday Wednesday}
+  \choice \texttt{Weekend Friday}
+\end{choices}
+\begin{solution}
+  Case 5 runs, then falls through to \texttt{default} (no \texttt{break}), so both fragments are appended.
+\end{solution}
+
+\question[4]
+Which is \textbf{not} a guaranteed benefit of template literals in JavaScript?
+\begin{choices}
+  \choice Easier interpolation with \texttt{\$\{...\}}
+  \choice Multi-line string support
+  \CorrectChoice Performance improvement for every string concatenation case
+  \choice Cleaner formatting for embedded expressions
+\end{choices}
+\begin{solution}
+  Template literals improve readability and ergonomics, but they do not universally guarantee faster performance.
+\end{solution}
+
+\question[4]
+What is the primary purpose of \texttt{async}/\texttt{await}?
+\begin{choices}
+  \CorrectChoice To handle asynchronous operations in a readable, sequential-looking style
+  \choice To force all asynchronous operations to become synchronous at runtime
+  \choice To remove the need for Promises internally
+  \choice To speed up CPU-bound loops automatically
+\end{choices}
+\begin{solution}
+  \texttt{await} pauses within an \texttt{async} function until a Promise settles, which simplifies async control flow.
+\end{solution}
+
+\question[4]
+What effect does this CSS have?
+\begin{lstlisting}[style=cssexam]
+.box {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  border: 5px solid black;
+  box-sizing: border-box;
+}
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice The element's total rendered box remains 100px by 100px (padding and border included)
+  \choice Content area stays 100px by 100px, making total size 150px by 150px
+  \choice Border and padding are ignored because of \texttt{box-sizing}
+  \choice The rule is invalid since width/height cannot mix with padding
+\end{choices}
+\begin{solution}
+  With \texttt{box-sizing: border-box}, declared width/height include content, padding, and border.
+\end{solution}
+
+\question[4]
+What is the output of \texttt{console.log(typeof typeof 1);}?
+\begin{choices}
+  \choice \texttt{"number"}
+  \CorrectChoice \texttt{"string"}
+  \choice \texttt{"undefined"}
+  \choice \texttt{"object"}
+\end{choices}
+\begin{solution}
+  \texttt{typeof 1} is the string \texttt{"number"}, and applying \texttt{typeof} again yields \texttt{"string"}.
+\end{solution}
+
+\question[4]
+Given:
+\begin{lstlisting}[style=htmlexam]
+<p class="text" id="special">Hello World</p>
+\end{lstlisting}
+\begin{lstlisting}[style=cssexam]
+p { color: blue; }
+.text { color: green; }
+#special { color: red; }
+\end{lstlisting}
+What color is the text?
+\begin{choices}
+  \choice Blue
+  \choice Green
+  \CorrectChoice Red
+  \choice Browser default black
+\end{choices}
+\begin{solution}
+  The ID selector \texttt{\#special} has higher specificity than class and element selectors, so red wins.
+\end{solution}
+
+\question[4]
+What is logged here?
+\begin{lstlisting}[style=jsexam]
+let arr = [1, 2, 3];
+let [a, b, c, d] = arr;
+console.log(d);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{undefined}
+  \choice \texttt{3}
+  \choice \texttt{null}
+  \choice ReferenceError
+\end{choices}
+\begin{solution}
+  Array destructuring assigns missing positions as \texttt{undefined}.
+\end{solution}
+
+\question[4]
+Given this HTML, what displays on the page?
+\begin{lstlisting}[style=htmlexam]
+<div>
+  <p>First</p>
+  <p style="display: none;">Second</p>
+  <p style="visibility: hidden;">Third</p>
+  <p>Fourth</p>
+</div>
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice First, then blank space where Third would be, then Fourth
+  \choice First, Second, Third, Fourth
+  \choice Only Fourth
+  \choice First and Third only
+\end{choices}
+\begin{solution}
+  \texttt{display: none} removes Second from layout. \texttt{visibility: hidden} hides Third but keeps its layout space.
+\end{solution}
+
+\question[4]
+What is the output of:
+\begin{lstlisting}[style=jsexam]
+const arr = [1, 2, 3, 4, 5];
+console.log(arr.slice(1, 3));
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{[2, 3]}
+  \choice \texttt{[1, 2, 3]}
+  \choice \texttt{[2, 3, 4]}
+  \choice \texttt{[3, 4]}
+\end{choices}
+\begin{solution}
+  \texttt{slice(start, end)} includes start and excludes end.
+\end{solution}
+
+\question[4]
+What are the three outputs here?
+\begin{lstlisting}[style=jsexam]
+let a = 3;
+let b = new Number(3);
+let c = 3;
+console.log(a == b);
+console.log(a === b);
+console.log(b === c);
+\end{lstlisting}
+\begin{choices}
+  \CorrectChoice \texttt{true, false, false}
+  \choice \texttt{true, true, true}
+  \choice \texttt{false, false, true}
+  \choice \texttt{false, true, false}
+\end{choices}
+\begin{solution}
+  Loose equality coerces wrapper objects; strict equality compares type/reference, so Number object and primitive are not strictly equal.
 \end{solution}
 
 \question[4]
