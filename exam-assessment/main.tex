@@ -8,7 +8,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{geometry}
-\geometry{letterpaper, margin=0.5in}
+\geometry{letterpaper, margin=1.0in}
 \usepackage{amsmath, amssymb}
 \usepackage{xcolor}
 \setlength{\emergencystretch}{1em}
@@ -78,11 +78,23 @@
     {\textsc{Scholastic Aptitude Test (SAT) Mathematics}}
     {\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{CC BY-NC-SA 4.0 license}}
     {#1}
-    {Author: \BookAuthor}{Release: \generatedOn}
+    {Author(s): \WorksheetAuthor}{Release: \generatedOn}
     \input{../disclaimer-ColumbiaAcademy.tex}
   }%
 }
 
+\newcommand{\statementbox}[2][0.86\linewidth]{%
+  \begin{center}
+    \begingroup
+    \setlength{\fboxsep}{10pt}
+    \fbox{%
+      \begin{minipage}{#1}
+        #2
+      \end{minipage}%
+    }
+    \endgroup
+  \end{center}
+}
 
 
 
@@ -92,7 +104,9 @@
 % Listings/TikZ/HTTP (optional for non--CS exams).
 \input{preamble-cs.tex}
 \input{../preamble/core.tex}
- 
+\usepackage{makecell}
+\usepackage{adjustbox}
+
 \newcommand{\WorksheetAuthor}{Jaehoon Song, Seungkyo Jeong}
 %================ Metadata ======================
 \newcommand{\BookTitle}{2025 SAT Summer Class}
@@ -115,12 +129,20 @@
 
 
 
-% % Student PDF: comment out \printanswers. Answer-key PDF: uncomment (or use class option [answers]).
-% \printanswers
-% \ifprintanswers
-%   \SolutionEmphasis{\color{blue}}
-%   \CorrectChoiceEmphasis{\color{blue}}
-% \fi
+
+
+
+
+
+
+
+
+% Student PDF: comment out \printanswers. Answer-key PDF: uncomment (or use class option [answers]).
+\printanswers
+\ifprintanswers
+  \SolutionEmphasis{\color{blue}}
+  \CorrectChoiceEmphasis{\color{blue}}
+\fi
 
 
 
@@ -131,40 +153,40 @@
 
 \begin{document}
 
-\exammodulecover{SAT Mathematics}{Scholastic Aptitude Test}{Practice set: rewriting and manipulating algebraic expressions.}
-\setlength{\columnsep}{0.5in}%
+% \exammodulecover{SAT Mathematics}{Scholastic Aptitude Test}
+% {SAT Math Assessment practice problems.}
+% \setlength{\columnsep}{0.5in}%
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat/01-equivalent_expressions}
+%     \input{sat/02-nonlinear_equations_and_systems_of_equations}
+%   \end{questions}
+% }
+% \emptypage
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat/02-nonlinear_equations_and_systems_of_equations}
+%   \end{questions}
+% }
 
-\twocolumn{
-  \begin{questions}
-    \input{sat/01-equivalent_expressions}
-    \input{sat/02-nonlinear_equations_and_systems_of_equations}
-  \end{questions}
-}
-\emptypage
-\twocolumn{
-  \begin{questions}
-    \input{sat/02-nonlinear_equations_and_systems_of_equations}
-  \end{questions}
-}
-
-\transitionpage{Drill Problems 1}
-\twocolumn{
-  \begin{questions}
-    \input{sat-drill/drill01-sat}
-  \end{questions}
-}
-\transitionpage{Drill Problems 2}
-\twocolumn{
-  \begin{questions}
-    \input{sat-drill/drill02-sat}
-  \end{questions}
-}
-\transitionpage{Drill Problems 3}
-\twocolumn{
-  \begin{questions}
-    \input{sat-drill/drill03-sat}
-  \end{questions}
-}
+% \transitionpage{Drill Problems 1}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill01-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 2}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill02-sat}
+%   \end{questions}
+% }
+% \transitionpage{Drill Problems 3}
+% \twocolumn{
+%   \begin{questions}
+%     \input{sat-drill/drill03-sat}
+%   \end{questions}
+% }
 % \transitionpage{Drill Problems 4}
 % \twocolumn{
 %   \begin{questions}
@@ -180,63 +202,63 @@
 % \transitionpage{Drill Problems 6}
 % \twocolumn{
 %   \begin{questions}
-%     \input{sat-drill/drill06-sat}
+%     \input{sat-drill/drill06-sat} 
 %   \end{questions}
 % }
-% \transitionpage{Drill Problems 7}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill07-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 8}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill08-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 9}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill09-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 10}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill10-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 11}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill11-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 12}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill12-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 13}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill13-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 14}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill14-sat}
-%   \end{questions}
-% }
-% \transitionpage{Drill Problems 15}
-% \twocolumn{
-%   \begin{questions}
-%     \input{sat-drill/drill15-sat}
-%   \end{questions}
-% }
+\transitionpage{Drill Problems 7}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill07-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 8}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill08-sat} 
+  \end{questions}
+}
+\transitionpage{Drill Problems 9}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill09-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 10}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill10-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 11}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill11-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 12}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill12-sat} 
+  \end{questions}
+}
+\transitionpage{Drill Problems 13}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill13-sat} 
+  \end{questions}
+}
+\transitionpage{Drill Problems 14}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill14-sat}
+  \end{questions}
+}
+\transitionpage{Drill Problems 15}
+\twocolumn{
+  \begin{questions}
+    \input{sat-drill/drill15-sat}
+  \end{questions}
+}
 
 
 
