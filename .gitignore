@@ -1,9 +1,10 @@
-# --- Generated from ./.gitignores on Tue Apr 14 18:30:13 2026 ---
+# --- Generated from ./.gitignores on Tue May 12 03:25:03 2026 ---
 
 #############################################
 # A.gitignore
 #############################################
 #################### ALL PURPOSE GITIGNORE ####################
+.gemini/
 project2305*
 _*/
 tmp*/
