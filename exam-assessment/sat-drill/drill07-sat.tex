@@ -3,26 +3,33 @@
 \begingradingrange{sat-drill-07}
 \subsection*{SAT Drill 7}
 
-
 \question[1]
+Data set $A$ and data set $B$ each consist of 27 values. The following table shows the frequencies of the values for each data set. Which of the following statements best compares the means of the two data sets?
 \begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Value} & \textbf{Data set A frequency} & \textbf{Data set B frequency} \\
-\hline
-30 & 2 & 9 \\
-\hline
-34 & 4 & 7 \\
-\hline
-38 & 5 & 5 \\
-\hline
-42 & 7 & 4 \\
-\hline
-46 & 9 & 2 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Freq.: A \& B}\label{tab:sat-drill-07-freq-datasets-ab}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|c|c|c|} 
+    \hline
+    \cellcolor[HTML]{E0E0E0}\textbf{Value} &
+    \cellcolor[HTML]{E0E0E0}\makecell{\textbf{Data set A}\\\textbf{frequency}} &
+    \cellcolor[HTML]{E0E0E0}\makecell{\textbf{Data set B}\\\textbf{frequency}} \\
+    \hline
+    30 & 2 & 9 \\
+    \hline
+    34 & 4 & 7 \\
+    \hline
+    38 & 5 & 5 \\
+    \hline
+    42 & 7 & 4 \\
+    \hline
+    46 & 9 & 2 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-Data set $A$ and data set $B$ each consist of 27 values. The table shows the frequencies of the values for each data set. Which of the following statements best compares the means of the two data sets?
 \begin{choices}
   \choice The mean of data set $A$ is greater than the mean of data set $B$.
   \choice The mean of data set $A$ is less than the mean of data set $B$.
@@ -32,12 +39,16 @@ Data set $A$ and data set $B$ each consist of 27 values. The table shows the fre
 
 \question[1]
 A data set of 27 different numbers has a mean of 33 and a median of 33. A new data set is created by adding 7 to each number in the original data set that is greater than the median and subtracting 7 from each number in the original data set that is less than the median. Which of the following measures does NOT have the same value in both the original and new data sets?
-\begin{choices}
+\begin{choices} 
   \choice Median
   \choice Mean
   \choice Sum of the numbers
   \CorrectChoice Standard deviation
 \end{choices}
+
+
+\newpage
+
 
 \question[1]
 What is the median of the data shown?\\
@@ -47,45 +58,55 @@ $$73,74,75,77,79,82,84,85,91$$
 \end{solution}
 
 \question[1]
+The following table shows the number of international tourist arrivals, rounded to the nearest tenth of a million, to the top nine tourist destinations in both 2012 and 2013. Based on the information given in the table, how much greater, in millions, was the median number of international tourist arrivals to the top nine tourist destinations in 2013 than the median number in 2012, to the nearest tenth of a million?
 \begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-\multicolumn{3}{|c|}{International Tourist Arrivals, in millions} \\
-\hline
-\textbf{Country} & \textbf{2012} & \textbf{2013} \\
-\hline
-France & 83.0 & 84.7 \\
-\hline
-United States & 66.7 & 69.8 \\
-\hline
-Spain & 57.5 & 60.7 \\
-\hline
-China & 57.7 & 55.7 \\
-\hline
-Italy & 46.4 & 47.7 \\
-\hline
-Turkey & 35.7 & 37.8 \\
-\hline
-Germany & 30.4 & 31.5 \\
-\hline
-United Kingdom & 26.3 & 32.2 \\
-\hline
-Russia & 24.7 & 28.4 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Tourist arrivals (millions)}\label{tab:sat-drill-07-tourist-arrivals}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|l|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\textbf{Country} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2012} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2013} \\
+    \hline
+    France & 83.0 & 84.7 \\
+    \hline
+    United States & 66.7 & 69.8 \\
+    \hline
+    Spain & 57.5 & 60.7 \\
+    \hline
+    China & 57.7 & 55.7 \\
+    \hline
+    Italy & 46.4 & 47.7 \\
+    \hline
+    Turkey & 35.7 & 37.8 \\
+    \hline
+    Germany & 30.4 & 31.5 \\
+    \hline
+    United Kingdom & 26.3 & 32.2 \\
+    \hline
+    Russia & 24.7 & 28.4 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-The table above shows the number of international tourist arrivals, rounded to the nearest tenth of a million, to the top nine tourist destinations in both 2012 and 2013. Based on the information given in the table, how much greater, in millions, was the median number of international tourist arrivals to the top nine tourist destinations in 2013 than the median number in 2012, to the nearest tenth of a million?
 \begin{solution}
 1.3
 \end{solution}
+
+
+\newpage
+
 
 \question[1]
 The dot plots represent the distributions of values in data sets $A$ and $B$.
 \begin{center}
 \begin{tabular}{cc}
+\includegraphics[width=0.40\linewidth]{images/2025_06_15_04f7426dc644de311e92g-15(1)} &
+\includegraphics[width=0.40\linewidth]{images/2025_06_15_04f7426dc644de311e92g-15} \\
 Data Set A. & Data Set B. \\
-\includegraphics[width=0.23\textwidth]{images/2025_06_15_04f7426dc644de311e92g-15(1)} &
-\includegraphics[width=0.23\textwidth]{images/2025_06_15_04f7426dc644de311e92g-15} \\
 \end{tabular}
 \end{center}
 Which of the following statements must be true?
@@ -102,19 +123,6 @@ Which of the following statements must be true?
   \choice Neither I nor II
 \end{choices}
 
-  
-
-\question[1]
-\begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_04f7426dc644de311e92g-16}
-\end{center}
-Two data sets of 23 integers each are summarized in the histograms shown. For each of the histograms, the first interval represents the frequency of integers greater than or equal to 10, but less than 20. The second interval represents the frequency of integers greater than or equal to 20, but less than 30, and so on. What is the smallest possible difference between the mean of data set $A$ and the mean of data set $B$?
-\begin{choices}
-  \choice 0
-  \choice 1
-  \choice 10
-  \choice 23
-\end{choices}
 
 \question[1]
 What is the mean of the data shown?\\
@@ -126,31 +134,55 @@ $$2,9,14,23,32$$
   \choice 32
 \end{choices}
 
+\newpage
+
 \question[1]
+Two data sets of 23 integers each are summarized in the histograms shown. For each of the histograms, the first interval represents the frequency of integers greater than or equal to 10, but less than 20. The second interval represents the frequency of integers greater than or equal to 20, but less than 30, and so on. What is the smallest possible difference between the mean of data set $A$ and the mean of data set $B$?
 \begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Value & Frequency (probability) \\
-\hline
-1 & $a$ \\
-\hline
-2 & $2a$ \\
-\hline
-3 & $3a$ \\
-\hline
-4 & $2a$ \\
-\hline
-5 & $a$ \\
-\hline
-\end{tabular}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_04f7426dc644de311e92g-16}
 \end{center}
-The frequency distribution above summarizes a set of data, where $a$ is a positive integer. How much greater is the mean of the set of data than the median?
+\begin{choices}
+  \choice 0
+  \choice 1
+  \choice 10
+  \choice 23
+\end{choices}
+
+
+\question[1]
+The frequency distribution in the following table summarizes a set of data, where $a$ is a positive integer. How much greater is the mean of the set of data than the median?
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Value and frequency}\label{tab:sat-drill-07-value-freq-prob}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\textbf{Value} &
+    \cellcolor[HTML]{E0E0E0}\makecell{\textbf{Frequency}\\\textbf{(probability)}} \\
+    \hline
+    1 & $a$ \\
+    \hline
+    2 & $2a$ \\
+    \hline
+    3 & $3a$ \\
+    \hline
+    4 & $2a$ \\
+    \hline
+    5 & $a$ \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
+\end{center}
 \begin{choices}
   \CorrectChoice 0
   \choice 1
   \choice 2
   \choice 3
 \end{choices}
+
+\newpage
 
 \question[1]
 Two different teams consisting of 10 members each ran in a race. Each member's completion time of the race was recorded. The mean of the completion times for each team was calculated and is shown below.\\
@@ -180,11 +212,14 @@ The mean score of 8 players in a basketball game was 14.5 points. If the highest
   \choice 36
 \end{choices}
 
+\newpage
+
+
 \question[1]
-\begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-11}
-\end{center}
 Which of the following equations is the most appropriate linear model for the data shown in the scatterplot?
+\begin{center}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-11}
+\end{center}
 \begin{choices}
   \choice $y=-1.9x-10.1$
   \choice $y=-1.9x+10.1$
@@ -194,11 +229,15 @@ Which of the following equations is the most appropriate linear model for the da
 
   
 
+\newpage
+
+
+
 \question[1]
 A study was done to determine a new car's stopping distance when it was traveling at different speeds. The study was done on a dry road with good surface conditions. The results are shown below, along with the graph of a quadratic function that models the data.
 
 \begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-12}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-12}
 \end{center}
 According to the model, which of the following is the best estimate for the stopping distance, in feet, if the vehicle was traveling 55 miles per hour?
 \begin{choices}
@@ -208,11 +247,15 @@ According to the model, which of the following is the best estimate for the stop
   \choice 250
 \end{choices}
 
+
+\newpage
+
+
 \question[1]
 The scatterplot shows the temperature $y$, in ${ }^{\circ} \mathrm{F}$, recorded by a meteorologist at various times $x$, in days since June 1.
 
 \begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-13}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-13}
 \end{center}
 During which of the following time periods did the greatest increase in recorded temperature take place?
 \begin{choices}
@@ -222,11 +265,15 @@ During which of the following time periods did the greatest increase in recorded
   \choice From $x=1$ to $x=2$
 \end{choices}
 
+
+\newpage
+
+
 \question[1]
-\begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-14}
-\end{center}
 Which of the following could be the equation for a line of best fit for the data shown in the scatterplot above?
+\begin{center}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-14}
+\end{center}
 \begin{choices}
   \choice $y=3x+0.8$
   \choice $y=0.8x+3$
@@ -240,7 +287,7 @@ Which of the following could be the equation for a line of best fit for the data
 The scatterplot below shows the amount of electric energy generated, in millions of megawatt-hours, by nuclear sources over a 10-year period.
 
 \begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-15}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-15}
 \end{center}
 Of the following equations, which best models the data in the scatterplot?
 \begin{choices}
@@ -251,12 +298,12 @@ Of the following equations, which best models the data in the scatterplot?
 \end{choices}
 
   
-
+ 
 \question[1]
-\begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-16}
-\end{center}
 Each dot in the scatterplot above represents the temperature and the number of people who visited a beach in Lagos, Nigeria, on one of eleven different days. The line of best fit for the data is also shown. According to the line of best fit, what is the number of people, rounded to the nearest 10, predicted to visit this beach on a day with an average temperature of $32^{\circ} \mathrm{C}$?
+\begin{center}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-16}
+\end{center}
 \begin{choices}
   \choice 440
   \choice 460
@@ -264,11 +311,15 @@ Each dot in the scatterplot above represents the temperature and the number of p
   \choice 500
 \end{choices}
 
+
+\newpage
+
+
 \question[1]
 The line graph shows the estimated number of chipmunks in a state park on April 1 of each year from 1989 to 1999.
 
 \begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-17}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-17}
 \end{center}
 Based on the line graph, in which year was the estimated number of chipmunks in the state park the greatest?
 \begin{choices}
@@ -283,7 +334,7 @@ In which of the following tables is the relationship between the values of $x$ a
 \begin{choices}
   \choice
   \begin{center}
-  \begin{tabular}{|r|r|r|r|r|}
+  \begin{tabular}{|c|c|c|c|c|}
   \hline
   $x$ & 1 & 2 & 3 & 4 \\
   \hline
@@ -294,7 +345,7 @@ In which of the following tables is the relationship between the values of $x$ a
 
   \choice
   \begin{center}
-  \begin{tabular}{|l|l|l|r|r|}
+  \begin{tabular}{|c|c|c|c|c|}
   \hline
   $x$ & 1 & 2 & 3 & 4 \\
   \hline
@@ -305,7 +356,7 @@ In which of the following tables is the relationship between the values of $x$ a
 
   \choice
   \begin{center}
-  \begin{tabular}{|r|r|r|r|r|}
+  \begin{tabular}{|c|c|c|c|c|}
   \hline
   $x$ & 1 & 2 & 3 & 4 \\
   \hline
@@ -316,7 +367,7 @@ In which of the following tables is the relationship between the values of $x$ a
 
   \CorrectChoice
   \begin{center}
-  \begin{tabular}{|r|r|r|r|r|}
+  \begin{tabular}{|c|c|c|c|c|}
   \hline
   $x$ & 1 & 2 & 3 & 4 \\
   \hline
@@ -326,28 +377,20 @@ In which of the following tables is the relationship between the values of $x$ a
   \end{center}
 \end{choices}
 
+
+\newpage
+
+
 \question[1]
-\begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-19}
-\end{center}
 The graph above shows the relationship between the speed of a particular car, in miles per hour, and its corresponding braking distance, in feet. Approximately how many feet greater will the car's braking distance be when the car is traveling at 50 miles per hour than when the car is traveling at 30 miles per hour?
+\begin{center}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-19}
+\end{center}
 \begin{choices}
   \choice 75
   \choice 125
   \choice 175
   \choice 250
-\end{choices}
-
-\question[1]
-\begin{center}
-  \includegraphics[width=0.40\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-20}
-\end{center}
-Which of the following could be an equation for a line of best fit for the data in the scatterplot?
-\begin{choices}
-  \choice $y=-x+6$
-  \choice $y=-x-6$
-  \choice $y=6x+1$
-  \choice $y=6x-1$
 \end{choices}
 
 \question[1]
@@ -359,23 +402,45 @@ A wind turbine completes 900 revolutions in 50 minutes. At this rate, how many r
   \choice 1,400
 \end{choices}
 
+\newpage
+
+
 \question[1]
+Which of the following could be an equation for a line of best fit for the data in the scatterplot?
 \begin{center}
-\begin{tabular}{|c|c|}
-\hline
-$x$ & $y$ \\
-\hline
-1 & 4 \\
-\hline
-3 & 12 \\
-\hline
-5 & 20 \\
-\hline
-40 & $k$ \\
-\hline
-\end{tabular}
+  \includegraphics[width=0.90\linewidth]{images/2025_06_15_c6d1fe032100fbb48447g-20}
 \end{center}
-In the table above, the ratio of $y$ to $x$ for each ordered pair is constant. What is the value of $k$?
+\begin{choices}
+  \choice $y=-x+6$
+  \choice $y=-x-6$
+  \choice $y=6x+1$
+  \choice $y=6x-1$
+\end{choices}
+
+
+\question[1]
+In the table below, the ratio of $y$ to $x$ for each ordered pair is constant. What is the value of $k$?
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{$x$ and $y$}\label{tab:sat-drill-07-xy-values}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}{$x$} & \cellcolor[HTML]{E0E0E0}{$y$} \\
+    \hline
+    1 & 4 \\
+    \hline
+    3 & 12 \\
+    \hline
+    5 & 20 \\
+    \hline
+    40 & $k$ \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
+\end{center}
 \begin{choices}
   \choice 28
   \choice 36
@@ -383,47 +448,63 @@ In the table above, the ratio of $y$ to $x$ for each ordered pair is constant. W
   \CorrectChoice 160
 \end{choices}
 
+
+
+\newpage
+
+
+
 \question[1]
+One method of calculating the approximate age, in years, of a tree of a particular species is to multiply the diameter of the tree, in inches, by a constant called the growth factor for that species. The following table gives the growth factors for eight species of trees. If a white birch tree and a pin oak tree each now have a diameter of 1 foot, which of the following will be closest to the difference, in inches, of their diameters 10 years from now? (1 foot = 12 inches)
 \begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Species of tree & Growth factor \\
-\hline
-Red maple & 4.5 \\
-\hline
-River birch & 3.5 \\
-\hline
-Cottonwood & 2.0 \\
-\hline
-Black walnut & 4.5 \\
-\hline
-White birch & 5.0 \\
-\hline
-American elm & 4.0 \\
-\hline
-Pin oak & 3.0 \\
-\hline
-Shagbark hickory & 7.5 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Growth factors}\label{tab:sat-drill-07-tree-growth-factors}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|l|c|} 
+    \hline
+    \cellcolor[HTML]{E0E0E0}\textbf{Species of tree} &
+    \cellcolor[HTML]{E0E0E0}\textbf{Growth factor} \\
+    \hline
+    Red maple & 4.5 \\
+    \hline
+    River birch & 3.5 \\
+    \hline
+    Cottonwood & 2.0 \\
+    \hline
+    Black walnut & 4.5 \\
+    \hline
+    White birch & 5.0 \\
+    \hline
+    American elm & 4.0 \\
+    \hline
+    Pin oak & 3.0 \\
+    \hline
+    \makecell[l]{Shagbark\\hickory} & 7.5 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-One method of calculating the approximate age, in years, of a tree of a particular species is to multiply the diameter of the tree, in inches, by a constant called the growth factor for that species. The table above gives the growth factors for eight species of trees. If a white birch tree and a pin oak tree each now have a diameter of 1 foot, which of the following will be closest to the difference, in inches, of their diameters 10 years from now? (1 foot = 12 inches)
 \begin{choices}
   \choice 1.0
   \choice 1.2
-  \CorrectChoice 1.3
+  \CorrectChoice 1.3 
   \choice 1.4
 \end{choices}
 
 \question[1]
-The ratio of $t$ to $u$ is 1 to 2, and $t=10$.\\
-What is the value of $u$?
+The ratio of $t$ to $u$ is 1 to 2, and $t=10$. What is the value of $u$?
 \begin{choices}
   \choice 2
   \choice 5
   \choice 10
   \CorrectChoice 20
 \end{choices}
+
+
+\newpage
+
 
 \question[1]
 A special camera is used for underwater ocean research. When the camera is at a depth of 58 fathoms, what is the camera's depth in feet? (1 fathom = 6 feet)
@@ -440,6 +521,8 @@ A sample of oak has a density of 807 kilograms per cubic meter. The sample is in
   \choice 1,107
 \end{choices}
 
+
+
 \question[1]
 On April 18, 1775, Paul Revere set off on his midnight ride from Charlestown to Lexington. 
 If he had ridden straight to Lexington without stopping, he would have traveled 11 miles 
@@ -449,6 +532,9 @@ the nearest tenth of a mile per \underbar{hour}?
 25.4
 \end{solution}
 
+
+\newpage
+
 \question[1]
 How many yards are equivalent to 612 inches? (1 yard = 36 inches)
 \begin{choices}
@@ -457,6 +543,8 @@ How many yards are equivalent to 612 inches? (1 yard = 36 inches)
   \choice 576
   \choice 22,032
 \end{choices}
+
+
 
 \question[1]
 Rectangle $A$ has length 15 and width $w$. Rectangle $B$ has length 20 and the same length-to-width ratio as rectangle $A$. What is the width of rectangle $B$ in terms of $w$?
@@ -481,6 +569,9 @@ Last year, Cedric had 35 plants in his garden. This year, the number of plants i
 \begin{solution}
 56
 \end{solution}
+
+
+\newpage
 
 \question[1]
 What is $23\%$ of 100?
@@ -508,6 +599,15 @@ The population of City A increased by $7\%$ from 2015 to 2016. If the 2016 popul
   \CorrectChoice 1.07
   \choice 1.7
 \end{choices}
+
+\question[1]
+210 is $p\%$ greater than 30. What is the value of $p$?
+\begin{solution}
+600
+\end{solution}
+
+
+\newpage
 
 \question[1]
 What is $10\%$ of 470?
@@ -542,11 +642,8 @@ The number $a$ is $70\%$ less than the positive number $b$. The number $c$ is $8
 0.54
 \end{solution}
 
-\question[1]
-210 is $p\%$ greater than 30. What is the value of $p$?
-\begin{solution}
-600
-\end{solution}
+
+\newpage
 
 \question[1]
 The value of $z$ is 1.13 times 100. The value of $z$ is what percent greater than 100?
@@ -575,6 +672,9 @@ A study was done on the weights of different types of fish in a pond. A random s
   \CorrectChoice Approximately $30\%$ of all largemouth bass in the pond weigh more than 2 pounds.
 \end{choices}
 
+
+\newpage
+
 \question[1]
 A park ranger asked a random sample of visitors how far they hiked during their visit. Based on the responses, the estimated mean was found to be 4.5 miles, with an associated margin of error of 0.5 miles. Which of the following is the best conclusion from these data?
 \begin{choices}
@@ -587,22 +687,32 @@ A park ranger asked a random sample of visitors how far they hiked during their 
   
 
 \question[1]
+The data on the coat color and eye color for 48 Himalayan kittens available for adoption were collected and summarized in the table below. What fraction of the chocolate-colored kittens has deep blue eyes?
 \begin{center}
-\begin{tabular}{|c|c|c|c|}
-\hline
-Coat color & \multicolumn{3}{|c|}{Eye color} \\
-\hline
- & Deep blue & Light brown & Total \\
-\hline
-Cream-tortoiseshell & 16 & 16 & 32 \\
-\hline
-Chocolate & 12 & 4 & 16 \\
-\hline
-Total & 28 & 20 & 48 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Kittens: coat and eyes}\label{tab:sat-drill-07-himalayan-kittens}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\textbf{Coat color} &
+    \multicolumn{3}{|c|}{\cellcolor[HTML]{E0E0E0}\textbf{Eye color}} \\
+    \hline
+    \cellcolor[HTML]{E0E0E0}\mbox{} &
+    \cellcolor[HTML]{E0E0E0}\textbf{Deep blue} &
+    \cellcolor[HTML]{E0E0E0}\textbf{Light brown} &
+    \cellcolor[HTML]{E0E0E0}\textbf{Total} \\
+    \hline
+    \makecell{Cream-\\{}tortoiseshell} & 16 & 16 & 32 \\
+    \hline
+    Chocolate & 12 & 4 & 16 \\
+    \hline
+    Total & 28 & 20 & 48 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-The data on the coat color and eye color for 48 Himalayan kittens available for adoption were collected and summarized in the table above. What fraction of the chocolate-colored kittens has deep blue eyes?
 \begin{choices}
   \choice $\frac{12}{48}$
   \choice $\frac{12}{28}$
@@ -610,23 +720,38 @@ The data on the coat color and eye color for 48 Himalayan kittens available for 
   \CorrectChoice $\frac{12}{16}$
 \end{choices}
 
+
+\newpage
+
 \question[1]
+The following table shows the number of students from two different high schools who completed summer internships in each of five years. No student attended both schools. Of the students who completed a summer internship in 2010, which of the following represents the fraction of students who were from Valley High School?
 \begin{center}
-\begin{tabular}{|l|c|c|c|c|c|}
-\hline
-High school & \multicolumn{5}{|c|}{Year} \\
-\hline
- & 2008 & 2009 & 2010 & 2011 & 2012 \\
-\hline
-Foothill & 87 & 80 & 75 & 76 & 70 \\
-\hline
-Valley & 44 & 54 & 65 & 76 & 82 \\
-\hline
-Total & 131 & 134 & 140 & 152 & 152 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Internships by year}\label{tab:sat-drill-07-summer-internships}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\makecell[l]{\textbf{High school}} &
+    \multicolumn{5}{|c|}{\cellcolor[HTML]{E0E0E0}\textbf{Year}} \\
+    \hline
+    \cellcolor[HTML]{E0E0E0}\mbox{} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2008} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2009} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2010} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2011} &
+    \cellcolor[HTML]{E0E0E0}\textbf{2012} \\
+    \hline
+    Foothill & 87 & 80 & 75 & 76 & 70 \\
+    \hline
+    Valley & 44 & 54 & 65 & 76 & 82 \\
+    \hline
+    Total & 131 & 134 & 140 & 152 & 152 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-The table above shows the number of students from two different high schools who completed summer internships in each of five years. No student attended both schools. Of the students who completed a summer internship in 2010, which of the following represents the fraction of students who were from Valley High School?
 \begin{choices}
   \choice $\frac{10}{140}$
   \CorrectChoice $\frac{65}{140}$
@@ -635,22 +760,29 @@ The table above shows the number of students from two different high schools who
 \end{choices}
 
 \question[1]
+A total of 25 men registered for singing lessons. The frequency table below shows how many of these singers have certain voice types. If one of these singers is selected at random, what is the probability he is a baritone?
 \begin{center}
-\begin{tabular}{|c|c|}
-\hline
-Voice type & Number of singers \\
-\hline
-Countertenor & 4 \\
-\hline
-Tenor & 6 \\
-\hline
-Baritone & 10 \\
-\hline
-Bass & 5 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Voice types}\label{tab:sat-drill-07-voice-types}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\textbf{Voice type} &
+    \cellcolor[HTML]{E0E0E0}\makecell{\textbf{Number of}\\\textbf{singers}} \\
+    \hline
+    Countertenor & 4 \\
+    \hline
+    Tenor & 6 \\
+    \hline
+    Baritone & 10 \\
+    \hline
+    Bass & 5 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-A total of 25 men registered for singing lessons. The frequency table shows how many of these singers have certain voice types. If one of these singers is selected at random, what is the probability he is a baritone?
 \begin{choices}
   \choice 0.10
   \CorrectChoice 0.40
@@ -658,45 +790,69 @@ A total of 25 men registered for singing lessons. The frequency table shows how 
   \choice 0.67
 \end{choices}
 
+
+\newpage
+
 \question[1]
-A survey taken by 1,000 students at a school asked whether they played school sports. The table below summarizes all 1,000 responses from the students surveyed.
+A survey taken by 1,000 students at a school asked whether they played school sports. The following table summarizes all 1,000 responses from the students surveyed. How many of the males surveyed responded that they do not play a school sport?
 \begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
- & Males & Females \\
-\hline
-Play a school sport & 312 & 220 \\
-\hline
-Do not play a school sport & $?$ & 216 \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Sports survey}\label{tab:sat-drill-07-school-sports-survey}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|l|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\mbox{} &
+    \cellcolor[HTML]{E0E0E0}\textbf{Males} &
+    \cellcolor[HTML]{E0E0E0}\textbf{Females} \\
+    \hline
+    \makecell[l]{\textbf{Play a}\\\textbf{school sport}} & 312 & 220 \\
+    \hline
+    \makecell[l]{\textbf{Do not play a}\\\textbf{school sport}} & $?$ & 216 \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-How many of the males surveyed responded that they do not play a school sport?
 \begin{choices}
   \choice 109
   \CorrectChoice 252
   \choice 468
   \choice 688
-\end{choices}
+\end{choices} 
 
 \question[1]
+Human blood can be classified into four common blood types-A, B, AB, and O. It is also characterized by the presence $(+)$ or absence $(-)$ of the rhesus factor. The following table shows the distribution of blood type and rhesus factor for a group of people. If one of these people who is rhesus negative $(-)$ is chosen at random, the probability that the person has blood type $B$ is $\frac{1}{9}$. What is the value of $x$?
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
- & \multicolumn{4}{|c|}{Blood type} \\
-\hline
-Rhesus factor & A & B & AB & O \\
-\hline
-+ & 33 & 9 & 3 & 37 \\
-\hline
-- & 7 & 2 & 1 & $x$ \\
-\hline
-\end{tabular}
+  \renewcommand{\arraystretch}{1.3}
+  \setlength{\tabcolsep}{0.5em}
+  \captionof{table}{Blood type and Rh}\label{tab:sat-drill-07-blood-rhesus}%
+  \vspace{0.35em}
+  \begin{adjustbox}{max width=\linewidth,clip=false,margin=0pt}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor[HTML]{E0E0E0}\mbox{} &
+    \multicolumn{4}{|c|}{\cellcolor[HTML]{E0E0E0}\textbf{Blood type}} \\
+    \hline
+    \cellcolor[HTML]{E0E0E0}\makecell{\textbf{Rhesus}\\\textbf{factor}} &
+    \cellcolor[HTML]{E0E0E0}\textbf{A} &
+    \cellcolor[HTML]{E0E0E0}\textbf{B} &
+    \cellcolor[HTML]{E0E0E0}\textbf{AB} &
+    \cellcolor[HTML]{E0E0E0}\textbf{O} \\
+    \hline
+    + & 33 & 9 & 3 & 37 \\
+    \hline
+    - & 7 & 2 & 1 & $x$ \\
+    \hline
+  \end{tabular}
+  \end{adjustbox}
 \end{center}
-Human blood can be classified into four common blood types-A, B, AB, and O. It is also characterized by the presence $(+)$ or absence $(-)$ of the rhesus factor. The table above shows the distribution of blood type and rhesus factor for a group of people. If one of these people who is rhesus negative $(-)$ is chosen at random, the probability that the person has blood type $B$ is $\frac{1}{9}$. What is the value of $x$?
 \begin{solution}
 8
 \end{solution}
+
+\newpage
+
 
 \question[1]
 A survey was conducted using a sample of history professors selected at random from the California State Universities. The professors surveyed were asked to name the publishers of their current texts. What is the largest population to which the results of the survey can be generalized?
