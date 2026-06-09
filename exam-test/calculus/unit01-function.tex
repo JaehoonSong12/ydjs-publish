@@ -1,0 +1,497 @@
+% This chapter has reviewed some important precalculus topics. These topics are not directly tested on the AP exam; rather, they represent basic principles important in calculus. These include finding the domain, range and inverse of a function; and understanding the properties of polynomial and rational functions, trigonometric and inverse trig functions, and exponential and logarithmic functions.
+%
+% For BC students, this chapter also reviewed parametrically defined functions.
+
+\question
+If $f(x)=x^{3}-2 x-1$, then $f(-2)=$
+\begin{choices}
+  \choice $-17$
+  \choice $-13$
+  \CorrectChoice $-5$
+  \choice $-1$
+  \choice $3$
+\end{choices}
+\begin{solution}
+$f(-2)=(-2)^{3}-2(-2)-1=-5$.
+\end{solution}
+
+\question
+The domain of $f(x)=\dfrac{x-1}{x^{2}+1}$ is
+\begin{choices}
+  \choice all $x \neq 1$
+  \choice all $x \neq 1,-1$
+  \choice all $x \neq-1$
+  \choice $x \geqq 1$
+  \CorrectChoice all reals
+\end{choices}
+\begin{solution}
+The denominator, $x^{2}+1$, is never 0 .
+\end{solution}
+
+\question
+The domain of $g(x)=\dfrac{\sqrt{x-2}}{x^{2}-x}$ is
+\begin{choices}
+  \choice all $x \neq 0,1$
+  \choice $x \leqq 2$, all $x \neq 0,1$
+  \choice $x \leqq 2$
+  \CorrectChoice $x \geqq 2$
+  \choice $x>2$
+\end{choices}
+\begin{solution}
+Since $x-2$ may not be negative, $x \geqq 2$. The denominator equals 0 at $x=0$ and $x=1$, but these values are not in the interval $x \geqq 2$.
+\end{solution}
+
+
+\question\label{calc01:g-of-f}
+If $f(x)=x^{3}-3 x^{2}-2 x+5$ and $g(x)=2$, then $g(f(x))=$
+\begin{choices}
+  \choice $2 x^{3}-6 x^{2}-2 x+10$
+  \choice $2 x^{2}-6 x+1$
+  \choice $-6$
+  \choice $-3$
+  \CorrectChoice $2$
+\end{choices}
+\begin{solution}
+Since $g(x)=2$, $g$ is a constant function. Thus, for all $f(x)$, $g(f(x))=2$.
+\end{solution}
+
+\newpage
+
+\question
+With the functions and choices as in Question~\ref{calc01:g-of-f}, which choice is correct for $f(g(x))$?
+\begin{choices}
+  \choice $2 x^{3}-6 x^{2}-2 x+10$
+  \choice $2 x^{2}-6 x+1$
+  \choice $-6$
+  \CorrectChoice $-3$
+  \choice $2$
+\end{choices}
+\begin{solution}
+$f(g(x))=f(2)=-3$.
+\end{solution}
+
+\question
+If $f(x)=x^{3}+A x^{2}+B x-3$ and if $f(1)=4$ and $f(-1)=-6$, what is the value of $2 A+B$?
+\begin{choices}
+  \choice $12$
+  \CorrectChoice $8$
+  \choice $0$
+  \choice $-2$
+  \choice It cannot be determined from the given information.
+\end{choices}
+\begin{solution}
+Solve the pair of equations
+\[
+\left\{\begin{aligned}
+4 & =1+A+B-3 \\
+-6 & =-1+A-B-3
+\end{aligned}\right\} .
+\]
+Add to get $A$; substitute in either equation to get $B$. $A=2$ and $B=4$.
+\end{solution}
+
+\question
+Which of the following equations has a graph that is symmetric with respect to the origin?
+\begin{choices}
+  \choice $y=\dfrac{x-1}{x}$
+  \choice $y=2 x^{4}+1$
+  \CorrectChoice $y=x^{3}+2 x$
+  \choice $y=x^{3}+2$
+  \choice $y=\dfrac{x}{x^{3}+1}$
+\end{choices}
+\begin{solution}
+(C) The graph of $f(x)$ is symmetrical to the origin if $f(-x)=-f(x)$. In (C), $f(-x)=(-x)^{3}+2(-x)=-x^{3}-2 x=-\left(x^{3}+2 x\right)=-f(x)$.
+\end{solution}
+
+
+\newpage
+
+
+
+\question
+Let $g$ be a function defined for all reals. Which of the following conditions is not sufficient to guarantee that $g$ has an inverse function?
+\begin{choices}
+  \choice $g(x)=a x+b$, $a \neq 0$
+  \choice $g$ is strictly decreasing
+  \CorrectChoice $g$ is symmetric to the origin
+  \choice $g$ is strictly increasing
+  \choice $g$ is one-to-one
+\end{choices}
+\begin{solution}
+(C) For $g$ to have an inverse function it must be one-to-one. Note, on page 338, that although the graph of $y=x e^{-x^{2}}$ is symmetric to the origin, it is not one-to-one.
+\end{solution}
+
+\question
+Let $y=f(x)=\sin (\arctan x)$. Then the range of $f$ is
+\begin{choices}
+  \choice $\{y \mid 0<y \leqq 1\}$
+  \CorrectChoice $\{y \mid-1<y<1\}$
+  \choice $\{y \mid-1 \leqq y \leqq 1\}$
+  \choice $\left\{y \left\lvert\,-\dfrac{\pi}{2}<y<\dfrac{\pi}{2}\right.\right\}$
+  \choice $\left\{y \left\lvert\,-\dfrac{\pi}{2} \leqq y \leqq \dfrac{\pi}{2}\right.\right\}$
+\end{choices}
+\begin{solution}
+(B) Note that $-\dfrac{\pi}{2}<\arctan x<\dfrac{\pi}{2}$; the sine function varies from $-1$ to $1$ as the argument varies from $-\dfrac{\pi}{2}$ to $\dfrac{\pi}{2}$.
+\end{solution}
+
+\question
+Let $g(x)=|\cos x-1|$. The maximum value attained by $g$ on the closed interval $[0,2 \pi]$ is for $x$ equal to
+\begin{choices}
+  \choice $-1$
+  \choice $0$
+  \choice $\dfrac{\pi}{2}$
+  \choice $2$
+  \CorrectChoice $\pi$
+\end{choices}
+\begin{solution}
+(E) The maximum value of $g$ is $2$, attained when $\cos x=-1$. On $[0,2 \pi]$, $\cos x=-1$ for $x=\pi$.
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+\question
+Which of the following functions is not odd?
+\begin{choices}
+  \choice $f(x)=\sin x$
+  \choice $f(x)=\sin 2 x$
+  \CorrectChoice $f(x)=x^{3}+1$
+  \choice $f(x)=\dfrac{x}{x^{2}+1}$
+  \choice $f(x)=\sqrt[3]{2 x}$
+\end{choices}
+\begin{solution}
+(C) $f$ is odd if $f(-x)=-f(x)$. In (C), $f(-x)=(-x)^{3}+1=-x^{3}+1 \neq-f(x)$.
+\end{solution}
+
+\question
+The roots of the equation $f(x)=0$ are $1$ and $-2$. The roots of $f(2 x)=0$ are
+\begin{choices}
+  \choice $1$ and $-2$
+  \CorrectChoice $\dfrac{1}{2}$ and $-1$
+  \choice $-\dfrac{1}{2}$ and $1$
+  \choice $2$ and $-4$
+  \choice $-2$ and $4$
+\end{choices}
+\begin{solution}
+(B) Since $f(q)=0$ if $q=1$ or $q=-2$, $f(2 x)=0$ if $2 x$, a replacement for $q$, equals $1$ or $-2$.
+\end{solution}
+
+\question
+The set of zeros of $f(x)=x^{3}+4 x^{2}+4 x$ is
+\begin{choices}
+  \choice $\{-2\}$
+  \CorrectChoice $\{0,-2\}$
+  \choice $\{0,2\}$
+  \choice $\{2\}$
+  \choice $\{2,-2\}$
+\end{choices}
+\begin{solution}
+(B) $f(x)=x\left(x^{2}+4 x+4\right)=x(x+2)^{2}$; $f(x)=0$ for $x=0$ and $x=-2$.
+\end{solution}
+
+\question
+The values of $x$ for which the graphs of $y=x+2$ and $y^{2}=4 x$ intersect are
+\begin{choices}
+  \choice $-2$ and $2$
+  \choice $-2$
+  \choice $2$
+  \choice $0$
+  \CorrectChoice none of these
+\end{choices}
+\begin{solution}
+(E) Solving simultaneously yields $(x+2)^{2}=4 x$; $x^{2}+4 x+4=4 x$; $x^{2}+4=0$. There are no real solutions.
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+
+\question
+The function whose graph is a reflection in the $y$-axis of the graph of $f(x)=1-3^{x}$ is
+\begin{choices}
+  \CorrectChoice $g(x)=1-3^{-x}$
+  \choice $g(x)=1+3^{x}$
+  \choice $g(x)=3^{x}-1$
+  \choice $g(x)=\log_{3}(x-1)$
+  \choice $g(x)=\log_{3}(1-x)$
+\end{choices}
+\begin{solution}
+(A) The reflection of $y=f(x)$ in the $y$-axis is $y=f(-x)$.
+\end{solution}
+
+\question
+Let $f(x)$ have an inverse function $g(x)$. Then $f(g(x))=$
+\begin{choices}
+  \choice $1$
+  \CorrectChoice $x$
+  \choice $\dfrac{1}{x}$
+  \choice $f(x) \cdot g(x)$
+  \choice none of these
+\end{choices}
+\begin{solution}
+(B) If $g$ is the inverse of $f$, then $f$ is the inverse of $g$. This implies that the function $f$ assigns to each value $g(x)$ the number $x$.
+\end{solution}
+
+\question
+The function $f(x)=2 x^{3}+x-5$ has exactly one real zero. It is between
+\begin{choices}
+  \choice $-2$ and $-1$
+  \choice $-1$ and $0$
+  \choice $0$ and $1$
+  \CorrectChoice $1$ and $2$
+  \choice $2$ and $3$
+\end{choices}
+\begin{solution}
+(D) Since $f$ is continuous (see page 101), then, if $f$ is negative at $a$ and positive at $b$, $f$ must equal $0$ at some intermediate point. Since $f(1)=-2$ and $f(2)=13$, this point is between $1$ and $2$.
+\end{solution}
+
+
+
+
+
+\newpage
+
+
+
+\question
+The period of $f(x)=\sin \dfrac{2 \pi}{3} x$ is
+\begin{choices}
+  \choice $\dfrac{1}{3}$
+  \choice $\dfrac{2}{3}$
+  \choice $\dfrac{3}{2}$
+  \CorrectChoice $3$
+  \choice $6$
+\end{choices}
+\begin{solution}
+(D) The function $\sin b x$ has period $\dfrac{2 \pi}{b}$. Then $2 \pi \div \dfrac{2 \pi}{3}=3$.
+\end{solution}
+
+\question
+The range of $y=f(x)=\ln (\cos x)$ is
+\begin{choices}
+  \CorrectChoice $\{y \mid-\infty<y \leqq 0\}$
+  \choice $\{y \mid 0<y \leqq 1\}$
+  \choice $\{y \mid-1<y<1\}$
+  \choice $\left\{y \left\lvert\,-\dfrac{\pi}{2}<y<\dfrac{\pi}{2}\right.\right\}$
+  \choice $\{y \mid 0 \leqq y \leqq 1\}$
+\end{choices}
+\begin{solution}
+(A) Since $\ln q$ is defined only if $q>0$, the domain of $\ln \cos x$ is the set of $x$ for which $\cos x>0$, that is, when $0<\cos x \leqq 1$. Thus $-\infty<\ln \cos x \leqq 0$.
+\end{solution}
+
+\question
+If $\log_{b}\left(3^{b}\right)=\dfrac{b}{2}$, then $b=$
+\begin{choices}
+  \choice $\dfrac{1}{9}$
+  \choice $\dfrac{1}{3}$
+  \choice $\dfrac{1}{2}$
+  \choice $3$
+  \CorrectChoice $9$
+\end{choices}
+\begin{solution}
+(E) $\log_{b} 3^{b}=\dfrac{b}{2}$ implies $b \log_{b} 3=\dfrac{b}{2}$. Then $\log_{b} 3=\dfrac{1}{2}$ and $3=b^{1 / 2}$. So $3^{2}=b$.
+\end{solution}
+
+
+
+
+
+\newpage
+
+
+
+\question
+Let $f^{-1}$ be the inverse function of $f(x)=x^{3}+2$. Then $f^{-1}(x)=$
+\begin{choices}
+  \choice $\dfrac{1}{x^{3}-2}$
+  \choice $(x+2)^{3}$
+  \choice $(x-2)^{3}$
+  \choice $\sqrt[3]{x+2}$
+  \CorrectChoice $\sqrt[3]{x-2}$
+\end{choices}
+\begin{solution}
+(E) Letting $y=f(x)=x^{3}+2$, we get
+\[
+x^{3}=y-2,\qquad x=\sqrt[3]{y-2}=f^{-1}(y).
+\]
+So $f^{-1}(x)=\sqrt[3]{x-2}$.
+\end{solution}
+
+\question
+The set of $x$-intercepts of the graph of $f(x)=x^{3}-2 x^{2}-x+2$ is
+\begin{choices}
+  \choice $\{1\}$
+  \choice $\{-1,1\}$
+  \choice $\{1,2\}$
+  \CorrectChoice $\{-1,1,2\}$
+  \choice $\{-1,-2,2\}$
+\end{choices}
+\begin{solution}
+(D) Since $f(1)=0$, $x-1$ is a factor of $f$. Since $f(x)$ divided by $x-1$ yields $x^{2}-x-2$, $f(x)=(x-1)(x+1)(x-2)$; the roots are $x=1$, $-1$, and $2$.
+\end{solution}
+
+\question
+If the domain of $f$ is restricted to the open interval $\left(-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right)$, then the range of $f(x)=e^{\tan x}$ is
+\begin{choices}
+  \choice the set of all reals
+  \CorrectChoice the set of positive reals
+  \choice the set of nonnegative reals
+  \choice $\{y \mid 0<y \leqq 1\}$
+  \choice none of these
+\end{choices}
+\begin{solution}
+(B) If $-\dfrac{\pi}{2}<x<\dfrac{\pi}{2}$, then $-\infty<\tan x<\infty$ and $0<e^{\tan x}<\infty$.
+\end{solution}
+
+
+
+
+
+\newpage
+
+
+
+\question
+Which of the following is a reflection of the graph of $y=f(x)$ in the $x$-axis?
+\begin{choices}
+  \CorrectChoice $y=-f(x)$
+  \choice $y=f(-x)$
+  \choice $y=|f(x)|$
+  \choice $y=f(|x|)$
+  \choice $y=-f(-x)$
+\end{choices}
+\begin{solution}
+(A) The reflection of $f(x)$ in the $x$-axis is $-f(x)$.
+\end{solution}
+
+\question
+The smallest positive $x$ for which the function $f(x)=\sin \left(\dfrac{x}{3}\right)-1$ is a maximum is
+\begin{choices}
+  \choice $\dfrac{\pi}{2}$
+  \choice $\pi$
+  \CorrectChoice $\dfrac{3 \pi}{2}$
+  \choice $3 \pi$
+  \choice $6 \pi$
+\end{choices}
+\begin{solution}
+(C) $f(x)$ attains its maximum when $\sin \left(\dfrac{x}{3}\right)$ does. The maximum value of the sine function is $1$; the smallest positive occurrence is at $\dfrac{\pi}{2}$. Set $\dfrac{x}{3}$ equal to $\dfrac{\pi}{2}$.
+\end{solution}
+
+\question
+$\tan \left(\arccos \left(-\dfrac{\sqrt{2}}{2}\right)\right)=$
+\begin{choices}
+  \CorrectChoice $-1$
+  \choice $-\dfrac{\sqrt{3}}{3}$
+  \choice $-\dfrac{1}{2}$
+  \choice $\dfrac{\sqrt{3}}{3}$
+  \choice $1$
+\end{choices}
+\begin{solution}
+(A) $\arccos \left(\dfrac{-\sqrt{2}}{2}\right)=\dfrac{3 \pi}{4}$; $\tan \left(\dfrac{3 \pi}{4}\right)=-1$.
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+
+\question
+If $f^{-1}(x)$ is the inverse of $f(x)=2 e^{-x}$, then $f^{-1}(x)=$
+\begin{choices}
+  \CorrectChoice $\ln \left(\dfrac{2}{x}\right)$
+  \choice $\ln \left(\dfrac{x}{2}\right)$
+  \choice $\left(\dfrac{1}{2}\right) \ln x$
+  \choice $\sqrt{\ln x}$
+  \choice $\ln (2-x)$
+\end{choices}
+\begin{solution}
+(A) Let $y=f(x)=2 e^{-x}$; then $\dfrac{y}{2}=e^{-x}$ and $\ln \dfrac{y}{2}=-x$. So
+\[
+x=-\ln \dfrac{y}{2}=\ln \dfrac{2}{y}=f^{-1}(y).
+\]
+Thus $f^{-1}(x)=\ln \dfrac{2}{x}$.
+\end{solution}
+
+\question
+Which of the following functions does not have an inverse function?
+\begin{choices}
+  \choice $y=\sin x\left(-\dfrac{\pi}{2} \leqq x \leqq \dfrac{\pi}{2}\right)$
+  \choice $y=x^{3}+2$
+  \CorrectChoice $y=\dfrac{x}{x^{2}+1}$
+  \choice $y=\dfrac{1}{2} e^{x}$
+  \choice $y=\ln (x-2)$, where $x>2$
+\end{choices}
+\begin{solution}
+(C) The function in (C) is not one-to-one since, for each $y$ between $-\dfrac{1}{2}$ and $\dfrac{1}{2}$ (except $0$), there are two $x$'s in the domain.
+\end{solution}
+
+\question\label{calc01:fg-domain}
+Suppose that $f(x)=\ln x$ for all positive $x$ and $g(x)=9-x^{2}$ for all real $x$. The domain of $f(g(x))$ is
+\begin{choices}
+  \choice $\{x \mid x \leqq 3\}$
+  \choice $\{x \mid |x| \leqq 3\}$
+  \choice $\{x \mid |x|>3\}$
+  \CorrectChoice $\{x \mid |x|<3\}$
+  \choice $\{x \mid 0<x<3\}$
+\end{choices}
+\begin{solution}
+(D) The domain of the $\ln$ function is the set of positive reals. The function $g(x)>0$ if $x^{2}<9$.
+\end{solution}
+
+
+
+
+
+\newpage
+
+
+
+\question
+Suppose (as in Question~\ref{calc01:fg-domain}) that $f(x)=\ln x$ for all positive $x$ and $g(x)=9-x^{2}$ for all real $x$. The range of $y=f(g(x))$ is
+\begin{choices}
+  \choice $\{y \mid y>0\}$
+  \choice $\{y \mid 0<y \leqq \ln 9\}$
+  \CorrectChoice $\{y \mid y \leqq \ln 9\}$
+  \choice $\{y \mid y<0\}$
+  \choice none of these
+\end{choices}
+\begin{solution}
+(C) Since the domain of $f(g)$ is $(-3,3)$, $\ln \left(9-x^{2}\right)$ takes on every real value less than or equal to $\ln 9$.
+\end{solution}
+
+\question
+The curve defined parametrically by $x(t)=t^{2}+3$ and $y(t)=t^{2}+4$ is part of a.
+\begin{choices}
+  \CorrectChoice line
+  \choice circle
+  \choice parabola
+  \choice ellipse
+  \choice hyperbola
+\end{choices}
+\begin{solution}
+(A) Substituting $t^{2}=x-3$ in $y(t)=t^{2}+4$ yields $y=x+1$.
+\end{solution}
+
+\question
+Which equation includes the curve defined parametrically by $x(t)=\cos ^{2}(t)$ and $y(t)=2 \sin (t)$?
+\begin{choices}
+  \choice $x^{2}+y^{2}=4$
+  \choice $x^{2}+y^{2}=1$
+  \choice $4 x^{2}+y^{2}=4$
+  \CorrectChoice $4 x+y^{2}=4$
+  \choice $x+4 y^{2}=1$
+\end{choices}
+\begin{solution}
+(D) Using the identity $\cos ^{2}(t)+\sin ^{2}(t)=1$, $x+\left(\dfrac{y}{2}\right)^{2}=1$.
+\end{solution}

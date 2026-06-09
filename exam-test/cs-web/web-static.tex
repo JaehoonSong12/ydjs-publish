@@ -1,0 +1,815 @@
+% Computer Science A --- Static front-end (HTML, CSS).
+
+\runningheader{Computer Science A}{Web: HTML \& CSS}{Page \thepage\ of \numpages}
+
+\begingradingrange{csawebstatic}
+
+\uplevel{\par\textbf{Part 1: HTML \& CSS basics}\par}
+
+\question[4]
+What does HTML (HyperText Markup Language) primarily define for a web page?
+\begin{choices}
+  \choice The visual theme and colors only
+  \choice Only interactive behavior and event handlers
+  \CorrectChoice The structure and semantic content of the document
+  \choice The execution order of JavaScript modules
+\end{choices}
+\begin{solution}
+  \textbf{HTML} marks up headings, paragraphs, lists, links, and other content so the browser can build the DOM tree. \textbf{CSS} handles presentation; \textbf{JavaScript} adds behavior.
+\begin{lstlisting}[style=htmlexam]
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Title</h1>
+    <p>Paragraphs and lists carry meaning, not just looks.</p>
+  </body>
+</html>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which element sets the text typically shown in the browser tab / window title?
+\begin{choices}
+  \choice \texttt{<h1>}
+  \choice \texttt{<header>}
+  \CorrectChoice \texttt{<title>}
+  \choice \texttt{<meta>}
+\end{choices}
+\begin{solution}
+  The \texttt{<title>} element lives in \texttt{<head>} and names the document. Headings \texttt{<h1>}--\texttt{<h6>} structure visible page content.
+\begin{lstlisting}[style=htmlexam]
+<head>
+  <meta charset="utf-8">
+  <title>My lab page</title>
+</head>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which fragment correctly represents an \textbf{unordered} list with two items?
+\begin{choices}
+  \choice \texttt{<ol><li>A</li><li>B</li></ol>}
+  \CorrectChoice \texttt{<ul><li>A</li><li>B</li></ul>}
+  \choice \texttt{<list><item>A</item></list>}
+  \choice \texttt{<ul>A</ul><ul>B</ul>}
+\end{choices}
+\begin{solution}
+  Use \texttt{<ul>} with nested \texttt{<li>} items for bullet lists; \texttt{<ol>} is for numbered lists. Each list item must be an \texttt{<li>}.
+\begin{lstlisting}[style=htmlexam]
+<ul>
+  <li>A</li>
+  <li>B</li>
+</ul>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In HTML, which pair correctly matches document metadata and visible page content?
+\begin{choices}
+  \CorrectChoice \texttt{<head>} for metadata and \texttt{<body>} for visible content
+  \choice \texttt{<body>} for metadata and \texttt{<head>} for visible content
+  \choice \texttt{<title>} for metadata and \texttt{<main>} for all visible content
+  \choice \texttt{<meta>} for metadata and \texttt{<html>} for visible content only
+\end{choices}
+\begin{solution}
+  \texttt{<head>} stores metadata (title, meta tags, stylesheet links), while \texttt{<body>} contains what users see in the rendered page.
+\end{solution}
+
+\question[4]
+What syntax is HTML primarily made of?
+\begin{choices}
+  \CorrectChoice Tags (elements and attributes)
+  \choice SQL clauses
+  \choice Java bytecode
+  \choice CSS declarations only
+\end{choices}
+\begin{solution}
+  HTML is markup composed of tags such as \texttt{<p>}, \texttt{<a>}, and \texttt{<div>}, with attributes for additional semantics and behavior.
+\end{solution}
+
+\question[4]
+What should appear first in a standard HTML5 document?
+\begin{choices}
+  \choice \texttt{<html>}
+  \CorrectChoice \texttt{<!DOCTYPE html>}
+  \choice \texttt{<head>}
+  \choice \texttt{<meta charset="utf-8">}
+\end{choices}
+\begin{solution}
+  The doctype declaration tells the browser to render in HTML5 standards mode.
+\end{solution}
+
+\question[4]
+In which parent element(s) are \texttt{<li>} list items valid?
+\begin{choices}
+  \choice Only \texttt{<ul>}
+  \choice Only \texttt{<ol>}
+  \CorrectChoice Both \texttt{<ul>} and \texttt{<ol>}
+  \choice \texttt{<table>}
+\end{choices}
+\begin{solution}
+  List items belong inside ordered lists (\texttt{<ol>}) or unordered lists (\texttt{<ul>}).
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} a semantic HTML element?
+\begin{choices}
+  \choice \texttt{<article>}
+  \choice \texttt{<nav>}
+  \CorrectChoice \texttt{<div>}
+  \choice \texttt{<section>}
+\end{choices}
+\begin{solution}
+  \texttt{<div>} is non-semantic and primarily used as a generic container; semantic elements convey structure and meaning.
+\end{solution}
+
+\question[4]
+Which HTML element is a void element (does not require a closing tag)?
+\begin{choices}
+  \CorrectChoice \texttt{<img>}
+  \choice \texttt{<p>}
+  \choice \texttt{<li>}
+  \choice \texttt{<table>}
+\end{choices}
+\begin{solution}
+  \texttt{<img>} is a void element. In HTML5, void elements do not wrap content and do not use a separate closing tag.
+\end{solution}
+
+\question[4]
+Which markup is the most correct table structure?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <tr><th>Header 1</th><th>Header 2</th></tr>
+  <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
+  <tr><td>Row 2, Cell 1</td><td>Row 2, Cell 2</td></tr>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <tr><th>Header 1</th><th>Header 2
+  <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
+  <td>Row 2, Cell 1</td><td>Row 2, Cell 2</td>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <thead>Header 1 Header 2</thead>
+  <tbody>Row 1, Cell 1 Row 1, Cell 2</tbody>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<table>
+  <td>Header 1</td><td>Header 2</td>
+</table>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  Proper tables use row containers (\texttt{<tr>}) and then header/data cells (\texttt{<th>} / \texttt{<td>}) within each row.
+\end{solution}
+
+\question[4]
+Which syntax is correct for an image element with source and alternate text?
+\begin{choices}
+  \CorrectChoice \texttt{<img src="image.jpg" alt="Description">}
+  \choice \texttt{<img href="image.jpg" alt="Description"></img>}
+  \choice \texttt{<image src="image.jpg" alt="Description">}
+  \choice \texttt{<img>image.jpg</img>}
+\end{choices}
+\begin{solution}
+  Use \texttt{src} for the image URL/path and \texttt{alt} for accessible fallback text.
+\end{solution}
+
+\question[4]
+Which fragment is a correct minimal HTML5 boilerplate skeleton?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlexam]
+<!DOCTYPE html>
+<html>
+  <head><title>Page Title</title></head>
+  <body><!-- Content goes here --></body>
+</html>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<html>
+  <title>Page Title</title>
+  <body>Content</body>
+</html>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<!DOCTYPE html>
+<head><body>Content</body></head>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<body>
+  <head><title>Page Title</title></head>
+</body>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  A correct skeleton starts with HTML5 doctype, then \texttt{<html>}, then separate \texttt{<head>} and \texttt{<body>} sections.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+Which element wraps items that should appear as a \textbf{numbered} (ordered) list?
+\begin{choices}
+  \choice \texttt{<li>}
+  \choice \texttt{<dl>}
+  \CorrectChoice \texttt{<ol>}
+  \choice \texttt{<nav>}
+\end{choices}
+\begin{solution}
+  \texttt{<ol>} (ordered list) works with \texttt{<li>} children for step-like or ranked content; \texttt{<ul>} is for bullets. Definition lists use \texttt{<dl>}/\texttt{<dt>}/\texttt{<dd>}.
+\begin{lstlisting}[style=htmlexam]
+<ol>
+  <li>Step one</li>
+  <li>Step two</li>
+</ol>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In \texttt{<a href="page.html">Open</a>}, what is the role of \texttt{href}?
+\begin{choices}
+  \CorrectChoice It specifies the link destination (URL or path)
+  \choice It sets the font size of the link text
+  \choice It makes the link open only in a new window
+  \choice It prevents the default navigation behavior
+\end{choices}
+\begin{solution}
+  The \textbf{hypertext reference} attribute \texttt{href} points to the resource to load. Presentation is CSS; \texttt{target} and JS handlers affect navigation behavior separately.
+\begin{lstlisting}[style=htmlexam]
+<a href="page.html">Open</a>
+<a href="https://example.com/" target="_blank">External</a>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In the lab progression, \textbf{inline CSS} is applied by placing declarations where?
+\begin{choices}
+  \choice Only in an external \texttt{.css} file linked via \texttt{<link>}
+  \choice Only inside a \texttt{<style>} block in the head
+  \CorrectChoice In the element's \texttt{style} attribute as a declaration list
+  \choice In a JavaScript \texttt{className} assignment only
+\end{choices}
+\begin{solution}
+  Inline styles use \texttt{style="property: value; ..."} on the element. External and embedded stylesheets are the other main approaches; they cascade with specificity rules.
+\begin{lstlisting}[style=htmlexam]
+<p style="color: navy; font-size: 14px;">Styled in place</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which option shows the most correct syntax for a basic login-style HTML form?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlexam]
+<form>
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username">
+  <label for="password">Password:</label>
+  <input id="password" type="password" name="password">
+  <input type="submit" value="Submit">
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<form>
+  <label username>Username</label>
+  <input text="username">
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<form>
+  <input id="username">
+  <input id="password">
+  <button>
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlexam]
+<form action>
+  <label>Username</label>
+  <input>
+  <submit>Submit</submit>
+</form>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  A well-formed example uses explicit \texttt{label}--\texttt{for}/\texttt{id} linkage and valid input \texttt{type} and \texttt{name} attributes.
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} part of the CSS box model?
+\begin{choices}
+  \choice Content
+  \choice Padding
+  \choice Border
+  \CorrectChoice Whitespace
+\end{choices}
+\begin{solution}
+  The canonical box model layers are content, padding, border, and margin.
+\end{solution}
+
+\question[4]
+Which style source has the highest normal cascade precedence (ignoring \texttt{!important})?
+\begin{choices}
+  \CorrectChoice Inline styles (style attribute)
+  \choice Embedded stylesheet rules only
+  \choice External stylesheet rules only
+  \choice Browser default stylesheet
+\end{choices}
+\begin{solution}
+  Inline styles are typically strongest in normal cascade order, then selector specificity and source order resolve ties among stylesheet rules.
+\end{solution}
+
+\question[4]
+In CSS, which selector targets a class?
+\begin{choices}
+  \CorrectChoice \texttt{.myClass}
+  \choice \texttt{\#myClass}
+  \choice \texttt{myClass}
+  \choice \texttt{*myClass}
+\end{choices}
+\begin{solution}
+  Class selectors begin with a period; ID selectors begin with \texttt{\#}.
+\end{solution}
+
+\question[4]
+In CSS, which selector targets an element with a specific id?
+\begin{choices}
+  \choice \texttt{.myId}
+  \CorrectChoice \texttt{\#myId}
+  \choice \texttt{myId()}
+  \choice \texttt{*myId}
+\end{choices}
+\begin{solution}
+  The hash prefix identifies ID selectors.
+\end{solution}
+
+\question[4]
+Given \texttt{.container \{ background-color: lightblue; \}}, what is the div background color?
+\begin{choices}
+  \CorrectChoice Light blue
+  \choice Green
+  \choice Transparent only
+  \choice Browser default gray
+\end{choices}
+\begin{solution}
+  The declaration explicitly sets the rendered background to light blue.
+\end{solution}
+
+\question[4]
+Given \texttt{.text \{ color: green; font-size: 16px; \}}, what is the paragraph text color?
+\begin{choices}
+  \choice Blue
+  \CorrectChoice Green
+  \choice Black
+  \choice Inherited and therefore unknown
+\end{choices}
+\begin{solution}
+  \texttt{color: green;} directly sets the text color to green.
+\end{solution}
+
+\question[4]
+Given \texttt{.center-text \{ text-align: center; \}}, how is the paragraph text aligned?
+\begin{choices}
+  \choice Left
+  \CorrectChoice Center
+  \choice Right
+  \choice Justified
+\end{choices}
+\begin{solution}
+  \texttt{text-align: center;} centers inline text content within the element's box.
+\end{solution}
+
+\question[4]
+Given \texttt{.box \{ border: 2px solid red; \}}, what is the border color?
+\begin{choices}
+  \choice Blue
+  \choice Black
+  \CorrectChoice Red
+  \choice Transparent
+\end{choices}
+\begin{solution}
+  The shorthand \texttt{border} sets width, style, and color in one declaration; here the color token is red.
+\end{solution}
+
+\question[4]
+Given the snippet with a yellow container and inner text styled as blue with margin/padding/red border, which description is most accurate?
+\begin{choices}
+  \CorrectChoice Yellow container background with blue text; the text element also has 20px margin, 10px padding, and a 2px red border
+  \choice Blue container background with yellow text and no spacing
+  \choice Yellow text with blue border on the container
+  \choice No visible style differences because classes do not apply to nested elements
+\end{choices}
+\begin{solution}
+  The outer class styles the container's dimensions and yellow background, while the inner class styles text color and spacing/border around that paragraph element.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+Which CSS declaration horizontally centers text inside its container (for typical block contexts in the lab)?
+\begin{choices}
+  \choice \texttt{font-style: italic;}
+  \choice \texttt{font-size: 14px;}
+  \CorrectChoice \texttt{text-align: center;}
+  \choice \texttt{margin: 0 auto;}
+\end{choices}
+\begin{solution}
+  \texttt{text-align} affects inline content within a block. Centering a block itself often uses margins or flexbox; the Homepage/CSS labs emphasized \texttt{text-align} for typography alignment.
+\begin{lstlisting}[style=cssexam]
+h1 {
+  text-align: center;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The CSS Inline lab emphasizes \texttt{font-style}, \texttt{font-size}, and \texttt{text-align}. Which value of \texttt{font-style} produces italicized text?
+\begin{choices}
+  \choice \texttt{bold}
+  \CorrectChoice \texttt{italic}
+  \choice \texttt{underline}
+  \choice \texttt{sans-serif}
+\end{choices}
+\begin{solution}
+  \texttt{font-style: italic} slants glyphs; \texttt{font-size} sets length (e.g.\ \texttt{14px}). \texttt{bold} belongs to \texttt{font-weight}; \texttt{underline} is usually \texttt{text-decoration}.
+\begin{lstlisting}[style=cssexam]
+.note {
+  font-style: italic;
+  font-size: 14px;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The rule \texttt{h1 \{ color: blue; \}} applies to which elements?
+\begin{choices}
+  \CorrectChoice Every \texttt{h1} element (type / element selector)
+  \choice Only \texttt{h1} elements with \texttt{id="color"}
+  \choice Only \texttt{h1} elements whose \texttt{class} is \texttt{blue}
+  \choice The first line of every paragraph
+\end{choices}
+\begin{solution}
+  A bare tag name is an \textbf{element} (type) selector. Combined with classes or IDs it gains specificity; the CSS Selectors lab contrasted element, \texttt{.class}, and \texttt{\#id}.
+\begin{lstlisting}[style=cssexam]
+h1 {
+  color: blue;
+}
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+
+\question[4]
+In CSS, the selector \texttt{.highlight} targets which elements?
+\begin{choices}
+  \choice Every element with tag name \texttt{highlight}
+  \CorrectChoice Every element whose \texttt{class} attribute includes \texttt{highlight}
+  \choice The unique element with \texttt{id="highlight"}
+  \choice Only \texttt{<span>} elements
+\end{choices}
+\begin{solution}
+  The \textbf{class selector} prefix \texttt{.} matches the space-separated \texttt{class} list. \textbf{ID} uses \texttt{\#}; \textbf{type} selectors use the bare tag name (\texttt{h1}, etc.).
+\begin{lstlisting}[style=cssexam]
+.highlight {
+  background-color: yellow;
+}
+\end{lstlisting}
+\begin{lstlisting}[style=htmlexam]
+<p class="highlight">Important</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In the CSS box model, which area is \textbf{outside} the border (separating this element from neighbors)?
+\begin{choices}
+  \choice Padding
+  \CorrectChoice Margin
+  \choice Content box only
+  \choice \texttt{outline} (always identical to border)
+\end{choices}
+\begin{solution}
+  From inside out: \textbf{content} $\rightarrow$ \textbf{padding} $\rightarrow$ \textbf{border} $\rightarrow$ \textbf{margin}. Padding is inside the border; margin is outside.
+\begin{lstlisting}[style=cssexam]
+.box {
+  padding: 8px;
+  border: 1px solid #333;
+  margin: 16px; /* outside the border */
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In the Box Model lab, \texttt{background-color} applied to an element typically fills which regions (in the standard \texttt{box-sizing: content-box} mental model)?
+\begin{choices}
+  \choice Only the margin
+  \choice Only the content box, excluding padding
+  \CorrectChoice Content and padding (under the border edge)
+  \choice Only areas outside the border
+\end{choices}
+\begin{solution}
+  Background painting defaults to \textbf{content + padding} up to the inner edge of the border (details vary slightly by shorthand and clipping). The lab tied \texttt{background-color} to the boxed area students style alongside \texttt{padding}, \texttt{margin}, and \texttt{border}.
+\begin{lstlisting}[style=cssexam]
+.panel {
+  padding: 12px;
+  background-color: #e8f4ff;
+}
+\end{lstlisting}
+\end{solution}
+
+
+\newpage
+\question[4]
+When two rules conflict and both apply to the same element, a rule whose selector is only an \textbf{ID} (\texttt{\#main-title}) will usually beat a rule whose selector is only a \textbf{class} (\texttt{.subtitle}) because:
+\begin{choices}
+  \choice IDs load later in the file
+  \CorrectChoice ID selectors have higher specificity weight than a single class selector
+  \choice Classes are deprecated in modern CSS
+  \choice The browser always prefers the shorter rule
+\end{choices}
+\begin{solution}
+  Specificity approximates \textbf{inline} $>$ \textbf{ID} $>$ \textbf{class/attribute} $>$ \textbf{type}. Tie-breaking uses source order and \texttt{!important} (sparingly). The lab table summarized ID vs class vs element priority.
+\begin{lstlisting}[style=cssexam]
+.subtitle { color: gray; }
+#main-title { color: navy; /* wins over .subtitle */ }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The line \texttt{<meta charset="utf-8">} in \texttt{<head>} primarily tells the browser:
+\begin{choices}
+  \choice Which JavaScript file to load first
+  \choice The exact width of the layout viewport
+  \CorrectChoice How to interpret the document's bytes as characters (text encoding)
+  \choice That the page must not be cached
+\end{choices}
+\begin{solution}
+  The charset declaration names an encoding (here UTF-8) so the parser maps downloaded bytes to the right Unicode characters---especially important for accents and symbols.
+\begin{lstlisting}[style=htmlexam]
+<head>
+  <meta charset="utf-8">
+  <title>Encoding demo</title>
+</head>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which markup correctly links an \textbf{external} stylesheet \texttt{styles.css} from the same folder?
+\begin{choices}
+  \choice \texttt{<script href="styles.css"></script>}
+  \CorrectChoice \texttt{<link rel="stylesheet" href="styles.css">}
+  \choice \texttt{<style src="styles.css"></style>}
+  \choice \texttt{<css href="styles.css" />}
+\end{choices}
+\begin{solution}
+  \texttt{<link rel="stylesheet" href="...">} pulls a \texttt{.css} file into the cascade. \texttt{<style>} holds inline CSS text; \texttt{<script>} is for scripts.
+\begin{lstlisting}[style=htmlexam]
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\question[4]
+In HTML, \texttt{class="card featured"} on one element means:
+\begin{choices}
+  \choice The element has invalid markup (only one class name is allowed)
+  \choice \texttt{featured} is a tag name nested inside \texttt{card}
+  \CorrectChoice The element has \textbf{both} classes \texttt{card} and \texttt{featured} (space-separated list)
+  \choice \texttt{card} is the ID and \texttt{featured} is the tag
+\end{choices}
+\begin{solution}
+  The \texttt{class} attribute is a space-separated token list. Selectors \texttt{.card}, \texttt{.featured}, and \texttt{.card.featured} can all match the same node.
+\begin{lstlisting}[style=htmlexam]
+<article class="card featured">Sale item</article>
+\end{lstlisting}
+\begin{lstlisting}[style=cssexam]
+.card { border: 1px solid #ccc; }
+.featured { background: #fff8e6; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS, the selector \texttt{*} (asterisk alone) means:
+\begin{choices}
+  \choice Only elements named \texttt{star}
+  \choice Only the first child of every parent
+  \CorrectChoice All elements in the document (universal selector)
+  \choice A syntax error in modern CSS
+\end{choices}
+\begin{solution}
+  The universal selector matches every element; it is often used in resets or broad rules (use carefully because it can hurt performance and specificity intuition).
+\begin{lstlisting}[style=cssexam]
+* { box-sizing: border-box; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Without extra rules, which property is typically \textbf{inherited} from a parent element to its descendants?
+\begin{choices}
+  \choice \texttt{margin-top}
+  \choice \texttt{border-width}
+  \CorrectChoice \texttt{color}
+  \choice \texttt{width}
+\end{choices}
+\begin{solution}
+  Many text-oriented properties (\texttt{color}, \texttt{font-family}, \texttt{font-size} in the normal case) inherit so children match the parent's typography. Box properties like \texttt{margin} and \texttt{border} usually do not inherit.
+\begin{lstlisting}[style=htmlexam]
+<section style="color: navy;">
+  <p>Inherited text color.</p>
+</section>
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\question[4]
+The \texttt{alt} attribute on \texttt{<img>} is important mainly because it:
+\begin{choices}
+  \choice Sets the image file path (same role as \texttt{src})
+  \choice Forces the image to load faster
+  \CorrectChoice Provides a text substitute for the image (accessibility, broken image, screen readers)
+  \choice Defines the clickable region for the image only
+\end{choices}
+\begin{solution}
+  \texttt{alt} describes the image content for assistive tech and when the asset fails to load; \texttt{src} is the actual URL/path.
+\begin{lstlisting}[style=htmlexam]
+<img src="logo.png" alt="Company logo">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In HTML5, \texttt{<br>} and \texttt{<img>} are usually written without a closing tag because they are:
+\begin{choices}
+  \choice Deprecated and should be replaced by \texttt{<div>}
+  \choice Only valid inside \texttt{<table>}
+  \CorrectChoice Void (empty) elements---they do not wrap text content
+  \choice Required to use self-closing XML form \texttt{</img>} in all browsers
+\end{choices}
+\begin{solution}
+  Void elements have no element content; the slash-only XHTML-style \texttt{<br />} is tolerated but optional in HTML5 for these tags.
+\begin{lstlisting}[style=htmlexam]
+<p>Line one<br>Line two</p>
+<img src="pic.png" alt="">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which statement best describes \textbf{semantic} HTML elements?
+\begin{choices}
+  \choice A generic \texttt{<div>} is the main example of a semantic element
+  \choice Semantic tags are unrelated to document structure
+  \CorrectChoice They name meaningful regions (e.g.\ \texttt{<header>}, \texttt{<nav>}, \texttt{<article>}) so structure and grouping carry meaning
+  \choice They are developer-only comments that browsers ignore
+\end{choices}
+\begin{solution}
+  Semantic elements describe roles (navigation, main content, aside) rather than being purely presentational wrappers. \texttt{<div>} is non-semantic until given a role or ARIA.
+\end{solution}
+
+\question[4]
+What is the HTML5 doctype declaration?
+\begin{choices}
+  \CorrectChoice \texttt{<!DOCTYPE html>}
+  \choice \texttt{<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">}
+  \choice \texttt{<!HTML doctype>}
+  \choice \texttt{<DOCTYPE html>}
+\end{choices}
+\begin{solution}
+  HTML5 uses the short, case-insensitive \texttt{<!DOCTYPE html>} so browsers use standards mode.
+\begin{lstlisting}[style=htmlexam]
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="utf-8"><title>Demo</title></head>
+  <body></body>
+</html>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which of these is \textbf{not} a valid CSS unit?
+\begin{choices}
+  \choice \texttt{\%} (percentage)
+  \choice \texttt{em} (font-relative)
+  \CorrectChoice \texttt{li} (not a unit---it names a list item in HTML)
+  \choice \texttt{px} or \texttt{pt}
+\end{choices}
+\begin{solution}
+  Common units include \texttt{px}, \texttt{em}, \texttt{rem}, \texttt{\%}, \texttt{vh}/\texttt{vw}, \texttt{pt}, etc. \texttt{li} is an element, not a length unit.
+\end{solution}
+
+\question[4]
+HTML is a programming language.
+\begin{choices}
+  \choice True
+  \CorrectChoice False---HTML is a \textbf{markup} language for structure and semantics, not a general-purpose programming language
+  \choice True only when scripts are disabled
+  \choice True only for static pages
+\end{choices}
+\begin{solution}
+  Behavior and computation belong to languages like JavaScript; HTML declares content and structure.
+\end{solution}
+
+\question[4]
+Which group lists elements that normally belong inside \texttt{<body>}?
+\begin{choices}
+  \CorrectChoice \texttt{<div>}, \texttt{<header>}, \texttt{<span>}, \texttt{<strong>}
+  \choice \texttt{<link>}, \texttt{<meta>}, \texttt{<p>}, \texttt{<title>}
+  \choice \texttt{<head>}, \texttt{<h1>}, \texttt{<h2>}, \texttt{<h3>} (only in \texttt{<head>})
+  \choice \texttt{<article>}, \texttt{<aside>}, \texttt{<nav>}, \texttt{<title>}
+\end{choices}
+\begin{solution}
+  \texttt{<title>}, \texttt{<meta>}, and \texttt{<link>} (for metadata/stylesheets) live in \texttt{<head>}. Visible flow content usually sits in \texttt{<body>}.
+\end{solution}
+
+\question[4]
+Which values are \textbf{valid} for an \texttt{<input>} element's \texttt{type} attribute?
+\begin{choices}
+  \CorrectChoice \texttt{password} and \texttt{text} are both valid \texttt{type} values
+  \choice \texttt{title} and \texttt{name} are valid \texttt{type} values
+  \choice Only \texttt{name} is valid; \texttt{text} is not
+  \choice Only \texttt{password} exists in HTML5
+\end{choices}
+\begin{solution}
+  \texttt{name} and \texttt{title} are attributes, not \texttt{type} keywords. Many input types exist (\texttt{text}, \texttt{password}, \texttt{email}, \texttt{checkbox}, etc.).
+\begin{lstlisting}[style=htmlexam]
+<input type="text" name="user">
+<input type="password" name="pass">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} an HTML5 \emph{element} name?
+\begin{choices}
+  \choice \texttt{<body>}
+  \choice \texttt{<h1>}
+  \choice \texttt{<p>}
+  \CorrectChoice \texttt{<class>} (\texttt{class} is an \emph{attribute}, not a tag)
+\end{choices}
+\begin{solution}
+  Use \texttt{class="..."} on elements; there is no \texttt{<class>} tag.
+\end{solution}
+
+\question[4]
+Order the CSS box model layers from \textbf{outermost} to \textbf{innermost}.
+\begin{choices}
+  \choice border $\rightarrow$ margin $\rightarrow$ content $\rightarrow$ padding
+  \choice margin $\rightarrow$ padding $\rightarrow$ border $\rightarrow$ content
+  \CorrectChoice margin $\rightarrow$ border $\rightarrow$ padding $\rightarrow$ content
+  \choice border $\rightarrow$ content $\rightarrow$ margin $\rightarrow$ padding
+\end{choices}
+\begin{solution}
+  From outside in: \textbf{margin}, \textbf{border}, \textbf{padding}, \textbf{content}. This matches the mental model used alongside \texttt{background-color} painting under the border.
+\end{solution}
+
+\question[4]
+Which element holds an \textbf{embedded} (internal) stylesheet in the document?
+\begin{choices}
+  \choice \texttt{<script>}
+  \choice \texttt{<body>}
+  \CorrectChoice \texttt{<style>} (usually in \texttt{<head>})
+  \choice \texttt{<css>}
+\end{choices}
+\begin{solution}
+  Put CSS rules inside \texttt{<style>}; link external files with \texttt{<link rel="stylesheet" href="...">}.
+\begin{lstlisting}[style=htmlexam]
+<head>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+  </style>
+</head>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What is true of a typical \textbf{inline} element (e.g.\ \texttt{<span>}) in normal flow?
+\begin{choices}
+  \CorrectChoice It sits in the text line by default; horizontal size follows content (subject to wrapping)
+  \choice It always starts on a new line like a block box
+  \choice It always stretches to the full viewport width
+  \choice The browser truncates its text when width is tight
+\end{choices}
+\begin{solution}
+  Inline boxes participate in line layout; block-level boxes (e.g.\ \texttt{<div>}) typically break onto new lines and can take full width when set to \texttt{display: block}.
+\end{solution}
+
+\endgradingrange{csawebstatic}
+

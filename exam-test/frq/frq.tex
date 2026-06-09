@@ -1,0 +1,289 @@
+% Computer Science A --- Free response (behavioral, fundamentals, Java, JavaScript, SQL, REST).
+
+\runningheader{Computer Science A}{Free Response Questions}{Page \thepage\ of \numpages}
+
+\begingradingrange{csafrq}
+
+\uplevel{\par\textbf{Part 1: Behavioral \& workplace scenarios}\par}
+
+\question[0]
+\textbf{Tell me about a time you had a disagreement with a team member on a technical approach. How did you resolve it?}
+
+\textbf{What they're looking for:} Can you stand up for security and good architecture without getting defensive, and still get the team on board?
+
+\textbf{Example (Grady Health System capstone --- Georgia Tech):}
+\begin{itemize}
+  \item \textbf{Situation / Task:} We were building a heart-rate system for Grady that had to stay secure and work with the hospital's existing IT setup. The frontend team wanted to put the database online and call it directly so they could ship features faster. As system architect, I disagreed---that would expose database ports on the public internet and did not meet Grady/Emory security and maintenance rules.
+  \item \textbf{Action:} I proposed a local database app connected through sockets, so the database stayed off the public internet and only our backend service accessed it. The frontend team pushed back at first because it meant more steps for them. I took responsibility for that: I wrote clear API documentation for the socket layer, and whenever they needed a new create/read/update/delete endpoint, I built it on the server right away so they could keep working.
+  \item \textbf{Result:} After they got used to the socket flow, the team saw it was secure, stable, and easy to maintain. We shipped a system that protected patient records, and the frontend team ended up preferring that setup.
+\end{itemize}
+
+\question[0]
+\textbf{Describe a difficult technical bug or challenge you encountered in a project. How did you diagnose and solve it?}
+ 
+\textbf{What they're looking for:} Do you debug in a clear, step-by-step way and refactor toward clean, object-oriented code when the project is hard to maintain?
+
+\textbf{Example (AlphaVi trading project):}
+\begin{itemize}
+  \item \textbf{Situation / Task:} On my AlphaVi trading project, I pulled data from three very different sources---FTP files for ratios, the Alpaca REST API for account data, and yfinance for prices and moving averages. At first I wrote separate one-off code for each API response. When I fixed a bug in one place, something else would break with no clear error, because the JSON from each source did not line up.
+  \item \textbf{Action:} I stepped back and redesigned the pipeline with OOP patterns. I used Singleton and Template so each external API had its own service class that always normalized the data the same way. I added a debug on/off flag and separate log folders per API. I used Strategy for US vs.\ Korea vs.\ Japan trading rules and Factory to build the correct timezone objects per region.
+  \item \textbf{Result:} The project went from a brittle script to something I could extend. When something failed, I checked one log file for that API instead of searching the whole application. I could run automated trading jobs on a schedule with confidence.
+\end{itemize}
+
+\newpage
+
+\question[0]
+\textbf{Tell me about a time you had to meet a tight deadline or handle competing tasks. How did you prioritize?}
+
+\textbf{What they're looking for:} Can you prioritize under pressure, use Agile practices, and deliver a working piece each sprint?
+
+\textbf{Example (Grady Health System capstone --- agile delivery):}
+\begin{itemize}
+  \item \textbf{Situation / Task:} On the same Grady capstone, we had to integrate with Epic's API while meeting tight weekly deadlines for both school and hospital stakeholders. Tasks were connected---when we finished one feature, it often changed what we had to build next.
+  \item \textbf{Action:} Our team used an Agile iteration framework. At the start of each sprint we met and prioritized the most related tasks together, instead of locking into a long plan that would change the next week anyway. We updated the backlog every week and shipped \textbf{minimum viable service} first---for example our local in-memory database layer---so the web portal and clinical screens always had a working foundation to build on.
+  \item \textbf{Result:} Requirements shifted almost every week, but we still hit our milestones. We delivered a working patient symptom intake and analytics system on time.
+\end{itemize}
+
+\newpage
+
+\uplevel{\par\textbf{Part 2: Programming fundamentals}\par}
+
+\question[0]
+\textbf{Regarding program execution, what is control flow?}
+
+\textbf{Definition:} Control flow is the order in which individual statements, instructions, or function calls are executed or evaluated within a software program.
+
+\textbf{Purpose:} By default, a program executes line-by-line from top to bottom. Control flow structures break this linear path, allowing the application to make decisions, execute blocks conditionally, or repeat operations based on changing data states.
+
+\textbf{Example:} If you write a standard user login feature, you use control flow statements like \texttt{if}/\texttt{else} blocks to direct the application. If the user inputs the correct password, the control flow routes them to the dashboard; if the password is wrong, the flow branches to display an error message. Loop structures like \texttt{for} or \texttt{while} are also control flow mechanisms used to repeat an action until a specific condition is met.
+
+\newpage
+
+\uplevel{\par\textbf{Part 3: Java}\par}
+
+\question[0]
+\textbf{What are the four pillars of OOP? Explain each one.}
+
+\textbf{Definition:} The four pillars are Encapsulation, Inheritance, Polymorphism, and Abstraction---patterns for structuring code as modular objects.
+
+\textbf{Purpose:} They help teams scale large systems, reduce bugs, reuse logic, and hide unnecessary complexity.
+
+\textbf{Example:}
+\begin{itemize}
+  \item \textbf{Encapsulation:} Bundle data and methods in a class; hide fields (\texttt{private}) and expose controlled access (getters/setters). A \texttt{BankAccount} should not allow direct balance changes except through \texttt{deposit()} or \texttt{withdraw()}.
+  \item \textbf{Inheritance:} A subclass reuses a superclass. \texttt{Car} extends \texttt{Vehicle} and inherits \texttt{startEngine()} without rewriting it.
+  \item \textbf{Polymorphism:} One method name, many behaviors. \texttt{Animal.makeSound()} is overridden so \texttt{Dog} barks and \texttt{Cat} meows when called on different objects.
+  \item \textbf{Abstraction:} Show what an object can do, not every internal step. A driver uses the accelerator without knowing engine fuel-injection details.
+\end{itemize}
+
+\question[0]
+\textbf{What is the difference between an abstract class and an interface?}
+
+\textbf{Definition:} An \textbf{abstract class} cannot be instantiated and may include both implemented and abstract methods. An \textbf{interface} is a contract of behaviors a class must provide (often all methods abstract in classic style).
+
+\textbf{Purpose:} Abstract classes model a strong \textbf{is-a} relationship and can share state or shared code. Interfaces model a \textbf{can-do} capability; unrelated types can implement the same interface, and a class may implement several.
+
+\textbf{Example:}
+\begin{itemize}
+  \item Use abstract class \texttt{Animal} for \texttt{Dog} and \texttt{Cat} when they share fields such as \texttt{age}. Java allows extending only one class.
+  \item Use interface \texttt{Flyable} when both \texttt{Bird} and \texttt{Plane} fly but are not the same kind of object. A class may \texttt{implements Flyable, Runnable} together.
+\end{itemize}
+
+\question[0]
+\textbf{How do you utilize the keyword \texttt{new} in Java?}
+
+\textbf{Definition:} \texttt{new} allocates heap memory for an object and runs the class constructor.
+
+\textbf{Purpose:} It turns a class blueprint into a live instance you can call methods on.
+
+\textbf{Example:} \texttt{StringBuilder sb;} is only a reference (\texttt{null}) until \texttt{sb = new StringBuilder();} creates the actual object on the heap.
+
+\question[0]
+\textbf{What is the purpose of the String Pool in Java?}
+
+\textbf{Definition:} The String Pool is a special area in the heap where string \textbf{literals} are stored and reused.
+
+\textbf{Purpose:} It saves memory and reduces garbage collection because the same literal text is not duplicated for every variable.
+
+\textbf{Example:} \texttt{String s1 = "Revature"; String s2 = "Revature";} points both variables at one pooled literal. This is safe because \texttt{String} objects are \textbf{immutable}. Literals created with \texttt{new String("Revature")} are separate heap objects and are not pooled the same way.
+
+\newpage
+
+\question[0]
+\textbf{What is the difference between \texttt{==} and \texttt{.equals()} in Java?}
+
+\textbf{Definition:} \texttt{==} compares primitives or whether two references point to the \textbf{same object}. \texttt{.equals()} compares logical content (when properly overridden).
+
+\textbf{Purpose:} Use \texttt{==} for primitives and reference identity. Use \texttt{.equals()} to compare meaningful object state (for example text inside two \texttt{String} objects).
+
+\textbf{Example:} For literals, \texttt{"hello" == "hello"} is \texttt{true} (same pool entry). For distinct objects,
+\begin{lstlisting}[style=javaexam]
+String s1 = new String("hello");
+String s2 = new String("hello");
+\end{lstlisting}
+\texttt{s1 == s2} is \texttt{false} (different heap objects) but \texttt{s1.equals(s2)} is \texttt{true} (same characters).
+
+\question[0]
+\textbf{What is the difference between \texttt{HashMap} and \texttt{Hashtable}?}
+
+\textbf{Definition:} Both map keys to values. \texttt{HashMap} is the modern, non-synchronized implementation; \texttt{Hashtable} is the older synchronized version.
+
+\textbf{Purpose:} \texttt{HashMap} is faster for normal single-threaded use. \texttt{Hashtable} synchronizes every method, which adds overhead; today \texttt{ConcurrentHashMap} is preferred when you need thread safety.
+
+\textbf{Example:}
+\begin{itemize}
+  \item \textbf{HashMap:} Allows one \texttt{null} key and multiple \texttt{null} values; not thread-safe without extra locking---default choice in new code.
+  \item \textbf{Hashtable:} No \texttt{null} keys or values; methods are \texttt{synchronized} so only one thread uses the table at a time---legacy, rarely chosen for new designs.
+\end{itemize}
+
+\question[0]
+\textbf{What is JDBC?}
+
+\textbf{Definition:} JDBC stands for Java Database Connectivity. It is a standard Java API (Application Programming Interface) that defines how a Java application can access and interact with relational databases.
+
+\textbf{Purpose:} It acts as a universal abstraction layer. Instead of writing separate, unique Java code to talk to Oracle, MySQL, or PostgreSQL, JDBC provides a uniform set of interfaces that allows you to write your database logic once and connect to any relational database using its specific driver.
+
+\textbf{Example:} An inventory app opens a JDBC connection, runs \texttt{SELECT * FROM products}, and reads rows back into Java for processing.
+
+\question[0]
+\textbf{What are the important interfaces in the JDBC API?}
+
+\textbf{Definition:} The core interfaces of the JDBC API (found in the \texttt{java.sql} package) are \texttt{Driver}, \texttt{Connection}, \texttt{Statement}, \texttt{PreparedStatement}, and \texttt{ResultSet}.
+
+\textbf{Purpose:} Together, these interfaces form the lifecycle pipeline of a database transaction: establishing the pipeline, preparing the query safely, executing it, and holding the incoming data.
+
+\textbf{Example:} You use these interfaces sequentially in code:
+\begin{itemize}
+  \item \textbf{Connection:} Establishes the physical session with the database (for example \texttt{DriverManager.getConnection()}).
+  \item \textbf{PreparedStatement:} Compiles and parameterizes your SQL query efficiently while protecting your application against SQL injection attacks.
+  \item \textbf{ResultSet:} Acts as a data table holding the database response rows. For example, you use a \texttt{while (resultSet.next())} loop to iterate through the retrieved records and map them back into Java primitive variables.
+\end{itemize}
+
+\newpage
+
+\uplevel{\par\textbf{Part 4: JavaScript}\par}
+
+\question[0]
+\textbf{What is the difference between \texttt{let}, \texttt{const}, and \texttt{var} in JavaScript?}
+
+\textbf{Definition:} \texttt{var} is function-scoped and hoisted, whereas \texttt{let} and \texttt{const} are block-scoped and introduce a stricter lexical variable declaration environment.
+
+\textbf{Purpose:} Using modern scoping keywords prevents accidental runtime data leakage, unhandled memory rewrites, and hoisting errors.
+
+\textbf{Example:} If you define \texttt{var x = 10} inside an \texttt{if} block, that variable leaks outside and can be accessed anywhere in the surrounding function. Replacing it with \texttt{let x = 10} restricts its lifecycle strictly to inside that specific loop or block. If you use \texttt{const x = 10}, it blocks any subsequent attempts to reassign the reference, providing variable stability.
+
+\newpage
+
+\uplevel{\par\textbf{Part 5: SQL}\par}
+
+\question[0]
+\textbf{What is a database schema? Why is it useful?}
+
+\textbf{Definition:} A database schema is the structural blueprint that defines how tables, columns, keys, and relationships are organized in a relational database.
+
+\textbf{Purpose:} It enforces data integrity, links related tables (for example users to orders), reduces redundancy, and gives developers a clear map for writing queries.
+
+\textbf{Example:} Like a house blueprint: it defines rooms and connections, not the furniture inside. An e-commerce schema might define \texttt{Users}, \texttt{Products}, and \texttt{Orders}, with a foreign key in \texttt{Orders} pointing to a valid \texttt{Users} row.
+
+\question[0]
+\textbf{What are some SQL clauses you can use with \texttt{SELECT} statements?}
+
+\textbf{Definition:} Clauses are reserved keywords that filter, group, sort, and limit the rows returned by a query.
+
+\textbf{Purpose:} They turn a large table into a focused result set the application actually needs.
+
+\textbf{Example:} Typical pipeline (logical order):
+\begin{itemize}
+  \item \textbf{FROM} --- source table (\texttt{FROM employees})
+  \item \textbf{WHERE} --- filter rows \emph{before} grouping (\texttt{WHERE salary > 60000})
+  \item \textbf{GROUP BY} --- aggregate by column (\texttt{GROUP BY department})
+  \item \textbf{HAVING} --- filter \emph{after} grouping (\texttt{HAVING COUNT(*) > 5})
+  \item \textbf{ORDER BY} --- sort output (\texttt{ORDER BY hire\_date DESC})
+  \item \textbf{LIMIT} / \textbf{TOP} --- cap row count (\texttt{LIMIT 10})
+\end{itemize}
+
+\question[0]
+\textbf{What is the difference between a \texttt{WHERE} clause and a \texttt{HAVING} clause?}
+
+\textbf{Definition:} \texttt{WHERE} filters individual rows before grouping; \texttt{HAVING} filters groups created by \texttt{GROUP BY} after aggregates run.
+
+\textbf{Purpose:} Use \texttt{WHERE} for row conditions; use \texttt{HAVING} when the condition involves \texttt{COUNT()}, \texttt{SUM()}, \texttt{AVG()}, etc.
+
+\textbf{Example:} \texttt{WHERE salary > 50000} keeps high earners. \texttt{GROUP BY department HAVING AVG(salary) > 50000} keeps only departments whose \emph{average} pay exceeds 50,000.
+
+\newpage
+
+\uplevel{\par\textbf{Part 6: RESTful APIs}\par}
+
+\question[0]
+\textbf{What are the six constraints of a RESTful API? Explain them.}
+
+\textbf{Definition:} REST constraints (Roy Fielding) are architectural rules a web service should follow to be considered RESTful.
+
+\textbf{Purpose:} They promote scalable, modular services that clients can evolve against without tight coupling.
+
+\textbf{Example:}
+\begin{itemize}
+  \item \textbf{Client--Server:} UI on the client; data and business rules on the server---each can change independently within the contract.
+  \item \textbf{Stateless:} Each request carries all context needed; the server does not store client session state between calls.
+  \item \textbf{Cacheable:} Responses say whether they may be cached so clients or proxies can reuse them safely.
+  \item \textbf{Uniform Interface:} Consistent URIs (\texttt{/api/users}), HTTP verbs (\texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{DELETE}), and formats such as JSON.
+  \item \textbf{Layered System:} Clients cannot tell if they hit the final server or a load balancer, proxy, or gateway---infrastructure can scale in layers.
+  \item \textbf{Code on Demand (optional):} Server may send executable code (for example scripts) to extend the client---rarely required for a REST design to be valid.
+\end{itemize}
+
+\question[0]
+\textbf{What is a path parameter vs.\ a query parameter?}
+
+\textbf{Definition:} A \textbf{path parameter} is a variable embedded in the URL path that identifies a specific resource. A \textbf{query parameter} is a key--value pair after \texttt{?} used to filter, sort, or paginate without changing which resource type you are addressing.
+
+\textbf{Purpose:} Path parameters scaffold hierarchy and identity (\emph{which book}); query parameters manipulate how results are returned (\emph{which subset or sort order}).
+
+\textbf{Example:} Book store API:
+\begin{itemize}
+  \item Path: \texttt{/api/books/9780132350884} --- ISBN in the path identifies one book.
+  \item Query: \texttt{/api/books?genre=programming\&sort=author} --- returns books filtered by genre and sorted by author.
+\end{itemize}
+
+\question[0]
+\textbf{How would you extract query and path parameters from a request URL in your controller?}
+
+\textbf{Definition:} Bind URL segments to method parameters using framework annotations on your controller method arguments.
+
+\textbf{Purpose:} Turns dynamic parts of the HTTP request into typed Java variables your service layer can use.
+
+\textbf{Example:} In Spring Boot, use \texttt{@PathVariable} and \texttt{@RequestParam}:
+\begin{itemize}
+  \item Path --- \texttt{GET /books/\{id\}}:
+  \begin{quote}\small\ttfamily 
+@GetMapping("/books/\{id\}")\\
+public Book getBookById(@PathVariable Long id) \{ \ldots \}
+  \end{quote}
+  \item Query --- \texttt{GET /books?genre=programming}:
+  \begin{quote}\small\ttfamily
+@GetMapping("/books")\\
+public List<Book> getBooksByGenre(@RequestParam String genre) \{ \ldots \}
+  \end{quote}
+\end{itemize}
+
+\newpage
+
+\question[0]
+\textbf{How would you specify HTTP status codes to return from your controller?}
+
+\textbf{Definition:} Return an explicit three-digit HTTP status (for example 200 OK, 201 Created, 404 Not Found) via a response wrapper or method annotation so the client knows the outcome.
+
+\textbf{Purpose:} Gives the frontend machine-readable success/failure context so it can branch UI logic correctly.
+
+\textbf{Example:} In Spring Boot:
+\begin{itemize}
+  \item \textbf{ResponseEntity} (dynamic): \texttt{return new ResponseEntity<>(savedBook, HttpStatus.CREATED);} sends \textbf{201} with a body.
+  \item \textbf{@ResponseStatus} (static): annotate the handler so success always maps to one code:
+  \begin{quote}\small\ttfamily
+@PostMapping("/books")\\
+@ResponseStatus(HttpStatus.CREATED)\\
+public Book createBook(@RequestBody Book book) \{ return bookService.save(book); \}
+  \end{quote}
+\end{itemize}
+
+\endgradingrange{csafrq}
