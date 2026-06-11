@@ -1,0 +1,840 @@
+% In this chapter, we have reviewed an important BC Calculus topic, infinite series. We have looked at a variety of tests to determine whether a series converges or diverges. We have worked with functions defined as power series, reviewed how to derive Taylor series, and looked at the Maclaurin series expansions for many commonly used functions. Finally, we have reviewed how to find bounds on the errors that arise when series are used for approximations.
+
+\question
+Which sequence converges?
+\begin{choices}
+  \choice $a_{n}=n+\dfrac{3}{n}$
+  \CorrectChoice $a_{n}=-1+\dfrac{(-1)^{n}}{n}$
+  \choice $a_{n}=\sin \dfrac{n \pi}{2}$
+  \choice $a_{n}=\dfrac{n!}{3^{n}}$
+  \choice $a_{n}=\dfrac{n}{\ln n}$
+\end{choices}
+\begin{solution}
+$a_{n}=-1+\dfrac{(-1)^{n}}{n}$ converges to -1 .
+\end{solution}
+
+\question
+If $s_{n}=1+\dfrac{(-1)^{n}}{n}$, then
+\begin{choices}
+  \choice $s_{n}$ diverges by oscillation
+  \choice $s_{n}$ converges to zero
+  \CorrectChoice $\lim\limits_{n \to \infty} s_{n}=1$
+  \choice $s_{n}$ diverges to infinity
+  \choice None of the above is true.
+\end{choices}
+\begin{solution}
+Note that $\lim\limits_{n \to \infty} \dfrac{(-1)^{n}}{n}=0$.
+\end{solution}
+
+\question
+The sequence $a_{n}=\sin \dfrac{n \pi}{6}$
+\begin{choices}
+  \choice is unbounded
+  \choice is monotonic
+  \choice converges to a number less than 1
+  \CorrectChoice is bounded
+  \choice diverges to infinity
+\end{choices}
+\begin{solution}
+The sine function varies continuously between -1 and 1 inclusive.
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+
+\question
+Which of the following sequences diverges?
+\begin{choices}
+  \choice $a_{n}=\dfrac{1}{n}$
+  \choice $a_{n}=\dfrac{(-1)^{n+1}}{n}$
+  \choice $a_{n}=\dfrac{2^{n}}{e^{n}}$
+  \choice $a_{n}=\dfrac{n^{2}}{e^{n}}$
+  \CorrectChoice $a_{n}=\dfrac{n}{\ln n}$
+\end{choices}
+\begin{solution}
+Note that $a_{n}=\left(\dfrac{2}{e}\right)^{n}$ is a sequence of the type $s_{n}=r^{n}$ with $|r|<1$; also that $\lim \dfrac{n^{2}}{e^{n}}=0$ by repeated application of L'Hpital's rule.
+\end{solution}
+
+\question
+The sequence $\left\{r^{n}\right\}$ converges if and only if
+\begin{choices}
+  \choice $|r|<1$
+  \choice $|r| \leqq 1$
+  \CorrectChoice $-1<r \leqq 1$
+  \choice $0<r<1$
+  \choice $|r|>1$
+\end{choices}
+\begin{solution}
+$\lim\limits_{n \to \infty} r_{n}=0$ for $|r|<1 ; \lim\limits_{n \to \infty} r_{n}=1$ for $r=1$.
+\end{solution}
+
+\question
+$\sum u_{n}$ is a series of constants for which $\lim\limits_{n \to \infty} u_{n}=0$. Which of the following statements is always true?
+\begin{choices}
+  \choice $\sum u_{n}$ converges to a finite sum.
+  \choice $\sum u_{n}$ equals zero.
+  \choice $\sum u_{n}$ does not diverge to infinity.
+  \choice $\sum u_{n}$ is a positive series.
+  \CorrectChoice none of these
+\end{choices}
+\begin{solution}
+The harmonic series $\sum\limits_{1}^{\infty} \dfrac{1}{k}$ is a counterexample for (A), (B), and (C). $\sum\limits_{1}^{\infty} \dfrac{(-1)^{k+1}}{k}$ shows that (D) does not follow.
+\end{solution}
+
+
+
+
+\newpage
+
+ 
+
+
+\question
+Note that $\dfrac{1}{n(n+1)}=\dfrac{1}{n}-\dfrac{1}{n+1}(n \geqq 1) . \sum\limits_{n=1}^{\infty} \dfrac{1}{n(n+1)}$ equals
+\begin{choices}
+  \choice 0
+  \CorrectChoice 1
+  \choice $\dfrac{3}{2}$
+  \choice $\dfrac{3}{4}$
+  \choice $\infty$
+\end{choices}
+\begin{solution}
+$\sum\limits_{1}^{\infty} \dfrac{1}{n(n+1)}=\dfrac{1}{1 \cdot 2}+\dfrac{1}{2 \cdot 3}+\dfrac{1}{3 \cdot 4}+\cdots+\dfrac{1}{n(n+1)}+\cdots$; so
+
+
+\[
+s_{n}=1-\dfrac{1}{2}+\dfrac{1}{2}-\dfrac{1}{3}+\dfrac{1}{3}-\cdots+\dfrac{1}{n}-\dfrac{1}{n+1}=1-\dfrac{1}{n+1},
+\]
+
+and $\lim\limits_{n \to \infty} s_{n}=1$.
+\end{solution}
+
+\question
+The sum of the geometric series $2-1+\dfrac{1}{2}-\dfrac{1}{4}+\dfrac{1}{8}-\cdots$ is
+\begin{choices}
+  \CorrectChoice $\dfrac{4}{3}$
+  \choice $\dfrac{5}{4}$
+  \choice 1
+  \choice $\dfrac{3}{2}$
+  \choice $\dfrac{3}{4}$
+\end{choices}
+\begin{solution}
+(A) $S=\dfrac{a}{1-r}=\dfrac{2}{1-\left(-\dfrac{1}{2}\right)}=\dfrac{4}{3}$.
+\end{solution}
+
+\question
+Which of the following statements about series is true?
+\begin{choices}
+  \choice If $\lim\limits_{n \to \infty} u_{n}=0$, then $\sum u_{n}$ converges.
+  \CorrectChoice If $\lim\limits_{n \to \infty} u_{n} \neq 0$, then $\sum u_{n}$ diverges.
+  \choice If $\sum u_{n}$ diverges, then $\lim\limits_{n \to \infty} u_{n} \neq 0$.
+  \choice $\sum u_{n}$ converges if and only if $\lim\limits_{n \to \infty} u_{n}=0$.
+  \choice none of these
+\end{choices}
+\begin{solution}
+(B) Find counterexamples for statements (A), (C), and (D).
+\end{solution}
+
+
+\newpage
+
+
+
+
+\question
+Which of the following series diverges?
+\begin{choices}
+  \choice $\sum \dfrac{1}{n^{2}}$
+  \choice $\sum \dfrac{1}{n^{2}+n}$
+  \choice $\sum \dfrac{n}{n^{3}+1}$
+  \CorrectChoice $\sum \dfrac{n}{\sqrt{4 n^{2}-1}}$
+  \choice none of these
+\end{choices}
+\begin{solution}
+(D) $\dfrac{n}{\sqrt{4 n^{2}-1}}>\dfrac{n}{\sqrt{4 n^{2}}}=\dfrac{1}{2}$, the general term of a divergent series.
+\end{solution}
+
+\question
+Which of the following series diverges?
+\begin{choices}
+  \choice $3-1+\dfrac{1}{9}-\dfrac{1}{27}+\cdots$
+  \choice $\dfrac{1}{\sqrt{2}}-\dfrac{1}{\sqrt{3}}+\dfrac{1}{\sqrt{4}}-\cdots$
+  \choice $\dfrac{1}{2^{2}}-\dfrac{1}{3^{2}}+\dfrac{1}{4^{2}}-\cdots$
+  \CorrectChoice $1-1.1+1.21-1.331+\cdots$
+  \choice $\dfrac{1}{1 \cdot 2}-\dfrac{1}{2 \cdot 3}+\dfrac{1}{3 \cdot 4}-\dfrac{1}{4 \cdot 5}+\cdots$
+\end{choices}
+\begin{solution}
+(D) (A), (B), (C), and (E) all converge; (D) is the divergent geometric series with $r=-1.1$.
+\end{solution}
+
+\question
+Let $S=\sum\limits_{n=1}^{\infty}\left(\dfrac{2}{3}\right)^{n}$; then $S$ equals
+\begin{choices}
+  \choice 1
+  \choice $\dfrac{3}{2}$
+  \choice $\dfrac{4}{3}$
+  \CorrectChoice 2
+  \choice 3
+\end{choices}
+\begin{solution}
+(D) $S=\dfrac{a}{1-r}=\dfrac{\dfrac{2}{3}}{1-\dfrac{2}{3}}=\dfrac{\dfrac{2}{3}}{\dfrac{1}{3}}=2$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+Which of the following expansions is impossible?
+\begin{choices}
+  \CorrectChoice $\sqrt{x-1}$ in powers of $x$
+  \choice $\sqrt{x+1}$ in powers of $x$
+  \choice $\ln x$ in powers of $(x-1)$
+  \choice $\tan x$ in powers of $\left(x-\dfrac{\pi}{4}\right)$
+  \choice $\ln (1-x)$ in powers of $x$
+\end{choices}
+\begin{solution}
+(A) If $f(x)=\sqrt{x-1}$, then $f(0)$ is not defined.
+\end{solution}
+
+\question
+The series $\sum\limits_{n=0}^{\infty} n!(x-3)^{n}$ converges if and only if
+\begin{choices}
+  \choice $x=0$
+  \choice $2<x<4$
+  \CorrectChoice $x=3$
+  \choice $2 \leqq x \leqq 4$
+  \choice $x<2$ or $x>4$
+\end{choices}
+\begin{solution}
+(C) $\lim\limits_{n \to \infty}(n+1)(x-3)=\infty$ unless $x=3$.
+\end{solution}
+
+\question\label{calc10:integral-series}
+Let $f(x)=\sum\limits_{n=0}^{\infty} x^{n}$. The radius of convergence of $\displaystyle\int_{0}^{x} f(t) d t$ is
+\begin{choices}
+  \choice 0
+  \CorrectChoice 1
+  \choice 2
+  \choice $\infty$
+  \choice none of these
+\end{choices}
+\begin{solution}
+(B) The integrated series is $\sum\limits_{n=0}^{\infty} \dfrac{x^{n+1}}{n+1}$ or $\sum\limits_{n=1}^{\infty} \dfrac{x^{n}}{n}$. See Question~\ref{calc10:radius-ln}.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The coefficient of $x^{4}$ in the Maclaurin series for $f(x)=e^{-x / 2}$ is
+\begin{choices}
+  \choice $-\dfrac{1}{24}$
+  \choice $\dfrac{1}{24}$
+  \choice $\dfrac{1}{96}$
+  \choice $-\dfrac{1}{384}$
+  \CorrectChoice $\dfrac{1}{384}$
+\end{choices}
+\begin{solution}
+(E) $e^{-x / 2}=1+\left(-\dfrac{x}{2}\right)+\left(-\dfrac{x}{2}\right)^{2} \cdot \dfrac{1}{2!}+\left(-\dfrac{x}{2}\right)^{3} \cdot \dfrac{1}{3!}+\left(-\dfrac{x}{2}\right)^{4} \cdot \dfrac{1}{4!}+\cdots$
+\end{solution}
+
+\question
+If an appropriate series is used to evaluate $\displaystyle\int_{0}^{0.3} x^{2} e^{-x^{2}} d x$, then, correct to three decimal places, the definite integral equals
+\begin{choices}
+  \CorrectChoice 0.009
+  \choice 0.082
+  \choice 0.098
+  \choice 0.008
+  \choice 0.090
+\end{choices}
+\begin{solution}
+(A) $\displaystyle\int_{0}^{0.3} x^{2} e^{-x^{2}} d x=\displaystyle\int_{0}^{0.3} x^{2}\left(1-x^{2}+\dfrac{x^{4}}{2!}-\cdots\right) d x$
+
+\[
+\begin{aligned}
+& =\displaystyle\int_{0}^{0.3}\left(x^{2}-x^{4}+\dfrac{x^{6}}{2!}-\cdots\right) d x \\
+& =\dfrac{x^{3}}{3}-\dfrac{x^{5}}{5}+\left.\cdots\right|_{0} ^{0.3} \\
+& =0.009 \text { to three decimal places. }
+\end{aligned}
+\]
+
+
+\end{solution}
+
+\question
+If the series $\tan ^{-1} 1=1-\dfrac{1}{3}+\dfrac{1}{5}-\dfrac{1}{7}+\cdots$ is used to approximate $\dfrac{\pi}{4}$ with an error less than 0.001 , then the smallest number of terms needed is
+\begin{choices}
+  \choice 100
+  \choice 200
+  \choice 300
+  \choice 400
+  \CorrectChoice 500
+\end{choices}
+\begin{solution}
+The series satisfies the Alternating Series Test, so the error is less than the first term dropped, namely, $\dfrac{1}{2(n+1)-1}$, or $\dfrac{1}{2 n+1}$ (see (5) on page 426), so $n \geqslant 500$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question\label{calc10:tan-p7}
+Let $f$ be the Taylor polynomial $P_{7}(x)$ of order 7 for $\tan ^{-1} x$ about $x=0$. Then it follows that, if $-1.5<x<1.5$,
+\begin{choices}
+  \choice $f(x)=\tan ^{-1} x$
+  \choice $f(x) \leqslant \tan ^{-1} x$
+  \choice $f(x) \geqslant \tan ^{-1} x$
+  \CorrectChoice $f(x)>\tan ^{-1} x$ if $x<0$ but $<\tan ^{-1} x$ if $x>0$
+  \choice $f(x)<\tan ^{-1} x$ if $x<0$ but $>\tan ^{-1} x$ if $x>0$
+\end{choices}
+\begin{solution}
+Note that the Taylor series for $\tan ^{-1} x$ satisfies the Alternating Series Test and that $f(x)=x-\dfrac{x^{3}}{3}+\dfrac{x^{5}}{5}-\dfrac{x^{7}}{7}=P_{7}(x)$. If $x<0$, then the first omitted term, $\dfrac{x^{9}}{9}$, is negative. Hence $P_{7}(x)$ exceeds $\tan ^{-1} x$.
+\end{solution}
+
+\question\label{calc10:tan-p9}
+Replace the first sentence in Question~\ref{calc10:tan-p7} by "Let $f$ be the Taylor polynomial $P_{9}(x)$ of order 9 for $\tan ^{-1} x$ about $x=0$." Which choice given in Question~\ref{calc10:tan-p7} is now the correct one? Use the same choices as in Question~\ref{calc10:tan-p7}.
+\begin{solution}
+Now the first omitted term, $-\dfrac{x^{11}}{11}$, is positive for $x<0$. Hence $P_{9}(x)$ is less than $\tan ^{-1} x$.
+\end{solution}
+
+\question
+Which of the following statements about series is false?
+\begin{choices}
+  \CorrectChoice $\sum\limits_{k=1}^{\infty} u_{k}=\sum\limits_{k=m}^{\infty} u_{k}$, where $m$ is any positive integer.
+  \choice If $\sum u_{n}$ converges, so does $\sum c u_{n}$ if $c \neq 0$.
+  \choice If $\sum a_{n}$ and $\sum b_{n}$ converge, so does $\sum\left(c a_{n}+b_{n}\right)$, where $c \neq 0$.
+  \choice If 1000 terms are added to a convergent series, the new series also converges.
+  \choice Rearranging the terms of a positive convergent series will not affect its convergence or its sum.
+\end{choices}
+\begin{solution}
+If $\sum\limits_{k=1}^{\infty} u_{k}$ converges, so does $\sum\limits_{k=m}^{\infty} u_{k}$, where $m$ is any positive integer; but their sums are probably different.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+Which of the following series converges?
+\begin{choices}
+  \choice $\sum \dfrac{1}{\sqrt[3]{n}}$
+  \choice $\sum \dfrac{1}{\sqrt{n}}$
+  \choice $\sum \dfrac{1}{n}$
+  \choice $\sum \dfrac{1}{10 n-1}$
+  \CorrectChoice $\sum \dfrac{2}{n^{2}-5}$
+\end{choices}
+\begin{solution}
+Each series given is essentially a $p$-series. Only in (E) is $p>1$.
+\end{solution}
+
+\question
+Which of the following series diverges?
+\begin{choices}
+  \choice $\sum\limits_{n=1}^{\infty} \dfrac{1}{n(n+1)}$
+  \choice $\sum\limits_{n=1}^{\infty} \dfrac{n+1}{n!}$
+  \CorrectChoice $\sum\limits_{n=2}^{\infty} \dfrac{1}{n \ln n}$
+  \choice $\sum\limits_{n=1}^{\infty} \dfrac{\ln n}{2^{n}}$
+  \choice $\sum\limits_{n=1}^{\infty} \dfrac{n}{2^{n}}$
+
+
+\end{choices}
+\begin{solution}
+Use the Integral Test on page 412.
+\end{solution}
+
+\textit{The questions below are BC only.}
+
+\question
+For which of the following series does the Ratio Test fail?
+\begin{choices}
+  \choice $\sum \dfrac{1}{n!}$
+  \choice $\sum \dfrac{n}{2^{n}}$
+  \CorrectChoice $1+\dfrac{1}{2^{3 / 2}}+\dfrac{1}{3^{3 / 2}}+\dfrac{1}{4^{3 / 2}}+\cdots$
+  \choice $\dfrac{\ln 2}{2^{2}}+\dfrac{\ln 3}{2^{3}}+\dfrac{\ln 4}{2^{4}}+\cdots$
+  \choice $\sum \dfrac{n^{n}}{n!}$
+\end{choices}
+\begin{solution}
+The limit of the ratio for the series $\sum \dfrac{1}{n^{3 / 2}}$ is 1 , so this test fails; note for (E) that
+\[
+\lim\limits_{n \to \infty} \dfrac{u_{n+1}}{u_{n}}=\lim\limits_{n \to \infty}\left(\dfrac{n+1}{n}\right)^{n}=\lim\limits_{n \to \infty}\left(1+\dfrac{1}{n}\right)^{n}=e
+\]
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+Which of the following alternating series diverges?
+\begin{choices}
+  \choice $\sum \dfrac{(-1)^{n-1}}{n}$
+  \CorrectChoice $\sum \dfrac{(-1)^{n+1}(n-1)}{n+1}$
+  \choice $\sum \dfrac{(-1)^{n+1}}{\ln (n+1)}$
+  \choice $\sum \dfrac{(-1)^{n-1}}{\sqrt{n}}$
+  \choice $\sum \dfrac{(-1)^{n-1}(n)}{n^{2}+1}$
+\end{choices}
+\begin{solution}
+$\lim\limits_{n \to \infty} \dfrac{(-1)^{n+1}(n-1)}{n+1}$ does not equal 0 .
+\end{solution}
+
+\question
+Which of the following statements is true?
+\begin{choices}
+  \choice If $\sum u_{n}$ converges, then so does the series $\sum\left|u_{n}\right|$.
+  \choice If a series is truncated after the $n$th term, then the error is less than the first term omitted.
+  \choice If the terms of an alternating series decrease, then the series converges.
+  \choice If $r<1$, then the series $\sum r^{n}$ converges.
+  \CorrectChoice none of these
+\end{choices}
+\begin{solution}
+Note the following counterexamples:\\
+(A) $\sum \dfrac{(-1)^{n-1}}{n}$\\
+(B) $\sum \dfrac{1}{n}$\\
+(C) $\sum \dfrac{(-1)^{n-1} \cdot n}{2 n-1}$\\
+(D) $\sum\left(-\dfrac{3}{2}\right)^{n-1}$
+\end{solution}
+
+\question\label{calc10:radius-ln}
+The power series $x+\dfrac{x^{2}}{2}+\dfrac{x^{3}}{3}+\cdots+\dfrac{x^{n}}{n}+\cdots$ converges if and only if
+\begin{choices}
+  \choice $-1<x<1$
+  \choice $-1 \leqq x \leqq 1$
+  \CorrectChoice $-1 \leqq x<1$
+  \choice $-1<x \leqq 1$
+  \choice $x=0$
+\end{choices}
+\begin{solution}
+Since $\lim\limits_{n \to \infty}\left|\dfrac{u_{n+1}}{u_{n}}\right|=|x|$, the series converges if $|x|<1$. We must test the endpoints: when $x=1$, we get the divergent harmonic series; $x=-1$ yields the convergent alternating harmonic series.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The power series
+\[
+(x+1)-\dfrac{(x+1)^{2}}{2!}+\dfrac{(x+1)^{3}}{3!}-\dfrac{(x+1)^{4}}{4!}+\cdots
+\]
+diverges
+\begin{choices}
+  \CorrectChoice for no real $x$
+  \choice if $-2<x \leqq 0$
+  \choice if $x<-2$ or $x>0$
+  \choice if $-2 \leqq x<0$
+  \choice if $x \neq-1$
+\end{choices}
+\begin{solution}
+$\lim\limits_{n \to \infty}\left|\dfrac{x+1}{n+1}\right|=0$ for all $x \neq-1$; since the given series converges to 0 if $x=-1$, it therefore converges for all $x$.
+\end{solution}
+
+\question
+The series obtained by differentiating term by term the series
+
+\[
+(x-2)+\dfrac{(x-2)^{2}}{4}+\dfrac{(x-2)^{3}}{9}+\dfrac{(x-2)^{4}}{16}+\cdots
+\]
+
+converges for
+\begin{choices}
+  \choice $1 \leqq x \leqq 3$
+  \CorrectChoice $1 \leqq x<3$
+  \choice $1<x \leqq 3$
+  \choice $0 \leqq x \leqq 4$
+  \choice none of these
+\end{choices}
+\begin{solution}
+The differentiated series is $\sum\limits_{n=1}^{\infty} \dfrac{(x-2)^{n-1}}{n}$; so
+\[
+\lim\limits_{n \to \infty}\left|\dfrac{u_{n+1}}{u_{n}}\right|=|x-2|
+\]
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The Taylor polynomial of order 3 at $x=0$ for $f(x)=\sqrt{1+x}$ is
+\begin{choices}
+  \choice $1+\dfrac{x}{2}-\dfrac{x^{2}}{4}+\dfrac{3 x^{3}}{8}$
+  \CorrectChoice $1+\dfrac{x}{2}-\dfrac{x^{2}}{8}+\dfrac{x^{3}}{16}$
+  \choice $1-\dfrac{x}{2}+\dfrac{x^{2}}{8}-\dfrac{x^{3}}{16}$
+  \choice $1+\dfrac{x}{2}-\dfrac{x^{2}}{8}+\dfrac{x^{3}}{8}$
+  \choice $1-\dfrac{x}{2}+\dfrac{x^{2}}{4}-\dfrac{3 x^{3}}{8}$
+\end{choices}
+\begin{solution}
+See Example 52 on pages 434 and 435.
+\end{solution}
+
+\question
+The Taylor polynomial of order 3 at $x=1$ for $e^{x}$ is
+\begin{choices}
+  \choice $1+(x-1)+\dfrac{(x-1)^{2}}{2}+\dfrac{(x-1)^{3}}{3}$
+  \choice $e\left[1+(x-1)+\dfrac{(x-1)^{2}}{2}+\dfrac{(x-1)^{3}}{3}\right]$
+  \choice $e\left[1+(x+1)+\dfrac{(x+1)^{2}}{2!}+\dfrac{(x+1)^{3}}{3!}\right]$
+  \CorrectChoice $e\left[1+(x-1)+\dfrac{(x-1)^{2}}{2!}+\dfrac{(x-1)^{3}}{3!}\right]$
+  \choice $e\left[1-(x-1)+\dfrac{(x-1)^{2}}{2!}+\dfrac{(x-1)^{3}}{3!}\right]$
+\end{choices}
+\begin{solution}
+Note that every derivative of $e^{x}$ is $e$ at $x=1$. The Taylor series is in powers of ( $x-1$ ) with coefficients of the form $c_{n}=\dfrac{e}{n!}$.
+\end{solution}
+
+\question
+The coefficient of $\left(x-\dfrac{\pi}{4}\right)^{3}$ in the Taylor series about $\dfrac{\pi}{4}$ of $f(x)=\cos x$ is
+\begin{choices}
+  \choice $\dfrac{\sqrt{3}}{12}$
+  \choice $-\dfrac{1}{12}$
+  \choice $\dfrac{1}{12}$
+  \CorrectChoice $\dfrac{1}{6 \sqrt{2}}$
+  \choice $-\dfrac{1}{3 \sqrt{2}}$
+\end{choices}
+\begin{solution}
+For $f(x)=\cos x$ around $x=\dfrac{\pi}{4}, c_{3}=\dfrac{f^{(3)}\left(\dfrac{\pi}{4}\right)}{3!}=\dfrac{\sin \left(\dfrac{\pi}{4}\right)}{3!}=\dfrac{1 / \sqrt{2}}{3!}$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+Which of the following series can be used to compute $\ln 0.8$ ?
+\begin{choices}
+  \choice $\ln (x-1)$ expanded about $x=0$
+  \choice $\ln x$ about $x=0$
+  \CorrectChoice $\ln x$ expanded about $x=1$
+  \choice $\ln (x-1)$ expanded about $x=1$
+  \choice none of these
+\end{choices}
+\begin{solution}
+Note that $\ln q$ is defined only if $q>0$, and that the derivatives must exist at $x=a$ in the formula for the Taylor series on page 424.
+\end{solution}
+
+\question
+If $e^{-0.1}$ is computed using a Maclaurin series, then, correct to three decimal places, it equals
+\begin{choices}
+  \CorrectChoice 0.905
+  \choice 0.950
+  \choice 0.904
+  \choice 0.900
+  \choice 0.949
+\end{choices}
+\begin{solution}
+Use
+
+
+\[
+\begin{aligned}
+& e^{-x}=1-x+\dfrac{x^{2}}{2!}-\cdots ; \quad e^{-0.1}=1-(+0.1)+\dfrac{0.01}{2!}+R_{2} . \\
+& \left|R_{2}\right|<\dfrac{0.001}{3!}<0.0005 . \text { Or use the series for } e^{x} \text { and let } x=-0.1 .
+\end{aligned}
+\]
+
+
+\end{solution}
+
+\question
+The coefficient of $x^{2}$ in the Maclaurin series for $e^{\sin x}$ is
+\begin{choices}
+  \choice 0
+  \choice 1
+  \CorrectChoice $\dfrac{1}{2!}$
+  \choice -1
+  \choice $\dfrac{1}{4}$
+\end{choices}
+\begin{solution}
+\[
+\begin{aligned}
+& e^{u}=1+u+\dfrac{u^{2}}{2!}+\cdots ; \text { and } \sin x=x-\dfrac{x^{3}}{3!}+\cdots, \text { so } \\
+& e^{\sin x}=1+\left(x-\dfrac{x^{3}}{3!}+\cdots\right)+\dfrac{1}{2!}\left(x-\dfrac{x^{3}}{3!}+\cdots\right)^{2}+\cdots
+\end{aligned}
+\]
+Or generate the Maclaurin series for $e^{\sin x}$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+Let $f(x)=\sum\limits_{n=0}^{\infty} a_{n} x^{n}, g(x)=\sum\limits_{n=0}^{\infty} b_{n} x^{n}$. Suppose both series converge for $|x|<R$. Let $x_{0}$ be a number such that $\left|x_{0}\right|<R$. Which of the following statements is false?
+\begin{choices}
+  \choice $\sum\limits_{n=0}^{\infty}\left(a_{n}+b_{n}\right)\left(x_{0}\right)^{n}$ converges to $f\left(x_{0}\right)+g\left(x_{0}\right)$.
+  \choice $\left[\sum\limits_{n=0}^{\infty} a_{n}\left(x_{0}\right)^{n}\right]\left[\sum\limits_{n=0}^{\infty} b_{n}\left(x_{0}\right)^{n}\right]$ converges to $f\left(x_{0}\right) g\left(x_{0}\right)$.
+  \choice $f(x)=\sum\limits_{n=0}^{\infty} a_{n} x^{n}$ is continuous at $x=x_{0}$.
+  \choice $\sum\limits_{n=1}^{\infty} n a_{n} x^{n-1}$ converges to $f^{\prime}\left(x_{0}\right)$.
+  \CorrectChoice none of these
+\end{choices}
+\begin{solution}
+(E) (A), (B), (C), and (D) are all true statements.
+\end{solution}
+
+\question
+The coefficient of $(x-1)^{5}$ in the Taylor series for $x \ln x$ about $x=1$ is
+\begin{choices}
+  \CorrectChoice $-\dfrac{1}{20}$
+  \choice $\dfrac{1}{5!}$
+  \choice $-\dfrac{1}{5!}$
+  \choice $\dfrac{1}{4!}$
+  \choice $-\dfrac{1}{4!}$
+\end{choices}
+\begin{solution}
+(A) $f(x)=x \ln x$,
+\[
+\begin{aligned}
+f^{\prime}(x) & =1+\ln x \\
+f^{\prime \prime}(x) & =\dfrac{1}{x} \\
+f^{\prime \prime \prime}(x) & =-\dfrac{1}{x^{2}} \\
+f^{(4)}(x) & =\dfrac{2}{x^{3}} \\
+f^{(5)}(x) & =-\dfrac{3 \cdot 2}{x^{4}} ; \quad f^{(5)}(1)=-3 \cdot 2
+\end{aligned}
+\]
+So the coefficient of $(x-1)^{5}$ is $-\dfrac{3 \cdot 2}{5!}=-\dfrac{1}{20}$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The radius of convergence of the series $\sum\limits_{n=1}^{\infty} \dfrac{x^{n}}{2^{n}} \cdot \dfrac{n^{n}}{n!}$ is
+\begin{choices}
+  \choice 0
+  \choice 2
+  \CorrectChoice $\dfrac{2}{e}$
+  \choice $\dfrac{e}{2}$
+  \choice $\infty$
+\end{choices}
+\begin{solution}
+(C) $\lim\limits_{n \to \infty}\left|\dfrac{u_{n+1}}{u_{n}}\right|=\lim\limits_{n \to \infty}\left|\dfrac{x^{n+1}(n+1)^{n+1}}{2^{n+1}(n+1)!} \cdot \dfrac{2^{n} \cdot n!}{x^{n} \cdot n^{n}}\right|$
+
+\[
+\begin{aligned}
+& =\lim\limits_{n \to \infty}\left|\dfrac{x(n+1)^{n+1}}{2(n+1) n^{n}}\right|=\lim\limits_{n \to \infty}\left|\dfrac{x}{2}\left(\dfrac{n+1}{n}\right)^{n}\right| \\
+& =\lim\limits_{n \to \infty}\left|\dfrac{x}{2}\left(1+\dfrac{1}{n}\right)^{n}\right|=\left|\dfrac{x}{2} \cdot e\right|
+\end{aligned}
+\]
+
+Since the series converges when $\left|\dfrac{x}{2} \cdot e\right|<1$, that is, when $|x|<\dfrac{2}{e}$, the radius of convergence is $\dfrac{2}{e}$.
+\end{solution}
+
+\question
+If the approximate formula $\sin x=x-\dfrac{x^{3}}{3!}$ is used and $|x|<1$ (radian), then the error is numerically less than
+\begin{choices}
+  \choice 0.001
+  \choice 0.003
+  \choice 0.005
+  \choice 0.008
+  \CorrectChoice 0.009
+\end{choices}
+\begin{solution}
+(E) The Maclaurin series $\sin x=x-\dfrac{x^{3}}{3!}+\dfrac{x^{5}}{5!}-\dfrac{x^{7}}{7!}+\cdots$ converges by the Alternating Series Test, so the error $\left|R_{4}\right|$ is less than the first omitted term. For $x=1$, we have $\dfrac{1}{5!}<0.009$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+If a suitable series is used, then $\displaystyle\int_{0}^{0.2} \dfrac{e^{-x}-1}{x} d x$, correct to three decimal places, is
+\begin{choices}
+  \choice -0.200
+  \choice 0.180
+  \choice 0.190
+  \CorrectChoice -0.190
+  \choice -0.990
+\end{choices}
+\begin{solution}
+(D) $\displaystyle\int_{0}^{0.2} \dfrac{e^{-x}-1}{x} d x=\dfrac{\left(1-x+\dfrac{x^{2}}{2!}-\dfrac{x^{3}}{3!}+\cdots\right)-1}{x} d x$
+
+\[
+\begin{aligned}
+& =\displaystyle\int_{0}^{0.2}\left(-1+\dfrac{x}{2}-\dfrac{x^{2}}{3!}+\cdots\right) d x \\
+& =-x+\dfrac{x^{2}}{2 \cdot 2}-\dfrac{x^{3}}{3 \cdot 6}+\left.\cdots\right|_{0} ^{0.2} \\
+& =-0.190 ; \text { the error }<\dfrac{(0.2)^{4}}{96}<0.0005
+\end{aligned}
+\]
+
+
+\end{solution}
+
+\question
+The function $f(x)=\sum\limits_{n=0}^{\infty} a_{n} x^{n}$ and $f^{\prime}(x)=-f(x)$ for all $x$. If $f(0)=1$, then $f(0.2)$, correct to three decimal places, is
+\begin{choices}
+  \choice 0.905
+  \choice 1.221
+  \CorrectChoice 0.819
+  \choice 0.820
+  \choice 1.220
+\end{choices}
+\begin{solution}
+$\quad f(x)=a_{0}+a_{1} x+a_{2} x^{2}+a_{3} x^{3}+\cdots$; if $f(0)=1$, then $a_{0}=1$.\\
+$f^{\prime}(x)=a_{1}+2 a_{2} x+3 a_{3} x^{2}+4 a_{4} x^{3}+\cdots ; f^{\prime}(0)=-f(0)=-1$,\\
+so $a_{1}=-1$. Since $f^{\prime}(x)=-f(x), f(x)=-f^{\prime}(x)$ :\\
+$1-x+a_{2} x^{2}+a_{3} x^{3}+\cdots=-\left(-1+2 a_{2} x+3 a_{3} x^{2}+4 a_{4} x^{3}+\cdots\right)$\\
+identically. Thus,
+
+
+\[
+\begin{array}{ll}
+-2 a_{2}=-1, & a_{2}=\dfrac{1}{2} \\
+-3 a_{3}=a_{2}, & a_{3}=-\dfrac{1}{3!} \\
+-4 a_{4}=a_{3}, & a_{4}=\dfrac{1}{4!}
+\end{array}
+\]
+It is clear, then, that
+\[
+\begin{aligned}
+f(x) & =1-x+\dfrac{x^{2}}{2!}-\dfrac{x^{3}}{3!}+\dfrac{x^{4}}{4!}-\cdots \\
+f(0.2) & =1-0.2+\dfrac{(0.2)^{2}}{2!}-\dfrac{(0.2)^{3}}{3!}+R_{3} \\
+& =0.819 ;\left|R_{3}\right|<0.0005
+\end{aligned}
+\]
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The sum of the series $\sum\limits_{n=1}^{\infty}\left(\dfrac{\pi^{3}}{3^{\pi}}\right)^{n}$ is equal to
+\begin{choices}
+  \choice 0
+  \choice 1
+  \choice $\dfrac{3^{\pi}}{\pi^{3}-3^{\pi}}$
+  \CorrectChoice $\dfrac{\pi^{3}}{3^{\pi}-\pi^{3}}$
+  \choice none of these
+\end{choices}
+\begin{solution}
+Use a calculator to verify that the ratio $\dfrac{\pi^{3}}{3^{\pi}}$ (of the given geometric series) equals approximately 0.98 . Since the ratio $r<1$, the sum of the series equals $\dfrac{a}{1-r} \quad$ or $\quad \dfrac{\pi^{3}}{3^{\pi}} \cdot \dfrac{1}{1-\dfrac{\pi^{3}}{3^{\pi}}}$.\\
+Simplify to get (D).
+\end{solution}
+
+\question
+When $\sum\limits_{1}^{\infty} \dfrac{(-1)^{n-1}}{3 n-1}$ is approximated by the sum of its first 300 terms, the error is closest to
+\begin{choices}
+  \CorrectChoice 0.001
+  \choice 0.002
+  \choice 0.005
+  \choice 0.01
+  \choice 0.02
+\end{choices}
+\begin{solution}
+Since the given series converges by the Alternating Series Test, the error is less in absolute value than the first term dropped, that is, less than $\left|\dfrac{(-1)^{301}}{903-1}\right| \simeq 0.0011$. Choice (A) is closest to this approximation.
+\end{solution}
+
+\question
+The Taylor polynomial of order 3 at $x=0$ for $(1+x)^{p}$, where $p$ is a constant, is
+\begin{choices}
+  \choice $1+p x+p(p-1) x^{2}+p(p-1)(p-2) x^{3}$
+  \choice $1+p x+\dfrac{p(p-1)}{2} x^{2}+\dfrac{p(p-1)(p-2)}{3} x^{3}$
+  \CorrectChoice $1+p x+\dfrac{p(p-1)}{2!} x^{2}+\dfrac{p(p-1)(p-2)}{3!} x^{3}$
+  \choice $p x+\dfrac{p(p-1)}{2!} x^{2}+\dfrac{p(p-1)(p-2)}{3!} x^{3}$
+  \choice none of these
+\end{choices}
+\begin{solution}
+This polynomial is associated with the binomial series $(1+x)^{p}$. Verify that $f(0)=1, f^{\prime}(0)=p, f^{\prime \prime}(0)=p(p-1), f^{\prime \prime \prime}(0)=p(p-1)(p-2)$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The Taylor series for $\ln (1+2 x)$ about $x=0$ is
+\begin{choices}
+  \CorrectChoice $2 x-\dfrac{(2 x)^{2}}{2}+\dfrac{(2 x)^{3}}{3}-\dfrac{(2 x)^{4}}{4}+\cdots$
+  \choice $2 x-2 x^{2}+8 x^{3}-16 x^{4}+\cdots$
+  \choice $2 x-4 x^{2}+16 x^{3}+\cdots$
+  \choice $2 x-x^{2}+\dfrac{8}{3} x^{3}-4 x^{4}+\cdots$
+  \choice $2 x-\dfrac{(2 x)^{2}}{2!}+\dfrac{(2 x)^{3}}{3!}-\dfrac{(2 x)^{4}}{4!}+\cdots$
+\end{choices}
+\begin{solution}
+The fastest way to find the series for $\ln (1+2 x)$ about $x=0$ is to substitute $2 x$ for $x$ in the series
+\[
+\ln (1+x)=x-\dfrac{x^{2}}{2}+\dfrac{x^{3}}{3}-\dfrac{x^{4}}{4}+\cdots
+\]
+\end{solution}
+
+\question
+The set of all values of $x$ for which $\sum\limits_{n=1}^{\infty} \dfrac{n \cdot 2^{n}}{x^{n}}$ converges is
+\begin{choices}
+  \choice only $x=0$
+  \choice $|x|=2$
+  \choice $-2<x<2$
+  \CorrectChoice $|x|>2$
+  \choice none of these
+\end{choices}
+\begin{solution}
+$\lim\limits_{n \to \infty}\left|\dfrac{u_{n+1}}{u_{n}}\right|=\left|\dfrac{2}{x}\right|$. The series therefore converges if $\left|\dfrac{2}{x}\right|<1$. If $x>0,\left|\dfrac{2}{x}\right|=\dfrac{2}{x}$, which is less than 1 if $2<x$. If $x<0,\left|\dfrac{2}{x}\right|=-\dfrac{2}{x}$, which is less than 1 if $-2>x$. Now for the endpoints:\\
+$x=2$ yields $1+1+1+1+\ldots$, which diverges;\\
+$x=-2$ yields $-1+1-1+1-\ldots$, which diverges.\\
+The answer is $|x|>2$.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question
+The third-order Taylor polynomial $P_{3}(x)$ for $\sin x$ about $\dfrac{\pi}{4}$ is
+\begin{choices}
+  \choice $\dfrac{1}{\sqrt{2}}\left(\left(x-\dfrac{\pi}{4}\right)-\dfrac{1}{3!}\left(x-\dfrac{\pi}{4}\right)^{3}\right)$
+  \choice $\dfrac{1}{\sqrt{2}}\left(1+\left(x-\dfrac{\pi}{4}\right)-\dfrac{1}{2}\left(x-\dfrac{\pi}{4}\right)^{2}+\dfrac{1}{3!}\left(x-\dfrac{\pi}{4}\right)^{3}\right)$
+  \CorrectChoice $\dfrac{1}{\sqrt{2}}\left(1+\left(x-\dfrac{\pi}{4}\right)-\dfrac{1}{2!}\left(x-\dfrac{\pi}{4}\right)^{2}-\dfrac{1}{3!}\left(x-\dfrac{\pi}{4}\right)^{3}\right)$
+  \choice $1+\left(x-\dfrac{\pi}{4}\right)-\dfrac{1}{2}\left(x-\dfrac{\pi}{4}\right)^{2}-\dfrac{1}{6}\left(x-\dfrac{\pi}{4}\right)^{3}$
+  \choice $\dfrac{1}{\sqrt{2}}\left(1+x-\dfrac{x^{2}}{2!}-\dfrac{x^{3}}{3!}\right)$
+\end{choices}
+\begin{solution}
+The function and its first three derivatives at $\dfrac{\pi}{4}$ are $\sin \dfrac{\pi}{4}=\dfrac{1}{\sqrt{2}}$; $\cos \dfrac{\pi}{4}=\dfrac{1}{\sqrt{2}} ;-\sin \dfrac{\pi}{4}=-\dfrac{1}{\sqrt{2}} ;$ and $-\cos \dfrac{\pi}{4}=-\dfrac{1}{\sqrt{2}} . P_{3}(x)$ is choice C .
+
+\end{solution}

@@ -1,6 +1,10 @@
 \documentclass[addpoints]{exam}
-
-
+\hbadness=10000                       % Suppress Warnings (Horizontal)
+\vbadness=10000                       % Suppress Warnings (Vertical)
+% `choices` sets \leftmargin using ``W.'' plus \labelsep plus 2.5em; drop only that last skip.
+\renewcommand{\choiceshook}{%
+  \addtolength{\leftmargin}{-3.0em}%
+  \labelwidth\leftmargin\advance\labelwidth-\labelsep}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -8,10 +12,15 @@
 \geometry{letterpaper, margin=1in}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{stmaryrd}
+\usepackage[version=4]{mhchem}
+\usepackage{caption}
 \usepackage{xcolor}
 \usepackage{ulem}
 \usepackage{listings}
-\usepackage{array}
+\usepackage{array} 
+\usepackage{multicol}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 
@@ -235,6 +244,97 @@
   belowskip=4pt,
 }%
 
+% TypeScript / Angular (CS-A: \texttt{cs-web/web-angular.tex}).
+\lstdefinelanguage{TSEXAM}{%
+  morekeywords={%
+    break,case,catch,class,const,continue,debugger,default,delete,do,else,%
+    export,extends,false,finally,for,function,if,import,in,instanceof,new,%
+    null,return,super,switch,this,throw,true,try,typeof,var,void,while,%
+    let,static,async,await,of,yield,%
+    interface,type,implements,private,public,protected,readonly,enum,%
+    namespace,keyof,infer,abstract,as,is,any,unknown,never,%
+    Component,NgModule,Injectable,Input,Output,Directive,Pipe,%
+    inject,standalone,selector,template,templateUrl,styleUrls,%
+    providers,imports,declarations,bootstrap,%
+  },%
+  sensitive=true,%
+  morecomment=[l]{//},%
+  morecomment=[s]{/*}{*/},%
+  morestring=[b]',%
+  morestring=[b]",%
+  alsoletter={@\$},%
+}%
+\lstdefinestyle{tsexam}{%
+  language=TSEXAM,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{blue!55!black},
+  commentstyle=\ttfamily\color{black!50},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=2,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single, 
+  rulecolor=\color{black!35},
+  backgroundcolor=\color{black!4},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}%
+\lstdefinestyle{tsinline}{%
+  language=TSEXAM,
+  basicstyle=\ttfamily,
+  keywordstyle=\bfseries\color{blue!55!black},
+  commentstyle=\ttfamily\color{black!50},
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+}%
+% Shell / CLI one-liners (\texttt{ng}, \texttt{npm}).
+\lstdefinestyle{cliexam}{%
+  basicstyle=\ttfamily\footnotesize,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  rulecolor=\color{black!35},
+  backgroundcolor=\color{black!4},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}%
+\lstdefinestyle{cliinline}{%
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+}%
+% \texttt{angular.json} and similar config snippets.
+\lstdefinestyle{jsonexam}{%
+  basicstyle=\ttfamily\footnotesize,
+  stringstyle=\color{green!50!black},
+  columns=fullflexible,
+  keepspaces=true,
+  tabsize=2,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  rulecolor=\color{black!35},
+  backgroundcolor=\color{black!4},
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=4pt,
+  belowskip=4pt,
+}%
+
 % Raw HTTP traces and plain text payloads (CS-A: \texttt{rest.tex}); no lexer---plain monospace.
 \lstdefinestyle{http}{%
   basicstyle=\ttfamily\footnotesize,
@@ -328,6 +428,20 @@
 % to turn every question into fill-in; use \fillin / \makeemptybox / \answerline per item.
 \newcommand{\blank}[1][6em]{\underline{\hspace{#1}}}%
 \makeatother
+
+\newcommand{\statementbox}[2][0.86\linewidth]{%
+  \begin{center}
+    \begingroup
+    \setlength{\fboxsep}{10pt}
+    \fbox{%
+      \begin{minipage}{#1}
+        #2
+      \end{minipage}%
+    }
+    \endgroup
+  \end{center}
+}
+
 
 % Per-module cover (own title, name box, instructions). Use before each \begin{questions} block.
 % Args: #1 = course/series, #2 = module title, #3 = one-line blurb (empty {} if none).
@@ -448,6 +562,34 @@
 % \begin{questions}
 %   \input{calculus/test03}
 % \end{questions}
+\exammodulecover{AP Calculus}{Practice Questions}{}
+\begin{questions}
+  \input{calculus/unit01-function.tex}
+  \emptypage
+  \input{calculus/unit02-limite_conti.tex}
+  \emptypage
+  \input{calculus/unit03-diff.tex}
+  \emptypage
+  \input{calculus/unit04-app_of_diff.tex}
+  \emptypage
+  \input{calculus/unit05-anti_der.tex}
+  \emptypage
+  \input{calculus/unit06-def_int.tex}
+  \emptypage
+  \input{calculus/unit07-app_of_int1.tex}
+  \emptypage
+  \input{calculus/unit08-app_of_int2.tex}
+  \emptypage
+  \input{calculus/unit09-diff_equ.tex}
+  \emptypage
+  \input{calculus/unit10-seq+series.tex}
+  \emptypage
+  \input{calculus/unit11-misc1.tex}
+  \emptypage
+  \input{calculus/unit12-misc2.tex}
+  \emptypage
+  \input{calculus/unit20-test03.tex}
+\end{questions}
 
 
 
@@ -543,52 +685,60 @@
 
 
 
-\exammodulecover{Computer Science A}{AP Practice Exam}{College Board styled practice questions.}
-\begin{questions} 
-  \input{cs-a/git}
-  \emptypage
-  \input{cs-a/lang} 
+% \exammodulecover{Computer Science A}{AP Practice Exam}{College Board styled practice questions.}
+% \begin{questions} 
+%   \input{cs-a/git}
+%   \emptypage
+%   \input{cs-a/lang} 
 
 
-  % \emptypage
+%   % \emptypage
 
 
-  % \input{cs-a/procedural}
-  % \emptypage
-  % \input{cs-a/object_oriented}
-  % \emptypage
-  % \input{cs-a/software_dev_life_cycle}
-  % \emptypage
-  % \input{cs-a/dsa}
-  % \emptypage
-  % \input{cs-a/testing_logging}
-  % \emptypage
-  % \input{cs-a/functional}
+%   % \input{cs-a/procedural}
+%   % \emptypage
+%   % \input{cs-a/object_oriented}
+%   % \emptypage
+%   % \input{cs-a/software_dev_life_cycle}
+%   % \emptypage
+%   % \input{cs-a/dsa}
+%   % \emptypage
+%   % \input{cs-a/testing_logging}
+%   % \emptypage
+%   % \input{cs-a/functional}
 
 
-  % \emptypage
+%   % \emptypage
 
 
-  % \input{cs-db/sql}
-  % \emptypage
-  % \input{cs-db/distributed_computing}
+%   % \input{cs-db/sql}
+%   % \emptypage
+%   % \input{cs-db/distributed_computing}
   
 
-  % \emptypage
+%   % \emptypage
 
 
-  % \input{cs-web/rest}
-  % \emptypage
-  % \input{cs-web/spring}
-  % \emptypage
-  % \input{cs-web/springboot}
+%   % \input{cs-web/rest}
+%   % \emptypage
+%   % \input{cs-web/spring}
+%   % \emptypage
+%   % \input{cs-web/springboot}
 
 
-  % \emptypage
+%   % \emptypage
 
 
-  % \input{cs-web/web}
-\end{questions}
+%   % \input{cs-web/web-static}
+%   % \emptypage
+%   % \input{cs-web/web-js}
+%   % \emptypage
+%   % \input{cs-web/web-ts}
+%   % \emptypage
+%   % \input{cs-web/web-angular}
+%   % \emptypage
+%   \input{frq/frq}
+% \end{questions}
 
 
 
