@@ -1,10 +1,9 @@
-# --- Generated from ./.gitignores on Mon Jun  8 13:07:04 2026 ---
+# --- Generated from ./.gitignores on Mon Jun 15 16:25:06 2026 ---
 
 #############################################
 # A.gitignore
 #############################################
 #################### ALL PURPOSE GITIGNORE ####################
-.gemini/
 project2305*
 _*/
 tmp*/
@@ -22,6 +21,18 @@ playwright*/
 h2/
 
 /.*
+
+################################################################
+# AI Model Specific Ignores
+################################################################ 
+# Gemini (Google's AI model)
+*[gG][eE][mM][iI][nN][iI]*
+# Cursor IDE
+*[cC][uU][rR][sS][oO][rR]*
+
+
+
+
 
 ################################################################
 # General Ignores (Large Media Files & Common File Types)
@@ -2652,7 +2663,7 @@ Reports/
 \.project
 \.settings/
 bin/lib/
-Libs/
+# Libs/
 .svn/
 .gradle
 
@@ -2829,7 +2840,7 @@ auth.json
 # pom.xml.asc
 # *.jar
 *.class
-/lib/
+# /lib/
 /classes/
 /target/
 /checkouts/
@@ -3591,7 +3602,7 @@ inc/
 bin/
 /db
 .eclipse
-/lib/
+# /lib/
 /logs/
 /modules
 /project/project
@@ -3849,7 +3860,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# lib/
 lib64/
 parts/
 sdist/
@@ -3933,14 +3944,14 @@ ipython_config.py
 #   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
 #   commonly ignored for libraries.
-# uv.lock
+uv.lock
 
 # poetry
 #   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
 #   This is especially recommended for binary packages to ensure reproducibility, and is more
 #   commonly ignored for libraries.
 #   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
-# poetry.lock
+poetry.lock
 # poetry.toml
 
 # pdm
@@ -4183,7 +4194,7 @@ devel/
 logs/
 build/
 bin/
-lib/
+# lib/
 msg_gen/
 srv_gen/
 msg/*Action.msg
@@ -4330,7 +4341,7 @@ lib/.precomp
 # ReScript.gitignore
 #############################################
 /node_modules/
-/lib/
+# /lib/
 .bsb.lock
 
 #############################################
