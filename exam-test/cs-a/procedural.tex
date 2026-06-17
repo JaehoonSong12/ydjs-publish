@@ -7,24 +7,21 @@
 
 \question[4]
 What is the difference between an \texttt{Error} and an \texttt{Exception}?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Both extend \texttt{Throwable}. \texttt{Error} types (e.g.\ \texttt{OutOfMemoryError}) are serious JVM problems you generally do not catch. \texttt{Exception} types represent conditions an application might catch and recover from (or declare).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How would you handle an exception?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Use \texttt{try}/\texttt{catch} (and \texttt{finally} or \texttt{try-with-resources} for cleanup); declare \texttt{throws} when propagating checked exceptions. Avoid empty catches.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between a checked and an unchecked exception?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Checked exceptions extend \texttt{Exception} but not \texttt{RuntimeException}; callers must handle or declare them. Unchecked (\texttt{RuntimeException} and subclasses) need not be declared; they often indicate programming bugs or unrecoverable states.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -34,7 +31,7 @@ What is the difference between a checked and an unchecked exception?
 
 \question[4]
 What would be the output of this code?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 String name = "Warwick";
 int i = 0;
 do {
@@ -53,7 +50,7 @@ do {
 
 \question[4]
 What does this control-flow code print?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 String food = "Pizza";
 if (food == "pizza") {
   System.out.println("Cheese Pizza");
@@ -79,7 +76,7 @@ if (food == "pizza") {
 
 \question[4]
 What would the following \texttt{switch} print if the user enters \texttt{red}?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter a color to see an item of that color");
 String color = sc.next();
@@ -111,7 +108,7 @@ default:
 
 \question[4]
 The code below produces \texttt{error: variable i is already defined}. Why?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 for (int i = 0; i < array1.length; i++) {
    System.out.println(array1[i]);
    for (int i = 0; i < words.length; i++) {
@@ -161,7 +158,7 @@ Consider these statements about \texttt{while} and \texttt{do...while} loops:
 
 \question[4]
 Predict the return value of \texttt{toPositive(10)}.
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public static int toPositive(int value) {
   if (value < 0) {
     return -value;
@@ -193,7 +190,7 @@ What is the output of the following code?
 
 \question[4]
 What is the output of the following code?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 int a = 4;
 System.out.println(a++);
 \end{lstlisting}
@@ -207,7 +204,7 @@ System.out.println(a++);
 
 \question[4]
 What is the output of the following code?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public static void main(String[] args) {
         int a = 3;
@@ -245,7 +242,7 @@ Which loop produces the output \lstinline!ACEG!?
 
 \question[4]
 Predict the output:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 boolean flag = true;
 int x = 0;
 while (flag) {
@@ -269,7 +266,7 @@ System.out.println(x);
 
 \question[4]
 When does the \texttt{else} block run?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 boolean b = getBooleanValue();
 if (b) {
     foo();

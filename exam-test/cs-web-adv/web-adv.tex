@@ -1,0 +1,602 @@
+% Computer Science A --- Advanced web fundamentals (HTML, CSS, JavaScript).
+% Continuation of \texttt{cs-web/}; formatted from raw source in \texttt{cs-web-adv/temp.tex}.
+
+\runningheader{Computer Science A}{Web: Advanced fundamentals}{Page \thepage\ of \numpages}
+
+\begingradingrange{csawebadv}
+
+\uplevel{\par\textbf{Part 1: HTML}\par}
+
+\question[4]
+TRUE or FALSE: An \texttt{id} attribute is a non-unique identifier that can be reused on multiple different elements within the same HTML page.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Each \texttt{id} must be unique on a page. Reuse \texttt{class} for shared styling or grouping; reserve \texttt{id} for one-off targets (labels, anchors, \lstinline[style=jsinline]|document.getElementById|).
+\begin{lstlisting}[style=htmlinline]
+<button id="submit-btn" class="btn primary">Submit</button>
+<button class="btn primary">Cancel</button>
+\end{lstlisting}
+  Two elements must not share \texttt{id="submit-btn"}, but both may share \texttt{class="btn primary"}.
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The DOM (Document Object Model) is a hierarchical tree structure that allows JavaScript to interact with and change HTML elements in real-time.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  The browser parses HTML into a tree rooted at \texttt{<html>}. JavaScript reads and mutates nodes to update the page without a full reload.
+\begin{lstlisting}[style=htmlinline]
+<h1 id="title">Hello</h1>
+\end{lstlisting}
+\begin{lstlisting}[style=js]
+const title = document.getElementById('title');
+title.textContent = 'Welcome back';
+title.style.color = 'navy';
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: HTML is a programming language used to perform complex logic and calculations within a web document.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  HTML is a markup language for structure and semantics. Logic, loops, and calculations belong in JavaScript (or another programming language).
+\begin{lstlisting}[style=htmlinline]
+<p>Items: <span id="count">0</span></p>
+<button id="add">Add item</button>
+\end{lstlisting}
+\begin{lstlisting}[style=js]
+let count = 0;
+document.getElementById('add').onclick = () => {
+  count += 1;
+  document.getElementById('count').textContent = count;
+};
+\end{lstlisting}
+  HTML declares what appears on the page; the script performs the calculation.
+\end{solution}
+
+\question[4]
+Which of the following is an example of a void tag? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \texttt{<a>}
+  \choice \texttt{<div>}
+  \choice \texttt{<p>}
+  \CorrectChoice \texttt{<img>}
+\end{checkboxes}
+\begin{solution}
+  Void elements cannot enclose child nodes and have no closing tag. \texttt{<img>} is self-contained; \texttt{<a>}, \texttt{<div>}, and \texttt{<p>} wrap content and require closing tags.
+\begin{lstlisting}[style=htmlinline]
+<img src="avatar.png" alt="Profile photo">
+<a href="/profile">View profile</a>
+<p>Paragraph text goes here.</p>
+\end{lstlisting}
+  Other common void tags include \texttt{<br>}, \texttt{<input>}, and \texttt{<meta>}.
+\end{solution}
+
+\question[4]
+TRUE or FALSE: To ensure accessibility, an \texttt{<input>} element should be connected to a \texttt{<label>} using the \texttt{for} attribute and a matching \texttt{id}.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Pair \texttt{for} on the label with \texttt{id} on the input so screen readers announce the field and clicking the label text focuses the control.
+\begin{lstlisting}[style=htmlinline]
+<label for="user-email">Email Address:</label>
+<input type="email" id="user-email" name="email">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Block-level elements automatically start on a new line and take up the full width of their container.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Block elements begin on a new line and stretch to the container width. Inline elements flow with surrounding text and only use the width their content needs.
+\begin{lstlisting}[style=htmlinline]
+<div>Block one (full width, new line)</div>
+<div>Block two (full width, new line)</div>
+<span>Inline A</span><span>Inline B</span>
+\end{lstlisting}
+  Common block elements: \texttt{<div>}, \texttt{<p>}, \texttt{<h1>}--\texttt{<h6>}, \texttt{<ul>}. Common inline elements: \texttt{<span>}, \texttt{<a>}, \texttt{<strong>}.
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Semantic tags, such as \texttt{<nav>} and \texttt{<article>}, are used to provide meaning to the content for both search engines and assistive technologies.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Semantic landmarks describe page regions explicitly. Crawlers and screen readers can identify navigation, main content, and articles instead of undifferentiated \texttt{<div>} wrappers.
+\begin{lstlisting}[style=htmlinline]
+<header><h1>Course site</h1></header>
+<nav aria-label="Main">
+  <a href="/">Home</a>
+  <a href="/labs">Labs</a>
+</nav>
+<main>
+  <article>
+    <h2>Week 3 notes</h2>
+    <p>Lesson content...</p>
+  </article>
+</main>
+<footer>Contact info</footer>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: When using radio buttons, all buttons in the same group must share the same \texttt{name} attribute to ensure the user can only select one option.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Radio inputs with the same \texttt{name} are mutually exclusive. Different \texttt{name} values are treated as separate groups.
+\begin{lstlisting}[style=htmlinline]
+<p>Preferred contact method:</p>
+<input type="radio" id="email" name="contact-method" value="email">
+<label for="email">Email</label>
+<input type="radio" id="phone" name="contact-method" value="phone">
+<label for="phone">Phone</label>
+\end{lstlisting}
+  Selecting \emph{Phone} automatically deselects \emph{Email} because both share \texttt{name="contact-method"}.
+\end{solution}
+
+\question[4]
+Why is the \texttt{alt} attribute essential for an \texttt{<img>} tag? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice It defines the source path of the image file.
+  \CorrectChoice It provides a text description for accessibility and SEO
+  \choice It makes the image clickable as a hyperlink.
+  \choice It allows the image to be resized automatically.
+\end{checkboxes}
+\begin{solution}
+  \texttt{alt} gives alternate text for screen readers and when the image fails to load; search crawlers use it to index image content. The file path is \texttt{src}; hyperlinks wrap the image in \texttt{<a>}; sizing uses CSS or \texttt{width}/\texttt{height}.
+\begin{lstlisting}[style=htmlinline]
+<img src="sales-chart.png" alt="Bar chart of Q3 revenue by region">
+<a href="/reports/q3">
+  <img src="sales-chart.png" alt="Open the full Q3 report">
+</a>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The \texttt{<head>} section of an HTML document contains the visible content that users interact with on a webpage.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{<head>} holds metadata; \texttt{<body>} holds visible, interactive content.
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lab 4</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1>Visible heading users read and click under</h1>
+    <button type="button">Start lab</button>
+  </body>
+</html>
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Part 2: CSS}\par}
+
+\question[4]
+When using Flexbox, which property is used to align items along the main axis? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \texttt{align-items}
+  \CorrectChoice \texttt{justify-content}
+  \choice \texttt{flex-direction}
+  \choice \texttt{align-content}
+\end{checkboxes}
+\begin{solution}
+  \texttt{justify-content} distributes items along the main axis. \texttt{align-items} and \texttt{align-content} work on the cross axis; \texttt{flex-direction} sets the main axis direction but does not align items along it.
+\begin{lstlisting}[style=css]
+.toolbar {
+  display: flex;
+  flex-direction: row;      /* main axis is horizontal */
+  justify-content: center;  /* align along main axis */
+  align-items: center;      /* align along cross axis */
+  gap: 1rem;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The \texttt{rem} unit is relative to the font size of the parent element.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{rem} is relative to the root (\texttt{<html>}) font size. \texttt{em} is relative to the parent (or the element's own font size for non-\texttt{font-size} properties).
+\begin{lstlisting}[style=css]
+html { font-size: 16px; }   /* browser default is often 16px */
+.card { font-size: 1.25rem; }  /* 20px when root is 16px */
+.card p { font-size: 1em; }    /* 20px: 1em of parent .card */
+.sidebar { padding: 1.5rem; }  /* always 24px when root is 16px */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: A descendant selector targets only the immediate children of a parent element.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  A descendant selector (\texttt{.parent p}) matches any nested \texttt{p}. The child combinator (\texttt{.parent > p}) limits the match to direct children only.
+\begin{lstlisting}[style=htmlinline]
+<div class="parent">
+  <p>Paragraph 1 (immediate child)</p>
+  <div><p>Paragraph 2 (grandchild)</p></div>
+</div>
+\end{lstlisting}
+\begin{lstlisting}[style=css]
+.parent p  { color: navy; }  /* both paragraphs */
+.parent > p { color: crimson; }  /* only Paragraph 1 */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS Grid, what does the \texttt{fr} unit represent? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice A fixed pixel value.
+  \choice The font-size of the root element.
+  \choice A percentage of the viewport width.
+  \CorrectChoice A fraction of the available space in the grid container.
+\end{checkboxes}
+\begin{solution}
+  \texttt{fr} divides leftover grid space after fixed tracks are placed. With \texttt{1fr 2fr 1fr}, the flexible area splits into four parts: side columns each get one part, the center gets two.
+\begin{lstlisting}[style=css]
+.dashboard {
+  display: grid;
+  grid-template-columns: 200px 1fr 2fr;
+  gap: 1rem;
+}
+/* 200px sidebar, then remaining width split 1:2 */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which selector would you use to target only the very next sibling of an element? \emph{Select all that apply.}
+\begin{checkboxes}
+  \CorrectChoice \texttt{element + sibling}
+  \choice \texttt{element \textasciitilde{} sibling}
+  \choice \texttt{element > sibling}
+  \choice \texttt{element sibling}
+\end{checkboxes}
+\begin{solution}
+  The adjacent sibling combinator (\texttt{+}) matches the immediately following sibling with the same parent. General sibling (\texttt{{\textasciitilde}}) matches any later sibling; \texttt{>} selects children, not siblings.
+\begin{lstlisting}[style=htmlinline]
+<h2>Section title</h2>
+<p>First paragraph after the heading.</p>
+<p>Second paragraph (not adjacent to h2).</p>
+\end{lstlisting}
+\begin{lstlisting}[style=css]
+h2 + p { margin-top: 0; font-weight: bold; }  /* only first p */
+h2 ~ p { color: gray; }  /* both paragraphs */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: By default, adding padding to an element increases its total calculated width.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  With default \texttt{box-sizing: content-box}, \texttt{width} applies to content only; horizontal padding adds to the rendered width (\texttt{200px} content + \texttt{20px} padding each side = \texttt{240px} total).
+\begin{lstlisting}[style=css]
+.card {
+  width: 200px;
+  padding: 20px;           /* default content-box */
+  box-sizing: content-box; /* browser default */
+}
+/* Many projects reset globally: */
+*, *::before, *::after { box-sizing: border-box; }
+\end{lstlisting}
+  With \texttt{border-box}, padding stays inside the declared \texttt{200px}.
+\end{solution}
+
+\question[4]
+TRUE or FALSE: In the CSS specificity hierarchy, an ID selector is more powerful than a class selector.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  ID selectors outrank classes in the specificity tuple \texttt{(inline, id, class, element)}. One \texttt{\#id} beats any number of concatenated class selectors.
+\begin{lstlisting}[style=htmlinline]
+<button id="save" class="btn primary">Save</button>
+\end{lstlisting}
+\begin{lstlisting}[style=css]
+.btn.primary { background: gray; }  /* (0, 0, 2, 1) */
+#save        { background: green; }  /* (0, 1, 0, 1) wins */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which unit is best suited for defining font sizes to ensure accessibility and scalability? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \texttt{cm}
+  \choice \texttt{px}
+  \CorrectChoice \texttt{rem}
+  \choice \texttt{pt}
+\end{checkboxes}
+\begin{solution}
+  \texttt{rem} scales with the user's root font preference and browser zoom. Fixed \texttt{px}, \texttt{pt}, and \texttt{cm} do not respect text-size settings as reliably.
+\begin{lstlisting}[style=css]
+html { font-size: 100%; }     /* respects user browser setting */
+body { font-size: 1rem; }     /* equals root size */
+h1   { font-size: 2rem; }     /* doubles with root */
+small { font-size: 0.875rem; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: CSS transitions require a state change (like \texttt{:hover}) to trigger.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  A transition animates between two property values; something must change the style (\texttt{:hover}, \texttt{:focus}, or a class toggle). Use \texttt{@keyframes} for effects that run on load without a trigger.
+\begin{lstlisting}[style=css]
+.button {
+  background: steelblue;
+  transition: background 0.3s ease;
+}
+.button:hover,
+.button:focus-visible {
+  background: darkblue;  /* state change triggers transition */
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What is the primary advantage of a mobile-first strategy? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice It eliminates the need for media queries.
+  \choice It makes websites look better on desktops.
+  \CorrectChoice It results in cleaner code and better performance on mobile devices.
+  \choice It uses only absolute units like \texttt{px}.
+\end{checkboxes}
+\begin{solution}
+  Mobile-first starts with a minimal layout and adds complexity with \texttt{min-width} media queries, keeping default payloads light for constrained devices.
+\begin{lstlisting}[style=css]
+/* Base styles: single column for phones */
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+/* Enhance for wider screens */
+@media (min-width: 768px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Part 3: JavaScript}\par}
+
+\question[4]
+TRUE or FALSE: Template literals require the use of \lstinline[style=jsinline]|\n| to create multi-line strings.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Backtick template literals preserve literal line breaks. Only quoted strings need an explicit \lstinline[style=jsinline]|\n| escape.
+\begin{lstlisting}[style=js]
+const traditional = "Line one\nLine two";
+const template = `Line one
+Line two`;
+console.log(template);
+// Line one
+// Line two
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The strict equality operator (\lstinline[style=jsinline]|===|) performs type coercion before comparing two values.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|===| compares value and type without coercion. \lstinline[style=jsinline]|==| may coerce types first.
+\begin{lstlisting}[style=js]
+console.log(5 === "5");  // false (number vs string)
+console.log(5 === 5);    // true
+console.log(5 == "5");   // true (string coerced to number)
+console.log(null == undefined);  // true
+console.log(null === undefined); // false
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The \lstinline[style=jsinline]|var| keyword is block-scoped, meaning it is only accessible within the \lstinline[style=jsinline]|{ }| where it was defined.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|var| is function-scoped and leaks out of blocks. \lstinline[style=jsinline]|let| and \lstinline[style=jsinline]|const| are block-scoped.
+\begin{lstlisting}[style=js]
+if (true) {
+  var framework = "React";
+  let library = "Zustand";
+}
+console.log(framework); // "React"
+console.log(library);   // ReferenceError
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: An arrow function inherits its \lstinline[style=jsinline]|this| value from its surrounding lexical scope.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Arrow functions do not bind their own \lstinline[style=jsinline]|this|; they capture the enclosing scope's \lstinline[style=jsinline]|this|. Regular functions bind \lstinline[style=jsinline]|this| at call time.
+\begin{lstlisting}[style=js]
+const user = {
+  name: "Jaehoon",
+  greetRegular: function () {
+    console.log(`Hello, ${this.name}`);
+  },
+  greetArrow: () => {
+    console.log(`Hello, ${this.name}`);
+  }
+};
+user.greetRegular(); // "Hello, Jaehoon"
+user.greetArrow();   // "Hello, undefined" (inherits outer this)
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: \lstinline[style=jsinline]|async| functions always return a \lstinline[style=jsinline]|Promise|.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  An \lstinline[style=jsinline]|async| function wraps return values in a resolved promise and thrown errors in a rejected promise, even when no explicit \lstinline[style=jsinline]|return| is written.
+\begin{lstlisting}[style=js]
+async function fetchStatus() {
+  return "Success";
+}
+const result = fetchStatus();
+console.log(result); // Promise { <fulfilled>: "Success" }
+
+const value = await fetchStatus(); // "Success"
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Array methods like \lstinline[style=jsinline]|.map()| and \lstinline[style=jsinline]|.filter()| mutate the original array they are called upon.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|.map()| and \lstinline[style=jsinline]|.filter()| return new arrays and leave the source unchanged. Mutating methods include \lstinline[style=jsinline]|.push()|, \lstinline[style=jsinline]|.pop()|, \lstinline[style=jsinline]|.splice()|, and \lstinline[style=jsinline]|.sort()|.
+\begin{lstlisting}[style=js]
+const numbers = [1, 2, 3, 4];
+const evens = numbers.filter(n => n % 2 === 0);
+const doubled = numbers.map(n => n * 2);
+
+console.log(evens);    // [2, 4]
+console.log(doubled);  // [2, 4, 6, 8]
+console.log(numbers);  // [1, 2, 3, 4] unchanged
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: You should commit the \lstinline[style=jsinline]|node_modules| folder to your Git repository to ensure other developers have the same dependencies.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Track \lstinline[style=jsinline]|package.json| and the lockfile instead; add \lstinline[style=jsinline]|node_modules/| to \lstinline[style=bashinline]|.gitignore|. Teammates run \lstinline[style=bashinline]|npm install| locally.
+\begin{lstlisting}[style=bash]
+# .gitignore
+node_modules/
+\end{lstlisting}
+\begin{lstlisting}[style=json]
+{
+  "name": "my-app",
+  "dependencies": { "express": "^4.21.0" }
+}
+\end{lstlisting}
+\begin{lstlisting}[style=bash]
+npm install
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: In JavaScript, a \lstinline[style=jsinline]|const| variable can have its reference modified if it holds an array or an object.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|const| locks the binding (reference) to one object or array. Internal properties or elements may still be mutated, but reassigning the variable throws a \texttt{TypeError}.
+\begin{lstlisting}[style=js]
+const user = { name: "Jaehoon" };
+user.name = "Song";      // allowed: mutate contents
+user = { name: "Alex" }; // TypeError: change reference
+
+const ids = [1, 2];
+ids.push(3);   // allowed: mutate array contents
+ids = [4, 5];  // TypeError: change reference
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: \lstinline[style=jsinline]|null| and \lstinline[style=jsinline]|undefined| are considered truthy values in JavaScript.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Both are falsy. The full falsy set includes \lstinline[style=jsinline]|false|, \lstinline[style=jsinline]|0|, \lstinline[style=jsinline]|""|, \lstinline[style=jsinline]|null|, \lstinline[style=jsinline]|undefined|, and \lstinline[style=jsinline]|NaN|.
+\begin{lstlisting}[style=js]
+function isTruthy(value) {
+  return value ? "truthy" : "falsy";
+}
+console.log(isTruthy(null));       // "falsy"
+console.log(isTruthy(undefined));  // "falsy"
+console.log(isTruthy([]));         // "truthy" (empty array)
+console.log(isTruthy(""));         // "falsy"
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Event bubbling means that an event travels from the target element up through its ancestors to the root.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  After the target phase, the event propagates upward from the clicked node through parents to the document root. Call \lstinline[style=jsinline]|event.stopPropagation()| to halt bubbling.
+\begin{lstlisting}[style=htmlinline]
+<div id="panel">
+  <button id="save">Save</button>
+</div>
+\end{lstlisting}
+\begin{lstlisting}[style=js]
+document.getElementById('panel').addEventListener('click', () => {
+  console.log('panel heard click');
+});
+document.getElementById('save').addEventListener('click', (event) => {
+  console.log('button clicked');
+  // event.stopPropagation(); // uncomment to prevent panel log
+});
+// Clicking Save logs "button clicked" then "panel heard click"
+\end{lstlisting}
+\end{solution}
+
+\endgradingrange{csawebadv}

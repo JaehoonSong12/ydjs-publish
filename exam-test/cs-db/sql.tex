@@ -10,52 +10,45 @@
 
 \question[4]
 What is SQL and why would we use this language?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Structured Query Language: declarative language for defining, querying, and manipulating relational data. Use it to persist and retrieve data in RDBMS products with a standard, portable syntax.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are the SQL sublanguages and their purpose?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Common split: DDL (define schema), DML (insert/update/delete/select data), DCL (grant/revoke privileges), TCL (transactions: commit/rollback/savepoint). Purposes vary by vendor but these buckets organize commands.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a RDBMS?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   Relational Database Management System: software that stores data as tables with keys and constraints, enforces relational rules, and processes SQL.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe relational database tables.
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Two-dimensional relations: named columns (attributes) and rows (tuples/records); each row is unique (often via a primary key); tables link via foreign keys.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are constraints and can you describe a few constraints?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Rules enforced by the DBMS: e.g.\ \texttt{PRIMARY KEY}, \texttt{FOREIGN KEY}, \texttt{UNIQUE}, \texttt{NOT NULL}, \texttt{CHECK}. They protect data quality and relationships.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Why would I use the \texttt{WHERE} clause?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   To filter rows in \texttt{SELECT}, \texttt{UPDATE}, or \texttt{DELETE} so only rows matching a predicate are read or changed.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are some operators that can be used in SQL?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Comparison (\texttt{=}, \texttt{<>}, \texttt{<}, \texttt{LIKE}, \texttt{IN}, \texttt{BETWEEN}), logical (\texttt{AND}, \texttt{OR}, \texttt{NOT}), arithmetic, string ops, and \texttt{IS NULL}---plus set operators in some contexts.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -63,38 +56,33 @@ What are some operators that can be used in SQL?
 
 \question[4]
 What is the JDBC API and the benefits of using it?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Java Database Connectivity: standard API for connecting to databases, executing SQL, and reading results. Benefits: vendor-neutral code, connection pooling integration, tooling, and alignment with Java types.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the DAO Design Pattern and why should we use it?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Data Access Object: separate persistence logic (SQL/JDBC) from domain/services. Easier testing (mocks), swapping storage, and keeping SQL changes localized.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What information would you need in order to successfully connect to a database?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   JDBC URL, driver class, credentials (user/password), optional pool settings, schema name, and SSL options as required by the deployment.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between a Simple and Prepared JDBC statement?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   \texttt{Statement} sends fixed SQL text. \texttt{PreparedStatement} precompiles a template with \texttt{?} placeholders, binds parameters safely, improves reuse, and helps prevent SQL injection.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is SQL Injection and how can we prevent it using the JDBC?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Attacker embeds malicious SQL via untrusted input. Prevent with parameterized queries (\texttt{PreparedStatement}), validation, least-privilege DB users, and avoiding string concatenation for SQL.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -102,31 +90,27 @@ What is SQL Injection and how can we prevent it using the JDBC?
 
 \question[4]
 What is a foreign key?
-\makeemptybox{1.1in}
-\begin{solution}
+\begin{solutionorbox}[1.1in]
   A column (or set) in one table referencing a primary (or unique) key in another, encoding a relationship and enabling joins with referential checks.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is referential integrity?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   DB-enforced consistency: foreign key values must match existing parent keys (or be null), so orphans are blocked or cascades apply per policy.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is normalization?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Organizing tables to reduce redundancy and anomalies (typically through normal forms), separating facts so each depends on the key, whole key, and nothing but the key.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is multiplicity?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Cardinality of a relationship between entities (e.g.\ one-to-one, one-to-many, many-to-many), often modeled with keys and junction tables for $n$:$m$ cases.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -134,24 +118,21 @@ What is multiplicity?
 
 \question[4]
 Describe what a join is and explain the different types of joins we can create.
-\makeemptybox{1.65in}
-\begin{solution}
+\begin{solutionorbox}[1.65in]
   Combine rows from two (or more) tables on a related column. Common kinds: \texttt{INNER} (matches only), \texttt{LEFT}/\texttt{RIGHT}/\texttt{FULL} outer (keep non-matching sides with nulls), \texttt{CROSS} (cartesian).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between a join and a set operation?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Joins combine columns from related tables horizontally on predicates. Set ops (\texttt{UNION}, \texttt{INTERSECT}, \texttt{EXCEPT}) combine result sets of compatible queries vertically by rows.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a view and why is it useful?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   A named, stored query (virtual table): simplifies complex SQL, can enforce column-level access, and stabilizes an API over underlying schema changes (implementation varies by DB).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -159,52 +140,45 @@ What is a view and why is it useful?
 
 \question[4]
 What is DCL?
-\makeemptybox{1in}
-\begin{solution}
+\begin{solutionorbox}[1in]
   Data Control Language: privilege commands such as \texttt{GRANT} and \texttt{REVOKE} to manage who may access which database objects.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is TCL?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   Transaction Control Language: \texttt{COMMIT}, \texttt{ROLLBACK}, \texttt{SAVEPOINT}---boundaries that make a set of changes atomic and durable per policy.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between an aggregate and a scalar function?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Aggregates collapse many rows (\texttt{COUNT}, \texttt{SUM}, \texttt{AVG}) often with \texttt{GROUP BY}. Scalar functions compute per row (\texttt{UPPER}, \texttt{LENGTH}, \texttt{COALESCE}).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the \texttt{GROUP BY} clause used for?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   Partition rows sharing grouping expressions so aggregates apply per group rather than over the whole table.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the \texttt{ORDER BY} clause used for?
-\makeemptybox{1in}
-\begin{solution}
+\begin{solutionorbox}[1in]
   Sort result rows by one or more columns/expressions, ascending or descending, optionally with collation-specific rules.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a stored procedure in SQL?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Named routine stored in the database (procedural SQL), invoked by apps; can encapsulate logic, reduce round trips, and centralize validation (trade-offs: portability, testing).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a trigger in SQL?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Procedure fired automatically on \texttt{INSERT}/\texttt{UPDATE}/\texttt{DELETE} (or DDL in some systems) to enforce rules, audit, or denormalized maintenance.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -212,31 +186,27 @@ What is a trigger in SQL?
 
 \question[4]
 What is a transaction?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   A logical unit of work: a sequence of operations committed as one atomic bundle or rolled back on failure, isolating concurrent sessions per isolation level.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are the properties of a transaction?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   ACID: Atomicity (all-or-nothing), Consistency (valid state), Isolation (concurrent effects controlled), Durability (committed data survives crashes).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a function in SQL?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Named routine that typically returns a single value (scalar or table-valued) and can be used in expressions; may be built-in or user-defined depending on the DBMS.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is an index in SQL?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Auxiliary structure (often B-tree) on column(s) to speed lookups and some joins/sorts at the cost of storage and write overhead; unique indexes also enforce uniqueness.
-\end{solution}
+\end{solutionorbox}
 
 \endgradingrange{csau3}
 
@@ -941,7 +911,7 @@ Several rows were inserted into the \texttt{Students} table in the current trans
 
 \question[4]
 What does the following do (assuming autocommit is off and a transaction is open)?
-\begin{lstlisting}[style=sqlexam]
+\begin{lstlisting}[style=sql]
 DELETE FROM STUDENTS
 WHERE AGE = 16;
 ROLLBACK;
@@ -1452,7 +1422,7 @@ Which of the following terms is used to describe records in a database?
   The first two bullets are \textbf{correct} facts (so do \emph{not} select them). You should mark the last two bullets: they over-generalize how lengths work across \texttt{CHAR}, \texttt{VARCHAR}, and \texttt{TEXT}.
 
   \medskip\noindent\textbf{Portable DDL shape (PostgreSQL-style).} Fixed-width \texttt{CHAR(\textit{n})} and capped \texttt{VARCHAR(\textit{n})} declare a length in parentheses; \texttt{TEXT} is written \emph{without} \texttt{(\textit{n})}.
-\begin{lstlisting}[style=sqlexam]
+\begin{lstlisting}[style=sql]
 CREATE TABLE labels (
   country_code CHAR(2),        -- always two logical characters; may pad on store/compare
   city         VARCHAR(64),   -- up to 64 characters; no CHAR-style padding
@@ -1469,14 +1439,14 @@ CREATE TABLE labels (
   \texttt{VARCHAR(5)}  & \texttt{[A][B]} \quad $\leftarrow$ variable length up to cap 5 (no pads) \\
 \end{tabular}\par}
 \end{center}
-\begin{lstlisting}[style=sqlexam]
+\begin{lstlisting}[style=sql]
 -- same idea as literal strings (illustrative):
 -- CHAR(5)    -> 'AB   '
 -- VARCHAR(5) -> 'AB'
 \end{lstlisting}
 
   \medskip\noindent\textbf{Why ``\texttt{VARCHAR} \emph{must} declare a length'' is false (product-dependent).} PostgreSQL happily accepts \texttt{VARCHAR} with no \texttt{(\textit{n})} (unlimited length, same storage class as \texttt{TEXT} in practice):
-\begin{lstlisting}[style=sqlexam]
+\begin{lstlisting}[style=sql]
 CREATE TABLE ex (
   title VARCHAR   -- legal in PostgreSQL: no "(n)" required
 );
@@ -1650,7 +1620,7 @@ The \lstinline[style=sqlinline]!UPDATE! operation is categorized under which SQL
 
 \question[4]
 What is the difference between the simple and prepared statement?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Connection conn = getConnection();
 String userInput = getInput(); 
 Statement st = conn.createStatement();
@@ -1903,7 +1873,7 @@ You need a \texttt{ResultSet} for typical DML statements (\texttt{INSERT}, \text
 
   \noindent\textit{Example:} \texttt{executeUpdate("DELETE FROM flights WHERE status = 'cancelled'")} might return \texttt{5} if five rows were deleted---a row count, not the deleted rows as a \texttt{ResultSet}.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 // DQL: ask for data -> ResultSet
 ResultSet rs = ps.executeQuery(
     "SELECT id FROM flights WHERE status = 'open'");
@@ -1913,7 +1883,7 @@ int removed = ps.executeUpdate(
     "DELETE FROM flights WHERE status = 'cancelled'");
 \end{lstlisting}
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 // Advanced: generated keys after INSERT (still executeUpdate first)
 PreparedStatement ps = conn.prepareStatement(
     "INSERT INTO flights (code) VALUES (?)",

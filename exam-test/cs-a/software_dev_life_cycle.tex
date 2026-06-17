@@ -8,24 +8,21 @@
 
 \question[4]
 What are the SOLID design principles and are they important?
-\makeemptybox{1.55in}
-\begin{solution}
+\begin{solutionorbox}[1.55in]
   Single responsibility, Open/closed, Liskov substitution, Interface segregation, Dependency inversion. They guide maintainable, testable OO design though they are guidelines, not laws.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the SDLC? Why is it important?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Software Development Life Cycle: phases from planning/requirements through design, implementation, testing, deployment, and maintenance. It structures risk, quality, and communication.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 When would you use an Agile methodology versus Waterfall?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Agile fits changing requirements, incremental delivery, and tight feedback loops. Waterfall suits well-defined, stable specs and regulated phases where rework is costly---less adaptive to change.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -218,24 +215,21 @@ What is a valid difference between an \textbf{abstract class} and an \textbf{int
 
 \question[4]
 What is Maven? Why would we use it?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   A build and dependency tool: declarative \texttt{pom.xml}, standard directory layout, dependency resolution from repositories, plugins for compile/test/package, and reproducible builds.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are the Maven build lifecycle phases?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Default lifecycle includes \texttt{validate}, \texttt{compile}, \texttt{test}, \texttt{package}, \texttt{verify}, \texttt{install}, \texttt{deploy} (and \texttt{clean}, \texttt{site} are separate lifecycles). Phases run bound plugin goals in order.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe the \texttt{pom.xml} file and its importance.
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Project Object Model: coordinates (\texttt{groupId}, \texttt{artifactId}, \texttt{version}), dependencies, plugins, properties, modules, and build settings; it is the single source of truth for Maven builds.
-\end{solution}
+\end{solutionorbox}
 
 \uplevel{\par\textbf{Maven}\par}
 
@@ -244,7 +238,7 @@ Which is the correct format of a minimal POM file?
 \begin{choices}
   \CorrectChoice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=pomxml]
+\begin{lstlisting}[style=xml]
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany.app</groupId>
@@ -255,7 +249,7 @@ Which is the correct format of a minimal POM file?
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=pomxml]
+\begin{lstlisting}[style=xml]
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany.app</groupId>
@@ -265,7 +259,7 @@ Which is the correct format of a minimal POM file?
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=pomxml]
+\begin{lstlisting}[style=xml]
 <project>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>my-app</artifactId>
@@ -284,7 +278,7 @@ Which is the correct format of dependencies in a \texttt{pom.xml} file?
 \begin{choices}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=pomxml]
+\begin{lstlisting}[style=xml]
 <dependency>
     <groupId>.......</groupId>
     <artifactId>.......</artifactId>
@@ -293,7 +287,7 @@ Which is the correct format of dependencies in a \texttt{pom.xml} file?
   \end{minipage}
   \CorrectChoice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=pomxml]
+\begin{lstlisting}[style=xml]
 <dependency>
     <groupId>.......</groupId>
     <artifactId>.......</artifactId>
@@ -303,7 +297,7 @@ Which is the correct format of dependencies in a \texttt{pom.xml} file?
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=pomxml]
+\begin{lstlisting}[style=xml]
 <dependency>
     <groupId>.......</groupId>
     <artifactId>.......</artifactId>

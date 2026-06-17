@@ -104,7 +104,7 @@ When moving from \textbf{AngularJS} (\texttt{1.x}) to modern \textbf{Angular} (\
 \end{choices}
 \begin{solution}
   \texttt{2+} uses \textbf{components} (class + template) in \textbf{modules}, with decorators and TypeScript imports/exports:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Component({
   selector: 'app-root',
   template: `<h1>{{ title }}</h1>`,
@@ -138,7 +138,7 @@ To install tooling for local Angular development, which setup is correct?
 \end{choices}
 \begin{solution}
   Verify the toolchain:
-\begin{lstlisting}[style=cliexam]
+\begin{lstlisting}[style=bash]
 node -v
 npm -v
 \end{lstlisting}
@@ -166,13 +166,13 @@ Which trio are the main startup files under \texttt{src/app/} in the quickstart 
   \choice \texttt{index.css}, \texttt{jquery.js}, \texttt{bootstrap.min.js}
 \end{choices}
 \begin{solution}
-  Startup layout under \lstinline[style=cliinline]{src/app/}:
-\begin{lstlisting}[style=tsexam]
+  Startup layout under \lstinline[style=bashinline]{src/app/}:
+\begin{lstlisting}[style=ts]
 // main.ts        -- bootstraps AppModule
 // app.module.ts  -- declares/imports components
 // app.component.ts -- root UI component
 \end{lstlisting}
-  New features go in \lstinline[style=cliinline]{src/app/}; project-root files configure build and tests. \lstinline[style=tsinline]{AppModule} organizes the app---it does not transpile TypeScript (the toolchain does).
+  New features go in \lstinline[style=bashinline]{src/app/}; project-root files configure build and tests. \lstinline[style=tsinline]{AppModule} organizes the app---it does not transpile TypeScript (the toolchain does).
 \end{solution}
 
 \question[4]
@@ -184,7 +184,7 @@ Which is \textbf{not} a responsibility of the root \texttt{AppModule}?
   \choice Acting as the top-level module for the app
 \end{choices}
 \begin{solution}
-  \lstinline[style=tsinline]{AppModule} declares which components belong to the app. Compilation is handled by \lstinline[style=cliinline]{npm start}, \lstinline[style=cliinline]{ng serve}, or the build bundler---not by the module class at runtime.
+  \lstinline[style=tsinline]{AppModule} declares which components belong to the app. Compilation is handled by \lstinline[style=bashinline]{npm start}, \lstinline[style=bashinline]{ng serve}, or the build bundler---not by the module class at runtime.
 \end{solution}
 
 \newpage
@@ -201,10 +201,10 @@ According to the Angular setup unit, a complete local toolchain requires (in ord
 \end{choices}
 \begin{solution}
   Install in order: Node from \texttt{nodejs.org}, then the CLI globally:
-\begin{lstlisting}[style=cliexam]
+\begin{lstlisting}[style=bash]
 npm install -g @angular/cli
 \end{lstlisting}
-  \textbf{npm} (Node Package Manager) ships with Node. The \lstinline[style=cliinline]{-g} flag puts \lstinline[style=cliinline]{ng} on your PATH. On Windows, PowerShell execution policies may block npm scripts.
+  \textbf{npm} (Node Package Manager) ships with Node. The \lstinline[style=bashinline]{-g} flag puts \lstinline[style=bashinline]{ng} on your PATH. On Windows, PowerShell execution policies may block npm scripts.
 \end{solution}
 
 \question[4]
@@ -220,7 +220,7 @@ Evaluate the statements (Angular setup unit):
   \choice Both statements are false
 \end{choices}
 \begin{solution}
-  Modern workflow: Node $\rightarrow$ npm $\rightarrow$ global CLI $\rightarrow$ \lstinline[style=cliinline]{ng}. AngularJS-era projects could use editors and other build tools; ``only an IDE, never npm'' is false.
+  Modern workflow: Node $\rightarrow$ npm $\rightarrow$ global CLI $\rightarrow$ \lstinline[style=bashinline]{ng}. AngularJS-era projects could use editors and other build tools; ``only an IDE, never npm'' is false.
 \end{solution}
 
 \question[4]
@@ -261,7 +261,7 @@ Which set lists the \textbf{core building blocks} in the AngularJS overview?
 \end{choices}
 \begin{solution}
   \textbf{Directives} extend HTML; \textbf{controllers} connect view and model (often via \lstinline[style=tsinline]{\$scope}); \textbf{modules} partition the app; \textbf{services} share logic app-wide. Template expressions and filters format data, e.g.:
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 {{ name | uppercase }}
 \end{lstlisting}
   \textbf{Routing} maps URLs to templates for SPA-style navigation without full reloads.
@@ -304,7 +304,7 @@ The \textbf{Angular CLI} is:
   \choice The same thing as AngularJS \texttt{\$scope}
 \end{choices}
 \begin{solution}
-  \lstinline[style=cliinline]{ng} stands for \textbf{Angular}. Install with \lstinline[style=cliinline]{npm install -g @angular/cli}. The CLI standardizes scaffold/build/serve workflows. CLI major versions align with Angular major versions; minor CLI releases may ship separately.
+  \lstinline[style=bashinline]{ng} stands for \textbf{Angular}. Install with \lstinline[style=bashinline]{npm install -g @angular/cli}. The CLI standardizes scaffold/build/serve workflows. CLI major versions align with Angular major versions; minor CLI releases may ship separately.
 \end{solution}
 
 \question[4]
@@ -316,11 +316,11 @@ Which command creates a \textbf{new} Angular project named \texttt{my-app}?
   \choice \texttt{ng serve my-app}
 \end{choices}
 \begin{solution}
-  \lstinline[style=cliinline]{cd} to the parent folder, then scaffold:
-\begin{lstlisting}[style=cliexam]
+  \lstinline[style=bashinline]{cd} to the parent folder, then scaffold:
+\begin{lstlisting}[style=bash]
 ng new my-app
 \end{lstlisting}
-  \lstinline[style=cliinline]{ng serve} runs a dev server for an \emph{existing} project---not for creating one.
+  \lstinline[style=bashinline]{ng serve} runs a dev server for an \emph{existing} project---not for creating one.
 \end{solution}
 
 \question[4]
@@ -332,11 +332,11 @@ Which command starts a local dev server for a CLI project on port \textbf{\textt
   \choice \texttt{npm install -g @angular/cli} only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=cliexam]
+\begin{lstlisting}[style=bash]
 ng serve
 ng serve --open
 \end{lstlisting}
-  Default URL: \texttt{http://localhost:4200/}. \lstinline[style=cliinline]{--open} launches the browser. \lstinline[style=cliinline]{ng help} lists commands. (Older quickstarts used \lstinline[style=cliinline]{npm start} on port \texttt{3000}.)
+  Default URL: \texttt{http://localhost:4200/}. \lstinline[style=bashinline]{--open} launches the browser. \lstinline[style=bashinline]{ng help} lists commands. (Older quickstarts used \lstinline[style=bashinline]{npm start} on port \texttt{3000}.)
 \end{solution}
 
 \question[4]
@@ -348,7 +348,7 @@ The learning objective for the Angular CLI unit is to:
   \choice Avoid npm entirely
 \end{choices}
 \begin{solution}
-  Outcome: install CLI, then \lstinline[style=cliinline]{ng new} and \lstinline[style=cliinline]{ng serve}. Modern Angular projects are commonly CLI-driven.
+  Outcome: install CLI, then \lstinline[style=bashinline]{ng new} and \lstinline[style=bashinline]{ng serve}. Modern Angular projects are commonly CLI-driven.
 \end{solution}
 
 \newpage
@@ -452,8 +452,8 @@ Modern Angular projects configure builds primarily through:
   \choice The Windows Registry
 \end{choices}
 \begin{solution}
-  Modern builds use \lstinline[style=cliinline]{angular.json} instead of hand-editing \lstinline[style=cliinline]{webpack.config.js}:
-\begin{lstlisting}[style=jsonexam]
+  Modern builds use \lstinline[style=bashinline]{angular.json} instead of hand-editing \lstinline[style=bashinline]{webpack.config.js}:
+\begin{lstlisting}[style=json]
 "build": {
   "options": {
     "main": "src/main.ts",
@@ -463,7 +463,7 @@ Modern Angular projects configure builds primarily through:
   }
 }
 \end{lstlisting}
-  \lstinline[style=cliinline]{ng build} minifies, splits bundles, and hashes filenames by default.
+  \lstinline[style=bashinline]{ng build} minifies, splits bundles, and hashes filenames by default.
 \end{solution}
 
 \question[4]
@@ -491,8 +491,8 @@ Which statement about Webpack and modern Angular is most accurate?
   \choice Modern Angular uses \texttt{\$scope} instead of components
 \end{choices}
 \begin{solution}
-  AngularJS (\texttt{1.x}): JavaScript, MVC, directives like \lstinline[style=jsexam]{ng-model}. Modern Angular (\texttt{2+}): TypeScript, components, CLI:
-\begin{lstlisting}[style=tsexam]
+  AngularJS (\texttt{1.x}): JavaScript, MVC, directives like \lstinline[style=js]{ng-model}. Modern Angular (\texttt{2+}): TypeScript, components, CLI:
+\begin{lstlisting}[style=ts]
 // modern template binding
 <input [(ngModel)]="name">
 \end{lstlisting}
@@ -627,7 +627,7 @@ The default root component in a new CLI project is typically split across:
   \choice \texttt{angular.json} only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 import { Component } from '@angular/core';
 
 @Component({
@@ -687,7 +687,7 @@ An Angular \textbf{template} is:
   \choice A Webpack configuration file
 \end{choices}
 \begin{solution}
-  Templates describe what the user sees for a component. They are HTML-based (with Angular extensions) and tie directly to the component \textbf{view}. They are usually a \emph{fragment} of a page---not a full document with \lstinline[style=htmlexam]{<html>} or \lstinline[style=htmlexam]{<body>}.
+  Templates describe what the user sees for a component. They are HTML-based (with Angular extensions) and tie directly to the component \textbf{view}. They are usually a \emph{fragment} of a page---not a full document with \lstinline[style=htmlinline]{<html>} or \lstinline[style=htmlinline]{<body>}.
 \end{solution}
 
 \question[4]
@@ -700,7 +700,7 @@ Which properties attach a template to a component?
 \end{choices}
 \begin{solution}
   \textbf{Inline} template---HTML in backticks on \texttt{template}:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Component({
   selector: 'app-root',
   template: `<h1>App Component</h1>
@@ -709,7 +709,7 @@ Which properties attach a template to a component?
 export class AppComponent { }
 \end{lstlisting}
   \textbf{External} template---separate file via \texttt{templateUrl}:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -727,7 +727,7 @@ Which elements are \textbf{not} supported inside Angular component templates?
   \choice \texttt{<h1>}--\texttt{<h6>} only
 \end{choices}
 \begin{solution}
-  \texttt{<script>} is disallowed (keeps logic in the component class and reduces injection risk). Templates are injected into part of a page, so full-document tags like \lstinline[style=htmlexam]{<html>} and \lstinline[style=htmlexam]{<body>} are unnecessary.
+  \texttt{<script>} is disallowed (keeps logic in the component class and reduces injection risk). Templates are injected into part of a page, so full-document tags like \lstinline[style=htmlinline]{<html>} and \lstinline[style=htmlinline]{<body>} are unnecessary.
 \end{solution}
 
 \question[4]
@@ -768,18 +768,18 @@ Which fragment is a valid template statement binding?
 \end{choices}
 \begin{solution}
   Event bindings use parentheses: \lstinline[style=tsinline]{(click)="countClicks()"}. A typical handler lives in the component class:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 // app.component.ts
 count = 0;
 countClicks(): void {
   this.count += 1;
 }
 \end{lstlisting}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <button (click)="countClicks()">click me!</button>
 <p>No of clicks: {{ count }}</p>
 \end{lstlisting}
-  Interpolation \lstinline[style=htmlexam]|{{ count }}| updates the view when \texttt{count} changes.
+  Interpolation \lstinline[style=htmlinline]|{{ count }}| updates the view when \texttt{count} changes.
 \end{solution}
 
 \question[4]
@@ -815,7 +815,7 @@ Template \textbf{expressions} (used in interpolation and property binding) diffe
   \choice Replace the need for a component class
 \end{choices}
 \begin{solution}
-  \textbf{Expressions} (right-hand side of \lstinline[style=htmlexam]|{{ }}| or \lstinline[style=htmlexam]|[prop]="..."|) must stay side-effect free: no \texttt{new}, no \texttt{=}, no \texttt{++}/\texttt{--}, no \texttt{;}. \textbf{Statements} (event handlers) allow chaining and simple assignment but still forbid \texttt{++} and operator-assignment forms. Neither may reference \texttt{window} or \texttt{document} directly---use the component context.
+  \textbf{Expressions} (right-hand side of \lstinline[style=htmlinline]|{{ }}| or \lstinline[style=htmlinline]|[prop]="..."|) must stay side-effect free: no \texttt{new}, no \texttt{=}, no \texttt{++}/\texttt{--}, no \texttt{;}. \textbf{Statements} (event handlers) allow chaining and simple assignment but still forbid \texttt{++} and operator-assignment forms. Neither may reference \texttt{window} or \texttt{document} directly---use the component context.
 \end{solution}
 
 \newpage
@@ -833,9 +833,9 @@ In Angular, \textbf{binding} is:
 \begin{solution}
   Binding links template and model so the UI stays in sync with component data. Common \textbf{one-way} forms:
   \begin{itemize}
-    \item \textbf{Text interpolation} --- model $\rightarrow$ template (\lstinline[style=htmlexam]|{{ }}|)
-    \item \textbf{Property binding} --- model $\rightarrow$ element property (\lstinline[style=htmlexam]|[prop]="..."|)
-    \item \textbf{Event binding} --- template $\rightarrow$ model (\lstinline[style=htmlexam]|(event)="..."|)
+    \item \textbf{Text interpolation} --- model $\rightarrow$ template (\lstinline[style=htmlinline]|{{ }}|)
+    \item \textbf{Property binding} --- model $\rightarrow$ element property (\lstinline[style=htmlinline]|[prop]="..."|)
+    \item \textbf{Event binding} --- template $\rightarrow$ model (\lstinline[style=htmlinline]|(event)="..."|)
   \end{itemize}
   Angular also supports attribute, class, and style binding for accessibility and dynamic styling.
 \end{solution}
@@ -849,15 +849,15 @@ In Angular, \textbf{binding} is:
   \choice Without using the component class
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p><b>{{ title }}</b></p>
 \end{lstlisting}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 export class AppComponent {
   title = 'Template literal works!';
 }
 \end{lstlisting}
-  The displayed text updates when \texttt{title} changes in the class. Interpolation syntax is double curly braces: \lstinline[style=htmlexam]|{{ }}|.
+  The displayed text updates when \texttt{title} changes in the class. Interpolation syntax is double curly braces: \lstinline[style=htmlinline]|{{ }}|.
 \end{solution}
 
 \question[4]
@@ -870,10 +870,10 @@ export class AppComponent {
 \end{choices}
 \begin{solution}
   Property binding flows model $\rightarrow$ template. Example: swap a logo by changing a variable in the class:
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <img [src]="img_path">
 \end{lstlisting}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 img_path = 'https://example.com/logo.png';
 \end{lstlisting}
   Square brackets on the property name tell Angular to bind to the expression, not treat it as a plain string.
@@ -882,17 +882,17 @@ img_path = 'https://example.com/logo.png';
 \question[4]
 \textbf{Event binding} is used to:
 \begin{choices}
-  \choice Display \lstinline[style=htmlexam]|{{ title }}| in the template
+  \choice Display \lstinline[style=htmlinline]|{{ title }}| in the template
   \CorrectChoice Listen for user actions (clicks, keystrokes, etc.) and run component logic
   \choice Set the \texttt{src} attribute from the model
   \choice Import \texttt{FormsModule}
 \end{choices}
 \begin{solution}
   Event binding flows template $\rightarrow$ model:
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <button (click)="onSave()">Save</button>
 \end{lstlisting}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 onSave(): void {
   alert('Information Saved!');
 }
@@ -909,19 +909,19 @@ Which binding type matches each task?
   \choice Dynamic image $\rightarrow$ text interpolation only
 \end{choices}
 \begin{solution}
-  \textbf{Event binding} handles user input (quiz submit counts, save buttons). \textbf{Property binding} sets element properties such as \lstinline[style=htmlexam]|[src]|. \textbf{Interpolation} displays values like a user's name from the component field.
+  \textbf{Event binding} handles user input (quiz submit counts, save buttons). \textbf{Property binding} sets element properties such as \lstinline[style=htmlinline]|[src]|. \textbf{Interpolation} displays values like a user's name from the component field.
 \end{solution}
 
 \question[4]
 Which syntax is used for \textbf{text interpolation}?
 \begin{choices}
-  \CorrectChoice \lstinline[style=htmlexam]|{{ }}|
-  \choice \lstinline[style=htmlexam]|[]|
-  \choice \lstinline[style=htmlexam]|{}|
-  \choice \lstinline[style=htmlexam]|[()]|
+  \CorrectChoice \lstinline[style=htmlinline]|{{ }}|
+  \choice \lstinline[style=htmlinline]|[]|
+  \choice \lstinline[style=htmlinline]|{}|
+  \choice \lstinline[style=htmlinline]|[()]|
 \end{choices}
 \begin{solution}
-  \lstinline[style=htmlexam]|{{ expression }}| evaluates an expression from the component and inserts the result into the DOM. \lstinline[style=htmlexam]|[prop]="expr"| is property binding; \lstinline[style=htmlexam]|[(ngModel)]| is two-way binding.
+  \lstinline[style=htmlinline]|{{ expression }}| evaluates an expression from the component and inserts the result into the DOM. \lstinline[style=htmlinline]|[prop]="expr"| is property binding; \lstinline[style=htmlinline]|[(ngModel)]| is two-way binding.
 \end{solution}
 
 \newpage
@@ -938,7 +938,7 @@ Which syntax is used for \textbf{text interpolation}?
 \end{choices}
 \begin{solution}
   Two-way binding keeps a template field and a component property aligned. Angular's common syntax is \textbf{banana in a box}:
-  \lstinline[style=htmlexam]|[(ngModel)]="propertyName"| ---combining property binding and event binding in one notation.
+  \lstinline[style=htmlinline]|[(ngModel)]="propertyName"| ---combining property binding and event binding in one notation.
 \end{solution}
 
 \question[4]
@@ -950,7 +950,7 @@ To use \texttt{ngModel} for two-way binding, the module must:
   \choice Eject \texttt{webpack.config.js}
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -959,25 +959,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppModule { }
 \end{lstlisting}
-  Without \texttt{FormsModule}, \lstinline[style=htmlexam]|[(ngModel)]| is not available.
+  Without \texttt{FormsModule}, \lstinline[style=htmlinline]|[(ngModel)]| is not available.
 \end{solution}
 
 \question[4]
 In a two-way binding example, an input and a paragraph both show the same \texttt{value}, and a Clear button resets it. Which fragment is correct?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|<input [value]="value">| only
-  \CorrectChoice \lstinline[style=htmlexam]|<input [(ngModel)]="value">| and \lstinline[style=htmlexam]|{{ value }}|
-  \choice \lstinline[style=htmlexam]|{{ ngModel }}| only in the TypeScript file
-  \choice \lstinline[style=htmlexam]|<button [click]="clearValue">| without parentheses
+  \choice \lstinline[style=htmlinline]|<input [value]="value">| only
+  \CorrectChoice \lstinline[style=htmlinline]|<input [(ngModel)]="value">| and \lstinline[style=htmlinline]|{{ value }}|
+  \choice \lstinline[style=htmlinline]|{{ ngModel }}| only in the TypeScript file
+  \choice \lstinline[style=htmlinline]|<button [click]="clearValue">| without parentheses
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <label>Enter Text:</label>
 <input type="text" [(ngModel)]="value">
 <p>{{ value }}</p>
 <button (click)="clearValue()">Clear</button>
 \end{lstlisting}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 value = '';
 clearValue() {
   this.value = '';
@@ -990,12 +990,12 @@ clearValue() {
 Which methods can achieve \textbf{two-way binding}?
 \begin{choices}
   \choice Using event binding and text interpolation/property binding together on the same field
-  \choice Using \lstinline[style=htmlexam]|[(...)]| syntax (for example \lstinline[style=htmlexam]|[(ngModel)]|)
+  \choice Using \lstinline[style=htmlinline]|[(...)]| syntax (for example \lstinline[style=htmlinline]|[(ngModel)]|)
   \CorrectChoice Both A and B
   \choice None of the above
 \end{choices}
 \begin{solution}
-  \textbf{Both.} You can combine one-way bindings manually (listen to \lstinline[style=htmlexam]|(input)| and bind \lstinline[style=htmlexam]|[value]|), or use \lstinline[style=htmlexam]|[(ngModel)]| as shorthand. \lstinline[style=htmlexam]|[(ngModel)]| is the usual approach for form fields.
+  \textbf{Both.} You can combine one-way bindings manually (listen to \lstinline[style=htmlinline]|(input)| and bind \lstinline[style=htmlinline]|[value]|), or use \lstinline[style=htmlinline]|[(ngModel)]| as shorthand. \lstinline[style=htmlinline]|[(ngModel)]| is the usual approach for form fields.
 \end{solution}
 
 \question[4]
@@ -1011,7 +1011,7 @@ Summarize one-way versus two-way data flow:
 
   \textbf{One-way (view $\rightarrow$ model):} event binding.
 
-  \textbf{Two-way:} \lstinline[style=htmlexam]|[(ngModel)]| (or equivalent property + event pair) keeps input and class property synchronized---useful for live form feedback such as password rules.
+  \textbf{Two-way:} \lstinline[style=htmlinline]|[(ngModel)]| (or equivalent property + event pair) keeps input and class property synchronized---useful for live form feedback such as password rules.
 \end{solution}
 
 \newpage
@@ -1027,33 +1027,33 @@ Summarize one-way versus two-way data flow:
   \choice Compile TypeScript without a template
 \end{choices}
 \begin{solution}
-  Structural directives reshape the DOM. They are written with a leading asterisk (for example \lstinline[style=htmlexam]|*ngIf|). Built-in examples:
+  Structural directives reshape the DOM. They are written with a leading asterisk (for example \lstinline[style=htmlinline]|*ngIf|). Built-in examples:
   \begin{itemize}
-    \item \lstinline[style=htmlexam]|*ngIf| --- conditionally include or exclude elements
-    \item \lstinline[style=htmlexam]|*ngFor| --- repeat a template for each item in a list
-    \item \lstinline[style=htmlexam]|*ngSwitch| / \lstinline[style=htmlexam]|*ngSwitchCase| / \lstinline[style=htmlexam]|*ngSwitchDefault| --- show one branch of markup
+    \item \lstinline[style=htmlinline]|*ngIf| --- conditionally include or exclude elements
+    \item \lstinline[style=htmlinline]|*ngFor| --- repeat a template for each item in a list
+    \item \lstinline[style=htmlinline]|*ngSwitch| / \lstinline[style=htmlinline]|*ngSwitchCase| / \lstinline[style=htmlinline]|*ngSwitchDefault| --- show one branch of markup
   \end{itemize}
-  They can work with \lstinline[style=htmlexam]{<ng-template>} to hold template fragments.
+  They can work with \lstinline[style=htmlinline]{<ng-template>} to hold template fragments.
 \end{solution}
 
 \question[4]
-The \lstinline[style=htmlexam]|*ngIf| directive:
+The \lstinline[style=htmlinline]|*ngIf| directive:
 \begin{choices}
   \choice Only toggles \texttt{display:none} and always keeps the element in the DOM
   \CorrectChoice Adds or removes elements from the DOM based on a boolean expression
   \choice Iterates over an array in the template
-  \choice Binds two-way form data like \lstinline[style=htmlexam]|[(ngModel)]|
+  \choice Binds two-way form data like \lstinline[style=htmlinline]|[(ngModel)]|
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p *ngIf="true">The expression is true; this paragraph is in the DOM.</p>
 <p *ngIf="false">This paragraph is not in the DOM.</p>
 \end{lstlisting}
-  Use \lstinline[style=htmlexam]|*ngIf="condition; else elseBlock"| with \lstinline[style=htmlexam]{<ng-template \#elseBlock>} for an alternate block. Common uses: show content by user role, age gates, feature flags.
+  Use \lstinline[style=htmlinline]|*ngIf="condition; else elseBlock"| with \lstinline[style=htmlinline]{<ng-template \#elseBlock>} for an alternate block. Common uses: show content by user role, age gates, feature flags.
 \end{solution}
 
 \question[4]
-The \lstinline[style=htmlexam]|*ngFor| directive is used to:
+The \lstinline[style=htmlinline]|*ngFor| directive is used to:
 \begin{choices}
   \choice Switch among multiple template branches by matching a value
   \CorrectChoice Repeat a section of HTML once per item in an iterable list
@@ -1061,32 +1061,32 @@ The \lstinline[style=htmlexam]|*ngFor| directive is used to:
   \choice Listen for click events only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 customers: Customer[] = [
   { id: 234, name: 'John' },
   { id: 235, name: 'Adam' },
 ];
 \end{lstlisting}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <tr *ngFor="let customer of customers">
   <td>{{ customer.id }}</td>
   <td>{{ customer.name }}</td>
 </tr>
 \end{lstlisting}
-  After filtering with \lstinline[style=htmlexam]|ngSwitch|, a list of categories is often rendered with \lstinline[style=htmlexam]|*ngFor|.
+  After filtering with \lstinline[style=htmlinline]|ngSwitch|, a list of categories is often rendered with \lstinline[style=htmlinline]|*ngFor|.
 \end{solution}
 
 \question[4]
 In \textbf{ngSwitch}, which pairing is correct?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|[ngSwitch]| on cases; \lstinline[style=htmlexam]|*ngSwitchCase| on the container
-  \CorrectChoice \lstinline[style=htmlexam]|[ngSwitch]="expression"| on the container; \lstinline[style=htmlexam]|*ngSwitchCase| and \lstinline[style=htmlexam]|*ngSwitchDefault| on inner elements
-  \choice \lstinline[style=htmlexam]|*ngSwitch| replaces \lstinline[style=htmlexam]|*ngFor| on table rows
-  \choice \lstinline[style=htmlexam]|ngSwitchDefault| must appear before every case
+  \choice \lstinline[style=htmlinline]|[ngSwitch]| on cases; \lstinline[style=htmlinline]|*ngSwitchCase| on the container
+  \CorrectChoice \lstinline[style=htmlinline]|[ngSwitch]="expression"| on the container; \lstinline[style=htmlinline]|*ngSwitchCase| and \lstinline[style=htmlinline]|*ngSwitchDefault| on inner elements
+  \choice \lstinline[style=htmlinline]|*ngSwitch| replaces \lstinline[style=htmlinline]|*ngFor| on table rows
+  \choice \lstinline[style=htmlinline]|ngSwitchDefault| must appear before every case
 \end{choices}
 \begin{solution}
-  \lstinline[style=htmlexam]|[ngSwitch]| is an attribute directive on the container that coordinates the case directives. \lstinline[style=htmlexam]|*ngSwitchCase| shows its element when its value matches; \lstinline[style=htmlexam]|*ngSwitchDefault| shows when no case matches---useful for filter menus and numeric input branches.
-\begin{lstlisting}[style=htmlexam]
+  \lstinline[style=htmlinline]|[ngSwitch]| is an attribute directive on the container that coordinates the case directives. \lstinline[style=htmlinline]|*ngSwitchCase| shows its element when its value matches; \lstinline[style=htmlinline]|*ngSwitchDefault| shows when no case matches---useful for filter menus and numeric input branches.
+\begin{lstlisting}[style=htmlinline]
 <div [ngSwitch]="num">
   <div *ngSwitchCase="'1'">You entered - One</div>
   <div *ngSwitchCase="'2'">You entered - Two</div>
@@ -1098,25 +1098,25 @@ In \textbf{ngSwitch}, which pairing is correct?
 \question[4]
 Which of the following is \textbf{not} a structural directive?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|*ngIf|
-  \choice \lstinline[style=htmlexam]|*ngFor|
-  \choice \lstinline[style=htmlexam]|*ngSwitch|
-  \CorrectChoice \lstinline[style=htmlexam]|[(ngModel)]|
+  \choice \lstinline[style=htmlinline]|*ngIf|
+  \choice \lstinline[style=htmlinline]|*ngFor|
+  \choice \lstinline[style=htmlinline]|*ngSwitch|
+  \CorrectChoice \lstinline[style=htmlinline]|[(ngModel)]|
 \end{choices}
 \begin{solution}
-  \lstinline[style=htmlexam]|[(ngModel)]| is an \textbf{attribute}-style forms directive (two-way binding on inputs). Structural directives change which DOM nodes exist; \lstinline[style=htmlexam]|*ngIf| adds/removes by condition, \lstinline[style=htmlexam]|*ngFor| repeats by list.
+  \lstinline[style=htmlinline]|[(ngModel)]| is an \textbf{attribute}-style forms directive (two-way binding on inputs). Structural directives change which DOM nodes exist; \lstinline[style=htmlinline]|*ngIf| adds/removes by condition, \lstinline[style=htmlinline]|*ngFor| repeats by list.
 \end{solution}
 
 \question[4]
 Which structural directive adds or removes DOM elements based on a condition?
 \begin{choices}
-  \CorrectChoice \lstinline[style=htmlexam]|*ngIf|
-  \choice \lstinline[style=htmlexam]|*ngFor|
-  \choice \lstinline[style=htmlexam]|*ngSwitch|
-  \choice \lstinline[style=htmlexam]|[(ngModel)]|
+  \CorrectChoice \lstinline[style=htmlinline]|*ngIf|
+  \choice \lstinline[style=htmlinline]|*ngFor|
+  \choice \lstinline[style=htmlinline]|*ngSwitch|
+  \choice \lstinline[style=htmlinline]|[(ngModel)]|
 \end{choices}
 \begin{solution}
-  \textbf{\lstinline[style=htmlexam]|*ngIf|} evaluates a boolean and includes or excludes the template content in the DOM. \lstinline[style=htmlexam]|*ngFor| loops; \lstinline[style=htmlexam]|ngSwitch| picks one branch among cases.
+  \textbf{\lstinline[style=htmlinline]|*ngIf|} evaluates a boolean and includes or excludes the template content in the DOM. \lstinline[style=htmlinline]|*ngFor| loops; \lstinline[style=htmlinline]|ngSwitch| picks one branch among cases.
 \end{solution}
 
 \newpage
@@ -1132,19 +1132,19 @@ Which structural directive adds or removes DOM elements based on a condition?
   \choice Bootstrap the root \texttt{NgModule} only
 \end{choices}
 \begin{solution}
-  Attribute directives change how an element looks or behaves without necessarily adding or removing nodes. Built-in examples include \lstinline[style=htmlexam]|[ngClass]|, \lstinline[style=htmlexam]|[ngStyle]|, and \lstinline[style=htmlexam]|[(ngModel)]|. Custom attribute directives share reusable UI logic (tabs, accordions, dropdowns) across components.
+  Attribute directives change how an element looks or behaves without necessarily adding or removing nodes. Built-in examples include \lstinline[style=htmlinline]|[ngClass]|, \lstinline[style=htmlinline]|[ngStyle]|, and \lstinline[style=htmlinline]|[(ngModel)]|. Custom attribute directives share reusable UI logic (tabs, accordions, dropdowns) across components.
 \end{solution}
 
 \question[4]
-The \lstinline[style=htmlexam]|[ngClass]| directive accepts:
+The \lstinline[style=htmlinline]|[ngClass]| directive accepts:
 \begin{choices}
   \choice Only a single hard-coded inline style string with no CSS classes
   \CorrectChoice A string, an array of class names, or an object map of class names to boolean expressions
-  \choice Only numeric array indices from \lstinline[style=htmlexam]|*ngFor|
-  \choice Only \lstinline[style=htmlexam]|(click)| event handlers
+  \choice Only numeric array indices from \lstinline[style=htmlinline]|*ngFor|
+  \choice Only \lstinline[style=htmlinline]|(click)| event handlers
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <h3 [ngClass]="'red'">Need your attention</h3>
 <div [ngClass]="['red', 'size20']">Red background, 20px italic text</div>
 <div [ngClass]="{'red': false, 'size20': true}">Text with size20 only</div>
@@ -1153,7 +1153,7 @@ The \lstinline[style=htmlexam]|[ngClass]| directive accepts:
 \end{solution}
 
 \question[4]
-The \lstinline[style=htmlexam]|[ngStyle]| directive is used to:
+The \lstinline[style=htmlinline]|[ngStyle]| directive is used to:
 \begin{choices}
   \choice Repeat rows in a table from an array
   \CorrectChoice Apply inline styles dynamically from a component expression
@@ -1161,12 +1161,12 @@ The \lstinline[style=htmlexam]|[ngStyle]| directive is used to:
   \choice Match one branch in a switch statement
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <input type="text" [(ngModel)]="name">
 <div [ngStyle]="{'background-color': name === 'Admin' ? 'green' : 'red'}">
 </div>
 \end{lstlisting}
-  \lstinline[style=htmlexam]|[ngStyle]="objExp"| maps style property names to values computed in the template---useful for status colors and validation feedback.
+  \lstinline[style=htmlinline]|[ngStyle]="objExp"| maps style property names to values computed in the template---useful for status colors and validation feedback.
 \end{solution}
 
 \question[4]
@@ -1179,25 +1179,25 @@ Which command creates a custom attribute directive named \texttt{highlight}?
 \end{choices}
 \begin{solution}
   The CLI adds \texttt{highlight.directive.ts} (and a spec file) and registers the class in the module. Example skeleton:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Directive({ selector: '[appHighlight]' })
 export class HighlightDirective {
   constructor() { }
 }
 \end{lstlisting}
-  Use the selector (for example \lstinline[style=htmlexam]|<p appHighlight>|) on elements in templates.
+  Use the selector (for example \lstinline[style=htmlinline]|<p appHighlight>|) on elements in templates.
 \end{solution}
 
 \question[4]
 Which of the following is an \textbf{attribute} directive?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|*ngIf|
-  \CorrectChoice \lstinline[style=htmlexam]|[ngStyle]|
-  \choice \lstinline[style=htmlexam]|*ngSwitch|
+  \choice \lstinline[style=htmlinline]|*ngIf|
+  \CorrectChoice \lstinline[style=htmlinline]|[ngStyle]|
+  \choice \lstinline[style=htmlinline]|*ngSwitch|
   \choice None of the above
 \end{choices}
 \begin{solution}
-  \textbf{\lstinline[style=htmlexam]|[ngStyle]|} changes element styles. \lstinline[style=htmlexam]|*ngIf|, \lstinline[style=htmlexam]|*ngFor|, and \lstinline[style=htmlexam]|*ngSwitch| are \textbf{structural}---they alter the DOM layout, not only attributes on a fixed node.
+  \textbf{\lstinline[style=htmlinline]|[ngStyle]|} changes element styles. \lstinline[style=htmlinline]|*ngIf|, \lstinline[style=htmlinline]|*ngFor|, and \lstinline[style=htmlinline]|*ngSwitch| are \textbf{structural}---they alter the DOM layout, not only attributes on a fixed node.
 \end{solution}
 
 \question[4]
@@ -1206,12 +1206,12 @@ Attribute directives differ from structural directives mainly because attribute 
   \choice Always start with \texttt{*}
   \CorrectChoice Change properties or behaviour of elements that already exist, rather than adding or removing DOM nodes by default
   \choice Cannot be created with the CLI
-  \choice Replace \lstinline[style=htmlexam]|{{ }}| interpolation
+  \choice Replace \lstinline[style=htmlinline]|{{ }}| interpolation
 \end{choices}
 \begin{solution}
-  \textbf{Structural:} \lstinline[style=htmlexam]|*ngIf| / \lstinline[style=htmlexam]|*ngFor| / \lstinline[style=htmlexam]|ngSwitch| family reshapes the tree.
+  \textbf{Structural:} \lstinline[style=htmlinline]|*ngIf| / \lstinline[style=htmlinline]|*ngFor| / \lstinline[style=htmlinline]|ngSwitch| family reshapes the tree.
 
-  \textbf{Attribute:} \lstinline[style=htmlexam]|[ngClass]|, \lstinline[style=htmlexam]|[ngStyle]|, \lstinline[style=htmlexam]|[(ngModel)]|, and custom directives such as \lstinline[style=htmlexam]|[appText]| adjust presentation or interaction on existing elements.
+  \textbf{Attribute:} \lstinline[style=htmlinline]|[ngClass]|, \lstinline[style=htmlinline]|[ngStyle]|, \lstinline[style=htmlinline]|[(ngModel)]|, and custom directives such as \lstinline[style=htmlinline]|[appText]| adjust presentation or interaction on existing elements.
 \end{solution}
 
 \newpage
@@ -1227,19 +1227,19 @@ In Angular templates, \textbf{pipes} are used to:
   \choice Define root module metadata only
 \end{choices}
 \begin{solution}
-  Backend data often arrives in a raw shape (ISO dates, plain numbers). Pipes format values \emph{in the view} without changing the underlying model. Examples: \lstinline[style=htmlexam]|date|, \lstinline[style=htmlexam]|currency|, \lstinline[style=htmlexam]|lowercase|, \lstinline[style=htmlexam]|percent|.
+  Backend data often arrives in a raw shape (ISO dates, plain numbers). Pipes format values \emph{in the view} without changing the underlying model. Examples: \lstinline[style=htmlinline]|date|, \lstinline[style=htmlinline]|currency|, \lstinline[style=htmlinline]|lowercase|, \lstinline[style=htmlinline]|percent|.
 \end{solution}
 
 \question[4]
 Which is the correct \textbf{pipe syntax} in a template?
 \begin{choices}
-  \CorrectChoice \lstinline[style=htmlexam]!{{ text | pipeName }}!
-  \choice \lstinline[style=htmlexam]![(text | pipeName)]!
-  \choice \lstinline[style=htmlexam]|[[text : pipeName]]|
-  \choice \lstinline[style=htmlexam]|((text : pipeName))|
+  \CorrectChoice \lstinline[style=htmlinline]!{{ text | pipeName }}!
+  \choice \lstinline[style=htmlinline]![(text | pipeName)]!
+  \choice \lstinline[style=htmlinline]|[[text : pipeName]]|
+  \choice \lstinline[style=htmlinline]|((text : pipeName))|
 \end{choices}
 \begin{solution}
-  Interpolation uses \lstinline[style=htmlexam]|{{ }}|; the vertical bar (\texttt{|}) separates the value from the pipe name. Optional parameters follow a colon: \lstinline[style=htmlexam]!{{ today | date:'MM-dd-yyyy' }}!.
+  Interpolation uses \lstinline[style=htmlinline]|{{ }}|; the vertical bar (\texttt{|}) separates the value from the pipe name. Optional parameters follow a colon: \lstinline[style=htmlinline]!{{ today | date:'MM-dd-yyyy' }}!.
 \end{solution}
 
 \question[4]
@@ -1251,53 +1251,53 @@ Angular pipes are classified into:
   \choice Module pipes and component pipes only
 \end{choices}
 \begin{solution}
-  \textbf{Default pipes} ship with Angular (\lstinline[style=htmlexam]|date|, \lstinline[style=htmlexam]|currency|, \lstinline[style=htmlexam]|uppercase|, \lstinline[style=htmlexam]|percent|, and others). \textbf{Custom pipes} are classes you create when built-ins do not match your formatting rules.
+  \textbf{Default pipes} ship with Angular (\lstinline[style=htmlinline]|date|, \lstinline[style=htmlinline]|currency|, \lstinline[style=htmlinline]|uppercase|, \lstinline[style=htmlinline]|percent|, and others). \textbf{Custom pipes} are classes you create when built-ins do not match your formatting rules.
 \end{solution}
 
 \question[4]
 In a template, which expression formats a \texttt{Date} as \texttt{MM-dd-yyyy}?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]!{{ today | lowercase }}!
-  \CorrectChoice \lstinline[style=htmlexam]!{{ today | date:'MM-dd-yyyy' }}!
-  \choice \lstinline[style=htmlexam]!{{ today | currency:'INR' }}!
-  \choice \lstinline[style=htmlexam]!{{ today | titlecase }}!
+  \choice \lstinline[style=htmlinline]!{{ today | lowercase }}!
+  \CorrectChoice \lstinline[style=htmlinline]!{{ today | date:'MM-dd-yyyy' }}!
+  \choice \lstinline[style=htmlinline]!{{ today | currency:'INR' }}!
+  \choice \lstinline[style=htmlinline]!{{ today | titlecase }}!
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 today = new Date();
 \end{lstlisting}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p>Date: {{ today | date:'MM-dd-yyyy' }}</p>
 \end{lstlisting}
-  The \lstinline[style=htmlexam]|date| pipe turns an unreadable timestamp into a user-facing calendar string.
+  The \lstinline[style=htmlinline]|date| pipe turns an unreadable timestamp into a user-facing calendar string.
 \end{solution}
 
 \question[4]
 Which template expression shows a numeric \texttt{price} with an explicit US dollar format?
 \begin{choices}
-  \CorrectChoice \lstinline[style=htmlexam]!{{ price | currency:'USD' }}!
-  \choice \lstinline[style=htmlexam]!{{ price | uppercase }}!
-  \choice \lstinline[style=htmlexam]!{{ price | date:'USD' }}!
-  \choice \lstinline[style=htmlexam]!{{ price | titlecase }}!
+  \CorrectChoice \lstinline[style=htmlinline]!{{ price | currency:'USD' }}!
+  \choice \lstinline[style=htmlinline]!{{ price | uppercase }}!
+  \choice \lstinline[style=htmlinline]!{{ price | date:'USD' }}!
+  \choice \lstinline[style=htmlinline]!{{ price | titlecase }}!
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p>Price: {{ price | currency:'INR' }}</p>
 <p>USD: {{ price | currency:'USD' }}</p>
 \end{lstlisting}
-  \lstinline[style=htmlexam]|currency| adds the symbol and locale-aware grouping. \lstinline[style=htmlexam]|currency| without a code uses the default locale; \lstinline[style=htmlexam]|currency:'USD'| forces US dollars.
+  \lstinline[style=htmlinline]|currency| adds the symbol and locale-aware grouping. \lstinline[style=htmlinline]|currency| without a code uses the default locale; \lstinline[style=htmlinline]|currency:'USD'| forces US dollars.
 \end{solution}
 
 \question[4]
 Which built-in pipes change \textbf{text case} in the template?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|date| and \lstinline[style=htmlexam]|currency| only
-  \CorrectChoice \lstinline[style=htmlexam]|lowercase|, \lstinline[style=htmlexam]|uppercase|, and \lstinline[style=htmlexam]|titlecase|
-  \choice \lstinline[style=htmlexam]|*ngIf| and \lstinline[style=htmlexam]|*ngFor| only
-  \choice \lstinline[style=htmlexam]|json| and \lstinline[style=htmlexam]|async| only
+  \choice \lstinline[style=htmlinline]|date| and \lstinline[style=htmlinline]|currency| only
+  \CorrectChoice \lstinline[style=htmlinline]|lowercase|, \lstinline[style=htmlinline]|uppercase|, and \lstinline[style=htmlinline]|titlecase|
+  \choice \lstinline[style=htmlinline]|*ngIf| and \lstinline[style=htmlinline]|*ngFor| only
+  \choice \lstinline[style=htmlinline]|json| and \lstinline[style=htmlinline]|async| only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p>{{ title | lowercase }}</p>
 <p>{{ title | uppercase }}</p>
 <p>{{ title | titlecase }}</p>
@@ -1310,13 +1310,13 @@ Which built-in pipes change \textbf{text case} in the template?
 \question[4]
 A \textbf{custom pipe} is most appropriate when:
 \begin{choices}
-  \choice The built-in \lstinline[style=htmlexam]|date| pipe already covers every display rule you need
+  \choice The built-in \lstinline[style=htmlinline]|date| pipe already covers every display rule you need
   \CorrectChoice Default pipes cannot produce the required format (for example initials from an email address)
   \choice You need to bootstrap \texttt{AppModule}
   \choice You want to remove DOM nodes conditionally
 \end{choices}
 \begin{solution}
-  Custom pipes implement \lstinline[style=tsinline]|PipeTransform| for domain-specific formatting---masked names, internal IDs, compact avatars from email, and similar rules that are not covered by \lstinline[style=htmlexam]|date|/\lstinline[style=htmlexam]|currency|/\lstinline[style=htmlexam]|case| pipes.
+  Custom pipes implement \lstinline[style=tsinline]|PipeTransform| for domain-specific formatting---masked names, internal IDs, compact avatars from email, and similar rules that are not covered by \lstinline[style=htmlinline]|date|/\lstinline[style=htmlinline]|currency|/\lstinline[style=htmlinline]|case| pipes.
 \end{solution}
 
 \question[4]
@@ -1328,7 +1328,7 @@ Which CLI command creates a pipe named \texttt{user}?
   \CorrectChoice \texttt{ng generate pipe user}
 \end{choices}
 \begin{solution}
-  The CLI generates \texttt{user.pipe.ts} (and a spec file) and registers the pipe in the module \texttt{declarations} array. Template usage: \lstinline[style=htmlexam]!{{ userName | user }}!.
+  The CLI generates \texttt{user.pipe.ts} (and a spec file) and registers the pipe in the module \texttt{declarations} array. Template usage: \lstinline[style=htmlinline]!{{ userName | user }}!.
 \end{solution}
 
 \question[4]
@@ -1336,11 +1336,11 @@ A custom pipe class must:
 \begin{choices}
   \choice Extend \texttt{Component} and declare a \texttt{templateUrl}
   \CorrectChoice Be decorated with \lstinline[style=tsinline]|@Pipe| and implement \lstinline[style=tsinline]|PipeTransform|
-  \choice Replace \lstinline[style=htmlexam]|[(ngModel)]| on all inputs
+  \choice Replace \lstinline[style=htmlinline]|[(ngModel)]| on all inputs
   \choice Be listed only in \texttt{bootstrap}, never in \texttt{declarations}
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Pipe({ name: 'user' })
 export class UserPipe implements PipeTransform {
   transform(value: string, ...args: any[]): string {
@@ -1354,7 +1354,7 @@ export class UserPipe implements PipeTransform {
 
 \question[4]
 Given \lstinline[style=tsinline]|userName = 'taylor.swift@xyz.com'|, what does this template produce after both pipes run?
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p>{{ userName | user | uppercase }}</p>
 \end{lstlisting}
 \begin{choices}
@@ -1364,14 +1364,14 @@ Given \lstinline[style=tsinline]|userName = 'taylor.swift@xyz.com'|, what does t
   \choice An empty string always
 \end{choices}
 \begin{solution}
-  The custom \lstinline[style=htmlexam]|user| pipe splits on \texttt{.}, takes the first character of each segment (\texttt{t}, \texttt{s}), then \lstinline[style=htmlexam]|uppercase| yields \texttt{TS}. Pipes chain left to right: each pipe's output becomes the next pipe's input.
+  The custom \lstinline[style=htmlinline]|user| pipe splits on \texttt{.}, takes the first character of each segment (\texttt{t}, \texttt{s}), then \lstinline[style=htmlinline]|uppercase| yields \texttt{TS}. Pipes chain left to right: each pipe's output becomes the next pipe's input.
 \end{solution}
 
 \question[4]
 To use a custom pipe in a component template, you typically:
 \begin{choices}
   \choice Import it only in \texttt{main.ts}, not in the module
-  \CorrectChoice Declare it in the module's \texttt{declarations} (or import a module that exports it), then use \lstinline[style=htmlexam]!{{ value | pipeName }}!
+  \CorrectChoice Declare it in the module's \texttt{declarations} (or import a module that exports it), then use \lstinline[style=htmlinline]!{{ value | pipeName }}!
   \choice Add it to the \texttt{bootstrap} array instead of \texttt{declarations}
   \choice Prefix the pipe name with \texttt{*} in HTML
 \end{choices}
@@ -1440,19 +1440,19 @@ The \texttt{bootstrap} property of \texttt{@NgModule} identifies:
   \choice The contents of \texttt{angular.json} only
 \end{choices}
 \begin{solution}
-  CLI-generated apps place \texttt{AppComponent} in both \texttt{declarations} and \texttt{bootstrap}. \texttt{main.ts} calls \lstinline[style=tsinline]|platformBrowserDynamic().bootstrapModule(AppModule)|, which then creates the bootstrap component and inserts its template into \lstinline[style=htmlexam]|<app-root>| in \texttt{index.html}.
+  CLI-generated apps place \texttt{AppComponent} in both \texttt{declarations} and \texttt{bootstrap}. \texttt{main.ts} calls \lstinline[style=tsinline]|platformBrowserDynamic().bootstrapModule(AppModule)|, which then creates the bootstrap component and inserts its template into \lstinline[style=htmlinline]|<app-root>| in \texttt{index.html}.
 \end{solution}
 
 \question[4]
 Which sequence best describes the default Angular \textbf{startup flow}?
 \begin{choices}
   \choice \texttt{index.html} $\rightarrow$ \texttt{angular.json} $\rightarrow$ \texttt{AppComponent} only
-  \CorrectChoice \texttt{angular.json} (build entry) $\rightarrow$ \texttt{main.ts} $\rightarrow$ \texttt{AppModule} $\rightarrow$ \texttt{AppComponent} $\rightarrow$ \texttt{index.html} / \lstinline[style=htmlexam]|<app-root>|
+  \CorrectChoice \texttt{angular.json} (build entry) $\rightarrow$ \texttt{main.ts} $\rightarrow$ \texttt{AppModule} $\rightarrow$ \texttt{AppComponent} $\rightarrow$ \texttt{index.html} / \lstinline[style=htmlinline]|<app-root>|
   \choice \texttt{AppComponent} $\rightarrow$ \texttt{main.ts} with no module
   \choice \texttt{package.json} $\rightarrow$ pipes $\rightarrow$ \texttt{AppModule}
 \end{choices}
 \begin{solution}
-  \texttt{angular.json} points the builder at \texttt{main.ts}. \texttt{main.ts} bootstraps \texttt{AppModule}; the module's \texttt{bootstrap} array starts \texttt{AppComponent}, whose selector hosts the root template inside \lstinline[style=htmlexam]|<app-root>|.
+  \texttt{angular.json} points the builder at \texttt{main.ts}. \texttt{main.ts} bootstraps \texttt{AppModule}; the module's \texttt{bootstrap} array starts \texttt{AppComponent}, whose selector hosts the root template inside \lstinline[style=htmlinline]|<app-root>|.
 \end{solution}
 
 \newpage
@@ -1462,13 +1462,13 @@ Which sequence best describes the default Angular \textbf{startup flow}?
 \question[4]
 In a parent--child component relationship, data usually flows \textbf{down} with \lstinline[style=tsinline]|@Input| and flows \textbf{up} with:
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|*ngFor| only
+  \choice \lstinline[style=htmlinline]|*ngFor| only
   \CorrectChoice \lstinline[style=tsinline]|@Output| and an \lstinline[style=tsinline]|EventEmitter|
-  \choice \lstinline[style=htmlexam]|[(ngModel)]| on the parent selector only
+  \choice \lstinline[style=htmlinline]|[(ngModel)]| on the parent selector only
   \choice \texttt{bootstrap} in \texttt{AppModule}
 \end{choices}
 \begin{solution}
-  \textbf{Parent $\rightarrow$ child:} bind a property with \lstinline[style=htmlexam]|[inputProp]="parentValue"| on the child selector (backed by \lstinline[style=tsinline]|@Input()| in the child class).
+  \textbf{Parent $\rightarrow$ child:} bind a property with \lstinline[style=htmlinline]|[inputProp]="parentValue"| on the child selector (backed by \lstinline[style=tsinline]|@Input()| in the child class).
 
   \textbf{Child $\rightarrow$ parent:} the child raises a custom event; the parent listens in its template with event binding.
 \end{solution}
@@ -1478,11 +1478,11 @@ The \lstinline[style=tsinline]|@Output| decorator marks a component property as:
 \begin{choices}
   \choice A route parameter read from the URL
   \CorrectChoice A custom event channel the parent can subscribe to in its template
-  \choice A CSS class applied with \lstinline[style=htmlexam]|[ngClass]|
+  \choice A CSS class applied with \lstinline[style=htmlinline]|[ngClass]|
   \choice A pipe registered in \texttt{declarations}
 \end{choices}
 \begin{solution}
-  \lstinline[style=tsinline]|@Output| exposes an \lstinline[style=tsinline]|EventEmitter| instance. The parent binds to the \emph{output property name} (often aliased with \lstinline[style=tsinline]|@Output('alias')|) using the same \lstinline[style=htmlexam]|(eventName)="handler()"| syntax as native DOM events.
+  \lstinline[style=tsinline]|@Output| exposes an \lstinline[style=tsinline]|EventEmitter| instance. The parent binds to the \emph{output property name} (often aliased with \lstinline[style=tsinline]|@Output('alias')|) using the same \lstinline[style=htmlinline]|(eventName)="handler()"| syntax as native DOM events.
 \end{solution}
 
 \question[4]
@@ -1494,7 +1494,7 @@ Which child component code correctly declares an output that sends a \texttt{str
   \choice \lstinline[style=tsinline]|@Injectable() saved = EventEmitter;|
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({ selector: 'app-save-button', template: `...` })
@@ -1510,16 +1510,16 @@ export class SaveButtonComponent {
 \end{solution}
 
 \question[4]
-Given a child selector \lstinline[style=htmlexam]|<app-item (picked)="onPicked($event)">|, the parent receives the payload in:
+Given a child selector \lstinline[style=htmlinline]|<app-item (picked)="onPicked($event)">|, the parent receives the payload in:
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|{{ picked }}| automatically, with no method
+  \choice \lstinline[style=htmlinline]|{{ picked }}| automatically, with no method
   \CorrectChoice The \lstinline[style=tsinline]|$event| argument passed to \lstinline[style=tsinline]|onPicked|
   \choice The \texttt{providers} array of \texttt{AppModule}
-  \choice \lstinline[style=htmlexam]|[ngModel]| on the child only
+  \choice \lstinline[style=htmlinline]|[ngModel]| on the child only
 \end{choices}
 \begin{solution}
-  Custom outputs behave like DOM events in templates: \lstinline[style=htmlexam]|(picked)="onPicked($event)"| forwards whatever the child passed to \lstinline[style=tsinline]|emit()|. Example handler:
-\begin{lstlisting}[style=tsexam]
+  Custom outputs behave like DOM events in templates: \lstinline[style=htmlinline]|(picked)="onPicked($event)"| forwards whatever the child passed to \lstinline[style=tsinline]|emit()|. Example handler:
+\begin{lstlisting}[style=ts]
 onPicked(id: string) {
   this.selectedId = id;
 }
@@ -1539,15 +1539,15 @@ To notify the parent that a form was submitted, the child should:
 \end{solution}
 
 \question[4]
-Which template wiring is valid for a child \lstinline[style=htmlexam]|<app-counter>| that exposes \lstinline[style=tsinline]|@Output() countChange|?
+Which template wiring is valid for a child \lstinline[style=htmlinline]|<app-counter>| that exposes \lstinline[style=tsinline]|@Output() countChange|?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|<app-counter [countChange]="total">|
-  \CorrectChoice \lstinline[style=htmlexam]|<app-counter (countChange)="updateTotal($event)">|
-  \choice \lstinline[style=htmlexam]|<app-counter [(countChange)]="total">| without \lstinline[style=tsinline]|@Input|
-  \choice \lstinline[style=htmlexam]|<app-counter *countChange="total">|
+  \choice \lstinline[style=htmlinline]|<app-counter [countChange]="total">|
+  \CorrectChoice \lstinline[style=htmlinline]|<app-counter (countChange)="updateTotal($event)">|
+  \choice \lstinline[style=htmlinline]|<app-counter [(countChange)]="total">| without \lstinline[style=tsinline]|@Input|
+  \choice \lstinline[style=htmlinline]|<app-counter *countChange="total">|
 \end{choices}
 \begin{solution}
-  Square brackets \lstinline[style=htmlexam]|[]| set \textbf{inputs}; parentheses \lstinline[style=htmlexam]|()| listen for \textbf{outputs}. Two-way \lstinline[style=htmlexam]|[( )]| on a custom property requires both \lstinline[style=tsinline]|@Input| and \lstinline[style=tsinline]|@Output| with a coordinated naming pattern.
+  Square brackets \lstinline[style=htmlinline]|[]| set \textbf{inputs}; parentheses \lstinline[style=htmlinline]|()| listen for \textbf{outputs}. Two-way \lstinline[style=htmlinline]|[( )]| on a custom property requires both \lstinline[style=tsinline]|@Input| and \lstinline[style=tsinline]|@Output| with a coordinated naming pattern.
 \end{solution}
 
 \uplevel{\par\textbf{Part 20: Component styles}\par}
@@ -1582,22 +1582,22 @@ Setting \lstinline[style=tsinline]|encapsulation: ViewEncapsulation.None| means:
   \choice Styles apply only inside Shadow DOM and never reach the page
   \CorrectChoice Component styles become global (no emulated scoping attributes)
   \choice The component cannot use CSS classes
-  \choice \lstinline[style=htmlexam]|*ngIf| is disabled
+  \choice \lstinline[style=htmlinline]|*ngIf| is disabled
 \end{choices}
 \begin{solution}
   \textbf{Emulated} (default) scopes styles to the template. \textbf{None} turns off scoping---useful for third-party widgets or legacy CSS, but risks clashes with other components. \textbf{ShadowDom} uses native shadow roots where supported.
 \end{solution}
 
 \question[4]
-The \lstinline[style=htmlexam]|:host| selector in a component stylesheet targets:
+The \lstinline[style=htmlinline]|:host| selector in a component stylesheet targets:
 \begin{choices}
   \choice Every \texttt{<p>} tag in the entire application
-  \CorrectChoice The host element of the component (for example \lstinline[style=htmlexam]|<app-hero>|)
-  \choice Only elements inside \lstinline[style=htmlexam]|*ngFor| loops
+  \CorrectChoice The host element of the component (for example \lstinline[style=htmlinline]|<app-hero>|)
+  \choice Only elements inside \lstinline[style=htmlinline]|*ngFor| loops
   \choice The \texttt{RouterOutlet} exclusively
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 :host {
   display: block;
   border: 1px solid #ccc;
@@ -1606,7 +1606,7 @@ The \lstinline[style=htmlexam]|:host| selector in a component stylesheet targets
   border-color: green;
 }
 \end{lstlisting}
-  \lstinline[style=htmlexam]|:host-context(.theme-dark)| applies when an ancestor matches (useful for theming).
+  \lstinline[style=htmlinline]|:host-context(.theme-dark)| applies when an ancestor matches (useful for theming).
 \end{solution}
 
 \question[4]
@@ -1625,12 +1625,12 @@ Where should application-wide styles (site fonts, reset rules) normally live?
 Component styles with default encapsulation differ from global styles mainly because encapsulated rules:
 \begin{choices}
   \choice Run on the server only during \texttt{ng build}
-  \CorrectChoice Match only elements from that component's template (plus \lstinline[style=htmlexam]|:host| / \lstinline[style=htmlexam]|:host-context|)
+  \CorrectChoice Match only elements from that component's template (plus \lstinline[style=htmlinline]|:host| / \lstinline[style=htmlinline]|:host-context|)
   \choice Require \lstinline[style=tsinline]|@Injectable|
   \choice Replace TypeScript compilation
 \end{choices}
 \begin{solution}
-  Encapsulation prevents a button style in \texttt{dashboard.component.css} from restyling unrelated buttons in \texttt{settings.component.html}. When you truly need to style a child from a parent, prefer documented patterns (\lstinline[style=htmlexam]|:host ::ng-deep| is deprecated---restructure styles or use \texttt{ViewEncapsulation.None} sparingly).
+  Encapsulation prevents a button style in \texttt{dashboard.component.css} from restyling unrelated buttons in \texttt{settings.component.html}. When you truly need to style a child from a parent, prefer documented patterns (\lstinline[style=htmlinline]|:host ::ng-deep| is deprecated---restructure styles or use \texttt{ViewEncapsulation.None} sparingly).
 \end{solution}
 
 \newpage
@@ -1642,8 +1642,8 @@ A \textbf{route guard} in Angular is used to:
 \begin{choices}
   \choice Compile templates into JavaScript only
   \CorrectChoice Allow, block, or redirect navigation to a route (for example login checks)
-  \choice Replace \lstinline[style=htmlexam]|{{ }}| interpolation
-  \choice Format dates with the \lstinline[style=htmlexam]|date| pipe
+  \choice Replace \lstinline[style=htmlinline]|{{ }}| interpolation
+  \choice Format dates with the \lstinline[style=htmlinline]|date| pipe
 \end{choices}
 \begin{solution}
   Guards run during routing. Common interfaces include \lstinline[style=tsinline]|CanActivate| (enter a route), \lstinline[style=tsinline]|CanDeactivate| (leave a route), \lstinline[style=tsinline]|CanMatch| (whether a route config applies), and \lstinline[style=tsinline]|Resolve| (fetch data before activation).
@@ -1682,7 +1682,7 @@ An \texttt{AuthGuard} implementation should:
   \choice Be placed in the \texttt{declarations} array as a component
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
@@ -1704,7 +1704,7 @@ A \lstinline[style=tsinline]|CanDeactivate| guard is commonly used to:
   \choice Add currency symbols to prices
   \CorrectChoice Ask whether the user may leave a route with unsaved form changes
   \choice Bootstrap \texttt{AppModule}
-  \choice Scope CSS with \lstinline[style=htmlexam]|:host|
+  \choice Scope CSS with \lstinline[style=htmlinline]|:host|
 \end{choices}
 \begin{solution}
   Example: a profile editor calls \lstinline[style=tsinline]|canDeactivate()| on the component or a guard service. If the form is dirty, show a confirmation dialog; return \texttt{false} to stay on the page.
@@ -1753,7 +1753,7 @@ Which decorator marks a class as a service that can be injected?
 \begin{choices}
   \choice Separately in every component's \texttt{styleUrls}
   \CorrectChoice With the root injector as a singleton shared across the application
-  \choice Only inside \lstinline[style=htmlexam]|*ngFor| templates
+  \choice Only inside \lstinline[style=htmlinline]|*ngFor| templates
   \choice As a route guard automatically
 \end{choices}
 \begin{solution}
@@ -1790,7 +1790,7 @@ In modern Angular, \lstinline[style=tsinline]|inject(DataService)| is used to:
   \choice Replace all HTML templates with JSON
   \CorrectChoice Obtain a service reference inside a factory, functional guard, or \texttt{runInInjectionContext} without a constructor parameter
   \choice Emit events to parent components
-  \choice Set \lstinline[style=htmlexam]|ViewEncapsulation.None|
+  \choice Set \lstinline[style=htmlinline]|ViewEncapsulation.None|
 \end{choices}
 \begin{solution}
   Constructor injection remains the default in components. The \lstinline[style=tsinline]|inject()| function from \lstinline[style=tsinline]|@angular/core| fits functional route guards, interceptors, and standalone bootstrapping where a class constructor is awkward. It must run in an injection context (for example during construction or an \texttt{EnvironmentInjector} callback).
@@ -1806,7 +1806,7 @@ Angular's \texttt{HttpClient} is used to:
   \choice Compile SCSS into component CSS only
   \CorrectChoice Send HTTP requests to REST APIs and receive responses (often JSON) as reactive streams
   \choice Replace \lstinline[style=tsinline]|@NgModule| metadata
-  \choice Scope styles with \lstinline[style=htmlexam]|:host|
+  \choice Scope styles with \lstinline[style=htmlinline]|:host|
 \end{choices}
 \begin{solution}
   \texttt{HttpClient} (from \lstinline[style=tsinline]|@angular/common/http|) wraps the browser \texttt{XMLHttpRequest}/\texttt{fetch} APIs. Typical uses: load lists, save forms, authenticate, upload files. Responses are usually parsed as JavaScript objects when the server returns JSON.
@@ -1821,7 +1821,7 @@ To use \texttt{HttpClient} in a classic \texttt{NgModule} app, you must:
   \choice Call \lstinline[style=tsinline]|emit()| on every GET request
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -1841,7 +1841,7 @@ The return type of \lstinline[style=tsinline]|this.http.get<Hero[]>('/api/heroes
   \choice A \lstinline[style=tsinline]|EventEmitter<Hero[]>|
 \end{choices}
 \begin{solution}
-  \texttt{HttpClient} methods return \textbf{Observables} (lazy---nothing is sent until you \texttt{subscribe} or use the \lstinline[style=htmlexam]|async| pipe). You can transform streams with RxJS operators (\lstinline[style=tsinline]|map|, \lstinline[style=tsinline]|catchError|, \lstinline[style=tsinline]|retry|).
+  \texttt{HttpClient} methods return \textbf{Observables} (lazy---nothing is sent until you \texttt{subscribe} or use the \lstinline[style=htmlinline]|async| pipe). You can transform streams with RxJS operators (\lstinline[style=tsinline]|map|, \lstinline[style=tsinline]|catchError|, \lstinline[style=tsinline]|retry|).
 \end{solution}
 
 \question[4]
@@ -1850,10 +1850,10 @@ Which code correctly loads heroes into a component field?
   \choice \lstinline[style=tsinline]|this.heroes = this.http.get('/api/heroes');| (no subscribe)
   \CorrectChoice \lstinline[style=tsinline]|this.http.get<Hero[]>('/api/heroes').subscribe(data => this.heroes = data);|
   \choice \lstinline[style=tsinline]|@Output() heroes = this.http.get(...);|
-  \choice \lstinline[style=htmlexam]|{{ http.get('/api/heroes') }}| in the template without a pipe
+  \choice \lstinline[style=htmlinline]|{{ http.get('/api/heroes') }}| in the template without a pipe
 \end{choices}
 \begin{solution}
-  Subscribe (or bind with \lstinline[style=htmlexam]|heroes$ | async| in the template) to trigger the request and receive data. Unsubscribing on destroy avoids leaks when not using \lstinline[style=htmlexam]|async|.
+  Subscribe (or bind with \lstinline[style=htmlinline]|heroes$ | async| in the template) to trigger the request and receive data. Unsubscribing on destroy avoids leaks when not using \lstinline[style=htmlinline]|async|.
 \end{solution}
 
 \question[4]
@@ -1861,11 +1861,11 @@ To send JSON in a POST body with \texttt{HttpClient}, you typically:
 \begin{choices}
   \choice Call \lstinline[style=tsinline]|http.post(url)| with no body and put JSON in \texttt{styleUrls}
   \CorrectChoice Call \lstinline[style=tsinline]|http.post(url, body, { headers })| where \texttt{body} is a JavaScript object
-  \choice Use \lstinline[style=htmlexam]|*ngFor| on the URL string
+  \choice Use \lstinline[style=htmlinline]|*ngFor| on the URL string
   \choice Register the POST in \texttt{declarations}
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 this.http.post<Hero>('/api/heroes', hero, {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 }).subscribe(saved => console.log(saved));
@@ -1878,7 +1878,7 @@ When an HTTP request fails (network error or \texttt{4xx}/\texttt{5xx}), handlin
 \begin{choices}
   \choice \lstinline[style=tsinline]|ViewEncapsulation.None|
   \CorrectChoice RxJS \lstinline[style=tsinline]|catchError| (and sometimes \lstinline[style=tsinline]|retry|) on the Observable pipeline
-  \choice \lstinline[style=htmlexam]|[(ngModel)]| on the error object
+  \choice \lstinline[style=htmlinline]|[(ngModel)]| on the error object
   \choice \texttt{Karma} \lstinline[style=tsinline]|describe| blocks only
 \end{choices}
 \begin{solution}
@@ -1892,7 +1892,7 @@ The \textbf{publish--subscribe (pub--sub)} pattern means:
 \begin{choices}
   \choice Every component must call every other component's methods directly
   \CorrectChoice Publishers emit messages without knowing subscribers; subscribers react without knowing publishers
-  \choice CSS is applied only with \lstinline[style=htmlexam]|:host|
+  \choice CSS is applied only with \lstinline[style=htmlinline]|:host|
   \choice Routes are defined only in \texttt{index.html}
 \end{choices}
 \begin{solution}
@@ -1905,7 +1905,7 @@ How does pub--sub differ from a child \lstinline[style=tsinline]|@Output()| \lst
   \CorrectChoice \lstinline[style=tsinline]|EventEmitter| is for parent--child communication; pub--sub usually broadcasts through a shared service to any interested listener
   \choice They are identical and interchangeable in all cases
   \choice \lstinline[style=tsinline]|EventEmitter| only works with \texttt{HttpClient}
-  \choice Pub--sub requires \lstinline[style=htmlexam]|*ngIf| on the root element
+  \choice Pub--sub requires \lstinline[style=htmlinline]|*ngIf| on the root element
 \end{choices}
 \begin{solution}
   \textbf{Output events} stay inside the component tree (one parent listens). \textbf{Pub--sub} suits cross-cutting notifications: cart updated, theme changed, user logged out---sibling or distant components subscribe to the same service channel.
@@ -1917,7 +1917,7 @@ A simple Angular pub--sub channel in a service might look like:
   \choice \lstinline[style=tsinline]|@Component({ bootstrap: [MessageBus] })|
   \CorrectChoice \lstinline[style=tsinline]|private bus = new Subject<string>(); publish(msg) { this.bus.next(msg); } onMessage() { return this.bus.asObservable(); }|
   \choice \lstinline[style=tsinline]|new HttpClient()| inside every template
-  \choice \lstinline[style=htmlexam]!{{ bus | date }}! only
+  \choice \lstinline[style=htmlinline]!{{ bus | date }}! only
 \end{choices}
 \begin{solution}
   Expose the stream as an \lstinline[style=tsinline]|Observable| (\lstinline[style=tsinline]|asObservable()|) so callers cannot call \lstinline[style=tsinline]|next()| from outside the service. Register the service with \lstinline[style=tsinline]|providedIn: 'root'| for an app-wide bus.
@@ -1939,18 +1939,18 @@ Main benefits of pub--sub in large Angular apps include:
 Which practice helps avoid memory leaks in pub--sub?
 \begin{choices}
   \choice Never unsubscribe from any Observable
-  \CorrectChoice Unsubscribe in \lstinline[style=tsinline]|ngOnDestroy| (or use \lstinline[style=tsinline]|takeUntil(destroy$)| / \lstinline[style=htmlexam]|async| pipe) when the component is destroyed
+  \CorrectChoice Unsubscribe in \lstinline[style=tsinline]|ngOnDestroy| (or use \lstinline[style=tsinline]|takeUntil(destroy$)| / \lstinline[style=htmlinline]|async| pipe) when the component is destroyed
   \choice Call \lstinline[style=tsinline]|bootstrapModule| on every message
   \choice Store subscriptions in \texttt{styleUrls}
 \end{choices}
 \begin{solution}
-  Long-lived root services may keep a hot \lstinline[style=tsinline]|Subject| alive; \textbf{component} subscriptions must end when the view goes away. Patterns: \lstinline[style=tsinline]|takeUntil|, manual \lstinline[style=tsinline]|subscription.unsubscribe()|, or template \lstinline[style=htmlexam]|async| pipe.
+  Long-lived root services may keep a hot \lstinline[style=tsinline]|Subject| alive; \textbf{component} subscriptions must end when the view goes away. Patterns: \lstinline[style=tsinline]|takeUntil|, manual \lstinline[style=tsinline]|subscription.unsubscribe()|, or template \lstinline[style=htmlinline]|async| pipe.
 \end{solution}
 
 \question[4]
 Compared to passing callbacks through many component layers, pub--sub via a service:
 \begin{choices}
-  \choice Always requires \lstinline[style=htmlexam]|*ngSwitch| on the root
+  \choice Always requires \lstinline[style=htmlinline]|*ngSwitch| on the root
   \CorrectChoice Avoids ``prop drilling'' by letting distant components hear the same event
   \choice Prevents use of \lstinline[style=tsinline]|@Input|
   \choice Replaces \texttt{HttpClient} with \texttt{XMLHttpRequest} only
@@ -2012,15 +2012,15 @@ A \textbf{Subject} differs from a plain Observable factory because a Subject:
 \end{solution}
 
 \question[4]
-In a template, \lstinline[style=htmlexam]!{{ heroes$ | async }}! avoids manual subscribe because:
+In a template, \lstinline[style=htmlinline]!{{ heroes$ | async }}! avoids manual subscribe because:
 \begin{choices}
-  \choice The \lstinline[style=htmlexam]|async| pipe compiles TypeScript to JavaScript at build time
-  \CorrectChoice The \lstinline[style=htmlexam]|async| pipe subscribes and unwraps the latest emitted value (and cleans up on destroy)
-  \choice \lstinline[style=htmlexam]|async| converts Observables into route paths only
-  \choice \lstinline[style=htmlexam]|async| replaces \texttt{HttpClientModule}
+  \choice The \lstinline[style=htmlinline]|async| pipe compiles TypeScript to JavaScript at build time
+  \CorrectChoice The \lstinline[style=htmlinline]|async| pipe subscribes and unwraps the latest emitted value (and cleans up on destroy)
+  \choice \lstinline[style=htmlinline]|async| converts Observables into route paths only
+  \choice \lstinline[style=htmlinline]|async| replaces \texttt{HttpClientModule}
 \end{choices}
 \begin{solution}
-  Define \lstinline[style=tsinline]|heroes$ = this.service.getHeroes();| in the class, then bind \lstinline[style=htmlexam]!{{ heroes$ | async }}! in HTML. The pipe handles subscribe/unsubscribe for that binding.
+  Define \lstinline[style=tsinline]|heroes$ = this.service.getHeroes();| in the class, then bind \lstinline[style=htmlinline]!{{ heroes$ | async }}! in HTML. The pipe handles subscribe/unsubscribe for that binding.
 \end{solution}
 
 \question[4]
@@ -2028,7 +2028,7 @@ Which pair is appropriate for app-wide state many components read?
 \begin{choices}
   \choice \lstinline[style=tsinline]|EventEmitter| in a leaf component only, with no service
   \CorrectChoice \lstinline[style=tsinline]|BehaviorSubject<User | null>| in an injectable service, exposing \lstinline[style=tsinline]|asObservable()| to templates
-  \choice \lstinline[style=htmlexam]|*ngIf| on the router outlet only
+  \choice \lstinline[style=htmlinline]|*ngIf| on the router outlet only
   \choice Hard-coded globals on \lstinline[style=tsinline]|window|
 \end{choices}
 \begin{solution}
@@ -2078,11 +2078,11 @@ To test an Angular component in isolation, you typically use:
 \begin{choices}
   \choice \lstinline[style=tsinline]|bootstrapModule| in production \texttt{main.ts} only
   \CorrectChoice \lstinline[style=tsinline]|TestBed.configureTestingModule({ declarations: [Component], ... })| and \lstinline[style=tsinline]|TestBed.createComponent(Component)|
-  \choice \lstinline[style=htmlexam]|router-outlet| without imports
+  \choice \lstinline[style=htmlinline]|router-outlet| without imports
   \choice \texttt{HttpClient} against the real internet always
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 beforeEach(() => {
   TestBed.configureTestingModule({
     declarations: [HeroListComponent],
@@ -2098,7 +2098,7 @@ beforeEach(() => {
 \question[4]
 \texttt{HttpClientTestingModule} and \texttt{HttpTestingController} are used to:
 \begin{choices}
-  \choice Style components with \lstinline[style=htmlexam]|:host|
+  \choice Style components with \lstinline[style=htmlinline]|:host|
   \CorrectChoice Mock HTTP requests in tests without hitting a real server
   \choice Generate route guards automatically
   \choice Replace Jasmine with Karma
@@ -2132,7 +2132,7 @@ Angular \textbf{routing} enables:
   \choice Global CSS without components
 \end{choices}
 \begin{solution}
-  The router updates the browser URL and swaps components in a \lstinline[style=htmlexam]|<router-outlet>|. Users bookmark \texttt{/products/42}; the app loads the correct feature view client-side.
+  The router updates the browser URL and swaps components in a \lstinline[style=htmlinline]|<router-outlet>|. Users bookmark \texttt{/products/42}; the app loads the correct feature view client-side.
 \end{solution}
 
 \question[4]
@@ -2150,17 +2150,17 @@ The root route configuration is typically imported with:
 \question[4]
 Which template link navigates to the \texttt{/heroes} route?
 \begin{choices}
-  \choice \lstinline[style=htmlexam]|<a href="/heroes">Heroes</a>| only (always full page reload in every setup)
-  \CorrectChoice \lstinline[style=htmlexam]|<a routerLink="/heroes">Heroes</a>| (with \lstinline[style=htmlexam]|RouterModule| imported)
-  \choice \lstinline[style=htmlexam]|<a ngModel="/heroes">Heroes</a>|
-  \choice \lstinline[style=htmlexam]|<a *ngFor="/heroes">Heroes</a>|
+  \choice \lstinline[style=htmlinline]|<a href="/heroes">Heroes</a>| only (always full page reload in every setup)
+  \CorrectChoice \lstinline[style=htmlinline]|<a routerLink="/heroes">Heroes</a>| (with \lstinline[style=htmlinline]|RouterModule| imported)
+  \choice \lstinline[style=htmlinline]|<a ngModel="/heroes">Heroes</a>|
+  \choice \lstinline[style=htmlinline]|<a *ngFor="/heroes">Heroes</a>|
 \end{choices}
 \begin{solution}
-  \lstinline[style=htmlexam]|routerLink| (and \lstinline[style=htmlexam]|routerLinkActive| for active CSS) delegates navigation to the Angular router. Plain \lstinline[style=htmlexam]|href| may reload the entire document unless configured for hash routing or server fallback.
+  \lstinline[style=htmlinline]|routerLink| (and \lstinline[style=htmlinline]|routerLinkActive| for active CSS) delegates navigation to the Angular router. Plain \lstinline[style=htmlinline]|href| may reload the entire document unless configured for hash routing or server fallback.
 \end{solution}
 
 \question[4]
-The \lstinline[style=htmlexam]|<router-outlet>| element:
+The \lstinline[style=htmlinline]|<router-outlet>| element:
 \begin{choices}
   \choice Holds the entire \texttt{package.json} file
   \CorrectChoice Is the placeholder where the router inserts the active route's component
@@ -2168,7 +2168,7 @@ The \lstinline[style=htmlexam]|<router-outlet>| element:
   \choice Must appear only in \texttt{main.ts}
 \end{choices}
 \begin{solution}
-  Parent layouts keep chrome (nav bar); child routes render inside the outlet. Nested routes use multiple outlets or child \lstinline[style=htmlexam]|<router-outlet>| elements in feature components.
+  Parent layouts keep chrome (nav bar); child routes render inside the outlet. Nested routes use multiple outlets or child \lstinline[style=htmlinline]|<router-outlet>| elements in feature components.
 \end{solution}
 
 \question[4]
@@ -2176,7 +2176,7 @@ Programmatic navigation from TypeScript uses:
 \begin{choices}
   \choice \lstinline[style=tsinline]|EventEmitter.navigate()|
   \CorrectChoice \lstinline[style=tsinline]|this.router.navigate(['/heroes', id])| or \lstinline[style=tsinline]|navigateByUrl('/heroes')| after injecting \lstinline[style=tsinline]|Router|
-  \choice \lstinline[style=htmlexam]|{{ routerLink }}| interpolation only
+  \choice \lstinline[style=htmlinline]|{{ routerLink }}| interpolation only
   \choice \lstinline[style=tsinline]|bootstrapModule(['/heroes'])|
 \end{choices}
 \begin{solution}

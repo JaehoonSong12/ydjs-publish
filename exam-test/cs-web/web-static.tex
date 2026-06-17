@@ -16,7 +16,7 @@ What does HTML (HyperText Markup Language) primarily define for a web page?
 \end{choices}
 \begin{solution}
   \textbf{HTML} marks up headings, paragraphs, lists, links, and other content so the browser can build the DOM tree. \textbf{CSS} handles presentation; \textbf{JavaScript} adds behavior.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <!DOCTYPE html>
 <html>
   <body>
@@ -37,7 +37,7 @@ Which element sets the text typically shown in the browser tab / window title?
 \end{choices}
 \begin{solution}
   The \texttt{<title>} element lives in \texttt{<head>} and names the document. Headings \texttt{<h1>}--\texttt{<h6>} structure visible page content.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <head>
   <meta charset="utf-8">
   <title>My lab page</title>
@@ -55,7 +55,7 @@ Which fragment correctly represents an \textbf{unordered} list with two items?
 \end{choices}
 \begin{solution}
   Use \texttt{<ul>} with nested \texttt{<li>} items for bullet lists; \texttt{<ol>} is for numbered lists. Each list item must be an \texttt{<li>}.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <ul>
   <li>A</li>
   <li>B</li>
@@ -139,7 +139,7 @@ Which HTML element is a void element (does not require a closing tag)?
 Which markup is the most correct table structure?
 \begin{choices}
   \CorrectChoice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <table>
   <tr><th>Header 1</th><th>Header 2</th></tr>
   <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
@@ -147,7 +147,7 @@ Which markup is the most correct table structure?
 </table>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <table>
   <tr><th>Header 1</th><th>Header 2
   <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
@@ -155,14 +155,14 @@ Which markup is the most correct table structure?
 </table>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <table>
   <thead>Header 1 Header 2</thead>
   <tbody>Row 1, Cell 1 Row 1, Cell 2</tbody>
 </table>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <table>
   <td>Header 1</td><td>Header 2</td>
 </table>
@@ -188,7 +188,7 @@ Which syntax is correct for an image element with source and alternate text?
 Which fragment is a correct minimal HTML5 boilerplate skeleton?
 \begin{choices}
   \CorrectChoice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <!DOCTYPE html>
 <html>
   <head><title>Page Title</title></head>
@@ -196,19 +196,19 @@ Which fragment is a correct minimal HTML5 boilerplate skeleton?
 </html>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <html>
   <title>Page Title</title>
   <body>Content</body>
 </html>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <!DOCTYPE html>
 <head><body>Content</body></head>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <body>
   <head><title>Page Title</title></head>
 </body>
@@ -231,7 +231,7 @@ Which element wraps items that should appear as a \textbf{numbered} (ordered) li
 \end{choices}
 \begin{solution}
   \texttt{<ol>} (ordered list) works with \texttt{<li>} children for step-like or ranked content; \texttt{<ul>} is for bullets. Definition lists use \texttt{<dl>}/\texttt{<dt>}/\texttt{<dd>}.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <ol>
   <li>Step one</li>
   <li>Step two</li>
@@ -249,7 +249,7 @@ In \texttt{<a href="page.html">Open</a>}, what is the role of \texttt{href}?
 \end{choices}
 \begin{solution}
   The \textbf{hypertext reference} attribute \texttt{href} points to the resource to load. Presentation is CSS; \texttt{target} and JS handlers affect navigation behavior separately.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <a href="page.html">Open</a>
 <a href="https://example.com/" target="_blank">External</a>
 \end{lstlisting}
@@ -265,7 +265,7 @@ In the lab progression, \textbf{inline CSS} is applied by placing declarations w
 \end{choices}
 \begin{solution}
   Inline styles use \texttt{style="property: value; ..."} on the element. External and embedded stylesheets are the other main approaches; they cascade with specificity rules.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p style="color: navy; font-size: 14px;">Styled in place</p>
 \end{lstlisting}
 \end{solution}
@@ -274,7 +274,7 @@ In the lab progression, \textbf{inline CSS} is applied by placing declarations w
 Which option shows the most correct syntax for a basic login-style HTML form?
 \begin{choices}
   \CorrectChoice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <form>
   <label for="username">Username:</label>
   <input id="username" type="text" name="username">
@@ -284,14 +284,14 @@ Which option shows the most correct syntax for a basic login-style HTML form?
 </form>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <form>
   <label username>Username</label>
   <input text="username">
 </form>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <form>
   <input id="username">
   <input id="password">
@@ -299,7 +299,7 @@ Which option shows the most correct syntax for a basic login-style HTML form?
 </form>
 \end{lstlisting}
   \choice
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <form action>
   <label>Username</label>
   <input>
@@ -432,7 +432,7 @@ Which CSS declaration horizontally centers text inside its container (for typica
 \end{choices}
 \begin{solution}
   \texttt{text-align} affects inline content within a block. Centering a block itself often uses margins or flexbox; the Homepage/CSS labs emphasized \texttt{text-align} for typography alignment.
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 h1 {
   text-align: center;
 }
@@ -449,7 +449,7 @@ The CSS Inline lab emphasizes \texttt{font-style}, \texttt{font-size}, and \text
 \end{choices}
 \begin{solution}
   \texttt{font-style: italic} slants glyphs; \texttt{font-size} sets length (e.g.\ \texttt{14px}). \texttt{bold} belongs to \texttt{font-weight}; \texttt{underline} is usually \texttt{text-decoration}.
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .note {
   font-style: italic;
   font-size: 14px;
@@ -467,7 +467,7 @@ The rule \texttt{h1 \{ color: blue; \}} applies to which elements?
 \end{choices}
 \begin{solution}
   A bare tag name is an \textbf{element} (type) selector. Combined with classes or IDs it gains specificity; the CSS Selectors lab contrasted element, \texttt{.class}, and \texttt{\#id}.
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 h1 {
   color: blue;
 }
@@ -487,12 +487,12 @@ In CSS, the selector \texttt{.highlight} targets which elements?
 \end{choices}
 \begin{solution}
   The \textbf{class selector} prefix \texttt{.} matches the space-separated \texttt{class} list. \textbf{ID} uses \texttt{\#}; \textbf{type} selectors use the bare tag name (\texttt{h1}, etc.).
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .highlight {
   background-color: yellow;
 }
 \end{lstlisting}
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p class="highlight">Important</p>
 \end{lstlisting}
 \end{solution}
@@ -507,7 +507,7 @@ In the CSS box model, which area is \textbf{outside} the border (separating this
 \end{choices}
 \begin{solution}
   From inside out: \textbf{content} $\rightarrow$ \textbf{padding} $\rightarrow$ \textbf{border} $\rightarrow$ \textbf{margin}. Padding is inside the border; margin is outside.
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .box {
   padding: 8px;
   border: 1px solid #333;
@@ -526,7 +526,7 @@ In the Box Model lab, \texttt{background-color} applied to an element typically 
 \end{choices}
 \begin{solution}
   Background painting defaults to \textbf{content + padding} up to the inner edge of the border (details vary slightly by shorthand and clipping). The lab tied \texttt{background-color} to the boxed area students style alongside \texttt{padding}, \texttt{margin}, and \texttt{border}.
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .panel {
   padding: 12px;
   background-color: #e8f4ff;
@@ -546,7 +546,7 @@ When two rules conflict and both apply to the same element, a rule whose selecto
 \end{choices}
 \begin{solution}
   Specificity approximates \textbf{inline} $>$ \textbf{ID} $>$ \textbf{class/attribute} $>$ \textbf{type}. Tie-breaking uses source order and \texttt{!important} (sparingly). The lab table summarized ID vs class vs element priority.
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .subtitle { color: gray; }
 #main-title { color: navy; /* wins over .subtitle */ }
 \end{lstlisting}
@@ -562,7 +562,7 @@ The line \texttt{<meta charset="utf-8">} in \texttt{<head>} primarily tells the 
 \end{choices}
 \begin{solution}
   The charset declaration names an encoding (here UTF-8) so the parser maps downloaded bytes to the right Unicode characters---especially important for accents and symbols.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <head>
   <meta charset="utf-8">
   <title>Encoding demo</title>
@@ -580,7 +580,7 @@ Which markup correctly links an \textbf{external} stylesheet \texttt{styles.css}
 \end{choices}
 \begin{solution}
   \texttt{<link rel="stylesheet" href="...">} pulls a \texttt{.css} file into the cascade. \texttt{<style>} holds inline CSS text; \texttt{<script>} is for scripts.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <head>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -599,10 +599,10 @@ In HTML, \texttt{class="card featured"} on one element means:
 \end{choices}
 \begin{solution}
   The \texttt{class} attribute is a space-separated token list. Selectors \texttt{.card}, \texttt{.featured}, and \texttt{.card.featured} can all match the same node.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <article class="card featured">Sale item</article>
 \end{lstlisting}
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .card { border: 1px solid #ccc; }
 .featured { background: #fff8e6; }
 \end{lstlisting}
@@ -618,7 +618,7 @@ In CSS, the selector \texttt{*} (asterisk alone) means:
 \end{choices}
 \begin{solution}
   The universal selector matches every element; it is often used in resets or broad rules (use carefully because it can hurt performance and specificity intuition).
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 * { box-sizing: border-box; }
 \end{lstlisting}
 \end{solution}
@@ -633,7 +633,7 @@ Without extra rules, which property is typically \textbf{inherited} from a paren
 \end{choices}
 \begin{solution}
   Many text-oriented properties (\texttt{color}, \texttt{font-family}, \texttt{font-size} in the normal case) inherit so children match the parent's typography. Box properties like \texttt{margin} and \texttt{border} usually do not inherit.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <section style="color: navy;">
   <p>Inherited text color.</p>
 </section>
@@ -652,7 +652,7 @@ The \texttt{alt} attribute on \texttt{<img>} is important mainly because it:
 \end{choices}
 \begin{solution}
   \texttt{alt} describes the image content for assistive tech and when the asset fails to load; \texttt{src} is the actual URL/path.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <img src="logo.png" alt="Company logo">
 \end{lstlisting}
 \end{solution}
@@ -667,7 +667,7 @@ In HTML5, \texttt{<br>} and \texttt{<img>} are usually written without a closing
 \end{choices}
 \begin{solution}
   Void elements have no element content; the slash-only XHTML-style \texttt{<br />} is tolerated but optional in HTML5 for these tags.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p>Line one<br>Line two</p>
 <img src="pic.png" alt="">
 \end{lstlisting}
@@ -695,7 +695,7 @@ What is the HTML5 doctype declaration?
 \end{choices}
 \begin{solution}
   HTML5 uses the short, case-insensitive \texttt{<!DOCTYPE html>} so browsers use standards mode.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <!DOCTYPE html>
 <html lang="en">
   <head><meta charset="utf-8"><title>Demo</title></head>
@@ -750,7 +750,7 @@ Which values are \textbf{valid} for an \texttt{<input>} element's \texttt{type} 
 \end{choices}
 \begin{solution}
   \texttt{name} and \texttt{title} are attributes, not \texttt{type} keywords. Many input types exist (\texttt{text}, \texttt{password}, \texttt{email}, \texttt{checkbox}, etc.).
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <input type="text" name="user">
 <input type="password" name="pass">
 \end{lstlisting}
@@ -790,7 +790,7 @@ Which element holds an \textbf{embedded} (internal) stylesheet in the document?
 \end{choices}
 \begin{solution}
   Put CSS rules inside \texttt{<style>}; link external files with \texttt{<link rel="stylesheet" href="...">}.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <head>
   <style>
     body { font-family: system-ui, sans-serif; }

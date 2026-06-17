@@ -16,7 +16,7 @@ You need a counter that increments on each button click. Which declaration is mo
 \end{choices}
 \begin{solution}
   \texttt{let} is block-scoped and allows reassignment. \texttt{const} cannot be rebound; the bound value may still be mutable if it is an object. \texttt{var} is legacy-scoped.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let count = 0;
 btn.onclick = () => { count += 1; };
 \end{lstlisting}
@@ -48,7 +48,7 @@ What is the output of the code with \texttt{x = 0}, \texttt{y = '0'}, \texttt{z 
 
 \question[4]
 What is logged by this loop?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let result = '';
 for (let i = 5; i > 0; i--) {
   if (i % 2 === 0) {
@@ -129,7 +129,7 @@ Which of the following is \textbf{not} a falsy value in JavaScript?
 
 \question[4]
 What is the result of this code?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 function addOne(value) {
   value + 1;
 }
@@ -149,7 +149,7 @@ console.log(x);
 
 \question[4]
 What is logged after calling \texttt{changeUsername(user)}?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 function changeUsername(user) {
   user.username = 'new-username';
 }
@@ -169,7 +169,7 @@ console.log(user.username);
 
 \question[4]
 What is the result of this \texttt{switch} code when \texttt{day = 3}?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let day = 3;
 let message = "";
 switch (day) {
@@ -201,7 +201,7 @@ console.log(message);
 
 \question[4]
 What is the result of this \texttt{switch} code when \texttt{day = 5}?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let day = 5;
 let message = "";
 switch (day) {
@@ -257,7 +257,7 @@ What is the primary purpose of \texttt{async}/\texttt{await}?
 
 \question[4]
 What effect does this CSS have?
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 .box {
   width: 100px;
   height: 100px;
@@ -290,10 +290,10 @@ What is the output of \texttt{console.log(typeof typeof 1);}?
 
 \question[4]
 Given:
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <p class="text" id="special">Hello World</p>
 \end{lstlisting}
-\begin{lstlisting}[style=cssexam]
+\begin{lstlisting}[style=cssinline]
 p { color: blue; }
 .text { color: green; }
 #special { color: red; }
@@ -311,7 +311,7 @@ What color is the text?
 
 \question[4]
 What is logged here?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let arr = [1, 2, 3];
 let [a, b, c, d] = arr;
 console.log(d);
@@ -328,7 +328,7 @@ console.log(d);
 
 \question[4]
 Given this HTML, what displays on the page?
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <div>
   <p>First</p>
   <p style="display: none;">Second</p>
@@ -348,7 +348,7 @@ Given this HTML, what displays on the page?
 
 \question[4]
 What is the output of:
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const arr = [1, 2, 3, 4, 5];
 console.log(arr.slice(1, 3));
 \end{lstlisting}
@@ -364,7 +364,7 @@ console.log(arr.slice(1, 3));
 
 \question[4]
 What are the three outputs here?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let a = 3;
 let b = new Number(3);
 let c = 3;
@@ -392,7 +392,7 @@ In the If-statement lab style, an integer \texttt{n} is \textbf{even} when which
 \end{choices}
 \begin{solution}
   The \textbf{remainder} operator \texttt{\%} yields zero for even \texttt{n} under \texttt{n \% 2 === 0}. Odd numbers leave remainder \texttt{1}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 if (n % 2 === 0) {
   console.log("even");
 }
@@ -409,7 +409,7 @@ In \texttt{if (cond1) \{ A \} else if (cond2) \{ B \} else \{ C \}}, block \text
 \end{choices}
 \begin{solution}
   The chain tests \texttt{cond1} then, if it failed, \texttt{cond2}. The \texttt{else} branch runs only when every tested condition above was falsy (If-statement lab structure).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 if (cond1) {
   A();
 } else if (cond2) {
@@ -432,7 +432,7 @@ In \texttt{for (init; condition; final)}, the \texttt{final} clause (for example
 \end{choices}
 \begin{solution}
   A C-style \texttt{for} loop runs \textbf{init} once, then each cycle: test \textbf{condition}, run body, run \textbf{final}, repeat. That matches the lab's three-part loop table.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 for (let i = 0; i < 3; i++) {
   console.log(i);
 }
@@ -449,7 +449,7 @@ Which value is \textbf{falsy} in JavaScript when used as an \texttt{if} conditio
 \end{choices}
 \begin{solution}
   The short falsy list includes \texttt{false}, \texttt{0}, \texttt{-0}, \texttt{0n}, \texttt{""}, \texttt{null}, \texttt{undefined}, \texttt{NaN}. Empty arrays and objects are \textbf{truthy}---a common beginner surprise from the Truthyfalsy lab.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 if ("") { /* skipped */ }
 if ([]) { /* runs: [] is truthy */ }
 \end{lstlisting}
@@ -465,7 +465,7 @@ What is the result of \texttt{5 === "5"} in JavaScript?
 \end{choices}
 \begin{solution}
   \textbf{Strict equality} \texttt{===} compares \textbf{without} coercion, so number and string differ. \texttt{5 == "5"} is \texttt{true} with loose equality (coercion). Modern style prefers \texttt{===} / \texttt{!==}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 console.log(5 === "5"); // false
 \end{lstlisting}
 \end{solution}
@@ -482,7 +482,7 @@ What is the value of \texttt{5 == "5"} (loose equality) in JavaScript?
 \end{choices}
 \begin{solution}
   Loose \texttt{==} applies the language's coercion rules; numeric string \texttt{"5"} converts to number \texttt{5}. The Typecoercion lab contrasts this with predictable \texttt{===}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 console.log(5 == "5"); // true
 \end{lstlisting}
 \end{solution}
@@ -497,7 +497,7 @@ What does \texttt{Number("42")} evaluate to?
 \end{choices}
 \begin{solution}
   \texttt{Number(...)} performs \textbf{explicit} numeric conversion. Invalid strings yield \texttt{NaN}; the lab contrasted this with implicit coercion in \texttt{==} comparisons.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const x = Number("42"); // 42
 \end{lstlisting}
 \end{solution}
@@ -512,7 +512,7 @@ For an array \texttt{arr}, \texttt{arr.push("x")} primarily:
 \end{choices}
 \begin{solution}
   \texttt{push} appends; \texttt{pop} removes from the end. \texttt{length} tracks element count (for dense arrays, last index is \texttt{length - 1}).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const arr = [1, 2];
 arr.push("x"); // length is now 3
 \end{lstlisting}
@@ -528,7 +528,7 @@ Given \texttt{let user = \{ name: "Ada", score: 10 \};}, which expression reads 
 \end{choices}
 \begin{solution}
   \textbf{Dot} syntax (\texttt{user.score}) is idiomatic for valid identifiers. \textbf{Brackets} support dynamic keys and non-identifier keys (\texttt{user["score"]}).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const user = { name: "Ada", score: 10 };
 const s = user["score"];
 \end{lstlisting}
@@ -544,7 +544,7 @@ In the Button-click lab style, which API retrieves a single element by its \text
 \end{choices}
 \begin{solution}
   \texttt{getElementById} returns one \texttt{Element} or \texttt{null}. The lab pairs this with \texttt{onclick} assignment or later \texttt{addEventListener} patterns.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const btn = document.getElementById("go");
 \end{lstlisting}
 \end{solution}
@@ -559,7 +559,7 @@ To replace all text inside a DOM element \texttt{el} with the string \texttt{"Do
 \end{choices}
 \begin{solution}
   \texttt{textContent} sets character data without interpreting markup. \texttt{innerHTML} parses HTML (XSS risk with untrusted strings). \texttt{.value} applies to form controls.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 el.textContent = "Done";
 \end{lstlisting}
 \end{solution}
@@ -574,7 +574,7 @@ To read what the user currently typed in a text \texttt{<input>} element referen
 \end{choices}
 \begin{solution}
   The live string for most inputs is \texttt{.value}. The HTML \texttt{value} attribute is only the \emph{initial} default unless you sync it; the Input lab stresses reading \texttt{.value} for current text.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const text = inputEl.value;
 \end{lstlisting}
 \end{solution}
@@ -589,7 +589,7 @@ What is the value of \texttt{typeof 42} in JavaScript?
 \end{choices}
 \begin{solution}
   JavaScript has one numeric type in \texttt{typeof} results: \texttt{"number"} (both \texttt{3} and \texttt{3.14}).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 typeof 42;        // "number"
 typeof "42";       // "string"
 \end{lstlisting}
@@ -605,7 +605,7 @@ What does \texttt{"5" + 1} evaluate to?
 \end{choices}
 \begin{solution}
   With \texttt{+}, if either operand is a string, the other is typically coerced to string and concatenated---not added numerically.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 console.log("5" + 1);   // "51"
 console.log("5" - 1);   // 4  (subtraction uses numeric coercion)
 \end{lstlisting}
@@ -621,7 +621,7 @@ Which expression uses a \textbf{template literal} to embed \texttt{name} into a 
 \end{choices}
 \begin{solution}
   Backtick strings allow \texttt{\$\{\ldots\}} interpolations; they are the ES6 template literal syntax.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const name = "Ada";
 const msg = `Hello, ${name}!`;
 \end{lstlisting}
@@ -637,7 +637,7 @@ const msg = `Hello, ${name}!`;
 \end{choices}
 \begin{solution}
   \texttt{JSON.parse} deserializes a JSON text into JS values (objects, arrays, strings, numbers, booleans, null). \texttt{JSON.stringify} does the reverse.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const obj = JSON.parse('{"score":10,"ok":true}');
 console.log(obj.score);
 \end{lstlisting}
@@ -653,7 +653,7 @@ Compared to \texttt{splice}, \texttt{Array.prototype.slice} is different because
 \end{choices}
 \begin{solution}
   \texttt{slice(start, end)} copies a range; \texttt{splice} changes the array in place (insert/remove). Recognizing mutating vs non-mutating methods prevents subtle bugs.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const nums = [10, 20, 30];
 const part = nums.slice(0, 2); // [10, 20], nums unchanged
 \end{lstlisting}
@@ -669,7 +669,7 @@ The operator \texttt{!==} is best described as:
 \end{choices}
 \begin{solution}
   Pair \texttt{!==} with \texttt{===} for predictable comparisons; \texttt{!=} is the loose form paired with \texttt{==}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 5 !== "5"; // true
 5 !=  "5"; // false
 \end{lstlisting}
@@ -685,7 +685,7 @@ For a non-empty array \texttt{arr}, the index of the \textbf{last} element is:
 \end{choices}
 \begin{solution}
   Arrays are zero-indexed: first at \texttt{0}, last at \texttt{length - 1}. Off-by-one errors at \texttt{length} are a common debugging target.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const arr = ["a", "b", "c"];
 const last = arr[arr.length - 1];
 \end{lstlisting}
@@ -701,7 +701,7 @@ What are the results of \texttt{3 == '3'} and \texttt{3 === '3'} in JavaScript?
 \end{choices}
 \begin{solution}
   Loose equality coerces the string \texttt{"3"} to the number \texttt{3}. Strict equality compares type and value, so number and string differ.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 console.log(3 == "3");  // true
 console.log(3 === "3"); // false
 \end{lstlisting}
@@ -741,7 +741,7 @@ Which line correctly creates an empty \textbf{object literal}?
 \end{choices}
 \begin{solution}
   Curly braces with optional properties define object literals; \texttt{new Object()} works but the literal form is idiomatic.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let myObject = {};
 myObject.score = 10;
 \end{lstlisting}
@@ -769,14 +769,14 @@ You need a template literal that interpolates \texttt{product.quantity}, \texttt
 \end{choices}
 \begin{solution}
   Inside template literals, \texttt{\$\{expr\}} evaluates an expression. To output a literal \texttt{\$}, escape by writing \texttt{\$\$} before \texttt{\$\{product.price\}}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const s = `${product.quantity} units of ${product.name} at $${product.price}`;
 \end{lstlisting}
 \end{solution}
 
 \question[4]
 What happens when this code runs?
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const a = 0;
 for (let i = 5; i < 10; i++) {
   a++;
@@ -805,7 +805,7 @@ To change which image file an \texttt{<img>} displays, you can assign to \texttt
 \end{choices}
 \begin{solution}
   The Attributes lab uses \texttt{.src} or \texttt{setAttribute("src", ...)} so the browser loads a new resource. \texttt{alt} is alternative text, not the image URL.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 imgEl.setAttribute("src", "pic.png");
 /* or: imgEl.src = "pic.png"; */
 \end{lstlisting}
@@ -821,7 +821,7 @@ To add a new \texttt{<li>} to an existing \texttt{<ol>} in the Appending-element
 \end{choices}
 \begin{solution}
   \texttt{createElement} builds a node; \texttt{appendChild} attaches it under a parent. String \texttt{innerHTML} reparses markup and can drop event listeners---\texttt{createElement} is the structured approach.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const li = document.createElement("li");
 li.textContent = "New item";
 ol.appendChild(li);
@@ -838,7 +838,7 @@ Compared to assigning \texttt{element.onclick = fn}, \texttt{element.addEventLis
 \end{choices}
 \begin{solution}
   \texttt{onclick} property assignment replaces the previous handler. \texttt{addEventListener} stacks listeners and offers capture/bubbling control (\texttt{Eventlistener} lab).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 el.addEventListener("click", fn1);
 el.addEventListener("click", fn2);
 \end{lstlisting}
@@ -856,7 +856,7 @@ Inside a click handler, \texttt{event.target} typically refers to:
 \end{choices}
 \begin{solution}
   The \textbf{Event} object reports \texttt{type}, \texttt{target} (where the event started), and related fields. The Eventobject lab used \texttt{target} after a click.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 el.addEventListener("click", (event) => {
   console.log(event.target);
 });
@@ -873,7 +873,7 @@ el.addEventListener("click", (event) => {
 \end{choices}
 \begin{solution}
   \texttt{querySelector} is the general CSS-selector API; prefix IDs with \texttt{\#}, classes with \texttt{.}, etc. \texttt{getElementById} is ID-only and very slightly older/simpler.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const a = document.querySelector("#go");
 const b = document.getElementById("go");
 \end{lstlisting}
@@ -889,7 +889,7 @@ Calling \texttt{event.preventDefault()} inside a click handler on a link typical
 \end{choices}
 \begin{solution}
   \texttt{preventDefault} blocks default behavior (navigation, form submit, context menu, etc.). It is unrelated to \texttt{stopPropagation}, which affects event bubbling/capture.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 link.addEventListener("click", (event) => {
   event.preventDefault();
   console.log("No navigation");
@@ -908,7 +908,7 @@ To add a CSS class \texttt{active} without overwriting existing classes on \text
 \end{choices}
 \begin{solution}
   \texttt{classList} maintains the class token set: \texttt{add}, \texttt{remove}, \texttt{toggle}, \texttt{contains}. Assigning \texttt{className} replaces the whole attribute string.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 el.classList.add("active");
 el.classList.remove("hidden");
 \end{lstlisting}
@@ -924,10 +924,10 @@ For \texttt{<div id="app" data-user-id="7">}, the JavaScript property that reads
 \end{choices}
 \begin{solution}
   \texttt{data-*} attributes appear on \texttt{element.dataset} in camelCase: \texttt{data-user-id} $\rightarrow$ \texttt{dataset.userId}. Values are always strings.
-\begin{lstlisting}[style=htmlexam]
+\begin{lstlisting}[style=htmlinline]
 <div id="app" data-user-id="7" data-role="admin"></div>
 \end{lstlisting}
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const el = document.getElementById("app");
 console.log(el.dataset.userId); // "7"
 \end{lstlisting}
@@ -943,7 +943,7 @@ To remove a child node \texttt{child} from its parent \texttt{parent}, modern co
 \end{choices}
 \begin{solution}
   \texttt{Element.remove()} detaches the node from the tree. The older \texttt{removeChild} pattern still appears in legacy code but is more verbose.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 child.remove();
 /* or: parent.removeChild(child); */
 \end{lstlisting}
@@ -963,7 +963,7 @@ In an ES6 class, which special method runs when you write \texttt{new MyClass(ar
 \end{choices}
 \begin{solution}
   \texttt{constructor} initializes the instance; \texttt{this} refers to that instance inside instance methods. The Classes lab covered instantiation and calling methods like \texttt{getDescription()}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 class Widget {
   constructor(name) { this.name = name; }
 }
@@ -981,7 +981,7 @@ Which construct runs \texttt{recover()} only if \texttt{risky()} throws?
 \end{choices}
 \begin{solution}
   \texttt{try}/\texttt{catch} handles synchronous exceptions; \texttt{throw} signals an error. The Errors lab stressed preventing uncaught exceptions from crashing the script path under test.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 try { risky(); } catch (e) { recover(); }
 \end{lstlisting}
 \end{solution}
@@ -996,7 +996,7 @@ try { risky(); } catch (e) { recover(); }
 \end{choices}
 \begin{solution}
   \textbf{Callbacks} passed to \texttt{setTimeout} run later; order relative to other macrotasks depends on the event loop (Callbackfunction lab).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 setTimeout(() => console.log("later"), 1000);
 \end{lstlisting}
 \end{solution}
@@ -1013,7 +1013,7 @@ Declaring a function as \texttt{async function f() \{ \ldots \}} means that call
 \end{choices}
 \begin{solution}
   \texttt{async} functions wrap the return value in a Promise. \texttt{await} pauses \emph{inside} the async function until a Promise settles (Asyncawait lab).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 async function f() { return 1; }
 const p = f(); // a Promise
 \end{lstlisting}
@@ -1029,7 +1029,7 @@ The expression \texttt{await fetch(url)} (inside an \texttt{async} function) typ
 \end{choices}
 \begin{solution}
   \texttt{fetch} resolves to a \texttt{Response}; you then \texttt{await res.json()} or similar to parse. The Fetch lab chained request $\rightarrow$ parse $\rightarrow$ DOM update.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 async function load(url) {
   const res = await fetch(url);
   const data = await res.json();
@@ -1048,7 +1048,7 @@ In \texttt{Math.max(...values)}, the \texttt{...values} syntax in the call is ca
 \end{choices}
 \begin{solution}
   \textbf{Spread} in a call expands an array (or iterable) into arguments. \textbf{Rest} in the parameter list (\texttt{function f(...args)}) collects extra arguments into an array (Spread/rest lab).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const values = [3, 9, 4];
 Math.max(...values);
 \end{lstlisting}
@@ -1066,7 +1066,7 @@ In \texttt{function sum(...nums) \{ return nums.reduce((a,b)=>a+b,0); \}}, the \
 \end{choices}
 \begin{solution}
   Rest parameters bundle trailing arguments. Spread and rest share the \texttt{...} token but appear in opposite ``directions'' (call vs.\ parameter list).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 function sum(...nums) {
   return nums.reduce((a, b) => a + b, 0);
 }
@@ -1083,7 +1083,7 @@ After \texttt{const res = await fetch(url);}, a robust pattern is to check \text
 \end{choices}
 \begin{solution}
   Failed HTTP responses still yield a \texttt{Response}; inspect \texttt{status} or the boolean \texttt{ok} before calling \texttt{json()}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const res = await fetch(url);
 if (!res.ok) throw new Error(`HTTP ${res.status}`);
 const data = await res.json();
@@ -1100,7 +1100,7 @@ If an \texttt{async} function body executes \texttt{throw new Error("bad");}, th
 \end{choices}
 \begin{solution}
   Exceptions inside \texttt{async} functions reject the implicit Promise. Callers should use \texttt{try}/\texttt{catch} with \texttt{await} or \texttt{.catch} on the Promise.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 async function boom() { throw new Error("bad"); }
 boom().catch((e) => console.log(e.message));
 \end{lstlisting}
@@ -1118,7 +1118,7 @@ boom().catch((e) => console.log(e.message));
 \end{choices}
 \begin{solution}
   \texttt{Promise.all} is useful for parallel async work; combine with \texttt{Promise.allSettled} when you need all outcomes regardless of failures (ES2020+).
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const [a, b] = await Promise.all([fetch(url1), fetch(url2)]);
 \end{lstlisting}
 \end{solution}
@@ -1133,7 +1133,7 @@ The method \texttt{res.json()} on a \texttt{fetch} \texttt{Response} is \textbf{
 \end{choices}
 \begin{solution}
   Body consumption methods (\texttt{json}, \texttt{text}, \texttt{blob}) are async; you must \texttt{await} (or use \texttt{.then}) even after you already have \texttt{res}.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const res = await fetch(url);
 const data = await res.json();
 \end{lstlisting}
@@ -1141,7 +1141,7 @@ const data = await res.json();
 
 \question[4]
 Given:
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 let promise = new Promise((resolve, reject) => {
   reject("Promise rejected!");
 });
@@ -1205,7 +1205,7 @@ Which API serializes a JavaScript value into a JSON \textbf{string}?
 \end{choices}
 \begin{solution}
   Pair \texttt{JSON.stringify} with \texttt{JSON.parse} for round-trips; handle replacers/revivers when dates or special values matter.
-\begin{lstlisting}[style=jsexam]
+\begin{lstlisting}[style=js]
 const s = JSON.stringify({ score: 10 });
 const obj = JSON.parse(s);
 \end{lstlisting}

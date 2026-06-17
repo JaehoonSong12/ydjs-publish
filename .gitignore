@@ -1,26 +1,22 @@
-# --- Generated from ./.gitignores on Mon Jun 15 16:25:06 2026 ---
+# --- Generated from ./.gitignores on Tue Jun 16 19:23:27 2026 ---
 
 #############################################
 # A.gitignore
 #############################################
 #################### ALL PURPOSE GITIGNORE ####################
 project2305*
-_*/
+_*
 tmp*/
 remote*/
 VSLive*/
 vscode*/
 pyright*/
-cursor*/
 python-lang*/
 *.key
 *.key.pub
-
 log*/
 playwright*/
 h2/
-
-/.*
 
 ################################################################
 # AI Model Specific Ignores
@@ -29,9 +25,24 @@ h2/
 *[gG][eE][mM][iI][nN][iI]*
 # Cursor IDE
 *[cC][uU][rR][sS][oO][rR]*
+# Kiro (AI code assistant)
+*[kK][iI][rR][oO]*
 
-
-
+# for project specific specs
+!/.kiro/
+/.kiro/*
+!/.kiro/specs/
+!.config.kiro
+!/.kiro/steering/
+# CI/CD convention for personal configurations
+/.kiro/steering/plan-*
+/.kiro/steering/code-*
+/.kiro/steering/build-*
+/.kiro/steering/test-*
+/.kiro/steering/release-*
+/.kiro/steering/deploy-*
+/.kiro/steering/operate-*
+/.kiro/steering/monitor-*
 
 
 ################################################################
@@ -138,8 +149,8 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
-# Other files and folders
-.settings/
+# # Other files and folders
+# .settings/
 
 # Executables
 *.swf
@@ -1759,8 +1770,8 @@ Debug/
 # IAR project "Release" directory
 Release/
 
-# IAR project settings directory
-settings/
+# # IAR project settings directory
+# settings/
 
 # IAR backup files
 Backup*

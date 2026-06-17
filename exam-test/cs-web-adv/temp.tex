@@ -1,0 +1,534 @@
+HTML
+TRUE or FALSE: An id attribute is a non-unique identifier that can be reused on multiple different elements within the same HTML page.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+FALSE
+Explanation
+In HTML, the id attribute is designed to be a unique identifier. This means a specific id value can only be used once on any given HTML page.
+•	id attribute: Used to uniquely identify a single, specific element (often targeted by CSS for unique styling or JavaScript for DOM manipulation).
+•	class attribute: Used for non-unique identifiers. If you want to apply the same identifier or styling to multiple elements across a page, you should use the class attribute instead.
+HTML
+TRUE or FALSE: The DOM (Document Object Model) is a hierarchical tree structure that allows JavaScript to interact with and change HTML elements in real-time.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+TRUE
+Explanation
+The DOM (Document Object Model) is exactly that: a programming interface for web documents.
+•	Hierarchical Tree Structure: When a web page loads, the browser parses the HTML and constructs a tree of objects representing the structure of the document (where the <html> tag is the root, branching down into <body>, <div>, <p>, etc.).
+•	Real-Time Interaction: JavaScript interacts with this tree structure to dynamically read, modify, add, or delete HTML elements and styles in real-time without needing to reload the entire web page.
+HTML
+TRUE or FALSE: HTML is a programming language used to perform complex logic and calculations within a web document.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+FALSE
+Explanation
+HTML stands for HyperText Markup Language. It is a markup language, not a programming language.
+•	What HTML does: It defines the structure and layout of a web document using tags (like headings, paragraphs, and links). It simply tells the browser what content to display and how it is organized.
+•	What HTML cannot do: It cannot perform logical operations, loops, conditional statements, or complex calculations.
+To perform complex logic and calculations within a web document, you must use a scripting/programming language like JavaScript.
+HTML
+Which of the following is an example of a "Void Tag"?
+Choose all answers that are correct. There may be more than one correct answer.
+□ a
+□ div
+□ p
+◯ img
+The correct answer is:
+•	img
+Explanation
+In HTML, a void tag (also known as an empty element) is an element that cannot have any child nodes (meaning it cannot contain text or enclose other tags). Because it cannot hold content, a void tag does not have a closing tag.
+•	<img>: Correct. It is used to embed an image and relies entirely on attributes (like src and alt). It never encloses content or uses a </img> closing tag.
+•	a: Incorrect. It is an anchor tag used for links and requires a closing tag (<a>...</a>) to enclose the link text or elements.
+•	div: Incorrect. It is a structural container that requires a closing tag (<div>...</div>).
+•	p: Incorrect. It is a paragraph element used to enclose text content and requires a closing tag (<p>...</p>).
+HTML
+TRUE or FALSE: To ensure accessibility, an "input" element should be connected to a "label" using the "for" attribute and a matching "id".
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+Connecting an <input> element to a <label> is a fundamental practice for web accessibility (a11y).
+•	How it works: You assign a unique id attribute to the <input> element, and then match that exact value in the for attribute of the <label> element.
+•	Why it matters for accessibility: * Screen Readers: When a visually impaired user focuses on the input field, a screen reader will explicitly read the text within the connected label, making it clear what information is being requested.
+o	Larger Click Targets: It improves usability for everyone, including users with motor impairments. Clicking or tapping on the label text will automatically place focus on or toggle the connected input field.
+Example
+HTML
+<label for="user-email">Email Address:</label>
+<input type="email" id="user-email" name="email">
+HTML
+TRUE or FALSE: Block-level elements automatically start on a new line and take up the full width of their container.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+TRUE
+Explanation
+In HTML and CSS, elements are categorized by their default display behavior. Block-level elements have two defining characteristics:
+•	New Line: They always begin on a new line, pushing the next element down.
+•	Full Width: They automatically stretch to the left and right as far as they can, occupying the full horizontal width of their parent container (100% width), regardless of how short the content inside them actually is.
+Common examples of block-level elements include <div>, <p>, <h1> through <h6>, <ul>, and <li>.
+In contrast, inline elements (like <span> or <a>) only take up as much width as their content requires and do not force a new line.
+HTML
+TRUE or FALSE: Semantic tags, such as "nav" and "article", are used to provide meaning to the content for both search engines and assistive technologies.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+TRUE
+Explanation
+Semantic tags are HTML elements that clearly describe their meaning or purpose to both the browser and the developer.
+Before semantic tags were widely adopted, developers relied heavily on generic containers like <div class="nav"> or <div class="footer">. While this looks fine visually to a user, computers cannot inherently understand what a <div> represents.
+By using explicit semantic tags like <nav>, <article>, <header>, and <footer>:
+•	Search Engines (SEO): Web crawlers can easily identify the most important content on a page (like an <article>) versus secondary content, improving how the page is indexed.
+•	Assistive Technologies (Accessibility): Screen readers use these tags to define landmarks on the page. This allows visually impaired users to quickly skip directly to the main content or navigate straight to the <nav> section without having to listen to the entire page read aloud from top to bottom.
+HTML
+TRUE or FALSE: When using radio buttons, all buttons in the same group must share the same name attribute to ensure the user can only select one option.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+TRUE
+Explanation
+Radio buttons are designed for "mutual exclusion," meaning a user should only be able to select a single option from a predefined list.
+To make this happen, the browser needs to know which radio buttons belong together. This is handled entirely by the name attribute:
+•	Grouping: When multiple <input type="radio"> elements share the exact same name value, the browser automatically groups them together.
+•	Behavior: Once grouped, selecting any radio button in that group will automatically deselect whichever one was previously chosen.
+If you forget to give them the same name attribute (or leave the attribute out entirely), the browser treats them as completely independent, allowing the user to select multiple radio buttons at the same time.
+Example
+HTML
+<p>Please select your preferred contact method:</p>
+<input type="radio" id="email" name="contact-method" value="email">
+<label for="email">Email</label>
+
+<input type="radio" id="phone" name="contact-method" value="phone">
+<label for="phone">Phone</label>
+HTML
+Why is the alt attribute essential for an "img" tag?
+Choose all answers that are correct. There may be more than one correct answer.
+□ It defines the source path of the image file.
+□ It provides a text description for accessibility and SEO
+□ It makes the image clickable as a hyperlink.
+□ It allows the image to be resized automatically.
+The correct answer is:
+•	It provides a text description for accessibility and SEO
+Explanation
+The alt (alternate text) attribute serves two primary, essential purposes in web development:
+•	Accessibility: If a user is visually impaired and uses a screen reader, the software will read the alt text aloud to describe what the image represents. Additionally, if an image fails to load due to a slow internet connection or a broken file path, the browser displays this text in place of the image.
+•	SEO (Search Engine Optimization): Search engine crawlers cannot "see" images the way humans do. They rely on the alt text to understand the content of the image, which helps index your page accurately for image searches.
+Why the other options are incorrect:
+•	Source path: This is handled by the src attribute, not alt.
+•	Hyperlink: Making an image clickable requires wrapping the <img> tag inside an anchor (<a>) tag.
+•	Resizing: Image resizing is handled via CSS or the width and height attributes.
+HTML
+TRUE or FALSE: The "head" section of an HTML document contains the visible content that users interact with on a webpage.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+FALSE
+Explanation
+An HTML document is split into two primary structural sections, each with a completely different purpose:
+•	The <head> section: Contains metadata (data about data). This includes things like the document's title (which appears on the browser tab), character encoding, CSS stylesheets, and scripts. With a few rare exceptions (like the page title), nothing inside the <head> is directly visible to users on the webpage itself.
+•	The <body> section: Contains all the visible content that users see and interact with, such as headings, paragraphs, images, links, tables, and buttons.
+CSS
+When using Flexbox, which property is used to align items along the main axis?
+Choose all answers that are correct. There may be more than one correct answer.
+□ align-items
+□ justify-content
+□ flex-direction
+□ align-content
+The correct answer is:
+•	justify-content
+Explanation
+In CSS Flexbox, layout is calculated along two axes: the main axis (defined by flex-direction) and the cross axis (perpendicular to the main axis).
+•	justify-content: Correct. This property is specifically used to align flex items along the main axis. It controls how extra space is distributed between or around items (using values like flex-start, center, space-between, or space-around).
+•	align-items: Incorrect. This property aligns flex items along the cross axis within a single line.
+•	flex-direction: Incorrect. This property establishes the main axis itself (e.g., setting it to row or column), but it does not handle the alignment of the items along that axis.
+•	align-content: Incorrect. This aligns a flex container's lines along the cross axis when there is extra space, but only applies when there are multiple rows or columns (i.e., when flex-wrap: wrap is used).
+CSS
+TRUE or FALSE: The "rem" unit is relative to the font size of the parent element.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+FALSE
+Explanation
+In CSS, rem and em are both relative length units, but they look at different elements to calculate their size:
+•	rem (Root EM): Is relative strictly to the font size of the root element (the <html> tag). If the root font size is 16px (the browser default), then 1rem equals 16px, 2rem equals 32px, and so on, regardless of where the element is nested.
+•	em: Is relative to the font size of the parent element (or the element's own font size for properties other than font-size).
+Why this matters
+Using rem is generally preferred for layout spacing and typography because it prevents "compounding." If you nest multiple elements using em, the sizes multiply down the chain, which can make layouts unpredictable and difficult to maintain. rem provides a consistent, predictable baseline across the entire page while still allowing users to scale text via browser zoom settings.
+CSS
+TRUE or FALSE: A descendant selector targets only the immediate children of a parent element.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+FALSE
+Explanation
+In CSS, a descendant selector (represented by a plain space between two selectors) targets any matching element that is nested inside the specified parent element, no matter how deeply it is buried in the HTML structure (children, grandchildren, great-grandchildren, etc.).
+If you want to target only the immediate children of a parent element, you must use the child combinator selector (represented by the greater-than sign >).
+Example Comparison
+HTML
+<div class="parent">
+  <p>Paragraph 1 (Immediate Child)</p>
+  <div>
+    <p>Paragraph 2 (Grandchild)</p>
+  </div>
+</div>
+•	Descendant Selector (.parent p): Targets both Paragraph 1 and Paragraph 2.
+•	Child Selector (.parent > p): Targets only Paragraph 1.
+CSS
+In CSS Grid, what does the "fr" unit represent?
+Choose all answers that are correct. There may be more than one correct answer.
+□ A fixed pixel value.
+□ The font-size of the root element.
+□ A percentage of the viewport width.
+□ A fraction of the available space in the grid container.
+The correct answer is:
+•	A fraction of the available space in the grid container.
+Explanation
+In CSS Grid, fr stands for fractional unit.
+•	How it works: It dynamically calculates space by taking whatever flexible room is left over inside the grid container after all fixed elements (like pixels, percentages, or content-sized blocks) have been accounted for, and then dividing that remaining space into fractional slices.
+•	Example: If you define a grid layout with grid-template-columns: 1fr 2fr 1fr;, the browser will divide the available space into 4 equal fractions (). The first and third columns will each take up () of that space, while the middle column will take up ().
+Why the other options are incorrect:
+•	Fixed pixel value: This is represented by the px unit.
+•	Font-size of the root element: This is represented by the rem unit.
+•	Percentage of the viewport width: This is represented by the vw unit.
+CSS
+Which selector would you use to target only the very next sibling of an element?
+Choose all answers that are correct. There may be more than one correct answer.
+□ element + sibling
+□ element ~ sibling
+□ element > sibling
+□ element sibling
+The correct answer is:
+•	element + sibling
+Explanation
+In CSS, the + symbol is the adjacent sibling combinator.
+•	How it works: It targets an element only if it is the very next sibling (immediately following the first element) and shares the same parent. If there is any other element sandwiched between them, the selector will not match.
+Why the other options are incorrect:
+•	element ~ sibling (General Sibling): Targets all matching siblings that come after the element, not just the immediate next one.
+•	element > sibling (Child Combinator): Targets an immediate child nested inside the element, not a sibling.
+•	element sibling (Descendant Combinator): Targets any nested descendant (child, grandchild, etc.) inside the element.
+ 
+CSS
+TRUE or FALSE: By default, adding padding to an element increases its total calculated width.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+By default, browsers use a box-modeling standard called box-sizing: content-box. Under this default behavior, the width you assign to an element only applies to its actual content area.
+If you add padding or borders to that element, they are added on top of that width, making the element physically wider on the screen.
+The Math
+For example, if you have a <div> with a width of 200px and you add 20px of padding to all sides, its total visual width on the page becomes 240px ().
+How to Fix This
+To prevent padding from altering your layouts unexpectedly, developers frequently override this default behavior by applying box-sizing: border-box; to all elements. This forces the browser to absorb the padding and border inside the specified width rather than expanding it.
+I completely understand why it feels like it should be FALSE—especially because in modern web development, we almost never let padding behave this way. We are so used to writing box-sizing: border-box at the top of our stylesheets that we forget how the browser behaves without it.
+However, the key words in the question are "By default."
+Here is a breakdown of why the answer is TRUE according to standard browser specifications:
+1. The Default Browser Behavior (content-box)
+When you create a brand new HTML page and don't write any CSS at all, the browser applies box-sizing: content-box by default. Under this setting, the width property sets the width of only the content inside the box.
+If you add padding, it is tacked onto the outside of that content width.
+2. The Math Breakdown
+Using the example from before:
+•	Your specified width: 200px
+•	Left padding: 20px
+•	Right padding: 20px
+$$\text{Total Rendered Width} = \text{200px (content)} + \text{20px (left padding)} + \text{20px (right padding)} = \text{240px}$$
+Because the element now takes up 240px of physical space on your screen instead of 200px, the padding has increased its total calculated width.
+Why it feels wrong
+It feels wrong because content-box is highly counterintuitive. If you design a layout where a sidebar is exactly 30% wide and you add 10px of padding, the sidebar suddenly grows past 30% and breaks your entire layout.
+To fix this default behavior, almost every modern framework, reset stylesheet (like Normalize.css), and developer starts their CSS with this global rule:
+CSS
+/* This forces padding to stay INSIDE the width, making the statement false for your project */
+* {
+  box-sizing: border-box;
+}
+If that global reset is active, adding padding does not increase the width (it shrinks the content area instead). But strictly speaking, without that reset, the browser's raw default behavior makes the statement TRUE
+ 
+CSS
+TRUE or FALSE: In the CSS specificity hierarchy, an ID selector is more powerful than a class selector.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+CSS specificity is the set of rules browsers use to determine which style rules are applied to an element when multiple conflicting styles match it. The hierarchy is strictly prioritized into tiers of weight, often represented as a four-digit score vector :
+•	ID Selectors (#id): Have a very high weight. An ID selector adds 1 to the second column .
+•	Class Selectors (.class), Attribute Selectors ([type="text"]), and Pseudo-classes (:hover): Have a medium weight. They add 1 to the third column .
+Because the columns are calculated from left to right, a single ID selector will always override any number of class selectors combined (e.g., one ID selector wins against ten concatenated class selectors).
+CSS
+Which unit is best suited for defining font sizes to ensure accessibility and scalability?
+Choose all answers that are correct. There may be more than one correct answer.
+□ cm
+□ px
+□ rem
+□ pt
+The correct answer is:
+•	rem
+Explanation
+The rem (Root EM) unit is the industry standard and best practice for defining font sizes when optimizing for accessibility and scalability.
+•	Why it works for accessibility: By default, web browsers set the base root font size to 16px. If you define your typography using rem, the sizing remains relative to that root setting. If a visually impaired user changes their default browser font size preference to "Large" or "Very Large" (or uses browser zoom), all text set in rem scales up proportionally and beautifully.
+•	The calculation: 1rem is equal to the font size of the root element (<html>). If the browser default is 16px, then 1rem = 16px, 1.5rem = 24px, etc.
+Why the other options are poorly suited:
+•	px (Pixels): This is a fixed, absolute unit. If you hardcode font sizes in pixels, some older browsers or specific user settings will fail to scale the text when a user changes their text size preferences, creating severe accessibility barriers.
+•	pt (Points) & cm (Centimeters): These are absolute physical units intended for print media (like styling a print stylesheet for paper layout). They do not scale reliably across varying screen resolutions and devices.
+CSS
+TRUE or FALSE: CSS Transitions require a state change (like ":hover") to trigger.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+A CSS Transition is designed to smoothly animate a change in a CSS property over a specified duration. However, a transition cannot start on its own; it requires an active trigger that alters the element's style properties.
+This trigger is almost always an explicit state change, which can occur via:
+•	Pseudo-classes: User interactions captured by states like :hover (mousing over an element), :focus (clicking into a form input), or :active (clicking down on a button).
+•	JavaScript: Dynamically adding or removing a class name or inline style on an element (e.g., toggling a .hidden class to an .active class).
+If an element simply renders on the page with a transition property but its styles never change from an initial state to a secondary state, no animation will occur.
+Note: If you want an animation to run automatically when a page loads without waiting for a user interaction or a state change, you should use CSS Animations (via @keyframes) instead of transitions.
+CSS
+What is the primary advantage of a "Mobile-First" strategy?
+Choose all answers that are correct. There may be more than one correct answer.
+□ It eliminates the need for Media Queries.
+□ It makes websites look better on desktops.
+□ It results in cleaner code and better performance on mobile devices.
+□ It uses only absolute units like "px".
+The correct answer is:
+•	It results in cleaner code and better performance on mobile devices.
+Explanation
+A Mobile-First strategy is a design and development approach where you build the layout for the smallest screens (mobiles) first, and then use CSS media queries to add layers of complexity as the screen size increases (for tablets and desktops).
+This strategy offers two massive advantages:
+•	Better Performance: Mobile devices generally have less processing power, smaller screens, and more constrained data plans than desktops. By loading the simplest layout, styles, and essential assets by default, mobile devices don't have to waste resources processing or overriding heavy desktop styles.
+•	Cleaner Code: It is much easier to write CSS that adds elements and shifts a simple layout into multiple columns as screen space increases, rather than writing CSS that tries to strip away, hide, or shrink a complex desktop layout down to fit a tiny screen. This results in an organized, progressive stylesheet.
+Why the other options are incorrect:
+•	Eliminating Media Queries: Mobile-first strategies rely heavily on media queries (typically using min-width), as they are required to adapt the mobile layout for larger tablet and desktop viewports.
+•	Desktop appearance: Designing mobile-first ensures a site functions flawlessly on phones, but it does not inherently make a site look better on a desktop than a dedicated desktop-first design would.
+•	Absolute units: Mobile-first heavily prioritizes relative units (like percentages, vw, rem, and em) over absolute units (px) to ensure layouts remain fluid and adaptable across hundreds of different mobile screen dimensions.
+JS
+TRUE or FALSE: Template literals require the use of ˋ $\backslash n$ ˋ to create multi-line strings.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+FALSE
+Explanation
+One of the major advantages of template literals (introduced in ES6, enclosed by backticks ` `) is that they natively support multi-line strings. You can simply hit the Enter key inside the template literal to create a new line, and the line break will be preserved exactly as written.
+You only need to use the explicit \n escape character when creating multi-line strings using traditional single quotes ('...') or double quotes ("...").
+Example Comparison
+Using traditional strings (requires \n):
+JavaScript
+const traditionalString = "Line one\nLine two";
+Using template literals (multi-line by default):
+JavaScript
+const templateLiteralString = `Line one
+Line two`;
+JS
+TRUE or FALSE: The strict equality operator (ˋ===ˋ) performs type coercion before comparing two values.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+FALSE
+Explanation
+In JavaScript, the choice of equality operator determines how type checking is handled:
+•	Strict Equality (===): Does not perform type coercion. It compares both the value and the type of the operands. If the types are different, the comparison immediately returns false.
+•	Loose Equality (==): Performs type coercion before comparing. If the types are different, JavaScript will attempt to implicitly convert one or both values to a common type before making the comparison.
+Examples
+JavaScript
+// Strict Equality (No Coercion)
+5 === "5" // false (number vs. string)
+5 === 5   // true
+
+// Loose Equality (With Coercion)
+5 == "5"  // true (the string "5" is coerced to the number 5)
+JS
+TRUE or FALSE: The ˋvarˋ keyword is block-scoped, meaning it is only accessible within the ˋ \{ \}ˋ where it was defined.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+FALSE
+Explanation
+In JavaScript, variable scoping behavior depends heavily on the keyword used to declare it:
+•	var is function-scoped: If you declare a variable using var inside a function, it is scoped to that entire function. However, if it is declared inside a block statement—such as an if statement or a for loop { }—it leaks out and is still accessible outside of that block.
+•	let and const are block-scoped: Introduced in ES6, let and const respect curly braces { } and are strictly trapped inside the immediate block where they are defined.
+Example Comparison
+JavaScript
+if (true) {
+  var framework = "React";
+  let library = "Zustand";
+}
+
+console.log(framework); // "React" (Accessible because var ignored the block!)
+console.log(library);   // ReferenceError: library is not defined
+JS
+TRUE or FALSE: An arrow function inherits its ˋthisˋ value from its surrounding lexical scope.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+In JavaScript, traditional functions (declared with the function keyword) bind their own this context dynamically based on how they are executed (e.g., as a method of an object, in the global scope, or via a constructor).
+Arrow functions work completely differently:
+•	Lexical Scoping: Arrow functions do not have their own this binding. Instead, they look at the immediate environment (the outer block or function) where they were written and adopt that exact this value.
+•	Permanence: Because an arrow function captures its this lexically when it is defined, its this reference is completely locked in. Methods like .bind(), .call(), or .apply() cannot alter an arrow function's this context.
+Example
+JavaScript
+const user = {
+  name: "Jaehoon",
+  
+  // Traditional function binds 'this' to the user object
+  greetTraditional: function() {
+    console.log(`Hello, ${this.name}`);
+  },
+  
+  // Arrow function inherits 'this' from the global context/module scope
+  greetArrow: () => {
+    console.log(`Hello, ${this.name}`);
+  }
+};
+
+user.greetTraditional(); // Logs: "Hello, Jaehoon"
+user.greetArrow();       // Logs: "Hello, undefined" (or crashes depending on environment)
+JS
+TRUE or FALSE: ˋasyncˋ functions always return a Promise.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+In JavaScript, any function declared with the async keyword is guaranteed to return a Promise.
+•	Explicit Promises: If you explicitly return a Promise from inside an async function, that Promise is passed through directly.
+•	Implicit Promises (Values): If you return a primitive value (like a string, number, or boolean) or an object, JavaScript automatically wraps that value in a resolved Promise (equivalent to writing Promise.resolve(value)).
+•	Implicit Promises (No Return): If the function doesn't have a return statement at all, it implicitly returns a Promise resolved with undefined.
+•	Errors: If an error is thrown inside an async function, it returns a rejected Promise carrying that error (equivalent to writing Promise.reject(error)).
+Example
+JavaScript
+async function fetchStatus() {
+  return "Success"; 
+}
+
+const result = fetchStatus();
+console.log(result); // Logs: Promise { <resolved>: "Success" }
+
+// To get the actual value, you must resolve the promise:
+result.then(val => console.log(val)); // Logs: "Success"
+JS
+TRUE or FALSE: Array methods like ˋ.map()ˋ and ˋ.filter()ˋ mutate the original array they are called upon.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+FALSE
+Explanation
+In JavaScript, array methods are generally categorized by whether they modify the original array (mutate) or return a brand-new array (non-mutating / immutable).
+•	.map() and .filter() are non-mutating: They do not change the original array. Instead, they iterate over the elements and produce a completely new array containing the transformed data or filtered elements.
+•	Why this matters: Keeping data immutable is a core best practice in modern JavaScript development (especially in frameworks like React). It helps prevent unexpected bugs where parts of your application accidentally alter shared state.
+Example
+JavaScript
+const numbers = [1, 2, 3, 4];
+
+// .filter() creates a new array, leaving 'numbers' untouched
+const evens = numbers.filter(num => num % 2 === 0);
+
+console.log(evens);   // [2, 4] (New array)
+console.log(numbers); // [1, 2, 3, 4] (Original array is unchanged!)
+Note: If you actually want to mutate an array directly, you would use methods like .push(), .pop(), .splice(), or .sort().
+JS
+TRUE or FALSE: You should commit the ˋnode_modulesˋ folder to your Git repository to ensure other developers have the same dependencies.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+FALSE
+Explanation
+You should never commit the node_modules folder to your Git repository. Instead, you should add node_modules/ to your project's .gitignore file.
+Here is why tracking node_modules in Git is a bad practice:
+•	Massive File Size: The node_modules folder can easily contain tens of thousands of files and consume hundreds of megabytes (or even gigabytes) of space. Committing it makes your repository incredibly bloated, slowing down git cloning, pushing, and pulling.
+•	Platform Dependencies: Some packages compile native binaries during installation (like modules using node-gyp or specific C++ bindings). If you commit a binary compiled on macOS, it will likely crash when a teammate tries to run the project on Windows or Linux.
+•	Redundancy: All the project's dependencies and their required versions are already explicitly listed in your package.json file.
+The Correct Way
+To ensure all developers and production servers use the exact same dependencies, you commit package.json and your package manager's lockfile (package-lock.json, yarn.lock, or pnpm-lock.yaml).
+When a new developer clones the repository, they simply run the installation command in their terminal to securely rebuild the folder locally:
+Bash
+npm install
+ 
+JS
+TRUE or FALSE: In JavaScript, a ˋconstˋ variable can have its reference modified if it holds an array or an object.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+In JavaScript, the const keyword does not create a deeply immutable value. Instead, it creates an immutable binding (or reference) to the value.
+•	Primitives: If a const variable holds a primitive value (like a string, number, or boolean), the value itself cannot be changed because primitives are already immutable, and the variable cannot be reassigned.
+•	Objects and Arrays: If a const variable holds a reference type (like an object or an array), the variable is locked into pointing to that specific object or array in memory. However, the internal properties or elements of that object/array can be freely modified (mutated).
+Example
+JavaScript
+const user = { name: "Jaehoon" };
+
+// 1. This is ALLOWED (modifying internal properties)
+user.name = "Song"; 
+console.log(user.name); // "Song"
+
+// 2. This is NOT ALLOWED (reassigning the reference)
+user = { name: "Alex" }; // TypeError: Assignment to constant variable.
+Note: If you want to make an object's properties truly immutable so they cannot be changed, you can use Object.freeze(user).
+This is a classic "word play" trap in JavaScript terminology, and you are completely right to call this out.
+The statement as written is actually FALSE, and the explanation I gave you previously contradicted itself. Here is exactly why the answer is FALSE:
+The Catch: "Reference" vs. "Value"
+The question states: "a const variable can have its reference modified..."
+•	The Reference (The Pointer): This is the memory address that points to where the array or object lives in memory. For a const variable, this reference is locked permanently. You can never modify or change the reference itself.
+•	The Value (The Content): This is what is stored inside that memory address (the properties of the object or the elements of the array). You can modify these contents.
+Looking back at the example:
+JavaScript
+const user = { name: "Jaehoon" };
+
+// 1. This modifies the VALUE/PROPERTY (Allowed)
+user.name = "Song"; 
+
+// 2. This attempts to modify the REFERENCE (NOT Allowed)
+user = { name: "Alex" }; // TypeError: Assignment to constant variable.
+Because line 2 crashes, it proves that you cannot modify the reference of a const variable.
+Conclusion
+Since a const variable's reference is completely immutable and can never be altered after assignment, the statement "a const variable can have its reference modified" is absolutely FALSE
+ 
+JS
+TRUE or FALSE: ˋnullˋ and ˋundefinedˋ are considered truthy values in JavaScript.
+◯ TRUE
+◯ FALSE
+The correct answer is:
+FALSE
+Explanation
+In JavaScript, every value has an inherent boolean value when evaluated in a logical context (like an if statement). Values are classified as either truthy (evaluates to true) or falsy (evaluates to false).
+Both null and undefined represent the absence of a value and belong to the strict list of falsy values in JavaScript.
+There are only 8 falsy values in JavaScript:
+1.	false
+2.	0 (and -0, 0n)
+3.	"" (empty string)
+4.	null
+5.	undefined
+6.	NaN (Not a Number)
+Everything else (including empty arrays [] and empty objects {}) is considered truthy.
+Example
+JavaScript
+if (null) {
+  console.log("This will NOT execute.");
+}
+
+if (undefined) {
+  console.log("This will NOT execute either.");
+}
+JS
+TRUE or FALSE: Event Bubbling means that an event travels from the target element up through its ancestors to the root.
+◯ FALSE
+◯ TRUE
+The correct answer is:
+TRUE
+Explanation
+Event Bubbling is a core concept in the JavaScript event delegation model. When an event (such as a click) happens on an element, that event doesn't just stay on that element. Instead, it triggers handlers in three distinct phases, with bubbling being the final direction:
+1.	Capturing Phase: The event moves down from the window/document root to the target element.
+2.	Target Phase: The event fires on the specific element that was clicked.
+3.	Bubbling Phase: The event moves back up from the target element through its parent, grandparents, and ancestors all the way back up to the root (<html>, document, and then window).
+Think of it like a bubble rising in water: it starts at the bottom (the exact clicked element) and floats straight up to the surface (the root document).
+Example
+If you have a button inside a <div>, and you click the button, a click event will trigger on the button first, then "bubble up" to trigger any click event listeners attached to the <div>.
+JavaScript
+// You can stop this behavior if needed by calling:
+event.stopPropagation();
+

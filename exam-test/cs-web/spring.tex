@@ -12,8 +12,7 @@
 
 \question[4]
 What is Inversion of Control? What are its advantages?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   \textbf{Inversion of Control (IoC)} means the framework owns the ``main'' flow: it constructs objects, resolves collaborators, and calls your code at well-defined extension points, instead of your classes using \texttt{new} everywhere to wire themselves.
 
   \noindent\textbf{Advantages (typical teaching list):}
@@ -23,41 +22,37 @@ What is Inversion of Control? What are its advantages?
     \item \textbf{Centralized composition:} wiring rules live in configuration (annotations, Java config, or XML), so collaboration graphs are easier to read and change.
     \item \textbf{Clearer responsibilities:} domain code focuses on behavior; infrastructure concerns (transactions, HTTP, persistence adapters) attach declaratively.
   \end{itemize}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is Dependency Injection?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   \textbf{Dependency injection (DI)} is a form of IoC where an object receives its collaborators from \emph{outside} the object rather than constructing them internally.
 
   \noindent\textbf{Spring's role:} the IoC container resolves dependencies by type and/or name and injects them using \textbf{constructor} injection, \textbf{setter} injection, or (less preferred for required deps) \textbf{field} injection. The key idea is \emph{push dependencies in} instead of \emph{pulling with \texttt{new}}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between XML-based and annotation-based configuration?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   \textbf{XML-based configuration} declares beans, property values, and wiring in external files (\texttt{<bean>}, \texttt{<context:component-scan>}, etc.). It keeps wiring separate from Java source and can be convenient for ops-owned toggles or legacy integration.
 
   \textbf{Annotation-based configuration} colocates metadata with code (\texttt{@Component}, \texttt{@Service}, \texttt{@Configuration}, \texttt{@Bean}, \texttt{@Autowired}, \ldots), often discovered via component scanning.
 
   \noindent\textbf{Modern practice:} Java configuration and annotations dominate new Spring code; XML remains valid and is still used where teams standardize on it or integrate older modules. The same container can mix styles during migration.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a Bean?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   In Spring, a \textbf{bean} is an object whose lifecycle is managed by the \textbf{IoC container}: construction, dependency wiring, initialization callbacks, and (for singletons) a well-defined scope in the \texttt{ApplicationContext}.
 
   Beans are identified by \textbf{name} and \textbf{type(s)}; configuration (XML, Java config, or stereotype scanning) tells the container which classes to instantiate and how to inject their collaborators. This is distinct from the older JavaBeans naming convention, though Spring can still work with simple property-based objects.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the Spring Framework? What are its benefits?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   The \textbf{Spring Framework} is a mature Java ecosystem for building enterprise and web applications. Its center of gravity is the \textbf{IoC container} and \textbf{dependency injection}, extended by modules for web (\textbf{Spring MVC} / WebFlux), data access (\textbf{Spring JDBC}, \textbf{Spring Data}), integration, security, AOP, and more.
 
   \noindent\textbf{Benefits often cited in courses:}
@@ -67,21 +62,19 @@ What is the Spring Framework? What are its benefits?
     \item \textbf{Declarative cross-cutting:} transactions (\texttt{@Transactional}), validation, security filters, and AOP without scattering boilerplate.
     \item \textbf{Large ecosystem and documentation,} plus first-class test support (\texttt{spring-test}, \texttt{MockMvc}, test slices in Boot).
   \end{itemize}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What does the Spring Core module provide?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   \textbf{Spring Core} supplies the foundational IoC container: \texttt{BeanFactory} / \texttt{ApplicationContext}, bean lifecycle and scopes, \textbf{dependency injection}, event publication, internationalization helpers, and the \textbf{resource abstraction} (classpath, file, URL resources).
 
   It also includes \textbf{SpEL} (Spring Expression Language) for property placeholders and dynamic values. Other Spring modules (MVC, Data, Integration) build on this core.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How could you create an IoC Container?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   You obtain a Spring \textbf{\texttt{ApplicationContext}}---the usual face of the IoC container---by one of these patterns:
   \begin{itemize}
     \item \textbf{Spring Boot:} \texttt{SpringApplication.run(MyApp.class, args)} builds the context from your \texttt{@SpringBootApplication} class, auto-configuration, and component scan.
@@ -89,7 +82,7 @@ How could you create an IoC Container?
     \item \textbf{XML (classic):} \texttt{new ClassPathXmlApplicationContext("context.xml")} loads bean definitions from XML.
   \end{itemize}
   Once the context starts, beans are available for injection or explicit \texttt{getBean} lookup.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -97,8 +90,7 @@ How could you create an IoC Container?
 
 \question[4]
 Describe MVC architecture.
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   \textbf{Model--View--Controller (MVC)} separates concerns in a user-facing application:
   \begin{itemize}
     \item \textbf{Model:} domain data and rules (entities, DTOs, aggregates); the ``state'' the user cares about.
@@ -106,12 +98,11 @@ Describe MVC architecture.
     \item \textbf{Controller:} translates HTTP requests into operations on the model and selects a view or response payload; it should stay thin and delegate heavy logic to services.
   \end{itemize}
   In \textbf{Spring MVC}, \texttt{DispatcherServlet} maps requests to controller methods, invokes services/repositories, and uses view resolvers or message converters to build the HTTP response.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe commonly used Spring Web annotations.
-\makeemptybox{1.55in}
-\begin{solution}
+\begin{solutionorbox}[1.55in]
   Spring Web maps HTTP to Java methods with \textbf{mapping} annotations and binds inputs with \textbf{parameter} annotations.
 
   \noindent\textbf{Mapping (examples):} \texttt{@RequestMapping} (any method unless narrowed), \texttt{@GetMapping}, \texttt{@PostMapping}, \texttt{@PutMapping}, \texttt{@DeleteMapping}, \texttt{@PatchMapping}.
@@ -121,21 +112,19 @@ Describe commonly used Spring Web annotations.
   \noindent\textbf{Binding inputs:} \texttt{@RequestParam} (query/form), \texttt{@PathVariable} (URI templates), \texttt{@RequestHeader}, \texttt{@CookieValue}, \texttt{@RequestBody} (body to object via HttpMessageConverters).
 
   \noindent\textbf{Responses and errors:} \texttt{@ResponseBody}, \texttt{ResponseEntity}, \texttt{@ResponseStatus}, \texttt{@ExceptionHandler}, \texttt{@ControllerAdvice} / \texttt{@RestControllerAdvice}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What does the Spring Web module provide?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   \textbf{Spring Web (MVC)} provides \texttt{DispatcherServlet}, handler mappings and adapters, argument resolvers, \textbf{HTTP message conversion} (JSON/XML, etc.), static resource handling, \textbf{CORS} support, locale/theme resolution for classic MVC, and integration with servlet containers.
 
   For reactive stacks, \textbf{Spring WebFlux} offers a parallel model (\texttt{RouterFunction}, \texttt{WebClient}); the exam bank here focuses on servlet-style MVC unless your course emphasizes both.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are some annotations that can be used to get information from the request?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Common request-binding annotations include:
   \begin{itemize}
     \item \texttt{@RequestParam} for query string and form fields.
@@ -144,12 +133,11 @@ What are some annotations that can be used to get information from the request?
     \item \texttt{@RequestBody} to deserialize the body (often JSON) to a POJO or \texttt{String}.
     \item \texttt{HttpServletRequest} / \texttt{HttpServletResponse} parameters when you need low-level servlet access (discouraged for routine business code).
   \end{itemize}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What can we use to customize the response sent back to the client?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Controllers customize HTTP responses using:
   \begin{itemize}
     \item \textbf{Return types:} domain objects with \texttt{@ResponseBody} / \texttt{@RestController}, or \texttt{ResponseEntity} to set status, headers, and body together.
@@ -157,16 +145,15 @@ What can we use to customize the response sent back to the client?
     \item \textbf{Message converters:} configure Jackson/XML modules for serialization rules.
     \item \textbf{Global error shaping:} \texttt{@ExceptionHandler} and advice classes map exceptions to problem bodies instead of generic HTML error pages.
   \end{itemize}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How does the \texttt{@ExceptionHandler} annotation work?
-\makeemptybox{1.3in}
-\begin{solution}
+\begin{solutionorbox}[1.3in]
   Methods annotated with \texttt{@ExceptionHandler(ExceptionType.class)} run when a matching exception propagates out of controller (or advice) invocation. The method can build a body, choose an HTTP status, and log context---returning \texttt{ResponseEntity}, a POJO (with \texttt{@RestControllerAdvice}), or a view name (classic MVC).
 
   \noindent\textbf{Scope:} handlers can live on a single \texttt{@Controller}/\texttt{@RestController}, or centrally in a class annotated \texttt{@ControllerAdvice} / \texttt{@RestControllerAdvice} for reuse across many controllers.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -174,81 +161,73 @@ How does the \texttt{@ExceptionHandler} annotation work?
 
 \question[4]
 What configuration is needed in the \texttt{.properties} or \texttt{.yaml} file to use the Spring Data module?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   For JPA with Spring Boot auto-configuration, you typically declare a \textbf{datasource} (\texttt{spring.datasource.url}, \texttt{username}, \texttt{password}, \texttt{driver-class-name} or the JDBC URL form that implies the driver) and \textbf{JPA/Hibernate} settings such as \texttt{spring.jpa.hibernate.ddl-auto}, dialect (often inferred), show-sql flags, and naming strategies.
 
   Spring Boot then creates a \texttt{DataSource}, \texttt{EntityManagerFactory}, and transaction manager beans; your \texttt{@Entity} classes and repository interfaces complete the picture. Exact keys vary slightly between \texttt{properties} and \texttt{yaml}, but the prefixes are the same.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the JPA API? What does it provide?
-\makeemptybox{1.3in}
-\begin{solution}
+\begin{solutionorbox}[1.3in]
   The \textbf{Java Persistence API (JPA)} is the standard ORM API in Java. It defines how relational rows map to objects using annotations or XML descriptors (\texttt{@Entity}, \texttt{@Table}, relationships, \texttt{@Id}, \texttt{@Version}, \ldots).
 
   \noindent\textbf{Runtime API:} \texttt{EntityManager} performs \texttt{persist}, \texttt{merge}, \texttt{remove}, \texttt{find}, queries (\texttt{TypedQuery}, Criteria API), and flush/clear lifecycle operations. \textbf{Portability} across providers (Hibernate, EclipseLink, etc.) is a major goal, though vendor-specific features exist when you opt in.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is an ORM?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   \textbf{Object--Relational Mapping (ORM)} bridges the \textbf{object graph} in memory and \textbf{relational tables} in the database: classes map to tables, fields to columns, associations to foreign keys and join tables.
 
   The ORM provider generates SQL for common patterns, tracks changes to managed entities, and handles caching and flushing policies. It reduces repetitive JDBC for CRUD and navigational access, at the cost of needing to understand fetch strategies and SQL that the ORM emits.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is Spring Data JPA?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   \textbf{Spring Data JPA} is a Spring Data module that eliminates most hand-written DAO boilerplate for JPA. You declare a repository \textbf{interface} extending \texttt{JpaRepository<Entity, Id>} (or related), and Spring generates a proxy implementation at runtime.
 
   It supports \textbf{derived query methods} from method names, explicit \texttt{@Query} (JPQL or native SQL), paging and sorting (\texttt{Pageable}, \texttt{Sort}), specifications, and integration with Spring's declarative \texttt{@Transactional} boundaries.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How do you create a repository with Spring Data JPA?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   \begin{enumerate}
     \item Define a persistence \texttt{@Entity} with an \texttt{@Id}.
     \item Declare a \textbf{public interface} in a package Spring scans, e.g.\ \texttt{public interface OrderRepository extends JpaRepository<Order, Long> \{\}}.
     \item Ensure the JPA vendor and datasource are configured; Spring Data's \texttt{@EnableJpaRepositories} (often implied by Boot) picks up the interface and provides the implementation proxy.
   \end{enumerate}
   No manual \texttt{implements} class is required for the basic pattern; custom behavior can be added via default methods, fragments, or \texttt{@Query}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What methods does the \texttt{JpaRepository} interface provide?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   \texttt{JpaRepository<T, ID>} extends \texttt{PagingAndSortingRepository} and \texttt{CrudRepository}, so you inherit CRUD operations such as \texttt{save}, \texttt{saveAll}, \texttt{findById}, \texttt{existsById}, \texttt{findAll}, \texttt{deleteById}, \texttt{delete}, and paging APIs (\texttt{findAll(Pageable)}).
 
   \texttt{JpaRepository} adds JPA-oriented helpers such as \texttt{flush}, \texttt{saveAndFlush}, \texttt{deleteInBatch}/\texttt{deleteAllInBatch} (names evolved across Spring Data versions---consult your version's Javadoc). The teaching point is: \emph{most common persistence operations are already on the interface}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are custom queries and give me an example of how you would write a custom method.
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   A \textbf{custom query} is any repository method whose SQL/JPQL is not fully implied by a simple derived name. You supply the query explicitly or implement logic in a custom fragment.
 
   \noindent\textbf{Example (JPQL with \texttt{@Query}):}
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
 @Query("select o from Order o where o.status = :status and o.total > :minTotal")
 List<Order> findOpenLarge(@Param("status") OrderStatus status,
                           @Param("minTotal") BigDecimal minTotal);
   \end{lstlisting}
 
   \noindent Alternatives: native SQL with \texttt{nativeQuery = true}, \texttt{Specification} / Criteria API for dynamic predicates, or a custom interface + \texttt{impl} class wired with \texttt{repositoryBaseClass} patterns for complex SQL.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the \texttt{@Transactional} annotation? What are its benefits?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Spring's \texttt{@Transactional} declares a \textbf{transactional boundary}, usually on service-layer methods that call repositories. The framework starts (or joins) a transaction, commits on success, and \textbf{rolls back on failures} according to rollback rules (defaults favor rollback on unchecked exceptions).
 
   \noindent\textbf{Benefits:}
@@ -257,7 +236,7 @@ What is the \texttt{@Transactional} annotation? What are its benefits?
     \item Centralizes propagation and isolation policies (\texttt{Propagation.REQUIRED}, \texttt{readOnly = true} for queries, etc.).
     \item Keeps resource lifecycle tied to thread-bound \texttt{EntityManager} / JDBC usage in typical Spring JPA setups.
   \end{itemize}
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -796,7 +775,7 @@ In a JPA entity class, what is the purpose of the \texttt{@GeneratedValue} annot
 
 \question[4]
 What is the purpose of \texttt{ResponseEntity} in the following \texttt{RestTemplate} example?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 RestTemplate rest = new RestTemplate();
 HttpEntity<DataModel> request = new HttpEntity<>(new DataModel("value"));
 String resourceUrl = "http://localhost:8080/myservice/data";
@@ -815,7 +794,7 @@ ResponseEntity<DataModel> response =
 
 \question[4]
 When injecting property placeholders from a file such as \texttt{jdbc.properties} into fields in a \texttt{@Configuration} class, which annotation fills the blank?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @Configuration
 @ImportResource("classpath:/com/example/resources/properties-config.xml")
 public class AppConfig {
@@ -871,7 +850,7 @@ Which injection style is most appropriate when you want minimal boilerplate and 
 
 \question[4]
 Explain the transaction semantics of the method below.
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @Service
 @Transactional
 public class MyService {
@@ -894,7 +873,7 @@ public class MyService {
 
 \question[4]
 Consider a controller declared as follows. Which statement is true, and what single-annotation alternative preserves the behavior?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @Controller
 @ResponseBody
 public class MyController { ... }
@@ -911,7 +890,7 @@ public class MyController { ... }
 
 \question[4]
 What does this code accomplish?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @RestController
 @RequestMapping("/api")
 public class API {
@@ -933,7 +912,7 @@ public class API {
 
 \question[4]
 In the controller fragment below, what is the URI template variable name, and what does the code demonstrate?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @Controller
 @RequestMapping("my_controller")
 @ResponseBody
@@ -962,7 +941,7 @@ public class MyController {
 
 \question[4]
 Given this bean declaration, which line correctly retrieves the bean from an \texttt{ApplicationContext} named \texttt{context}?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @Bean(name = "myBeanName")
 public Student student() {
     return new Student();
@@ -992,7 +971,7 @@ public Student student() {
 
 \question[4]
 What does the following Spring Data JPA arrangement accomplish?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public interface MyRepoBase<T, ID> extends JpaRepository<T, ID> {
     List<T> findAllByPrice(Double price);
 }
@@ -1024,7 +1003,7 @@ Why is \texttt{@Transactional} commonly applied at the \texttt{@Service} layer i
 
 \question[4]
 Why is specifying \texttt{defaultValue} on \texttt{@RequestParam} useful?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 @GetMapping(path = "my_data")
 public ResponseEntity<?> getData(
         @RequestParam(name = "tag", required = false, defaultValue = "none") String tag) {
@@ -1080,7 +1059,7 @@ Which option is \textbf{not} a benefit of adopting the Spring Framework?
 
 \question[4]
 What kind of injection does this XML fragment configure?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 <property name="orderDao" ref="orderDaoBean"/>
 \end{lstlisting}
 \begin{choices}
@@ -1095,7 +1074,7 @@ What kind of injection does this XML fragment configure?
 
 \question[4]
 What kind of injection does this XML fragment configure?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 <constructor-arg name="orderDao" ref="orderDaoBean"/>
 \end{lstlisting}
 \begin{choices}

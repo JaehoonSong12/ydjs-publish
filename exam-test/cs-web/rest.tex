@@ -9,24 +9,21 @@
 
 \question[4]
 What is HTTP? Why is it important to know about?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Hypertext Transfer Protocol: request/response protocol underlying the Web and many APIs. Important for building clients/servers, debugging APIs, caching, auth, and status handling.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are common HTTP verbs used when a client application is making a request?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{PATCH}, \texttt{DELETE}, often \texttt{HEAD}/\texttt{OPTIONS}; semantics express safe/idempotent reads vs resource creation/update/removal.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are some common HTTP status codes that can be included in a response?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Examples: \texttt{200} OK, \texttt{201} Created, \texttt{204} No Content, \texttt{400} Bad Request, \texttt{401}/\texttt{403} auth/forbidden, \texttt{404} Not Found, \texttt{500} server error---clients branch on these.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -47,25 +44,22 @@ What does \textbf{API} stand for?
 
 \question[4]
 What is JSON? When would we work with JSON in our application?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   JavaScript Object Notation: text format for nested objects/arrays. Common for REST request/response bodies, config, and browser--server data exchange.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is XML? When would we work with XML in our application?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   Extensible Markup Language: text format with nested elements and attributes (often a single root). Used for some REST/SOAP payloads, configuration, feeds, and interoperability with systems that already standardize on XML.
-\end{solution}
+\end{solutionorbox}
 
 
 \question[4]
 What is HTML? When would we work with HTML in our application?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   HyperText Markup Language: markup for documents with structure, links, and embedded media, meant for browsers to render. Typical for web pages and some hypermedia-style APIs; less often the main machine-to-machine API body than JSON, but common for human-readable responses or mixed content.
-\end{solution}
+\end{solutionorbox}
 
 
 \newpage
@@ -387,8 +381,7 @@ Where is the inconsistency in the JSON structure below?
 
 \question[4]
 What is REST and what are its key constraints?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   \textbf{REST} (Representational State Transfer) is an \uline{architectural style} for building networked systems on top of HTTP: clients and servers exchange representations of \textbf{resources} through a small, uniform set of operations.
 
   \noindent\textbf{Typical constraints (as usually taught):}
@@ -400,7 +393,7 @@ What is REST and what are its key constraints?
   \end{itemize}
 
   \noindent\textbf{Note:} Production APIs often relax or extend pure REST; the goals are interoperability, predictability, and clear separation of concerns.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 \textbf{True or false:} REST (\textbf{RE}presentational \textbf{S}tate \textbf{T}ransfer) is an \uline{architectural style}, not a wire protocol by itself.
@@ -451,8 +444,7 @@ In API design vocabulary, \blank[7em] means giving clients a controlled way to a
 
 \question[4]
 What is an endpoint?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   An \textbf{endpoint} is a concrete \textbf{HTTP method with path} (and usual headers/body rules) that clients call for one operation; the server answers with a status line, headers, and often a JSON body.
   \begin{lstlisting}[style=http]
 GET /api/orders/42 HTTP/1.1
@@ -460,13 +452,12 @@ POST /api/orders HTTP/1.1
 GET /api/orders?status=open HTTP/1.1
   \end{lstlisting}
   Changing the method or the path (including query) defines a different endpoint even on the same server.
-\end{solution}
+\end{solutionorbox}
 
 
 \question[4]
 What are some best practices for naming resource URIs (paths and queries) using REST?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   Paths should identify \textbf{resources} (nouns). \textbf{What to do} with a resource is expressed with HTTP methods, status codes, and bodies---not by turning the URI path into an RPC-style ``command.'' (In documentation people often say ``URL'' for the full \texttt{https://\ldots} string; the path/query portion is still URI design.)
 
   \noindent\textbf{Common practices:}
@@ -479,7 +470,7 @@ What are some best practices for naming resource URIs (paths and queries) using 
   \end{itemize}
 
   \noindent\textbf{Note:} Clarity and consistency for clients beat strict REST purity in most product APIs.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Following REST-style conventions, what is the client most likely trying to do with\\
@@ -613,11 +604,10 @@ Which HTTP verbs are commonly used in a REST-based architecture?
 
 \question[4]
 Describe Javalin.
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   Javalin is a \textbf{lightweight Java/Kotlin} library or web framework for HTTP \textbf{APIs} and small services: embedded server, little ceremony.
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   Javalin app = Javalin.create();                    // embedded app / server setup
   app.get("/hello", ctx -> ctx.result("Hi"));       // verb + path + handler; ctx writes body
   app.get("/users/{id}", ctx -> {                   // path params in {braces}
@@ -685,18 +675,17 @@ Not found
 
   \noindent\textbf{Note:}
   \texttt{*/*} means ``any media type'' in the request header.
-\end{solution}
+\end{solutionorbox}
 
 
 \newpage
 
 \question[4]
 What is a route handler?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   A \textbf{route handler} is the code the framework runs when an incoming request \textbf{matches} a registered route (HTTP method + path). It reads the request, calls domain logic, and finishes by setting the HTTP result.
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.post("/orders", ctx -> {                // this lambda is the handler for POST /orders
     // read body, validate, call services...
     ctx.status(201).result("created");         // finish: status line + body (often .json(...))
@@ -724,7 +713,7 @@ created
   \end{httpexchange}
 
   \noindent\textbf{Note:} Names vary (\texttt{@GetMapping} method, ``controller action''); the idea is the same: \textbf{one entry point per route pattern}.
-\end{solution}
+\end{solutionorbox}
 
 
 \newpage
@@ -741,7 +730,7 @@ Which method is used to access path parameters in a Javalin handler?
 \begin{solution}
   Segments declared in the route template with \texttt{\{name\}} are \textbf{path parameters}. In Javalin you read them with \texttt{ctx.pathParam("name")}.
 
-  \begin{lstlisting}[style=javaexam] 
+  \begin{lstlisting}[style=java] 
   app.get("/users/{id}", ctx -> {
     String id = ctx.pathParam("id");   // binds to /users/42 -> "42"
     ctx.result("user " + id);
@@ -819,7 +808,7 @@ Which \texttt{Context} method reads values from the \textbf{query string} (the p
 \begin{solution}
   Query parameters are \texttt{name=value} pairs in the URL after \texttt{?}. Javalin exposes them with \texttt{ctx.queryParam("name")} (optional default overload when the key is absent).
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.get("/search", ctx -> {
     String q = ctx.queryParam("q");           // /search?q=tea -> "tea"
     String sort = ctx.queryParam("sort", "id"); // default if missing
@@ -897,7 +886,7 @@ In Javalin, what is the purpose of the context object parameter in route handler
 \begin{solution}
   \texttt{Context} (\texttt{ctx}) is created \textbf{per request}: one object that exposes the \textbf{incoming} HTTP message (path, query, headers, body, cookies, \ldots) and helpers to build the \textbf{outgoing} response (status, headers, body, redirect).
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.get("/demo", ctx -> {
     String q = ctx.queryParam("q");           // read request inputs
     ctx.header("X-App", "demo");              // response header
@@ -938,7 +927,7 @@ In Javalin, how do you read the raw \textbf{request body} (for example JSON as t
 \begin{solution}
   The body is a \textbf{stream of bytes} the client sent; \texttt{ctx} is the whole request/response facade. Use \texttt{ctx.body()} for the payload as a \texttt{String}, or mapping helpers for typed JSON.
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.post("/items", ctx -> {
     String raw = ctx.body();                  // raw body text
     // ctx.bodyAsClass(Item.class);           // typed JSON (method name varies by Javalin version)
@@ -995,7 +984,7 @@ Where is the \textbf{route path} (e.g.\ \texttt{/orders/\{id\}}) specified for a
 \begin{solution}
   Javalin wires \texttt{method + path pattern + handler} together at registration time. The string \texttt{"/orders/\{id\}"} belongs next to \texttt{app.get} or \texttt{app.post}, not inside \texttt{ctx}.
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.get("/orders/{id}", ctx -> {             // path pattern fixed here
     ctx.result(ctx.pathParam("id"));          // ctx only reads matched values
   });
@@ -1016,7 +1005,7 @@ What determines which \textbf{HTTP method} (e.g.\ \texttt{GET} vs.\ \texttt{POST
 \begin{solution}
   Each fluent call registers one verb for that path pattern. A \texttt{GET} request never runs a handler attached only with \texttt{app.post}; you need a matching registration (or a shared handler pattern you configure per verb).
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.get("/ping", ctx -> ctx.result("GET"));   // handles GET /ping
   app.post("/ping", ctx -> ctx.result("POST")); // same path, different method -> different handler
   \end{lstlisting}
@@ -1037,7 +1026,7 @@ Which of the following is a valid way to define a Javalin route handler for hand
 
   \texttt{@PostMapping} is \textbf{Spring MVC}: annotations on controller methods, not Javalin's registration style. \texttt{@Route(...)} with a lambda is not how Javalin wires handlers (other stacks use different \texttt{@Route} meanings). \texttt{handler.post(...)} suggests the wrong object; you call \texttt{post} on the \texttt{Javalin} app, not on an unrelated \texttt{handler} variable.
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.post("/path", ctx -> {
     ctx.status(201).result("ok");   // POST /path -> this lambda
   });
@@ -1059,7 +1048,7 @@ How do you send a JSON response with status code 201 (Created) in Javalin?
 
   \texttt{ctx.result(\ldots)} writes the argument as the \textbf{raw response body} (often \texttt{text/plain}); it does not treat a Java object as JSON unless you stringify it yourself, so it is the wrong tool for a typed JSON payload. \texttt{ctx.send(\ldots)} and \texttt{returnJson} are not the usual \texttt{Context} API in Javalin (method names and signatures differ from these distractors).
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.post("/items", ctx -> {
     Item created = service.create(/* ... parse body ... */);
     ctx.json(created).status(201);   // JSON body + 201 Created
@@ -1099,7 +1088,7 @@ What is the purpose of Javalin's \texttt{ExceptionHandler} interface?
 
   Register handlers on the \texttt{Javalin} instance with \texttt{app.exception(ExceptionType.class, handler)}. Javalin picks the \textbf{most specific} matching type for an uncaught exception from a route or filter. Anything you do not register still falls through to the framework's \textbf{default} error behavior (commonly \texttt{500} with a generic body unless you override it with a broad \texttt{Exception.class} handler).
 
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   app.exception(IllegalArgumentException.class, (e, ctx) -> {
     ctx.status(400).result("bad request: " + e.getMessage());
   });
@@ -1211,7 +1200,7 @@ Content-Type: text/html
 
 \question[4]
 You want a REST API so clients can create a new book by sending JSON like this:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 {
     "ISBN": 182037184371,
     "Title": "Adventures of Huckleberry Finn",

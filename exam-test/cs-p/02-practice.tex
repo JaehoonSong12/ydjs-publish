@@ -1,5 +1,5 @@
 % Unit: AP CSP sample exam questions (College Board style).
-% Place image files under \texttt{exam-test/images/} using the basenames below (e.g.\ \texttt{.png} or \texttt{.pdf}).
+% Place image files under \texttt{exam-test/cs-p/images/} using the basenames below (e.g.\ \texttt{.png} or \texttt{.pdf}).
 % Load after \texttt{cs-p/01-practice.tex}, which must contain exactly 42 questions, so numbering continues (43--64).
 
 \runningheader{Computer Science Principles}{AP Practice Exam (Set 2)}{Page \thepage\ of \numpages}
@@ -76,7 +76,7 @@ ASCII characters can also be represented by hexadecimal numbers. According to AS
 \question[5]
 The figure below shows a circuit composed of two logic gates. The output of the circuit is true.
 \begin{center}
-  \includegraphics[width=0.30\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-04_802_418_380_850}
+  \includegraphics[width=0.30\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-04_802_418_380_850}
 \end{center}
 
 Which of the following is a true statement about input A?
@@ -95,31 +95,31 @@ Which of the following is a true statement about input A?
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the bottom left square of the grid and facing right.
 \begin{center}
-  \includegraphics[width=0.35\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_322_321_433_902}
+  \includegraphics[width=0.35\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_322_321_433_902}
 \end{center}
 
 Consider the following code segment, which moves the robot in the grid.
 \begin{center}
-  \includegraphics[width=0.35\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_558_652_863_734}
+  \includegraphics[width=0.35\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_558_652_863_734}
 \end{center}
 
 Which of the following shows the location of the robot after running the code segment?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_321_322_1512_433}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_321_322_1512_433}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_321_323_1512_1194}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_321_323_1512_1194}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_325_326_1916_433}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_325_326_1916_433}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_325_325_1916_1194}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-05_325_325_1916_1194}
   \end{minipage}
 \end{center}
 \begin{choices}
@@ -167,7 +167,7 @@ For which of the following goals would it be more useful to analyze the \textbf{
 
 \question[5]
 The program segment below is intended to move a robot in a grid to a gray square. The program segment uses the procedure \texttt{GoalReached}, which evaluates to true if the robot is in the gray square and evaluates to false otherwise. The robot in each grid is represented as a triangle and is initially facing left. The robot can move into a white or gray square but cannot move into a black region.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 REPEAT UNTIL (GoalReached ())
 {
     IF (CAN_MOVE (forward))
@@ -183,24 +183,24 @@ REPEAT UNTIL (GoalReached ())
         ROTATE_LEFT ()
     }
 }
-\end{cspcode}
+\end{lstlisting}
 For which of the following grids does the program \textbf{not} correctly move the robot to the gray square?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_416_433}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_416_433}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_416_1194}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_416_1194}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_820_433}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_820_433}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_820_1194}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-08_321_201_820_1194}
   \end{minipage}
 \end{center}
 \begin{choices}
@@ -247,7 +247,7 @@ Based on the information in the table, which of the following tasks is likely to
 \question[5]
 Consider the code segment below. If the variables \texttt{onTime} and \texttt{absent} both have the value \texttt{false}, what is displayed as a result of running the code segment?
 \begin{center}
-  \includegraphics[width=0.35\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-09_824_1121_1194_502}
+  \includegraphics[width=0.35\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-09_824_1121_1194_502}
 \end{center}
 \begin{choices}
   \choice \texttt{Is anyone there?}
@@ -335,31 +335,31 @@ Which of the following statements is true?
 \question[5]
 The figure below shows a robot in a grid of squares. The robot is represented as a triangle, which is initially facing upward. The robot can move into a white or gray square but cannot move into a black region.
 \begin{center}
-  \includegraphics[width=0.35\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_463_461_476_833}
+  \includegraphics[width=0.35\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_463_461_476_833}
 \end{center}
 
 Consider the procedure \texttt{MoveAndTurn} below.
 \begin{center}
-  \includegraphics[width=0.35\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_422_544_1162_700}
+  \includegraphics[width=0.35\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_422_544_1162_700}
 \end{center}
 
 Which of the following code segments will move the robot to the gray square?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_222_409_1697_423}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_222_409_1697_423}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_218_398_1701_1190}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_218_398_1701_1190}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_218_403_2015_429}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_218_403_2015_429}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.4em]
-    \includegraphics[width=\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_218_394_2015_1194}
+    \includegraphics[width=\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-12_218_394_2015_1194}
   \end{minipage}
 \end{center}
 \begin{choices}
@@ -398,12 +398,12 @@ A summer camp offers a morning session and an afternoon session. The list \textt
 Only children who attend \textbf{both} sessions eat lunch at the camp. The camp director wants to create \texttt{lunchList}, which will contain the names of children attending both sessions.
 
 The following code segment is intended to create \texttt{lunchList}, which is initially empty. It uses the procedure \texttt{IsFound(list, name)}, which returns \texttt{true} if \texttt{name} is found in \texttt{list} and returns \texttt{false} otherwise.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 FOR EACH child IN morningList
 {
     <MISSING CODE>
 }
-\end{cspcode}
+\end{lstlisting}
 Which of the following could replace \texttt{<MISSING CODE>} so that the code segment works as intended?
 \begin{choices}
   \CorrectChoice \texttt{IF (IsFound(afternoonList, child)) \{ APPEND(lunchList, child) \}}
@@ -420,7 +420,7 @@ Which of the following could replace \texttt{<MISSING CODE>} so that the code se
 \question[5]
 Consider the following program code.
 \begin{center}
-  \includegraphics[width=0.35\linewidth]{images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-15_602_656_382_732}
+  \includegraphics[width=0.35\linewidth]{cs-p/images/68b75e92-b243-4d72-a2a7-db8b0e1b4bf4-15_602_656_382_732}
 \end{center}
 
 Which of the following best describes the result of running the program code?
@@ -513,14 +513,14 @@ A teacher uses the following program to adjust student grades on an assignment b
 
 The teacher has procedures $\min(a,b)$ and $\max(a,b)$ as usual.
 
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 i <- 1
 REPEAT n TIMES
 {
     <MISSING CODE>
     i <- i + 1
 }
-\end{cspcode}
+\end{lstlisting}
 
 Which of the following code segments can replace \texttt{<MISSING CODE>} so that the program works as intended?
 
