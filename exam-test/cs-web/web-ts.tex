@@ -239,7 +239,7 @@ The \texttt{scripts} section in \texttt{package.json} lets you define:
   \choice HTML template paths only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=jsonexam]
+\begin{lstlisting}[style=json]
 {
   "scripts": {
     "build": "tsc",
@@ -318,7 +318,7 @@ When you run \texttt{npm install} or \texttt{npx tsc}, you are using:
   \choice The browser's rendering engine only
   \CorrectChoice Node.js to execute npm and the TypeScript compiler tooling on your machine
   \choice SQL Server
-  \choice Angular's \lstinline[style=htmlexam]|<router-outlet>|
+  \choice Angular's \lstinline[style=htmlinline]|<router-outlet>|
 \end{choices}
 \begin{solution}
   npm (Node Package Manager) ships with Node. Front-end developers install Node to get npm, run dev servers, and compile TypeScript even though users only need the compiled assets in the browser.
@@ -409,7 +409,7 @@ A \textbf{tuple} type such as \lstinline[style=tsinline]|[string, number]| means
   \choice A generic class constructor
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 let pair: [string, number] = ['score', 10];
 let label = pair[0];  // string
 let value = pair[1]; // number
@@ -454,7 +454,7 @@ An \textbf{interface} in TypeScript is used to:
   \choice Run only inside Angular templates
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface User {
   id: number;
   name: string;
@@ -488,7 +488,7 @@ A class \lstinline[style=tsinline]|implements| an interface when:
   \choice The class is declared inside the interface file only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface Printable { print(): void; }
 class Report implements Printable {
   print() { console.log('report'); }
@@ -511,7 +511,7 @@ In a TypeScript class, \lstinline[style=tsinline]|private| members:
 
 \question[4]
 A numeric \textbf{enum} such as:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 enum Direction { Up, Down, Left, Right }
 \end{lstlisting}
 \begin{choices}
@@ -607,7 +607,7 @@ Literal types such as \lstinline[style=tsinline]|'success' | 'error'| are useful
   \choice Compile to SQL \texttt{ENUM} columns automatically
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 type Status = 'loading' | 'ready' | 'error';
 function setStatus(s: Status) { /* ... */ }
 setStatus('ready');   // OK
@@ -629,7 +629,7 @@ A \textbf{generic class} declares type parameters:
 \end{choices}
 \begin{solution}
   Type parameters use angle brackets after the class name:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class GenericNumber<NumType> {
   zeroValue: NumType;
   add: (x: NumType, y: NumType) => NumType;
@@ -650,7 +650,7 @@ To access \lstinline[style=tsinline]{arg.length} in a generic function, which co
 \end{choices}
 \begin{solution}
   Unconstrained \lstinline[style=tsinline]{<Type>} cannot access \lstinline[style=tsinline]{length}. Use a constraint:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface Lengthwise { length: number; }
 function loggingIdentity<T extends Lengthwise>(arg: T): T {
   console.log(arg.length);
@@ -669,7 +669,7 @@ function loggingIdentity<T extends Lengthwise>(arg: T): T {
   \choice \texttt{keyof} is runtime-only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function getProperty<T, K extends keyof T>(obj: T, key: K) {
   return obj[key];
 }
@@ -689,7 +689,7 @@ When creating generic \textbf{factory} functions in TypeScript, you refer to cla
 \end{choices}
 \begin{solution}
   A factory accepts a constructor, not an instance:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function create<T>(c: { new(): T }): T {
   return new c();
 }
@@ -709,7 +709,7 @@ function createInstance<A extends Animal>(c: new () => A): A {
   \choice Only static fields may be generic
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class KeyValuePair<T, U> {
   private key: T;
   private val: U;
@@ -728,7 +728,7 @@ Generic classes are only generic over their instance side rather than their stat
 \end{choices}
 \begin{solution}
   \textbf{True.} Type parameters on \lstinline[style=tsinline]{class Box<T>} apply to instance members only:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class Box<T> {
   value: T;           // OK (instance)
   static bad: T;     // error: T not in scope on static side
@@ -744,7 +744,7 @@ When creating factories in TypeScript using generics, it is necessary to refer t
 \end{choices}
 \begin{solution}
   \textbf{True.} The factory parameter is a constructor signature; you pass the class and call \lstinline[style=tsinline]{new c()}:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function create<T>(c: { new(): T }): T {
   return new c();
 }
@@ -759,7 +759,7 @@ When declaring a generic class, the generic type parameter is specified in squar
 \end{choices}
 \begin{solution}
   \textbf{False.} Generics use angle brackets:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class KeyValuePair<T, U> { ... }   // correct
 class Bad[T, U] { ... }            // wrong syntax
 \end{lstlisting}
@@ -791,7 +791,7 @@ Top-level \texttt{include} and \texttt{exclude} in \texttt{tsconfig.json} contro
   \choice Karma browser selection only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=jsonexam]
+\begin{lstlisting}[style=json]
 {
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.spec.ts"]
@@ -1207,7 +1207,7 @@ Type \textbf{inference} on a variable means:
   \choice Only interfaces can be inferred
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 let title = 'Angular';     // inferred string
 let count: number = 0;     // explicit number
 const ids = [1, 2, 3];     // inferred number[]
@@ -1250,7 +1250,7 @@ The \lstinline[style=tsinline]|void| type is most often used for:
   \choice Generic type parameters on classes
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function logMessage(msg: string): void {
   console.log(msg);
 }
@@ -1303,7 +1303,7 @@ A variable of type \lstinline[style=tsinline]|unknown|:
   \choice Compiles to a special runtime class
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function printLength(x: unknown) {
   if (typeof x === 'string') {
     console.log(x.length);
@@ -1335,7 +1335,7 @@ An inline \textbf{object type} in TypeScript looks like:
   \choice \lstinline[style=tsinline]|Object<string>|
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 let user: { id: number; name: string } = { id: 1, name: 'Ada' };
 function printId(u: { id: number }) {
   console.log(u.id);
@@ -1441,7 +1441,7 @@ A \textbf{discriminated union} typically includes:
   \choice A \texttt{bootstrap} array
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 type Shape =
   | { kind: 'circle'; radius: number }
   | { kind: 'square'; side: number };
@@ -1488,7 +1488,7 @@ Exhaustiveness checking in a \lstinline[style=tsinline]|switch| on a union uses 
   \choice Emit \texttt{.d.ts} files only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function assertNever(x: never): never {
   throw new Error('Unexpected value: ' + x);
 }
@@ -1533,7 +1533,7 @@ A \textbf{function type alias} can be written as:
   \choice \lstinline[style=tsinline]|type Compare = number => number => number;| without parentheses
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 type Compare = (a: number, b: number) => number;
 type Handler = (event: string) => void;
 let sort: Compare = (x, y) => x - y;
@@ -1599,7 +1599,7 @@ One interface extending another uses:
   \choice \lstinline[style=tsinline]|extends interface B from A|
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface Person { name: string; }
 interface Employee extends Person {
   employeeId: number;
@@ -1622,7 +1622,7 @@ A class may \lstinline[style=tsinline]|implements| multiple interfaces:
 
 \question[4]
 An interface with a \textbf{call signature}:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface Formatter {
   (value: string): string;
 }
@@ -1709,7 +1709,7 @@ The \textbf{non-null assertion operator} \lstinline[style=tsinline]|user!.name| 
   \choice Disables \lstinline[style=tsinline]|strictNullChecks|
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 const config = { mode: 'dark', level: 1 } as const;
 // config.mode is type 'dark', not string
 \end{lstlisting}
@@ -1777,7 +1777,7 @@ A \textbf{rest parameter} collecting extra arguments uses:
   \choice \lstinline[style=tsinline]|function sum?: number[]|
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function sum(...nums: number[]): number {
   return nums.reduce((a, b) => a + b, 0);
 }
@@ -1806,7 +1806,7 @@ Which arrow function signature is correctly typed?
   \choice Runtime polymorphism like Java virtual methods automatically
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function format(input: string): string;
 function format(input: string[]): string[];
 function format(input: string | string[]): string | string[] {
@@ -1853,7 +1853,7 @@ A TypeScript \textbf{class} combines:
   \choice SQL table definitions only
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class Counter {
   count = 0;
   increment() { this.count += 1; }
@@ -1883,7 +1883,7 @@ In a subclass constructor, \lstinline[style=tsinline]|super(...)| must be called
   \choice After every \lstinline[style=tsinline]|return| statement
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class Animal { constructor(public name: string) {} }
 class Dog extends Animal {
   constructor(name: string, public breed: string) {
@@ -1902,7 +1902,7 @@ An \textbf{abstract class}:
   \choice Replaces interfaces entirely
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 abstract class Shape {
   abstract area(): number;
 }
@@ -1935,7 +1935,7 @@ The \lstinline[style=tsinline]|override| keyword (with \texttt{noImplicitOverrid
   \choice Replace \lstinline[style=tsinline]|interface| merging
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 class MathUtil {
   static PI = 3.14159;
   static clamp(n: number, min: number, max: number) {
@@ -1998,7 +1998,7 @@ A \lstinline[style=tsinline]|protected| field is accessible:
 
 \question[4]
 \textbf{Parameter properties} in a constructor:
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 constructor(private id: number, public name: string) {}
 \end{lstlisting}
 \begin{choices}
@@ -2040,7 +2040,7 @@ From outside the class, accessing a \lstinline[style=tsinline]|private| method:
 \question[4]
 In TypeScript, a \textbf{decorator} is:
 \begin{choices}
-  \choice A CSS class applied with \lstinline[style=htmlexam]|[ngClass]|
+  \choice A CSS class applied with \lstinline[style=htmlinline]|[ngClass]|
   \CorrectChoice A special declaration (often a function) attached to a class, method, property, or parameter that can modify or annotate that declaration
   \choice A replacement for \lstinline[style=tsinline]|interface|
   \choice A SQL view on a database table
@@ -2082,7 +2082,7 @@ A \textbf{property decorator} such as \lstinline[style=tsinline]|@Input()| or \l
   \choice Replaces TypeScript type annotations
 \end{choices}
 \begin{solution}
-  Property decorators run against the prototype property (or field). \lstinline[style=tsinline]|@Input() title: string| tells Angular the parent may bind \lstinline[style=htmlexam]|[title]|; \lstinline[style=tsinline]|@Output() saved| pairs with an \lstinline[style=tsinline]|EventEmitter|.
+  Property decorators run against the prototype property (or field). \lstinline[style=tsinline]|@Input() title: string| tells Angular the parent may bind \lstinline[style=htmlinline]|[title]|; \lstinline[style=tsinline]|@Output() saved| pairs with an \lstinline[style=tsinline]|EventEmitter|.
 \end{solution}
 
 \question[4]
@@ -2106,7 +2106,7 @@ Which pair belongs to Angular \textbf{dependency injection} and decorators?
   \choice \lstinline[style=tsinline]|@Component| on \texttt{package.json}
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 @Injectable({ providedIn: 'root' })
 export class DataService { }
 
@@ -2277,7 +2277,7 @@ A \textbf{generic constraint} on an array parameter \lstinline[style=tsinline]|T
   \choice \lstinline[style=tsinline]|map| is disabled
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 function findById<T extends { id: number }>(items: T[], id: number): T | undefined {
   return items.find(item => item.id === id);
 }
@@ -2307,7 +2307,7 @@ For an object type \lstinline[style=tsinline]|User|, the type \lstinline[style=t
   \choice A numeric array length
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface User { id: number; name: string; }
 type UserKeys = keyof User;  // 'id' | 'name'
 \end{lstlisting}
@@ -2359,7 +2359,7 @@ Combining \lstinline[style=tsinline]|typeof| and \lstinline[style=tsinline]|keyo
   \choice Returns property values instead of keys
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 const config = { mode: 'dark', level: 1 } as const;
 type ConfigKey = keyof typeof config;  // 'mode' | 'level'
 \end{lstlisting}
@@ -2402,7 +2402,7 @@ In an interface, a \textbf{readonly} property:
   \choice Exists only at runtime inside Angular templates
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 interface Point {
   readonly x: number;
   readonly y: number;
@@ -2484,7 +2484,7 @@ The assertion \lstinline[style=tsinline]|as const| on an object literal:
   \choice Emits a new enum at runtime
 \end{choices}
 \begin{solution}
-\begin{lstlisting}[style=tsexam]
+\begin{lstlisting}[style=ts]
 const routes = {
   home: '/',
   admin: '/admin',

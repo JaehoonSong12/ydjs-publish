@@ -14,12 +14,11 @@
 
 \question[4]
 What is a functional interface and why would we use one?
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   A functional interface is defined as an interface with a \textbf{Single Abstract Method (SAM)}.
   It is utilized as a \textbf{target type} for lambda expressions and method references to
   facilitate functional programming.
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   @FunctionalInterface
   interface Validator {
     boolean isValid(String s); // the SAM
@@ -47,7 +46,7 @@ What is a functional interface and why would we use one?
 
   \noindent\textbf{Note (\texttt{@FunctionalInterface}):}
   The annotation documents that the type is intended as a SAM; if a second abstract method is added, the compiler reports an error.
-  \begin{lstlisting}[style=javaexam]
+  \begin{lstlisting}[style=java]
   @FunctionalInterface
   interface Calculation {
     int op(int a, int b);
@@ -55,38 +54,37 @@ What is a functional interface and why would we use one?
   }
   \end{lstlisting}
   An interface still counts as functional \emph{without} the annotation when it already satisfies the SAM rule.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[6]
 Identify and describe the primary categories within the \texttt{java.util.function} package.
-\makeemptybox{1.00in}
-\begin{solution}
+\begin{solutionorbox}[1.00in]
   Standardized logic is provided via four core descriptor shapes:
   \begin{itemize}
     \item \textbf{Predicate}: Accepts \texttt{T}, returns \texttt{boolean}. Used for filtering.
-      \begin{lstlisting}[style=javaexam]
+      \begin{lstlisting}[style=java]
       Predicate<Integer> isEven = n -> n \% 2 == 0;
       boolean a = isEven.test(4);     // true
       \end{lstlisting}
     \item \textbf{Function}: Accepts \texttt{T}, returns \texttt{R}. Used for transformation.
-      \begin{lstlisting}[style=javaexam]
+      \begin{lstlisting}[style=java]
       Function<String, Integer> toLen = s -> s.length();
       int n = toLen.apply("hello");   // 5
       \end{lstlisting}
     \item \textbf{Consumer}: Accepts \texttt{T}, returns \texttt{void}. Used for side effects.
-      \begin{lstlisting}[style=javaexam]
+      \begin{lstlisting}[style=java]
       Consumer<String> printer = System.out::println;
       printer.accept("first line");   // runs println for side effect
       \end{lstlisting}
     \item \textbf{Supplier}: Accepts nothing, returns \texttt{T}. Used for lazy generation.
-      \begin{lstlisting}[style=javaexam]
+      \begin{lstlisting}[style=java]
       Supplier<Double> random = () -> Math.random();
       double a = random.get();        // each call can produce a new value
       \end{lstlisting}
   \end{itemize}
-\end{solution}
+\end{solutionorbox}
 
 
 \question[4]
@@ -136,10 +134,9 @@ Which of the following is \emph{not} a new language feature in Java~8?
 
 \question[4]
 What is a lambda? Give an example of how we can use one.
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Anonymous function syntax \texttt{(args) -> body} implementing a functional interface. Example: \texttt{list.removeIf(x -> x.isEmpty());} or \texttt{btn.setOnAction(e -> save());}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Which of the following statements are correct about Java~8 lambda expressions?
@@ -193,7 +190,7 @@ Which of the following is correct about Java~8 lambda expressions?
 
 \question[4]
 Which expression correctly assigns a \texttt{Funky} implementation?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 interface Funky {
   void method();
 }
@@ -233,11 +230,10 @@ class Main {
 
 \question[4]
 What is a method reference?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Shorthand for a lambda that only forwards to an existing method: static \texttt{Type::staticMethod}, bound instance \texttt{recv::meth}, unbound instance \texttt{Type::meth} (receiver is the first SAM argument), and constructor \texttt{Type::new}.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.ArrayList;
 import java.util.function.*;
 
@@ -246,7 +242,7 @@ Function<String, Integer> len = String::length; // unbound on String
 Supplier<ArrayList<String>> mk = ArrayList::new;
 ToIntFunction<String> n = Integer::parseInt;    // static 
 \end{lstlisting}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Can you pass extra parameters directly inside a method reference (beyond what the functional interface supplies when it is invoked)?
@@ -257,7 +253,7 @@ Can you pass extra parameters directly inside a method reference (beyond what th
 \begin{solution} 
   \textbf{FALSE.} \texttt{::} only selects the method; arguments come from the SAM at call time (or from a bound receiver). You cannot embed extra literals---\texttt{String::substring(0, 2)} does not compile. Use a lambda instead:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.function.Function;
 Function<String, String> head = s -> s.substring(0, 2);
 \end{lstlisting}
@@ -272,7 +268,7 @@ Method references let you refer to an existing method by name (as shorthand for 
 \begin{solution}
   \textbf{True.} Same meaning as an equivalent lambda when the SAM shape matches, e.g.\ \texttt{xs.replaceAll(String::toLowerCase)} for \texttt{s -> s.toLowerCase()}.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.Arrays;
 import java.util.List;
 List<String> xs = Arrays.asList("a", "B");
@@ -302,31 +298,27 @@ xs.replaceAll(String::toLowerCase);
 
 \question[4]
 What is the \texttt{Optional} class?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   A container for zero or one non-null value, encouraging explicit handling of absence instead of \texttt{null} for return types (use carefully in fields/params).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the Stream API and what is it used for?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Functional-style pipeline over collections/IO for map/filter/reduce-style operations, often lazy, enabling parallel streams and cleaner data transformations.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are intermediate stream operations?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Lazy ops that return another stream (\texttt{map}, \texttt{filter}, \texttt{sorted}, etc.); they run when a terminal operation executes the pipeline.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are terminal stream operations?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Operations that finish the pipeline and produce a non-stream result or side effect: e.g.\ \texttt{collect}, \texttt{forEach}, \texttt{reduce}, \texttt{count}, \texttt{findFirst}, \texttt{anyMatch}.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -341,7 +333,7 @@ Which API operates on a collection of objects to process it and get the desired 
 \begin{solution}
   \texttt{java.util.Collection} (e.g.\ \texttt{List}) \textbf{stores} elements. The \textbf{Stream API} (\texttt{java.util.stream}) processes a \textbf{sequence}---often \texttt{list.stream()}---with a pipeline ending in a terminal operation:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.Arrays;
 
 long n = Arrays.asList(10, 20, 30).stream().filter(x -> x > 15).count();
@@ -361,7 +353,7 @@ How many types of operations can be performed in the Stream API to process data?
 \begin{solution}
   The usual split is \textbf{two} kinds: \textbf{intermediate} (return another \texttt{Stream}, lazy) and \textbf{terminal} (finish the pipeline). Example:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.stream.Stream;
 
 Stream<String> s = Stream.of("a", "bb", "ccc")
@@ -381,7 +373,7 @@ Stream API Terminal Operations. What happens if you do \textbf{not} call a termi
 \begin{solution}
   Streams are \textbf{lazy}: intermediate operations (\texttt{map}, \texttt{filter}, \texttt{sorted}, \ldots) return a new stream and only \textbf{describe} work. A \textbf{terminal} operation (\texttt{forEach}, \texttt{collect}, \texttt{count}, \texttt{reduce}, \ldots) triggers the pipeline. Until then, almost nothing runs:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -405,7 +397,7 @@ Which operation can be used when we need to return the stream of elements in sor
 \begin{solution}
   \texttt{sorted()} is an intermediate operation (natural order, or \texttt{sorted(Comparator)}). \texttt{map}/\texttt{flatMap} transform structure; \texttt{filter} drops elements.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -427,7 +419,7 @@ You already have \lstinline!import java.util.*;!. Do you still need to \lstinlin
 \begin{solution}
   \textbf{TRUE.} Here ``TRUE'' means \textbf{yes, you still need} something beyond \texttt{import java.util.*;}---not that \texttt{java.util.*} is sufficient on its own. A star import names \textbf{one} package only; \texttt{java.util.stream} is a \textbf{different} package, so simple names like \texttt{Stream} and \texttt{Collectors} do not resolve unless you add the stream import(s) or spell the type out with its full package prefix.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

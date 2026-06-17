@@ -8,38 +8,33 @@
 
 \question[4]
 What are classes used for?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Blueprints for objects: they group fields (state) and methods (behavior), define types, encapsulate implementation, and support reuse and modeling of real-world concepts.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe what an object is.
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   A runtime instance of a class: a specific chunk of state in memory with a reference identity, whose behavior is defined by the class's methods.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the role of garbage collection in Java?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   The JVM reclaims memory occupied by objects that are no longer reachable, so programmers rarely \texttt{free} manually; it reduces leaks and dangling pointers at the cost of pauses and tuning complexity.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe the difference between the stack and the heap.
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   The stack holds frames for active method calls (locals, parameters, partial execution state), typically LIFO and size-known; the heap stores objects and grows dynamically; references on the stack often point to heap objects.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a constructor and how is it different from a method?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   A constructor initializes a new instance; its name matches the class, it has no return type, and it runs when \texttt{new} is used. Ordinary methods can have any name, a return type (or \texttt{void}), and are invoked on an instance (or statically).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -47,31 +42,27 @@ What is a constructor and how is it different from a method?
 
 \question[4]
 Describe inheritance and how would you use it in a project?
-\makeemptybox{1.55in}
-\begin{solution}
+\begin{solutionorbox}[1.55in]
   A subclass extends a superclass, inheriting fields/methods and adding or overriding behavior. Use it to model ``is-a'' relationships, share common implementation, and enable polymorphic references to superclass types.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe polymorphism and how would you use it in a project?
-\makeemptybox{1.5in}
-\begin{solution}
+\begin{solutionorbox}[1.5in]
   Same interface or superclass type, different runtime behavior: overridden methods dispatch on the actual object type. Use it to write generic code (e.g.\ process a \texttt{List} of \texttt{Shape} without branching on concrete classes).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How is method overriding different from method overloading?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Overriding replaces a superclass \emph{instance} method implementation with the same signature in a subclass (runtime dispatch). Overloading defines multiple methods with the \emph{same name} but different parameter lists in one class (compile-time resolution).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What methods are commonly overridden from the \texttt{Object} class and why?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   \texttt{equals}/\texttt{hashCode} for value equality and hash-based collections; \texttt{toString} for debugging and logging; sometimes \texttt{clone} or \texttt{finalize} (rare today). Contracts must stay consistent (e.g.\ equal objects \(\Rightarrow\) same hash).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -79,31 +70,27 @@ What methods are commonly overridden from the \texttt{Object} class and why?
 
 \question[4]
 What state and behavior would you define in a parent class but not a subclass?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Shared data and logic common to all specializations (e.g.\ name/ID for all employees, generic validation), while keeping the type general enough that subclasses add specifics rather than duplicating the common core.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What state and behavior would you define in a subclass but not in the parent class?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Details only for that subtype (hourly wage vs.\ annual salary, etc.), so the base class is not cluttered with fields irrelevant to every sibling.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How does upcasting an object work?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Assign a subclass reference to a superclass type (implicit); the object stays the same; only the compile-time type narrows what members are visible without a cast.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How does downcasting an object work?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Use an explicit cast from superclass to subclass when you know the runtime type; it can throw \texttt{ClassCastException} if wrong. Prefer \texttt{instanceof} (pattern matching) before casting when uncertain.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -111,31 +98,27 @@ How does downcasting an object work?
 
 \question[4]
 Describe abstraction and how would you use it in a project?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Hiding complexity behind simple interfaces (abstract types, APIs, layers). Use abstract classes/interfaces to express ``what'' without ``how,'' so implementations can change without affecting clients.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe encapsulation and how would you use it in a project?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Hide internal state behind methods (private fields, public accessors/mutators) so invariants and validation stay centralized and dependencies on representation do not leak.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are the four levels of access we can give to class members? How are they different from one another?
-\makeemptybox{1.55in}
-\begin{solution}
+\begin{solutionorbox}[1.55in]
   \texttt{private} (enclosing class), package/default, \texttt{protected} (package + subclasses), \texttt{public}. Narrower access hides implementation details.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the purpose of using getter and setter methods?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Control reads/writes to fields (validation, lazy init, logging), preserve encapsulation, and allow evolving internal storage without breaking callers.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -143,10 +126,9 @@ What is the purpose of using getter and setter methods?
 
 \question[4]
 Why would you use an interface over an abstract class?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Java allows multiple interface implementation but single inheritance; interfaces define capability contracts without state (pre--Java~8) or with default/static methods; good for cross-cutting roles and test doubles.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -219,7 +201,7 @@ What is the purpose of the \texttt{super} keyword in Java?
 
 \question[4]
 What is the output of the following code?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.util.*;
 public class Olympics {
     public static void main(String[] args) {
@@ -267,7 +249,7 @@ Which of the following is true when an abstract class implements an interface?
 
 \question[4]
 What is the output of the following Java code?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 class Animal {
     public void barkingDog() {
         System.out.println("Wolf Wolf!");
@@ -307,7 +289,7 @@ What members are allowed in an abstract class?
 
 \question[4]
 Garbage collection: when is the object created on the first line eligible for garbage collection?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public static void main(String[] args) {
     Object obj1 = new Object(); // 1st line
     Object obj2 = obj1; // 2nd line
@@ -367,7 +349,7 @@ You are working on an application that throws an exception when it runs. What sh
 
 \question[4]
 What will be the output when the following program is run? (Assume line numbers in the messages below are as given.)
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 package exceptions;
 public class TestClass {
     public static void main(String[] args) {
@@ -429,7 +411,7 @@ A constructor is \blank[10em].
 
 \question[4]
 What will be the output when the following program is run? (Assume there is no error in the line numbers given in the options.)
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 package exceptions;
 public class TestClass {
     public static void main(String[] args) {
@@ -542,7 +524,7 @@ Which are benefits of polymorphism? (Select all that apply.)
 
 \question[4]
 In the code below, \texttt{x} sits in what scope?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Greetings {
     static String w = "welcome";
     String x = "hello";
@@ -592,7 +574,7 @@ public class Greetings {
 
 \question[4]
 The following is how we create a class in Java:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public void buildString(String start, String add) {
     String toBuild = start;
     for (int i = 0; i < 100; i++) {
@@ -611,7 +593,7 @@ public void buildString(String start, String add) {
 
 \question[4]
 Which use of the \texttt{final} keyword will lead to compilation errors?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public final class Example {
     public final void foo() {
         final int x = 4;
@@ -651,7 +633,7 @@ A \texttt{try} block must be followed by a \texttt{catch} block and a \texttt{fi
 \end{choices}
 \begin{solution}
   A \texttt{try} must be followed by at least one of \texttt{catch} or \texttt{finally} (or both). \texttt{try} alone is a compile error; \texttt{try} with only \texttt{finally} is legal when you want cleanup without handling exceptions here.
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 // try + catch (no finally required)
 try {
     int n = Integer.parseInt(s);
@@ -689,7 +671,7 @@ Checked exceptions must \emph{always} be caught in a \texttt{try}-\texttt{catch}
 
 \question[4]
 Fill in the blank to complete the JUnit test:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Addition {
     public int methodToTest(int x, int y) {
         return x + y;
@@ -730,7 +712,7 @@ public class AdditionTest {
 
 \question[4]
 Identify the correct type of data structure to use in the code below:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 ____ countOfWords = getCounts();
 Set keys = countOfWords.keySet();
 for (String k : keys) {
@@ -749,7 +731,7 @@ for (String k : keys) {
 
 \question[4]
 What would be the best collection to use in the code below if we want to ensure that no name appears twice when we print them out? (Assume \texttt{getNames()} returns the correct collection type.)
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 _____ names = getNames();
 names.add("Bob");
 names.add("Julie");
@@ -771,7 +753,7 @@ for (String name : names) {
 
 \question[4]
 Identify the proper use of the interface declared here:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public interface Driveable {
     public void drive();
 }
@@ -779,7 +761,7 @@ public interface Driveable {
 \begin{choices}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Car extends Driveable {
     public void drive() {
         System.out.println("driving a car...");
@@ -789,7 +771,7 @@ public class Car extends Driveable {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Car {
     @Inherit(Driveable.class)
     public void drive() {
@@ -800,7 +782,7 @@ public class Car {
   \end{minipage}
   \CorrectChoice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Car implements Driveable {
     public void drive() {
         System.out.println("driving the car...");
@@ -810,7 +792,7 @@ public class Car implements Driveable {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Car implements Driveable {
     public void stop() {
         System.out.println("stopping the car...");
@@ -827,7 +809,7 @@ public class Car implements Driveable {
 
 \question[4]
 Can variable \texttt{y} be used at \texttt{B}? Why or why not? Can variable \texttt{x} be used at \texttt{A}? Why or why not?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Scopes {
     public void doStuff() {
         int x = 1;
@@ -851,7 +833,7 @@ public class Scopes {
 
 \question[4]
 Identify the correct output of this Java code and the correct explanation:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 String s1 = "hello";
 String s2 = " world";
 s1.concat(s2);
@@ -873,7 +855,7 @@ System.out.println(s3);
 
 \question[4]
 Identify the correct output of this code snippet:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public static int countStatic = 0;
     public int count = 0;
@@ -906,13 +888,13 @@ public class Example {
 
 \question[4]
 Identify the class that declares a constructor that allows for this object instantiation:
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Example myExample = new Example("foo");
 \end{lstlisting}
 \begin{choices}
   \CorrectChoice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public String name;
     public Example(String s) {
@@ -923,7 +905,7 @@ public class Example {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public String name;
     public Example() {
@@ -934,7 +916,7 @@ public class Example {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public String name;
     public void createExample(String s) {
@@ -945,7 +927,7 @@ public class Example {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public String name;
     public static String createExample(String s) {
@@ -966,7 +948,7 @@ Identify the valid use of method overloading.
 \begin{choices}
   \CorrectChoice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public void doStuff() { System.out.println("hello"); }
     public void doStuff(int x) { System.out.println(x); }
@@ -975,7 +957,7 @@ public class Example {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public void doStuff() {}
     public String doStuff() {
@@ -986,7 +968,7 @@ public class Example {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public void doStuff() {
         System.out.println("hello");
@@ -1001,7 +983,7 @@ public class Sub extends Example {
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.88\linewidth}
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class Example {
     public void doStuff() {
         System.out.println("hello");
@@ -1025,7 +1007,7 @@ public class Sub extends Example {
 
 \question[4]
 How many different objects and reference variables are created in the following code?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public void createObjects() {
     Object o1 = new Object();
     Object o2 = o1;
@@ -1045,7 +1027,7 @@ public void createObjects() {
 
 \question[4]
 Which access modifier should you use here to give access to the \texttt{String} field to class \texttt{B} but \emph{not} to class \texttt{C}?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 // filename: A.java
 package foo;
 public class A {
@@ -1075,16 +1057,14 @@ public class C {}
 
 \question[4]
 What is the Factory design pattern?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Encapsulates object creation behind a method or factory class so callers depend on interfaces/supertypes and creation rules stay in one place (variants: simple factory, factory method, abstract factory).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the Singleton design pattern?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Ensures a class has at most one instance and provides global access; useful for shared resources but easy to misuse (testing, threading)---often replaced with DI-managed beans.
-\end{solution}
+\end{solutionorbox}
 
 \endgradingrange{csoo}

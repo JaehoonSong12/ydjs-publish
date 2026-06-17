@@ -4,7 +4,7 @@
 
 \begingradingrange{csp}
 
-% Pseudocode: \texttt{cspcode} environment (\texttt{listings} + style \texttt{csppseudo} in \texttt{main.tex}).
+% Pseudocode: \texttt{lstlisting} with \texttt{[style=pseudo]} (\texttt{preamble-code.tex}).
 
 \question[5]
 Which of the following is an example of a phishing attack?
@@ -33,13 +33,13 @@ Let \texttt{age} represent a person's age, in years, and let \texttt{height} rep
 
 \question[5]
 Consider the following code segment.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 first <- 100
 second <- 200
 temp <- first
 second <- temp
 first <- second
-\end{cspcode}
+\end{lstlisting}
 What are the values of \texttt{first} and \texttt{second} as a result of executing the code segment?
 \begin{choices}
   \CorrectChoice \texttt{first} = 100, \texttt{second} = 100
@@ -129,7 +129,7 @@ Which of the following is \textbf{NOT} a benefit of collaborating to develop a c
 
 \question[5]
 A list of numbers is considered increasing if each value after the first is greater than or equal to the preceding value. The following procedure is intended to return true if \texttt{numberList} is increasing and return false otherwise. Assume that \texttt{numberList} contains at least two elements.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE isIncreasing(numberList)
 {
   count <- 2
@@ -143,7 +143,7 @@ PROCEDURE isIncreasing(numberList)
   }
   RETURN(false)
 }
-\end{cspcode}
+\end{lstlisting}
 Which of the following changes is needed for the program to work as intended?
 \begin{choices}
   \choice In line 3, 2 should be changed to 1.

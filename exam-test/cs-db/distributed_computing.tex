@@ -22,7 +22,7 @@ Retrieving Classes. Which is the correct way to retrieve references to classes i
 \begin{solution}
   All three yield a \texttt{Class<?>} (or a concrete type parameter) in different situations:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Object obj = "hello";
 Class<?> c1 = obj.getClass();          // runtime class of instance
 
@@ -43,7 +43,7 @@ Class<?> c3 = Class.forName("java.lang.String"); // load by name (may throw)
 \begin{solution}
   \texttt{Class.forName(String)} returns a \texttt{Class<?>} representing the type---metadata, not \texttt{new SuperLaser()}. Creating an instance is a separate step (constructors, DI, factories):
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Class<?> c = Class.forName("com.example.SuperLaser");
 Object instance = c.getDeclaredConstructor().newInstance();
 \end{lstlisting}
@@ -68,7 +68,7 @@ Reflection API. Which of these is \textbf{NOT} a class in the Reflection API in 
 \begin{solution}
   Core reflection types live in \textbf{\texttt{java.lang.reflect}} and on \texttt{java.lang.Class}. Typical imports:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -89,7 +89,7 @@ Which type is \emph{not} part of the core Java reflection types used to inspect 
 \begin{solution}
   \texttt{List} lives in \textbf{\texttt{java.util}} and is a collections interface. Reflection code often \emph{returns} ordinary objects or arrays (e.g.\ \texttt{Method[]}), but the \textbf{descriptor types} you navigate with are from \texttt{java.lang.reflect}, not \texttt{java.util}:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 import java.lang.reflect.Method;
 
 Method[] methods = String.class.getDeclaredMethods();
@@ -98,10 +98,9 @@ Method[] methods = String.class.getDeclaredMethods();
 
 \question[4]
 What is the Reflection API and what is it used for?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Inspecting or instantiating classes, methods, fields, and annotations at runtime; frameworks use it for DI and tooling, with performance and encapsulation trade-offs.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -109,52 +108,45 @@ What is the Reflection API and what is it used for?
 
 \question[4]
 What is a thread?
-\makeemptybox{1in}
-\begin{solution}
+\begin{solutionorbox}[1in]
   A lightweight unit of execution within a process sharing memory with peers; the JVM maps Java threads to OS threads (platform-dependent).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How can we create a thread?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Subclass \texttt{Thread} and override \texttt{run}, or implement \texttt{Runnable}/\texttt{Callable} and pass to a \texttt{Thread} or executor; prefer executors for production pools.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How can we implement multithreading in Java?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Use threads, \texttt{ExecutorService}, parallel streams, \texttt{CompletableFuture}, or reactive stacks; protect shared mutable state with correct coordination.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are some states a thread can be in?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   E.g.\ \texttt{NEW}, \texttt{RUNNABLE}, blocked or waiting states while parked on locks or \texttt{wait}/\texttt{sleep}, and \texttt{TERMINATED} when \texttt{run} finishes.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is synchronization?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Coordinating access to shared resources: \texttt{synchronized} blocks/methods, locks, atomics, or concurrent collections to prevent races and ensure visibility.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between deadlock and livelock?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Deadlock: threads block forever waiting on each other's locks. Livelock: threads keep changing state in response but make no progress (often ``polite'' retry loops).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Describe the Producer Consumer problem.
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Producers enqueue work/items; consumers dequeue; a bounded buffer needs coordination so producers wait when full and consumers when empty---classic use of queues and condition variables/\texttt{BlockingQueue}.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -171,7 +163,7 @@ Thread definition. What is a thread?
 \begin{solution}
   A \textbf{thread} is a path of execution inside one \textbf{OS process}: its own call stack and program counter, sharing the heap with sibling threads. The class \texttt{java.lang.Thread} is the main API wrapper:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Thread worker = new Thread(() -> {
     System.out.println("Running on " + Thread.currentThread().getName());
 });
@@ -188,7 +180,7 @@ Threads can be created by extending the \texttt{Runnable} class.
 \begin{solution}
   \texttt{Runnable} is a \textbf{functional interface} in \texttt{java.lang}---you \textbf{implement} it (or pass a lambda). You \textbf{extend} \texttt{Thread} if you subclass \texttt{Thread} and override \texttt{run()}. Typical pattern:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Thread t1 = new Thread(() -> { /* task */ });
 
 Thread t2 = new Thread(new Runnable() {
@@ -206,7 +198,7 @@ The \texttt{run()} method ``comes from'' the \texttt{Thread} class only---it is 
 \begin{solution}
   \texttt{Runnable} \textbf{declares} \texttt{void run()}. \texttt{Thread} \textbf{implements} \texttt{Runnable}. When you use \texttt{new Thread(runnable)}, \texttt{Thread.run()} delegates to that \texttt{Runnable}'s \texttt{run()}:
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Runnable job = () -> System.out.println("job");
 new Thread(job).start();
 \end{lstlisting}
@@ -226,7 +218,7 @@ Which of the following is \textbf{NOT} a \texttt{Thread.State} value in the JVM?
 \begin{solution}
   \texttt{Thread.State} is an \texttt{enum} in \texttt{java.lang.Thread}: \texttt{NEW}, \texttt{RUNNABLE}, \texttt{BLOCKED}, \texttt{WAITING}, \texttt{TIMED\_WAITING}, \texttt{TERMINATED}. \texttt{RUNNABLE}, \texttt{BLOCKED}, \texttt{WAITING}, and \texttt{TERMINATED} are all real states. You call \texttt{start()} on a \texttt{NEW} thread; there is no \texttt{START} state.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 Thread t = new Thread(() -> { });
 System.out.println(t.getState()); // NEW
 t.start();
@@ -243,7 +235,7 @@ A thread that is in the \texttt{BLOCKED} state will \emph{immediately} begin run
 \begin{solution}
   When a thread leaves \texttt{BLOCKED} (e.g.\ acquired a monitor), it becomes \texttt{RUNNABLE}. The OS / JVM scheduler decides \textbf{when} it actually runs; other runnable threads may run first.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 synchronized (lock) {
     // Other threads blocked on 'lock' become RUNNABLE when released,
     // not guaranteed to run the very next instruction.
@@ -260,7 +252,7 @@ Can we completely avoid deadlock in Java?
 \begin{solution}
   No general algorithm can prove arbitrary user code deadlock-free. A classic pattern: thread~1 locks \texttt{A} then waits for \texttt{B}; thread~2 locks \texttt{B} then waits for \texttt{A}. Mitigations: fixed global lock order, smaller critical sections, \texttt{tryLock} with timeout, structured concurrency libraries.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 // Illustration only -- bad ordering risk if another thread locks b then a
 synchronized (a) {
     synchronized (b) { /* work */ }
@@ -279,7 +271,7 @@ Which of the following method suspend the thread for mentioned time duration in 
 \begin{solution}
   \texttt{Thread.sleep(long millis)} (and overloads with \texttt{TimeUnit} / nanos in newer APIs) pauses the \textbf{current} thread for roughly the requested time without busy-waiting. \texttt{yield()} only hints to the scheduler. \texttt{suspend()} is deprecated. There is no standard \texttt{Thread.kill()}.
 
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 try {
     Thread.sleep(500); // milliseconds
 } catch (InterruptedException e) {

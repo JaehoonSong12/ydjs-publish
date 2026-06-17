@@ -7,94 +7,82 @@
 
 \question[4]
 What is the difference between assigning and declaring a variable?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Declaring introduces the variable (name and type) in the program; assigning stores a value in an already-declared variable (or updates it).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a variable?
-\makeemptybox{1in}
-\begin{solution}
+\begin{solutionorbox}[1in]
   A named location in memory that holds a value of a particular type; the value can change during execution.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a primitive datatype? Please list a few and explain them.
-\makeemptybox{1.6in}
-\begin{solution}
+\begin{solutionorbox}[1.6in]
   A type built into Java stored directly as a value (not an object reference). Examples: \texttt{int} (whole numbers), \texttt{double} (floating-point), \texttt{boolean} (true/false), \texttt{char} (single character).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 Which datatype represents text in Java?
-\makeemptybox{0.85in}
-\begin{solution}
+\begin{solutionorbox}[0.85in]
   \texttt{String} (reference type used for text).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What are shorthand assignment operators?
-\makeemptybox{1.1in}
-\begin{solution}
+\begin{solutionorbox}[1.1in]
   Operators that combine an operation with assignment, e.g.\ \texttt{+=}, \texttt{-=}, \texttt{*=}, \texttt{/=}, \texttt{\%=}, as in \texttt{x += 3} meaning \texttt{x = x + 3}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How do you use increment and decrement operators?
-\makeemptybox{1.1in}
-\begin{solution}
+\begin{solutionorbox}[1.1in]
   \texttt{++} adds 1 and \texttt{--} subtracts 1; prefix (\texttt{++x}) vs postfix (\texttt{x++}) differ in the value of the expression when used inside a larger expression.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What is the modulo operator? How is it useful?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   \texttt{\%} gives the remainder after division (e.g.\ \texttt{17 \% 5} is \texttt{2}). Useful for wrap-around, parity (even/odd), cycling indices, etc.
-\end{solution}
+\end{solutionorbox}
 
 
 \question[4]
 What is a method?
-\makeemptybox{1.1in}
-\begin{solution}
+\begin{solutionorbox}[1.1in]
   A named block of code that can take parameters, perform actions, and optionally return a value; it organizes behavior and can be called (invoked) when needed.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Explain the main method.
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   \texttt{public static void main(String[] args)} is the entry point the JVM calls when the program starts; it must have that signature (for a standard Java application).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What is the difference in syntax between calling a method and creating a method?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   Defining/creating uses a header with return type, name, parameters, and a body in braces; calling uses the method name followed by parentheses with arguments (if any), often as a statement or within an expression.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Give an example of why you would need to create a method other than the \texttt{main} method.
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   Reuse (same logic in several places), readability (name a subtask), testing one piece of logic, or separating concerns so \texttt{main} stays a thin coordinator.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Can you describe some of the basic entities of a Java program?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Classes, methods, fields/variables, statements, expressions, packages, and (for apps) a class with \texttt{main}; code lives in \texttt{.java} files compiled to bytecode.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -102,47 +90,41 @@ Can you describe some of the basic entities of a Java program?
 
 \question[4]
 What do a pair of opening and closing curly braces represent?
-\makeemptybox{1in}
-\begin{solution}
+\begin{solutionorbox}[1in]
   A block: a compound statement grouping zero or more statements; used for class bodies, method bodies, and blocks scoped to loops/\texttt{if}/\texttt{switch}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a conditional statement?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   A statement that chooses which code runs based on a boolean condition, e.g.\ \texttt{if}, \texttt{if}/\texttt{else}, or \texttt{switch}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 Explain the different kinds of loops you can create and use in a program.
-\makeemptybox{1.5in}
-\begin{solution}
+\begin{solutionorbox}[1.5in]
   Common Java loops: \texttt{while} (test before each iteration), \texttt{do}-\texttt{while} (test after), \texttt{for} (compact init/test/update), and enhanced \texttt{for} over arrays/collections.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What is a flow control statement?
-\makeemptybox{1.1in}
-\begin{solution}
+\begin{solutionorbox}[1.1in]
   Statements that alter sequential execution: conditionals, loops, and jumps such as \texttt{break}, \texttt{continue}, and \texttt{return}.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 When would you use an \texttt{if} statement over a \texttt{switch} statement?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   When conditions are ranges, compound booleans, or non-discrete values; when checking unrelated conditions; or when \texttt{switch} does not fit the value type / pattern (pre--Java~21 style).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 When would you use a \texttt{switch} statement over an \texttt{if} statement?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   When comparing one expression against many constant discrete values (e.g.\ same integer or \texttt{String} cases) and a multi-branch structure reads clearer than a long \texttt{if}-\texttt{else} chain.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -150,162 +132,141 @@ When would you use a \texttt{switch} statement over an \texttt{if} statement?
 
 \question[4]
 What is the difference between the JDK, JRE, and JVM?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   JVM executes bytecode; JRE (historically) bundled JVM + libraries for running apps; JDK includes the compiler (\texttt{javac}), tools, and libraries for developing (and usually running) Java programs.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between source code and bytecode?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Source code is human-readable \texttt{.java} text; bytecode is the platform-independent intermediate form (\texttt{.class}) the JVM executes after compilation.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How would you describe the compilation process for Java?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   The compiler translates \texttt{.java} source into \texttt{.class} bytecode; the JVM loads classes and interprets/JIT-compiles bytecode to machine code at runtime.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What are some of the benefits of Java?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Portability (``write once, run anywhere'' on a JVM), strong ecosystem, garbage collection, mature tooling, wide use in industry/education, and rich standard libraries.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is an array? Why is it useful?
-\makeemptybox{1.25in}
-\begin{solution}
+\begin{solutionorbox}[1.25in]
   A fixed-size ordered collection indexed from zero holding elements of one type; useful for storing many related values without separate variables per item.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 How can you iterate over an array?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Indexed \texttt{for} loop with an index from \texttt{0} to \texttt{length - 1}, or an enhanced \texttt{for} (\texttt{for (T x : arr)}).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 How would you access the last value in an array if you do not know the size of the array?
-\makeemptybox{1in}
-\begin{solution}
+\begin{solutionorbox}[1in]
   Index with \texttt{array.length - 1}. If the array may be empty, check \texttt{length > 0} first.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the \texttt{Scanner} class used for? Give an example of how you would use it.
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Parsing primitive types and strings from an input stream (e.g.\ keyboard). Example: \texttt{Scanner s = new Scanner(System.in); int n = s.nextInt();}
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 If you received text input from the user, how would you go about comparing it to a value, like \texttt{"yes"} or \texttt{"no"}?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Compare with \texttt{String} methods \texttt{equals} or \texttt{equalsIgnoreCase}; do not use \texttt{==} on reference types for content equality.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What is a stack trace? How can you use it to debug your application?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   A report of active stack frames at an exception (or thread dump), showing call order and line numbers; use it to find which method threw and the chain of calls that led there.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What steps would you take to debug your program if it crashed with an error message in the console?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Read the exception type and message, find the topmost frame in your code, inspect that line, reproduce reliably, then fix logic or add guards/logging.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What steps would you take to debug your program if it runs, but gives you the wrong results?
-\makeemptybox{1.45in}
-\begin{solution}
+\begin{solutionorbox}[1.45in]
   Trace expected vs actual with small inputs, use logging/breakpoints, narrow which step first diverges, verify assumptions and formulas, check types and edge cases.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 If there was an error in the console when you tried to run your program, how would you debug?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Same general approach as a crash: read the error, locate the failing line from the stack trace, fix the cause (syntax, null, bounds, logic), recompile, and retest.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a package and why would we use one?
-\makeemptybox{1.2in}
-\begin{solution}
+\begin{solutionorbox}[1.2in]
   A namespace for related classes (folder-like hierarchy); avoids name clashes, organizes large projects, and controls visibility with access modifiers.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is a fully qualified class name?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   The package plus simple class name, e.g.\ \texttt{java.util.Scanner}, uniquely identifying the class on the classpath.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What are the different scopes in Java?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Common scopes: class/static fields, instance fields, local variables in a method or block, and parameters; inner classes/lambdas add nested lexical scope rules.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 If I define a variable within a method, how can I access its value outside of the method?
-\makeemptybox{1.05in}
-\begin{solution}
+\begin{solutionorbox}[1.05in]
   You cannot access a local variable outside its declaring block; return it, store it in a field, or pass it via parameters to code that needs it.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is the difference between using an instance variable and a static variable?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Each object has its own instance fields; static fields belong to the class and are shared by all instances (one storage location per class loader).
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
 \question[4]
 What is the difference between calling an instance method and a static method?
-\makeemptybox{1.35in}
-\begin{solution}
+\begin{solutionorbox}[1.35in]
   Instance methods run on a specific object and can use \texttt{this} and instance state; static methods belong to the class, are called via the class name, and cannot access instance fields/\texttt{this} directly.
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What is an operating system?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   System software that manages hardware, processes, memory, filesystems, and devices, and provides services so applications can run (e.g.\ scheduling, I/O).
-\end{solution}
+\end{solutionorbox}
 
 \question[4]
 What does the term ``full stack'' mean?
-\makeemptybox{1.15in}
-\begin{solution}
+\begin{solutionorbox}[1.15in]
   Typically end-to-end development across layers: front end (UI), back end (server, APIs, database), and deployment---``full stack developer'' works across those areas.
-\end{solution}
+\end{solutionorbox}
 
 \newpage
 
@@ -487,7 +448,7 @@ How do you get the size of an array \lstinline!myArray!?
 
 \question[4]
 In which scope is \texttt{x} declared?
-\begin{lstlisting}[style=javaexam]
+\begin{lstlisting}[style=java]
 public class MyClass {
   // What is the variable scope for x?
   static String x = "test string 1";

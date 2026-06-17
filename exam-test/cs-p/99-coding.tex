@@ -4,7 +4,7 @@
 
 \question[5]
 What will the following program display?\footnote{AP CSP pseudocode uses 1-based indexing for lists, so the first element is at index 1.}
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [11, 35, 6, 0]
 DISPLAY(mystery(list))
 
@@ -17,7 +17,7 @@ PROCEDURE mystery(list)
   }
   RETURN sum / LENGTH(list)
 }
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice 0
   \choice 4
@@ -30,7 +30,7 @@ PROCEDURE mystery(list)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [11, 35, 6]
 DISPLAY(mystery(list))
 
@@ -46,7 +46,7 @@ PROCEDURE mystery(list)
   }
   RETURN max
 }
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice 0
   \choice 12
@@ -61,7 +61,7 @@ PROCEDURE mystery(list)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [1, 1, 35, 6, 76, 4, 98]
 list2 <- []
 
@@ -74,7 +74,7 @@ FOR EACH item IN list1
 }
 
 DISPLAY(list2)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \CorrectChoice \texttt{[6, 76, 4, 98]}
   \choice \texttt{[1, 1, 35]}
@@ -87,7 +87,7 @@ DISPLAY(list2)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [11, 35, 6, 2]
 DISPLAY(mystery(list))
 
@@ -103,7 +103,7 @@ PROCEDURE mystery(list)
   }
   RETURN (sum / count)
 }
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice 0
   \choice 13
@@ -118,7 +118,7 @@ PROCEDURE mystery(list)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [1, 1, 35, 6, 76, 4, 98]
 list2 <- []
 
@@ -131,7 +131,7 @@ FOR EACH item IN list1
 }
 
 DISPLAY(list2)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice \texttt{[6, 76, 4, 98]}
   \CorrectChoice \texttt{[1, 1, 35]}
@@ -144,7 +144,7 @@ DISPLAY(list2)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [1, 1, 35, 6, 76, 4, 98]
 list2 <- []
 
@@ -157,7 +157,7 @@ FOR EACH item IN list1
 }
 
 DISPLAY(list2)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice \texttt{[0]}
   \choice \texttt{[-11]}
@@ -172,7 +172,7 @@ DISPLAY(list2)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [1, 1, 35, 6, 76, 4, 98]
 list2 <- []
 
@@ -185,7 +185,7 @@ FOR EACH item IN list1
 }
 
 DISPLAY(list2)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice \texttt{[6, 76, 4, 98]}
   \choice \texttt{[1, 1, 35]}
@@ -198,7 +198,7 @@ DISPLAY(list2)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [41, 1, 35, 6, 76, 4, 98]
 max <- list1[1]
 
@@ -211,7 +211,7 @@ FOR EACH item IN list1
 }
 
 DISPLAY(max)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice 1
   \CorrectChoice 98
@@ -226,7 +226,7 @@ DISPLAY(max)
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [1, 1, 35, 6, 76, 4, 98]
 max <- 0
 FOR EACH item IN list1
@@ -238,7 +238,7 @@ FOR EACH item IN list1
 }
 
 DISPLAY(max)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice 0
   \choice 98
@@ -254,10 +254,10 @@ DISPLAY(max)
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the top-left square of the grid and facing toward the top of the grid.
 \begin{center}
-  \includegraphics[width=0.26\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+  \includegraphics[width=0.26\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
 \end{center}
 Code for the procedure Mystery is shown here. Assume that the parameter \texttt{p} has been assigned a positive integer value (e.g., 1, 2, 3, \ldots).
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
   PROCEDURE Mystery(p)
   {
     REPEAT p TIMES
@@ -267,24 +267,24 @@ Code for the procedure Mystery is shown here. Assume that the parameter \texttt{
       MOVE_FORWARD
     }
   }
-\end{cspcode}
+\end{lstlisting}
 Which of the following shows a possible result of calling the procedure?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_484_471_1394_120}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_484_471_1394_120}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_489_475_1886_116}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_489_475_1886_116}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_486_473_1394_711}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_486_473_1394_711}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_489_481_1886_708}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-10_489_481_1886_708}
   \end{minipage}
 \end{center}
 \begin{choices}
@@ -302,10 +302,10 @@ Which of the following shows a possible result of calling the procedure?
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the top-left square of the grid and facing toward the top of the grid.
 \begin{center}
-  \includegraphics[width=0.26\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+  \includegraphics[width=0.26\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
 \end{center}
 Code for the procedure Mystery is shown below. Assume that the parameter \texttt{p} has been assigned a positive integer value (e.g., 1, 2, 3, \ldots).
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
   PROCEDURE Mystery(p)
   {
     REPEAT p TIMES
@@ -315,20 +315,20 @@ Code for the procedure Mystery is shown below. Assume that the parameter \texttt
       ROTATE_RIGHT
     }
   }
-  \end{cspcode}
+  \end{lstlisting}
 Which of the following shows the result of calling the procedure when \(p=4\)?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-11_482_476_1587_214}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-11_482_476_1587_214}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-11_485_474_2079_216}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-11_485_474_2079_216}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-11_484_473_1585_812}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-11_484_473_1585_812}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
@@ -351,10 +351,10 @@ Which of the following shows the result of calling the procedure when \(p=4\)?
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the top-left square of the grid and facing toward the top of the grid.
 \begin{center}
-  \includegraphics[width=0.26\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+  \includegraphics[width=0.26\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
 \end{center}
 Code for the procedure Mystery is shown below. Assume that the parameter \texttt{p} has been assigned a positive integer value (e.g., 1, 2, 3, \ldots).
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
   PROCEDURE Mystery(p)
   {
     REPEAT p TIMES
@@ -364,24 +364,24 @@ Code for the procedure Mystery is shown below. Assume that the parameter \texttt
       ROTATE_LEFT
     }
   }
-\end{cspcode}
+\end{lstlisting}
 Which of the following shows the result of calling the procedure when \(p=4\)?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_486_501_1366_47}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_486_501_1366_47}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_485_471_1864_77}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_485_471_1864_77}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_484_471_1366_653}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_484_471_1366_653}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_484_476_1860_648}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-12_484_476_1860_648}
   \end{minipage}
 \end{center}
 \begin{choices}
@@ -398,7 +398,7 @@ Which of the following shows the result of calling the procedure when \(p=4\)?
 
 \question[5]
 The program below is intended to find the highest non-negative number in a list.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [1, -2, 3, 0, -7]
 result <- 0
 
@@ -411,7 +411,7 @@ FOR EACH item IN list
 }
 
 DISPLAY(result)
-\end{cspcode}
+\end{lstlisting}
 Does the program work as intended?
 \begin{choices}
   \choice Yes; it displays 1.
@@ -425,7 +425,7 @@ Does the program work as intended?
 
 \question[5]
 The following program is intended to find the lowest number in \texttt{list}.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [1, -2, 3, 10, -7]
 result <- list[1]
 
@@ -438,7 +438,7 @@ FOR EACH item IN list
 }
 
 DISPLAY(result)
-\end{cspcode}
+\end{lstlisting}
 Does the program work as intended?
 \begin{choices}
   \choice Yes; it displays -7.
@@ -454,7 +454,7 @@ Does the program work as intended?
 
 \question[5]
 The following program is intended to find the lowest number in \texttt{list}.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [1, 5, 9, 10]
 result <- 0
 
@@ -467,7 +467,7 @@ FOR EACH item IN list
 }
 
 DISPLAY(result)
-\end{cspcode}
+\end{lstlisting}
 Does the program work as intended?
 \begin{choices}
   \choice Yes; it returns 10.
@@ -481,7 +481,7 @@ Does the program work as intended?
 
 \question[5]
 The following program is intended to find the greatest number in \texttt{list}.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list <- [-3, -5, -200, -1]
 result <- list[1]
 
@@ -494,7 +494,7 @@ FOR EACH item IN list
 }
 
 DISPLAY(result)
-\end{cspcode}
+\end{lstlisting}
 Does the program work as intended?
 \begin{choices}
   \choice Yes; it returns -200.
@@ -511,10 +511,10 @@ Does the program work as intended?
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the top-left square of the grid and facing toward the top of the grid.
 \begin{center}
-  \includegraphics[width=0.26\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+  \includegraphics[width=0.26\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
 \end{center}
 Code for the procedure Mystery is shown below. Assume that the parameter \texttt{p} has been assigned a positive integer value (e.g., 1, 2, 3, \ldots).
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
   PROCEDURE Mystery(p)
   {
     REPEAT p TIMES
@@ -523,24 +523,24 @@ Code for the procedure Mystery is shown below. Assume that the parameter \texttt
       MOVE_FORWARD
     }
   }
-\end{cspcode}
+\end{lstlisting}
 Which of the following shows the result of calling the procedure when \(p=6\)?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_485_474_1370_70}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_485_474_1370_70}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_485_470_1866_70}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_485_470_1866_70}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_482_474_1370_663}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_482_474_1370_663}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_485_476_1864_661}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-17_485_476_1864_661}
   \end{minipage}
 \end{center}
 \begin{choices}
@@ -558,10 +558,10 @@ Which of the following shows the result of calling the procedure when \(p=6\)?
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the top-left square of the grid and facing toward the top of the grid.
 \begin{center}
-  \includegraphics[width=0.26\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+  \includegraphics[width=0.26\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
 \end{center}
 Code for the procedure Mystery is shown below. Assume that the parameter \texttt{p} has been assigned a positive integer value (e.g., 1, 2, 3, \ldots).
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
   PROCEDURE Mystery(p)
   {
     REPEAT p TIMES
@@ -570,20 +570,20 @@ Code for the procedure Mystery is shown below. Assume that the parameter \texttt
       ROTATE_RIGHT
     }
   }
-\end{cspcode}
+\end{lstlisting}
 Which of the following shows the result of calling the procedure when \(p=6\)?
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-18_484_501_1379_47}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-18_484_501_1379_47}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-18_480_497_1869_47}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-18_480_497_1869_47}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-18_484_472_1375_644}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-18_484_472_1375_644}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
@@ -607,12 +607,12 @@ The following question uses a robot in a grid of squares. The robot is represent
 
 Which of the following code segments produces the result above?
 \begin{center}
-  \includegraphics[width=0.50\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-19_506_500_154_23}
+  \includegraphics[width=0.50\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-19_506_500_154_23}
 \end{center}
 \begin{choices}
   \choice
   \begin{minipage}[t]{0.9\linewidth}
-  \begin{cspcode}
+  \begin{lstlisting}[style=pseudo]
 n <- 2
 REPEAT n TIMES
 {
@@ -621,20 +621,20 @@ REPEAT n TIMES
   ROTATE_LEFT
   MOVE_FORWARD
 }
-  \end{cspcode}
+  \end{lstlisting}
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.9\linewidth}
-  \begin{cspcode}
+  \begin{lstlisting}[style=pseudo]
 MOVE_FORWARD
 MOVE_FORWARD
 ROTATE_RIGHT
 MOVE_FORWARD
-  \end{cspcode}
+  \end{lstlisting}
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.9\linewidth}
-  \begin{cspcode}
+  \begin{lstlisting}[style=pseudo]
 n <- 2
 ROTATE_RIGHT
 REPEAT n TIMES
@@ -643,11 +643,11 @@ REPEAT n TIMES
 }
 ROTATE_LEFT
 MOVE_FORWARD
-  \end{cspcode}
+  \end{lstlisting}
   \end{minipage}
   \choice
   \begin{minipage}[t]{0.9\linewidth}
-  \begin{cspcode}
+  \begin{lstlisting}[style=pseudo]
 n <- 2
 REPEAT n TIMES
 {
@@ -657,7 +657,7 @@ REPEAT n TIMES
   MOVE_FORWARD
 }
 ROTATE_RIGHT
-  \end{cspcode}
+  \end{lstlisting}
   \end{minipage}
 \end{choices}
 \begin{solution}
@@ -669,10 +669,10 @@ ROTATE_RIGHT
 \question[5]
 The following question uses a robot in a grid of squares. The robot is represented as a triangle, which is initially in the top-left square of the grid and facing toward the top of the grid.
 \begin{center}
-  \includegraphics[width=0.26\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+  \includegraphics[width=0.26\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
 \end{center}
 Code for the procedure Mystery is shown below. Assume that the parameter \texttt{p} has been assigned a positive integer value (e.g., 1, 2, 3, \ldots).
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
   PROCEDURE Mystery(p)
   {
     REPEAT p TIMES
@@ -681,24 +681,24 @@ Code for the procedure Mystery is shown below. Assume that the parameter \texttt
       MOVE_FORWARD
     }
   }
-\end{cspcode} 
+\end{lstlisting} 
 Which of the following shows the result of calling the procedure for any value of \(p\)? \textbf{Select two answers.}
 \begin{center}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(A)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_486_484_1420_60}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_486_484_1420_60}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(B)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_493_510_1903_34}
   \end{minipage}
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(C)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_485_475_1417_653}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_485_475_1417_653}
   \end{minipage}\hfill
   \begin{minipage}[t]{0.24\linewidth}\centering
     \textbf{(D)}\\[0.5em]
-    \includegraphics[width=\linewidth]{images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_486_475_1901_653}
+    \includegraphics[width=\linewidth]{cs-p/images/28f8d221-10b3-4a50-9845-f8cdfb9b0a46-20_486_475_1901_653}
   \end{minipage}
 \end{center}
 \begin{checkboxes}
@@ -715,7 +715,7 @@ Which of the following shows the result of calling the procedure for any value o
 
 \question[5]
 The following program is intended to find the average of a class's scores. What does the code segment display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 scores <- [10, 10, 15]
 count <- 0
 
@@ -727,7 +727,7 @@ FOR EACH item IN scores
 }
 
 DISPLAY(result / count)
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice 0
   \CorrectChoice 5
@@ -740,7 +740,7 @@ DISPLAY(result / count)
 
 \question[5]
 The following code segment is intended to find the maximum.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE Mystery(list)
 {
   max <- list[1]
@@ -753,7 +753,7 @@ PROCEDURE Mystery(list)
   }
   RETURN max
 }
-\end{cspcode}
+\end{lstlisting}
 Which code segment can replace \texttt{MISSING CODE} to make the procedure work as intended?
 \begin{choices}
   \choice max > item
@@ -771,7 +771,7 @@ Which code segment can replace \texttt{MISSING CODE} to make the procedure work 
 
 \question[5]
 What is the purpose of the procedure below?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE Mystery(list)
 {
   x <- 0
@@ -784,7 +784,7 @@ PROCEDURE Mystery(list)
   }
   RETURN x
 }
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice The number of even items in \texttt{list}
   \choice The number of items in \texttt{list}
@@ -799,7 +799,7 @@ PROCEDURE Mystery(list)
 
 \question[5]
 The following procedure is intended to find the amount of numbers in \texttt{list} that are divisible by 5 and 2.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE Mystery(list)
 {
   x <- 0
@@ -812,7 +812,7 @@ PROCEDURE Mystery(list)
   }
   RETURN x
 }
-\end{cspcode}
+\end{lstlisting}
 Which code segment can replace \texttt{MISSING CODE} to make the procedure work as intended?
 \begin{choices}
   \choice item MOD 5 = 0 OR item MOD 2 = 1
@@ -827,7 +827,7 @@ Which code segment can replace \texttt{MISSING CODE} to make the procedure work 
 \question[5]
 The following code segment is intended to switch the values of \texttt{x} and \texttt{y} (assume they are initialized).
 \begin{center}
-  \includegraphics[width=0.30\linewidth]{images/db0f08f3-bd34-4c53-9fa3-b5171cecbd88-05_321_439_94_34}
+  \includegraphics[width=0.30\linewidth]{cs-p/images/db0f08f3-bd34-4c53-9fa3-b5171cecbd88-05_321_439_94_34}
 \end{center}
 What can be done to make the code segment work as intended?
 \begin{choices}
@@ -844,7 +844,7 @@ What can be done to make the code segment work as intended?
 
 \question[5]
 What is the purpose of the procedure below?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE Mystery(number, list)
 {
   x <- 0
@@ -857,7 +857,7 @@ PROCEDURE Mystery(number, list)
   }
   RETURN x
 }
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice To find the amount of items in \texttt{list}
   \CorrectChoice To find the amount of items in \texttt{list} that are equal to \texttt{number}
@@ -870,7 +870,7 @@ PROCEDURE Mystery(number, list)
 
 \question[5]
 What is returned by the procedure below?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE Mystery(number, list)
 {
   x <- 0
@@ -883,7 +883,7 @@ PROCEDURE Mystery(number, list)
   }
   RETURN x
 }
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \choice Nothing, compile-time error
   \choice The amount of items in \texttt{list} that equal \texttt{number}
@@ -898,7 +898,7 @@ PROCEDURE Mystery(number, list)
 
 \question[5]
 The following procedure is intended to find the amount of values divisible by 15 in \texttt{list}.
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 PROCEDURE Mystery(list)
 {
   x <- 0
@@ -911,7 +911,7 @@ PROCEDURE Mystery(list)
   }
   RETURN x
 }
-\end{cspcode}
+\end{lstlisting}
 What can replace \texttt{MISSING CODE} to make the function work as intended?
 \begin{choices}
   \CorrectChoice item MOD 15 = 0
@@ -925,11 +925,11 @@ What can replace \texttt{MISSING CODE} to make the function work as intended?
 
 \question[5]
 What will the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 x <- 10
 arr <- ["I", "Love", "Puppies"]
 DISPLAY(arr[(x - LENGTH(arr)) MOD 3 + 1])
-\end{cspcode}
+\end{lstlisting}
 \begin{choices}
   \CorrectChoice I
   \choice Love
@@ -944,7 +944,7 @@ DISPLAY(arr[(x - LENGTH(arr)) MOD 3 + 1])
 
 \question[5]
 What does the following program display?
-\begin{cspcode}
+\begin{lstlisting}[style=pseudo]
 list1 <- [1, 35, 6, 76, -4, 98]
 list2 <- [5, 1, 8, 6, 96, -4]
 list3 <- []
@@ -961,7 +961,7 @@ PROCEDURE mystery (list1, list2, list3)
     }
     RETURN (list3)
 }
-\end{cspcode}
+\end{lstlisting}
 
 \begin{choices}
   \choice \texttt{[-4, -98]}
