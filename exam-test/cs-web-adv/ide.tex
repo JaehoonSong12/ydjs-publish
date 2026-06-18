@@ -1,0 +1,62 @@
+% Computer Science A --- AI-native IDEs and agent steering (Kiro).
+% \texttt{cs-web-adv/} module; companion to \texttt{web-adv.tex}.
+
+\runningheader{Computer Science A}{SDLC: AI IDEs}{Page \thepage\ of \numpages}
+
+\begingradingrange{csasdlcide}
+
+\uplevel{\par\textbf{AI development environments}\par}
+
+\question[6]
+What is Kiro, and how does it differ from a standard autocomplete assistant?
+\begin{solutionorbox}[4.25in]
+\textbf{Definition:} \textbf{Kiro} is an AI-native integrated development environment (IDE) and agentic software engineering platform built by AWS on top of Code OSS. It supports VS Code settings, themes, and Open VSX extensions while orchestrating autonomous AI workflows across requirements, design, implementation, testing, and cloud deployment.
+
+\textbf{Purpose:} Rather than suggesting the next line of code, Kiro is designed to take a high-level prompt and manage the full engineering lifecycle---especially for AWS-centric and spec-driven work.
+
+\textbf{Core workspace modes:}
+\begin{itemize}
+  \item \textbf{Vibe Mode:} Chat-first, exploratory interaction for quick prototypes, debugging, and Q\&A with minimal structure.
+  \item \textbf{Spec Mode:} Specification-driven development. Before code changes, Kiro generates version-controlled markdown artifacts---requirements, design, and task breakdown---so production features follow an explicit plan.
+\end{itemize}
+
+\textbf{Spec workflow artifacts:}
+\begin{itemize}
+  \item \texttt{requirements.md} --- functional requirements and edge cases (often using EARS notation).
+  \item \texttt{design.md} --- technical design with sequence diagrams, data flows, and schemas.
+  \item \texttt{tasks.md} --- discrete, trackable implementation steps (tests, accessibility, loading states) that Kiro can execute in dependency-ordered waves.
+\end{itemize}
+
+\textbf{Automation and context:}
+\begin{itemize}
+  \item \textbf{Agent Hooks:} Event-driven background automations (for example regenerate docs or tests when a service file is saved).
+  \item \textbf{Model Context Protocol (MCP):} Connect external tools, databases, and APIs for live environment context.
+  \item \textbf{AWS integration:} Built on Amazon Bedrock; can connect to SageMaker Unified Studio and cloud data catalogs over secure tunnels.
+\end{itemize}
+\end{solutionorbox}
+
+\question[4]
+What steering-file conventions does Kiro use to control agent behavior?
+\begin{solutionorbox}[3.25in]
+\textbf{Definition:} \textbf{Steering files} are project-level Markdown documents that tell Kiro how to interpret the codebase, product goals, and workflow rules. They live under \lstinline[style=bashinline]|.kiro/steering/| at the project root (or globally in \lstinline[style=bashinline]!~/.kiro/steering/!).
+
+\textbf{Purpose:} Steering constrains the AI so suggestions match your architecture, naming, testing stack, and business context instead of generic defaults.
+
+\textbf{Foundational steering files:}
+\begin{itemize}
+  \item \texttt{project.md} (or \texttt{structure.md}) --- repository layout, naming conventions, import patterns, and code-style rules (for example ``use pnpm'', ``prefer functional React components'').
+  \item \texttt{product.md} --- product purpose, core features, target users, and business objectives (the ``why'' behind technical choices).
+  \item \texttt{AGENTS.md} --- integrates the industry \textbf{AGENTS.md} specification (a ``README for robots''). A root-level \texttt{AGENTS.md} is always loaded at session start for global instructions, output formats, and workflow states.
+\end{itemize}
+
+\textbf{Custom domain steering:} Additional files such as \texttt{api-standards.md} or \texttt{testing-guidelines.md} can scope rules to specific areas. YAML front matter controls \textbf{inclusion mode} so files load only when relevant (for example database guidelines when editing migrations), keeping the context window focused.
+
+\textbf{Example front matter:}
+\begin{itemize}
+  \item \texttt{name: Database Patterns}
+  \item \texttt{description: Include when modifying schemas or writing migrations.}
+  \item Body: database guidelines (for example ``Always use async transactions\ldots'')
+\end{itemize}
+\end{solutionorbox}
+
+\endgradingrange{csasdlcide}
