@@ -65,6 +65,7 @@ document.getElementById('add').onclick = () => {
 
 \newpage
 
+
 \question[4]
 Which of the following is an example of a void tag? \emph{Select all that apply.}
 \begin{checkboxes}
@@ -115,6 +116,9 @@ TRUE or FALSE: Block-level elements automatically start on a new line and take u
 
 
 \newpage
+
+
+
 
 \question[4]
 TRUE or FALSE: Semantic tags, such as \texttt{<nav>} and \texttt{<article>}, are used to provide meaning to the content for both search engines and assistive technologies.
@@ -203,6 +207,49 @@ TRUE or FALSE: The \texttt{<head>} section of an HTML document contains the visi
 \newpage
 
 \uplevel{\par\textbf{Part 2: CSS}\par}
+
+\question[6]
+What is a selector in web development? Describe the major kinds and how they are used.
+\begin{solutionorbox}[5in]
+\textbf{Definition:} In front-end development, a \textbf{selector} is a pattern that identifies DOM nodes so CSS can style them or JavaScript can manipulate them. The term also appears in UI frameworks (dropdown ``select'' components) and state libraries (Redux/NgRx \textbf{selectors}).
+
+\textbf{Purpose:} Selectors decouple document structure from presentation and behavior: the same HTML can be restyled or scripted by changing the selector logic rather than rewriting markup.
+
+\textbf{1. CSS selectors (styling):}
+\begin{itemize}
+  \item \textbf{Type/element} --- every instance of a tag: \lstinline[style=cssinline]|p|
+  \item \textbf{Class} --- reusable groups: \lstinline[style=cssinline]|.btn-primary|
+  \item \textbf{ID} --- one unique element per page: \lstinline[style=cssinline]|#main-header|
+  \item \textbf{Attribute} --- match presence or value: \lstinline[style=cssinline]!input[type="email"]!
+  \item \textbf{Pseudo-class / pseudo-element} --- state or fragment: \lstinline[style=cssinline]|button:hover|, \lstinline[style=cssinline]|p::first-line|
+\end{itemize}
+
+\begin{lstlisting}[style=css]
+.btn-primary { background-color: steelblue; color: white; }
+#main-header { font-size: 1.5rem; }
+input[type="text"] { border: 1px solid gray; }
+button:hover { background-color: darkblue; }
+\end{lstlisting}
+
+\textbf{2. DOM selectors (JavaScript):}
+\begin{itemize}
+  \item \lstinline[style=jsinline]!document.querySelector('.submit-btn')! --- first match for a CSS selector string.
+  \item \lstinline[style=jsinline]!document.querySelectorAll('.alert')! --- static \lstinline[style=jsinline]|NodeList| of all matches (ideal for loops).
+  \item Legacy: \lstinline[style=jsinline]|getElementById|, \lstinline[style=jsinline]|getElementsByClassName| --- faster in narrow cases but less expressive.
+\end{itemize}
+
+\begin{lstlisting}[style=js]
+const submitBtn = document.querySelector('.submit-btn');
+submitBtn.textContent = 'Click Me';
+
+document.querySelectorAll('.alert-box')
+  .forEach(alert => { alert.style.display = 'none'; });
+\end{lstlisting}
+
+\textbf{3. UI component selectors:} Native \lstinline[style=htmlinline]|<select>| dropdowns and custom combo-box/autocomplete widgets (for example react-select) let users pick one or many options inside forms.
+
+\textbf{4. State-management selectors:} In Redux or NgRx, a selector is a pure function that derives a slice of global state (for example \lstinline[style=jsinline]|selectUserLoggedIn|) so components re-render only when that slice changes.
+\end{solutionorbox}
 
 \question[4]
 When using Flexbox, which property is used to align items along the main axis? \emph{Select all that apply.}
@@ -303,6 +350,39 @@ h2 ~ p { color: gray; }  /* both paragraphs */
 \end{solution}
 
 \question[4]
+What are sibling selectors in CSS? How do the adjacent and general combinators differ?
+\begin{solutionorbox}[3.75in]
+\textbf{Definition:} \textbf{Sibling selectors} target elements that share the same parent and sit at the same nesting depth. CSS provides two combinators: \textbf{adjacent sibling} (\lstinline[style=cssinline]|+|) and \textbf{general sibling} (\lstinline[style=cssinline]!h1 ~ p!).
+
+\textbf{Purpose:} Sibling selectors style relationships between peer elements without extra wrapper classes---common for intro paragraphs after headings, form field spacing, and CSS-only toggle/tab patterns.
+
+\textbf{Adjacent sibling (\lstinline[style=cssinline]|+|):} Selects element $B$ only when $B$ is the \emph{immediate} next sibling after element $A$.
+
+\begin{lstlisting}[style=html]
+<h1>Main Title</h1>
+<p>Styled: directly after the heading.</p>
+<p>Not styled: second paragraph.</p>
+\end{lstlisting}
+\begin{lstlisting}[style=css]
+h1 + p { color: navy; font-weight: bold; }  /* only first p */
+\end{lstlisting}
+
+\textbf{General sibling (\lstinline[style=cssinline]!h1 ~ p!):} Selects every $B$ that follows $A$ among shared-parent siblings, even if other elements appear between them.
+
+\begin{lstlisting}[style=html]
+<h1>Main Title</h1>
+<p>Styled.</p>
+<div>Unrelated container</div>
+<p>Also styled.</p>
+\end{lstlisting}
+\begin{lstlisting}[style=css]
+h1 ~ p { color: green; }  /* both paragraphs */
+\end{lstlisting}
+
+\textbf{Important rule:} Selectors only look \emph{forward} in document order. You cannot style a preceding sibling (for example an \lstinline[style=htmlinline]|<h1>| based on a later \lstinline[style=htmlinline]|<p>|).
+\end{solutionorbox}
+
+\question[4]
 TRUE or FALSE: By default, adding padding to an element increases its total calculated width.
 \begin{choices}
   \CorrectChoice TRUE
@@ -400,6 +480,48 @@ What is the primary advantage of a mobile-first strategy? \emph{Select all that 
 }
 \end{lstlisting}
 \end{solution}
+
+\question[4]
+What are media queries, and how do mobile-first and desktop-first strategies differ?
+\begin{solutionorbox}[3.75in]
+\textbf{Definition:} A \textbf{media query} is a CSS3 rule that applies styles only when device characteristics match a condition (screen width, orientation, resolution, or user preferences such as dark mode).
+
+\textbf{Purpose:} Media queries are the foundation of \textbf{responsive web design}: one HTML document adapts layout and typography across phones, tablets, and desktops.
+
+\textbf{Basic syntax:}
+\begin{lstlisting}[style=css]
+@media screen and (max-width: 768px) {
+  body {
+    background-color: #e0f2fe;
+    font-size: 16px;
+  }
+}
+\end{lstlisting}
+
+\textbf{Common features inspected:}
+\begin{itemize}
+  \item Width and height: \lstinline[style=cssinline]|width|, \lstinline[style=cssinline]|min-width|, \lstinline[style=cssinline]|max-width|
+  \item Orientation: \lstinline[style=cssinline]|portrait| vs.\ \lstinline[style=cssinline]|landscape|
+  \item Resolution: high-density (Retina) displays
+  \item User preferences: \lstinline[style=cssinline]|prefers-color-scheme: dark|, \lstinline[style=cssinline]|prefers-reduced-motion|
+\end{itemize}
+
+\textbf{Desktop-first (\lstinline[style=cssinline]|max-width|):} Start with large-screen styles, then add queries that tighten layout as the viewport shrinks.
+
+\textbf{Mobile-first (\lstinline[style=cssinline]|min-width|) --- industry preference:} Ship minimal base styles for small screens (no query overhead), then progressively enhance with \lstinline[style=cssinline]|min-width| breakpoints as space grows. This keeps default payloads lighter on constrained devices.
+
+\begin{lstlisting}[style=css]
+/* Mobile-first base */
+.container { width: 100%; }
+
+@media screen and (min-width: 768px) {
+  .container { width: 90%; }
+}
+@media screen and (min-width: 1024px) {
+  .container { width: 80%; max-width: 1200px; }
+}
+\end{lstlisting}
+\end{solutionorbox}
 
 \newpage
 
@@ -499,6 +621,57 @@ console.log(result); // Promise { <fulfilled>: "Success" }
 const value = await fetchStatus(); // "Success"
 \end{lstlisting}
 \end{solution}
+
+\question[6]
+Explain Promises, \lstinline[style=jsinline]|async|, and \lstinline[style=jsinline]|await|. How do they work together?
+\begin{solutionorbox}[4.75in]
+\textbf{Definition:} A \textbf{Promise} is an object representing the eventual result of an asynchronous operation (\emph{pending}, \emph{fulfilled}, or \emph{rejected}). The \lstinline[style=jsinline]|async| keyword marks a function that always returns a Promise; \lstinline[style=jsinline]|await| pauses execution inside that function until a Promise settles and yields its resolved value.
+
+\textbf{Purpose:} Network calls, timers, and file I/O would block the main thread if written synchronously. Promises coordinate completion callbacks; \lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await| (ES2017) rewrites Promise chains into linear, readable code with standard \lstinline[style=jsinline]|try|/\lstinline[style=jsinline]|catch| error handling.
+
+\textbf{Promise lifecycle with \lstinline[style=jsinline]|.then()| / \lstinline[style=jsinline]|.catch()|:}
+\begin{lstlisting}[style=js]
+function fetchUserData() {
+  return new Promise((resolve, reject) => {
+    const success = true;
+    setTimeout(() => {
+      if (success) {
+        resolve({ id: 1, name: "Jaehoon" });
+      } else {
+        reject("Failed to fetch user");
+      }
+    }, 1000);
+  });
+}
+
+fetchUserData()
+  .then(data => console.log("User data received:", data))
+  .catch(error => console.error("Error:", error));
+\end{lstlisting}
+
+\textbf{Modern \lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await| equivalent:}
+\begin{lstlisting}[style=js]
+async function displayUser() {
+  try {
+    console.log("Fetching user...");
+    const data = await fetchUserData();
+    console.log("User data received:", data);
+  } catch (error) {
+    console.error("Caught an error:", error);
+  }
+}
+
+displayUser();
+\end{lstlisting}
+
+\textbf{Key contrasts:}
+\begin{itemize}
+  \item \textbf{Syntax:} \lstinline[style=jsinline]|.then()| chains callbacks; \lstinline[style=jsinline]|await| reads top-to-bottom like synchronous code.
+  \item \textbf{Errors:} Promises use \lstinline[style=jsinline]|.catch()|; \lstinline[style=jsinline]|async| functions use \lstinline[style=jsinline]|try|/\lstinline[style=jsinline]|catch|.
+  \item \textbf{Return behavior:} An \lstinline[style=jsinline]|async| function wraps non-Promise return values in an automatically resolved Promise; thrown errors become rejected Promises.
+  \item \textbf{Under the hood:} \lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await| is syntactic sugar on top of Promises---it does not replace the Promise API.
+\end{itemize}
+\end{solutionorbox}
 
 \question[4]
 TRUE or FALSE: Array methods like \lstinline[style=jsinline]|.map()| and \lstinline[style=jsinline]|.filter()| mutate the original array they are called upon.

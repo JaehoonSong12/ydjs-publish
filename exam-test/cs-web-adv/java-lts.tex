@@ -1,0 +1,105 @@
+% Computer Science A --- Java LTS releases (17 vs.\ 21) and sealed classes.
+% \texttt{cs-web-adv/} module; companion to \texttt{web-adv.tex}.
+
+\runningheader{Computer Science A}{Java LTS \& sealed types}{Page \thepage\ of \numpages}
+
+\begingradingrange{csajavalts}
+
+\uplevel{\par\textbf{Java platform (17 vs.\ 21)}\par}
+
+\question[6]
+Compare Java 17 and Java 21. Why would a new project choose Java 21?
+\begin{solutionorbox}[5.5in]
+\textbf{Definition:} Java 17 (LTS, September 2021) and Java 21 (LTS, September 2023) are both Long-Term Support releases. Java 21 finalizes major concurrency and data-manipulation features that were preview-only or absent in Java 17.
+
+\textbf{Purpose:} Teams pick Java 21 for higher-throughput server workloads, cleaner pattern-matching code, and a more uniform Collections API---without abandoning the stability expectations of an LTS line.
+
+\textbf{Key differences:}
+\begin{itemize}
+  \item \textbf{Concurrency:} Java 17 maps each \lstinline[style=javainline]|Thread| to a heavy OS thread (large stack, kernel context switches). A typical JVM supports only a few thousand active platform threads before memory pressure dominates. Java 21 introduces \textbf{Virtual Threads} (Project Loom): lightweight threads scheduled by the JVM onto a small pool of carrier threads. When a virtual thread blocks on I/O, the JVM parks it and reuses the carrier for another task---yielding async-style throughput with synchronous-looking code.
+  \item \textbf{Pattern matching:} Java 17 standardizes \lstinline[style=javainline]|instanceof| pattern matching (type check and bind in one step). Java 21 finalizes \textbf{pattern matching for \lstinline[style=javainline]|switch|} and \textbf{record patterns}, so cases can match object types, deconstruct records, apply \lstinline[style=javainline]|when| guards, and handle \lstinline[style=javainline]|null| directly.
+  \item \textbf{Sealed types + exhaustiveness:} Sealed classes arrived in Java 17; Java 21 pairs them with exhaustive \lstinline[style=javainline]|switch| expressions so the compiler rejects missing cases when every permitted subclass is handled.
+  \item \textbf{Sequenced Collections (JEP 431):} Before Java 21, first/last element access differed by collection type (\lstinline[style=javainline]|.get(0)|, \lstinline[style=javainline]|.iterator().next()|, \lstinline[style=javainline]|.get(size()-1)|). Java 21 adds \lstinline[style=javainline]|SequencedCollection|, \lstinline[style=javainline]|SequencedSet|, and \lstinline[style=javainline]|SequencedMap| with uniform \lstinline[style=javainline]|getFirst()|, \lstinline[style=javainline]|getLast()|, \lstinline[style=javainline]|reversed()|, and related methods.
+  \item \textbf{Garbage collection:} Java 21 improves generational ZGC out of the box, reducing allocation stalls under load compared with manual ZGC tuning common on Java 17 deployments.
+\end{itemize}
+
+\textbf{Example (Java 17 --- \lstinline[style=javainline]|instanceof| pattern matching):}
+\begin{lstlisting}[style=java]
+Object obj = "Hello from Java 17";
+if (obj instanceof String s) {
+    System.out.println(s.toUpperCase()); // no (String) cast
+}
+\end{lstlisting}
+
+\textbf{Example (Java 21 --- virtual threads):}
+\begin{lstlisting}[style=java]
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    IntStream.range(0, 100_000).forEach(i ->
+        executor.submit(() -> {
+            Thread.sleep(Duration.ofSeconds(1));
+            return i;
+        })
+    );
+}
+\end{lstlisting}
+
+\textbf{Example (Java 21 --- record patterns in \lstinline[style=javainline]|switch|):}
+\begin{lstlisting}[style=java]
+record Point(int x, int y) {}
+
+Object obj = new Point(10, 20);
+String result = switch (obj) {
+    case Integer i -> "Integer: " + i;
+    case String s  -> "String: " + s;
+    case Point(int x, int y) -> "Point at " + x + ", " + y;
+    default -> "Unknown";
+};
+\end{lstlisting}
+
+\textbf{Recommendation:} For new server-side or full-stack Java projects, Java 21 is the stronger default because virtual threads simplify high-concurrency web services and pattern matching reduces boilerplate around domain data.
+\end{solutionorbox}
+
+\newpage
+
+\question[6]
+What are sealed classes, and how do they support a functional style in modern Java?
+\begin{solutionorbox}[4.5in]
+\textbf{Definition:} A \textbf{sealed class} or \textbf{sealed interface} restricts which types may extend or implement it. The base type declares a finite \lstinline[style=javainline]|permits| list; each permitted subclass must be \lstinline[style=javainline]|final|, \lstinline[style=javainline]|sealed|, or \lstinline[style=javainline]|non-sealed|.
+
+\textbf{Purpose:} Sealed types model \textbf{algebraic data types} (ADTs) from functional programming: a value can only be one of a known set of variants. Combined with Java 21 pattern matching, the compiler enforces \textbf{exhaustiveness}---every permitted case must be handled, so runtime \lstinline[style=javainline]|IllegalArgumentException| guards become unnecessary.
+
+\textbf{Clarification:} Sealed classes were \emph{finalized in Java 17}. Java 21 finalizes pattern matching for \lstinline[style=javainline]|switch|, which is the feature that unlocks compile-time exhaustiveness checking on sealed hierarchies.
+
+\textbf{Example (sealed hierarchy):}
+\begin{lstlisting}[style=java]
+public sealed interface Shape permits Circle, Rectangle, Square {}
+
+public final class Circle implements Shape {
+    private final double radius;
+    public Circle(double radius) { this.radius = radius; }
+    public double radius() { return radius; }
+}
+// Rectangle and Square similarly declared final
+\end{lstlisting}
+
+\textbf{Example (exhaustive area calculation without a \lstinline[style=javainline]|default| case):}
+\begin{lstlisting}[style=java]
+public double getArea(Shape shape) {
+    return switch (shape) {
+        case Circle c    -> Math.PI * c.radius() * c.radius();
+        case Rectangle r -> r.length() * r.width();
+        case Square s    -> s.side() * s.side();
+        // no default: compiler verifies all permitted shapes are covered
+    };
+}
+\end{lstlisting}
+
+\textbf{Benefits:}
+\begin{itemize}
+  \item \textbf{Domain control:} Third-party code cannot silently add new subclasses that bypass your API rules.
+  \item \textbf{Compiler safety:} Adding a new permitted subclass breaks the build anywhere a non-exhaustive \lstinline[style=javainline]|switch| exists, surfacing missing logic before runtime.
+  \item \textbf{Cleaner code:} Eliminates defensive \lstinline[style=javainline]|else| branches and ``unknown type'' exceptions at the bottom of handlers.
+\end{itemize}
+\end{solutionorbox}
+
+\endgradingrange{csajavalts}
