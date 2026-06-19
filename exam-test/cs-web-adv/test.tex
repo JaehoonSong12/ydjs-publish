@@ -1,0 +1,432 @@
+% Computer Science A --- Web fundamentals and Gradle (practice bank).
+% Formatted from raw source in this file.
+
+\runningheader{Computer Science A}{Web \& Gradle practice}{Page \thepage\ of \numpages}
+
+\begingradingrange{csawebtest}
+
+\uplevel{\par\textbf{Part 1: HTML}\par}
+
+\question[4]
+Which HTML version introduced semantic elements?
+\begin{choices}
+  \choice HTML 4
+  \choice XHTML
+  \CorrectChoice HTML5
+  \choice XML
+\end{choices}
+\begin{solution}
+  \textbf{HTML5} (2014) added semantic landmarks such as \lstinline[style=htmlinline]|<nav>|, \lstinline[style=htmlinline]|<article>|, \lstinline[style=htmlinline]|<section>|, and \lstinline[style=htmlinline]|<header>|. HTML 4 and XHTML relied heavily on generic \lstinline[style=htmlinline]|<div>| wrappers; XML is a markup meta-language, not an HTML version.
+\begin{lstlisting}[style=html]
+<header><h1>Course site</h1></header>
+<nav aria-label="Main"><a href="/">Home</a></nav>
+<main><article><h2>Week 3</h2></article></main>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What is the basic structure of an HTML document?
+\begin{choices}
+  \choice \texttt{head}, \texttt{body}, \texttt{footer}
+  \CorrectChoice \texttt{html}, \texttt{head}, \texttt{body}
+  \choice \texttt{body}, \texttt{div}, \texttt{span}
+  \choice \texttt{meta}, \texttt{link}, \texttt{title}
+\end{choices}
+\begin{solution}
+  Every HTML document is wrapped in \lstinline[style=htmlinline]|<html>|. \lstinline[style=htmlinline]|<head>| holds metadata; \lstinline[style=htmlinline]|<body>| holds visible content. \texttt{footer} is an optional semantic element inside \texttt{body}, not a required top-level sibling of \texttt{head}.
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>Lab</title></head>
+  <body><p>Visible content</p></body>
+</html>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which tag creates a hyperlink?
+\begin{choices}
+  \choice \texttt{<img>}
+  \choice \texttt{<link>}
+  \CorrectChoice \texttt{<a>}
+  \choice \texttt{href}
+\end{choices}
+\begin{solution}
+  The anchor element \lstinline[style=htmlinline]|<a>| defines a hyperlink. \lstinline[style=htmlinline]|href| is an \emph{attribute} on \lstinline[style=htmlinline]|<a>|, not a tag. \lstinline[style=htmlinline]|<link>| connects external resources in \lstinline[style=htmlinline]|<head>| (stylesheets, icons), not inline navigation links.
+\begin{lstlisting}[style=htmlinline]
+<a href="/docs">Read the documentation</a>
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+Which element is block-level?
+\begin{choices}
+  \choice \texttt{<span>}
+  \choice \texttt{<img>}
+  \CorrectChoice \texttt{<div>}
+  \choice \texttt{<strong>}
+\end{choices}
+\begin{solution}
+  \lstinline[style=htmlinline]|<div>| is a generic block container: it starts on a new line and spans the full width of its parent. \lstinline[style=htmlinline]|<span>| and \lstinline[style=htmlinline]|<strong>| are inline; \lstinline[style=htmlinline]|<img>| is a replaced inline element.
+\begin{lstlisting}[style=htmlinline]
+<div>Block (new line, full width)</div>
+<span>Inline</span><strong>inline</strong>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What is the purpose of semantic elements?
+\begin{choices}
+  \choice Improve styling
+  \CorrectChoice Improve code readability and SEO
+  \choice Reduce file size
+  \choice Replace CSS
+\end{choices}
+\begin{solution}
+  Semantic tags describe \emph{meaning} (\emph{this is navigation}, \emph{this is an article}), helping developers, search crawlers, and assistive technologies understand page structure. Styling still requires CSS; file size is largely unchanged.
+\begin{lstlisting}[style=html]
+<article>
+  <h2>Release notes</h2>
+  <p>Search engines and screen readers identify this as main content.</p>
+</article>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which HTML element is used for navigation?
+\begin{choices}
+  \choice \texttt{<section>}
+  \choice \texttt{<article>}
+  \CorrectChoice \texttt{<nav>}
+  \choice \texttt{<header>}
+\end{choices}
+\begin{solution}
+  \lstinline[style=htmlinline]|<nav>| is the dedicated landmark for major navigation blocks. \lstinline[style=htmlinline]|<header>| is a page or section header; \lstinline[style=htmlinline]|<section>| and \lstinline[style=htmlinline]|<article>| group content but do not imply navigation.
+\begin{lstlisting}[style=htmlinline]
+<nav aria-label="Primary">
+  <a href="/">Home</a>
+  <a href="/labs">Labs</a>
+</nav>
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[4]
+Which attribute enables form validation?
+\begin{choices}
+  \choice \texttt{action}
+  \choice \texttt{method}
+  \CorrectChoice \texttt{required}
+  \choice \texttt{value}
+\end{choices}
+\begin{solution}
+  The boolean \lstinline[style=htmlinline]|required| attribute tells the browser the field must be filled before submit. \lstinline[style=htmlinline]|action| and \lstinline[style=htmlinline]|method| control where and how the form is sent; \lstinline[style=htmlinline]|value| sets the default field content.
+\begin{lstlisting}[style=htmlinline]
+<input type="email" id="email" name="email" required>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What does \lstinline[style=jsinline]|localStorage| provide?
+\begin{choices}
+  \choice Server-side storage
+  \choice Temporary memory (cleared when the tab closes)
+  \CorrectChoice Persistent client-side storage
+  \choice Cache only (never writable by scripts)
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|localStorage| stores key--value strings in the browser for the origin until explicitly cleared. Data survives tab closes and browser restarts (unlike \lstinline[style=jsinline]|sessionStorage|). It is not server-side and is writable from JavaScript.
+\begin{lstlisting}[style=js]
+localStorage.setItem('theme', 'dark');
+console.log(localStorage.getItem('theme')); // "dark"
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Part 2: CSS}\par}
+
+\question[4]
+Which language is used for styling web pages?
+\begin{choices}
+  \choice HTML
+  \choice JavaScript
+  \CorrectChoice CSS
+  \choice SQL
+\end{choices}
+\begin{solution}
+  \textbf{Cascading Style Sheets (CSS)} control layout, color, typography, and responsive behavior. HTML defines structure; JavaScript adds behavior; SQL queries databases.
+\begin{lstlisting}[style=css]
+h1 { color: navy; font-size: 2rem; }
+.card { padding: 1rem; border-radius: 8px; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which selector targets an element by ID?
+\begin{choices}
+  \choice \texttt{.class}
+  \CorrectChoice \texttt{\#id}
+  \choice \texttt{element}
+  \choice \texttt{*}
+\end{choices}
+\begin{solution}
+  The ID selector uses a hash prefix: \lstinline[style=cssinline]|#save-btn|. Class selectors use a dot; type selectors use the tag name; \lstinline[style=cssinline]|*| matches every element.
+\begin{lstlisting}[style=htmlinline]
+<button id="save-btn">Save</button>
+\end{lstlisting}
+\begin{lstlisting}[style=css]
+#save-btn { background: green; color: white; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What does the CSS box model consist of?
+\begin{choices}
+  \CorrectChoice Margin, border, padding, and content
+  \choice Width and height only
+  \choice Color and font properties
+  \choice Grid and flex tracks
+\end{choices}
+\begin{solution}
+  From outside in: \textbf{margin} (outer spacing), \textbf{border}, \textbf{padding} (inner spacing), then \textbf{content}. \lstinline[style=cssinline]|box-sizing: border-box| includes padding and border inside the declared width.
+\begin{lstlisting}[style=css]
+.card {
+  width: 200px;
+  padding: 16px;
+  border: 2px solid gray;
+  margin: 12px;
+}
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[4]
+Which layout system is one-dimensional?
+\begin{choices}
+  \choice Grid
+  \choice Float
+  \CorrectChoice Flexbox
+  \choice Table
+\end{choices}
+\begin{solution}
+  \textbf{Flexbox} lays out items along a single main axis (row \emph{or} column). \textbf{CSS Grid} is two-dimensional (rows and columns together). Float and table layouts are older patterns; neither is the modern one-axis tool.
+\begin{lstlisting}[style=css]
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which CSS feature enables responsive design?
+\begin{choices}
+  \choice Flexbox alone
+  \CorrectChoice Media queries
+  \choice Animations
+  \choice Pseudo-elements
+\end{choices}
+\begin{solution}
+  \textbf{Media queries} apply styles when viewport width, orientation, or user preferences match a condition. Flexbox helps layout but does not by itself switch rules at breakpoints.
+\begin{lstlisting}[style=css]
+.container { width: 100%; }
+@media (min-width: 768px) {
+  .container { width: 90%; max-width: 1200px; }
+}
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Part 3: JavaScript}\par}
+
+\question[4]
+What is JavaScript primarily used for?
+\begin{choices}
+  \choice Styling pages
+  \choice Database management
+  \CorrectChoice Client-side interactivity
+  \choice Server hosting
+\end{choices}
+\begin{solution}
+  JavaScript runs in the browser (and on servers via Node.js) to respond to events, update the DOM, and call APIs. CSS handles styling; databases and hosting are separate infrastructure concerns.
+\begin{lstlisting}[style=js]
+document.getElementById('btn').addEventListener('click', () => {
+  alert('Button clicked');
+});
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which keyword declares a block-scoped variable?
+\begin{choices}
+  \choice \lstinline[style=jsinline]|var|
+  \CorrectChoice \lstinline[style=jsinline]|let|
+  \choice \lstinline[style=jsinline]|static|
+  \choice \lstinline[style=jsinline]|define|
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|let| and \lstinline[style=jsinline]|const| are block-scoped. \lstinline[style=jsinline]|var| is function-scoped and hoisted. \lstinline[style=jsinline]|static| belongs to class syntax in ES6 classes; \lstinline[style=jsinline]|define| is not a JavaScript keyword.
+\begin{lstlisting}[style=js]
+if (true) {
+  let count = 0;
+  var legacy = 1;
+}
+// count is not in scope here; legacy leaks to outer function/global
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which array method transforms elements?
+\begin{choices}
+  \choice \lstinline[style=jsinline]|.filter()|
+  \choice \lstinline[style=jsinline]|.reduce()|
+  \CorrectChoice \lstinline[style=jsinline]|.map()|
+  \choice \lstinline[style=jsinline]|.forEach()|
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|.map()| applies a function to each element and returns a \emph{new} array of transformed values. \lstinline[style=jsinline]|.filter()| selects a subset; \lstinline[style=jsinline]|.reduce()| accumulates to one value; \lstinline[style=jsinline]|.forEach()| runs side effects without returning a mapped array.
+\begin{lstlisting}[style=js]
+const nums = [1, 2, 3];
+const doubled = nums.map(n => n * 2); // [2, 4, 6]
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+\question[4]
+What does \lstinline[style=jsinline]|this| refer to in JavaScript?
+\begin{choices}
+  \choice The global scope only
+  \CorrectChoice The current execution context
+  \choice A reserved variable name for loops
+  \choice Always the function that declared it
+\end{choices}
+\begin{solution}
+  \lstinline[style=jsinline]|this| is bound by \emph{how} a function is called: as a method it often refers to the object before the dot; in strict mode at top level it may be \lstinline[style=jsinline]|undefined|; arrow functions inherit \lstinline[style=jsinline]|this| from the enclosing scope.
+\begin{lstlisting}[style=js]
+const user = {
+  name: 'Ada',
+  greet() { console.log(this.name); }
+};
+user.greet(); // "Ada" - this is user
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which feature handles asynchronous operations?
+\begin{choices}
+  \choice \lstinline[style=jsinline]|for| loop
+  \choice Callbacks
+  \CorrectChoice Promises
+  \choice \lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await|
+\end{choices}
+\begin{solution}
+  A \textbf{Promise} is the standard object representing deferred work (\emph{pending}, \emph{fulfilled}, \emph{rejected}). Callbacks and \lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await| are related patterns---\lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await| is syntactic sugar built on Promises---but Promises are the core reusable abstraction in modern JavaScript.
+\begin{lstlisting}[style=js]
+fetch('/api/user')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\uplevel{\par\textbf{Part 4: Gradle}\par}
+
+\question[4]
+Which repositories can Gradle use for resolving dependencies? \emph{Select all that apply.}
+\begin{checkboxes}
+  \CorrectChoice Maven Central repository
+  \choice Docker Hub
+  \CorrectChoice Ivy repositories
+  \CorrectChoice Local repositories
+\end{checkboxes}
+\begin{solution}
+  Gradle resolves artifacts from Maven-compatible repos (including Maven Central), Ivy repos, and the local cache (typically \lstinline[style=bashinline]|~/.gradle/caches| or a declared local directory). Docker Hub distributes container images, not Java library coordinates for Gradle dependency resolution.
+\begin{lstlisting}[style=java]
+repositories {
+    mavenCentral()
+    ivy { url "https://example.com/ivy" }
+    mavenLocal()
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+For Gradle projects, a unit test library like JUnit would go in which section?
+\begin{choices}
+  \choice \texttt{plugins}
+  \choice \texttt{repositories}
+  \CorrectChoice \texttt{dependencies}
+  \choice \texttt{tasks}
+\end{choices}
+\begin{solution}
+  Library coordinates (for example \lstinline[style=javainline]|testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'|) belong in the \textbf{dependencies} block. \texttt{plugins} apply Gradle plugins; \texttt{repositories} declare where to download artifacts; \texttt{tasks} define or configure build steps.
+\begin{lstlisting}[style=java]
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What are Gradle build scripts?
+\begin{choices}
+  \CorrectChoice Script files that define Gradle \textbf{projects} and \textbf{tasks}; a project may represent a library JAR, web application, or assembled deliverable
+  \choice Script files that list dependencies stored as JARs in the project root package only
+  \choice XML project descriptors with default directories such as \texttt{src/main/java} (Maven \texttt{pom.xml} style)
+  \choice JVM instruction files compiled with \lstinline[style=javainline]|javac| into \texttt{.class} files
+\end{choices}
+\begin{solution}
+  Gradle builds are driven by scripts (commonly \lstinline[style=bashinline]|build.gradle| or \lstinline[style=bashinline]|build.gradle.kts|). Each build has one or more \textbf{projects}; each project registers \textbf{tasks} (compile, test, jar, etc.). Dependencies are declared in the script but downloaded to Gradle's cache, not checked into the repo root. The XML description matches Maven, not Gradle; build scripts are not Java source compiled by \lstinline[style=javainline]|javac|.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+What is Gradle?
+\begin{choices}
+  \choice A dependency management tool only
+  \choice The Java compiler
+  \choice A container orchestrator
+  \CorrectChoice A build automation tool
+\end{choices}
+\begin{solution}
+  \textbf{Gradle} automates compiling, testing, packaging, and publishing software. It \emph{includes} dependency management but also orchestrates tasks and plugins across projects. The Java compiler is part of the JDK; container orchestration (for example Kubernetes) is a separate concern.
+\begin{lstlisting}[style=bash]
+./gradlew build    # compile, test, and assemble artifacts
+./gradlew test     # run unit tests
+\end{lstlisting}
+\end{solution}
+
+\endgradingrange{csawebtest}
