@@ -1,182 +1,249 @@
-% Computer Science A --- Advanced web fundamentals (HTML, CSS, JavaScript).
-% Continuation of \texttt{cs-web/}; formatted from raw source in \texttt{cs-web-adv/temp.tex}.
+% Computer Science A --- Web fundamentals (HTML, CSS, JavaScript).
+% Unified module: HTML/CSS basics (formerly \texttt{cs-web/web-static.tex}) plus advanced topics.
 
-\runningheader{Computer Science A}{Web: Advanced fundamentals}{Page \thepage\ of \numpages}
+\runningheader{Computer Science A}{Web: HTML, CSS \& JavaScript}{Page \thepage\ of \numpages}
 
 \begingradingrange{csawebadv}
 
 \uplevel{\par\textbf{Part 1: HTML}\par}
 
 \question[4]
-TRUE or FALSE: An \texttt{id} attribute is a non-unique identifier that can be reused on multiple different elements within the same HTML page.
+What does HTML (HyperText Markup Language) primarily define for a web page?
 \begin{choices}
-  \choice TRUE
-  \CorrectChoice FALSE
+  \choice The visual theme and colors only
+  \choice Only interactive behavior and event handlers
+  \CorrectChoice The structure and semantic content of the document
+  \choice The execution order of JavaScript modules
 \end{choices}
 \begin{solution}
-  Each \texttt{id} must be unique on a page. Reuse \texttt{class} for shared styling or grouping; reserve \texttt{id} for one-off targets (labels, anchors, \lstinline[style=jsinline]|document.getElementById|).
+  \textbf{HTML} marks up headings, paragraphs, lists, links, and other content so the browser can build the DOM tree. \textbf{CSS} handles presentation; \textbf{JavaScript} adds behavior.
 \begin{lstlisting}[style=htmlinline]
-<button id="submit-btn" class="btn primary">Submit</button>
-<button class="btn primary">Cancel</button>
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Title</h1>
+    <p>Paragraphs and lists carry meaning, not just looks.</p>
+  </body>
+</html>
 \end{lstlisting}
-  Two elements must not share \texttt{id="submit-btn"}, but both may share \texttt{class="btn primary"}.
-\end{solution}
-
-\question[4]
-TRUE or FALSE: The DOM (Document Object Model) is a hierarchical tree structure that allows JavaScript to interact with and change HTML elements in real-time.
-\begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
-\end{choices}
-\begin{solution}
-  The browser parses HTML into a tree rooted at \texttt{<html>}. JavaScript reads and mutates nodes to update the page without a full reload.
-\begin{lstlisting}[style=htmlinline]
-<h1 id="title">Hello</h1>
+\begin{lstlisting}[style=css]
+h1 { color: navy; font-size: 2rem; }  /* presentation */
 \end{lstlisting}
 \begin{lstlisting}[style=js]
-const title = document.getElementById('title');
-title.textContent = 'Welcome back';
-title.style.color = 'navy';
+document.querySelector('p').textContent = 'Updated by script';  /* behavior */
 \end{lstlisting}
 \end{solution}
 
 \question[4]
-TRUE or FALSE: HTML is a programming language used to perform complex logic and calculations within a web document.
+What syntax is HTML primarily made of?
 \begin{choices}
-  \choice TRUE
-  \CorrectChoice FALSE
+  \CorrectChoice Tags (elements and attributes)
+  \choice SQL clauses
+  \choice Java bytecode
+  \choice CSS declarations only
 \end{choices}
 \begin{solution}
-  HTML is a markup language for structure and semantics. Logic, loops, and calculations belong in JavaScript (or another programming language).
+  HTML is markup composed of \textbf{tags} (elements) and \textbf{attributes}. Tags define structure; attributes add names, links, classes, and other metadata on an element.
 \begin{lstlisting}[style=htmlinline]
-<p>Items: <span id="count">0</span></p>
-<button id="add">Add item</button>
+<p class="intro">Paragraph with a <a href="/help">link</a>.</p>
+<img src="icon.png" alt="Menu">  <!-- void tag + attributes -->
+\end{lstlisting}
+  Opening and closing tags wrap content; void tags such as \texttt{<img>} and \texttt{<br>} stand alone.
+\end{solution}
+
+
+
+\newpage
+
+
+\question[4]
+HTML is a programming language.
+\begin{choices}
+  \choice True
+  \CorrectChoice False---HTML is a \textbf{markup} language for structure and semantics, not a general-purpose programming language
+  \choice True only when scripts are disabled
+  \choice True only for static pages
+\end{choices}
+\begin{solution}
+  Behavior and computation belong to languages like JavaScript; HTML declares content and structure.
+\begin{lstlisting}[style=htmlinline]
+<p>Total: <span id="total">0</span></p>
+<button id="add">Add</button>
 \end{lstlisting}
 \begin{lstlisting}[style=js]
-let count = 0;
 document.getElementById('add').onclick = () => {
-  count += 1;
-  document.getElementById('count').textContent = count;
+  const el = document.getElementById('total');
+  el.textContent = Number(el.textContent) + 1;
 };
 \end{lstlisting}
-  HTML declares what appears on the page; the script performs the calculation.
+\end{solution}
+
+\question[4]
+What should appear first in a standard HTML5 document?
+\begin{choices}
+  \choice \texttt{<html>}
+  \CorrectChoice \texttt{<!DOCTYPE html>}
+  \choice \texttt{<head>}
+  \choice \texttt{<meta charset="utf-8">}
+\end{choices}
+\begin{solution}
+  The doctype declaration tells the browser to render in HTML5 \textbf{standards mode} rather than legacy quirks mode. It must precede \texttt{<html>} so parsing begins with a known ruleset.
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>Page</title></head>
+  <body></body>
+</html>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What is the HTML5 doctype declaration?
+\begin{choices}
+  \CorrectChoice \texttt{<!DOCTYPE html>}
+  \choice \texttt{<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">}
+  \choice \texttt{<!HTML doctype>}
+  \choice \texttt{<DOCTYPE html>}
+\end{choices}
+\begin{solution}
+  HTML5 uses the short, case-insensitive \texttt{<!DOCTYPE html>} declaration so browsers enter \textbf{standards mode}. Older HTML4 doctype strings are longer and refer to legacy DTD URLs.
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="utf-8"><title>Demo</title></head>
+  <body></body>
+</html>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which fragment is a correct minimal HTML5 boilerplate skeleton?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<html>
+  <head><title>Page Title</title></head>
+  <body><!-- Content goes here --></body>
+</html>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<html>
+  <title>Page Title</title>
+  <body>Content</body>
+</html>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<head><body>Content</body></head>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<body>
+  <head><title>Page Title</title></head>
+</body>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  A correct skeleton starts with the HTML5 doctype, then \texttt{<html>}, then separate \texttt{<head>} (metadata) and \texttt{<body>} (visible content) sections. Reversing \texttt{head} and \texttt{body} or omitting the doctype breaks the standard document tree.
+\begin{lstlisting}[style=htmlinline]
+<!DOCTYPE html>
+<html lang="en">
+  <head><title>Page Title</title></head>
+  <body><!-- Content goes here --></body>
+</html>
+\end{lstlisting}
 \end{solution}
 
 
 \newpage
 
-
 \question[4]
-Which of the following is an example of a void tag? \emph{Select all that apply.}
-\begin{checkboxes}
-  \choice \texttt{<a>}
-  \choice \texttt{<div>}
-  \choice \texttt{<p>}
-  \CorrectChoice \texttt{<img>}
-\end{checkboxes}
-\begin{solution}
-  Void elements cannot enclose child nodes and have no closing tag. \texttt{<img>} is self-contained; \texttt{<a>}, \texttt{<div>}, and \texttt{<p>} wrap content and require closing tags.
-\begin{lstlisting}[style=htmlinline]
-<img src="avatar.png" alt="Profile photo">
-<a href="/profile">View profile</a>
-<p>Paragraph text goes here.</p>
-\end{lstlisting}
-  Other common void tags include \texttt{<br>}, \texttt{<input>}, and \texttt{<meta>}.
-\end{solution}
-
-\question[4]
-TRUE or FALSE: To ensure accessibility, an \texttt{<input>} element should be connected to a \texttt{<label>} using the \texttt{for} attribute and a matching \texttt{id}.
+In HTML, which pair correctly matches document metadata and visible page content?
 \begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
+  \CorrectChoice \texttt{<head>} for metadata and \texttt{<body>} for visible content
+  \choice \texttt{<body>} for metadata and \texttt{<head>} for visible content
+  \choice \texttt{<title>} for metadata and \texttt{<main>} for all visible content
+  \choice \texttt{<meta>} for metadata and \texttt{<html>} for visible content only
 \end{choices}
 \begin{solution}
-  Pair \texttt{for} on the label with \texttt{id} on the input so screen readers announce the field and clicking the label text focuses the control.
+  \texttt{<head>} stores metadata (title, meta tags, stylesheet links), while \texttt{<body>} contains what users see in the rendered page.
 \begin{lstlisting}[style=htmlinline]
-<label for="user-email">Email Address:</label>
-<input type="email" id="user-email" name="email">
+<head>
+  <meta charset="utf-8">
+  <title>Lab page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Visible heading</h1>
+</body>
 \end{lstlisting}
 \end{solution}
 
 \question[4]
-TRUE or FALSE: Block-level elements automatically start on a new line and take up the full width of their container.
+Which group lists elements that normally belong inside \texttt{<body>}?
 \begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
+  \CorrectChoice \texttt{<div>}, \texttt{<header>}, \texttt{<span>}, \texttt{<strong>}
+  \choice \texttt{<link>}, \texttt{<meta>}, \texttt{<p>}, \texttt{<title>}
+  \choice \texttt{<head>}, \texttt{<h1>}, \texttt{<h2>}, \texttt{<h3>} (only in \texttt{<head>})
+  \choice \texttt{<article>}, \texttt{<aside>}, \texttt{<nav>}, \texttt{<title>}
 \end{choices}
 \begin{solution}
-  Block elements begin on a new line and stretch to the container width. Inline elements flow with surrounding text and only use the width their content needs.
+  \texttt{<title>}, \texttt{<meta>}, and \texttt{<link>} (for metadata/stylesheets) live in \texttt{<head>}. Visible flow content usually sits in \texttt{<body>}.
 \begin{lstlisting}[style=htmlinline]
-<div>Block one (full width, new line)</div>
-<div>Block two (full width, new line)</div>
-<span>Inline A</span><span>Inline B</span>
+<head>
+  <meta charset="utf-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header><h1>Welcome</h1></header>
+  <span>Inline emphasis</span>
+</body>
 \end{lstlisting}
-  Common block elements: \texttt{<div>}, \texttt{<p>}, \texttt{<h1>}--\texttt{<h6>}, \texttt{<ul>}. Common inline elements: \texttt{<span>}, \texttt{<a>}, \texttt{<strong>}.
 \end{solution}
 
-
-\newpage
-
-
-
-
 \question[4]
-TRUE or FALSE: Semantic tags, such as \texttt{<nav>} and \texttt{<article>}, are used to provide meaning to the content for both search engines and assistive technologies.
+Which element sets the text typically shown in the browser tab / window title?
 \begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
+  \choice \texttt{<h1>}
+  \choice \texttt{<header>}
+  \CorrectChoice \texttt{<title>}
+  \choice \texttt{<meta>}
 \end{choices}
 \begin{solution}
-  Semantic landmarks describe page regions explicitly. Crawlers and screen readers can identify navigation, main content, and articles instead of undifferentiated \texttt{<div>} wrappers.
+  The \texttt{<title>} element lives in \texttt{<head>} and names the document in the browser tab. Headings \texttt{<h1>}--\texttt{<h6>} structure visible page content in \texttt{<body>}---they serve different roles.
 \begin{lstlisting}[style=htmlinline]
-<header><h1>Course site</h1></header>
-<nav aria-label="Main">
-  <a href="/">Home</a>
-  <a href="/labs">Labs</a>
-</nav>
-<main>
-  <article>
-    <h2>Week 3 notes</h2>
-    <p>Lesson content...</p>
-  </article>
-</main>
-<footer>Contact info</footer>
+<head>
+  <meta charset="utf-8">
+  <title>My lab page</title>  <!-- tab label -->
+</head>
+<body>
+  <h1>Welcome to the lab</h1>  <!-- on-page heading -->
+</body>
 \end{lstlisting}
 \end{solution}
 
 \question[4]
-TRUE or FALSE: When using radio buttons, all buttons in the same group must share the same \texttt{name} attribute to ensure the user can only select one option.
+The line \texttt{<meta charset="utf-8">} in \texttt{<head>} primarily tells the browser:
 \begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
+  \choice Which JavaScript file to load first
+  \choice The exact width of the layout viewport
+  \CorrectChoice How to interpret the document's bytes as characters (text encoding)
+  \choice That the page must not be cached
 \end{choices}
 \begin{solution}
-  Radio inputs with the same \texttt{name} are mutually exclusive. Different \texttt{name} values are treated as separate groups.
+  The charset declaration names an encoding (here UTF-8) so the parser maps downloaded bytes to the right Unicode characters---especially important for accents and symbols.
 \begin{lstlisting}[style=htmlinline]
-<p>Preferred contact method:</p>
-<input type="radio" id="email" name="contact-method" value="email">
-<label for="email">Email</label>
-<input type="radio" id="phone" name="contact-method" value="phone">
-<label for="phone">Phone</label>
-\end{lstlisting}
-  Selecting \emph{Phone} automatically deselects \emph{Email} because both share \texttt{name="contact-method"}.
-\end{solution}
-
-\question[4]
-Why is the \texttt{alt} attribute essential for an \texttt{<img>} tag? \emph{Select all that apply.}
-\begin{checkboxes}
-  \choice It defines the source path of the image file.
-  \CorrectChoice It provides a text description for accessibility and SEO
-  \choice It makes the image clickable as a hyperlink.
-  \choice It allows the image to be resized automatically.
-\end{checkboxes}
-\begin{solution}
-  \texttt{alt} gives alternate text for screen readers and when the image fails to load; search crawlers use it to index image content. The file path is \texttt{src}; hyperlinks wrap the image in \texttt{<a>}; sizing uses CSS or \texttt{width}/\texttt{height}.
-\begin{lstlisting}[style=htmlinline]
-<img src="sales-chart.png" alt="Bar chart of Q3 revenue by region">
-<a href="/reports/q3">
-  <img src="sales-chart.png" alt="Open the full Q3 report">
-</a>
+<head>
+  <meta charset="utf-8">
+  <title>Encoding demo</title>
+</head>
+<body>
+  <p>Cafe, resume, and emoji render correctly when UTF-8 is declared.</p>
+</body>
 \end{lstlisting}
 \end{solution}
 
@@ -204,9 +271,989 @@ TRUE or FALSE: The \texttt{<head>} section of an HTML document contains the visi
 \end{lstlisting}
 \end{solution}
 
+\question[4]
+Which markup correctly links an \textbf{external} stylesheet \texttt{styles.css} from the same folder?
+\begin{choices}
+  \choice \texttt{<script href="styles.css"></script>}
+  \CorrectChoice \texttt{<link rel="stylesheet" href="styles.css">}
+  \choice \texttt{<style src="styles.css"></style>}
+  \choice \texttt{<css href="styles.css" />}
+\end{choices}
+\begin{solution}
+  \texttt{<link rel="stylesheet" href="...">} loads an external \texttt{.css} file into the cascade. \texttt{rel="stylesheet"} declares the relationship; \texttt{href} gives the file path. \texttt{<style>} holds inline CSS text; \texttt{<script>} is for scripts.
+\begin{lstlisting}[style=htmlinline]
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+\end{lstlisting}
+\end{solution}
+
 \newpage
 
+\question[4]
+Which element holds an \textbf{embedded} (internal) stylesheet in the document?
+\begin{choices}
+  \choice \texttt{<script>}
+  \choice \texttt{<body>}
+  \CorrectChoice \texttt{<style>} (usually in \texttt{<head>})
+  \choice \texttt{<css>}
+\end{choices}
+\begin{solution}
+  Put rule sets inside \texttt{<style>} (typically in \texttt{<head>}). External stylesheets use \texttt{<link rel="stylesheet" href="...">}; both can appear together in the same document.
+\begin{lstlisting}[style=htmlinline]
+<head>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    body { font-family: system-ui, sans-serif; }
+  </style>
+</head>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which fragment correctly represents an \textbf{unordered} list with two items?
+\begin{choices}
+  \choice \texttt{<ol><li>A</li><li>B</li></ol>}
+  \CorrectChoice \texttt{<ul><li>A</li><li>B</li></ul>}
+  \choice \texttt{<list><item>A</item></list>}
+  \choice \texttt{<ul>A</ul><ul>B</ul>}
+\end{choices}
+\begin{solution}
+  Use \texttt{<ul>} with nested \texttt{<li>} items for bullet lists; \texttt{<ol>} renders numbered items. Each item must be an \texttt{<li>}---raw text cannot sit directly inside the list wrapper.
+\begin{lstlisting}[style=htmlinline]
+<ul>
+  <li>Bullet A</li>
+  <li>Bullet B</li>
+</ul>
+<ol>
+  <li>Step 1</li>
+  <li>Step 2</li>
+</ol>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which element wraps items that should appear as a \textbf{numbered} (ordered) list?
+\begin{choices}
+  \choice \texttt{<li>}
+  \choice \texttt{<dl>}
+  \CorrectChoice \texttt{<ol>}
+  \choice \texttt{<nav>}
+\end{choices}
+\begin{solution}
+  \texttt{<ol>} (ordered list) works with \texttt{<li>} children for step-like or ranked content; \texttt{<ul>} is for bullets. Definition lists use \texttt{<dl>}/\texttt{<dt>}/\texttt{<dd>}.
+\begin{lstlisting}[style=htmlinline]
+<ol>
+  <li>Step one</li>
+  <li>Step two</li>
+</ol>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In which parent element(s) are \texttt{<li>} list items valid?
+\begin{choices}
+  \choice Only \texttt{<ul>}
+  \choice Only \texttt{<ol>}
+  \CorrectChoice Both \texttt{<ul>} and \texttt{<ol>}
+  \choice \texttt{<table>}
+\end{choices}
+\begin{solution}
+  List items belong inside \texttt{<ul>} or \texttt{<ol>}. Placing \texttt{<li>} directly under \texttt{<table>} or other unrelated parents is invalid HTML.
+\begin{lstlisting}[style=htmlinline]
+<ul><li>Bullet item</li></ul>
+<ol><li>Step one</li><li>Step two</li></ol>
+<!-- invalid: <table><li>...</li></table> -->
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In \texttt{<a href="page.html">Open</a>}, what is the role of \texttt{href}?
+\begin{choices}
+  \CorrectChoice It specifies the link destination (URL or path)
+  \choice It sets the font size of the link text
+  \choice It makes the link open only in a new window
+  \choice It prevents the default navigation behavior
+\end{choices}
+\begin{solution}
+  The \textbf{hypertext reference} attribute \texttt{href} points to the resource to load. Presentation is CSS; \texttt{target} and JS handlers affect navigation behavior separately.
+\begin{lstlisting}[style=htmlinline]
+<a href="page.html">Open</a>
+<a href="https://example.com/" target="_blank">External</a>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which markup is the most correct table structure?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlinline]
+<table>
+  <tr><th>Header 1</th><th>Header 2</th></tr>
+  <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
+  <tr><td>Row 2, Cell 1</td><td>Row 2, Cell 2</td></tr>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<table>
+  <tr><th>Header 1</th><th>Header 2
+  <tr><td>Row 1, Cell 1</td><td>Row 1, Cell 2</td></tr>
+  <td>Row 2, Cell 1</td><td>Row 2, Cell 2</td>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<table>
+  <thead>Header 1 Header 2</thead>
+  <tbody>Row 1, Cell 1 Row 1, Cell 2</tbody>
+</table>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<table>
+  <td>Header 1</td><td>Header 2</td>
+</table>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  Proper tables nest cells inside row containers (\texttt{<tr>}). Use \texttt{<th>} for header cells and \texttt{<td>} for data cells so structure and accessibility tools can distinguish headings from body values.
+\begin{lstlisting}[style=htmlinline]
+<table>
+  <tr><th>Name</th><th>Score</th></tr>
+  <tr><td>Alex</td><td>92</td></tr>
+</table>
+\end{lstlisting}
+  Raw text or \texttt{<td>} cells placed directly under \texttt{<table>} without \texttt{<tr>} rows is invalid structure.
+\end{solution}
+
+\question[4]
+Which HTML element is a void element (does not require a closing tag)?
+\begin{choices}
+  \CorrectChoice \texttt{<img>}
+  \choice \texttt{<p>}
+  \choice \texttt{<li>}
+  \choice \texttt{<table>}
+\end{choices}
+\begin{solution}
+  \texttt{<img>} is a \textbf{void element}: it cannot wrap child content and has no separate closing tag in HTML5. Common void tags also include \texttt{<br>}, \texttt{<input>}, and \texttt{<meta>}.
+\begin{lstlisting}[style=htmlinline]
+<img src="photo.jpg" alt="Team photo">
+<p>Paragraphs and list items require closing tags.</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which syntax is correct for an image element with source and alternate text?
+\begin{choices}
+  \CorrectChoice \texttt{<img src="image.jpg" alt="Description">}
+  \choice \texttt{<img href="image.jpg" alt="Description"></img>}
+  \choice \texttt{<image src="image.jpg" alt="Description">}
+  \choice \texttt{<img>image.jpg</img>}
+\end{choices}
+\begin{solution}
+  \texttt{src} names the image file URL or path; \texttt{alt} supplies accessible fallback text. There is no \texttt{<image>} tag, and \texttt{href} belongs on anchors, not images.
+\begin{lstlisting}[style=htmlinline]
+<img src="photo.jpg" alt="Team photo at the spring fair">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The \texttt{alt} attribute on \texttt{<img>} is important mainly because it:
+\begin{choices}
+  \choice Sets the image file path (same role as \texttt{src})
+  \choice Forces the image to load faster
+  \CorrectChoice Provides a text substitute for the image (accessibility, broken image, screen readers)
+  \choice Defines the clickable region for the image only
+\end{choices}
+\begin{solution}
+  \texttt{alt} provides a text substitute when the image cannot be seen---for screen readers, slow connections, or broken \texttt{src} URLs. It is not the file path (\texttt{src}) and does not control layout size.
+\begin{lstlisting}[style=htmlinline]
+<img src="logo.png" alt="Company logo">
+\end{lstlisting}
+  Meaningful \texttt{alt} text improves accessibility and helps search engines index image content.
+\end{solution}
+
+\question[4]
+Why is the \texttt{alt} attribute essential for an \texttt{<img>} tag? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice It defines the source path of the image file.
+  \CorrectChoice It provides a text description for accessibility and SEO
+  \choice It makes the image clickable as a hyperlink.
+  \choice It allows the image to be resized automatically.
+\end{checkboxes}
+\begin{solution}
+  \texttt{alt} gives alternate text for screen readers and when the image fails to load; search crawlers use it to index image content. The file path is \texttt{src}; hyperlinks wrap the image in \texttt{<a>}; sizing uses CSS or \texttt{width}/\texttt{height}.
+\begin{lstlisting}[style=htmlinline]
+<img src="sales-chart.png" alt="Bar chart of Q3 revenue by region">
+<a href="/reports/q3">
+  <img src="sales-chart.png" alt="Open the full Q3 report">
+</a>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In HTML5, \texttt{<br>} and \texttt{<img>} are usually written without a closing tag because they are:
+\begin{choices}
+  \choice Deprecated and should be replaced by \texttt{<div>}
+  \choice Only valid inside \texttt{<table>}
+  \CorrectChoice Void (empty) elements---they do not wrap text content
+  \choice Required to use self-closing XML form \texttt{</img>} in all browsers
+\end{choices}
+\begin{solution}
+  Void elements have no element content; the XHTML-style \texttt{<br />} form is tolerated but optional in HTML5. Other common void tags include \texttt{<input>} and \texttt{<meta>}.
+\begin{lstlisting}[style=htmlinline]
+<p>Line one<br>Line two</p>
+<img src="pic.png" alt="Profile photo">
+<input type="text" name="user">
+<meta charset="utf-8">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which of the following is an example of a void tag? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \texttt{<a>}
+  \choice \texttt{<div>}
+  \choice \texttt{<p>}
+  \CorrectChoice \texttt{<img>}
+\end{checkboxes}
+\begin{solution}
+  Void elements cannot enclose child nodes and have no closing tag. \texttt{<img>} is self-contained; \texttt{<a>}, \texttt{<div>}, and \texttt{<p>} wrap content and require closing tags.
+\begin{lstlisting}[style=htmlinline]
+<img src="avatar.png" alt="Profile photo">
+<a href="/profile">View profile</a>
+<p>Paragraph text goes here.</p>
+\end{lstlisting}
+  Other common void tags include \texttt{<br>}, \texttt{<input>}, and \texttt{<meta>}.
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} a semantic HTML element?
+\begin{choices}
+  \choice \texttt{<article>}
+  \choice \texttt{<nav>}
+  \CorrectChoice \texttt{<div>}
+  \choice \texttt{<section>}
+\end{choices}
+\begin{solution}
+  \texttt{<div>} is a generic container with no built-in meaning. Semantic elements such as \texttt{<nav>} and \texttt{<article>} name the role of a page region for browsers, assistive tech, and search engines.
+\begin{lstlisting}[style=htmlinline]
+<div>Generic wrapper with no implied role</div>
+<nav aria-label="Main"><a href="/">Home</a></nav>
+<article><h2>News</h2><p>Story body</p></article>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which statement best describes \textbf{semantic} HTML elements?
+\begin{choices}
+  \choice A generic \texttt{<div>} is the main example of a semantic element
+  \choice Semantic tags are unrelated to document structure
+  \CorrectChoice They name meaningful regions (e.g.\ \texttt{<header>}, \texttt{<nav>}, \texttt{<article>}) so structure and grouping carry meaning
+  \choice They are developer-only comments that browsers ignore
+\end{choices}
+\begin{solution}
+  Semantic elements describe roles (navigation, main content, aside) rather than being purely presentational wrappers. \texttt{<div>} is non-semantic until given a role or ARIA.
+\begin{lstlisting}[style=htmlinline]
+<header><h1>Site title</h1></header>
+<nav><a href="/">Home</a></nav>
+<main><article><p>Article body</p></article></main>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Semantic tags, such as \texttt{<nav>} and \texttt{<article>}, are used to provide meaning to the content for both search engines and assistive technologies.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Semantic landmarks describe page regions explicitly. Crawlers and screen readers can identify navigation, main content, and articles instead of undifferentiated \texttt{<div>} wrappers.
+\begin{lstlisting}[style=htmlinline]
+<header><h1>Course site</h1></header>
+<nav aria-label="Main">
+  <a href="/">Home</a>
+  <a href="/labs">Labs</a>
+</nav>
+<main>
+  <article>
+    <h2>Week 3 notes</h2>
+    <p>Lesson content...</p>
+  </article>
+</main>
+<footer>Contact info</footer>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which option shows the most correct syntax for a basic login-style HTML form?
+\begin{choices}
+  \CorrectChoice
+\begin{lstlisting}[style=htmlinline]
+<form>
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username">
+  <label for="password">Password:</label>
+  <input id="password" type="password" name="password">
+  <input type="submit" value="Submit">
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<form>
+  <label username>Username</label>
+  <input text="username">
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<form>
+  <input id="username">
+  <input id="password">
+  <button>
+</form>
+\end{lstlisting}
+  \choice
+\begin{lstlisting}[style=htmlinline]
+<form action>
+  <label>Username</label>
+  <input>
+  <submit>Submit</submit>
+</form>
+\end{lstlisting}
+\end{choices}
+\begin{solution}
+  A well-formed form pairs each control with a \texttt{label} via matching \texttt{for}/\texttt{id}, uses valid \texttt{type} keywords, and sets \texttt{name} so submitted data is keyed correctly on the server.
+\begin{lstlisting}[style=htmlinline]
+<form>
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username">
+  <label for="password">Password:</label>
+  <input id="password" type="password" name="password">
+  <input type="submit" value="Submit">
+</form>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: To ensure accessibility, an \texttt{<input>} element should be connected to a \texttt{<label>} using the \texttt{for} attribute and a matching \texttt{id}.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Pair \texttt{for} on the label with \texttt{id} on the input so screen readers announce the field and clicking the label text focuses the control.
+\begin{lstlisting}[style=htmlinline]
+<label for="user-email">Email Address:</label>
+<input type="email" id="user-email" name="email">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which values are \textbf{valid} for an \texttt{<input>} element's \texttt{type} attribute?
+\begin{choices}
+  \CorrectChoice \texttt{password} and \texttt{text} are both valid \texttt{type} values
+  \choice \texttt{title} and \texttt{name} are valid \texttt{type} values
+  \choice Only \texttt{name} is valid; \texttt{text} is not
+  \choice Only \texttt{password} exists in HTML5
+\end{choices}
+\begin{solution}
+  \texttt{type} names the control kind (\texttt{text}, \texttt{password}, \texttt{email}, etc.). \texttt{name} and \texttt{title} are separate attributes---they are not valid \texttt{type} values.
+\begin{lstlisting}[style=htmlinline]
+<input type="text" name="user">
+<input type="password" name="pass">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: When using radio buttons, all buttons in the same group must share the same \texttt{name} attribute to ensure the user can only select one option.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Radio inputs with the same \texttt{name} are mutually exclusive. Different \texttt{name} values are treated as separate groups.
+\begin{lstlisting}[style=htmlinline]
+<p>Preferred contact method:</p>
+<input type="radio" id="email" name="contact-method" value="email">
+<label for="email">Email</label>
+<input type="radio" id="phone" name="contact-method" value="phone">
+<label for="phone">Phone</label>
+\end{lstlisting}
+  Selecting \emph{Phone} automatically deselects \emph{Email} because both share \texttt{name="contact-method"}.
+\end{solution}
+
+\question[4]
+In HTML, \texttt{class="card featured"} on one element means:
+\begin{choices}
+  \choice The element has invalid markup (only one class name is allowed)
+  \choice \texttt{featured} is a tag name nested inside \texttt{card}
+  \CorrectChoice The element has \textbf{both} classes \texttt{card} and \texttt{featured} (space-separated list)
+  \choice \texttt{card} is the ID and \texttt{featured} is the tag
+\end{choices}
+\begin{solution}
+  The \texttt{class} attribute is a space-separated token list. Selectors \texttt{.card}, \texttt{.featured}, and \texttt{.card.featured} can all match the same node.
+\begin{lstlisting}[style=htmlinline]
+<article class="card featured">Sale item</article>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.card { border: 1px solid #ccc; }
+.featured { background: #fff8e6; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} an HTML5 \emph{element} name?
+\begin{choices}
+  \choice \texttt{<body>}
+  \choice \texttt{<h1>}
+  \choice \texttt{<p>}
+  \CorrectChoice \texttt{<class>} (\texttt{class} is an \emph{attribute}, not a tag)
+\end{choices}
+\begin{solution}
+  \texttt{class} is an \textbf{attribute} applied to any element---for example \texttt{<p class="note">}. There is no \texttt{<class>} tag; confusing the two produces invalid markup.
+\begin{lstlisting}[style=htmlinline]
+<p class="highlight">Valid: class is an attribute</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Block-level elements automatically start on a new line and take up the full width of their container.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  Block elements begin on a new line and stretch to the container width. Inline elements flow with surrounding text and only use the width their content needs.
+\begin{lstlisting}[style=htmlinline]
+<div>Block one (full width, new line)</div>
+<div>Block two (full width, new line)</div>
+<span>Inline A</span><span>Inline B</span>
+\end{lstlisting}
+  Common block elements: \texttt{<div>}, \texttt{<p>}, \texttt{<h1>}--\texttt{<h6>}, \texttt{<ul>}. Common inline elements: \texttt{<span>}, \texttt{<a>}, \texttt{<strong>}.
+\end{solution}
+
+\question[4]
+What is true of a typical \textbf{inline} element (e.g.\ \texttt{<span>}) in normal flow?
+\begin{choices}
+  \CorrectChoice It sits in the text line by default; horizontal size follows content (subject to wrapping)
+  \choice It always starts on a new line like a block box
+  \choice It always stretches to the full viewport width
+  \choice The browser truncates its text when width is tight
+\end{choices}
+\begin{solution}
+  Inline boxes flow with surrounding text on the same line until space runs out, then wrap. They size to their content rather than spanning the full container width. Block boxes (e.g.\ \texttt{<div>}) break onto new lines by default.
+\begin{lstlisting}[style=htmlinline]
+<p>Hello <span>inline</span> world.</p>
+<div>Block on its own line</div>
+<span>A</span><span>B</span>
+\end{lstlisting}
+  \texttt{display: block} or \texttt{display: inline-block} can change this default behavior when needed.
+\end{solution}
+
+
+\newpage
+
+
+
+\question[4]
+TRUE or FALSE: An \texttt{id} attribute is a non-unique identifier that can be reused on multiple different elements within the same HTML page.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Each \texttt{id} must be unique on a page. Reuse \texttt{class} for shared styling or grouping; reserve \texttt{id} for one-off targets (labels, anchors, \lstinline[style=jsinline]|document.getElementById|).
+\begin{lstlisting}[style=htmlinline]
+<button id="submit-btn" class="btn primary">Submit</button>
+<button class="btn primary">Cancel</button>
+\end{lstlisting}
+  Two elements must not share \texttt{id="submit-btn"}, but both may share \texttt{class="btn primary"}.
+\end{solution}
+
+\question[4]
+TRUE or FALSE: HTML is a programming language used to perform complex logic and calculations within a web document.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  HTML is a markup language for structure and semantics. Logic, loops, and calculations belong in JavaScript (or another programming language).
+\begin{lstlisting}[style=htmlinline]
+<p>Items: <span id="count">0</span></p>
+<button id="add">Add item</button>
+\end{lstlisting}
+\begin{lstlisting}[style=js]
+let count = 0;
+document.getElementById('add').onclick = () => {
+  count += 1;
+  document.getElementById('count').textContent = count;
+};
+\end{lstlisting}
+  HTML declares what appears on the page; the script performs the calculation.
+\end{solution}
+
+
+\newpage
+
+\question[4]
+TRUE or FALSE: The DOM (Document Object Model) is a hierarchical tree structure that allows JavaScript to interact with and change HTML elements in real-time.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  The browser parses HTML into a tree rooted at \texttt{<html>}. JavaScript reads and mutates nodes to update the page without a full reload.
+\begin{lstlisting}[style=htmlinline]
+<h1 id="title">Hello</h1>
+\end{lstlisting}
+\begin{lstlisting}[style=js]
+const title = document.getElementById('title');
+title.textContent = 'Welcome back';
+title.style.color = 'navy';
+\end{lstlisting}
+\end{solution}
+
 \uplevel{\par\textbf{Part 2: CSS}\par}
+
+\question[4]
+In the lab progression, \textbf{inline CSS} is applied by placing declarations where?
+\begin{choices}
+  \choice Only in an external \texttt{.css} file linked via \texttt{<link>}
+  \choice Only inside a \texttt{<style>} block in the head
+  \CorrectChoice In the element's \texttt{style} attribute as a declaration list
+  \choice In a JavaScript \texttt{className} assignment only
+\end{choices}
+\begin{solution}
+  CSS can be applied three ways: \textbf{inline} (\texttt{style} attribute), \textbf{embedded} (\texttt{<style>} block), and \textbf{external} (\texttt{<link rel="stylesheet">}). Inline styles sit on one element and win the normal cascade.
+\begin{lstlisting}[style=htmlinline]
+<head>
+  <link rel="stylesheet" href="theme.css">       <!-- external -->
+  <style>body { font-family: system-ui, sans-serif; }</style>  <!-- embedded -->
+</head>
+<body>
+  <p style="color: navy; font-size: 14px;">Styled in place</p>  <!-- inline -->
+</body>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which style source has the highest normal cascade precedence (ignoring \texttt{!important})?
+\begin{choices}
+  \CorrectChoice Inline styles (style attribute)
+  \choice Embedded stylesheet rules only
+  \choice External stylesheet rules only
+  \choice Browser default stylesheet
+\end{choices}
+\begin{solution}
+  Normal cascade strength (ignoring \texttt{!important}) is roughly \textbf{inline} $>$ \textbf{ID} $>$ \textbf{class/attribute} $>$ \textbf{type} $>$ browser defaults. When specificity ties, the rule declared last wins.
+\begin{lstlisting}[style=htmlinline]
+<p id="alert" class="note" style="color: navy;">Which color wins?</p>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+p         { color: black; }   /* type: weakest here */
+.note     { color: gray; }    /* class: beats type */
+#alert    { color: crimson; } /* ID: beats class */
+/* inline style="color: navy" on the element beats all three */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which of the following is \textbf{not} part of the CSS box model?
+\begin{choices}
+  \choice Content
+  \choice Padding
+  \choice Border
+  \CorrectChoice Whitespace
+\end{choices}
+\begin{solution}
+  The canonical box model layers are \textbf{content}, \textbf{padding}, \textbf{border}, and \textbf{margin}. ``Whitespace'' is not a separate layer---visible spacing comes from margin and padding.
+\begin{lstlisting}[style=htmlinline]
+<div class="card">Content sits in the inner box.</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.card {
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin: 16px;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In the CSS box model, which area is \textbf{outside} the border (separating this element from neighbors)?
+\begin{choices}
+  \choice Padding
+  \CorrectChoice Margin
+  \choice Content box only
+  \choice \texttt{outline} (always identical to border)
+\end{choices}
+\begin{solution}
+  From inside out: \textbf{content} $\rightarrow$ \textbf{padding} $\rightarrow$ \textbf{border} $\rightarrow$ \textbf{margin}. Padding is inside the border; margin creates space outside the border between this element and its neighbors.
+\begin{lstlisting}[style=htmlinline]
+<div class="box">Content</div>
+<div class="neighbor">Next block</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.box {
+  padding: 8px;
+  border: 1px solid #333;
+  margin: 16px; /* gap outside the border, before .neighbor */
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In the Box Model lab, \texttt{background-color} applied to an element typically fills which regions (in the standard \texttt{box-sizing: content-box} mental model)?
+\begin{choices}
+  \choice Only the margin
+  \choice Only the content box, excluding padding
+  \CorrectChoice Content and padding (under the border edge)
+  \choice Only areas outside the border
+\end{choices}
+\begin{solution}
+  Background painting defaults to \textbf{content + padding} up to the inner edge of the border. Margin sits outside the painted background; widening padding extends the colored area around the text.
+\begin{lstlisting}[style=htmlinline]
+<div class="panel">Text sits on the tinted padding area.</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.panel {
+  padding: 12px;
+  background-color: #e8f4ff; /* fills content + padding, not margin */
+}
+\end{lstlisting}
+\end{solution}
+
+
+\newpage
+
+\question[4]
+Order the CSS box model layers from \textbf{outermost} to \textbf{innermost}.
+\begin{choices}
+  \choice border $\rightarrow$ margin $\rightarrow$ content $\rightarrow$ padding
+  \choice margin $\rightarrow$ padding $\rightarrow$ border $\rightarrow$ content
+  \CorrectChoice margin $\rightarrow$ border $\rightarrow$ padding $\rightarrow$ content
+  \choice border $\rightarrow$ content $\rightarrow$ margin $\rightarrow$ padding
+\end{choices}
+\begin{solution}
+  From outside in: \textbf{margin}, \textbf{border}, \textbf{padding}, \textbf{content}. The background color fills inward from the border edge through padding to the content.
+\begin{lstlisting}[style=htmlinline]
+<div class="layer-demo">Inner content</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.layer-demo {
+  margin: 20px;
+  border: 2px solid #333;
+  padding: 10px;
+  background: #eef;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS, which selector targets a class?
+\begin{choices}
+  \CorrectChoice \texttt{.myClass}
+  \choice \texttt{\#myClass}
+  \choice \texttt{myClass}
+  \choice \texttt{*myClass}
+\end{choices}
+\begin{solution}
+  A \textbf{class selector} (prefix \texttt{.}) targets any element whose \texttt{class} list contains that token. Classes are reusable across many elements; prefer them for shared styling patterns.
+\begin{lstlisting}[style=cssinline]
+.btn { padding: 0.5rem 1rem; }
+\end{lstlisting}
+\begin{lstlisting}[style=htmlinline]
+<button class="btn">Save</button>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS, which selector targets an element with a specific id?
+\begin{choices}
+  \choice \texttt{.myId}
+  \CorrectChoice \texttt{\#myId}
+  \choice \texttt{myId()}
+  \choice \texttt{*myId}
+\end{choices}
+\begin{solution}
+  An \textbf{ID selector} (prefix \texttt{\#}) matches the one element on the page with that \texttt{id}. IDs must be unique; they carry higher specificity than classes but should not replace classes for broad styling.
+\begin{lstlisting}[style=cssinline]
+#main-title { font-size: 2rem; }
+\end{lstlisting}
+\begin{lstlisting}[style=htmlinline]
+<h1 id="main-title">Dashboard</h1>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS, the selector \texttt{.highlight} targets which elements?
+\begin{choices}
+  \choice Every element with tag name \texttt{highlight}
+  \CorrectChoice Every element whose \texttt{class} attribute includes \texttt{highlight}
+  \choice The unique element with \texttt{id="highlight"}
+  \choice Only \texttt{<span>} elements
+\end{choices}
+\begin{solution}
+  The \textbf{class selector} prefix \texttt{.} matches the space-separated \texttt{class} list. \textbf{ID} uses \texttt{\#}; \textbf{type} selectors use the bare tag name (\texttt{h1}, etc.).
+\begin{lstlisting}[style=cssinline]
+.highlight {
+  background-color: yellow;
+}
+\end{lstlisting}
+\begin{lstlisting}[style=htmlinline]
+<p class="highlight">Important</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The rule \texttt{h1 \{ color: blue; \}} applies to which elements?
+\begin{choices}
+  \CorrectChoice Every \texttt{h1} element (type / element selector)
+  \choice Only \texttt{h1} elements with \texttt{id="color"}
+  \choice Only \texttt{h1} elements whose \texttt{class} is \texttt{blue}
+  \choice The first line of every paragraph
+\end{choices}
+\begin{solution}
+  A bare tag name is an \textbf{element} (type) selector---every matching tag on the page receives the rule. Class and ID selectors narrow the match; combining them raises specificity.
+\begin{lstlisting}[style=htmlinline]
+<h1>Styled heading</h1>
+<p>Paragraph stays default color.</p>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+h1 { color: blue; }  /* every h1, not every p */
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\question[4]
+Given \texttt{.container \{ background-color: lightblue; \}}, what is the div background color?
+\begin{choices}
+  \CorrectChoice Light blue
+  \choice Green
+  \choice Transparent only
+  \choice Browser default gray
+\end{choices}
+\begin{solution}
+  When the selector matches, \texttt{background-color: lightblue} paints the element's background. No other rule overrides it, so the rendered fill is light blue.
+\begin{lstlisting}[style=htmlinline]
+<div class="container">Content area</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.container { background-color: lightblue; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Given \texttt{.text \{ color: green; font-size: 16px; \}}, what is the paragraph text color?
+\begin{choices}
+  \choice Blue
+  \CorrectChoice Green
+  \choice Black
+  \choice Inherited and therefore unknown
+\end{choices}
+\begin{solution}
+  \texttt{color} sets foreground text color independently of \texttt{font-size}. Here \texttt{color: green} makes the paragraph text green regardless of the \texttt{16px} size declaration.
+\begin{lstlisting}[style=htmlinline]
+<p class="text">Sample paragraph</p>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.text { color: green; font-size: 16px; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Given \texttt{.center-text \{ text-align: center; \}}, how is the paragraph text aligned?
+\begin{choices}
+  \choice Left
+  \CorrectChoice Center
+  \choice Right
+  \choice Justified
+\end{choices}
+\begin{solution}
+  \texttt{text-align: center} centers inline content (text, inline images) within the element's content box. It does not center the block itself on the page---that requires layout tools such as \texttt{margin: 0 auto} or Flexbox.
+\begin{lstlisting}[style=htmlinline]
+<p class="center-text">Centered copy</p>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.center-text { text-align: center; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Given \texttt{.box \{ border: 2px solid red; \}}, what is the border color?
+\begin{choices}
+  \choice Blue
+  \choice Black
+  \CorrectChoice Red
+  \choice Transparent
+\end{choices}
+\begin{solution}
+  The \texttt{border} shorthand sets \textbf{width}, \textbf{style}, and \textbf{color} in one declaration. Reading left to right: \texttt{2px solid red} means a 2-pixel solid red border.
+\begin{lstlisting}[style=htmlinline]
+<div class="box">Bordered box</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.box { border: 2px solid red; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Given the snippet with a yellow container and inner text styled as blue with margin/padding/red border, which description is most accurate?
+\begin{choices}
+  \CorrectChoice Yellow container background with blue text; the text element also has 20px margin, 10px padding, and a 2px red border
+  \choice Blue container background with yellow text and no spacing
+  \choice Yellow text with blue border on the container
+  \choice No visible style differences because classes do not apply to nested elements
+\end{choices}
+\begin{solution}
+  Each class applies only to elements that carry it. The outer \texttt{.container} styles the wrapper's yellow background and size; the inner \texttt{.inner-text} styles the nested paragraph's blue text, margin, padding, and red border independently.
+\begin{lstlisting}[style=htmlinline]
+<div class="container">
+  <p class="inner-text">Styled text</p>
+</div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.container {
+  background-color: yellow;
+  width: 300px;
+  height: 150px;
+}
+.inner-text {
+  color: blue;
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid red;
+}
+\end{lstlisting}
+\end{solution}
+
+
+\newpage
+
+\question[4]
+Which CSS declaration horizontally centers text inside its container (for typical block contexts in the lab)?
+\begin{choices}
+  \choice \texttt{font-style: italic;}
+  \choice \texttt{font-size: 14px;}
+  \CorrectChoice \texttt{text-align: center;}
+  \choice \texttt{margin: 0 auto;}
+\end{choices}
+\begin{solution}
+  \texttt{text-align: center} centers inline content (text) inside a block. \texttt{margin: 0 auto} centers the block box itself when it has a set width---a different layout problem.
+\begin{lstlisting}[style=htmlinline]
+<h1 class="page-title">Centered heading text</h1>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.page-title {
+  text-align: center;  /* centers the text inside the h1 */
+}
+/* margin: 0 auto; centers the h1 box, not just its text */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The CSS Inline lab emphasizes \texttt{font-style}, \texttt{font-size}, and \texttt{text-align}. Which value of \texttt{font-style} produces italicized text?
+\begin{choices}
+  \choice \texttt{bold}
+  \CorrectChoice \texttt{italic}
+  \choice \texttt{underline}
+  \choice \texttt{sans-serif}
+\end{choices}
+\begin{solution}
+  \texttt{font-style: italic} slants glyphs; \texttt{font-size} sets length. \texttt{bold} belongs to \texttt{font-weight}; \texttt{underline} is usually \texttt{text-decoration}.
+\begin{lstlisting}[style=htmlinline]
+<p class="note">This line renders in italic at 14px.</p>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.note {
+  font-style: italic;
+  font-size: 14px;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS, the selector \texttt{*} (asterisk alone) means:
+\begin{choices}
+  \choice Only elements named \texttt{star}
+  \choice Only the first child of every parent
+  \CorrectChoice All elements in the document (universal selector)
+  \choice A syntax error in modern CSS
+\end{choices}
+\begin{solution}
+  The universal selector matches every element in the document. Resets often apply \texttt{box-sizing} globally; avoid overusing \texttt{*} for styling every element on a page.
+\begin{lstlisting}[style=htmlinline]
+<div><p>Both elements inherit the reset.</p></div>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+* { box-sizing: border-box; }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+When two rules conflict and both apply to the same element, a rule whose selector is only an \textbf{ID} (\texttt{\#main-title}) will usually beat a rule whose selector is only a \textbf{class} (\texttt{.subtitle}) because:
+\begin{choices}
+  \choice IDs load later in the file
+  \CorrectChoice ID selectors have higher specificity weight than a single class selector
+  \choice Classes are deprecated in modern CSS
+  \choice The browser always prefers the shorter rule
+\end{choices}
+\begin{solution}
+  Specificity ranks \textbf{inline} $>$ \textbf{ID} $>$ \textbf{class/attribute} $>$ \textbf{type}. When both rules apply to the same element, the ID selector outranks a single class selector.
+\begin{lstlisting}[style=htmlinline]
+<h1 id="main-title" class="subtitle">Dashboard</h1>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.subtitle   { color: gray; }  /* class */
+#main-title { color: navy; }  /* ID wins */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Without extra rules, which property is typically \textbf{inherited} from a parent element to its descendants?
+\begin{choices}
+  \choice \texttt{margin-top}
+  \choice \texttt{border-width}
+  \CorrectChoice \texttt{color}
+  \choice \texttt{width}
+\end{choices}
+\begin{solution}
+  Text properties such as \texttt{color}, \texttt{font-family}, and \texttt{font-size} typically inherit. Box properties such as \texttt{margin}, \texttt{border}, and \texttt{width} do not---each element uses its own box unless a rule sets them explicitly.
+\begin{lstlisting}[style=htmlinline]
+<section class="intro">
+  <p>Child paragraph inherits navy text.</p>
+</section>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.intro { color: navy; margin: 24px; }
+.intro p { /* color inherited; margin is not */ }
+\end{lstlisting}
+\end{solution}
+
+\newpage
+
+\question[4]
+Which of these is \textbf{not} a valid CSS unit?
+\begin{choices}
+  \choice \texttt{\%} (percentage)
+  \choice \texttt{em} (font-relative)
+  \CorrectChoice \texttt{li} (not a unit---it names a list item in HTML)
+  \choice \texttt{px} or \texttt{pt}
+\end{choices}
+\begin{solution}
+  Common CSS \textbf{length units} include \texttt{px}, \texttt{em}, \texttt{rem}, \texttt{\%}, \texttt{vh}/\texttt{vw}, and \texttt{pt}. \texttt{li} names an HTML list item element---it is not a unit of measure.
+\begin{lstlisting}[style=htmlinline]
+<ul>
+  <li>List item element, not a CSS unit</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}[style=cssinline]
+.card { width: 80%; padding: 1rem; font-size: 14px; }
+\end{lstlisting}
+\end{solution}
 
 \question[6]
 What is a selector in web development? Describe the major kinds and how they are used.
@@ -252,43 +1299,6 @@ document.querySelectorAll('.alert-box')
 \end{solutionorbox}
 
 \question[4]
-When using Flexbox, which property is used to align items along the main axis? \emph{Select all that apply.}
-\begin{checkboxes}
-  \choice \texttt{align-items}
-  \CorrectChoice \texttt{justify-content}
-  \choice \texttt{flex-direction}
-  \choice \texttt{align-content}
-\end{checkboxes}
-\begin{solution}
-  \texttt{justify-content} distributes items along the main axis. \texttt{align-items} and \texttt{align-content} work on the cross axis; \texttt{flex-direction} sets the main axis direction but does not align items along it.
-\begin{lstlisting}[style=css]
-.toolbar {
-  display: flex;
-  flex-direction: row;      /* main axis is horizontal */
-  justify-content: center;  /* align along main axis */
-  align-items: center;      /* align along cross axis */
-  gap: 1rem;
-}
-\end{lstlisting}
-\end{solution}
-
-\question[4]
-TRUE or FALSE: The \texttt{rem} unit is relative to the font size of the parent element.
-\begin{choices}
-  \choice TRUE
-  \CorrectChoice FALSE
-\end{choices}
-\begin{solution}
-  \texttt{rem} is relative to the root (\texttt{<html>}) font size. \texttt{em} is relative to the parent (or the element's own font size for non-\texttt{font-size} properties).
-\begin{lstlisting}[style=css]
-html { font-size: 16px; }   /* browser default is often 16px */
-.card { font-size: 1.25rem; }  /* 20px when root is 16px */
-.card p { font-size: 1em; }    /* 20px: 1em of parent .card */
-.sidebar { padding: 1.5rem; }  /* always 24px when root is 16px */
-\end{lstlisting}
-\end{solution}
-
-\question[4]
 TRUE or FALSE: A descendant selector targets only the immediate children of a parent element.
 \begin{choices}
   \choice TRUE
@@ -305,26 +1315,6 @@ TRUE or FALSE: A descendant selector targets only the immediate children of a pa
 \begin{lstlisting}[style=css]
 .parent p  { color: navy; }  /* both paragraphs */
 .parent > p { color: crimson; }  /* only Paragraph 1 */
-\end{lstlisting}
-\end{solution}
-
-\question[4]
-In CSS Grid, what does the \texttt{fr} unit represent? \emph{Select all that apply.}
-\begin{checkboxes}
-  \choice A fixed pixel value.
-  \choice The font-size of the root element.
-  \choice A percentage of the viewport width.
-  \CorrectChoice A fraction of the available space in the grid container.
-\end{checkboxes}
-\begin{solution}
-  \texttt{fr} divides leftover grid space after fixed tracks are placed. With \texttt{1fr 2fr 1fr}, the flexible area splits into four parts: side columns each get one part, the center gets two.
-\begin{lstlisting}[style=css]
-.dashboard {
-  display: grid;
-  grid-template-columns: 200px 1fr 2fr;
-  gap: 1rem;
-}
-/* 200px sidebar, then remaining width split 1:2 */
 \end{lstlisting}
 \end{solution}
 
@@ -381,6 +1371,63 @@ h1 ~ p { color: green; }  /* both paragraphs */
 
 \textbf{Important rule:} Selectors only look \emph{forward} in document order. You cannot style a preceding sibling (for example an \lstinline[style=htmlinline]|<h1>| based on a later \lstinline[style=htmlinline]|<p>|).
 \end{solutionorbox}
+
+\question[4]
+When using Flexbox, which property is used to align items along the main axis? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \texttt{align-items}
+  \CorrectChoice \texttt{justify-content}
+  \choice \texttt{flex-direction}
+  \choice \texttt{align-content}
+\end{checkboxes}
+\begin{solution}
+  \texttt{justify-content} distributes items along the main axis. \texttt{align-items} and \texttt{align-content} work on the cross axis; \texttt{flex-direction} sets the main axis direction but does not align items along it.
+\begin{lstlisting}[style=css]
+.toolbar {
+  display: flex;
+  flex-direction: row;      /* main axis is horizontal */
+  justify-content: center;  /* align along main axis */
+  align-items: center;      /* align along cross axis */
+  gap: 1rem;
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In CSS Grid, what does the \texttt{fr} unit represent? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice A fixed pixel value.
+  \choice The font-size of the root element.
+  \choice A percentage of the viewport width.
+  \CorrectChoice A fraction of the available space in the grid container.
+\end{checkboxes}
+\begin{solution}
+  \texttt{fr} divides leftover grid space after fixed tracks are placed. With \texttt{1fr 2fr 1fr}, the flexible area splits into four parts: side columns each get one part, the center gets two.
+\begin{lstlisting}[style=css]
+.dashboard {
+  display: grid;
+  grid-template-columns: 200px 1fr 2fr;
+  gap: 1rem;
+}
+/* 200px sidebar, then remaining width split 1:2 */
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The \texttt{rem} unit is relative to the font size of the parent element.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \texttt{rem} is relative to the root (\texttt{<html>}) font size. \texttt{em} is relative to the parent (or the element's own font size for non-\texttt{font-size} properties).
+\begin{lstlisting}[style=css]
+html { font-size: 16px; }   /* browser default is often 16px */
+.card { font-size: 1.25rem; }  /* 20px when root is 16px */
+.card p { font-size: 1em; }    /* 20px: 1em of parent .card */
+.sidebar { padding: 1.5rem; }  /* always 24px when root is 16px */
+\end{lstlisting}
+\end{solution}
 
 \question[4]
 TRUE or FALSE: By default, adding padding to an element increases its total calculated width.
@@ -522,8 +1569,6 @@ What are media queries, and how do mobile-first and desktop-first strategies dif
 }
 \end{lstlisting}
 \end{solutionorbox}
-
-\newpage
 
 \uplevel{\par\textbf{Part 3: JavaScript}\par}
 
@@ -777,5 +1822,4 @@ document.getElementById('save').addEventListener('click', (event) => {
 // Clicking Save logs "button clicked" then "panel heard click"
 \end{lstlisting}
 \end{solution}
-
 \endgradingrange{csawebadv}
