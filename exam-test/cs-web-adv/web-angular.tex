@@ -5,30 +5,35 @@
 
 \begingradingrange{csawebadvng}
 
-\uplevel{\par\textbf{Angular framework}\par}
+\question[4]
+TRUE or FALSE: In an Angular single-page application (SPA), the browser requests a brand-new HTML document from the server on every route change.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  An SPA loads \texttt{index.html} once. Angular's client-side \textbf{Router} swaps components inside the existing page and updates the URL without a full server round-trip for a new HTML document, which keeps navigation fast.
+\begin{lstlisting}[style=htmlinline]
+<!-- index.html loaded once; <app-root> hosts routed views -->
+<app-root></app-root>
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+// Router config maps paths to components, not separate .html pages
+{ path: 'labs', component: LabsComponent }
+\end{lstlisting}
+\end{solution}
 
 \question[4]
-Which lifecycle hook is designed for cleanup tasks such as unsubscribing from Observables? \emph{Select all that apply.}
-\begin{checkboxes}
-  \CorrectChoice \lstinline[style=tsinline]|ngOnDestroy|
-  \choice \lstinline[style=tsinline]|ngOnInit|
-  \choice \lstinline[style=tsinline]|ngOnChanges|
-  \choice \lstinline[style=tsinline]|ngAfterViewInit|
-\end{checkboxes}
+TRUE or FALSE: The Angular CLI command \lstinline[style=bashinline]|ng serve| compiles code in real time and can live-reload the browser.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
 \begin{solution}
-  \lstinline[style=tsinline]|ngOnDestroy| runs immediately before Angular destroys a component or directive. Unsubscribe from long-lived Observables, clear timers, and detach manual listeners here to avoid memory leaks. \lstinline[style=tsinline]|ngOnInit| initializes after inputs are set; \lstinline[style=tsinline]|ngOnChanges| reacts to \lstinline[style=tsinline]|@Input()| updates; \lstinline[style=tsinline]|ngAfterViewInit| runs after the view (and child views) exist.
-\begin{lstlisting}[style=ts]
-export class UserListComponent implements OnInit, OnDestroy {
-  private sub?: Subscription;
-
-  ngOnInit() {
-    this.sub = this.users$.subscribe();
-  }
-
-  ngOnDestroy() {
-    this.sub?.unsubscribe();
-  }
-}
+  \lstinline[style=bashinline]|ng serve| starts a development server, watches project files, recompiles on save, and refreshes or hot-updates the app so changes appear without a manual rebuild step.
+\begin{lstlisting}[style=bash]
+ng serve          # dev server, default http://localhost:4200
+ng serve --open   # compile, serve, and open the browser
 \end{lstlisting}
 \end{solution}
 
@@ -48,16 +53,21 @@ TRUE or FALSE: In Angular templates, property binding uses the syntax \lstinline
 \end{solution}
 
 \question[4]
-TRUE or FALSE: The Angular CLI command \lstinline[style=bashinline]|ng serve| compiles code in real time and can live-reload the browser.
-\begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
-\end{choices}
+What is the correct syntax for two-way data binding in an Angular template? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \lstinline[style=htmlinline]|{{ value }}|
+  \choice \lstinline[style=htmlinline]|[value]="data"|
+  \choice \lstinline[style=htmlinline]|(value)="handler()"|
+  \CorrectChoice \lstinline[style=htmlinline]|[(ngModel)]="data"|
+\end{checkboxes}
 \begin{solution}
-  \lstinline[style=bashinline]|ng serve| starts a development server, watches project files, recompiles on save, and refreshes or hot-updates the app so changes appear without a manual rebuild step.
-\begin{lstlisting}[style=bash]
-ng serve          # dev server, default http://localhost:4200
-ng serve --open   # compile, serve, and open the browser
+  \lstinline[style=htmlinline]|[(ngModel)]| combines property binding \lstinline[style=htmlinline]|[ ]| (class to template) and event binding \lstinline[style=htmlinline]|( )| (template to class), keeping an input and a component property in sync. \lstinline[style=htmlinline]|{{ }}| is one-way interpolation; \lstinline[style=htmlinline]|[value]| is one-way into the DOM; \lstinline[style=htmlinline]|(value)| listens for events only.
+\begin{lstlisting}[style=htmlinline]
+<label>
+  Title
+  <input [(ngModel)]="title" name="title">
+</label>
+<p>Preview: {{ title }}</p>
 \end{lstlisting}
 \end{solution}
 
@@ -82,24 +92,6 @@ export class ChildComponent {
 \end{solution}
 
 \question[4]
-TRUE or FALSE: In an Angular single-page application (SPA), the browser requests a brand-new HTML document from the server on every route change.
-\begin{choices}
-  \choice TRUE
-  \CorrectChoice FALSE
-\end{choices}
-\begin{solution}
-  An SPA loads \texttt{index.html} once. Angular's client-side \textbf{Router} swaps components inside the existing page and updates the URL without a full server round-trip for a new HTML document, which keeps navigation fast.
-\begin{lstlisting}[style=htmlinline]
-<!-- index.html loaded once; <app-root> hosts routed views -->
-<app-root></app-root>
-\end{lstlisting}
-\begin{lstlisting}[style=ts]
-// Router config maps paths to components, not separate .html pages
-{ path: 'labs', component: LabsComponent }
-\end{lstlisting}
-\end{solution}
-
-\question[4]
 TRUE or FALSE: The modern \lstinline[style=htmlinline]|@for| control flow requires a \lstinline[style=htmlinline]|track| expression for optimal rendering.
 \begin{choices}
   \CorrectChoice TRUE
@@ -117,21 +109,27 @@ TRUE or FALSE: The modern \lstinline[style=htmlinline]|@for| control flow requir
 \end{solution}
 
 \question[4]
-What is the correct syntax for two-way data binding in an Angular template? \emph{Select all that apply.}
+Which lifecycle hook is designed for cleanup tasks such as unsubscribing from Observables? \emph{Select all that apply.}
 \begin{checkboxes}
-  \choice \lstinline[style=htmlinline]|{{ value }}|
-  \choice \lstinline[style=htmlinline]|[value]="data"|
-  \choice \lstinline[style=htmlinline]|(value)="handler()"|
-  \CorrectChoice \lstinline[style=htmlinline]|[(ngModel)]="data"|
+  \CorrectChoice \lstinline[style=tsinline]|ngOnDestroy|
+  \choice \lstinline[style=tsinline]|ngOnInit|
+  \choice \lstinline[style=tsinline]|ngOnChanges|
+  \choice \lstinline[style=tsinline]|ngAfterViewInit|
 \end{checkboxes}
 \begin{solution}
-  \lstinline[style=htmlinline]|[(ngModel)]| combines property binding \lstinline[style=htmlinline]|[ ]| (class to template) and event binding \lstinline[style=htmlinline]|( )| (template to class), keeping an input and a component property in sync. \lstinline[style=htmlinline]|{{ }}| is one-way interpolation; \lstinline[style=htmlinline]|[value]| is one-way into the DOM; \lstinline[style=htmlinline]|(value)| listens for events only.
-\begin{lstlisting}[style=htmlinline]
-<label>
-  Title
-  <input [(ngModel)]="title" name="title">
-</label>
-<p>Preview: {{ title }}</p>
+  \lstinline[style=tsinline]|ngOnDestroy| runs immediately before Angular destroys a component or directive. Unsubscribe from long-lived Observables, clear timers, and detach manual listeners here to avoid memory leaks. \lstinline[style=tsinline]|ngOnInit| initializes after inputs are set; \lstinline[style=tsinline]|ngOnChanges| reacts to \lstinline[style=tsinline]|@Input()| updates; \lstinline[style=tsinline]|ngAfterViewInit| runs after the view (and child views) exist.
+\begin{lstlisting}[style=ts]
+export class UserListComponent implements OnInit, OnDestroy {
+  private sub?: Subscription;
+
+  ngOnInit() {
+    this.sub = this.users$.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+}
 \end{lstlisting}
 \end{solution}
 

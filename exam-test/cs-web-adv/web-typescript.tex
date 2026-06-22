@@ -1,28 +1,9 @@
 % Computer Science A --- TypeScript (practice bank).
-% Formatted from raw notes; Angular items are in \texttt{web-angular.tex}.
+% Curated from \texttt{cs-web/web-ts.tex} and the original practice bank; Angular in \texttt{web-angular.tex}.
 
 \runningheader{Computer Science A}{Web: TypeScript}{Page \thepage\ of \numpages}
 
 \begingradingrange{csawebadvts}
-
-\uplevel{\par\textbf{TypeScript}\par}
-
-\question[4]
-TRUE or FALSE: Generics allow reusable components that work with multiple types while maintaining type safety.
-\begin{choices}
-  \CorrectChoice TRUE
-  \choice FALSE
-\end{choices}
-\begin{solution}
-  Generics parameterize types so one function, class, or interface can serve many concrete types without falling back to \lstinline[style=tsinline]|any|. The checker verifies that arguments and return values stay consistent for each type argument.
-\begin{lstlisting}[style=ts]
-function identity<T>(value: T): T {
-  return value;
-}
-const n = identity(42);       // T inferred as number
-const s = identity('hello');  // T inferred as string
-\end{lstlisting}
-\end{solution}
 
 \question[4]
 TRUE or FALSE: TypeScript is a superset of JavaScript, meaning all valid JavaScript code is also valid TypeScript code.
@@ -41,17 +22,69 @@ function greet(name) {
 \end{solution}
 
 \question[4]
-TRUE or FALSE: A tuple is a dynamic array that can hold any number of elements of different types.
+TRUE or FALSE: Browsers run TypeScript source files directly without a compile step in typical production apps.
 \begin{choices}
   \choice TRUE
   \CorrectChoice FALSE
 \end{choices}
 \begin{solution}
-  A \textbf{tuple} fixes both \emph{length} and \emph{position} of each element's type. It is not a growable heterogeneous array. \lstinline[style=tsinline]|string[]| or \lstinline[style=tsinline]|Array<string | number>| model variable-length collections.
+  Browsers execute JavaScript, not TypeScript. The compiler (\lstinline[style=bashinline]|tsc|) or a bundler (Vite, Webpack, esbuild) strips types and emits \texttt{.js}. Types exist for developers and the checker---they are erased before runtime.
+\begin{lstlisting}[style=bash]
+npx tsc greet.ts    # produces greet.js for the browser
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+When TypeScript reports a \textbf{type error}, that usually means:
+\begin{choices}
+  \choice The browser will show the same error to every user at runtime
+  \CorrectChoice The program failed static analysis before run---fix the source or adjust types before shipping
+  \choice \texttt{npm} is not installed
+  \choice The DOM is missing a router outlet
+\end{choices}
+\begin{solution}
+  JavaScript often throws type-related bugs only when a branch runs (\lstinline[style=jsinline]|undefined is not a function|). TypeScript catches many of those during \lstinline[style=bashinline]|tsc| or IDE checks. Runtime logic errors still require tests and debugging.
 \begin{lstlisting}[style=ts]
-let user: [string, number] = ['Ada', 42];
-// user.push(true);  // compile error: wrong length/type
-// user = ['Ada'];   // compile error: missing second element
+let id: string = 'a1';
+id = 99; // compile error: number is not assignable to string
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+\question[4]
+After compilation, TypeScript \textbf{interfaces} in source code:
+\begin{choices}
+  \choice Become global objects in the browser
+  \CorrectChoice Are removed---they do not exist in the emitted JavaScript
+  \choice Replace all \lstinline[style=tsinline]|function| keywords with \lstinline[style=tsinline]|class|
+  \choice Force Node.js to restart
+\end{choices}
+\begin{solution}
+  Interfaces and most type aliases are compile-time only. Enums and some decorators may emit runtime code depending on settings; interfaces never do.
+\begin{lstlisting}[style=ts]
+interface User { name: string; }
+// Compiles to JavaScript with no User object at runtime
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: In TypeScript, the \lstinline[style=tsinline]|number| type represents both integers and floating-point values.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  TypeScript follows JavaScript's IEEE-754 model: there is no separate \lstinline[style=tsinline]|int| or \lstinline[style=tsinline]|float| keyword. \lstinline[style=tsinline]|number| covers whole numbers, fractions, \lstinline[style=tsinline]|NaN|, and \lstinline[style=tsinline]|Infinity|. Very large integers may use \lstinline[style=tsinline]|bigint| (\lstinline[style=tsinline]|100n|).
+\begin{lstlisting}[style=ts]
+let count: number = 42;
+let ratio: number = 3.14;
+let invalid: number = NaN;
 \end{lstlisting}
 \end{solution}
 
@@ -68,6 +101,90 @@ let id: string | number;
 id = 'a1';
 id = 99;
 // id.toFixed();  // error until narrowed with typeof id === 'number'
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+\question[4]
+Which statement \textbf{narrows} a union \lstinline[style=tsinline]|string | number| safely?
+\begin{choices}
+  \choice Call \lstinline[style=tsinline]|value.toFixed()| without checking
+  \CorrectChoice \lstinline[style=tsinline]|if (typeof value === 'number') { value.toFixed(2); }|
+  \choice Assign \lstinline[style=tsinline]|value = null| to widen the union
+  \choice Cast with \lstinline[style=tsinline]|as any| in every branch
+\end{choices}
+\begin{solution}
+  \textbf{typeof}, \textbf{instanceof}, \textbf{in}, and user-defined \textbf{type predicates} (\lstinline[style=tsinline]|value is Fish|) tell the checker which branch is active. Until narrowed, only members common to all union parts are allowed.
+\begin{lstlisting}[style=ts]
+function format(value: string | number): string {
+  if (typeof value === 'number') {
+    return value.toFixed(2);
+  }
+  return value.toUpperCase();
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Literal types such as \lstinline[style=tsinline]|'success' | 'error'| are useful because they:
+\begin{choices}
+  \choice Force every string at runtime to be exactly six characters
+  \CorrectChoice Restrict a value to specific string constants for safer APIs and exhaustiveness checking
+  \choice Replace interfaces entirely
+  \choice Compile to SQL \texttt{ENUM} columns automatically
+\end{choices}
+\begin{solution}
+  Literal unions model fixed domains (status codes, alignment, HTTP methods). They pair with \lstinline[style=tsinline]|switch| and \lstinline[style=tsinline]|never| for exhaustiveness when the union grows later.
+\begin{lstlisting}[style=ts]
+type Status = 'loading' | 'ready' | 'error';
+function setStatus(s: Status) { /* ... */ }
+setStatus('ready');   // OK
+setStatus('pending'); // compile error
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: A tuple is a dynamic array that can hold any number of elements of different types.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  A \textbf{tuple} fixes both \emph{length} and \emph{position} of each element's type. It is not a growable heterogeneous array. \lstinline[style=tsinline]|string[]| or \lstinline[style=tsinline]|Array<string | number>| model variable-length collections.
+\begin{lstlisting}[style=ts]
+let user: [string, number] = ['Ada', 42];
+// user.push(true);  // compile error: wrong length/type
+// user = ['Ada'];   // compile error: missing second element
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+\question[4]
+TRUE or FALSE: If a variable is declared with type inference (\lstinline[style=tsinline]|let x = 10|), a string can later be assigned without a compile error.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Inference locks the binding to the deduced type (\lstinline[style=tsinline]|number| here). Reassigning \lstinline[style=tsinline]|x = 'hello'| fails with \emph{Type 'string' is not assignable to type 'number'}. To allow both, annotate a union explicitly.
+\begin{lstlisting}[style=ts]
+let x = 10;
+x = 'hello'; // compile error
+
+let y: string | number = 10;
+y = 'hello'; // valid
 \end{lstlisting}
 \end{solution}
 
@@ -92,55 +209,76 @@ Which compiler option is most important for preventing common \lstinline[style=t
 \end{solution}
 
 \question[4]
-What is the return type of a function that loops forever and never returns normally? \emph{Select all that apply.}
-\begin{checkboxes}
-  \choice \lstinline[style=tsinline]|any|
-  \choice \lstinline[style=tsinline]|undefined|
-  \choice \lstinline[style=tsinline]|void|
-  \CorrectChoice \lstinline[style=tsinline]|never|
-\end{checkboxes}
+In TypeScript, \lstinline[style=tsinline]|null| and \lstinline[style=tsinline]|undefined|:
+\begin{choices}
+  \choice Are identical types with the same name
+  \CorrectChoice Are distinct primitive types (\lstinline[style=tsinline]|null| is an intentional absence of object; \lstinline[style=tsinline]|undefined| often means not assigned or missing optional value)
+  \choice Exist only after compilation to JavaScript enums
+  \choice Cannot appear in union types
+\end{choices}
 \begin{solution}
-  \lstinline[style=tsinline]|never| means no value is ever produced---the function does not complete (\lstinline[style=tsinline]|while (true) {}|) or always throws. \lstinline[style=tsinline]|void| applies to functions that \emph{do} finish without a meaningful return value. \lstinline[style=tsinline]|undefined| is a value, not the type of an unreachable endpoint.
+  With \texttt{strictNullChecks}, assign them only when the type allows (\lstinline[style=tsinline]|string | null|). Optional properties (\lstinline[style=tsinline]|name?: string|) include \lstinline[style=tsinline]|undefined| in their type.
 \begin{lstlisting}[style=ts]
-function spin(): never {
-  while (true) { /* no return */ }
+let title: string | null = null;
+let nickname: string | undefined; // not assigned yet
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\newpage
+
+
+
+\question[4]
+The TypeScript compiler is invoked from the command line as:
+\begin{choices}
+  \choice \lstinline[style=bashinline]|node compile.ts|
+  \CorrectChoice \lstinline[style=bashinline]|tsc| (often via \lstinline[style=bashinline]|npx tsc| or an \lstinline[style=bashinline]|npm run build| script)
+  \choice \lstinline[style=bashinline]|ng only| with no TypeScript package
+  \choice \lstinline[style=bashinline]|java -jar typescript.jar|
+\end{choices}
+\begin{solution}
+  Install locally with \lstinline[style=bashinline]|npm install typescript --save-dev|. Run \lstinline[style=bashinline]|npx tsc| to use the project version pinned in \texttt{package.json}.
+\begin{lstlisting}[style=bash]
+npm install typescript --save-dev
+npx tsc
+npx tsc --watch   # recompile on file changes
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The file \texttt{tsconfig.json} is used to:
+\begin{choices}
+  \choice Store Angular HTML templates
+  \CorrectChoice Configure compiler options (\texttt{target}, \texttt{strict}, included files, output directory)
+  \choice Replace \texttt{package.json}
+  \choice List Karma test matchers only
+\end{choices}
+\begin{solution}
+  Common options: \texttt{compilerOptions.target}, \texttt{module}, \texttt{strict}, \texttt{outDir}, \texttt{rootDir}, \texttt{include}/\texttt{exclude}. \lstinline[style=bashinline]|tsc| with no arguments reads \texttt{tsconfig.json} in the current folder.
+\begin{lstlisting}[style=ts]
+{
+  "compilerOptions": { "strict": true, "target": "ES2020", "outDir": "dist" },
+  "include": ["src/**/*"]
 }
 \end{lstlisting}
 \end{solution}
 
 \question[4]
-What is a main difference between a \lstinline[style=tsinline]|type| alias and an \lstinline[style=tsinline]|interface|? \emph{Select all that apply.}
-\begin{checkboxes}
-  \CorrectChoice Interfaces support declaration merging; type aliases do not
-  \choice Type aliases work only in browsers; interfaces work only in Node.js
-  \choice Interfaces can describe only primitives; types describe only objects
-  \choice Type aliases cannot represent union types, but interfaces can
-\end{checkboxes}
-\begin{solution}
-  Declaring two interfaces with the same name in one scope \textbf{merges} their members. A duplicate \lstinline[style=tsinline]|type| name is a compile error. Both constructs are erased at compile time (no runtime presence in either browsers or Node.js). \textbf{Type aliases} can express unions and tuples; interfaces describe object shapes and support \lstinline[style=tsinline]|extends|.
-\begin{lstlisting}[style=ts]
-interface User { name: string; }
-interface User { age: number; }
-// Merged: User requires name and age
-
-type Status = 'idle' | 'loading' | 'done';  // union via type alias
-\end{lstlisting}
-\end{solution}
-
-\question[4]
-TRUE or FALSE: If a variable is declared with type inference (\lstinline[style=tsinline]|let x = 10|), a string can later be assigned without a compile error.
+Running \lstinline[style=bashinline]|tsc| on a \texttt{.ts} file typically produces:
 \begin{choices}
-  \choice TRUE
-  \CorrectChoice FALSE
+  \choice A \texttt{.css} file only
+  \CorrectChoice A \texttt{.js} file (and optionally \texttt{.d.ts} declaration files) with types stripped out
+  \choice An executable binary for Windows only
+  \choice A SQL database schema
 \end{choices}
 \begin{solution}
-  Inference locks the binding to the deduced type (\lstinline[style=tsinline]|number| here). Reassigning \lstinline[style=tsinline]|x = 'hello'| fails with \emph{Type 'string' is not assignable to type 'number'}. To allow both, annotate a union explicitly.
-\begin{lstlisting}[style=ts]
-let x = 10;
-x = 'hello'; // compile error
-
-let y: string | number = 10;
-y = 'hello'; // valid
+  Example: \texttt{greet.ts} $\rightarrow$ \texttt{greet.js}. Declaration files describe shapes for libraries consumed by other TypeScript projects.
+\begin{lstlisting}[style=bash]
+npx tsc greet.ts
+# greet.js emitted; types removed from output
 \end{lstlisting}
 \end{solution}
 
@@ -159,6 +297,116 @@ let value: unknown = JSON.parse('{"ok":true}');
 if (typeof value === 'object' && value && 'ok' in value) {
   // narrowed safely
 }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The \lstinline[style=tsinline]|void| type is most often used for:
+\begin{choices}
+  \choice Variables that store \lstinline[style=tsinline]|null| only
+  \CorrectChoice Functions that return no meaningful value (\lstinline[style=tsinline]|return;| or implicit fall-through)
+  \choice JSON keys that are missing
+  \choice Generic type parameters on classes
+\end{choices}
+\begin{solution}
+  \lstinline[style=tsinline]|void| means ignore the return value. Do not confuse with \lstinline[style=tsinline]|undefined| (a value a variable can hold) or \lstinline[style=tsinline]|never| (no normal return at all).
+\begin{lstlisting}[style=ts]
+function logMessage(msg: string): void {
+  console.log(msg);
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What is the return type of a function that loops forever and never returns normally? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \lstinline[style=tsinline]|any|
+  \choice \lstinline[style=tsinline]|undefined|
+  \choice \lstinline[style=tsinline]|void|
+  \CorrectChoice \lstinline[style=tsinline]|never|
+\end{checkboxes}
+\begin{solution}
+  \lstinline[style=tsinline]|never| means no value is ever produced---the function does not complete (\lstinline[style=tsinline]|while (true) {}|) or always throws. \lstinline[style=tsinline]|void| applies to functions that \emph{do} finish without a meaningful return value. \lstinline[style=tsinline]|undefined| is a value, not the type of an unreachable endpoint.
+\begin{lstlisting}[style=ts]
+function spin(): never {
+  while (true) { /* no return */ }
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Type assertion (\lstinline[style=tsinline]|as| or angle-bracket syntax) converts data from one type to another at runtime (for example, string to number).
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  Assertions are compile-time hints only; they emit no conversion code. Asserting \lstinline[style=tsinline]|'123' as number| does not change the runtime string. Use \lstinline[style=tsinline]|Number()|, \lstinline[style=tsinline]|parseInt|, or similar for real conversion.
+\begin{lstlisting}[style=ts]
+let raw = '123';
+
+let unsafe = raw as unknown as number; // still a string at runtime
+let safe = Number(raw);              // actually 123 (number)
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+An \textbf{interface} in TypeScript is used to:
+\begin{choices}
+  \choice Compile directly to machine code without JavaScript
+  \CorrectChoice Describe the shape of an object (property names and types) for compile-time checking
+  \choice Replace \lstinline[style=tsinline]|function| declarations entirely
+  \choice Run only inside Angular templates
+\end{choices}
+\begin{solution}
+  Interfaces document contracts for functions, classes, and objects. They are erased when compiling to JavaScript---they exist for the type checker only.
+\begin{lstlisting}[style=ts]
+interface User {
+  id: number;
+  name: string;
+  email?: string;
+}
+function greet(u: User) {
+  return u.name.toUpperCase();
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The \lstinline[style=tsinline]|readonly| modifier on a property:
+\begin{choices}
+  \choice Allows reassignment after the object is created
+  \CorrectChoice Prevents assignment to that property after initialization (compile-time check)
+  \choice Converts the value to \lstinline[style=tsinline]|any| at runtime
+  \choice Replaces the need for interfaces
+\end{choices}
+\begin{solution}
+  \lstinline[style=tsinline]|readonly id: number| can be set in the constructor or at declaration, but not reassigned later. \lstinline[style=tsinline]|ReadonlyArray<T>| prevents mutating methods like \lstinline[style=tsinline]|push|.
+\begin{lstlisting}[style=ts]
+interface Config {
+  readonly apiUrl: string;
+}
+const cfg: Config = { apiUrl: 'https://api.example.com' };
+// cfg.apiUrl = 'other'; // compile error
+\end{lstlisting}
+\end{solution}
+ 
+\question[4]
+What is a main difference between a \lstinline[style=tsinline]|type| alias and an \lstinline[style=tsinline]|interface|? \emph{Select all that apply.}
+\begin{checkboxes}
+  \CorrectChoice Interfaces support declaration merging; type aliases do not
+  \choice Type aliases work only in browsers; interfaces work only in Node.js
+  \choice Interfaces can describe only primitives; types describe only objects
+  \choice Type aliases cannot represent union types, but interfaces can
+\end{checkboxes}
+\begin{solution}
+  Declaring two interfaces with the same name in one scope \textbf{merges} their members. A duplicate \lstinline[style=tsinline]|type| name is a compile error. Both constructs are erased at compile time (no runtime presence in either browsers or Node.js). \textbf{Type aliases} can express unions and tuples; interfaces describe object shapes and support \lstinline[style=tsinline]|extends|.
+\begin{lstlisting}[style=ts]
+interface User { name: string; }
+interface User { age: number; }
+// Merged: User requires name and age
+
+type Status = 'idle' | 'loading' | 'done';  // union via type alias
 \end{lstlisting}
 \end{solution}
 
@@ -184,6 +432,24 @@ const dev: User = { name: 'Jaehoon', age: 29 };
 \end{solution}
 
 \question[4]
+A class \lstinline[style=tsinline]|implements| an interface when:
+\begin{choices}
+  \choice The class extends the interface at runtime
+  \CorrectChoice The class agrees to provide every required property and method the interface declares
+  \choice The interface inherits from the class automatically
+  \choice The class is declared inside the interface file only
+\end{choices}
+\begin{solution}
+  \lstinline[style=tsinline]|implements| is checked by TypeScript at compile time; it does not copy implementation from the interface.
+\begin{lstlisting}[style=ts]
+interface Printable { print(): void; }
+class Report implements Printable {
+  print() { console.log('report'); }
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
 TRUE or FALSE: An optional function parameter (marked with \lstinline[style=tsinline]|?|) must appear after all required parameters.
 \begin{choices}
   \CorrectChoice TRUE
@@ -201,33 +467,77 @@ function greet(firstName: string, lastName?: string) {
 \end{solution}
 
 \question[4]
-TRUE or FALSE: In TypeScript, the \lstinline[style=tsinline]|number| type represents both integers and floating-point values.
+A \textbf{rest parameter} collecting extra arguments uses:
+\begin{choices}
+  \choice \lstinline[style=tsinline]|function sum(a, b, c)|
+  \CorrectChoice \lstinline[style=tsinline]|function sum(...nums: number[])|
+  \choice \lstinline[style=tsinline]|function sum[number]|
+  \choice \lstinline[style=tsinline]|function sum?: number[]|
+\end{choices}
+\begin{solution}
+  The rest parameter must be last in the parameter list. It gathers remaining arguments into an array (or tuple when positions are fixed).
+\begin{lstlisting}[style=ts]
+function sum(...nums: number[]): number {
+  return nums.reduce((a, b) => a + b, 0);
+}
+sum(1, 2, 3); // 6
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: Generics allow reusable components that work with multiple types while maintaining type safety.
 \begin{choices}
   \CorrectChoice TRUE
   \choice FALSE
 \end{choices}
 \begin{solution}
-  TypeScript follows JavaScript's IEEE-754 model: there is no separate \lstinline[style=tsinline]|int| or \lstinline[style=tsinline]|float| keyword. \lstinline[style=tsinline]|number| covers whole numbers, fractions, \lstinline[style=tsinline]|NaN|, and \lstinline[style=tsinline]|Infinity|. Very large integers may use \lstinline[style=tsinline]|bigint| (\lstinline[style=tsinline]|100n|).
+  Generics parameterize types so one function, class, or interface can serve many concrete types without falling back to \lstinline[style=tsinline]|any|. The checker verifies that arguments and return values stay consistent for each type argument.
 \begin{lstlisting}[style=ts]
-let count: number = 42;
-let ratio: number = 3.14;
-let invalid: number = NaN;
+function identity<T>(value: T): T {
+  return value;
+}
+const n = identity(42);       // T inferred as number
+const s = identity('hello');  // T inferred as string
 \end{lstlisting}
 \end{solution}
 
 \question[4]
-TRUE or FALSE: Type assertion (\lstinline[style=tsinline]|as| or angle-bracket syntax) converts data from one type to another at runtime (for example, string to number).
+To access \lstinline[style=tsinline]|arg.length| in a generic function, which constraint is used?
 \begin{choices}
-  \choice TRUE
-  \CorrectChoice FALSE
+  \choice Unconstrained \lstinline[style=tsinline]|<Type>| because every type has \lstinline[style=tsinline]|length|
+  \CorrectChoice \lstinline[style=tsinline]|<Type extends Lengthwise>| where \lstinline[style=tsinline]|Lengthwise| requires \lstinline[style=tsinline]|length: number|
+  \choice \lstinline[style=tsinline]|any| only, with no interface
+  \choice A SQL \texttt{JOIN}
 \end{choices}
 \begin{solution}
-  Assertions are compile-time hints only; they emit no conversion code. Asserting \lstinline[style=tsinline]|'123' as number| does not change the runtime string. Use \lstinline[style=tsinline]|Number()|, \lstinline[style=tsinline]|parseInt|, or similar for real conversion.
+  Unconstrained \lstinline[style=tsinline]|<Type>| cannot access \lstinline[style=tsinline]|length|. A constraint tells the checker which members are guaranteed.
 \begin{lstlisting}[style=ts]
-let raw = '123';
+interface Lengthwise { length: number; }
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length);
+  return arg;
+}
+loggingIdentity('hello');              // OK: string has length
+loggingIdentity(3);                    // error: number has no length
+\end{lstlisting}
+\end{solution}
 
-let unsafe = raw as unknown as number; // still a string at runtime
-let safe = Number(raw);              // actually 123 (number)
+\question[4]
+A generic function \lstinline[style=tsinline]|function first<T>(items: T[]): T | undefined|:
+\begin{choices}
+  \choice Requires \lstinline[style=tsinline]|T| to be \lstinline[style=tsinline]|string| only
+  \CorrectChoice Returns the same element type as the array elements (or \lstinline[style=tsinline]|undefined| if empty)
+  \choice Returns \lstinline[style=tsinline]|any| always
+  \choice Cannot accept empty arrays at compile time
+\end{choices}
+\begin{solution}
+  One type parameter keeps input and output related: \lstinline[style=tsinline]|first([1, 2, 3])| is \lstinline[style=tsinline]|number | undefined|; \lstinline[style=tsinline]|first(['a'])| is \lstinline[style=tsinline]|string | undefined|.
+\begin{lstlisting}[style=ts]
+function first<T>(items: T[]): T | undefined {
+  return items[0];
+}
+const n = first([1, 2, 3]);   // number | undefined
+const s = first(['a', 'b']);  // string | undefined
 \end{lstlisting}
 \end{solution}
 
