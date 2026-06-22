@@ -23,6 +23,23 @@ TRUE or FALSE: In an Angular single-page application (SPA), the browser requests
 \end{lstlisting}
 \end{solution}
 
+\question[6]
+What is \textbf{Angular}? Give a precise definition and list major parts of its platform ecosystem.
+\begin{solutionorbox}[4.5in]
+\textbf{Definition:} Angular is an open-source, TypeScript-based, component-driven framework developed by Google for building scalable \textbf{single-page web applications} (SPAs).
+
+\textbf{Platform (not just a UI library):} Angular ships a full ecosystem out of the box:
+\begin{itemize}
+  \item \textbf{Component architecture} for structuring UI into reusable building blocks
+  \item \textbf{Router} for client-side navigation without full page reloads
+  \item \textbf{HttpClient} for REST and backend communication
+  \item \textbf{Dependency injection} for wiring services into components and guards
+  \item \textbf{Tooling} for testing, server-side rendering (SSR), and optimized production builds (via the CLI and bundler)
+\end{itemize}
+
+\textbf{Contrast:} A UI library (for example a minimal view layer) leaves routing, HTTP, and DI to third-party choices. Angular integrates these concerns as first-class framework features.
+\end{solutionorbox}
+
 \question[4]
 Which command creates a new Angular project named \texttt{my-app}?
 \begin{choices}
@@ -53,6 +70,13 @@ ng serve
 ng serve --open
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 An Angular \textbf{component} is best described as:
@@ -105,6 +129,96 @@ Which command creates a new component named \texttt{user-profile}?
 ng generate component user-profile
 \end{lstlisting}
 \end{solution}
+
+\question[6]
+How do you \textbf{create an Angular component} using the CLI? List the files the command generates.
+\begin{solutionorbox}[3.75in]
+\textbf{Command:} \lstinline[style=bashinline]|ng generate component my-component| (shortcut \lstinline[style=bashinline]|ng g c my-component|).
+
+\textbf{Generated files} (inside a new folder):
+\begin{itemize}
+  \item \texttt{my-component.component.ts} --- TypeScript class (logic and data)
+  \item \texttt{my-component.component.html} --- HTML template (visual layout)
+  \item \texttt{my-component.component.css} (or \texttt{.scss}) --- component styles
+  \item \texttt{my-component.component.spec.ts} --- unit test file
+\end{itemize}
+
+\begin{lstlisting}[style=bash]
+ng generate component my-component
+\end{lstlisting}
+
+\textbf{Note:} \lstinline[style=bashinline]|ng new| scaffolds a whole project; \lstinline[style=bashinline]|ng g c| adds one component inside an existing project.
+\end{solutionorbox}
+
+\question[6]
+What is an Angular component \textbf{template} for? Describe interpolation, event binding, and control flow with examples.
+\begin{solutionorbox}[4.75in]
+\textbf{Definition:} The template (\texttt{.component.html} or inline \lstinline[style=tsinline]|template:|) is the \textbf{view layer}---the HTML rendered for the user.
+
+\textbf{Two halves of a component:}
+\begin{itemize}
+  \item \textbf{Class} (\texttt{.component.ts}) --- data, logic, service calls
+  \item \textbf{Template} --- presentation and user interaction
+\end{itemize}
+
+\textbf{Core template features:}
+\begin{itemize}
+  \item \textbf{Interpolation} --- display model data: \lstinline[style=htmlinline]|<h1>Welcome, {{ username }}</h1>|
+  \item \textbf{Event binding} --- react to user actions: \lstinline[style=htmlinline]|<button (click)="saveDocument()">Save</button>|
+  \item \textbf{Control flow} --- show, hide, or loop without manual DOM manipulation
+\end{itemize}
+
+\begin{lstlisting}[style=htmlinline]
+@if (isLoggedIn) {
+  <p>Secure dashboard loaded.</p>
+}
+<ul>
+  @for (tool of technicalSkills; track tool) {
+    <li>{{ tool }}</li>
+  }
+</ul>
+\end{lstlisting}
+
+\textbf{Summary:} The template binds class data to the screen and forwards user actions back to the class.
+\end{solutionorbox}
+
+\question[6]
+In Angular, ``\textbf{generate interface}'' can mean two different things. Explain both and give the CLI commands for each.
+\begin{solutionorbox}[4.5in]
+\textbf{1. TypeScript interface (data blueprint):} A compile-time contract for object shapes. Generate with:
+\begin{lstlisting}[style=bash]
+ng generate interface models/user
+# shortcut: ng g i models/user
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+export interface User {
+  id: number;
+  name: string;
+  role: string;
+}
+\end{lstlisting}
+
+\textbf{2. User interface (visual layout):} The on-screen UI built from \textbf{components} and \textbf{templates}. Generate with:
+\begin{lstlisting}[style=bash]
+ng generate component components/user-profile
+# shortcut: ng g c components/user-profile
+\end{lstlisting}
+\begin{lstlisting}[style=htmlinline]
+<div class="profile-card">
+  <h2>{{ user.name }}</h2>
+  <span class="badge">{{ user.role }}</span>
+</div>
+\end{lstlisting}
+
+\textbf{Summary:} \lstinline[style=bashinline]|ng g i| creates a type-safety file; \lstinline[style=bashinline]|ng g c| creates the visual component humans interact with.
+\end{solutionorbox}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 \textbf{Text interpolation} transfers data:
@@ -161,6 +275,13 @@ onSave(): void {
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
+
 \question[4]
 What is the correct syntax for two-way data binding in an Angular template? \emph{Select all that apply.}
 \begin{checkboxes}
@@ -207,6 +328,13 @@ Which is the correct \textbf{pipe syntax} in a template?
 \begin{solution}
   The vertical bar separates the value from the pipe name inside interpolation. Optional parameters follow a colon: \lstinline[style=htmlinline]!{{ today | date:'MM-dd-yyyy' }}!.
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 The \lstinline[style=htmlinline]|*ngIf| directive:
@@ -262,6 +390,13 @@ this.picked.emit('item-1');
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
+
 \question[4]
 TRUE or FALSE: The modern \lstinline[style=htmlinline]|@for| control flow requires a \lstinline[style=htmlinline]|track| expression for optimal rendering.
 \begin{choices}
@@ -309,6 +444,92 @@ constructor(private http: HttpClient) {}
 export class DataService { }
 \end{lstlisting}
 \end{solution}
+
+\question[8]
+How do Angular \textbf{components} and \textbf{services} work together? Explain dependency injection and the typical data workflow.
+\begin{solutionorbox}[5.5in]
+\textbf{Roles:}
+\begin{itemize}
+  \item \textbf{Component (UI)} --- what the user sees; captures clicks, displays data, manages the view. Should not perform heavy work such as HTTP or global business logic.
+  \item \textbf{Service (data layer)} --- HTTP requests, calculations, shared state across features.
+\end{itemize}
+
+\textbf{Dependency injection:} Components do not call \lstinline[style=tsinline]|new DataService()| manually. Angular's injector delivers the service through the constructor (or \lstinline[style=tsinline]|inject()|) when the component is created.
+
+\textbf{Service example:}
+\begin{lstlisting}[style=ts]
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  getUsers() {
+    return ['Alice', 'Bob', 'Charlie'];
+  }
+}
+\end{lstlisting}
+
+\textbf{Component example:}
+\begin{lstlisting}[style=ts]
+@Component({
+  selector: 'app-user-list',
+  template: `
+    <h3>User List</h3>
+    <ul>
+      <li *ngFor="let user of users">{{ user }}</li>
+    </ul>
+  `,
+})
+export class UserListComponent implements OnInit {
+  users: string[] = [];
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.users = this.dataService.getUsers();
+  }
+}
+\end{lstlisting}
+
+\textbf{Workflow:}
+\begin{enumerate}
+  \item The user interacts with the component (UI).
+  \item The component calls a method on the service for data tasks.
+  \item The service performs the work (for example an HTTP call) and returns data.
+  \item The component updates the template for the user to see.
+\end{enumerate}
+\end{solutionorbox}
+
+\question[6]
+How does Angular implement the \textbf{singleton} pattern for services? Explain \lstinline[style=tsinline]|providedIn: 'root'| and how to opt out.
+\begin{solutionorbox}[4.5in]
+\textbf{Default behavior:} A service registered with \lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| is a \textbf{singleton}---Angular creates exactly one instance for the entire application and shares it with every injector request.
+
+\begin{lstlisting}[style=ts]
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  // one shared instance app-wide
+}
+\end{lstlisting}
+
+\textbf{Across components:} If three unrelated components inject \lstinline[style=tsinline]|DataService|, they all receive a reference to the \emph{same} object in memory. Updating shared state in one component (for example a shopping cart) is immediately visible in another.
+
+\textbf{Opting out:} Remove \lstinline[style=tsinline]|providedIn: 'root'| and list the service in a component's \lstinline[style=tsinline]|providers| array to get a fresh instance each time that component is created:
+
+\begin{lstlisting}[style=ts]
+@Component({
+  selector: 'app-child',
+  providers: [DataService],
+})
+export class ChildComponent { }
+\end{lstlisting}
+
+\textbf{Practice:} Application-wide singletons are the standard for shared data and HTTP services; per-component providers are uncommon except for isolated state.
+\end{solutionorbox}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 In modern Angular, \lstinline[style=tsinline]|inject(DataService)| is used to:
@@ -365,6 +586,13 @@ this.http.get<Hero[]>('/api/heroes').subscribe({
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
+
 \question[4]
 In a template, \lstinline[style=htmlinline]!{{ heroes$ | async }}! avoids manual subscribe because:
 \begin{choices}
@@ -409,6 +637,13 @@ Which template link navigates to the \texttt{/heroes} route?
 <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 The \lstinline[style=htmlinline]|<router-outlet>| element:

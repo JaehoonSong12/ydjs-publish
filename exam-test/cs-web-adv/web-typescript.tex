@@ -50,6 +50,52 @@ id = 99; // compile error: number is not assignable to string
 \end{lstlisting}
 \end{solution}
 
+\question[6]
+What is \textbf{type hinting} (type annotation) in TypeScript? Explain its purpose and show how to hint a variable and a function's parameters and return type.
+\begin{solutionorbox}[4.5in]
+\textbf{Definition:} Type hinting is the practice of explicitly declaring the data type of a variable, function parameter, or return value using a colon (\lstinline[style=tsinline]|:|) followed by a type name.
+
+\textbf{Purpose:}
+\begin{itemize}
+  \item \textbf{IDE support} --- autocomplete, parameter hints, inline documentation
+  \item \textbf{Early bug detection} --- \lstinline[style=bashinline]|tsc| flags mismatches before runtime
+  \item \textbf{Self-documenting code} --- contracts are visible to the next developer
+\end{itemize}
+
+\textbf{Examples:}
+\begin{lstlisting}[style=ts]
+const username: string = 'Jaehoon';
+
+function calculateTotal(price: number, tax: number): number {
+  return price + tax;
+}
+\end{lstlisting}
+
+\textbf{Note:} Type hints are compile-time only; they are erased when TypeScript emits JavaScript.
+\end{solutionorbox}
+
+\question[6]
+How do you type-hint a \textbf{string array} in TypeScript? Show variable declarations, use in a function, and a readonly form.
+\begin{solutionorbox}[4in]
+\textbf{Two equivalent syntaxes} (shorthand is most common):
+\begin{lstlisting}[style=ts]
+const skills: string[] = ['Java', 'TypeScript', 'Python'];
+const tools: Array<string> = ['Docker', 'Kubernetes', 'Git'];
+\end{lstlisting}
+
+\textbf{In functions} (parameter and return type):
+\begin{lstlisting}[style=ts]
+function uppercaseAll(items: string[]): string[] {
+  return items.map(item => item.toUpperCase());
+}
+\end{lstlisting}
+
+\textbf{Read-only array} (prevents \lstinline[style=tsinline]|.push()| and \lstinline[style=tsinline]|.pop()|):
+\begin{lstlisting}[style=ts]
+const constants: readonly string[] = ['localhost', '127.0.0.1'];
+\end{lstlisting}
+\end{solutionorbox}
+
 
 
 
@@ -282,6 +328,15 @@ npx tsc greet.ts
 \end{lstlisting}
 \end{solution}
 
+
+
+
+
+\newpage
+
+
+
+
 \question[4]
 TRUE or FALSE: The \lstinline[style=tsinline]|any| type is safer than \lstinline[style=tsinline]|unknown| because \lstinline[style=tsinline]|any| forces type narrowing before use.
 \begin{choices}
@@ -334,6 +389,39 @@ function spin(): never {
 \end{lstlisting}
 \end{solution}
 
+\question[6]
+How do you create \textbf{arrow functions} in TypeScript? Show typed parameters, an implicit return, a \lstinline[style=tsinline]|void| handler, and a function type alias used with an arrow function.
+\begin{solutionorbox}[4.75in]
+\textbf{Syntax:} Arrow functions use \lstinline[style=tsinline]|() => {}| like JavaScript, with optional type annotations on parameters and the return type.
+
+\textbf{Examples:}
+\begin{lstlisting}[style=ts]
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+
+const multiply = (a: number, b: number) => a * b;
+
+const logMessage = (message: string): void => {
+  console.log('Log: ' + message);
+};
+
+type MathOperation = (x: number, y: number) => number;
+const subtract: MathOperation = (x, y) => x - y;
+\end{lstlisting}
+
+\textbf{Use cases:} Callbacks, array methods (\lstinline[style=tsinline]|map|, \lstinline[style=tsinline]|filter|), and short handlers where lexical \lstinline[style=tsinline]|this| binding is preferred over traditional \lstinline[style=tsinline]|function| expressions.
+\end{solutionorbox}
+
+
+
+
+
+\newpage
+
+
+
+
 \question[4]
 TRUE or FALSE: Type assertion (\lstinline[style=tsinline]|as| or angle-bracket syntax) converts data from one type to another at runtime (for example, string to number).
 \begin{choices}
@@ -372,6 +460,48 @@ function greet(u: User) {
 \end{lstlisting}
 \end{solution}
 
+\question[6]
+What is \textbf{interface type hinting} in TypeScript? Show a basic object blueprint, use in a function parameter, and optional or \lstinline[style=tsinline]|readonly| properties.
+\begin{solutionorbox}[5in]
+\textbf{Definition:} An \textbf{interface} defines a structured blueprint for objects. Using the interface name as a type hint ensures variables and parameters have the expected property names and types.
+
+\textbf{Purpose:} Interfaces act as compile-time contracts (for example matching API payloads), support \lstinline[style=tsinline]|extends| for hierarchies, and power IDE IntelliSense.
+
+\textbf{Examples:}
+\begin{lstlisting}[style=ts]
+interface User {
+  id: number;
+  username: string;
+  email: string;
+}
+
+const account: User = {
+  id: 101,
+  username: 'jsong',
+  email: 'jaehoon@example.com',
+};
+
+interface Vehicle {
+  make: string;
+  model: string;
+  year: number;
+}
+
+function displayVehicleInfo(car: Vehicle): void {
+  console.log(`Driving a ${car.year} ${car.make} ${car.model}`);
+}
+
+interface Developer {
+  readonly id: number;
+  name: string;
+  primaryLanguage: string;
+  gitHubUrl?: string;  // optional
+}
+\end{lstlisting}
+
+\textbf{Note:} Missing required properties or wrong types produce compile errors before the app runs. Interfaces are erased in emitted JavaScript.
+\end{solutionorbox}
+
 \question[4]
 The \lstinline[style=tsinline]|readonly| modifier on a property:
 \begin{choices}
@@ -390,7 +520,16 @@ const cfg: Config = { apiUrl: 'https://api.example.com' };
 // cfg.apiUrl = 'other'; // compile error
 \end{lstlisting}
 \end{solution}
- 
+
+
+
+
+
+\newpage
+
+
+
+
 \question[4]
 What is a main difference between a \lstinline[style=tsinline]|type| alias and an \lstinline[style=tsinline]|interface|? \emph{Select all that apply.}
 \begin{checkboxes}
@@ -449,6 +588,42 @@ class Report implements Printable {
 \end{lstlisting}
 \end{solution}
 
+\question[6]
+Are TypeScript \textbf{interfaces} meant only for plain objects? Contrast with Java interfaces and note when to prefer an interface versus a \textbf{type alias}.
+\begin{solutionorbox}[5.25in]
+\textbf{Short answer:} In TypeScript, interfaces primarily describe \textbf{object shapes} (including callable function objects and class contracts). They are erased at compile time and do not exist at runtime.
+
+\textbf{Java vs.\ TypeScript:}
+\begin{itemize}
+  \item \textbf{Java} --- nominal typing: a class must \lstinline[style=javainline]|implements MyInterface| to satisfy the contract; interfaces often define behavior (methods).
+  \item \textbf{TypeScript} --- structural typing: any value with matching properties satisfies the interface without an explicit \lstinline[style=tsinline]|implements| clause (though classes may still \lstinline[style=tsinline]|implements| for clarity).
+\end{itemize}
+
+\textbf{Beyond key--value objects:}
+\begin{lstlisting}[style=ts]
+interface MathTask {
+  (x: number, y: number): number;
+}
+const divide: MathTask = (x, y) => x / y;
+
+interface Lifecycle {
+  onInit(): void;
+}
+class DashboardComponent implements Lifecycle {
+  onInit() { console.log('Component loaded!'); }
+}
+\end{lstlisting}
+
+\textbf{Interface vs.\ type alias:} Prefer an \textbf{interface} for extendable object models and API shapes. Prefer a \textbf{type alias} for unions (\lstinline[style=tsinline]|'idle' | 'done'|), tuples, primitives, or mapped types that interfaces cannot express.
+\end{solutionorbox}
+
+
+
+\newpage
+
+
+
+
 \question[4]
 TRUE or FALSE: An optional function parameter (marked with \lstinline[style=tsinline]|?|) must appear after all required parameters.
 \begin{choices}
@@ -500,6 +675,13 @@ const n = identity(42);       // T inferred as number
 const s = identity('hello');  // T inferred as string
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 To access \lstinline[style=tsinline]|arg.length| in a generic function, which constraint is used?
