@@ -1,0 +1,37 @@
+Questions removed from exam-test/cs-web/web-angular.tex
+because they were merged into or duplicate exam-test/cs-web-adv/web-angular.tex
+
+Total removed: 31
+Remaining in web-angular.tex: 119
+
+  5. Which description best matches a \textbf{Single Page Application (SPA)}?
+ 22. Which command creates a \textbf{new} Angular project named \texttt{my-app}?
+ 23. Which command starts a local dev server for a CLI project on port \textbf{\texttt{4200}} by default?
+ 25. A \textbf{Single Page Application (SPA)} is best defined as a web application that:
+ 27. Which statement about SPA is \textbf{false}?
+ 39. An Angular \textbf{component} is best described as:
+ 41. In \texttt{@Component} metadata, \texttt{selector} specifies:
+ 44. Which command creates a new component named \texttt{user-profile}?
+ 57. \textbf{Text interpolation} transfers data:
+ 58. \textbf{Property binding} is used to:
+ 59. \textbf{Event binding} is used to:
+ 61. Which syntax is used for \textbf{text interpolation}?
+ 62. \textbf{Two-way binding} in Angular means:
+ 64. In a two-way binding example, an input and a paragraph both show the same \texttt{value}, and a Clear button resets it. Which fragment is correct?
+ 65. Which methods can achieve \textbf{two-way binding}?
+ 66. Summarize one-way versus two-way data flow:
+ 68. The \lstinline[style=htmlinline]|*ngIf| directive:
+ 79. In Angular templates, \textbf{pipes} are used to:
+ 80. Which is the correct \textbf{pipe syntax} in a template?
+ 96. In a parent--child component relationship, data usually flows \textbf{down} with \lstinline[style=tsinline]|@Input| and flows \textbf{up} with:
+109. The \lstinline[style=tsinline]|CanActivate| guard runs:
+114. \textbf{Dependency injection} (DI) in Angular means:
+115. Which decorator marks a class as a service that can be injected?
+116. \lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| registers the service:
+119. In modern Angular, \lstinline[style=tsinline]|inject(DataService)| is used to:
+120. Angular's \texttt{HttpClient} is used to:
+132. An RxJS \textbf{Observable} is best described as:
+136. In a template, \lstinline[style=htmlinline]!{{ heroes$ | async }}! avoids manual subscribe because:
+144. Angular \textbf{routing} enables:
+146. Which template link navigates to the \texttt{/heroes} route?
+147. The \lstinline[style=htmlinline]|<router-outlet>| element:
