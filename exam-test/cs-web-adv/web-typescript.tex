@@ -50,6 +50,13 @@ id = 99; // compile error: number is not assignable to string
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
+
 \question[6]
 What is \textbf{type hinting} (type annotation) in TypeScript? Explain its purpose and show how to hint a variable and a function's parameters and return type.
 \begin{solutionorbox}[4.5in]
@@ -327,6 +334,13 @@ npx tsc --watch   # recompile on file changes
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
+
 \question[4]
 The file \texttt{tsconfig.json} is used to:
 \begin{choices}
@@ -369,6 +383,13 @@ In \texttt{tsconfig.json}, what is the \textbf{\texttt{strict}} property? What c
 \textbf{Purpose:} \texttt{strict} catches whole classes of bugs at compile time (null dereference, silent \lstinline[style=tsinline]|any|, unsafe calls) instead of at runtime in the browser or Node.js. New projects and Angular workspaces typically enable it by default.
 \end{solutionorbox}
 
+
+
+\newpage
+
+
+
+
 \question[4]
 Running \lstinline[style=bashinline]|tsc| on a \texttt{.ts} file typically produces:
 \begin{choices}
@@ -384,15 +405,6 @@ npx tsc greet.ts
 # greet.js emitted; types removed from output
 \end{lstlisting}
 \end{solution}
-
-
-
-
-
-\newpage
-
-
-
 
 \question[4]
 TRUE or FALSE: The \lstinline[style=tsinline]|any| type is safer than \lstinline[style=tsinline]|unknown| because \lstinline[style=tsinline]|any| forces type narrowing before use.
@@ -428,6 +440,13 @@ function logMessage(msg: string): void {
 }
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 What is the return type of a function that loops forever and never returns normally? \emph{Select all that apply.}
@@ -470,15 +489,6 @@ const subtract: MathOperation = (x, y) => x - y;
 \textbf{Use cases:} Callbacks, array methods (\lstinline[style=tsinline]|map|, \lstinline[style=tsinline]|filter|), and short handlers where lexical \lstinline[style=tsinline]|this| binding is preferred over traditional \lstinline[style=tsinline]|function| expressions.
 \end{solutionorbox}
 
-
-
-
-
-\newpage
-
-
-
-
 \question[4]
 TRUE or FALSE: Type assertion (\lstinline[style=tsinline]|as| or angle-bracket syntax) converts data from one type to another at runtime (for example, string to number).
 \begin{choices}
@@ -494,6 +504,13 @@ let unsafe = raw as unknown as number; // still a string at runtime
 let safe = Number(raw);              // actually 123 (number)
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 An \textbf{interface} in TypeScript is used to:
@@ -559,6 +576,13 @@ interface Developer {
 \textbf{Note:} Missing required properties or wrong types produce compile errors before the app runs. Interfaces are erased in emitted JavaScript.
 \end{solutionorbox}
 
+
+
+\newpage
+
+
+
+
 \question[4]
 The \lstinline[style=tsinline]|readonly| modifier on a property:
 \begin{choices}
@@ -577,15 +601,6 @@ const cfg: Config = { apiUrl: 'https://api.example.com' };
 // cfg.apiUrl = 'other'; // compile error
 \end{lstlisting}
 \end{solution}
-
-
-
-
-
-\newpage
-
-
-
 
 \question[4]
 What is a main difference between a \lstinline[style=tsinline]|type| alias and an \lstinline[style=tsinline]|interface|? \emph{Select all that apply.}
@@ -626,6 +641,13 @@ interface User { age: number; }
 const dev: User = { name: 'Jaehoon', age: 29 };
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
+
 
 \question[4]
 A class \lstinline[style=tsinline]|implements| an interface when:

@@ -40,6 +40,33 @@ What is \textbf{Angular}? Give a precise definition and list major parts of its 
 \textbf{Contrast:} A UI library (for example a minimal view layer) leaves routing, HTTP, and DI to third-party choices. Angular integrates these concerns as first-class framework features.
 \end{solutionorbox}
 
+
+\question[4]
+Which command creates a new Angular project named \texttt{my-app}?
+\begin{choices}
+  \choice \lstinline[style=bashinline]|ng serve my-app|
+  \CorrectChoice \lstinline[style=bashinline]|ng new my-app|
+  \choice \lstinline[style=bashinline]|ng generate my-app|
+  \choice \lstinline[style=bashinline]|npm install my-app|
+\end{choices}
+\begin{solution}
+  \lstinline[style=bashinline]|ng new| scaffolds a new workspace. \lstinline[style=bashinline]|ng serve| runs the dev server for an \emph{existing} project; \lstinline[style=bashinline]|ng generate| (or \lstinline[style=bashinline]|ng g|) adds artifacts inside a project.
+\begin{lstlisting}[style=bash]
+ng new my-app
+cd my-app
+ng serve
+\end{lstlisting}
+\end{solution}
+
+
+
+
+
+\newpage
+
+
+
+
 \question[6]
 How do you \textbf{initialize a new Angular project}? List prerequisites, the CLI command, and the usual first run steps.
 \begin{solutionorbox}[5in]
@@ -63,22 +90,6 @@ ng serve --open   # compile, serve, and open the browser
 \textbf{Contrast:} \lstinline[style=bashinline]|ng new| creates a \emph{project}; \lstinline[style=bashinline]|ng generate component| (or \lstinline[style=bashinline]|ng g c|) adds artifacts inside an existing project. \lstinline[style=bashinline]|ng serve| is for development only---production builds use \lstinline[style=bashinline]|ng build|.
 \end{solutionorbox}
 
-\question[4]
-Which command creates a new Angular project named \texttt{my-app}?
-\begin{choices}
-  \choice \lstinline[style=bashinline]|ng serve my-app|
-  \CorrectChoice \lstinline[style=bashinline]|ng new my-app|
-  \choice \lstinline[style=bashinline]|ng generate my-app|
-  \choice \lstinline[style=bashinline]|npm install my-app|
-\end{choices}
-\begin{solution}
-  \lstinline[style=bashinline]|ng new| scaffolds a new workspace. \lstinline[style=bashinline]|ng serve| runs the dev server for an \emph{existing} project; \lstinline[style=bashinline]|ng generate| (or \lstinline[style=bashinline]|ng g|) adds artifacts inside a project.
-\begin{lstlisting}[style=bash]
-ng new my-app
-cd my-app
-ng serve
-\end{lstlisting}
-\end{solution}
 
 \question[4]
 TRUE or FALSE: The Angular CLI command \lstinline[style=bashinline]|ng serve| compiles code in real time and can live-reload the browser.
@@ -93,10 +104,6 @@ ng serve
 ng serve --open
 \end{lstlisting}
 \end{solution}
-
-
-
-\newpage
 
 
 
@@ -173,6 +180,15 @@ ng generate component my-component
 \textbf{Note:} \lstinline[style=bashinline]|ng new| scaffolds a whole project; \lstinline[style=bashinline]|ng g c| adds one component inside an existing project.
 \end{solutionorbox}
 
+
+
+
+
+\newpage
+
+
+
+
 \question[6]
 What is an Angular component \textbf{template} for? Describe interpolation, event binding, and control flow with examples.
 \begin{solutionorbox}[4.75in]
@@ -205,6 +221,35 @@ What is an Angular component \textbf{template} for? Describe interpolation, even
 \textbf{Summary:} The template binds class data to the screen and forwards user actions back to the class.
 \end{solutionorbox}
 
+
+
+\question[4]
+\textbf{Text interpolation} transfers data:
+\begin{choices}
+  \choice From the template to the TypeScript class only
+  \CorrectChoice From the TypeScript class (model) to the HTML template (view)
+  \choice Only between two SQL tables
+  \choice Without using the component class
+\end{choices}
+\begin{solution}
+  Interpolation uses double curly braces to display a component property in the view.
+\begin{lstlisting}[style=htmlinline]
+<p><b>{{ title }}</b></p>
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+export class AppComponent {
+  title = 'Hello, Angular';
+}
+\end{lstlisting}
+\end{solution}
+
+
+
+
+\newpage
+
+
+
 \question[6]
 In Angular, ``\textbf{generate interface}'' can mean two different things. Explain both and give the CLI commands for each.
 \begin{solutionorbox}[4.5in]
@@ -236,33 +281,6 @@ ng generate component components/user-profile
 \textbf{Summary:} \lstinline[style=bashinline]|ng g i| creates a type-safety file; \lstinline[style=bashinline]|ng g c| creates the visual component humans interact with.
 \end{solutionorbox}
 
-
-
-\newpage
-
-
-
-
-\question[4]
-\textbf{Text interpolation} transfers data:
-\begin{choices}
-  \choice From the template to the TypeScript class only
-  \CorrectChoice From the TypeScript class (model) to the HTML template (view)
-  \choice Only between two SQL tables
-  \choice Without using the component class
-\end{choices}
-\begin{solution}
-  Interpolation uses double curly braces to display a component property in the view.
-\begin{lstlisting}[style=htmlinline]
-<p><b>{{ title }}</b></p>
-\end{lstlisting}
-\begin{lstlisting}[style=ts]
-export class AppComponent {
-  title = 'Hello, Angular';
-}
-\end{lstlisting}
-\end{solution}
-
 \question[4]
 TRUE or FALSE: In Angular templates, property binding uses the syntax \lstinline[style=htmlinline]|(property)="value"|.
 \begin{choices}
@@ -277,6 +295,12 @@ TRUE or FALSE: In Angular templates, property binding uses the syntax \lstinline
 <input [(ngModel)]="title">
 \end{lstlisting}
 \end{solution}
+
+
+
+\newpage
+
+
 
 \question[4]
 \textbf{Event binding} is used to:
@@ -297,12 +321,6 @@ onSave(): void {
 }
 \end{lstlisting}
 \end{solution}
-
-
-
-\newpage
-
-
 
 
 \question[4]
@@ -340,6 +358,12 @@ In Angular templates, \textbf{pipes} are used to:
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
 \question[4]
 Which is the correct \textbf{pipe syntax} in a template?
 \begin{choices}
@@ -351,12 +375,6 @@ Which is the correct \textbf{pipe syntax} in a template?
 \begin{solution}
   The vertical bar separates the value from the pipe name inside interpolation. Optional parameters follow a colon: \lstinline[style=htmlinline]!{{ today | date:'MM-dd-yyyy' }}!.
 \end{solution}
-
-
-
-\newpage
-
-
 
 
 \question[4]
@@ -394,6 +412,12 @@ export class ChildComponent {
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
 \question[4]
 In a parent--child relationship, data usually flows \textbf{down} with \lstinline[style=tsinline]|@Input| and flows \textbf{up} with:
 \begin{choices}
@@ -412,10 +436,6 @@ this.picked.emit('item-1');
 <app-item (picked)="onPicked($event)"></app-item>
 \end{lstlisting}
 \end{solution}
-
-
-
-\newpage
 
 
 
@@ -452,6 +472,12 @@ constructor(private http: HttpClient) {}
 \end{lstlisting}
 \end{solution}
 
+
+
+\newpage
+
+
+
 \question[4]
 \lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| registers the service:
 \begin{choices}
@@ -467,6 +493,41 @@ constructor(private http: HttpClient) {}
 export class DataService { }
 \end{lstlisting}
 \end{solution}
+
+\question[6]
+How does Angular implement the \textbf{singleton} pattern for services? Explain \lstinline[style=tsinline]|providedIn: 'root'| and how to opt out.
+\begin{solutionorbox}[4.5in]
+\textbf{Default behavior:} A service registered with \lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| is a \textbf{singleton}---Angular creates exactly one instance for the entire application and shares it with every injector request.
+
+\begin{lstlisting}[style=ts]
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  // one shared instance app-wide
+}
+\end{lstlisting}
+
+\textbf{Across components:} If three unrelated components inject \lstinline[style=tsinline]|DataService|, they all receive a reference to the \emph{same} object in memory. Updating shared state in one component (for example a shopping cart) is immediately visible in another.
+
+\textbf{Opting out:} Remove \lstinline[style=tsinline]|providedIn: 'root'| and list the service in a component's \lstinline[style=tsinline]|providers| array to get a fresh instance each time that component is created:
+
+\begin{lstlisting}[style=ts]
+@Component({
+  selector: 'app-child',
+  providers: [DataService],
+})
+export class ChildComponent { }
+\end{lstlisting}
+
+\textbf{Practice:} Application-wide singletons are the standard for shared data and HTTP services; per-component providers are uncommon except for isolated state.
+\end{solutionorbox}
+
+
+
+
+\newpage
+
+
+
 
 \question[8]
 How do Angular \textbf{components} and \textbf{services} work together? Explain dependency injection and the typical data workflow.
@@ -520,37 +581,10 @@ export class UserListComponent implements OnInit {
 \end{enumerate}
 \end{solutionorbox}
 
-\question[6]
-How does Angular implement the \textbf{singleton} pattern for services? Explain \lstinline[style=tsinline]|providedIn: 'root'| and how to opt out.
-\begin{solutionorbox}[4.5in]
-\textbf{Default behavior:} A service registered with \lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| is a \textbf{singleton}---Angular creates exactly one instance for the entire application and shares it with every injector request.
-
-\begin{lstlisting}[style=ts]
-@Injectable({ providedIn: 'root' })
-export class DataService {
-  // one shared instance app-wide
-}
-\end{lstlisting}
-
-\textbf{Across components:} If three unrelated components inject \lstinline[style=tsinline]|DataService|, they all receive a reference to the \emph{same} object in memory. Updating shared state in one component (for example a shopping cart) is immediately visible in another.
-
-\textbf{Opting out:} Remove \lstinline[style=tsinline]|providedIn: 'root'| and list the service in a component's \lstinline[style=tsinline]|providers| array to get a fresh instance each time that component is created:
-
-\begin{lstlisting}[style=ts]
-@Component({
-  selector: 'app-child',
-  providers: [DataService],
-})
-export class ChildComponent { }
-\end{lstlisting}
-
-\textbf{Practice:} Application-wide singletons are the standard for shared data and HTTP services; per-component providers are uncommon except for isolated state.
-\end{solutionorbox}
 
 
 
 \newpage
-
 
 
 
