@@ -1,0 +1,730 @@
+% Computer Science A --- Angular (practice bank).
+% Curated from \texttt{cs-web/web-angular.tex} and the original practice bank.
+
+\runningheader{Computer Science A}{Web: Angular}{Page \thepage\ of \numpages}
+
+\begingradingrange{csawebadvng}
+
+\question[4]
+TRUE or FALSE: In an Angular single-page application (SPA), the browser requests a brand-new HTML document from the server on every route change.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  An SPA loads \texttt{index.html} once. Angular's client-side \textbf{Router} swaps components inside the existing page and updates the URL without a full server round-trip for a new HTML document, which keeps navigation fast.
+\begin{lstlisting}[style=htmlinline]
+<!-- index.html loaded once; <app-root> hosts routed views -->
+<app-root></app-root>
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+// Router config maps paths to components, not separate .html pages
+{ path: 'labs', component: LabsComponent }
+\end{lstlisting}
+\end{solution}
+
+\question[6]
+What is \textbf{Angular}? Give a precise definition and list major parts of its platform ecosystem.
+\begin{solutionorbox}[4.5in]
+\textbf{Definition:} Angular is an open-source, TypeScript-based, component-driven framework developed by Google for building scalable \textbf{single-page web applications} (SPAs).
+
+\textbf{Platform (not just a UI library):} Angular ships a full ecosystem out of the box:
+\begin{itemize}
+  \item \textbf{Component architecture} for structuring UI into reusable building blocks
+  \item \textbf{Router} for client-side navigation without full page reloads
+  \item \textbf{HttpClient} for REST and backend communication
+  \item \textbf{Dependency injection} for wiring services into components and guards
+  \item \textbf{Tooling} for testing, server-side rendering (SSR), and optimized production builds (via the CLI and bundler)
+\end{itemize}
+
+\textbf{Contrast:} A UI library (for example a minimal view layer) leaves routing, HTTP, and DI to third-party choices. Angular integrates these concerns as first-class framework features.
+\end{solutionorbox}
+
+\question[6]
+How do you \textbf{initialize a new Angular project}? List prerequisites, the CLI command, and the usual first run steps.
+\begin{solutionorbox}[5in]
+\textbf{Prerequisites:} Node.js (LTS) and the Angular CLI. Install the CLI globally with \lstinline[style=bashinline]|npm install -g @angular/cli| or invoke it per project via \lstinline[style=bashinline]|npx @angular/cli|.
+
+\textbf{Create the workspace:}
+\begin{lstlisting}[style=bash]
+ng new my-app
+cd my-app
+\end{lstlisting}
+
+\textbf{What \lstinline[style=bashinline]|ng new| scaffolds:} A full Angular workspace including \texttt{src/app/} (root component and bootstrap), \texttt{angular.json} (build and serve config), \texttt{package.json} (dependencies and scripts), and TypeScript configs (\texttt{tsconfig.json}, \texttt{tsconfig.app.json}). The CLI may prompt for routing and stylesheet format (CSS, SCSS, etc.).
+
+\textbf{First run:}
+\begin{lstlisting}[style=bash]
+ng serve
+# default dev server: http://localhost:4200
+ng serve --open   # compile, serve, and open the browser
+\end{lstlisting}
+
+\textbf{Contrast:} \lstinline[style=bashinline]|ng new| creates a \emph{project}; \lstinline[style=bashinline]|ng generate component| (or \lstinline[style=bashinline]|ng g c|) adds artifacts inside an existing project. \lstinline[style=bashinline]|ng serve| is for development only---production builds use \lstinline[style=bashinline]|ng build|.
+\end{solutionorbox}
+
+\question[4]
+Which command creates a new Angular project named \texttt{my-app}?
+\begin{choices}
+  \choice \lstinline[style=bashinline]|ng serve my-app|
+  \CorrectChoice \lstinline[style=bashinline]|ng new my-app|
+  \choice \lstinline[style=bashinline]|ng generate my-app|
+  \choice \lstinline[style=bashinline]|npm install my-app|
+\end{choices}
+\begin{solution}
+  \lstinline[style=bashinline]|ng new| scaffolds a new workspace. \lstinline[style=bashinline]|ng serve| runs the dev server for an \emph{existing} project; \lstinline[style=bashinline]|ng generate| (or \lstinline[style=bashinline]|ng g|) adds artifacts inside a project.
+\begin{lstlisting}[style=bash]
+ng new my-app
+cd my-app
+ng serve
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: The Angular CLI command \lstinline[style=bashinline]|ng serve| compiles code in real time and can live-reload the browser.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  \lstinline[style=bashinline]|ng serve| starts a development server (default \texttt{http://localhost:4200}), watches project files, recompiles on save, and refreshes or hot-updates the app.
+\begin{lstlisting}[style=bash]
+ng serve
+ng serve --open
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+An Angular \textbf{component} is best described as:
+\begin{choices}
+  \choice A npm package that replaces TypeScript
+  \CorrectChoice A building block made of a template, selector, optional styles, and a TypeScript class
+  \choice A SQL table used only on the server
+  \choice The same thing as a Webpack loader
+\end{choices}
+\begin{solution}
+  Each component typically includes an HTML \textbf{template} (view), a CSS \textbf{selector} (where it is inserted), optional \textbf{styles}, and a TypeScript \textbf{class} (data and behavior).
+\begin{lstlisting}[style=ts]
+@Component({
+  selector: 'app-hero',
+  templateUrl: './hero.component.html',
+  styleUrls: ['./hero.component.css'],
+})
+export class HeroComponent {
+  name = 'Ada';
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In \lstinline[style=tsinline]|@Component| metadata, \lstinline[style=tsinline]|selector| specifies:
+\begin{choices}
+  \choice The path to the HTML template file
+  \CorrectChoice The CSS selector where Angular inserts this component in a parent template
+  \choice The npm registry name for the app
+  \choice The port for \lstinline[style=bashinline]|ng serve|
+\end{choices}
+\begin{solution}
+  Example: \lstinline[style=tsinline]|selector: 'app-root'| means Angular creates this component wherever it finds \lstinline[style=htmlinline]|<app-root></app-root>| in HTML.
+\begin{lstlisting}[style=htmlinline]
+<app-hero></app-hero>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which command creates a new component named \texttt{user-profile}?
+\begin{choices}
+  \choice \lstinline[style=bashinline]|ng new user-profile|
+  \CorrectChoice \lstinline[style=bashinline]|ng generate component user-profile| or \lstinline[style=bashinline]|ng g c user-profile|
+  \choice \lstinline[style=bashinline]|ng serve user-profile|
+  \choice \lstinline[style=bashinline]|npm install user-profile|
+\end{choices}
+\begin{solution}
+  The CLI generates \texttt{user-profile.component.ts}, \texttt{.html}, \texttt{.css}, and a spec file, then registers the class in the appropriate module or standalone imports.
+\begin{lstlisting}[style=bash]
+ng generate component user-profile
+\end{lstlisting}
+\end{solution}
+
+\question[6]
+How do you \textbf{create an Angular component} using the CLI? List the files the command generates.
+\begin{solutionorbox}[3.75in]
+\textbf{Command:} \lstinline[style=bashinline]|ng generate component my-component| (shortcut \lstinline[style=bashinline]|ng g c my-component|).
+
+\textbf{Generated files} (inside a new folder):
+\begin{itemize}
+  \item \texttt{my-component.component.ts} --- TypeScript class (logic and data)
+  \item \texttt{my-component.component.html} --- HTML template (visual layout)
+  \item \texttt{my-component.component.css} (or \texttt{.scss}) --- component styles
+  \item \texttt{my-component.component.spec.ts} --- unit test file
+\end{itemize}
+
+\begin{lstlisting}[style=bash]
+ng generate component my-component
+\end{lstlisting}
+
+\textbf{Note:} \lstinline[style=bashinline]|ng new| scaffolds a whole project; \lstinline[style=bashinline]|ng g c| adds one component inside an existing project.
+\end{solutionorbox}
+
+\question[6]
+What is an Angular component \textbf{template} for? Describe interpolation, event binding, and control flow with examples.
+\begin{solutionorbox}[4.75in]
+\textbf{Definition:} The template (\texttt{.component.html} or inline \lstinline[style=tsinline]|template:|) is the \textbf{view layer}---the HTML rendered for the user.
+
+\textbf{Two halves of a component:}
+\begin{itemize}
+  \item \textbf{Class} (\texttt{.component.ts}) --- data, logic, service calls
+  \item \textbf{Template} --- presentation and user interaction
+\end{itemize}
+
+\textbf{Core template features:}
+\begin{itemize}
+  \item \textbf{Interpolation} --- display model data: \lstinline[style=htmlinline]|<h1>Welcome, {{ username }}</h1>|
+  \item \textbf{Event binding} --- react to user actions: \lstinline[style=htmlinline]|<button (click)="saveDocument()">Save</button>|
+  \item \textbf{Control flow} --- show, hide, or loop without manual DOM manipulation
+\end{itemize}
+
+\begin{lstlisting}[style=htmlinline]
+@if (isLoggedIn) {
+  <p>Secure dashboard loaded.</p>
+}
+<ul>
+  @for (tool of technicalSkills; track tool) {
+    <li>{{ tool }}</li>
+  }
+</ul>
+\end{lstlisting}
+
+\textbf{Summary:} The template binds class data to the screen and forwards user actions back to the class.
+\end{solutionorbox}
+
+\question[6]
+In Angular, ``\textbf{generate interface}'' can mean two different things. Explain both and give the CLI commands for each.
+\begin{solutionorbox}[4.5in]
+\textbf{1. TypeScript interface (data blueprint):} A compile-time contract for object shapes. Generate with:
+\begin{lstlisting}[style=bash]
+ng generate interface models/user
+# shortcut: ng g i models/user
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+export interface User {
+  id: number;
+  name: string;
+  role: string;
+}
+\end{lstlisting}
+
+\textbf{2. User interface (visual layout):} The on-screen UI built from \textbf{components} and \textbf{templates}. Generate with:
+\begin{lstlisting}[style=bash]
+ng generate component components/user-profile
+# shortcut: ng g c components/user-profile
+\end{lstlisting}
+\begin{lstlisting}[style=htmlinline]
+<div class="profile-card">
+  <h2>{{ user.name }}</h2>
+  <span class="badge">{{ user.role }}</span>
+</div>
+\end{lstlisting}
+
+\textbf{Summary:} \lstinline[style=bashinline]|ng g i| creates a type-safety file; \lstinline[style=bashinline]|ng g c| creates the visual component humans interact with.
+\end{solutionorbox}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+\textbf{Text interpolation} transfers data:
+\begin{choices}
+  \choice From the template to the TypeScript class only
+  \CorrectChoice From the TypeScript class (model) to the HTML template (view)
+  \choice Only between two SQL tables
+  \choice Without using the component class
+\end{choices}
+\begin{solution}
+  Interpolation uses double curly braces to display a component property in the view.
+\begin{lstlisting}[style=htmlinline]
+<p><b>{{ title }}</b></p>
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+export class AppComponent {
+  title = 'Hello, Angular';
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+TRUE or FALSE: In Angular templates, property binding uses the syntax \lstinline[style=htmlinline]|(property)="value"|.
+\begin{choices}
+  \choice TRUE
+  \CorrectChoice FALSE
+\end{choices}
+\begin{solution}
+  \textbf{Property binding} flows data from the component class into the template with square brackets: \lstinline[style=htmlinline]|[property]="value"|. Parentheses \lstinline[style=htmlinline]|(event)="handler()"| are \textbf{event binding} (template to class). Two-way binding combines both: \lstinline[style=htmlinline]|[(ngModel)]="value"|.
+\begin{lstlisting}[style=htmlinline]
+<img [src]="photoUrl" alt="Profile">
+<button (click)="save()">Save</button>
+<input [(ngModel)]="title">
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+\textbf{Event binding} is used to:
+\begin{choices}
+  \choice Display \lstinline[style=htmlinline]|{{ title }}| in the template
+  \CorrectChoice Listen for user actions (clicks, keystrokes, etc.) and run component logic
+  \choice Set the \lstinline[style=htmlinline]|src| attribute from the model
+  \choice Import \lstinline[style=tsinline]|FormsModule|
+\end{choices}
+\begin{solution}
+  Event binding flows template to model. Parentheses on the event name wire the DOM event to a handler.
+\begin{lstlisting}[style=htmlinline]
+<button (click)="onSave()">Save</button>
+\end{lstlisting}
+\begin{lstlisting}[style=ts]
+onSave(): void {
+  console.log('Saved');
+}
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+What is the correct syntax for two-way data binding in an Angular template? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \lstinline[style=htmlinline]|{{ value }}|
+  \choice \lstinline[style=htmlinline]|[value]="data"|
+  \choice \lstinline[style=htmlinline]|(value)="handler()"|
+  \CorrectChoice \lstinline[style=htmlinline]|[(ngModel)]="data"|
+\end{checkboxes}
+\begin{solution}
+  \lstinline[style=htmlinline]|[(ngModel)]| combines property binding \lstinline[style=htmlinline]|[ ]| (class to template) and event binding \lstinline[style=htmlinline]|( )| (template to class). Import \lstinline[style=tsinline]|FormsModule| (or use standalone \lstinline[style=tsinline]|imports: [FormsModule]|) so \lstinline[style=htmlinline]|ngModel| is available.
+\begin{lstlisting}[style=htmlinline]
+<label>
+  Title
+  <input [(ngModel)]="title" name="title">
+</label>
+<p>Preview: {{ title }}</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In Angular templates, \textbf{pipes} are used to:
+\begin{choices}
+  \choice Compile TypeScript into JavaScript at build time
+  \CorrectChoice Transform displayed data from one form into another (dates, currency, case, etc.)
+  \choice Replace HTTP calls to the backend
+  \choice Define root module metadata only
+\end{choices}
+\begin{solution}
+  Pipes format values \emph{in the view} without changing the underlying model. Examples: \lstinline[style=htmlinline]|date|, \lstinline[style=htmlinline]|currency|, \lstinline[style=htmlinline]|uppercase|, \lstinline[style=htmlinline]|async|.
+\begin{lstlisting}[style=htmlinline]
+<p>{{ today | date:'MM-dd-yyyy' }}</p>
+<p>{{ price | currency:'USD' }}</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which is the correct \textbf{pipe syntax} in a template?
+\begin{choices}
+  \CorrectChoice \lstinline[style=htmlinline]!{{ text | pipeName }}!
+  \choice \lstinline[style=htmlinline]![(text | pipeName)]!
+  \choice \lstinline[style=htmlinline]|[[text : pipeName]]|
+  \choice \lstinline[style=htmlinline]|((text : pipeName))|
+\end{choices}
+\begin{solution}
+  The vertical bar separates the value from the pipe name inside interpolation. Optional parameters follow a colon: \lstinline[style=htmlinline]!{{ today | date:'MM-dd-yyyy' }}!.
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+The \lstinline[style=htmlinline]|*ngIf| directive:
+\begin{choices}
+  \choice Only toggles \lstinline[style=cssinline]|display: none| and always keeps the element in the DOM
+  \CorrectChoice Adds or removes elements from the DOM based on a boolean expression
+  \choice Iterates over an array in the template
+  \choice Binds two-way form data like \lstinline[style=htmlinline]|[(ngModel)]|
+\end{choices}
+\begin{solution}
+  Structural directives reshape the DOM. Modern control flow also offers \lstinline[style=htmlinline]|@if (condition) { ... }| as an alternative to \lstinline[style=htmlinline]|*ngIf|.
+\begin{lstlisting}[style=htmlinline]
+<p *ngIf="isLoggedIn">Welcome back.</p>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+To pass data from a parent component down to a child component, which decorator is used on the child? \emph{Select all that apply.}
+\begin{checkboxes}
+  \choice \lstinline[style=tsinline]|@Component()|
+  \choice \lstinline[style=tsinline]|@Injectable()|
+  \choice \lstinline[style=tsinline]|@Output()|
+  \CorrectChoice \lstinline[style=tsinline]|@Input()|
+\end{checkboxes}
+\begin{solution}
+  \lstinline[style=tsinline]|@Input()| marks a child property that the parent sets via property binding. \lstinline[style=tsinline]|@Output()| emits events upward with an \lstinline[style=tsinline]|EventEmitter|.
+\begin{lstlisting}[style=ts]
+@Component({ selector: 'app-child', template: `<p>{{ label }}</p>` })
+export class ChildComponent {
+  @Input() label = '';
+}
+
+// Parent: <app-child [label]="parentTitle"></app-child>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+In a parent--child relationship, data usually flows \textbf{down} with \lstinline[style=tsinline]|@Input| and flows \textbf{up} with:
+\begin{choices}
+  \choice \lstinline[style=htmlinline]|*ngFor| only
+  \CorrectChoice \lstinline[style=tsinline]|@Output| and an \lstinline[style=tsinline]|EventEmitter|
+  \choice \lstinline[style=htmlinline]|[(ngModel)]| on the parent selector only
+  \choice \lstinline[style=tsinline]|bootstrap| in \lstinline[style=tsinline]|@NgModule|
+\end{choices}
+\begin{solution}
+  The child raises a custom event; the parent listens with event binding on the child selector.
+\begin{lstlisting}[style=ts]
+@Output() picked = new EventEmitter<string>();
+this.picked.emit('item-1');
+\end{lstlisting}
+\begin{lstlisting}[style=htmlinline]
+<app-item (picked)="onPicked($event)"></app-item>
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+TRUE or FALSE: The modern \lstinline[style=htmlinline]|@for| control flow requires a \lstinline[style=htmlinline]|track| expression for optimal rendering.
+\begin{choices}
+  \CorrectChoice TRUE
+  \choice FALSE
+\end{choices}
+\begin{solution}
+  In Angular's built-in control flow, \lstinline[style=htmlinline]|track| is \textbf{required}---omitting it is a compile error. The track expression lets change detection identify added, removed, or reordered items instead of re-rendering the entire list.
+\begin{lstlisting}[style=htmlinline]
+@for (item of items; track item.id) {
+  <li>{{ item.name }}</li>
+} @empty {
+  <li>No items yet.</li>
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+\textbf{Dependency injection} (DI) in Angular means:
+\begin{choices}
+  \choice Hard-coding \lstinline[style=tsinline]|new Service()| in every template
+  \CorrectChoice The framework supplies required classes (services) to constructors or \lstinline[style=tsinline]|inject()| call sites from injectors
+  \choice Importing CSS into \lstinline[style=tsinline]|styleUrls|
+  \choice Emitting DOM events with \lstinline[style=tsinline]|EventEmitter|
+\end{choices}
+\begin{solution}
+  Components declare dependencies (for example \lstinline[style=tsinline]|HttpClient|, \lstinline[style=tsinline]|AuthService|). Angular's injector creates or reuses instances---improving testability and keeping construction out of templates.
+\begin{lstlisting}[style=ts]
+constructor(private http: HttpClient) {}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+\lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| registers the service:
+\begin{choices}
+  \choice Separately in every component's \lstinline[style=tsinline]|styleUrls|
+  \CorrectChoice With the root injector as a singleton shared across the application
+  \choice Only inside \lstinline[style=htmlinline]|*ngFor| templates
+  \choice As a route guard automatically
+\end{choices}
+\begin{solution}
+  \lstinline[style=tsinline]|providedIn: 'root'| tree-shakes the service when unused and avoids listing it in every module's \lstinline[style=tsinline]|providers| array.
+\begin{lstlisting}[style=ts]
+@Injectable({ providedIn: 'root' })
+export class DataService { }
+\end{lstlisting}
+\end{solution}
+
+\question[8]
+How do Angular \textbf{components} and \textbf{services} work together? Explain dependency injection and the typical data workflow.
+\begin{solutionorbox}[5.5in]
+\textbf{Roles:}
+\begin{itemize}
+  \item \textbf{Component (UI)} --- what the user sees; captures clicks, displays data, manages the view. Should not perform heavy work such as HTTP or global business logic.
+  \item \textbf{Service (data layer)} --- HTTP requests, calculations, shared state across features.
+\end{itemize}
+
+\textbf{Dependency injection:} Components do not call \lstinline[style=tsinline]|new DataService()| manually. Angular's injector delivers the service through the constructor (or \lstinline[style=tsinline]|inject()|) when the component is created.
+
+\textbf{Service example:}
+\begin{lstlisting}[style=ts]
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  getUsers() {
+    return ['Alice', 'Bob', 'Charlie'];
+  }
+}
+\end{lstlisting}
+
+\textbf{Component example:}
+\begin{lstlisting}[style=ts]
+@Component({
+  selector: 'app-user-list',
+  template: `
+    <h3>User List</h3>
+    <ul>
+      <li *ngFor="let user of users">{{ user }}</li>
+    </ul>
+  `,
+})
+export class UserListComponent implements OnInit {
+  users: string[] = [];
+
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.users = this.dataService.getUsers();
+  }
+}
+\end{lstlisting}
+
+\textbf{Workflow:}
+\begin{enumerate}
+  \item The user interacts with the component (UI).
+  \item The component calls a method on the service for data tasks.
+  \item The service performs the work (for example an HTTP call) and returns data.
+  \item The component updates the template for the user to see.
+\end{enumerate}
+\end{solutionorbox}
+
+\question[6]
+How does Angular implement the \textbf{singleton} pattern for services? Explain \lstinline[style=tsinline]|providedIn: 'root'| and how to opt out.
+\begin{solutionorbox}[4.5in]
+\textbf{Default behavior:} A service registered with \lstinline[style=tsinline]|@Injectable({ providedIn: 'root' })| is a \textbf{singleton}---Angular creates exactly one instance for the entire application and shares it with every injector request.
+
+\begin{lstlisting}[style=ts]
+@Injectable({ providedIn: 'root' })
+export class DataService {
+  // one shared instance app-wide
+}
+\end{lstlisting}
+
+\textbf{Across components:} If three unrelated components inject \lstinline[style=tsinline]|DataService|, they all receive a reference to the \emph{same} object in memory. Updating shared state in one component (for example a shopping cart) is immediately visible in another.
+
+\textbf{Opting out:} Remove \lstinline[style=tsinline]|providedIn: 'root'| and list the service in a component's \lstinline[style=tsinline]|providers| array to get a fresh instance each time that component is created:
+
+\begin{lstlisting}[style=ts]
+@Component({
+  selector: 'app-child',
+  providers: [DataService],
+})
+export class ChildComponent { }
+\end{lstlisting}
+
+\textbf{Practice:} Application-wide singletons are the standard for shared data and HTTP services; per-component providers are uncommon except for isolated state.
+\end{solutionorbox}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+In modern Angular, \lstinline[style=tsinline]|inject(DataService)| is used to:
+\begin{choices}
+  \choice Replace all HTML templates with JSON
+  \CorrectChoice Obtain a service reference in a factory, functional guard, or injection context without a constructor parameter
+  \choice Emit events to parent components
+  \choice Set \lstinline[style=tsinline]|ViewEncapsulation.None|
+\end{choices}
+\begin{solution}
+  Constructor injection remains common in components. \lstinline[style=tsinline]|inject()| from \lstinline[style=tsinline]|@angular/core| fits functional guards, interceptors, and standalone setup where a class constructor is awkward.
+\begin{lstlisting}[style=ts]
+export const authGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  return auth.isLoggedIn();
+};
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Angular's \lstinline[style=tsinline]|HttpClient| is used to:
+\begin{choices}
+  \choice Compile SCSS into component CSS only
+  \CorrectChoice Send HTTP requests to REST APIs and receive responses (often JSON) as reactive streams
+  \choice Replace \lstinline[style=tsinline]|@NgModule| metadata
+  \choice Scope styles with \lstinline[style=htmlinline]|:host|
+\end{choices}
+\begin{solution}
+  \lstinline[style=tsinline]|HttpClient| (from \lstinline[style=tsinline]|@angular/common/http|) wraps browser HTTP APIs. Inject it into services; responses are commonly \lstinline[style=tsinline]|Observable| streams.
+\begin{lstlisting}[style=ts]
+constructor(private http: HttpClient) {}
+
+getHeroes() {
+  return this.http.get<Hero[]>('/api/heroes');
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+An RxJS \textbf{Observable} is best described as:
+\begin{choices}
+  \choice A single static JSON file in \lstinline[style=tsinline]|assets/|
+  \CorrectChoice A lazy stream that can emit zero or more values over time and may complete or error
+  \choice A CSS encapsulation mode
+  \choice The same as a route \lstinline[style=tsinline]|path| string
+\end{choices}
+\begin{solution}
+  Observers \lstinline[style=tsinline]|subscribe| with handlers for \textbf{next}, \textbf{error}, and \textbf{complete}. \lstinline[style=tsinline]|HttpClient| and many Angular APIs return Observables.
+\begin{lstlisting}[style=ts]
+this.http.get<Hero[]>('/api/heroes').subscribe({
+  next: heroes => console.log(heroes),
+  error: err => console.error(err),
+});
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+In a template, \lstinline[style=htmlinline]!{{ heroes$ | async }}! avoids manual subscribe because:
+\begin{choices}
+  \choice The \lstinline[style=htmlinline]|async| pipe compiles TypeScript to JavaScript at build time
+  \CorrectChoice The \lstinline[style=htmlinline]|async| pipe subscribes and unwraps the latest emitted value (and cleans up on destroy)
+  \choice \lstinline[style=htmlinline]|async| converts Observables into route paths only
+  \choice \lstinline[style=htmlinline]|async| replaces \lstinline[style=tsinline]|HttpClientModule|
+\end{choices}
+\begin{solution}
+  Define \lstinline[style=tsinline]|heroes$ = this.service.getHeroes();| in the class, then bind with the \lstinline[style=htmlinline]|async| pipe. The pipe handles subscribe and unsubscribe for that binding.
+\begin{lstlisting}[style=htmlinline]
+<li *ngFor="let hero of heroes$ | async">{{ hero.name }}</li>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Angular \textbf{routing} enables:
+\begin{choices}
+  \choice Replacing TypeScript with HTML only
+  \CorrectChoice Mapping URL paths to views (components) in a SPA without full page reloads
+  \choice Disabling \lstinline[style=tsinline]|HttpClient| for all apps
+  \choice Global CSS without components
+\end{choices}
+\begin{solution}
+  The router updates the browser URL and swaps components in a \lstinline[style=htmlinline]|<router-outlet>|. Users can bookmark \texttt{/products/42} and land on the correct feature view client-side.
+\begin{lstlisting}[style=ts]
+{ path: 'heroes', component: HeroListComponent }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which template link navigates to the \texttt{/heroes} route?
+\begin{choices}
+  \choice \lstinline[style=htmlinline]|<a href="/heroes">Heroes</a>| (always SPA navigation in every setup)
+  \CorrectChoice \lstinline[style=htmlinline]|<a routerLink="/heroes">Heroes</a>| (with the router configured)
+  \choice \lstinline[style=htmlinline]|<a ngModel="/heroes">Heroes</a>|
+  \choice \lstinline[style=htmlinline]|<a *ngFor="/heroes">Heroes</a>|
+\end{choices}
+\begin{solution}
+  \lstinline[style=htmlinline]|routerLink| delegates navigation to the Angular router. Use \lstinline[style=htmlinline]|routerLinkActive| for active link styling.
+\begin{lstlisting}[style=htmlinline]
+<a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+\end{lstlisting}
+\end{solution}
+
+
+
+\newpage
+
+
+
+
+\question[4]
+The \lstinline[style=htmlinline]|<router-outlet>| element:
+\begin{choices}
+  \choice Replaces \lstinline[style=htmlinline]|<app-root>| in every project
+  \CorrectChoice Is a placeholder where the router inserts the active route's component
+  \choice Must appear only inside \lstinline[style=htmlinline]|*ngFor|
+  \choice Compiles TypeScript without a build step
+\end{choices}
+\begin{solution}
+  The root template (or a layout component) hosts \lstinline[style=htmlinline]|<router-outlet>|. When the URL changes, Angular destroys the previous routed component and creates the new one in that outlet.
+\begin{lstlisting}[style=htmlinline]
+<nav>
+  <a routerLink="/">Home</a>
+  <a routerLink="/heroes">Heroes</a>
+</nav>
+<router-outlet></router-outlet>
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+The \lstinline[style=tsinline]|CanActivate| guard runs:
+\begin{choices}
+  \choice After the user closes the browser tab only
+  \CorrectChoice Before a route is activated, to decide if navigation may proceed
+  \choice Only when a component calls \lstinline[style=tsinline]|emit()|
+  \choice During CSS encapsulation
+\end{choices}
+\begin{solution}
+  If \lstinline[style=tsinline]|canActivate| returns \lstinline[style=tsinline]|false| (or a \lstinline[style=tsinline]|UrlTree| redirect), Angular cancels or alters navigation. Typical checks include authentication and roles.
+\begin{lstlisting}[style=ts]
+{ path: 'admin', component: AdminComponent, canActivate: [AuthGuard] }
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+Which lifecycle hook is designed for cleanup tasks such as unsubscribing from Observables? \emph{Select all that apply.}
+\begin{checkboxes}
+  \CorrectChoice \lstinline[style=tsinline]|ngOnDestroy|
+  \choice \lstinline[style=tsinline]|ngOnInit|
+  \choice \lstinline[style=tsinline]|ngOnChanges|
+  \choice \lstinline[style=tsinline]|ngAfterViewInit|
+\end{checkboxes}
+\begin{solution}
+  \lstinline[style=tsinline]|ngOnDestroy| runs immediately before Angular destroys a component or directive. Unsubscribe from long-lived Observables, clear timers, and detach manual listeners here to avoid memory leaks. The \lstinline[style=htmlinline]|async| pipe also unsubscribes when its binding is destroyed.
+\begin{lstlisting}[style=ts]
+export class UserListComponent implements OnInit, OnDestroy {
+  private sub?: Subscription;
+
+  ngOnInit() {
+    this.sub = this.users$.subscribe();
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+}
+\end{lstlisting}
+\end{solution}
+
+\endgradingrange{csawebadvng}
