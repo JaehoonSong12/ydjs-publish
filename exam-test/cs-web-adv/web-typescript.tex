@@ -277,6 +277,39 @@ let nickname: string | undefined; // not assigned yet
 
 
 
+
+\question[6]
+How do you \textbf{start a TypeScript project} from scratch? Outline the usual \texttt{npm}, \texttt{tsconfig.json}, and compile steps.
+\begin{solutionorbox}[5in]
+\textbf{Definition:} A minimal TypeScript project is a Node/npm workspace with the compiler installed locally, a \texttt{tsconfig.json} that lists compiler options and source files, and \texttt{.ts} sources that compile to \texttt{.js}.
+
+\textbf{Typical steps:}
+\begin{enumerate}
+  \item Create a project folder and initialize npm: \lstinline[style=bashinline]|npm init -y|
+  \item Install TypeScript as a dev dependency: \lstinline[style=bashinline]|npm install typescript --save-dev|
+  \item Add \texttt{tsconfig.json} (generate a starter with \lstinline[style=bashinline]|npx tsc --init| or author manually)
+  \item Place source files under \texttt{src/} (for example \texttt{src/index.ts})
+  \item Compile: \lstinline[style=bashinline]|npx tsc| (reads \texttt{tsconfig.json} when run with no file arguments)
+\end{enumerate}
+
+\begin{lstlisting}[style=bash]
+mkdir my-ts-app && cd my-ts-app
+npm init -y
+npm install typescript --save-dev
+npx tsc --init
+\end{lstlisting}
+
+\begin{lstlisting}[style=ts]
+// tsconfig.json excerpt
+{
+  "compilerOptions": { "target": "ES2020", "outDir": "dist", "strict": true },
+  "include": ["src/**/*"]
+}
+\end{lstlisting}
+
+\textbf{Optional:} Add a \texttt{build} script in \texttt{package.json} (\lstinline[style=bashinline]|"build": "tsc"|) so \lstinline[style=bashinline]|npm run build| compiles the project.
+\end{solutionorbox}
+
 \question[4]
 The TypeScript compiler is invoked from the command line as:
 \begin{choices}
@@ -311,6 +344,30 @@ The file \texttt{tsconfig.json} is used to:
 }
 \end{lstlisting}
 \end{solution}
+
+\question[6]
+In \texttt{tsconfig.json}, what is the \textbf{\texttt{strict}} property? What checks does it enable and why turn it on?
+\begin{solutionorbox}[5in]
+\textbf{Definition:} \texttt{strict} is a top-level \texttt{compilerOptions} flag. Setting \lstinline[style=tsinline]|"strict": true| turns on TypeScript's recommended \textbf{strict type-checking} family as a group.
+
+\textbf{Checks enabled} (representative subset):
+\begin{itemize}
+  \item \textbf{strictNullChecks} --- \lstinline[style=tsinline]|null| and \lstinline[style=tsinline]|undefined| are not assignable to \lstinline[style=tsinline]|string|, \lstinline[style=tsinline]|number|, etc.\ unless the type explicitly allows them
+  \item \textbf{noImplicitAny} --- error when the checker would otherwise infer \lstinline[style=tsinline]|any|
+  \item \textbf{strictFunctionTypes} --- stricter checking of function parameter types
+  \item Additional flags such as \textbf{strictBindCallApply} and \textbf{alwaysStrict} (see TypeScript docs for the full set)
+\end{itemize}
+
+\begin{lstlisting}[style=ts]
+{
+  "compilerOptions": {
+    "strict": true
+  }
+}
+\end{lstlisting}
+
+\textbf{Purpose:} \texttt{strict} catches whole classes of bugs at compile time (null dereference, silent \lstinline[style=tsinline]|any|, unsafe calls) instead of at runtime in the browser or Node.js. New projects and Angular workspaces typically enable it by default.
+\end{solutionorbox}
 
 \question[4]
 Running \lstinline[style=bashinline]|tsc| on a \texttt{.ts} file typically produces:

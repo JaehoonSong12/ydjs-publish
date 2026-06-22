@@ -40,6 +40,29 @@ What is \textbf{Angular}? Give a precise definition and list major parts of its 
 \textbf{Contrast:} A UI library (for example a minimal view layer) leaves routing, HTTP, and DI to third-party choices. Angular integrates these concerns as first-class framework features.
 \end{solutionorbox}
 
+\question[6]
+How do you \textbf{initialize a new Angular project}? List prerequisites, the CLI command, and the usual first run steps.
+\begin{solutionorbox}[5in]
+\textbf{Prerequisites:} Node.js (LTS) and the Angular CLI. Install the CLI globally with \lstinline[style=bashinline]|npm install -g @angular/cli| or invoke it per project via \lstinline[style=bashinline]|npx @angular/cli|.
+
+\textbf{Create the workspace:}
+\begin{lstlisting}[style=bash]
+ng new my-app
+cd my-app
+\end{lstlisting}
+
+\textbf{What \lstinline[style=bashinline]|ng new| scaffolds:} A full Angular workspace including \texttt{src/app/} (root component and bootstrap), \texttt{angular.json} (build and serve config), \texttt{package.json} (dependencies and scripts), and TypeScript configs (\texttt{tsconfig.json}, \texttt{tsconfig.app.json}). The CLI may prompt for routing and stylesheet format (CSS, SCSS, etc.).
+
+\textbf{First run:}
+\begin{lstlisting}[style=bash]
+ng serve
+# default dev server: http://localhost:4200
+ng serve --open   # compile, serve, and open the browser
+\end{lstlisting}
+
+\textbf{Contrast:} \lstinline[style=bashinline]|ng new| creates a \emph{project}; \lstinline[style=bashinline]|ng generate component| (or \lstinline[style=bashinline]|ng g c|) adds artifacts inside an existing project. \lstinline[style=bashinline]|ng serve| is for development only---production builds use \lstinline[style=bashinline]|ng build|.
+\end{solutionorbox}
+
 \question[4]
 Which command creates a new Angular project named \texttt{my-app}?
 \begin{choices}
