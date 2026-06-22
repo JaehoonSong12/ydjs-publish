@@ -1,1 +1,74 @@
-% 
+% Computer Science A --- Gradle build automation (practice bank).
+% Moved from \texttt{cs-web-adv/test.tex}; \texttt{cs-web-adv/} module.
+
+\runningheader{Computer Science A}{Build automation (Gradle)}{Page \thepage\ of \numpages}
+
+\begingradingrange{csabuildauto}
+
+\uplevel{\par\textbf{Gradle}\par}
+
+\question[4]
+Which repositories can Gradle use for resolving dependencies? \emph{Select all that apply.}
+\begin{checkboxes}
+  \CorrectChoice Maven Central repository
+  \choice Docker Hub
+  \CorrectChoice Ivy repositories
+  \CorrectChoice Local repositories
+\end{checkboxes}
+\begin{solution}
+  Gradle resolves artifacts from Maven-compatible repos (including Maven Central), Ivy repos, and the local cache (typically \lstinline[style=bashinline]|~/.gradle/caches| or a declared local directory). Docker Hub distributes container images, not Java library coordinates for Gradle dependency resolution.
+\begin{lstlisting}[style=java]
+repositories {
+    mavenCentral()
+    ivy { url "https://example.com/ivy" }
+    mavenLocal()
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+For Gradle projects, a unit test library like JUnit would go in which section?
+\begin{choices}
+  \choice \texttt{plugins}
+  \choice \texttt{repositories}
+  \CorrectChoice \texttt{dependencies}
+  \choice \texttt{tasks}
+\end{choices}
+\begin{solution}
+  Library coordinates (for example \lstinline[style=javainline]|testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'|) belong in the \textbf{dependencies} block. \texttt{plugins} apply Gradle plugins; \texttt{repositories} declare where to download artifacts; \texttt{tasks} define or configure build steps.
+\begin{lstlisting}[style=java]
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+\end{lstlisting}
+\end{solution}
+
+\question[4]
+What are Gradle build scripts?
+\begin{choices}
+  \CorrectChoice Script files that define Gradle \textbf{projects} and \textbf{tasks}; a project may represent a library JAR, web application, or assembled deliverable
+  \choice Script files that list dependencies stored as JARs in the project root package only
+  \choice XML project descriptors with default directories such as \texttt{src/main/java} (Maven \texttt{pom.xml} style)
+  \choice JVM instruction files compiled with \lstinline[style=javainline]|javac| into \texttt{.class} files
+\end{choices}
+\begin{solution}
+  Gradle builds are driven by scripts (commonly \lstinline[style=bashinline]|build.gradle| or \lstinline[style=bashinline]|build.gradle.kts|). Each build has one or more \textbf{projects}; each project registers \textbf{tasks} (compile, test, jar, etc.). Dependencies are declared in the script but downloaded to Gradle's cache, not checked into the repo root. The XML description matches Maven, not Gradle; build scripts are not Java source compiled by \lstinline[style=javainline]|javac|.
+\end{solution}
+
+\question[4]
+What is Gradle?
+\begin{choices}
+  \choice A dependency management tool only
+  \choice The Java compiler
+  \choice A container orchestrator
+  \CorrectChoice A build automation tool
+\end{choices}
+\begin{solution}
+  \textbf{Gradle} automates compiling, testing, packaging, and publishing software. It \emph{includes} dependency management but also orchestrates tasks and plugins across projects. The Java compiler is part of the JDK; container orchestration (for example Kubernetes) is a separate concern.
+\begin{lstlisting}[style=bash]
+./gradlew build    # compile, test, and assemble artifacts
+./gradlew test     # run unit tests
+\end{lstlisting}
+\end{solution}
+
+\endgradingrange{csabuildauto}

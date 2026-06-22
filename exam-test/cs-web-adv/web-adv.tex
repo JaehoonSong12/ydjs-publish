@@ -153,7 +153,7 @@ Which fragment is a correct minimal HTML5 boilerplate skeleton?
 \end{lstlisting}
 \end{choices}
 \begin{solution}
-  A correct skeleton starts with the HTML5 doctype, then \texttt{<html>}, then separate \texttt{<head>} (metadata) and \texttt{<body>} (visible content) sections. Reversing \texttt{head} and \texttt{body} or omitting the doctype breaks the standard document tree.
+  A correct skeleton starts with the HTML5 doctype, then \texttt{<html>}, then separate \texttt{<head>} (metadata) and \texttt{<body>} (visible content) sections---the required top-level trio is \texttt{html}, \texttt{head}, and \texttt{body}. Elements such as \texttt{footer} may appear inside \texttt{body} but are not required siblings of \texttt{head}. Reversing \texttt{head} and \texttt{body} or omitting the doctype breaks the standard document tree.
 \begin{lstlisting}[style=htmlinline]
 <!DOCTYPE html>
 <html lang="en">
@@ -175,7 +175,7 @@ In HTML, which pair correctly matches document metadata and visible page content
   \choice \texttt{<meta>} for metadata and \texttt{<html>} for visible content only
 \end{choices}
 \begin{solution}
-  \texttt{<head>} stores metadata (title, meta tags, stylesheet links), while \texttt{<body>} contains what users see in the rendered page.
+  The \texttt{<html>} element wraps the entire document. \texttt{<head>} stores metadata (title, meta tags, stylesheet links), while \texttt{<body>} contains what users see in the rendered page.
 \begin{lstlisting}[style=htmlinline]
 <head>
   <meta charset="utf-8">
@@ -394,7 +394,7 @@ In \texttt{<a href="page.html">Open</a>}, what is the role of \texttt{href}?
   \choice It prevents the default navigation behavior
 \end{choices}
 \begin{solution}
-  The \textbf{hypertext reference} attribute \texttt{href} points to the resource to load. Presentation is CSS; \texttt{target} and JS handlers affect navigation behavior separately.
+  Hyperlinks are created with \texttt{<a>} (anchor), not \texttt{<link>}---\texttt{<link>} attaches external resources such as stylesheets inside \texttt{<head>}. The \textbf{hypertext reference} attribute \texttt{href} on \texttt{<a>} points to the destination URL or path. Presentation is CSS; \texttt{target} and JS handlers affect navigation behavior separately.
 \begin{lstlisting}[style=htmlinline]
 <a href="page.html">Open</a>
 <a href="https://example.com/" target="_blank">External</a>
@@ -572,7 +572,7 @@ Which statement best describes \textbf{semantic} HTML elements?
   \choice They are developer-only comments that browsers ignore
 \end{choices}
 \begin{solution}
-  Semantic elements describe roles (navigation, main content, aside) rather than being purely presentational wrappers. \texttt{<div>} is non-semantic until given a role or ARIA.
+  Semantic elements describe roles (navigation, main content, aside) rather than being purely presentational wrappers. \textbf{HTML5} added these landmarks so crawlers and developers can infer structure; \texttt{<div>} is non-semantic until given a role or ARIA.
 \begin{lstlisting}[style=htmlinline]
 <header><h1>Site title</h1></header>
 <nav><a href="/">Home</a></nav>
@@ -587,7 +587,7 @@ TRUE or FALSE: Semantic tags, such as \texttt{<nav>} and \texttt{<article>}, are
   \choice FALSE
 \end{choices}
 \begin{solution}
-  Semantic landmarks describe page regions explicitly. Crawlers and screen readers can identify navigation, main content, and articles instead of undifferentiated \texttt{<div>} wrappers.
+  Semantic landmarks describe page regions explicitly for search engines, assistive technologies, and maintainability. \textbf{HTML5} (2014) introduced elements such as \texttt{<nav>}, \texttt{<article>}, and \texttt{<section>} so structure and grouping carry meaning without relying solely on generic \texttt{<div>} wrappers. Semantic tags describe \emph{meaning} (\emph{this is navigation}, \emph{this is an article}), improving readability and SEO; styling still requires CSS. Use \texttt{<nav>} for major navigation blocks---not \texttt{<header>} alone, \texttt{<section>}, or \texttt{<article>}.
 \begin{lstlisting}[style=htmlinline]
 <header><h1>Course site</h1></header>
 <nav aria-label="Main">
@@ -661,7 +661,7 @@ TRUE or FALSE: To ensure accessibility, an \texttt{<input>} element should be co
   \choice FALSE
 \end{choices}
 \begin{solution}
-  Pair \texttt{for} on the label with \texttt{id} on the input so screen readers announce the field and clicking the label text focuses the control.
+  Pair \texttt{for} on the label with \texttt{id} on the input so screen readers announce the field and clicking the label text focuses the control. HTML5 validation attributes such as \lstinline[style=htmlinline]|required| enforce that a field must be filled before submit (distinct from \lstinline[style=htmlinline]|action|/\lstinline[style=htmlinline]|method| on the form or the default \lstinline[style=htmlinline]|value|).
 \begin{lstlisting}[style=htmlinline]
 <label for="user-email">Email Address:</label>
 <input type="email" id="user-email" name="email">
@@ -743,7 +743,7 @@ TRUE or FALSE: Block-level elements automatically start on a new line and take u
   \choice FALSE
 \end{choices}
 \begin{solution}
-  Block elements begin on a new line and stretch to the container width. Inline elements flow with surrounding text and only use the width their content needs.
+  Block elements such as \texttt{<div>} begin on a new line and stretch to the container width. Inline elements (\texttt{<span>}, \texttt{<a>}, \texttt{<strong>}) flow with surrounding text; \texttt{<img>} is replaced inline but participates in line layout differently from block boxes.
 \begin{lstlisting}[style=htmlinline]
 <div>Block one (full width, new line)</div>
 <div>Block two (full width, new line)</div>
@@ -797,7 +797,7 @@ TRUE or FALSE: HTML is a programming language used to perform complex logic and 
   \CorrectChoice FALSE
 \end{choices}
 \begin{solution}
-  HTML is a markup language for structure and semantics. Logic, loops, and calculations belong in JavaScript (or another programming language).
+  HTML is a markup language for structure and semantics. \textbf{JavaScript} runs in the browser and adds client-side interactivity---DOM updates, event handlers, and API calls---while CSS handles presentation and server-side languages manage databases. Logic, loops, and calculations belong in JavaScript (or another programming language), not in HTML.
 \begin{lstlisting}[style=htmlinline]
 <p>Items: <span id="count">0</span></p>
 <button id="add">Add item</button>
@@ -822,7 +822,7 @@ TRUE or FALSE: The DOM (Document Object Model) is a hierarchical tree structure 
   \choice FALSE
 \end{choices}
 \begin{solution}
-  The browser parses HTML into a tree rooted at \texttt{<html>}. JavaScript reads and mutates nodes to update the page without a full reload.
+  The browser parses HTML into a tree rooted at \texttt{<html>}. JavaScript reads and mutates nodes to update the page without a full reload. The same runtime may persist data in the browser: \lstinline[style=jsinline]|localStorage| keeps key--value strings for the origin until cleared (unlike tab-scoped \lstinline[style=jsinline]|sessionStorage|).
 \begin{lstlisting}[style=htmlinline]
 <h1 id="title">Hello</h1>
 \end{lstlisting}
@@ -830,6 +830,10 @@ TRUE or FALSE: The DOM (Document Object Model) is a hierarchical tree structure 
 const title = document.getElementById('title');
 title.textContent = 'Welcome back';
 title.style.color = 'navy';
+\end{lstlisting}
+\begin{lstlisting}[style=js]
+localStorage.setItem('theme', 'dark');
+console.log(localStorage.getItem('theme')); // "dark"
 \end{lstlisting}
 \end{solution}
 
@@ -844,7 +848,7 @@ In the lab progression, \textbf{inline CSS} is applied by placing declarations w
   \choice In a JavaScript \texttt{className} assignment only
 \end{choices}
 \begin{solution}
-  CSS can be applied three ways: \textbf{inline} (\texttt{style} attribute), \textbf{embedded} (\texttt{<style>} block), and \textbf{external} (\texttt{<link rel="stylesheet">}). Inline styles sit on one element and win the normal cascade.
+  \textbf{Cascading Style Sheets (CSS)} is the language for styling web pages; HTML defines structure and JavaScript adds behavior (SQL queries databases). CSS can be applied three ways: \textbf{inline} (\texttt{style} attribute), \textbf{embedded} (\texttt{<style>} block), and \textbf{external} (\texttt{<link rel="stylesheet">}). Inline styles sit on one element and win the normal cascade.
 \begin{lstlisting}[style=htmlinline]
 <head>
   <link rel="stylesheet" href="theme.css">       <!-- external -->
@@ -886,7 +890,7 @@ Which of the following is \textbf{not} part of the CSS box model?
   \CorrectChoice Whitespace
 \end{choices}
 \begin{solution}
-  The canonical box model layers are \textbf{content}, \textbf{padding}, \textbf{border}, and \textbf{margin}. ``Whitespace'' is not a separate layer---visible spacing comes from margin and padding.
+  The canonical box model layers are \textbf{content}, \textbf{padding}, \textbf{border}, and \textbf{margin} (inside to outside). ``Whitespace'' is not a separate layer---visible spacing comes from margin and padding. \lstinline[style=cssinline]|box-sizing: border-box| includes padding and border in the declared width; the default \lstinline[style=cssinline]|content-box| adds them outside the content width.
 \begin{lstlisting}[style=htmlinline]
 <div class="card">Content sits in the inner box.</div>
 \end{lstlisting}
@@ -996,7 +1000,7 @@ In CSS, which selector targets an element with a specific id?
   \choice \texttt{*myId}
 \end{choices}
 \begin{solution}
-  An \textbf{ID selector} (prefix \texttt{\#}) matches the one element on the page with that \texttt{id}. IDs must be unique; they carry higher specificity than classes but should not replace classes for broad styling.
+  An \textbf{ID selector} (prefix \texttt{\#}) matches the one element on the page with that \texttt{id}. Class selectors use a dot (\texttt{.class}), type selectors use the tag name, and the universal selector \lstinline[style=cssinline]|*| matches every element. Each \texttt{id} must be unique within the document (duplicate ids are \emph{invalid HTML}, but browsers still render the page rather than throwing a compile-time error). Duplicates break predictable behavior: \lstinline[style=jsinline]|document.getElementById()| and \lstinline[style=jsinline]|querySelector('#id')| return only the first match, and \lstinline[style=htmlinline]|<label for="id">| can associate with at most one control. IDs carry higher specificity than classes but should not replace classes for broad styling.
 \begin{lstlisting}[style=cssinline]
 #main-title { font-size: 2rem; }
 \end{lstlisting}
@@ -1399,7 +1403,7 @@ When using Flexbox, which property is used to align items along the main axis? \
   \choice \texttt{align-content}
 \end{checkboxes}
 \begin{solution}
-  \texttt{justify-content} distributes items along the main axis. \texttt{align-items} and \texttt{align-content} work on the cross axis; \texttt{flex-direction} sets the main axis direction but does not align items along it.
+  \textbf{Flexbox} arranges items along a single main axis (one-dimensional); \textbf{CSS Grid} handles rows and columns together (two-dimensional). Float and table layouts are older patterns. \texttt{justify-content} distributes flex items along the main axis. \texttt{align-items} and \texttt{align-content} work on the cross axis; \texttt{flex-direction} sets the main axis direction but does not align items along it.
 \begin{lstlisting}[style=css]
 .toolbar {
   display: flex;
@@ -1531,7 +1535,7 @@ What is the primary advantage of a mobile-first strategy? \emph{Select all that 
   \choice It uses only absolute units like \texttt{px}.
 \end{checkboxes}
 \begin{solution}
-  Mobile-first starts with a minimal layout and adds complexity with \texttt{min-width} media queries, keeping default payloads light for constrained devices.
+  Mobile-first starts with a minimal layout and adds complexity with \texttt{min-width} \textbf{media queries}, keeping default payloads light for constrained devices. \textbf{Media queries} apply styles when viewport width, orientation, or user preferences match a condition---Flexbox helps layout but does not by itself switch rules at breakpoints.
 \begin{lstlisting}[style=css]
 /* Base styles: single column for phones */
 .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
@@ -1632,7 +1636,7 @@ TRUE or FALSE: The \lstinline[style=jsinline]|var| keyword is block-scoped, mean
   \CorrectChoice FALSE
 \end{choices}
 \begin{solution}
-  \lstinline[style=jsinline]|var| is function-scoped and leaks out of blocks. \lstinline[style=jsinline]|let| and \lstinline[style=jsinline]|const| are block-scoped.
+  \lstinline[style=jsinline]|var| is function-scoped and leaks out of blocks. \lstinline[style=jsinline]|let| and \lstinline[style=jsinline]|const| are block-scoped (ES6). \lstinline[style=jsinline]|static| is a class member modifier, not a variable declaration keyword; \lstinline[style=jsinline]|define| is not a JavaScript keyword.
 \begin{lstlisting}[style=js]
 if (true) {
   var framework = "React";
@@ -1650,7 +1654,7 @@ TRUE or FALSE: An arrow function inherits its \lstinline[style=jsinline]|this| v
   \choice FALSE
 \end{choices}
 \begin{solution}
-  Arrow functions do not bind their own \lstinline[style=jsinline]|this|; they capture the enclosing scope's \lstinline[style=jsinline]|this|. Regular functions bind \lstinline[style=jsinline]|this| at call time.
+  In JavaScript, \lstinline[style=jsinline]|this| refers to the current execution context---often the object before the dot when a method is called. Arrow functions do not bind their own \lstinline[style=jsinline]|this|; they capture the enclosing scope's \lstinline[style=jsinline]|this|. Regular functions bind \lstinline[style=jsinline]|this| at call time.
 \begin{lstlisting}[style=js]
 const user = {
   name: "Jaehoon",
@@ -1673,7 +1677,7 @@ TRUE or FALSE: \lstinline[style=jsinline]|async| functions always return a \lsti
   \choice FALSE
 \end{choices}
 \begin{solution}
-  An \lstinline[style=jsinline]|async| function wraps return values in a resolved promise and thrown errors in a rejected promise, even when no explicit \lstinline[style=jsinline]|return| is written.
+  An \lstinline[style=jsinline]|async| function wraps return values in a resolved promise and thrown errors in a rejected promise, even when no explicit \lstinline[style=jsinline]|return| is written. Under the hood, \textbf{Promises} are the core abstraction for async work (\emph{pending}, \emph{fulfilled}, \emph{rejected}); callbacks predate them, and \lstinline[style=jsinline]|async|/\lstinline[style=jsinline]|await| is syntactic sugar on top of Promises.
 \begin{lstlisting}[style=js]
 async function fetchStatus() {
   return "Success";
@@ -1743,7 +1747,7 @@ TRUE or FALSE: Array methods like \lstinline[style=jsinline]|.map()| and \lstinl
   \CorrectChoice FALSE
 \end{choices}
 \begin{solution}
-  \lstinline[style=jsinline]|.map()| and \lstinline[style=jsinline]|.filter()| return new arrays and leave the source unchanged. Mutating methods include \lstinline[style=jsinline]|.push()|, \lstinline[style=jsinline]|.pop()|, \lstinline[style=jsinline]|.splice()|, and \lstinline[style=jsinline]|.sort()|.
+  \lstinline[style=jsinline]|.map()| transforms each element into a new array of values; \lstinline[style=jsinline]|.filter()| selects a subset; \lstinline[style=jsinline]|.reduce()| accumulates to one value; \lstinline[style=jsinline]|.forEach()| runs side effects without returning a mapped array. \lstinline[style=jsinline]|.map()| and \lstinline[style=jsinline]|.filter()| return new arrays and leave the source unchanged. Mutating methods include \lstinline[style=jsinline]|.push()|, \lstinline[style=jsinline]|.pop()|, \lstinline[style=jsinline]|.splice()|, and \lstinline[style=jsinline]|.sort()|.
 \begin{lstlisting}[style=js]
 const numbers = [1, 2, 3, 4];
 const evens = numbers.filter(n => n % 2 === 0);
